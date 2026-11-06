@@ -1,0 +1,17 @@
+{
+  "id": "prologue",
+  "title": "Fener'in Son Gecesi",
+  "region": "Gökkuşağı Köyü",
+  "theme": "dark",
+  "spark": null,
+  "scenes": [
+    { "id": "scene1", "title": "Yıldız Şenliği", "teaches": ["yürüme", "zıplama", "konuşma", "ilk görev", "ilk Pırıl"] },
+    { "id": "scene2", "title": "Gri Rüzgâr", "teaches": ["saldırı", "top olup yuvarlanma", "Bal Şurubu"] },
+    { "id": "scene3", "title": "Kule'ye Koşu", "teaches": ["tırmanma", "platform", "seviye atlama"] },
+    { "id": "scene4", "title": "Pus Baykuşu", "teaches": ["ilk boss"] },
+    { "id": "scene5", "title": "Fıstık'ın Seçimi", "teaches": [] },
+    { "id": "scene6", "title": "Fener'in Seçimi", "teaches": ["karakter seçimi"] }
+  ],
+  "quests": ["kayip_fenerler"],
+  "dialogue": ["tospik_nine", "piti", "tipis", "zipzip"]
+}

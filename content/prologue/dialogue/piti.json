@@ -1,0 +1,24 @@
+{
+  "npc": "piti",
+  "variants": [
+    {
+      "when": { "objective_done": "kayip_fenerler/pembe" },
+      "lines": [ { "speaker": "piti", "mood": "mutlu", "text": "Fenerim parlıyor! Teşekkürler Fıstık!" } ]
+    },
+    {
+      "when": { "quest": "kayip_fenerler", "state": "active", "has_item": "fener_pembe" },
+      "lines": [
+        { "speaker": "piti", "mood": "şaşkın", "text": "Bu benim fenerim! Pembe olan!" },
+        { "speaker": "fistik", "mood": "mutlu", "text": "Al bakalım. Bir daha düşürme." }
+      ],
+      "then": { "deliver": { "quest": "kayip_fenerler", "objective": "pembe", "item": "fener_pembe" } }
+    },
+    {
+      "when": { "quest": "kayip_fenerler", "state": "active" },
+      "lines": [ { "speaker": "piti", "mood": "üzgün", "text": "Pembe fenerim kayboldu... Kuyunun oralarda düşürdüm galiba." } ]
+    },
+    {
+      "lines": [ { "speaker": "piti", "mood": "mutlu", "text": "Şenlik başlıyor! Zıp zıp!" } ]
+    }
+  ]
+}

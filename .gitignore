@@ -1,0 +1,9 @@
+# Godot
+.godot/
+/android/
+/export/
+*.translation
+export_credentials.cfg
+# Local tools (downloaded by tools/setup_godot.sh)
+/.tools/
+/screenshots/

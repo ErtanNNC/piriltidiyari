@@ -1,0 +1,36 @@
+{
+  "npc": "tospik_nine",
+  "variants": [
+    {
+      "when": { "quest": "kayip_fenerler", "state": "none" },
+      "lines": [
+        { "speaker": "tospik_nine", "mood": "mutlu", "text": "Fıstık! Bu gece Yıldız Şenliği var." },
+        { "speaker": "tospik_nine", "mood": "mutlu", "text": "Büyük Kıvılcım'ı her yıl olduğu gibi sen yakacaksın." },
+        { "speaker": "fistik", "mood": "huysuz", "text": "Hıh. Her yıl ben. Tabii ki ben." },
+        { "speaker": "tospik_nine", "mood": "dertli", "text": "Ama bir dert var: üç çocuk fenerini kaybetmiş." },
+        { "speaker": "tospik_nine", "mood": "mutlu", "text": "Fenerleri bul, sahiplerine ver. Hadi bakalım!" }
+      ],
+      "then": { "start_quest": "kayip_fenerler" }
+    },
+    {
+      "when": { "quest": "kayip_fenerler", "state": "active" },
+      "lines": [
+        { "speaker": "tospik_nine", "mood": "mutlu", "text": "Çocuklara sor, nerede düşürdüklerini bilirler." }
+      ]
+    },
+    {
+      "when": { "quest": "kayip_fenerler", "state": "ready" },
+      "lines": [
+        { "speaker": "tospik_nine", "mood": "mutlu", "text": "Üç fener de yerinde! Köy pırıl pırıl oldu." },
+        { "speaker": "fistik", "mood": "huysuz", "text": "Dizlerim ağrıdı ama değdi." },
+        { "speaker": "tospik_nine", "mood": "mutlu", "text": "Al bakalım, bu da senin payın." }
+      ],
+      "then": { "complete_quest": "kayip_fenerler", "set_flag": "sahne1_bitti" }
+    },
+    {
+      "lines": [
+        { "speaker": "tospik_nine", "mood": "mutlu", "text": "Hadi kuleye! Yıldızlar seni bekliyor." }
+      ]
+    }
+  ]
+}

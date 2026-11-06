@@ -1,0 +1,12 @@
+{
+  "id": "kayip_fenerler",
+  "title": "Kayıp Fenerler",
+  "giver": "tospik_nine",
+  "objectives": [
+    { "id": "pembe", "text": "Pıtı'ya pembe fenerini ver", "item": "fener_pembe", "to": "piti" },
+    { "id": "mavi", "text": "Tıpış'a mavi fenerini ver", "item": "fener_mavi", "to": "tipis" },
+    { "id": "yesil", "text": "Zıpzıp'a yeşil fenerini ver", "item": "fener_yesil", "to": "zipzip" }
+  ],
+  "turn_in": "Tospik Nine'ye dön",
+  "rewards": { "piril": 30, "xp": 40 }
+}

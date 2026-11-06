@@ -1,0 +1,43 @@
+class_name StatBar
+extends Control
+## StatBar: icon + outlined bar + number. Color never carries meaning alone:
+## the icon and the number are always there.
+
+@export_enum("hp", "mp", "xp") var stat := "hp"
+var value := 1.0
+var max_value := 1.0
+var _icon: GameIcon
+var _text := ""
+
+
+func _ready() -> void:
+	custom_minimum_size = Vector2(220, 30)
+	_icon = GameIcon.new()
+	_icon.kind = {"hp": "heart", "mp": "drop", "xp": "star"}[stat]
+	_icon.fill = Tokens.color(stat)
+	_icon.outline_color = Tokens.color("outline")
+	_icon.position = Vector2(0, 1)
+	_icon.size = Vector2(28, 28)
+	add_child(_icon)
+
+
+func set_values(v: float, m: float, text := "") -> void:
+	value = v
+	max_value = maxf(m, 1.0)
+	_text = text if text != "" else "%d/%d" % [roundi(v), roundi(m)]
+	queue_redraw()
+
+
+func _draw() -> void:
+	var r := Rect2(Vector2(34, 4), Vector2(size.x - 34, size.y - 8))
+	var track := UiKit.box(Tokens.color("panel-sunken"), "radius-pill")
+	draw_style_box(track, r)
+	var ratio := clampf(value / max_value, 0.0, 1.0)
+	if ratio > 0.0:
+		var fill := UiKit.box(Tokens.color(stat), "radius-pill")
+		draw_style_box(fill, Rect2(r.position, Vector2(maxf(r.size.y, r.size.x * ratio), r.size.y)))
+	var font := Tokens.font_for("text-caption")
+	var fs := Tokens.type_size("text-caption")
+	var pos := Vector2(r.position.x + 10, r.position.y + r.size.y * 0.5 + fs * 0.36)
+	# on-color: text on colored fills is always dark, never white.
+	draw_string(font, pos, _text, HORIZONTAL_ALIGNMENT_LEFT, -1, fs, Tokens.color("on-color"))

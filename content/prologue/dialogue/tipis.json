@@ -1,0 +1,24 @@
+{
+  "npc": "tipis",
+  "variants": [
+    {
+      "when": { "objective_done": "kayip_fenerler/mavi" },
+      "lines": [ { "speaker": "tipis", "mood": "mutlu", "text": "Vak vak! En güzel fener benimki!" } ]
+    },
+    {
+      "when": { "quest": "kayip_fenerler", "state": "active", "has_item": "fener_mavi" },
+      "lines": [
+        { "speaker": "tipis", "mood": "şaşkın", "text": "Bu benim fenerim! Mavi olan!" },
+        { "speaker": "fistik", "mood": "mutlu", "text": "Al bakalım. Bir daha düşürme." }
+      ],
+      "then": { "deliver": { "quest": "kayip_fenerler", "objective": "mavi", "item": "fener_mavi" } }
+    },
+    {
+      "when": { "quest": "kayip_fenerler", "state": "active" },
+      "lines": [ { "speaker": "tipis", "mood": "üzgün", "text": "Mavi fenerim kayboldu... Büyük ağacın altında düşürdüm galiba." } ]
+    },
+    {
+      "lines": [ { "speaker": "tipis", "mood": "mutlu", "text": "Vak! Bu gece yıldız sayacağım!" } ]
+    }
+  ]
+}
