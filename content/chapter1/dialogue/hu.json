@@ -1,0 +1,85 @@
+{
+  "npc": "hu",
+  "variants": [
+    {
+      "when": {
+        "quest": "fisilti_ormani",
+        "state": "active",
+        "objective_not_done": "fisilti_ormani/hu"
+      },
+      "lines": [
+        {
+          "speaker": "hu",
+          "mood": "mutlu",
+          "text": "Hu-hu! Hoş geldin yeni bekçi. Ben Öğretmen Hu."
+        },
+        {
+          "speaker": "hu",
+          "mood": "bilge",
+          "text": "Bu ormanda ağaçlar yolu fısıldar."
+        },
+        {
+          "speaker": "hu",
+          "mood": "dertli",
+          "text": "Ama Pus'a bulanmış gri ağaçlar hep tersini söyler!"
+        },
+        {
+          "speaker": "hu",
+          "mood": "bilge",
+          "text": "Yeşil ağaç ne derse onu yap. Gri ağaç ne derse tersini."
+        },
+        {
+          "speaker": "hu",
+          "mood": "kararlı",
+          "text": "Bir de üç küçük feneri yak. Kalbe giden perde ancak öyle kalkar."
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "kararlı",
+          "text": "Yeşil doğru, gri ters. Tamamdır!"
+        }
+      ],
+      "then": {
+        "advance": "fisilti_ormani/hu"
+      }
+    },
+    {
+      "when": {
+        "quest": "fisilti_ormani",
+        "state": [
+          "active",
+          "ready"
+        ]
+      },
+      "lines": [
+        {
+          "speaker": "hu",
+          "mood": "bilge",
+          "text": "Unutma: gri ağaç tersini söyler. Hu-hu!"
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "fisilti_ormani",
+        "state": "done"
+      },
+      "lines": [
+        {
+          "speaker": "hu",
+          "mood": "mutlu",
+          "text": "Orman yeniden yeşil! Kütük Kral bile gülümsüyor."
+        }
+      ]
+    },
+    {
+      "lines": [
+        {
+          "speaker": "hu",
+          "mood": "mutlu",
+          "text": "Hu-hu! Önce Orman Feneri'ni yak, bekçi."
+        }
+      ]
+    }
+  ]
+}

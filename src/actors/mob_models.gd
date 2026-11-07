@@ -14,6 +14,10 @@ static func build(kind: String, pus: bool) -> Node3D:
 			_mushroom(root, pus, 1.0)
 		"dev_mantar":
 			_mushroom(root, pus, 2.2)
+		"kirpi_topu":
+			_hedgehog_ball(root, pus)
+		"karga":
+			_crow(root, pus)
 	Toon.default_pus = 1.0
 	return root
 
@@ -62,3 +66,32 @@ static func _mushroom(root: Node3D, pus: bool, s: float) -> void:
 	for side in [-1.0, 1.0]:
 		Toon.part(root, "sphere", Vector3(0.2, 0.18, 0.24) * s, _c(pus, Color("#fff3dc"), true), Vector3(0.18 * side, 0.08, 0.15) * s)
 	_face(root, Vector3(0, 0.45, 0.34) * s, s, pus)
+
+
+## Huysuz Kirpi Topu: a little round hedgehog, quills all around.
+static func _hedgehog_ball(root: Node3D, pus: bool) -> void:
+	var quill: Variant = _c(pus, Color("#8a5a3c"))
+	Toon.part(root, "sphere", Vector3(1.0, 0.95, 1.0), quill, Vector3(0, 0.5, 0))
+	for i in 10:
+		var a := TAU * i / 10.0
+		var p := Vector3(sin(a) * 0.42, 0.7, cos(a) * 0.42 - 0.08)
+		var c := Toon.part(root, "cone", Vector3(0.2, 0.36, 0.2), quill, p)
+		c.look_at_from_position(p, p + Vector3(sin(a), 0.6, cos(a) - 0.3), Vector3.UP)
+		c.rotate_object_local(Vector3.RIGHT, -PI / 2)
+	Toon.part(root, "sphere", Vector3(0.62, 0.55, 0.4), _c(pus, Color("#f3dcb4"), true), Vector3(0, 0.45, 0.36))
+	Toon.part(root, "sphere", Vector3(0.12, 0.1, 0.1), "outline", Vector3(0, 0.42, 0.58), Vector3.ZERO, 0.0, 0.0)
+	_face(root, Vector3(0, 0.55, 0.5), 0.9, pus)
+
+
+## Gıcık Karga: a round crow with a big beak and a tuft.
+static func _crow(root: Node3D, pus: bool) -> void:
+	var body: Variant = _c(pus, Color("#3d3a5c"))
+	Toon.part(root, "sphere", Vector3(0.9, 0.85, 1.0), body, Vector3(0, 0.55, 0))
+	Toon.part(root, "sphere", Vector3(0.7, 0.65, 0.65), body, Vector3(0, 1.05, 0.25))
+	Toon.part(root, "cone", Vector3(0.26, 0.42, 0.26), _c(pus, "honey", true), Vector3(0, 1.0, 0.68), Vector3(90, 0, 0))
+	Toon.part(root, "cone", Vector3(0.2, 0.3, 0.2), body, Vector3(0, 1.45, 0.15), Vector3(-20, 0, 0))
+	for side in [-1.0, 1.0]:
+		var w := Toon.part(root, "sphere", Vector3(0.9, 0.18, 0.6), body, Vector3(0.62 * side, 0.7, -0.05), Vector3(0, 0, -20 * side))
+		w.name = "Wing%s" % ("L" if side < 0 else "R")
+		Toon.part(root, "sphere", Vector3(0.12, 0.1, 0.16), _c(pus, "honey", true), Vector3(0.18 * side, 0.08, 0.1))
+	_face(root, Vector3(0, 1.12, 0.52), 0.9, pus)

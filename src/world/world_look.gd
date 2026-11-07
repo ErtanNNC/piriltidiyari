@@ -5,6 +5,7 @@ extends RefCounted
 ##   pus    – the grey Pus night (Sahne 2–3)
 ##   kule   – tower top in the Pus, cold and windy (Sahne 4–5)
 ##   sabah  – morning after (Sahne 6, Bölüm 0)
+##   orman  – Fısıltı Ormanı (Bölüm 1)
 
 
 static func add(parent: Node, mood: String) -> Environment:
@@ -35,6 +36,18 @@ static func add(parent: Node, mood: String) -> Environment:
 			env.fog_sky_affect = 0.0
 			sun.light_color = Color("#c9c6d8")
 			sun.light_energy = 0.45
+		"orman":
+			# deep green forest dusk; the Pus greys it until the lanterns burn
+			env.background_color = Color("#22362e")
+			env.ambient_light_color = Color("#9fc7a8")
+			env.ambient_light_energy = 0.42
+			env.fog_enabled = true
+			env.fog_light_color = Color("#6f8a7c")
+			env.fog_density = 0.012
+			env.fog_sky_affect = 0.0
+			sun.light_color = Color("#e6f2d8")
+			sun.light_energy = 0.55
+			sun.rotation_degrees = Vector3(-60, 20, 0)
 		"sabah":
 			env.background_color = Color("#cfe6ff")
 			env.ambient_light_color = Color("#fff2dc")

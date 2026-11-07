@@ -97,6 +97,14 @@ func spend_piril(amount: int) -> bool:
 	return true
 
 
+func add_spark(color: String) -> bool:
+	if sparks.has(color):
+		return false
+	sparks.append(color)
+	stats_changed.emit()
+	return true
+
+
 func unlock_skill(skill_id: String) -> bool:
 	if skills.has(skill_id):
 		return false

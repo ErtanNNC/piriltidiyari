@@ -1,0 +1,84 @@
+{
+  "id": "chapter1",
+  "title": "Fısıltı Ormanı",
+  "region": "Fısıltı Ormanı",
+  "theme": "light",
+  "levels": [
+    5,
+    10
+  ],
+  "spark": "green",
+  "quests": [
+    "fisilti_ormani"
+  ],
+  "dialogue": [
+    "hu",
+    "dikis"
+  ],
+  "barks": "barks",
+  "junctions": [
+    {
+      "wall": 4.0,
+      "right": 1,
+      "trees": [
+        [
+          -3.2,
+          false,
+          "Sağa git..."
+        ],
+        [
+          3.2,
+          true,
+          "Sola git..."
+        ]
+      ],
+      "back": [
+        0,
+        0,
+        10
+      ]
+    },
+    {
+      "wall": -24.0,
+      "right": -1,
+      "trees": [
+        [
+          -3.2,
+          true,
+          "Sağa git..."
+        ],
+        [
+          3.2,
+          false,
+          "Sola git..."
+        ]
+      ],
+      "back": [
+        0,
+        0,
+        -18
+      ]
+    },
+    {
+      "wall": -52.0,
+      "right": 1,
+      "trees": [
+        [
+          -3.2,
+          true,
+          "Sola git..."
+        ],
+        [
+          3.2,
+          true,
+          "Sola git..."
+        ]
+      ],
+      "back": [
+        0,
+        0,
+        -46
+      ]
+    }
+  ]
+}

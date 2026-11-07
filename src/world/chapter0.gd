@@ -10,7 +10,13 @@ var _boss: Mob
 
 
 func _ready() -> void:
-	Pus.set_amount(0.3)
+	Pus.set_amount(0.3 if not GameState.data.has_flag("bolum1_bitti") else 0.12)
+	var sign := TravelSign.new()
+	sign.target_scene = "chapter1"
+	sign.title = "Fısıltı Ormanı"
+	sign.requires_flag = "bolum0_bitti"
+	sign.position = Vector3(-3.5, 0, -2.5)
+	add_child(sign)
 	var d := GameState.data
 	d.quest_changed.connect(func(_id: String) -> void: _advance())
 	d.flags_changed.connect(_on_flags)
@@ -46,9 +52,9 @@ func _on_flags() -> void:
 	_hud.clear_hint()
 	SaveGame.write(GameState.data)
 	await get_tree().create_timer(0.5).timeout
-	_hud.show_scene_card("Prolog tamamlandı!", "Bölüm 1", "Fısıltı Ormanı · çok yakında")
+	_hud.show_scene_card("Prolog tamamlandı!", "Sıradaki: Fısıltı Ormanı", "Kuzeye, ormanın sönmüş fenerine")
 	await get_tree().create_timer(4.0).timeout
-	SceneFlow.go_to("title", false)
+	SceneFlow.go_to("chapter1")
 
 
 func _run_demo(which: String) -> void:

@@ -16,6 +16,10 @@ static func build(kind: String) -> Node3D:
 		"duckling":
 			_critter(root, "spark-yellow", "sky", 0.7)
 			Toon.part(root, "sphere", Vector3(0.3, 0.12, 0.3), Color("#ff9a3c"), Vector3(0, 1.0, 0.36))
+		"owl_teacher":
+			_owl_teacher(root)
+		"spider":
+			_spider(root)
 		"statue":
 			Toon.part(root, "cylinder", Vector3(1.6, 1.0, 1.8), Color("#b9b0a4"), Vector3(0, 0.5, 0))
 			var f := FistikModel.build(true)
@@ -58,3 +62,35 @@ static func _turtle(root: Node3D) -> void:
 		Toon.part(root, "torus", Vector3(0.24, 0.035, 0.24), "ink-muted", Vector3(0.15 * s, 1.18, 1.2), Vector3(90, 0, 0), 0.0, 0.0)
 		Toon.part(root, "sphere", Vector3(0.14, 0.08, 0.05), "berry", Vector3(0.28 * s, 1.02, 1.1), Vector3.ZERO, 0.0, 0.0)
 		Toon.part(root, "sphere", Vector3(0.38, 0.3, 0.42), skin, Vector3(0.6 * s, 0.15, 0.5))
+
+
+## Baykuş Öğretmen Hu: a small round green owl with glasses, on a stump.
+static func _owl_teacher(root: Node3D) -> void:
+	Toon.part(root, "cylinder", Vector3(1.4, 0.8, 1.6), Color("#8a5a3c"), Vector3(0, 0.4, 0))
+	var g := Color("#5fbf7a")
+	Toon.part(root, "sphere", Vector3(1.0, 1.1, 0.95), g, Vector3(0, 1.35, 0))
+	Toon.part(root, "sphere", Vector3(0.7, 0.75, 0.4), Color("#d9f2c4"), Vector3(0, 1.25, 0.32))
+	for s in [-1.0, 1.0]:
+		Toon.part(root, "cone", Vector3(0.22, 0.32, 0.22), g, Vector3(0.3 * s, 1.95, 0), Vector3(0, 0, -20 * s))
+		Toon.part(root, "sphere", Vector3(0.3, 0.3, 0.12), Color.WHITE, Vector3(0.19 * s, 1.55, 0.42), Vector3.ZERO, 0.0, 0.0)
+		Toon.part(root, "sphere", Vector3(0.14, 0.16, 0.08), "outline", Vector3(0.19 * s, 1.55, 0.47), Vector3.ZERO, 0.0, 0.0)
+		Toon.part(root, "torus", Vector3(0.36, 0.035, 0.36), "honey-deep", Vector3(0.19 * s, 1.55, 0.49), Vector3(90, 0, 0), 0.0, 0.0)
+		Toon.part(root, "sphere", Vector3(0.5, 0.2, 0.7), g, Vector3(0.48 * s, 1.3, -0.05), Vector3(0, 0, -30 * s))
+	Toon.part(root, "cone", Vector3(0.14, 0.2, 0.14), "honey", Vector3(0, 1.4, 0.5), Vector3(100, 0, 0))
+
+
+## Terzi Örümcek Dikiş: a cute round spider with four eyes and a thimble hat.
+static func _spider(root: Node3D) -> void:
+	var b := Color("#ff8fa6")
+	Toon.part(root, "sphere", Vector3(1.0, 0.85, 1.1), b, Vector3(0, 0.75, -0.2))
+	Toon.part(root, "sphere", Vector3(0.75, 0.7, 0.7), b, Vector3(0, 0.95, 0.4))
+	for i in 4:
+		var x := -0.24 + i * 0.16
+		Toon.part(root, "sphere", Vector3(0.13, 0.15, 0.06), "outline", Vector3(x, 1.08 - absf(x) * 0.3, 0.72), Vector3.ZERO, 0.0, 0.0)
+	for s in [-1.0, 1.0]:
+		for k in 4:
+			var z := 0.35 - k * 0.3
+			var leg := Toon.part(root, "capsule", Vector3(0.1, 0.9, 0.1), Color("#c95b78"), Vector3(0.6 * s, 0.45, z), Vector3(0, 0, 55 * s))
+			leg.name = "Leg"
+		Toon.part(root, "sphere", Vector3(0.14, 0.08, 0.05), "berry", Vector3(0.24 * s, 0.82, 0.68), Vector3.ZERO, 0.0, 0.0)
+	Toon.part(root, "cylinder", Vector3(0.36, 0.3, 0.42), "honey", Vector3(0, 1.4, 0.35))

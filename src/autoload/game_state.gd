@@ -7,6 +7,15 @@ signal dialogue_closed
 signal toast(text: String, icon: String)
 
 var data := PlayerData.new()
+## True while a dialogue box is open: mobs and bosses hold their attacks,
+## because the player can't move then.
+var in_dialogue := false
+
+
+## Await this before an attack: returns when no dialogue is open.
+func wait_dialogue_closed() -> void:
+	while in_dialogue:
+		await get_tree().process_frame
 
 
 ## Asks the HUD to open an NPC's current conversation.
@@ -20,7 +29,18 @@ func bark(bark_id: String, then := {}) -> void:
 	if lines.is_empty():
 		push_warning("GameState: bark yok %s" % bark_id)
 		return
-	lines_requested.emit(lines, then)
+	lines_requested.emit(resolve_speakers(lines), then)
+
+
+## "oyuncu" in content means whoever the player is (Fıstık or the keeper).
+func resolve_speakers(lines: Array) -> Array:
+	var out := []
+	for l: Dictionary in lines:
+		if l.get("speaker", "") == "oyuncu":
+			l = l.duplicate()
+			l["speaker"] = data.character_id
+		out.append(l)
+	return out
 
 
 ## A world event: "defeat" + mob kind, "reach" + area id, "talk" + npc id.

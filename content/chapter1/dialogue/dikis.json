@@ -1,0 +1,35 @@
+{
+  "npc": "dikis",
+  "variants": [
+    {
+      "when": {
+        "flag": "dikis_tanisti"
+      },
+      "lines": [
+        {
+          "speaker": "dikis",
+          "mood": "mutlu",
+          "text": "Sekiz bacakla dikiyorum, yakında dükkân açık!"
+        }
+      ]
+    },
+    {
+      "lines": [
+        {
+          "speaker": "dikis",
+          "mood": "mutlu",
+          "text": "Merhaba! Ben Terzi Dikiş. Pelerin, şapka, ne istersen."
+        },
+        {
+          "speaker": "dikis",
+          "mood": "dertli",
+          "text": "Ama Pus bütün iplerimi griye boyadı. Önce renkler dönsün."
+        }
+      ],
+      "then": {
+        "set_flag": "dikis_tanisti",
+        "give_piril": 10
+      }
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "barks": {
+    "c1_giris": [
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Burası Fısıltı Ormanı... Ağaçlar konuşuyor mu?"
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "kararlı",
+        "text": "Önce sönen feneri yakayım."
+      }
+    ],
+    "c1_fener": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Fener yandı! Pus biraz geri çekildi."
+      }
+    ],
+    "c1_yanlis": [
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Hıh? Sis beni başa döndürdü."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "huysuz",
+        "text": "Gri ağaç beni kandırdı! Tersini yapmalıydım."
+      }
+    ],
+    "c1_kapi": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Üç fener yandı! Kalbe giden perde kalktı."
+      }
+    ],
+    "c1_kral_basla": [
+      {
+        "speaker": "kutuk_kral",
+        "mood": "huysuz",
+        "text": "Kim o? Uyuyamıyorum zaten, bir de sen mi geldin?"
+      },
+      {
+        "speaker": "kutuk_kral",
+        "mood": "huysuz",
+        "text": "Bu yeşil ışık benim! Kimse almasın!"
+      }
+    ],
+    "c1_kral_son": [
+      {
+        "speaker": "kutuk_kral",
+        "mood": "üzgün",
+        "text": "Ah... Çok uzun zamandır uyumamıştım."
+      },
+      {
+        "speaker": "kutuk_kral",
+        "mood": "üzgün",
+        "text": "Pus bana sürekli yalnız olduğumu fısıldadı."
+      },
+      {
+        "speaker": "kutuk_kral",
+        "mood": "mutlu",
+        "text": "Özür dilerim küçük bekçi. Al, bu ışık senin."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Yeşil Kıvılcım! Birini bulduk, dört kaldı."
+      }
+    ],
+    "c1_son": [
+      {
+        "speaker": "hu",
+        "mood": "mutlu",
+        "text": "Hu-hu! Pus herkesin küçük üzüntüsünü büyütüyor demek."
+      },
+      {
+        "speaker": "hu",
+        "mood": "bilge",
+        "text": "Köye dön, Tospik Nine'ye müjdeyi ver."
+      }
+    ]
+  }
+}

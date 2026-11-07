@@ -1,0 +1,46 @@
+{
+  "id": "fisilti_ormani",
+  "title": "Fısıltı Ormanı",
+  "giver": "tospik_nine",
+  "objectives": [
+    {
+      "id": "fener",
+      "text": "Orman Feneri'ni yak",
+      "type": "light",
+      "target": "orman_feneri"
+    },
+    {
+      "id": "hu",
+      "text": "Baykuş Öğretmen Hu ile konuş",
+      "type": "talk",
+      "target": "hu"
+    },
+    {
+      "id": "fenerler",
+      "text": "Küçük fenerleri yak",
+      "type": "light",
+      "target": "kucuk_fener",
+      "count": 3
+    },
+    {
+      "id": "kalp",
+      "text": "Fısıltıları doğru oku, ormanın kalbine ulaş",
+      "type": "reach",
+      "target": "orman_kalbi"
+    },
+    {
+      "id": "kral",
+      "text": "Kütük Kral'ı uyandır",
+      "type": "defeat",
+      "target": "kutuk_kral"
+    }
+  ],
+  "rewards": {
+    "piril": 80,
+    "xp": 120,
+    "items": [
+      "bal_surubu",
+      "bal_surubu"
+    ]
+  }
+}

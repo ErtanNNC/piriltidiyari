@@ -5,7 +5,7 @@ extends Node3D
 ## while it has something new for you (a quest to give or take).
 
 @export var npc_id := "tospik_nine"
-@export_enum("turtle", "bunny", "duckling", "frog", "statue") var kind := "turtle"
+@export_enum("turtle", "bunny", "duckling", "frog", "statue", "owl_teacher", "spider") var kind := "turtle"
 @export var face_angle_deg := 0.0
 
 var _marker: Label3D
@@ -38,7 +38,7 @@ func _ready() -> void:
 	ac.position.y = 0.8
 	area.add_child(ac)
 	add_child(area)
-	var top := 2.3 if kind == "turtle" else (3.2 if kind == "statue" else 1.9)
+	var top: float = {"turtle": 2.3, "statue": 3.2, "owl_teacher": 2.5}.get(kind, 1.9)
 	var name_label := _label(speaker["name"], "text-heading", 64, Tokens.color("panel"))
 	name_label.position.y = top
 	add_child(name_label)

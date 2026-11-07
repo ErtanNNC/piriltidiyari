@@ -3,6 +3,47 @@
   "variants": [
     {
       "when": {
+        "flag": "bolum1_bitti",
+        "not_flag": "tospik_bal_1"
+      },
+      "lines": [
+        {
+          "speaker": "tospik_nine",
+          "mood": "mutlu",
+          "text": "Yeşil Kıvılcım! Aferin sana, cesur bekçi!"
+        },
+        {
+          "speaker": "tospik_nine",
+          "mood": "dertli",
+          "text": "Şekerleme Mağaraları'nın feneri de sönmüş, duydum."
+        },
+        {
+          "speaker": "tospik_nine",
+          "mood": "mutlu",
+          "text": "Ama önce biraz dinlen. Bal Şurubu ister misin?"
+        }
+      ],
+      "then": {
+        "give_items": {
+          "bal_surubu": 1
+        },
+        "set_flag": "tospik_bal_1"
+      }
+    },
+    {
+      "when": {
+        "flag": "bolum1_bitti"
+      },
+      "lines": [
+        {
+          "speaker": "tospik_nine",
+          "mood": "mutlu",
+          "text": "Dört Kıvılcım daha var. Sana güveniyorum!"
+        }
+      ]
+    },
+    {
+      "when": {
         "quest": "ilk_adim",
         "state": "none"
       },

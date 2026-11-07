@@ -139,9 +139,11 @@ func test_owl_plan() -> void:
 
 
 func test_content_is_valid() -> void:
-	for chapter in ["prologue", "chapter0"]:
+	for chapter in ["prologue", "chapter0", "chapter1"]:
 		_validate_chapter(chapter)
 	test_chapter0_flow()
+	test_chapter1_flow()
+	test_king_plan()
 
 
 func test_chapter0_flow() -> void:
@@ -175,6 +177,53 @@ func test_chapter0_flow() -> void:
 	c.free()
 
 
+func test_chapter1_flow() -> void:
+	print("Bölüm 1 akışı: Fısıltı Ormanı")
+	var c: Node = ContentScript.new()
+	c.load_chapter("chapter1")
+	var d := PlayerData.new()
+	var q: Dictionary = c.quests["fisilti_ormani"]
+	var talk := func(npc: String) -> Dictionary:
+		var v := DialogueRules.pick_variant(c.npc(npc), d)
+		DialogueRules.apply(v.get("then", {}), d, c.quests)
+		return v
+	d.start_quest(q)
+	d.notify("light", "orman_feneri", c.quests)
+	check(d.objective_done("fisilti_ormani", "fener"), "Orman Feneri yandı")
+	var lesson: Dictionary = talk.call("hu")
+	var text := ""
+	for l: Dictionary in lesson["lines"]:
+		text += String(l["text"]) + " "
+	check(text.contains("gri") and text.contains("tersini"), "Hu gri ağacın tersini söylediğini öğretir")
+	check(d.objective_done("fisilti_ormani", "hu"), "Hu dersi tamam")
+	check(not talk.call("hu").has("then"), "Hu dersi bir kez verir")
+	for i in 3:
+		d.notify("light", "kucuk_fener", c.quests)
+	check(d.objective_count("fisilti_ormani", "fenerler") == Vector2i(3, 3), "3 küçük fener")
+	d.notify("reach", "orman_kalbi", c.quests)
+	d.notify("defeat", "kutuk_kral", c.quests)
+	check(d.quest_state("fisilti_ormani") == "ready", "Kral uyandı, görev hazır")
+	check(d.complete_quest(q) and d.piril == 80 and d.item_count("bal_surubu") == 2, "ödüller: 80 Pırıl, 2 Bal Şurubu")
+	check(d.add_spark("green") and not d.add_spark("green"), "Yeşil Kıvılcım bir kez eklenir")
+	# whisper rule: every crossroads has one consistent answer
+	for j: Dictionary in c.chapter["junctions"]:
+		for t: Array in j["trees"]:
+			var says_right: bool = String(t[2]).begins_with("Sağ")
+			var truth_right: bool = says_right != bool(t[1])
+			check(truth_right == (int(j["right"]) == 1), "kavşak %s: ağaç '%s' (gri=%s) doğru yolu gösterir" % [j["wall"], t[2], t[1]])
+	c.free()
+
+
+func test_king_plan() -> void:
+	print("Kütük Kral planı")
+	for p in [1, 2, 3]:
+		check(KingPlan.cycle(p).back() == "stomp", "faz %d: döngü yer sarsmayla (vurma fırsatı) biter" % p)
+	check(KingPlan.ring_hits(5.0, 5.2, 0.0), "yerdeyken halka çarpar")
+	check(not KingPlan.ring_hits(5.0, 5.2, 0.8), "zıplayınca halka çarpmaz")
+	check(not KingPlan.ring_hits(5.0, 8.0, 0.0), "halka uzaktayken çarpmaz")
+	check(KingPlan.ROOT_DAMAGE * KingPlan.root_count(3) < 100, "bütün kökler değse bile tek seferde uyunmaz")
+
+
 func _validate_chapter(chapter: String) -> void:
 	print("İçerik paketi kuralları: ", chapter)
 	var c: Node = ContentScript.new()
@@ -185,7 +234,7 @@ func _validate_chapter(chapter: String) -> void:
 		check(c.speakers[id]["color"] != "leaf", "konuşan %s: leaf üstüne metin yazılmaz" % id)
 	for id: String in c.barks:
 		for line: Dictionary in c.barks[id]:
-			check(c.speakers.has(line["speaker"]), "bark %s: bilinmeyen konuşan" % id)
+			check(c.speakers.has(line["speaker"]) or line["speaker"] == "oyuncu", "bark %s: bilinmeyen konuşan" % id)
 			check(String(line["text"]).length() <= 70, "bark %s: satır en fazla 70 harf: %s" % [id, line["text"]])
 	for id: String in c.items:
 		check(t.has_color(c.items[id]["color"]), "eşya %s: renk token'ı var" % id)
@@ -193,7 +242,7 @@ func _validate_chapter(chapter: String) -> void:
 		check(c.speakers.has(npc_id), "NPC %s konuşanlar listesinde" % npc_id)
 		for v: Dictionary in c.npcs[npc_id]["variants"]:
 			for line: Dictionary in v.get("lines", []):
-				check(c.speakers.has(line["speaker"]), "%s: bilinmeyen konuşan %s" % [npc_id, line["speaker"]])
+				check(c.speakers.has(line["speaker"]) or line["speaker"] == "oyuncu", "%s: bilinmeyen konuşan %s" % [npc_id, line["speaker"]])
 				check(String(line["text"]).length() <= 70, "%s: satır en fazla 2 balon satırı (70 harf): %s" % [npc_id, line["text"]])
 				for bad in ["öl", "kan ", "korku"]:
 					check(not String(line["text"]).to_lower().begins_with(bad), "%s: yasak sözcük" % npc_id)
@@ -213,8 +262,8 @@ func _validate_chapter(chapter: String) -> void:
 				check(c.items.has(o["item"]), "görev %s: eşya %s" % [q["id"], o["item"]])
 			if o.has("to"):
 				check(c.npcs.has(o["to"]), "görev %s: NPC %s" % [q["id"], o["to"]])
-			check(o.get("type", "deliver") in ["deliver", "defeat", "reach", "talk"], "görev %s: hedef türü" % q["id"])
+			check(o.get("type", "deliver") in ["deliver", "defeat", "reach", "talk", "light"], "görev %s: hedef türü" % q["id"])
 			if o.get("type", "") == "defeat":
-				check(o["target"] in MobStats.KINDS or o["target"] == "pus", "görev %s: bilinmeyen mob %s" % [q["id"], o["target"]])
+				check(o["target"] in MobStats.KINDS or o["target"] in ["pus", "kutuk_kral"], "görev %s: bilinmeyen mob %s" % [q["id"], o["target"]])
 	c.free()
 	t.free()

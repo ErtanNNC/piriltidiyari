@@ -4,7 +4,7 @@ extends Node
 ## --scene jumps to a story scene with the progress of the scenes before it.
 ## Never active in a normal run.
 
-const ORDER := ["scene1", "scene2", "scene3", "scene4", "scene5", "scene6", "chapter0"]
+const ORDER := ["scene1", "scene2", "scene3", "scene4", "scene5", "scene6", "chapter0", "chapter1"]
 
 var _shot_path := ""
 var _frames := 60
@@ -68,6 +68,10 @@ static func preset(data: PlayerData, scene: String) -> void:
 					k = arg.get_slice("=", 1)
 			data.choose_keeper(k, content.keepers[k]["stats"], {}, content.keepers[k]["name"])
 		data.set_flag("prolog_bitti")
+	if idx >= 7:
+		data.add_xp(Progression.xp_to_next(1) + Progression.xp_to_next(2))
+		data.add_item("bal_surubu", 3)
+		data.set_flag("bolum0_bitti")
 
 
 static func _finish(data: PlayerData, quest_id: String) -> void:

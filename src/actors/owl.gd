@@ -54,6 +54,9 @@ func _loop() -> void:
 			await get_tree().create_timer(OwlPlan.rest(phase)).timeout
 			if not active:
 				return
+			await GameState.wait_dialogue_closed()
+			if not active:
+				return
 			if attack == "volley":
 				await _volley()
 			else:

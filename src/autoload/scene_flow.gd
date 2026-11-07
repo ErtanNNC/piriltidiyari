@@ -13,7 +13,11 @@ const SCENES := {
 	"scene5": "res://scenes/prologue/scene5_fistigin_secimi.tscn",
 	"scene6": "res://scenes/prologue/scene6_fenerin_secimi.tscn",
 	"chapter0": "res://scenes/chapter0/koy_ve_cayir.tscn",
+	"chapter1": "res://scenes/chapter1/fisilti_ormani.tscn",
 }
+
+## Which content pack (content/<id>/) a scene reads its story from.
+const SCENE_CHAPTER := {"chapter0": "chapter0", "chapter1": "chapter1"}
 
 ## [small line, big title] shown when a scene starts.
 const CARDS := {
@@ -24,6 +28,7 @@ const CARDS := {
 	"scene5": ["Prolog · Sahne 5", "Fıstık'ın Seçimi"],
 	"scene6": ["Prolog · Sahne 6", "Fener'in Seçimi"],
 	"chapter0": ["Bölüm 0", "Gökkuşağı Köyü"],
+	"chapter1": ["Bölüm 1", "Fısıltı Ormanı"],
 }
 
 var current := ""
@@ -68,7 +73,7 @@ func go_to(scene_id: String, save := true) -> void:
 	tw.tween_property(_fade, "modulate:a", 1.0, 0.45)
 	await tw.finished
 	Pus.set_amount(0.0)
-	var chapter := "chapter0" if scene_id == "chapter0" else "prologue"
+	var chapter: String = SCENE_CHAPTER.get(scene_id, "prologue")
 	if Content.chapter.get("id", "") != chapter:
 		Content.load_chapter(chapter)
 	get_tree().change_scene_to_file(SCENES[scene_id])

@@ -47,6 +47,30 @@
     "fistik_heykeli": {
       "name": "Fıstık'ın heykeli",
       "color": "honey"
+    },
+    "hu": {
+      "name": "Baykuş Öğretmen Hu",
+      "color": "spark-green"
+    },
+    "agac": {
+      "name": "Fısıldayan Ağaç",
+      "color": "spark-green"
+    },
+    "gri_agac": {
+      "name": "Gri Ağaç",
+      "color": "pus"
+    },
+    "kutuk_kral": {
+      "name": "Kütük Kral",
+      "color": "honey"
+    },
+    "dikis": {
+      "name": "Terzi Örümcek Dikiş",
+      "color": "berry"
+    },
+    "orman_cocugu": {
+      "name": "Kayıp Yavru",
+      "color": "sky"
     }
   }
 }

@@ -248,7 +248,10 @@ func _ready() -> void:
 func _bind_player() -> void:
 	_player = get_tree().get_first_node_in_group("player")
 	if _player:
-		_player.focus_changed.connect(func(t: Node) -> void: _talk.visible = t != null and not _dialog.is_open())
+		_player.focus_changed.connect(func(t: Node) -> void:
+			_talk.visible = t != null and not _dialog.is_open()
+			if t:
+				_talk.text = String(t.get_meta("action_label", "Konuş")))
 
 
 func _refresh_stats() -> void:
@@ -270,7 +273,7 @@ func _on_piril(total: int, delta: int) -> void:
 
 func _refresh_quest() -> void:
 	var id := GameState.tracked_quest()
-	_quest_panel.visible = id != ""
+	_quest_panel.visible = id != "" and not _boss.visible
 	if id == "":
 		return
 	var def: Dictionary = Content.quests[id]
@@ -302,7 +305,7 @@ func _open_dialogue(npc_id: String) -> void:
 	var v := DialogueRules.pick_variant(Content.npc(npc_id), GameState.data)
 	if v.is_empty():
 		return
-	_open_lines(v.get("lines", []), v.get("then", {}))
+	_open_lines(GameState.resolve_speakers(v.get("lines", [])), v.get("then", {}))
 
 
 func _open_lines(lines: Array, then: Dictionary) -> void:
@@ -312,10 +315,12 @@ func _open_lines(lines: Array, then: Dictionary) -> void:
 		_player.input_enabled = false
 	_talk.visible = false
 	_potion_bar.visible = false
+	GameState.in_dialogue = true
 	_dialog.open(lines, then)
 
 
 func _on_dialog_finished() -> void:
+	GameState.in_dialogue = false
 	_refresh_potions()
 	GameState.dialogue_closed.emit()
 	if _player:
@@ -397,6 +402,7 @@ func clear_hint() -> void:
 ## Boss fights put the boss's name and HP bar where the spark tracker sits.
 func show_boss(boss_name: String, hp: int, max_hp: int) -> void:
 	_sparks.visible = false
+	_quest_panel.visible = false
 	_boss.visible = true
 	_boss_name.text = boss_name
 	set_boss_hp(hp, max_hp)
@@ -409,6 +415,7 @@ func set_boss_hp(hp: int, max_hp: int) -> void:
 func hide_boss() -> void:
 	_boss.visible = false
 	_sparks.visible = true
+	_refresh_quest()
 
 
 ## Cutscenes hide the HUD (bars, quest, buttons); dialogue still shows.
@@ -436,9 +443,9 @@ func cinematic(on: bool) -> void:
 
 
 ## A white flash over everything (the Kıvılcım bursting).
-func flash(seconds: float) -> void:
+func flash(seconds: float, col := Color(1, 1, 0.94, 1)) -> void:
 	var f := ColorRect.new()
-	f.color = Color(1, 1, 0.94, 1)
+	f.color = col
 	f.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	f.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(f)
@@ -447,3 +454,7 @@ func flash(seconds: float) -> void:
 	tw.tween_property(f, "modulate:a", 0.0, seconds * 0.75)
 	await tw.finished
 	f.queue_free()
+
+
+func _exit_tree() -> void:
+	GameState.in_dialogue = false

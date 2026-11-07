@@ -11,7 +11,7 @@ const TELEGRAPH := 0.8
 
 static var attackers := 0
 
-@export_enum("sumuklu", "mantar", "dev_mantar") var kind := "sumuklu"
+@export_enum("sumuklu", "mantar", "dev_mantar", "kirpi_topu", "karga") var kind := "sumuklu"
 @export var gravity := 22.0
 
 var hp := 30
@@ -27,6 +27,10 @@ var _grey: Node3D
 var _bright: Node3D
 var _player: Player
 var _has_token := false
+var _flies := false
+var _fly_height := 2.6
+var _swoop_from := Vector3.ZERO
+var _swoop_to := Vector3.ZERO
 var _strafe := 1.0
 
 
@@ -46,6 +50,9 @@ func _ready() -> void:
 	col.shape = s
 	col.position.y = s.height * 0.5
 	add_child(col)
+	_flies = stats.get("flies", false)
+	if _flies:
+		collision_mask = 16  # flies over hedges; only blocked by beams
 	_grey = MobModels.build(kind, true)
 	add_child(_grey)
 	_home = global_position
@@ -89,7 +96,7 @@ func _physics_process(delta: float) -> void:
 		"chase":
 			if dist > stats["aggro"] * 1.6:
 				state = "idle"
-			elif dist <= stats["range"] and (attackers < MobStats.MAX_ATTACKERS or kind == "dev_mantar"):
+			elif dist <= stats["range"] and not GameState.in_dialogue and (attackers < MobStats.MAX_ATTACKERS or kind == "dev_mantar"):
 				_windup(to_player)
 			elif dist <= stats["range"] + 1.8:
 				# wait for a turn: circle around at a polite distance
@@ -107,13 +114,25 @@ func _physics_process(delta: float) -> void:
 				_grey.scale = Vector3.ONE
 				_attack()
 		"attack":
-			if stats["attack"] == "lunge":
+			if stats["attack"] == "charge":
+				move = _attack_dir * 11.0
+				_grey.rotate_object_local(Vector3.RIGHT, delta * 18.0)
+				if not _hit_this_attack and dist < 1.2 and _player.hurt(stats["damage"], global_position):
+					_hit_this_attack = true
+			elif stats["attack"] == "swoop":
+				var k := 1.0 - _t / 0.45
+				global_position = _swoop_from.lerp(_swoop_to, clampf(k, 0.0, 1.0))
+				if not _hit_this_attack and k >= 0.9 and _player.global_position.distance_to(_swoop_to) < 1.4:
+					_hit_this_attack = _player.hurt(stats["damage"], _swoop_to)
+			elif stats["attack"] == "lunge":
 				move = _attack_dir * 10.0
 				if not _hit_this_attack and dist < 1.2 and _player.hurt(stats["damage"], global_position):
 					_hit_this_attack = true
 			if _t <= 0.0:
 				state = "recover"
-				_t = 1.4
+				# charge and swoop leave it dizzy / grounded: the moment to hit it
+				_t = 1.8 if stats["attack"] in ["charge", "swoop"] else 1.4
+				_grey.rotation = Vector3.ZERO
 				_release_token()
 		"recover", "hurt":
 			if _t <= 0.0:
@@ -124,11 +143,18 @@ func _physics_process(delta: float) -> void:
 	velocity.x = move.x + _knock.x
 	velocity.z = move.z + _knock.z
 	_knock = _knock.move_toward(Vector3.ZERO, 25.0 * delta)
-	velocity.y -= gravity * delta
-	if is_on_floor() and velocity.y < 0.0:
-		velocity.y = 0.0
-	move_and_slide()
-	if global_position.y < _home.y - 2.5 and state != "calm":
+	if _flies and state != "attack":
+		var want_y := 0.0 if state in ["recover", "hurt", "calm"] else _fly_height
+		velocity.y = (want_y - global_position.y) * 4.0
+	elif not _flies:
+		velocity.y -= gravity * delta
+		if is_on_floor() and velocity.y < 0.0:
+			velocity.y = 0.0
+	if state == "attack" and stats["attack"] == "swoop":
+		pass  # position driven directly
+	else:
+		move_and_slide()
+	if not _flies and global_position.y < _home.y - 2.5 and state != "calm":
 		# knocked off a ledge: hop back to where it started (never unreachable)
 		global_position = _home + Vector3.UP * 0.5
 		velocity = Vector3.ZERO
@@ -149,6 +175,13 @@ func _windup(to_player: Vector3) -> void:
 	_attack_dir = to_player.normalized()
 	if stats["attack"] == "burst":
 		Effects.warning(get_parent(), global_position, stats["range"], TELEGRAPH)
+	elif stats["attack"] == "charge":
+		for k in 4:
+			Effects.warning(get_parent(), global_position + _attack_dir * (1.5 + k * 2.0), 0.7, TELEGRAPH)
+	elif stats["attack"] == "swoop":
+		_swoop_to = _player.global_position if _player else global_position
+		_swoop_to.y = 0.0
+		Effects.warning(get_parent(), _swoop_to, 1.3, TELEGRAPH)
 	else:
 		var mark := Effects.warning(get_parent(), global_position + _attack_dir * 1.8, 1.1, TELEGRAPH)
 		mark.scale.z *= 1.6
@@ -157,6 +190,13 @@ func _windup(to_player: Vector3) -> void:
 func _attack() -> void:
 	state = "attack"
 	_hit_this_attack = false
+	if stats["attack"] == "charge":
+		_t = 1.0
+		return
+	if stats["attack"] == "swoop":
+		_t = 0.45
+		_swoop_from = global_position
+		return
 	if stats["attack"] == "burst":
 		_t = 0.25
 		Effects.ring(get_parent(), global_position + Vector3.UP * 0.3, stats["range"], Tokens.color("pus"), 0.35)
