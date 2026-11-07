@@ -10,6 +10,7 @@ var _owl: Owl
 
 func _ready() -> void:
 	WorldLook.add(self, "kule")
+	Decor.auto(self, "kule")
 	Pus.set_amount(0.55)
 	_build()
 	_owl = Owl.new()

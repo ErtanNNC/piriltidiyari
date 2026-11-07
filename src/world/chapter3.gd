@@ -27,6 +27,7 @@ var _cut_cam: Camera3D
 
 func _ready() -> void:
 	WorldLook.add(self, "liman")
+	Decor.auto(self, "liman")
 	var d := GameState.data
 	if d.quest_state(QUEST) == "none":
 		d.start_quest(Content.quests[QUEST])

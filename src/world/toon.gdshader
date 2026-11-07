@@ -15,12 +15,45 @@ uniform float emission_strength = 0.0;
 uniform float pus_affect : hint_range(0.0, 1.0) = 1.0;
 // 0 = full color, 1 = everything grey. Set with Pus.set_amount().
 global uniform float pus_amount;
+// Soft lighter/darker blotches in world space (ground surfaces, see Decor).
+uniform float patch_strength = 0.0;
+uniform vec4 patch_color : source_color = vec4(1.0);
+
+varying vec3 world_pos;
+
+float hash21(vec2 p) {
+	p = fract(p * vec2(123.34, 456.21));
+	p += dot(p, p + 45.32);
+	return fract(p.x * p.y);
+}
+
+float vnoise(vec2 p) {
+	vec2 i = floor(p);
+	vec2 f = fract(p);
+	f = f * f * (3.0 - 2.0 * f);
+	return mix(mix(hash21(i), hash21(i + vec2(1.0, 0.0)), f.x),
+			mix(hash21(i + vec2(0.0, 1.0)), hash21(i + vec2(1.0, 1.0)), f.x), f.y);
+}
+
+void vertex() {
+	world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
+}
 
 void fragment() {
-	float grey = dot(albedo.rgb, vec3(0.299, 0.587, 0.114));
+	vec3 base = albedo.rgb;
+	if (patch_strength > 0.0) {
+		vec2 q = world_pos.xz;
+		float n = vnoise(q * 0.16) * 0.65 + vnoise(q * 0.47 + 7.1) * 0.35;
+		// two soft steps so it stays cartoon-flat, not noisy
+		float darker = 1.0 - smoothstep(0.33, 0.39, n);
+		float lighter = smoothstep(0.61, 0.67, n);
+		base = mix(base, base * (1.0 - patch_strength), darker * 0.8);
+		base = mix(base, mix(base, patch_color.rgb, 0.5) * (1.0 + patch_strength * 0.5), lighter * 0.8);
+	}
+	float grey = dot(base, vec3(0.299, 0.587, 0.114));
 	vec3 pus_tint = vec3(grey) * vec3(0.92, 0.91, 0.98);
 	float p = clamp(pus_amount * pus_affect, 0.0, 1.0);
-	ALBEDO = mix(albedo.rgb, pus_tint, p);
+	ALBEDO = mix(base, pus_tint, p);
 	EMISSION = mix(emission_color.rgb, vec3(grey), p * 0.7) * emission_strength;
 }
 

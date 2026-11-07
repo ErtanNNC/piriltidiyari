@@ -18,6 +18,7 @@ var _offered := 0
 
 func _ready() -> void:
 	WorldLook.add(self, "kale")
+	Decor.auto(self, "kale")
 	var d := GameState.data
 	if d.quest_state(QUEST) == "none":
 		d.start_quest(Content.quests[QUEST])

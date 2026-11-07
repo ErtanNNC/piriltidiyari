@@ -23,6 +23,7 @@ var _king: Node3D
 
 func _ready() -> void:
 	WorldLook.add(self, "orman")
+	Decor.auto(self, "orman")
 	var d := GameState.data
 	if d.quest_state(QUEST) == "none":
 		d.start_quest(Content.quests[QUEST])

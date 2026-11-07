@@ -15,6 +15,7 @@ var _fog: Array[MeshInstance3D] = []
 
 func _ready() -> void:
 	WorldLook.add(self, "kule")
+	Decor.auto(self, "kule")
 	Pus.set_amount(0.5)
 	_crystal = TowerTop.build(self)
 	_fistik = FistikModel.build()

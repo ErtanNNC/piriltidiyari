@@ -20,6 +20,7 @@ var _syrup_told := false
 
 func _ready() -> void:
 	WorldLook.add(self, "magara")
+	Decor.auto(self, "magara")
 	var d := GameState.data
 	if d.quest_state(QUEST) == "none":
 		d.start_quest(Content.quests[QUEST])

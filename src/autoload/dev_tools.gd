@@ -40,6 +40,10 @@ func _jump(scene: String) -> void:
 	for arg in OS.get_cmdline_user_args():
 		if arg.begins_with("--flag="):
 			GameState.data.set_flag(arg.get_slice("=", 1))
+		elif arg.begins_with("--pus="):
+			# screenshot helper: override the Pus once the scene has set its own
+			var v := float(arg.get_slice("=", 1))
+			get_tree().create_timer(1.0).timeout.connect(func() -> void: Pus.set_amount(v))
 	SceneFlow.go_to(scene, false)
 
 

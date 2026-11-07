@@ -14,6 +14,7 @@ func _ready() -> void:
 	_ground()
 	_bounds()
 	_light()
+	Decor.auto(get_parent() if get_parent() is Node3D else self, "koy")
 
 
 func _light() -> void:

@@ -14,6 +14,7 @@ var _roof_mobs: Array[Mob] = []
 
 func _ready() -> void:
 	WorldLook.add(self, "pus")
+	Decor.auto(self, "kule")
 	Pus.set_amount(0.6)
 	_build()
 	var d := GameState.data

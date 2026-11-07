@@ -7,7 +7,7 @@ is a copy of the design system's tokens.
 ## Commands
 
 - `tools/test.sh` — import + headless tests. Run before every commit.
-- `tools/screenshot.sh out.png [--scene=scene1..scene6|chapter0..chapter5|final] [--flag=name] [--demo=...] [--at=SECONDS | --frames=N] [--auto] [--touch]`
+- `tools/screenshot.sh out.png [--scene=scene1..scene6|chapter0..chapter5|final] [--flag=name] [--pus=0..1] [--demo=...] [--at=SECONDS | --frames=N] [--auto] [--touch]`
   renders under Xvfb with llvmpipe. `--scene` jumps there with earlier progress
   (DevTools.preset); `--auto` advances dialogue by itself; demos live in each
   scene script's `_run_demo`. Look at the PNG after any visual change.

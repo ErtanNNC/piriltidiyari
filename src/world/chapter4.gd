@@ -20,6 +20,7 @@ var _env: Environment
 
 func _ready() -> void:
 	_env = WorldLook.add(self, "dag")
+	Decor.auto(self, "dag")
 	var d := GameState.data
 	if d.quest_state(QUEST) == "none":
 		d.start_quest(Content.quests[QUEST])
