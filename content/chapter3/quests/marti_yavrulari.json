@@ -1,0 +1,18 @@
+{
+  "id": "marti_yavrulari",
+  "title": "Martı Yavruları",
+  "giver": "pirpir",
+  "objectives": [
+    {
+      "id": "yavru",
+      "text": "Fırtınada savrulan martı yavrularını bul",
+      "type": "talk",
+      "target": "marti_yavru",
+      "count": 3
+    }
+  ],
+  "rewards": {
+    "piril": 50,
+    "xp": 120
+  }
+}

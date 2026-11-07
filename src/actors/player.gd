@@ -7,6 +7,7 @@ extends CharacterBody3D
 
 signal focus_changed(target: Node)
 signal fell_asleep
+signal fell_off   ## dropped off the world (e.g. into the clouds)
 
 const LAYER_WORLD := 1
 const LAYER_LOW_BARRIER := 16   ## beams you can only roll under
@@ -24,6 +25,8 @@ const SKILL_COST := 20
 var input_enabled := true
 ## Walking speed multiplier (syrup pools set it below 1).
 var slow := 1.0
+## Steady push from storm wind (m/s), set by WindZone; shelters zero it.
+var wind := Vector3.ZERO
 var model: Node3D
 var respawn_point := Vector3.ZERO
 var rolling := false
@@ -39,6 +42,7 @@ var _roll_left := 0.0
 var _roll_dir := Vector3.FORWARD
 var _knock := Vector3.ZERO
 var _move := Vector3.ZERO   ## walking velocity, without knockback
+var _power_until := 0.0     ## Cesaret Şekeri: stronger until this time (s)
 var _air_jumps := 0
 var _shield := 0.0
 var _shield_mesh: MeshInstance3D
@@ -97,8 +101,8 @@ func _physics_process(delta: float) -> void:
 	var target := dir * speed * slow
 	_move.x = move_toward(_move.x, target.x, acceleration * delta)
 	_move.z = move_toward(_move.z, target.z, acceleration * delta)
-	velocity.x = _move.x + _knock.x
-	velocity.z = _move.z + _knock.z
+	velocity.x = _move.x + _knock.x + wind.x
+	velocity.z = _move.z + _knock.z + wind.z
 	_knock = _knock.move_toward(Vector3.ZERO, 30.0 * delta)
 	if climbing:
 		var up := Input.get_axis("move_back", "move_forward") if input_enabled else 0.0
@@ -170,7 +174,7 @@ func spin_attack() -> void:
 	_spin_tween = create_tween()
 	var start := model.rotation.y
 	_spin_tween.tween_property(model, "rotation:y", start + TAU, 0.3).set_trans(Tween.TRANS_QUAD)
-	_hit_around(ATTACK_RADIUS, GameState.data.power, 7.0)
+	_hit_around(ATTACK_RADIUS, attack_power(), 7.0)
 
 
 ## L key / skill button: the character's special skill.
@@ -201,7 +205,7 @@ func _dikenli_donus() -> void:
 	var tw := create_tween()
 	tw.tween_property(model, "rotation:y", model.rotation.y + TAU * 2.0, 0.55).set_trans(Tween.TRANS_CUBIC)
 	Effects.ring(get_parent(), global_position + Vector3.UP * 0.4, 3.6, Tokens.color("honey"), 0.45)
-	_hit_around(3.4, GameState.data.power * 2 + 5, 8.0)
+	_hit_around(3.4, attack_power() * 2 + 5, 8.0)
 
 
 ## Pati: three quick claw swipes in front.
@@ -218,7 +222,7 @@ func _pence_kombosu() -> void:
 			var to := n.global_position - global_position
 			to.y = 0.0
 			if to.length() <= 2.6 + n.get_meta("hit_radius", 0.5) and (to.length() < 0.8 or to.normalized().dot(fwd) > 0.3):
-				n.hit(GameState.data.power, global_position, 3.0)
+				n.hit(attack_power(), global_position, 3.0)
 		await get_tree().create_timer(0.16).timeout
 
 
@@ -276,7 +280,7 @@ func _findik_firlatma() -> void:
 		tw.tween_property(nut, "global_position", t.global_position + Vector3.UP * 0.8, 0.15)
 		await tw.finished
 		if is_instance_valid(t) and t.is_in_group("hittable"):
-			t.hit(GameState.data.power + 4, nut.global_position, 4.0)
+			t.hit(attack_power() + 4, nut.global_position, 4.0)
 	nut.queue_free()
 
 
@@ -285,7 +289,7 @@ func _isik_patlamasi() -> void:
 	_attack_cd = 0.7
 	Effects.ring(get_parent(), global_position + Vector3.UP * 0.5, 4.2, Tokens.color("spark-yellow"), 0.5)
 	Effects.sparkle(get_parent(), global_position + Vector3.UP, Tokens.color("spark-yellow"), 16)
-	_hit_around(4.0, GameState.data.power + 6, 6.0)
+	_hit_around(4.0, attack_power() + 6, 6.0)
 	GameState.data.heal(Skills.LIGHT_HEAL)
 	FloatText.spawn(get_parent(), global_position + Vector3.UP * 2.0, "+%d" % Skills.LIGHT_HEAL, Tokens.color("leaf"))
 
@@ -340,6 +344,19 @@ func _ceiling_blocked() -> bool:
 	return not get_world_3d().direct_space_state.intersect_shape(q, 1).is_empty()
 
 
+## Attack power, ×1.5 while a Cesaret Şekeri is active.
+func attack_power() -> int:
+	var p := GameState.data.power
+	return int(p * 1.5) if Time.get_ticks_msec() / 1000.0 < _power_until else p
+
+
+## A shove from an explosion or a gust (added to knockback).
+func push(v: Vector3) -> void:
+	if rolling:
+		return
+	_knock += Vector3(v.x, 0, v.z)
+
+
 ## Called by mobs and hazards. Returns false while invulnerable.
 func hurt(amount: int, from: Vector3) -> bool:
 	if _invulnerable > 0.0 or rolling or asleep:
@@ -374,6 +391,12 @@ func drink_potion(slot: int) -> void:
 	elif def.has("mp"):
 		d.restore_mp(int(def["mp"]))
 		FloatText.spawn(get_parent(), global_position + Vector3.UP * 2.0, "+%d" % int(def["mp"]), Tokens.color("mp"))
+	elif def.get("buff", "") == "guc":
+		_power_until = Time.get_ticks_msec() / 1000.0 + float(def["seconds"])
+		GameState.toast.emit("%d saniye gücün arttı!" % int(def["seconds"]), "star")
+	elif def.get("buff", "") == "kovucu":
+		GameState.repel_until = Time.get_ticks_msec() / 1000.0 + float(def["seconds"])
+		GameState.toast.emit("%d saniye moblar seni zor fark eder" % int(def["seconds"]), "drop")
 	d.remove_item(id)
 	Effects.ring(get_parent(), global_position + Vector3.UP * 0.2, 1.4, Tokens.color(def.get("color", "honey")), 0.3)
 
@@ -397,6 +420,7 @@ func _fall_asleep() -> void:
 func _fall_back() -> void:
 	global_position = respawn_point + Vector3.UP * 0.5
 	velocity = Vector3.ZERO
+	fell_off.emit()
 	hurt(10, global_position)
 	_invulnerable = 1.5
 

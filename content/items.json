@@ -40,6 +40,34 @@
       "max_hp": 15,
       "icon": "spark",
       "desc": "Canın kalıcı olarak 15 artar"
+    },
+    "cesaret_sekeri": {
+      "name": "Cesaret Şekeri",
+      "color": "berry",
+      "kind": "potion",
+      "buff": "guc",
+      "seconds": 60,
+      "price": 40,
+      "icon": "star",
+      "desc": "60 saniye gücün artar"
+    },
+    "pus_kovucu": {
+      "name": "Pus Kovucu",
+      "color": "spark-blue",
+      "kind": "potion",
+      "buff": "kovucu",
+      "seconds": 90,
+      "price": 60,
+      "icon": "drop",
+      "desc": "90 saniye moblar seni zor fark eder"
+    },
+    "ruzgar_tilsimi": {
+      "name": "Rüzgâr Tılsımı",
+      "color": "spark-yellow",
+      "kind": "charm",
+      "speed": 0.6,
+      "icon": "spark",
+      "desc": "Kalıcı olarak biraz daha hızlı koşarsın"
     }
   }
 }

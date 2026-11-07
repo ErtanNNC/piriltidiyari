@@ -1,0 +1,40 @@
+{
+  "npc": "marti_yavru3",
+  "variants": [
+    {
+      "when": {
+        "not_flag": "marti_yavru3"
+      },
+      "lines": [
+        {
+          "speaker": "marti_yavru3",
+          "mood": "üzgün",
+          "text": "Rüzgâr Gülü dönüp duruyor, başım döndü!"
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "mutlu",
+          "text": "Pırpır seni arıyor! Gemiye uç bakalım."
+        },
+        {
+          "speaker": "marti_yavru3",
+          "mood": "mutlu",
+          "text": "Cik! Teşekkürler bekçi!"
+        }
+      ],
+      "then": {
+        "set_flag": "marti_yavru3",
+        "advance": "marti_yavrulari/yavru"
+      }
+    },
+    {
+      "lines": [
+        {
+          "speaker": "marti_yavru3",
+          "mood": "mutlu",
+          "text": "Cik cik! Artık uçmayı biliyorum!"
+        }
+      ]
+    }
+  ]
+}

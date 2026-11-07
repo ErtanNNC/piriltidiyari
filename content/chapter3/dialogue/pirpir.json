@@ -1,0 +1,107 @@
+{
+  "npc": "pirpir",
+  "variants": [
+    {
+      "when": {
+        "flag": "pirpir_pazar"
+      },
+      "lines": [
+        {
+          "speaker": "pirpir",
+          "mood": "mutlu",
+          "text": "Ahoy! Göklerin en nadir pazarına hoş geldin!"
+        }
+      ],
+      "then": {
+        "open_shop": "pirpir"
+      }
+    },
+    {
+      "when": {
+        "quest": "bulut_limani",
+        "state": "active",
+        "objective_not_done": "bulut_limani/pirpir",
+        "objective_done": "bulut_limani/fener"
+      },
+      "lines": [
+        {
+          "speaker": "pirpir",
+          "mood": "mutlu",
+          "text": "Ahoy minik bekçi! Ben Kaptan Pırpır, göklerin en hızlısı!"
+        },
+        {
+          "speaker": "pirpir",
+          "mood": "dertli",
+          "text": "Pus limanı fırtınaya boğdu. Eski rakibim Rüzgâr çıldırdı!"
+        },
+        {
+          "speaker": "pirpir",
+          "mood": "dertli",
+          "text": "Sarı Kıvılcım'ı yuttu, yuvasında fırtına koparıyor."
+        },
+        {
+          "speaker": "pirpir",
+          "mood": "bilge",
+          "text": "Rüzgâr Gülü Adası'ndaki üç çanı çal, fırtına dinsin."
+        },
+        {
+          "speaker": "pirpir",
+          "mood": "bilge",
+          "text": "Balon Adası'nın tepesinden de Rüzgâr'ın yuvası görünür."
+        },
+        {
+          "speaker": "pirpir",
+          "mood": "mutlu",
+          "text": "Gemime bin, seni adalara uçurayım! Bir de yavrularım kayıp..."
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "kararlı",
+          "text": "Çanlar, balonlar, yavrular. Hadi uçalım!"
+        }
+      ],
+      "then": {
+        "advance": "bulut_limani/pirpir",
+        "start_quest": "marti_yavrulari"
+      }
+    },
+    {
+      "when": {
+        "quest": "bulut_limani",
+        "state": [
+          "active",
+          "ready"
+        ]
+      },
+      "lines": [
+        {
+          "speaker": "pirpir",
+          "mood": "mutlu",
+          "text": "Gemi hazır! Rüzgâr esince bir kayanın dibine saklan."
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "bulut_limani",
+        "state": "done"
+      },
+      "lines": [
+        {
+          "speaker": "pirpir",
+          "mood": "mutlu",
+          "text": "Rüzgâr'la yine yarışacağız. Bu sefer fırtınasız!"
+        }
+      ]
+    },
+    {
+      "lines": [
+        {
+          "speaker": "pirpir",
+          "mood": "mutlu",
+          "text": "Ahoy! Önce Liman Feneri'ni yak, yolumuz aydınlansın."
+        }
+      ]
+    }
+  ]
+}

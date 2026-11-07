@@ -8,6 +8,7 @@ extends AnimatableBody3D
 @export var size := Vector3(2.4, 0.5, 2.4)
 @export var accent := "honey"
 @export var phase := 0.0
+@export_enum("lantern", "cloud") var style := "lantern"
 
 var _origin := Vector3.ZERO
 var _t := 0.0
@@ -22,6 +23,12 @@ func _ready() -> void:
 	b.size = size
 	c.shape = b
 	add_child(c)
+	if style == "cloud":
+		Toon.part(self, "cylinder", Vector3(size.x, size.y, size.z), Color("#f4f8ff"), Vector3.ZERO)
+		for k in 5:
+			var a := TAU * k / 5.0
+			Toon.part(self, "sphere", Vector3(size.x * 0.55, size.y * 1.6, size.z * 0.55), Color("#ffffff"), Vector3(sin(a) * size.x * 0.35, -0.15, cos(a) * size.z * 0.35))
+		return
 	Toon.part(self, "cylinder", Vector3(size.x, size.y, size.z), Color("#c98d5e"), Vector3.ZERO)
 	Toon.part(self, "sphere", Vector3(size.x * 0.75, 0.6, size.z * 0.75), accent, Vector3(0, -0.45, 0), Vector3.ZERO, 1.0, 0.02)
 	for s in [-1.0, 1.0]:

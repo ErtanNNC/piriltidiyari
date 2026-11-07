@@ -54,6 +54,9 @@ func _open(instant: bool) -> void:
 					c.queue_free()   # the stream's gap collider
 				else:
 					(c as Node3D).visible = true
+					# a bridge over a real gap: its walkway becomes solid
+					for body in c.find_children("*", "StaticBody3D", true, false):
+						(body as StaticBody3D).collision_layer = 1
 			if not instant:
 				blocker.scale = Vector3(1, 1, 0.05)
 				var tw := blocker.create_tween()

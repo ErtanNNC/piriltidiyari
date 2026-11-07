@@ -1,0 +1,154 @@
+{
+  "barks": {
+    "c3_giris": [
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Vay, bulutların üstündeyiz! Ama gök çok bulanık."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "kararlı",
+        "text": "Önce Liman Feneri'ni yakayım."
+      }
+    ],
+    "c3_fener": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Fener yandı! Bir martı bana el sallıyor."
+      }
+    ],
+    "c3_ruzgar_uyari": [
+      {
+        "speaker": "pirpir",
+        "mood": "bilge",
+        "text": "Oklar rüzgârın yönünü gösterir. Bir kayanın dibine saklan!"
+      }
+    ],
+    "c3_canlar": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Üç çan da çaldı! Rüzgâr Gülü Adası sakinleşti."
+      }
+    ],
+    "c3_balon": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Hop! Balonlar beni havaya fırlatıyor!"
+      }
+    ],
+    "c3_tepe": [
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Tepeden Rüzgâr'ın yuvası görünüyor... Fırtına Adası!"
+      }
+    ],
+    "c3_yol": [
+      {
+        "speaker": "pirpir",
+        "mood": "kararlı",
+        "text": "Fırtına dindi, tepe görüldü. Fırtına Adası'na uçabiliriz!"
+      }
+    ],
+    "c3_dustu": [
+      {
+        "speaker": "pirpir",
+        "mood": "mutlu",
+        "text": "Tuttum seni! Bulutlar yumuşak ama dikkat et."
+      }
+    ],
+    "c3_ruzgar_basla": [
+      {
+        "speaker": "ruzgar",
+        "mood": "huysuz",
+        "text": "Kim geldi yuvama? Pırpır mı yolladı seni?"
+      },
+      {
+        "speaker": "ruzgar",
+        "mood": "huysuz",
+        "text": "Bu sarı ışık benim! Fırtınam seni uçuracak!"
+      }
+    ],
+    "c3_ruzgar_son": [
+      {
+        "speaker": "ruzgar",
+        "mood": "üzgün",
+        "text": "Ah... Pus kulağıma hep Pırpır'ın benden iyi olduğunu fısıldadı."
+      },
+      {
+        "speaker": "ruzgar",
+        "mood": "üzgün",
+        "text": "Kıskandım ve fırtına oldum. Özür dilerim."
+      },
+      {
+        "speaker": "pirpir",
+        "mood": "mutlu",
+        "text": "Hadi canım eski dostum, yine yarışırız!"
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Sarı Kıvılcım! Üç oldu, iki kaldı."
+      }
+    ],
+    "c3_golge": [
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Şu da ne? Sisin içinde biri var!"
+      },
+      {
+        "speaker": "pirpir",
+        "mood": "şaşkın",
+        "text": "İki parlak göz! Küçücük bir gölge..."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "dertli",
+        "text": "Kaçtı. Ama sanki... çok yalnız görünüyordu."
+      }
+    ],
+    "c3_son": [
+      {
+        "speaker": "pirpir",
+        "mood": "mutlu",
+        "text": "Pazarım açıldı! Gemiye uğra, nadir şeylerim var."
+      }
+    ],
+    "c3_yavrular": [
+      {
+        "speaker": "pirpir",
+        "mood": "mutlu",
+        "text": "Üç yavrum da yuvada! Sen göklerin en iyi bekçisisin!"
+      }
+    ],
+    "tas_5": [
+      {
+        "speaker": "hikaye_tasi",
+        "mood": "bilge",
+        "text": "Sis büyüdükçe küçük yıldız gizlenmeyi öğrendi."
+      },
+      {
+        "speaker": "hikaye_tasi",
+        "mood": "üzgün",
+        "text": "Kimse onu görmezse, kimse onu üzemezdi."
+      }
+    ],
+    "tas_6": [
+      {
+        "speaker": "hikaye_tasi",
+        "mood": "üzgün",
+        "text": "Ama her gece gökteki yıldızlara baktı ve özledi."
+      },
+      {
+        "speaker": "hikaye_tasi",
+        "mood": "bilge",
+        "text": "Eskiden onlardan biriydi. Hâlâ biraz parlıyordu."
+      }
+    ]
+  }
+}

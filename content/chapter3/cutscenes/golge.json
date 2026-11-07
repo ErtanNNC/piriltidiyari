@@ -1,0 +1,40 @@
+{
+  "steps": [
+    {
+      "do": "cut_cam_on"
+    },
+    {
+      "cam": {
+        "pos": [
+          78,
+          6,
+          -48
+        ],
+        "look": [
+          96,
+          3,
+          -52
+        ],
+        "time": 1.8
+      }
+    },
+    {
+      "do": "show_shadow"
+    },
+    {
+      "wait": 1.2
+    },
+    {
+      "say": "c3_golge"
+    },
+    {
+      "do": "shadow_flee"
+    },
+    {
+      "wait": 1.4
+    },
+    {
+      "do": "cut_cam_off"
+    }
+  ]
+}

@@ -10,6 +10,8 @@ static func buy(data: PlayerData, item_def: Dictionary, item_id: String, price: 
 		return "piril"
 	if item_def.get("kind", "") == "charm":
 		data.set_flag("owned_" + item_id)
+		if item_def.has("speed"):
+			data.speed += float(item_def["speed"])
 		if item_def.has("max_hp"):
 			data.max_hp += int(item_def["max_hp"])
 			data.heal(int(item_def["max_hp"]))

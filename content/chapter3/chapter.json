@@ -1,0 +1,23 @@
+{
+  "id": "chapter3",
+  "title": "Bulut Limanı",
+  "region": "Bulut Limanı",
+  "theme": "light",
+  "levels": [
+    15,
+    20
+  ],
+  "spark": "yellow",
+  "quests": [
+    "bulut_limani",
+    "marti_yavrulari"
+  ],
+  "dialogue": [
+    "pirpir",
+    "marti_yavru1",
+    "marti_yavru2",
+    "marti_yavru3"
+  ],
+  "barks": "barks",
+  "shop": "shop"
+}

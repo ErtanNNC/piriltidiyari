@@ -28,6 +28,10 @@ static func build(kind: String) -> Node3D:
 			var c := KiskacModel.build()
 			c.scale = Vector3.ONE * 0.55
 			root.add_child(c)
+		"gull_captain":
+			_gull(root, 1.0, true)
+		"gull_chick":
+			_gull(root, 0.55, false)
 		"statue":
 			Toon.part(root, "cylinder", Vector3(1.6, 1.0, 1.8), Color("#b9b0a4"), Vector3(0, 0.5, 0))
 			var f := FistikModel.build(true)
@@ -119,3 +123,23 @@ static func _mole(root: Node3D, s: float) -> void:
 		Toon.part(r, "sphere", Vector3(0.36, 0.18, 0.3), Color("#f0c8b0"), Vector3(0.5 * side, 0.6, 0.25), Vector3(0, 0, -30 * side))
 	Toon.part(r, "sphere", Vector3(0.95, 0.5, 0.95), "honey", Vector3(0, 1.4, 0))
 	Toon.part(r, "sphere", Vector3(0.26, 0.26, 0.16), "spark-blue", Vector3(0, 1.48, 0.44), Vector3.ZERO, 1.6, 0.02)
+
+
+## Kaptan Martı Pırpır (captain hat) and the gull chicks.
+static func _gull(root: Node3D, s: float, captain: bool) -> void:
+	var r := Node3D.new()
+	r.scale = Vector3.ONE * s
+	root.add_child(r)
+	var white := Color("#ffffff")
+	Toon.part(r, "sphere", Vector3(1.0, 1.0, 1.1), white, Vector3(0, 0.65, 0))
+	Toon.part(r, "sphere", Vector3(0.8, 0.75, 0.75), white, Vector3(0, 1.3, 0.2))
+	Toon.part(r, "cone", Vector3(0.26, 0.5, 0.26), "honey", Vector3(0, 1.22, 0.75), Vector3(90, 0, 0))
+	for side in [-1.0, 1.0]:
+		Toon.part(r, "sphere", Vector3(0.13, 0.17, 0.07), "outline", Vector3(0.18 * side, 1.38, 0.53), Vector3.ZERO, 0.0, 0.0)
+		Toon.part(r, "sphere", Vector3(0.14, 0.08, 0.05), "berry", Vector3(0.3 * side, 1.18, 0.5), Vector3.ZERO, 0.0, 0.0)
+		Toon.part(r, "sphere", Vector3(0.9, 0.18, 0.6), Color("#c6d2e2"), Vector3(0.6 * side, 0.75, -0.05), Vector3(0, 0, -25 * side))
+		Toon.part(r, "sphere", Vector3(0.26, 0.14, 0.34), "honey-deep", Vector3(0.22 * side, 0.08, 0.15))
+	if captain:
+		Toon.part(r, "cylinder", Vector3(1.0, 0.12, 1.0), "outline", Vector3(0, 1.66, 0.15), Vector3.ZERO, 0.0, 0.0)
+		Toon.part(r, "cylinder", Vector3(0.7, 0.4, 0.8), "sky", Vector3(0, 1.85, 0.15))
+		Toon.part(r, "sphere", Vector3(0.2, 0.2, 0.08), "spark-yellow", Vector3(0, 1.88, 0.55), Vector3.ZERO, 0.6, 0.0)

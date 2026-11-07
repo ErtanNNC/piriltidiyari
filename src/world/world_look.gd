@@ -7,6 +7,7 @@ extends RefCounted
 ##   sabah  – morning after (Sahne 6, Bölüm 0)
 ##   orman  – Fısıltı Ormanı (Bölüm 1)
 ##   magara – Şekerleme Mağaraları (Bölüm 2), dark
+##   liman  – Bulut Limanı (Bölüm 3), floating islands over clouds
 
 
 static func add(parent: Node, mood: String) -> Environment:
@@ -60,6 +61,19 @@ static func add(parent: Node, mood: String) -> Environment:
 			sun.light_color = Color("#b3a8e8")
 			sun.light_energy = 0.3
 			sun.shadow_enabled = false
+		"liman":
+			# Bulut Limanı: high sky over a sea of clouds, stormy while the Pus holds
+			env.background_color = Color("#8fc4f2")
+			env.ambient_light_color = Color("#c9dcf5")
+			env.ambient_light_energy = 0.28
+			env.glow_hdr_threshold = 1.4
+			env.fog_enabled = true
+			env.fog_light_color = Color("#bcd3ee")
+			env.fog_density = 0.004
+			env.fog_sky_affect = 0.0
+			sun.light_color = Color("#fff3dc")
+			sun.light_energy = 0.55
+			sun.rotation_degrees = Vector3(-50, 25, 0)
 		"sabah":
 			env.background_color = Color("#cfe6ff")
 			env.ambient_light_color = Color("#fff2dc")

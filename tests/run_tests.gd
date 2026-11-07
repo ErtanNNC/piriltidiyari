@@ -139,7 +139,7 @@ func test_owl_plan() -> void:
 
 
 func test_content_is_valid() -> void:
-	for chapter in ["prologue", "chapter0", "chapter1", "chapter2"]:
+	for chapter in ["prologue", "chapter0", "chapter1", "chapter2", "chapter3"]:
 		_validate_chapter(chapter)
 	test_chapter0_flow()
 	test_chapter1_flow()
@@ -147,6 +147,8 @@ func test_content_is_valid() -> void:
 	test_chapter2_flow()
 	test_crab_plan()
 	test_shop()
+	test_chapter3_flow()
+	test_gull_plan()
 
 
 func test_chapter0_flow() -> void:
@@ -191,6 +193,7 @@ func test_chapter1_flow() -> void:
 		DialogueRules.apply(v.get("then", {}), d, c.quests)
 		return v
 	d.start_quest(q)
+	check(not talk.call("hu").has("then"), "Hu önce Orman Feneri'ni ister")
 	d.notify("light", "orman_feneri", c.quests)
 	check(d.objective_done("fisilti_ormani", "fener"), "Orman Feneri yandı")
 	var lesson: Dictionary = talk.call("hu")
@@ -246,6 +249,7 @@ func test_chapter2_flow() -> void:
 		DialogueRules.apply(v.get("then", {}), d, c.quests)
 		return v
 	d.start_quest(q)
+	check(not talk.call("kazma").has("then"), "Kazma önce Mağara Feneri'ni ister")
 	d.notify("light", "magara_feneri", c.quests)
 	talk.call("kazma")
 	check(d.objective_done("sekerleme_magaralari", "kazma"), "Kazma kristal kuralını anlatır")
@@ -291,6 +295,49 @@ func test_shop() -> void:
 	check(e.max_hp == d.max_hp and e.has_flag("owned_kristal_tilsim"), "tılsım kayıtta kalır")
 
 
+func test_chapter3_flow() -> void:
+	print("Bölüm 3 akışı: Bulut Limanı")
+	var c: Node = ContentScript.new()
+	c.load_chapter("chapter3")
+	var d := PlayerData.new()
+	var q: Dictionary = c.quests["bulut_limani"]
+	var talk := func(npc: String) -> Dictionary:
+		var v := DialogueRules.pick_variant(c.npc(npc), d)
+		DialogueRules.apply(v.get("then", {}), d, c.quests)
+		return v
+	d.start_quest(q)
+	check(not talk.call("pirpir").has("then"), "Pırpır önce feneri ister")
+	d.notify("light", "liman_feneri", c.quests)
+	talk.call("pirpir")
+	check(d.objective_done("bulut_limani", "pirpir") and d.quest_state("marti_yavrulari") == "active", "Pırpır görevi ve yavru görevini verir")
+	for i in 3:
+		d.notify("ring", "firtina_cani", c.quests)
+	check(d.objective_done("bulut_limani", "canlar"), "üç çan çaldı")
+	d.notify("reach", "balon_tepesi", c.quests)
+	d.notify("defeat", "ruzgar", c.quests)
+	check(d.quest_state("bulut_limani") == "ready", "Rüzgâr sakinleşti, görev hazır")
+	for i in [1, 2, 3]:
+		talk.call("marti_yavru%d" % i)
+	check(d.quest_state("marti_yavrulari") == "ready", "üç martı yavrusu bulundu")
+	d.set_flag("pirpir_pazar")
+	check(talk.call("pirpir").get("then", {}).get("open_shop", "") == "pirpir", "Pırpır'ın pazarı açılır")
+	var items: Dictionary = ContentScript.read_json("res://content/items.json")["items"]
+	check(items["cesaret_sekeri"]["buff"] == "guc" and items["pus_kovucu"]["buff"] == "kovucu", "iksir etkileri tanımlı")
+	check("cesaret_sekeri" in PlayerData.POTIONS and "pus_kovucu" in PlayerData.POTIONS, "yeni iksirler yuvaya girer")
+	d.add_piril(500)
+	var sp := d.speed
+	check(Shop.buy(d, items["ruzgar_tilsimi"], "ruzgar_tilsimi", 150, true) == "ok" and d.speed > sp, "Rüzgâr Tılsımı hızı kalıcı artırır")
+	c.free()
+
+
+func test_gull_plan() -> void:
+	print("Rüzgâr planı")
+	for p in [1, 2, 3]:
+		check(GullPlan.cycle(p).back() == "dive", "faz %d: döngü pikeyle (vurma fırsatı) biter" % p)
+	check(GullPlan.GALE_STRENGTH * GullPlan.GALE_TIME < 7.0, "saklanmayan oyuncu bile tek rüzgârda adadan uçmaz (7 m)")
+	check(GullPlan.BOLT_DAMAGE * GullPlan.bolts(3) < 100, "bütün yıldırımlar değse bile uyunmaz")
+
+
 func _validate_chapter(chapter: String) -> void:
 	print("İçerik paketi kuralları: ", chapter)
 	var c: Node = ContentScript.new()
@@ -329,8 +376,8 @@ func _validate_chapter(chapter: String) -> void:
 				check(c.items.has(o["item"]), "görev %s: eşya %s" % [q["id"], o["item"]])
 			if o.has("to"):
 				check(c.npcs.has(o["to"]), "görev %s: NPC %s" % [q["id"], o["to"]])
-			check(o.get("type", "deliver") in ["deliver", "defeat", "reach", "talk", "light"], "görev %s: hedef türü" % q["id"])
+			check(o.get("type", "deliver") in ["deliver", "defeat", "reach", "talk", "light", "ring"], "görev %s: hedef türü" % q["id"])
 			if o.get("type", "") == "defeat":
-				check(o["target"] in MobStats.KINDS or o["target"] in ["pus", "kutuk_kral", "kiskac"], "görev %s: bilinmeyen mob %s" % [q["id"], o["target"]])
+				check(o["target"] in MobStats.KINDS or o["target"] in ["pus", "kutuk_kral", "kiskac", "ruzgar"], "görev %s: bilinmeyen mob %s" % [q["id"], o["target"]])
 	c.free()
 	t.free()

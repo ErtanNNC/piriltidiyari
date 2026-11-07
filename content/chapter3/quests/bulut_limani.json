@@ -1,0 +1,46 @@
+{
+  "id": "bulut_limani",
+  "title": "Bulut Limanı",
+  "giver": "tospik_nine",
+  "objectives": [
+    {
+      "id": "fener",
+      "text": "Liman Feneri'ni yak",
+      "type": "light",
+      "target": "liman_feneri"
+    },
+    {
+      "id": "pirpir",
+      "text": "Kaptan Martı Pırpır ile konuş",
+      "type": "talk",
+      "target": "pirpir"
+    },
+    {
+      "id": "canlar",
+      "text": "Rüzgâr Gülü Adası'nda fırtına çanlarını çal",
+      "type": "ring",
+      "target": "firtina_cani",
+      "count": 3
+    },
+    {
+      "id": "balon",
+      "text": "Balon Adası'nın tepesine çık",
+      "type": "reach",
+      "target": "balon_tepesi"
+    },
+    {
+      "id": "ruzgar",
+      "text": "Fırtına Martısı Rüzgâr'ı yatıştır",
+      "type": "defeat",
+      "target": "ruzgar"
+    }
+  ],
+  "rewards": {
+    "piril": 160,
+    "xp": 600,
+    "items": [
+      "cesaret_sekeri",
+      "bal_surubu"
+    ]
+  }
+}

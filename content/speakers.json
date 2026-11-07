@@ -107,6 +107,26 @@
     "kazma_cocuk3": {
       "name": "En Minik Kazma",
       "color": "spark-blue"
+    },
+    "pirpir": {
+      "name": "Kaptan Martı Pırpır",
+      "color": "sky"
+    },
+    "ruzgar": {
+      "name": "Fırtına Martısı Rüzgâr",
+      "color": "spark-yellow"
+    },
+    "marti_yavru1": {
+      "name": "Martı Yavrusu",
+      "color": "sky"
+    },
+    "marti_yavru2": {
+      "name": "Minik Martı",
+      "color": "sky"
+    },
+    "marti_yavru3": {
+      "name": "Minicik Martı",
+      "color": "sky"
     }
   }
 }

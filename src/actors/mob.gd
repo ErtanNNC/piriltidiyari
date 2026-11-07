@@ -11,7 +11,7 @@ const TELEGRAPH := 0.8
 
 static var attackers := 0
 
-@export_enum("sumuklu", "mantar", "dev_mantar", "kirpi_topu", "karga", "kristal_bocek", "yarasa") var kind := "sumuklu"
+@export_enum("sumuklu", "mantar", "dev_mantar", "kirpi_topu", "karga", "kristal_bocek", "yarasa", "firtina_yumagi", "korsan_marti") var kind := "sumuklu"
 @export var gravity := 22.0
 
 var hp := 30
@@ -31,6 +31,7 @@ var _flies := false
 var _fly_height := 2.6
 var _swoop_from := Vector3.ZERO
 var _swoop_to := Vector3.ZERO
+var _stolen := 0
 var _strafe := 1.0
 
 
@@ -83,7 +84,7 @@ func _physics_process(delta: float) -> void:
 		dist = to_player.length()
 	match state:
 		"idle":
-			if dist < stats["aggro"]:
+			if dist < stats["aggro"] * GameState.notice_factor():
 				state = "chase"
 			else:
 				if _t <= 0.0:
@@ -94,7 +95,7 @@ func _physics_process(delta: float) -> void:
 				if w.length() > 0.3:
 					move = w.normalized() * stats["speed"] * 0.5
 		"chase":
-			if dist > stats["aggro"] * 1.6:
+			if dist > stats["aggro"] * 1.6 * GameState.notice_factor():
 				state = "idle"
 			elif dist <= stats["range"] and not GameState.in_dialogue and (attackers < MobStats.MAX_ATTACKERS or kind == "dev_mantar"):
 				_windup(to_player)
@@ -125,6 +126,11 @@ func _physics_process(delta: float) -> void:
 				global_position = _swoop_from.lerp(_swoop_to, clampf(k, 0.0, 1.0))
 				if not _hit_this_attack and k >= 0.9 and _player.global_position.distance_to(_swoop_to) < 1.4:
 					_hit_this_attack = _player.hurt(stats["damage"], _swoop_to)
+					if _hit_this_attack and stats.has("steals"):
+						var n := mini(int(stats["steals"]), GameState.data.piril)
+						if n > 0 and GameState.data.spend_piril(n):
+							_stolen += n
+							GameState.toast.emit("Korsan Martı %d Pırıl kaptı!" % n, "piril")
 			elif stats["attack"] == "lunge":
 				move = _attack_dir * 10.0
 				if not _hit_this_attack and dist < 1.2 and _player.hurt(stats["damage"], global_position):
@@ -174,7 +180,7 @@ func _windup(to_player: Vector3) -> void:
 	state = "windup"
 	_t = TELEGRAPH
 	_attack_dir = to_player.normalized()
-	if stats["attack"] == "burst":
+	if stats["attack"] == "burst" or stats["attack"] == "blast":
 		Effects.warning(get_parent(), global_position, stats["range"], TELEGRAPH)
 	elif stats["attack"] == "charge":
 		for k in 4:
@@ -214,6 +220,16 @@ func _attack() -> void:
 		if _player and Vector2(_player.global_position.x - global_position.x, _player.global_position.z - global_position.z).length() < 1.3:
 			_player.hurt(stats["damage"], global_position)
 		add_to_group("hittable")
+		return
+	if stats["attack"] == "blast":
+		# a puff of storm: shoves you away, small damage
+		_t = 0.25
+		Effects.ring(get_parent(), global_position + Vector3.UP * 0.5, stats["range"] + 0.5, Color(1, 1, 1, 0.9), 0.35)
+		if _player and _player.global_position.distance_to(global_position) <= stats["range"] + 0.4:
+			var away := _player.global_position - global_position
+			away.y = 0.0
+			_player.push(away.normalized() * 13.0)
+			_player.hurt(stats["damage"], global_position)
 		return
 	if stats["attack"] == "burst":
 		_t = 0.25
@@ -272,7 +288,7 @@ func _calm() -> void:
 	tw.tween_interval(1.2)
 	tw.tween_property(_bright, "scale", Vector3.ZERO, 0.3)
 	tw.tween_callback(queue_free)
-	for i in stats["piril"]:
+	for i in stats["piril"] + _stolen:
 		var p := Pickup.new()
 		get_parent().add_child(p)
 		p.global_position = global_position + Vector3(randf_range(-1.2, 1.2), 0, randf_range(-1.2, 1.2))

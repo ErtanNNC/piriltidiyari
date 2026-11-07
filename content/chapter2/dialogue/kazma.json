@@ -20,7 +20,8 @@
       "when": {
         "quest": "sekerleme_magaralari",
         "state": "active",
-        "objective_not_done": "sekerleme_magaralari/kazma"
+        "objective_not_done": "sekerleme_magaralari/kazma",
+        "objective_done": "sekerleme_magaralari/fener"
       },
       "lines": [
         {

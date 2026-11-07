@@ -20,6 +20,10 @@ static func build(kind: String, pus: bool) -> Node3D:
 			_crow(root, pus)
 		"kristal_bocek":
 			_beetle(root, pus)
+		"firtina_yumagi":
+			_storm_ball(root, pus)
+		"korsan_marti":
+			_pirate_gull(root, pus)
 		"yarasa":
 			_bat(root, pus)
 	Toon.default_pus = 1.0
@@ -126,3 +130,27 @@ static func _bat(root: Node3D, pus: bool) -> void:
 		w.name = "Wing%s" % ("L" if side < 0 else "R")
 		Toon.part(root, "cone", Vector3(0.08, 0.12, 0.08), Color.WHITE, Vector3(0.1 * side, 0.42, 0.36), Vector3(180, 0, 0), 0.0, 0.0)
 	_face(root, Vector3(0, 0.66, 0.36), 0.8, pus)
+
+
+## Fırtına Yumağı: a round puffy storm cloud with a grumpy face.
+static func _storm_ball(root: Node3D, pus: bool) -> void:
+	var cloud: Variant = _c(pus, Color("#e8f0ff"), true)
+	Toon.part(root, "sphere", Vector3(1.3, 1.1, 1.2), cloud, Vector3(0, 0.75, 0))
+	for i in 5:
+		var a := TAU * i / 5.0
+		Toon.part(root, "sphere", Vector3(0.7, 0.6, 0.7), cloud, Vector3(sin(a) * 0.55, 0.95 + (i % 2) * 0.25, cos(a) * 0.5))
+	Toon.part(root, "cone", Vector3(0.3, 0.6, 0.1), _c(pus, "spark-yellow", true), Vector3(0.1, 0.2, 0.5), Vector3(0, 0, 160), 0.0 if pus else 0.8, 0.02)
+	_face(root, Vector3(0, 0.85, 0.6), 0.9, pus)
+
+
+## Korsan Martı: a round gull with a pirate bandana.
+static func _pirate_gull(root: Node3D, pus: bool) -> void:
+	var body: Variant = _c(pus, Color("#ffffff"), true)
+	Toon.part(root, "sphere", Vector3(0.9, 0.85, 1.0), body, Vector3(0, 0.55, 0))
+	Toon.part(root, "sphere", Vector3(0.7, 0.65, 0.65), body, Vector3(0, 1.05, 0.25))
+	Toon.part(root, "cone", Vector3(0.24, 0.45, 0.24), _c(pus, "honey"), Vector3(0, 0.98, 0.7), Vector3(90, 0, 0))
+	Toon.part(root, "sphere", Vector3(0.74, 0.3, 0.7), _c(pus, "hp"), Vector3(0, 1.32, 0.2))
+	for side in [-1.0, 1.0]:
+		var w := Toon.part(root, "sphere", Vector3(1.0, 0.16, 0.6), _c(pus, Color("#9aa7b8")), Vector3(0.66 * side, 0.7, -0.05), Vector3(0, 0, -20 * side))
+		w.name = "Wing%s" % ("L" if side < 0 else "R")
+	_face(root, Vector3(0, 1.1, 0.52), 0.9, pus)

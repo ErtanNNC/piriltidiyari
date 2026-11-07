@@ -3,6 +3,28 @@
   "variants": [
     {
       "when": {
+        "flag": "bolum3_bitti"
+      },
+      "lines": [
+        {
+          "speaker": "tospik_nine",
+          "mood": "mutlu",
+          "text": "Sarı Kıvılcım! Gökyüzü yeniden masmavi."
+        },
+        {
+          "speaker": "tospik_nine",
+          "mood": "dertli",
+          "text": "Pırpır bir gölge görmüş... İki parlak gözlü."
+        },
+        {
+          "speaker": "tospik_nine",
+          "mood": "bilge",
+          "text": "Uyku Dağı'ndaki Bilge Kuzey belki bir şey bilir."
+        }
+      ]
+    },
+    {
+      "when": {
         "flag": "bolum2_bitti"
       },
       "lines": [
@@ -14,7 +36,7 @@
         {
           "speaker": "tospik_nine",
           "mood": "bilge",
-          "text": "Sırada Bulut Limanı var. O yol yakında açılacak."
+          "text": "Sırada Bulut Limanı var. Tabelası meydanda!"
         }
       ]
     },

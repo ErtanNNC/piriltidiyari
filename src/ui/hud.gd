@@ -472,3 +472,17 @@ func open_shop(shop_id: String) -> void:
 		_refresh_potions()
 		if _player:
 			_player.input_enabled = true)
+
+
+## Modal choice (e.g. Pırpır's travel menu). Returns the chosen id or "".
+func ask(title: String, options: Array) -> String:
+	if _player:
+		_player.input_enabled = false
+	GameState.in_dialogue = true
+	var cp := ChoicePanel.new(title, options)
+	_root.add_child(cp)
+	var id: String = await cp.chosen
+	GameState.in_dialogue = false
+	if _player:
+		_player.input_enabled = true
+	return id

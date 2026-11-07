@@ -5,7 +5,8 @@
       "when": {
         "quest": "fisilti_ormani",
         "state": "active",
-        "objective_not_done": "fisilti_ormani/hu"
+        "objective_not_done": "fisilti_ormani/hu",
+        "objective_done": "fisilti_ormani/fener"
       },
       "lines": [
         {

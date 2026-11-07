@@ -11,6 +11,13 @@ var data := PlayerData.new()
 ## True while a dialogue box is open: mobs and bosses hold their attacks,
 ## because the player can't move then.
 var in_dialogue := false
+## Pus Kovucu: mobs notice you from much closer until this time (seconds).
+var repel_until := 0.0
+
+
+## Multiplier for how far mobs notice the player (Pus Kovucu → 0.4).
+func notice_factor() -> float:
+	return 0.4 if Time.get_ticks_msec() / 1000.0 < repel_until else 1.0
 
 
 ## Await this before an attack: returns when no dialogue is open.

@@ -15,10 +15,11 @@ const SCENES := {
 	"chapter0": "res://scenes/chapter0/koy_ve_cayir.tscn",
 	"chapter1": "res://scenes/chapter1/fisilti_ormani.tscn",
 	"chapter2": "res://scenes/chapter2/sekerleme_magaralari.tscn",
+	"chapter3": "res://scenes/chapter3/bulut_limani.tscn",
 }
 
 ## Which content pack (content/<id>/) a scene reads its story from.
-const SCENE_CHAPTER := {"chapter0": "chapter0", "chapter1": "chapter1", "chapter2": "chapter2"}
+const SCENE_CHAPTER := {"chapter0": "chapter0", "chapter1": "chapter1", "chapter2": "chapter2", "chapter3": "chapter3"}
 
 ## [small line, big title] shown when a scene starts.
 const CARDS := {
@@ -31,6 +32,7 @@ const CARDS := {
 	"chapter0": ["Bölüm 0", "Gökkuşağı Köyü"],
 	"chapter1": ["Bölüm 1", "Fısıltı Ormanı"],
 	"chapter2": ["Bölüm 2", "Şekerleme Mağaraları"],
+	"chapter3": ["Bölüm 3", "Bulut Limanı"],
 }
 
 var current := ""
