@@ -139,11 +139,14 @@ func test_owl_plan() -> void:
 
 
 func test_content_is_valid() -> void:
-	for chapter in ["prologue", "chapter0", "chapter1"]:
+	for chapter in ["prologue", "chapter0", "chapter1", "chapter2"]:
 		_validate_chapter(chapter)
 	test_chapter0_flow()
 	test_chapter1_flow()
 	test_king_plan()
+	test_chapter2_flow()
+	test_crab_plan()
+	test_shop()
 
 
 func test_chapter0_flow() -> void:
@@ -231,6 +234,63 @@ func test_king_plan() -> void:
 	check(KingPlan.ROOT_DAMAGE * KingPlan.root_count(3) < 100, "bütün kökler değse bile tek seferde uyunmaz")
 
 
+func test_chapter2_flow() -> void:
+	print("Bölüm 2 akışı: Şekerleme Mağaraları")
+	var c: Node = ContentScript.new()
+	c.load_chapter("chapter2")
+	check(c.chapter["theme"] == "dark", "mağaralar Gece temasında")
+	var d := PlayerData.new()
+	var q: Dictionary = c.quests["sekerleme_magaralari"]
+	var talk := func(npc: String) -> Dictionary:
+		var v := DialogueRules.pick_variant(c.npc(npc), d)
+		DialogueRules.apply(v.get("then", {}), d, c.quests)
+		return v
+	d.start_quest(q)
+	d.notify("light", "magara_feneri", c.quests)
+	talk.call("kazma")
+	check(d.objective_done("sekerleme_magaralari", "kazma"), "Kazma kristal kuralını anlatır")
+	check(d.quest_state("kazma_cocuklari") == "active", "Kazma çocuk görevini verir")
+	for i in [1, 2, 3]:
+		talk.call("kazma_cocuk%d" % i)
+		talk.call("kazma_cocuk%d" % i)
+	check(d.quest_state("kazma_cocuklari") == "ready", "üç minik köstebek bulundu (ikişer konuşmayla)")
+	for t in ["kristal_salon", "kristal_tunel"]:
+		d.notify("light", t, c.quests)
+	d.notify("defeat", "kiskac", c.quests)
+	check(d.quest_state("sekerleme_magaralari") == "ready", "Kıskaç dost oldu, görev hazır")
+	check(not talk.call("kazma").get("then", {}).has("open_shop"), "dükkân Kıskaç'tan önce kapalı")
+	d.set_flag("kazma_dukkan")
+	var events := DialogueRules.apply(talk.call("kazma").get("then", {}), d, c.quests)
+	check(c.shops.has("kazma"), "Kazma dükkânı tanımlı")
+	c.free()
+
+
+func test_crab_plan() -> void:
+	print("Kıskaç planı")
+	for p in [1, 2, 3]:
+		check(CrabPlan.has_opening(p), "faz %d: vurma fırsatı var" % p)
+		check(CrabPlan.rest(p) >= 1.0, "faz %d: saldırılar arası en az 1 sn" % p)
+	check(CrabPlan.bubbles(1) < CrabPlan.bubbles(3), "fazlar zorlaşır")
+	check(CrabPlan.CLAW_DAMAGE < 20 and CrabPlan.SPIN_DAMAGE * CrabPlan.SPIN_DASHES < 50, "tek seferde uyutmaz")
+
+
+func test_shop() -> void:
+	print("Dükkân")
+	var d := PlayerData.new()
+	var bal := {"name": "Bal Şurubu", "kind": "potion"}
+	var tilsim := {"name": "Kristal Tılsım", "kind": "charm", "max_hp": 15}
+	check(Shop.buy(d, bal, "bal_surubu", 15) == "piril", "Pırıl yoksa alınamaz")
+	d.add_piril(200)
+	check(Shop.buy(d, bal, "bal_surubu", 15) == "ok" and d.piril == 185 and d.item_count("bal_surubu") == 1, "Bal Şurubu alındı, 15 Pırıl düştü")
+	var hp_before := d.max_hp
+	check(Shop.buy(d, tilsim, "kristal_tilsim", 120, true) == "ok" and d.max_hp == hp_before + 15, "Kristal Tılsım canı kalıcı 15 artırır")
+	check(Shop.buy(d, tilsim, "kristal_tilsim", 120, true) == "owned" and d.piril == 65, "tılsım ikinci kez satılmaz, Pırıl gitmez")
+	var json := JSON.stringify(d.to_dict())
+	var e := PlayerData.new()
+	e.load_dict(JSON.parse_string(json))
+	check(e.max_hp == d.max_hp and e.has_flag("owned_kristal_tilsim"), "tılsım kayıtta kalır")
+
+
 func _validate_chapter(chapter: String) -> void:
 	print("İçerik paketi kuralları: ", chapter)
 	var c: Node = ContentScript.new()
@@ -271,6 +331,6 @@ func _validate_chapter(chapter: String) -> void:
 				check(c.npcs.has(o["to"]), "görev %s: NPC %s" % [q["id"], o["to"]])
 			check(o.get("type", "deliver") in ["deliver", "defeat", "reach", "talk", "light"], "görev %s: hedef türü" % q["id"])
 			if o.get("type", "") == "defeat":
-				check(o["target"] in MobStats.KINDS or o["target"] in ["pus", "kutuk_kral"], "görev %s: bilinmeyen mob %s" % [q["id"], o["target"]])
+				check(o["target"] in MobStats.KINDS or o["target"] in ["pus", "kutuk_kral", "kiskac"], "görev %s: bilinmeyen mob %s" % [q["id"], o["target"]])
 	c.free()
 	t.free()

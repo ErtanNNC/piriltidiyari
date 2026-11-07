@@ -21,7 +21,8 @@
       "kind": "potion",
       "heal": 40,
       "price": 15,
-      "icon": "heart"
+      "icon": "heart",
+      "desc": "Canını 40 doldurur"
     },
     "yildiz_tozu": {
       "name": "Yıldız Tozu",
@@ -29,7 +30,16 @@
       "kind": "potion",
       "mp": 30,
       "price": 20,
-      "icon": "drop"
+      "icon": "drop",
+      "desc": "Enerjini 30 doldurur"
+    },
+    "kristal_tilsim": {
+      "name": "Kristal Tılsım",
+      "color": "spark-blue",
+      "kind": "charm",
+      "max_hp": 15,
+      "icon": "spark",
+      "desc": "Canın kalıcı olarak 15 artar"
     }
   }
 }

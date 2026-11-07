@@ -55,16 +55,22 @@ func load_tokens(path: String) -> void:
 
 
 ## Color token for the current theme (falls back to the first theme).
+## "name@light" / "name@dark" pins a theme: text drawn with a dark outline
+## over the 3D scene uses "panel@light" so it stays light in the Gece theme.
 func color(token_name: String) -> Color:
+	var pinned := ""
+	if token_name.contains("@"):
+		pinned = token_name.get_slice("@", 1)
+		token_name = token_name.get_slice("@", 0)
 	var per_theme: Dictionary = _colors.get(token_name, {})
 	if per_theme.is_empty():
 		push_warning("Tokens: bilinmeyen renk '%s'" % token_name)
 		return Color.MAGENTA
-	return per_theme.get(theme_id, per_theme["_default"])
+	return per_theme.get(pinned if pinned != "" else theme_id, per_theme["_default"])
 
 
 func has_color(token_name: String) -> bool:
-	return _colors.has(token_name)
+	return _colors.has(token_name.get_slice("@", 0))
 
 
 ## spacing / radius / stroke token in pixels.

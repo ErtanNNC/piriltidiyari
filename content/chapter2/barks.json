@@ -1,0 +1,114 @@
+{
+  "barks": {
+    "c2_giris": [
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Vay! Şeker gibi kristaller... ama hepsi gri."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "kararlı",
+        "text": "Önce feneri yakayım, karanlıkta yolumu bulamam."
+      }
+    ],
+    "c2_fener": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Fener yandı! Köstebek köyü aydınlandı."
+      }
+    ],
+    "c2_salon": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Bütün kristaller parlıyor! Kapı açıldı."
+      }
+    ],
+    "c2_seker": [
+      {
+        "speaker": "oyuncu",
+        "mood": "huysuz",
+        "text": "Bu şurup çok yapışkan! Platformlara zıplasam iyi olur."
+      }
+    ],
+    "c2_kiskac_basla": [
+      {
+        "speaker": "kiskac",
+        "mood": "huysuz",
+        "text": "Dur orada! Bu ışığa kimse dokunamaz!"
+      },
+      {
+        "speaker": "kiskac",
+        "mood": "huysuz",
+        "text": "Seni de Pus gönderdi, değil mi? Kıskaçlarım hazır!"
+      }
+    ],
+    "c2_kiskac_son": [
+      {
+        "speaker": "kiskac",
+        "mood": "şaşkın",
+        "text": "Dur, dur! Sen Pus değilsin... Sen bir bekçisin!"
+      },
+      {
+        "speaker": "kiskac",
+        "mood": "üzgün",
+        "text": "Ben Kıvılcım'ı Pus'tan saklıyordum. Seni de Pus sandım."
+      },
+      {
+        "speaker": "kiskac",
+        "mood": "mutlu",
+        "text": "Özür dilerim, minik bekçi. Mavi Kıvılcım artık sende."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Mavi Kıvılcım! İki tane oldu, üç kaldı."
+      }
+    ],
+    "c2_son": [
+      {
+        "speaker": "kazma",
+        "mood": "mutlu",
+        "text": "Mağara pırıl pırıl! Dükkânımızı açtık, bekleriz!"
+      },
+      {
+        "speaker": "kiskac",
+        "mood": "mutlu",
+        "text": "Ben de kapıda nöbet tutarım. Artık dostuz!"
+      }
+    ],
+    "c2_cocuklar": [
+      {
+        "speaker": "kazma",
+        "mood": "mutlu",
+        "text": "Üç yavrum da evde! Sana ne kadar teşekkür etsem az."
+      }
+    ],
+    "tas_3": [
+      {
+        "speaker": "hikaye_tasi",
+        "mood": "bilge",
+        "text": "Küçük yıldız soğukta bekledikçe üzüntüsü büyüdü."
+      },
+      {
+        "speaker": "hikaye_tasi",
+        "mood": "üzgün",
+        "text": "Üzüntü gri bir sis oldu ve yıldızı sardı."
+      }
+    ],
+    "tas_4": [
+      {
+        "speaker": "hikaye_tasi",
+        "mood": "üzgün",
+        "text": "Sis yıldızı herkesten sakladı. Yıldız da saklandığını unuttu."
+      },
+      {
+        "speaker": "hikaye_tasi",
+        "mood": "bilge",
+        "text": "Sisin içinden iki parlak göz bakıyordu. Hâlâ bir arkadaş arıyordu."
+      }
+    ]
+  }
+}

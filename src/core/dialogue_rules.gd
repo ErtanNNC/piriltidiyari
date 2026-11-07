@@ -75,6 +75,8 @@ static func apply(then: Dictionary, data: PlayerData, quests: Dictionary) -> Arr
 		var parts: PackedStringArray = String(then["advance"]).split("/")
 		if data.advance_objective(parts[0], parts[1]):
 			events.append("advanced")
+	if then.has("open_shop"):
+		events.append("shop:" + String(then["open_shop"]))
 	if then.has("goto_scene"):
 		events.append("goto:" + String(then["goto_scene"]))
 	return events

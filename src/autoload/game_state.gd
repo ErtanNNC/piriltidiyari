@@ -4,6 +4,7 @@ extends Node
 signal dialogue_requested(npc_id: String)
 signal lines_requested(lines: Array, then: Dictionary)
 signal dialogue_closed
+signal shop_requested(shop_id: String)
 signal toast(text: String, icon: String)
 
 var data := PlayerData.new()
@@ -54,6 +55,9 @@ func apply_dialogue_effects(then: Dictionary) -> void:
 		if e.begins_with("item:"):
 			var id := e.substr(5)
 			toast.emit("%s ×%d aldın" % [Content.item_name(id), int(then["give_items"][id])], "piril")
+			continue
+		if e.begins_with("shop:"):
+			shop_requested.emit(e.substr(5))
 			continue
 		if e.begins_with("goto:"):
 			SceneFlow.go_to(e.substr(5))

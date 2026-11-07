@@ -28,7 +28,7 @@ func _ready() -> void:
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 	var m := Tokens.px("space-6")
-	_title = UiKit.outlined(UiKit.label("Bekçini seç", "text-title", "panel"), 10)
+	_title = UiKit.outlined(UiKit.label("Bekçini seç", "text-title", "panel@light"), 10)
 	_title.set_anchors_and_offsets_preset(Control.PRESET_CENTER_TOP)
 	_title.grow_horizontal = Control.GROW_DIRECTION_BOTH
 	_title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER

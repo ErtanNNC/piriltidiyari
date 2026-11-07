@@ -94,7 +94,7 @@ func _ready() -> void:
 	_boss.visible = false
 	_boss.add_theme_constant_override("separation", 2)
 	top_center.add_child(_boss)
-	_boss_name = UiKit.outlined(UiKit.label("", "text-heading", "panel"), 8)
+	_boss_name = UiKit.outlined(UiKit.label("", "text-heading", "panel@light"), 8)
 	_boss_name.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_boss.add_child(_boss_name)
 	_boss_bar = StatBar.new()
@@ -237,6 +237,7 @@ func _ready() -> void:
 	d.leveled_up.connect(func(lv: int) -> void: show_scene_card("Seviye atladın!", "Seviye %d" % lv, ""))
 	GameState.dialogue_requested.connect(_open_dialogue)
 	GameState.lines_requested.connect(_open_lines)
+	GameState.shop_requested.connect(open_shop)
 	GameState.toast.connect(show_toast)
 	_refresh_stats()
 	_refresh_quest()
@@ -356,7 +357,7 @@ func show_scene_card(small: String, big: String, sub: String) -> void:
 	v.grow_vertical = Control.GROW_DIRECTION_BOTH
 	v.alignment = BoxContainer.ALIGNMENT_CENTER
 	card.add_child(v)
-	for spec in [[small, "text-heading", "honey"], [big, "text-hero", "panel"], [sub, "text-body", "panel"]]:
+	for spec in [[small, "text-heading", "honey"], [big, "text-hero", "panel@light"], [sub, "text-body", "panel@light"]]:
 		if spec[0] == "":
 			continue
 		var l := UiKit.outlined(UiKit.label(spec[0], spec[1], spec[2]), 12 if spec[1] == "text-hero" else 8)
@@ -458,3 +459,16 @@ func flash(seconds: float, col := Color(1, 1, 0.94, 1)) -> void:
 
 func _exit_tree() -> void:
 	GameState.in_dialogue = false
+
+
+func open_shop(shop_id: String) -> void:
+	if _player:
+		_player.input_enabled = false
+	GameState.in_dialogue = true
+	var sp := ShopPanel.new(shop_id)
+	_root.add_child(sp)
+	sp.closed.connect(func() -> void:
+		GameState.in_dialogue = false
+		_refresh_potions()
+		if _player:
+			_player.input_enabled = true)

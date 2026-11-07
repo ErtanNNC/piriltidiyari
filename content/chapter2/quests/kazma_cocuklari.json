@@ -1,0 +1,18 @@
+{
+  "id": "kazma_cocuklari",
+  "title": "Kazma'nın Çocukları",
+  "giver": "kazma",
+  "objectives": [
+    {
+      "id": "cocuk",
+      "text": "Karanlıkta kaybolan minik köstebekleri bul",
+      "type": "talk",
+      "target": "kazma_cocuk",
+      "count": 3
+    }
+  ],
+  "rewards": {
+    "piril": 40,
+    "xp": 60
+  }
+}

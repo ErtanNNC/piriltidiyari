@@ -87,6 +87,26 @@
     "hikaye_tasi": {
       "name": "Hikâye Taşı",
       "color": "spark-purple"
+    },
+    "kazma": {
+      "name": "Madenci Kazma",
+      "color": "spark-blue"
+    },
+    "kiskac": {
+      "name": "Kristal Yengeç Kıskaç",
+      "color": "sky"
+    },
+    "kazma_cocuk1": {
+      "name": "Minik Kazma",
+      "color": "spark-blue"
+    },
+    "kazma_cocuk2": {
+      "name": "Minicik Kazma",
+      "color": "spark-blue"
+    },
+    "kazma_cocuk3": {
+      "name": "En Minik Kazma",
+      "color": "spark-blue"
     }
   }
 }

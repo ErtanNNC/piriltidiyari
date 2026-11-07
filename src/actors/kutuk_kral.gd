@@ -199,7 +199,7 @@ func hit(damage: int, _from: Vector3, _push: float) -> void:
 	if not dazed or not active:
 		return
 	hp = maxi(hp - damage, 0)
-	FloatText.spawn(get_parent(), global_position + Vector3.UP * 4.5, str(damage), Tokens.color("panel"))
+	FloatText.spawn(get_parent(), global_position + Vector3.UP * 4.5, str(damage), Tokens.color("panel@light"))
 	var tw := create_tween()
 	tw.tween_property(_model, "scale", Vector3(1.08, 0.92, 1.08), 0.06)
 	tw.tween_property(_model, "scale", Vector3.ONE, 0.12)

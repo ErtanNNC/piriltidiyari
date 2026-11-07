@@ -1,0 +1,88 @@
+{
+  "npc": "kazma",
+  "variants": [
+    {
+      "when": {
+        "flag": "kazma_dukkan"
+      },
+      "lines": [
+        {
+          "speaker": "kazma",
+          "mood": "mutlu",
+          "text": "Hoş geldin bekçi! Dükkânımız açık, bak bakalım."
+        }
+      ],
+      "then": {
+        "open_shop": "kazma"
+      }
+    },
+    {
+      "when": {
+        "quest": "sekerleme_magaralari",
+        "state": "active",
+        "objective_not_done": "sekerleme_magaralari/kazma"
+      },
+      "lines": [
+        {
+          "speaker": "kazma",
+          "mood": "mutlu",
+          "text": "Aman, bir bekçi! Ben Madenci Kazma."
+        },
+        {
+          "speaker": "kazma",
+          "mood": "dertli",
+          "text": "Pus kristallerimizi griye boyadı, mağara karardı."
+        },
+        {
+          "speaker": "kazma",
+          "mood": "bilge",
+          "text": "Gri kristale vurursan yeniden parlar!"
+        },
+        {
+          "speaker": "kazma",
+          "mood": "bilge",
+          "text": "Bir salonun bütün kristalleri yanınca kristal kapı açılır."
+        },
+        {
+          "speaker": "kazma",
+          "mood": "dertli",
+          "text": "Bir de çocuklarım karanlıkta kayboldu. Görürsen eve yolla."
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "kararlı",
+          "text": "Kristallere vur, çocukları bul. Anlaştık!"
+        }
+      ],
+      "then": {
+        "advance": "sekerleme_magaralari/kazma",
+        "start_quest": "kazma_cocuklari"
+      }
+    },
+    {
+      "when": {
+        "quest": "sekerleme_magaralari",
+        "state": [
+          "active",
+          "ready"
+        ]
+      },
+      "lines": [
+        {
+          "speaker": "kazma",
+          "mood": "bilge",
+          "text": "Gri kristale vur, parlasın! Kıskaç'ın gölü en dipte."
+        }
+      ]
+    },
+    {
+      "lines": [
+        {
+          "speaker": "kazma",
+          "mood": "mutlu",
+          "text": "Önce Mağara Feneri'ni yak, ışık lazım bize!"
+        }
+      ]
+    }
+  ]
+}

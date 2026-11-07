@@ -1,0 +1,40 @@
+{
+  "npc": "kazma_cocuk3",
+  "variants": [
+    {
+      "when": {
+        "not_flag": "kazma_cocuk3"
+      },
+      "lines": [
+        {
+          "speaker": "kazma_cocuk3",
+          "mood": "üzgün",
+          "text": "Burası çok karanlık. Sen parlıyorsun ama!"
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "mutlu",
+          "text": "Baban seni arıyor! Köy şu tarafta."
+        },
+        {
+          "speaker": "kazma_cocuk3",
+          "mood": "mutlu",
+          "text": "Yaşasın! Eve koşuyorum!"
+        }
+      ],
+      "then": {
+        "set_flag": "kazma_cocuk3",
+        "advance": "kazma_cocuklari/cocuk"
+      }
+    },
+    {
+      "lines": [
+        {
+          "speaker": "kazma_cocuk3",
+          "mood": "mutlu",
+          "text": "Eve giden yolu biliyorum artık!"
+        }
+      ]
+    }
+  ]
+}

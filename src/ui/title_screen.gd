@@ -54,7 +54,7 @@ func _build_menu() -> void:
 	title.add_theme_font_size_override("font_size", 84)
 	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	root.add_child(title)
-	var series := UiKit.outlined(UiKit.label("Kıvılcım Bekçileri", "text-heading", "panel"), 8)
+	var series := UiKit.outlined(UiKit.label("Kıvılcım Bekçileri", "text-heading", "panel@light"), 8)
 	series.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	root.add_child(series)
 	var gap := Control.new()

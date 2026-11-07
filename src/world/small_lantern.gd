@@ -69,4 +69,4 @@ func light_up(silent := false) -> void:
 		Effects.sparkle(get_parent(), _flame.global_position, Tokens.color(accent), 16)
 		Effects.ring(get_parent(), global_position + Vector3.UP * 0.2, 7.0, Tokens.color(accent), 0.7)
 		GameState.toast.emit("Fener yandı!", "lantern")
-	lit.emit(self)
+		lit.emit(self)  # silent = restoring a save: nothing new happened

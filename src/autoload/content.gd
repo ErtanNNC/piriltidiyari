@@ -8,6 +8,7 @@ var npcs: Dictionary = {}       # npc id -> dialogue def
 var items: Dictionary = {}      # id -> item def
 var speakers: Dictionary = {}   # id -> {name, color}
 var keepers: Dictionary = {}    # id -> keeper candidate (content/keepers.json)
+var shops: Dictionary = {}      # id -> {title, items: [{id, price, once?}]}
 var barks: Dictionary = {}      # id -> [lines]: short monologues and asides
 
 
@@ -27,6 +28,7 @@ func load_chapter(chapter_id: String) -> void:
 		var def := read_json("%s/quests/%s.json" % [root, q])
 		quests[def["id"]] = def
 	barks = read_json("%s/%s.json" % [root, chapter["barks"]]).get("barks", {}) if chapter.has("barks") else {}
+	shops = read_json("%s/%s.json" % [root, chapter["shop"]]).get("shops", {}) if chapter.has("shop") else {}
 	for n: String in chapter.get("dialogue", []):
 		var def := read_json("%s/dialogue/%s.json" % [root, n])
 		npcs[def["npc"]] = def

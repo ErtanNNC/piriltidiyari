@@ -25,7 +25,7 @@ func _ready() -> void:
 	_icon.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 	_icon.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 	add_child(_icon)
-	_count = UiKit.outlined(UiKit.label("", "text-number", "panel"), 8)
+	_count = UiKit.outlined(UiKit.label("", "text-number", "panel@light"), 8)
 	_count.add_theme_font_size_override("font_size", 22)
 	_count.position = Vector2(44, 28)
 	var holder := Control.new()

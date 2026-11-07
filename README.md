@@ -52,6 +52,13 @@ Mobilde sol yarıda sanal joystick, sağda Zıpla / Saldır butonları çıkar.
 | Bölüm 0 | Seçilen bekçiyle: heykeli ziyaret, Dev Somurtkan Mantar | |
 | Bölüm 1 · Fısıltı Ormanı | Orman Feneri, Hu, 3 fısıltı kavşağı, 3 küçük fener, Kütük Kral, Yeşil Kıvılcım | fısıltı bulmacası, halkanın üstünden zıplama |
 
+| Bölüm 2 · Şekerleme Mağaraları | Kazma köyü, Parlak Salon, şurup nehri, Karanlık Tünel, Kıskaç'ın gölü, Mavi Kıvılcım | kristal bulmacası (vurunca yanar), karanlık, Gece teması |
+
+**Bölüm 2:** Mağaralar tasarım sisteminin Gece temasıyla oynanır; bekçi kendi ışığını taşır (Lumi'ninki daha geniş).
+Moblar: Gri Kristal Böceği (yere dalıp altından çıkar), Yarasa Fısıltısı. Kıskaç dost olunca **Kazma Ailesi Dükkânı**
+açılır: Pırıl ile Bal Şurubu, Yıldız Tozu ve Kristal Tılsım (+15 can) alınır. Yan içerik: Kazma'nın 3 çocuğu,
+Hikâye Taşları 3–4, dört bekçi köşesi.
+
 **Bölüm 1 yan içerik:** Kayıp Yavrular (3), Hikâye Taşları 1–2, ve her bekçiye özel bir köşe:
 Pati çift zıplamayla sütuna çıkar, Bado kayayı iter, Çıtır dereye halat atar, Lumi karanlığı aydınlatır.
 Köy ile orman arasında tabelalarla gidilip gelinir.
@@ -64,6 +71,7 @@ Sahne başlarında oyun kaydedilir (`user://kayit.json`); açılıştaki "Devam 
 <img src="docs/ekran/00_acilis.png" width="49%"> <img src="docs/ekran/02_gri_ruzgar_kiris.png" width="49%">
 <img src="docs/ekran/04_pus_baykusu.png" width="49%"> <img src="docs/ekran/06_bekci_secimi.png" width="49%">
 <img src="docs/ekran/08_fisilti_kavsagi.png" width="49%"> <img src="docs/ekran/09_kutuk_kral.png" width="49%">
+<img src="docs/ekran/11_kiskac.png" width="49%"> <img src="docs/ekran/12_kazma_dukkani.png" width="49%">
 </p>
 
 **Kontroller:** WASD / oklar · Boşluk zıpla · J saldır · K yuvarlan · L Dikenli Dönüş · E konuş · 1–4 iksir.
@@ -72,8 +80,8 @@ Mobilde: sanal joystick, Zıpla / Saldır / Yuvarlan / Dönüş butonları, iksi
 ### Henüz olmayanlar
 
 - Gerçek modeller, ikonlar, logo, ses ve müzik (her şey ilkel şekillerden yer tutucu)
-- Envanter / dükkân ekranları (Terzi Dikiş'in dükkânı dahil), ayarlar
-- Bölüm 2 – Şekerleme Mağaraları ve sonrası
+- Envanter ekranı, ayarlar, Terzi Dikiş'in kozmetik dükkânı
+- Bölüm 3 – Bulut Limanı ve sonrası
 
 ## Proje yapısı
 

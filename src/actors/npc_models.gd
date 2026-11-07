@@ -20,6 +20,14 @@ static func build(kind: String) -> Node3D:
 			_owl_teacher(root)
 		"spider":
 			_spider(root)
+		"mole":
+			_mole(root, 1.0)
+		"mole_kid":
+			_mole(root, 0.6)
+		"crab_friend":
+			var c := KiskacModel.build()
+			c.scale = Vector3.ONE * 0.55
+			root.add_child(c)
 		"statue":
 			Toon.part(root, "cylinder", Vector3(1.6, 1.0, 1.8), Color("#b9b0a4"), Vector3(0, 0.5, 0))
 			var f := FistikModel.build(true)
@@ -94,3 +102,20 @@ static func _spider(root: Node3D) -> void:
 			leg.name = "Leg"
 		Toon.part(root, "sphere", Vector3(0.14, 0.08, 0.05), "berry", Vector3(0.24 * s, 0.82, 0.68), Vector3.ZERO, 0.0, 0.0)
 	Toon.part(root, "cylinder", Vector3(0.36, 0.3, 0.42), "honey", Vector3(0, 1.4, 0.35))
+
+
+## Madenci Köstebek Kazma (and kids at scale 0.6): a round mole with a
+## miner's helmet and a spark-blue lamp.
+static func _mole(root: Node3D, s: float) -> void:
+	var fur := Color("#7a5a4a")
+	var r := Node3D.new()
+	r.scale = Vector3.ONE * s
+	root.add_child(r)
+	Toon.part(r, "sphere", Vector3(1.1, 1.2, 1.0), fur, Vector3(0, 0.65, 0))
+	Toon.part(r, "sphere", Vector3(0.7, 0.75, 0.4), Color("#d9b8a0"), Vector3(0, 0.55, 0.35))
+	Toon.part(r, "sphere", Vector3(0.3, 0.24, 0.3), "berry", Vector3(0, 1.05, 0.5))
+	for side in [-1.0, 1.0]:
+		Toon.part(r, "box", Vector3(0.16, 0.04, 0.04), "outline", Vector3(0.18 * side, 1.22, 0.44), Vector3(0, 0, 10 * side), 0.0, 0.0)
+		Toon.part(r, "sphere", Vector3(0.36, 0.18, 0.3), Color("#f0c8b0"), Vector3(0.5 * side, 0.6, 0.25), Vector3(0, 0, -30 * side))
+	Toon.part(r, "sphere", Vector3(0.95, 0.5, 0.95), "honey", Vector3(0, 1.4, 0))
+	Toon.part(r, "sphere", Vector3(0.26, 0.26, 0.16), "spark-blue", Vector3(0, 1.48, 0.44), Vector3.ZERO, 1.6, 0.02)

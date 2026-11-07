@@ -259,7 +259,7 @@ func _kids_go_home() -> void:
 		var n := get_node_or_null("Level/Yavru_yavru%d" % i)
 		if n and GameState.data.has_flag("yavru%d" % i) and not n.has_meta("leaving"):
 			n.set_meta("leaving", true)
-			Effects.sparkle(self, n.global_position + Vector3.UP, Tokens.color("panel"), 12)
+			Effects.sparkle(self, n.global_position + Vector3.UP, Tokens.color("panel@light"), 12)
 			var tw := n.create_tween()
 			tw.tween_interval(0.6)
 			tw.tween_property(n, "scale", Vector3.ZERO, 0.4).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
@@ -550,6 +550,7 @@ func _run_demo(which: String) -> void:
 			print("KARGA y %.2f..%.2f yerde_vuruldu=%s player_hp %d->%d" % [min_y, max_y, hit_on_ground, hp0, GameState.data.hp])
 			get_tree().quit()
 		"pastwall":
+			GameState.notify("light", "orman_feneri")
 			$Level/OrmanFeneri.light_up(true)
 			_player.global_position = Vector3(8, 0, 1.8)
 			await get_tree().create_timer(0.3).timeout
@@ -557,6 +558,7 @@ func _run_demo(which: String) -> void:
 				_hud._dialog.advance()
 				await get_tree().create_timer(0.05).timeout
 		"junction":
+			GameState.notify("light", "orman_feneri")
 			$Level/OrmanFeneri.light_up(true)
 			await get_tree().create_timer(0.3).timeout
 			while _hud._dialog.is_open():

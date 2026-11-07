@@ -3,6 +3,23 @@
   "variants": [
     {
       "when": {
+        "flag": "bolum2_bitti"
+      },
+      "lines": [
+        {
+          "speaker": "tospik_nine",
+          "mood": "mutlu",
+          "text": "Mavi Kıvılcım da geldi! Kazma bana mektup yazdı."
+        },
+        {
+          "speaker": "tospik_nine",
+          "mood": "bilge",
+          "text": "Sırada Bulut Limanı var. O yol yakında açılacak."
+        }
+      ]
+    },
+    {
+      "when": {
         "flag": "bolum1_bitti",
         "not_flag": "tospik_bal_1"
       },
@@ -15,7 +32,7 @@
         {
           "speaker": "tospik_nine",
           "mood": "dertli",
-          "text": "Şekerleme Mağaraları'nın feneri de sönmüş, duydum."
+          "text": "Şekerleme Mağaraları'nın feneri de sönmüş. Tabelaya bak!"
         },
         {
           "speaker": "tospik_nine",
@@ -38,7 +55,7 @@
         {
           "speaker": "tospik_nine",
           "mood": "mutlu",
-          "text": "Dört Kıvılcım daha var. Sana güveniyorum!"
+          "text": "Mağaralara giden tabela meydanda. Kazma seni bekliyor!"
         }
       ]
     },

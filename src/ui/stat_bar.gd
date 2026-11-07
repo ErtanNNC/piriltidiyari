@@ -39,5 +39,9 @@ func _draw() -> void:
 	var font := Tokens.font_for("text-caption")
 	var fs := Tokens.type_size("text-caption")
 	var pos := Vector2(r.position.x + 10, r.position.y + r.size.y * 0.5 + fs * 0.36)
-	# on-color: text on colored fills is always dark, never white.
-	draw_string(font, pos, _text, HORIZONTAL_ALIGNMENT_LEFT, -1, fs, Tokens.color("on-color"))
+	# Text over the colored fill is on-color (always dark). If the fill is too
+	# short to hold the number, it sits on the empty track: use ink instead
+	# (light in the Gece theme).
+	var text_w := font.get_string_size(_text, HORIZONTAL_ALIGNMENT_LEFT, -1, fs).x
+	var on_fill := r.size.x * ratio >= text_w + 16.0
+	draw_string(font, pos, _text, HORIZONTAL_ALIGNMENT_LEFT, -1, fs, Tokens.color("on-color") if on_fill else Tokens.color("ink"))

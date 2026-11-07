@@ -1,0 +1,23 @@
+{
+  "id": "chapter2",
+  "title": "Şekerleme Mağaraları",
+  "region": "Şekerleme Mağaraları",
+  "theme": "dark",
+  "levels": [
+    10,
+    15
+  ],
+  "spark": "blue",
+  "quests": [
+    "sekerleme_magaralari",
+    "kazma_cocuklari"
+  ],
+  "dialogue": [
+    "kazma",
+    "kazma_cocuk1",
+    "kazma_cocuk2",
+    "kazma_cocuk3"
+  ],
+  "barks": "barks",
+  "shop": "shop"
+}

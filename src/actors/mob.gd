@@ -11,7 +11,7 @@ const TELEGRAPH := 0.8
 
 static var attackers := 0
 
-@export_enum("sumuklu", "mantar", "dev_mantar", "kirpi_topu", "karga") var kind := "sumuklu"
+@export_enum("sumuklu", "mantar", "dev_mantar", "kirpi_topu", "karga", "kristal_bocek", "yarasa") var kind := "sumuklu"
 @export var gravity := 22.0
 
 var hp := 30
@@ -109,7 +109,8 @@ func _physics_process(delta: float) -> void:
 		"windup":
 			# 0.8 s tell: wobble and swell. Damage only comes after it.
 			var k := 1.0 - _t / TELEGRAPH
-			_grey.scale = Vector3.ONE * (1.0 + 0.18 * k) * Vector3(1.0 + sin(k * 40.0) * 0.04, 1.0, 1.0)
+			if stats["attack"] != "burrow":
+				_grey.scale = Vector3.ONE * (1.0 + 0.18 * k) * Vector3(1.0 + sin(k * 40.0) * 0.04, 1.0, 1.0)
 			if _t <= 0.0:
 				_grey.scale = Vector3.ONE
 				_attack()
@@ -131,7 +132,7 @@ func _physics_process(delta: float) -> void:
 			if _t <= 0.0:
 				state = "recover"
 				# charge and swoop leave it dizzy / grounded: the moment to hit it
-				_t = 1.8 if stats["attack"] in ["charge", "swoop"] else 1.4
+				_t = 1.8 if stats["attack"] in ["charge", "swoop", "burrow"] else 1.4
 				_grey.rotation = Vector3.ZERO
 				_release_token()
 		"recover", "hurt":
@@ -178,10 +179,16 @@ func _windup(to_player: Vector3) -> void:
 	elif stats["attack"] == "charge":
 		for k in 4:
 			Effects.warning(get_parent(), global_position + _attack_dir * (1.5 + k * 2.0), 0.7, TELEGRAPH)
-	elif stats["attack"] == "swoop":
+	elif stats["attack"] == "swoop" or stats["attack"] == "burrow":
 		_swoop_to = _player.global_position if _player else global_position
-		_swoop_to.y = 0.0
-		Effects.warning(get_parent(), _swoop_to, 1.3, TELEGRAPH)
+		_swoop_to.y = global_position.y if stats["attack"] == "burrow" else 0.0
+		Effects.warning(get_parent(), Vector3(_swoop_to.x, 0.0, _swoop_to.z) + Vector3.UP * global_position.y, 1.3, TELEGRAPH)
+		if stats["attack"] == "burrow":
+			# dig down: can't be hit while underground
+			remove_from_group("hittable")
+			var dig := create_tween()
+			dig.tween_property(_grey, "position:y", -1.4, 0.35).set_ease(Tween.EASE_IN)
+			Effects.sparkle(get_parent(), global_position + Vector3.UP * 0.3, Tokens.color("pus"), 8)
 	else:
 		var mark := Effects.warning(get_parent(), global_position + _attack_dir * 1.8, 1.1, TELEGRAPH)
 		mark.scale.z *= 1.6
@@ -196,6 +203,17 @@ func _attack() -> void:
 	if stats["attack"] == "swoop":
 		_t = 0.45
 		_swoop_from = global_position
+		return
+	if stats["attack"] == "burrow":
+		# pop up where the circle warned, then sit dizzy (hit it now!)
+		global_position = _swoop_to
+		_t = 0.3
+		var up := create_tween()
+		up.tween_property(_grey, "position:y", 0.0, 0.18).set_trans(Tween.TRANS_BACK)
+		Effects.ring(get_parent(), global_position + Vector3.UP * 0.2, 1.6, Tokens.color("pus"), 0.3)
+		if _player and Vector2(_player.global_position.x - global_position.x, _player.global_position.z - global_position.z).length() < 1.3:
+			_player.hurt(stats["damage"], global_position)
+		add_to_group("hittable")
 		return
 	if stats["attack"] == "burst":
 		_t = 0.25
@@ -214,7 +232,7 @@ func hit(damage: int, from: Vector3, push: float) -> void:
 	var away := global_position - from
 	away.y = 0.0
 	_knock = away.normalized() * push * (0.35 if kind == "dev_mantar" else 1.0)
-	FloatText.spawn(get_parent(), global_position + Vector3.UP * (3.0 if kind == "dev_mantar" else 1.6), str(damage), Tokens.color("panel"))
+	FloatText.spawn(get_parent(), global_position + Vector3.UP * (3.0 if kind == "dev_mantar" else 1.6), str(damage), Tokens.color("panel@light"))
 	var tw := create_tween()
 	tw.tween_property(_grey, "scale", Vector3(1.25, 0.75, 1.25), 0.06)
 	tw.tween_property(_grey, "scale", Vector3.ONE, 0.12)
@@ -223,6 +241,7 @@ func hit(damage: int, from: Vector3, push: float) -> void:
 	elif state != "windup" or kind != "dev_mantar":
 		if state == "windup" or state == "attack":
 			_release_token()
+			_grey.position.y = 0.0
 		state = "hurt"
 		_t = 0.35
 

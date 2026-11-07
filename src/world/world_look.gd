@@ -6,6 +6,7 @@ extends RefCounted
 ##   kule   – tower top in the Pus, cold and windy (Sahne 4–5)
 ##   sabah  – morning after (Sahne 6, Bölüm 0)
 ##   orman  – Fısıltı Ormanı (Bölüm 1)
+##   magara – Şekerleme Mağaraları (Bölüm 2), dark
 
 
 static func add(parent: Node, mood: String) -> Environment:
@@ -48,6 +49,17 @@ static func add(parent: Node, mood: String) -> Environment:
 			sun.light_color = Color("#e6f2d8")
 			sun.light_energy = 0.55
 			sun.rotation_degrees = Vector3(-60, 20, 0)
+		"magara":
+			# dark candy-crystal caves: almost no sky light; lanterns, crystals
+			# and the keeper's own light do the work
+			env.background_color = Color("#120f22")
+			env.ambient_light_color = Color("#8077c0")
+			env.ambient_light_energy = 0.5
+			env.glow_intensity = 0.55
+			env.glow_hdr_threshold = 0.9
+			sun.light_color = Color("#b3a8e8")
+			sun.light_energy = 0.3
+			sun.shadow_enabled = false
 		"sabah":
 			env.background_color = Color("#cfe6ff")
 			env.ambient_light_color = Color("#fff2dc")

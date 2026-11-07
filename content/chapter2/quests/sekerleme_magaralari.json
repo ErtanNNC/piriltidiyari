@@ -1,0 +1,45 @@
+{
+  "id": "sekerleme_magaralari",
+  "title": "Şekerleme Mağaraları",
+  "giver": "tospik_nine",
+  "objectives": [
+    {
+      "id": "fener",
+      "text": "Mağara Feneri'ni yak",
+      "type": "light",
+      "target": "magara_feneri"
+    },
+    {
+      "id": "kazma",
+      "text": "Madenci Kazma ile konuş",
+      "type": "talk",
+      "target": "kazma"
+    },
+    {
+      "id": "salon",
+      "text": "Parlak Salon'un kristallerini yak",
+      "type": "light",
+      "target": "kristal_salon"
+    },
+    {
+      "id": "tunel",
+      "text": "Karanlık Tünel'in kristallerini yak",
+      "type": "light",
+      "target": "kristal_tunel"
+    },
+    {
+      "id": "kiskac",
+      "text": "Kristal Yengeç Kıskaç'la yüzleş",
+      "type": "defeat",
+      "target": "kiskac"
+    }
+  ],
+  "rewards": {
+    "piril": 120,
+    "xp": 300,
+    "items": [
+      "yildiz_tozu",
+      "yildiz_tozu"
+    ]
+  }
+}

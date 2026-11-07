@@ -22,6 +22,8 @@ const SKILL_COST := 20
 @export var gravity := 22.0
 
 var input_enabled := true
+## Walking speed multiplier (syrup pools set it below 1).
+var slow := 1.0
 var model: Node3D
 var respawn_point := Vector3.ZERO
 var rolling := false
@@ -92,7 +94,7 @@ func _physics_process(delta: float) -> void:
 	if input_enabled and not asleep:
 		var v := Input.get_vector("move_left", "move_right", "move_forward", "move_back")
 		dir = Vector3(v.x, 0.0, v.y)
-	var target := dir * speed
+	var target := dir * speed * slow
 	_move.x = move_toward(_move.x, target.x, acceleration * delta)
 	_move.z = move_toward(_move.z, target.z, acceleration * delta)
 	velocity.x = _move.x + _knock.x
@@ -415,3 +417,16 @@ func _update_focus() -> void:
 	if best != _focus:
 		_focus = best
 		focus_changed.emit(_focus)
+
+
+## Caves: the keeper carries a small warm light. Lumi's own glow reaches
+## much further (her world ability, Aydınlatma).
+func carry_light() -> OmniLight3D:
+	var l := OmniLight3D.new()
+	var lumi := GameState.data.character_id == "lumi"
+	l.light_color = Tokens.color("spark-yellow") if lumi else Color("#ffe2b0")
+	l.light_energy = 1.8 if lumi else 1.5
+	l.omni_range = 12.0 if lumi else 8.0
+	l.position = Vector3(0, 2.2, 0.4)
+	add_child(l)
+	return l

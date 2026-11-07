@@ -14,10 +14,11 @@ const SCENES := {
 	"scene6": "res://scenes/prologue/scene6_fenerin_secimi.tscn",
 	"chapter0": "res://scenes/chapter0/koy_ve_cayir.tscn",
 	"chapter1": "res://scenes/chapter1/fisilti_ormani.tscn",
+	"chapter2": "res://scenes/chapter2/sekerleme_magaralari.tscn",
 }
 
 ## Which content pack (content/<id>/) a scene reads its story from.
-const SCENE_CHAPTER := {"chapter0": "chapter0", "chapter1": "chapter1"}
+const SCENE_CHAPTER := {"chapter0": "chapter0", "chapter1": "chapter1", "chapter2": "chapter2"}
 
 ## [small line, big title] shown when a scene starts.
 const CARDS := {
@@ -29,6 +30,7 @@ const CARDS := {
 	"scene6": ["Prolog · Sahne 6", "Fener'in Seçimi"],
 	"chapter0": ["Bölüm 0", "Gökkuşağı Köyü"],
 	"chapter1": ["Bölüm 1", "Fısıltı Ormanı"],
+	"chapter2": ["Bölüm 2", "Şekerleme Mağaraları"],
 }
 
 var current := ""
@@ -55,7 +57,7 @@ func _ready() -> void:
 	_card.modulate.a = 0.0
 	add_child(_card)
 	_small = UiKit.outlined(UiKit.label("", "text-heading", "honey"), 8)
-	_big = UiKit.outlined(UiKit.label("", "text-hero", "panel"), 14)
+	_big = UiKit.outlined(UiKit.label("", "text-hero", "panel@light"), 14)
 	for l in [_small, _big]:
 		l.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		_card.add_child(l)
@@ -76,6 +78,8 @@ func go_to(scene_id: String, save := true) -> void:
 	var chapter: String = SCENE_CHAPTER.get(scene_id, "prologue")
 	if Content.chapter.get("id", "") != chapter:
 		Content.load_chapter(chapter)
+	# Gece (dark) theme for the caves and other night chapters
+	Tokens.set_theme("light" if scene_id == "title" else String(Content.chapter.get("theme", "light")))
 	get_tree().change_scene_to_file(SCENES[scene_id])
 	current = scene_id
 	if save and scene_id != "title":

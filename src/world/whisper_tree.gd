@@ -19,7 +19,7 @@ func _ready() -> void:
 	_bubble.font = Tokens.font_for("text-heading")
 	_bubble.font_size = 64
 	_bubble.pixel_size = 0.006
-	_bubble.modulate = Tokens.color("panel") if not grey else Tokens.color("pus").lightened(0.35)
+	_bubble.modulate = Tokens.color("panel@light") if not grey else Tokens.color("pus").lightened(0.35)
 	_bubble.outline_size = 18
 	_bubble.outline_modulate = Tokens.color("outline")
 	_bubble.billboard = BaseMaterial3D.BILLBOARD_ENABLED
