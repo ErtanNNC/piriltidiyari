@@ -47,3 +47,18 @@ static func equip(data: PlayerData, slot: String, item_id: String) -> bool:
 	data.equipped[slot] = item_id
 	data.stats_changed.emit()
 	return true
+
+
+## The worn outfit's bonus: {"regen": hp per 2 s, "speed": +walk, "magnet": +m,
+## "mp_regen": mp per s, "guard": 0..1 less damage}. Empty without an outfit.
+static func outfit_bonus(data: PlayerData, item_defs: Dictionary) -> Dictionary:
+	var o: String = data.equipped.get("outfit", "")
+	if o == "" or not data.has_flag("owned_" + o):
+		return {}
+	return item_defs.get(o, {}).get("bonus", {})
+
+
+## Damage after the outfit's guard (always at least 1).
+static func guarded(amount: int, bonus: Dictionary) -> int:
+	var g := clampf(float(bonus.get("guard", 0.0)), 0.0, 0.8)
+	return maxi(1, int(ceil(amount * (1.0 - g))))

@@ -254,8 +254,23 @@ func _run_demo(which: String) -> void:
 			await get_tree().create_timer(0.4).timeout
 			_player.shoot()
 			await get_tree().create_timer(0.2).timeout
-			print("SHOP outfit=%s weapon=%s seeds=%d power=%d attack=%d" % [d.equipped["outfit"], d.equipped["weapon"],
-				d.item_count("isik_tohumu"), d.power, _player.attack_power()])
+			var speed_before := _player.speed
+			print("SHOP outfit=%s weapon=%s seeds=%d power=%d attack=%d speed=%.1f magnet=%.1f" % [d.equipped["outfit"], d.equipped["weapon"],
+				d.item_count("isik_tohumu"), d.power, _player.attack_power(), speed_before, _player.magnet_range])
+			# each tool's own swing
+			for tool: String in ["isik_degnegi", "yildiz_asasi", "kivilcim_kilici"]:
+				d.set_flag("owned_" + tool)
+				Shop.equip(d, "weapon", tool)
+				# the staff's ring is wide (2.9 m: past a plain spin), the others reach far
+				var m := Mob.spawn(self, "mantar", _player.global_position + Vector3(0, 0, -2.9 if tool == "yildiz_asasi" else -4.5))
+				_player.model.rotation.y = PI
+				await get_tree().create_timer(0.5).timeout
+				var hp0 := m.hp
+				_player._attack_cd = 0.0
+				_player.spin_attack()
+				await get_tree().create_timer(0.8).timeout
+				print("TOOL %s far_mob_hit=%s" % [tool, m.hp < hp0 or m.state == "calm"])
+				m.queue_free()
 			if DisplayServer.get_name() == "headless":
 				get_tree().quit()
 		"switch":

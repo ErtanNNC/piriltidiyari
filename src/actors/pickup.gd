@@ -41,7 +41,8 @@ func _process(delta: float) -> void:
 		if p:
 			var to := p.global_position - global_position
 			var d := to.length()
-			if d < MAGNET and d > 0.05 and absf(to.y) < 0.8 and _clear_to(p):
+			var reach: float = p.get("magnet_range") if p.get("magnet_range") != null else MAGNET
+			if d < reach and d > 0.05 and absf(to.y) < 0.8 and _clear_to(p):
 				_pull = minf(_pull + delta * 14.0, 12.0)
 				global_position += to / d * minf(_pull * delta, d)
 			else:

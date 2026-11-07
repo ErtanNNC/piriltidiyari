@@ -74,28 +74,41 @@
       "color": "berry",
       "kind": "outfit",
       "icon": "star",
-      "desc": "Başında rengârenk çiçekler"
+      "desc": "Çiçekler seni iyileştirir: 2 sn'de +1 can",
+      "bonus": {
+        "regen": 1
+      }
     },
     "kasif_sapkasi": {
       "name": "Kâşif Şapkası",
       "color": "honey-deep",
       "kind": "outfit",
       "icon": "star",
-      "desc": "Geniş kenarlı, yolculuk şapkası"
+      "desc": "Daha hızlı yürürsün, Pırıl uzaktan gelir",
+      "bonus": {
+        "speed": 0.8,
+        "magnet": 2.5
+      }
     },
     "yildiz_pelerini": {
       "name": "Yıldız Pelerini",
       "color": "spark-purple",
       "kind": "outfit",
       "icon": "spark",
-      "desc": "Yıldızlı, uçuşan bir pelerin"
+      "desc": "Enerjin hızla dolar: saniyede +2",
+      "bonus": {
+        "mp_regen": 2
+      }
     },
     "minik_migfer": {
       "name": "Minik Miğfer",
       "color": "sky",
       "kind": "outfit",
       "icon": "spark",
-      "desc": "Tüylü, parlak bir bekçi miğferi"
+      "desc": "Pus'un vuruşları %30 daha az acıtır",
+      "bonus": {
+        "guard": 0.3
+      }
     },
     "isik_degnegi": {
       "name": "Işık Değneği",
@@ -103,7 +116,7 @@
       "kind": "weapon",
       "power": 3,
       "icon": "star",
-      "desc": "Vuruşların biraz güçlenir (+3)"
+      "desc": "Her vuruşta önüne bir ışık yıldızı fırlar (+3)"
     },
     "yildiz_asasi": {
       "name": "Yıldız Asası",
@@ -111,7 +124,7 @@
       "kind": "weapon",
       "power": 6,
       "icon": "spark",
-      "desc": "Vuruşların güçlenir (+6)"
+      "desc": "Vuruşun geniş bir yıldız halkası olur (+6)"
     },
     "kivilcim_kilici": {
       "name": "Kıvılcım Kılıcı",
@@ -119,7 +132,7 @@
       "kind": "weapon",
       "power": 10,
       "icon": "spark",
-      "desc": "Parıl parıl oyuncak kılıç (+10)"
+      "desc": "Her vuruş ileri bir kıvılcım dalgası yollar (+10)"
     },
     "isik_sapani": {
       "name": "Işık Sapanı",

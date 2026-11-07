@@ -313,7 +313,15 @@ func test_village_shop_and_keeper_house() -> void:
 	check(Shop.buy(d, items["isik_tohumu"], "isik_tohumu", 15) == "ok" and d.item_count("isik_tohumu") == 10, "tohum paketi 10 tane")
 	check(Shop.buy(d, items["isik_sapani"], "isik_sapani", 80, true) == "ok" and d.has_flag("owned_isik_sapani"), "sapan alınır")
 	check(not Shop.equip(d, "weapon", "kivilcim_kilici"), "sahip olunmayan alet takılamaz")
+	check(Shop.outfit_bonus(d, items).get("magnet", 0.0) > 0.0 and Shop.outfit_bonus(d, items).get("speed", 0.0) > 0.0, "Kâşif Şapkası hız ve mıknatıs verir")
 	check(Shop.equip(d, "outfit", "") and d.equipped["outfit"] == "", "kıyafet çıkarılabilir")
+	check(Shop.outfit_bonus(d, items).is_empty(), "kıyafetsiz bonus yok")
+	d.set_flag("owned_minik_migfer")
+	Shop.equip(d, "outfit", "minik_migfer")
+	check(Shop.guarded(20, Shop.outfit_bonus(d, items)) == 14 and Shop.guarded(1, Shop.outfit_bonus(d, items)) == 1, "Minik Miğfer hasarı %30 azaltır, en az 1")
+	for o: String in ["cicek_taci", "kasif_sapkasi", "yildiz_pelerini", "minik_migfer"]:
+		check(not (items[o].get("bonus", {}) as Dictionary).is_empty(), "%s bir bonus verir" % o)
+	Shop.equip(d, "outfit", "")
 	# keeper house: switch keepers but keep the adventure
 	Shop.buy(d, items["kristal_tilsim"], "kristal_tilsim", 120, true)
 	d.add_xp(Progression.xp_to_next(1) + Progression.xp_to_next(2))

@@ -73,6 +73,7 @@ func _ready() -> void:
 	_col.position.y = 0.75
 	add_child(_col)
 	_build_model()
+	_refresh_bonus()
 	GameState.data.stats_changed.connect(_maybe_rebuild)
 	var sensor := Area3D.new()
 	sensor.collision_layer = 0
@@ -207,7 +208,25 @@ func spin_attack() -> void:
 	_spin_tween = create_tween()
 	var start := model.rotation.y
 	_spin_tween.tween_property(model, "rotation:y", start + TAU, 0.3).set_trans(Tween.TRANS_QUAD)
-	_hit_around(ATTACK_RADIUS, attack_power(), 7.0)
+	var tool: String = GameState.data.equipped.get("weapon", "")
+	if not GameState.data.has_flag("owned_" + tool):
+		tool = ""
+	match tool:
+		"yildiz_asasi":
+			# Yıldız Halkası: a wide purple star ring around the keeper
+			Effects.ring(get_parent(), global_position + Vector3.UP * 0.4, 3.4, Tokens.color("spark-purple"), 0.35)
+			Effects.sparkle(get_parent(), global_position + Vector3.UP, Tokens.color("spark-purple"), 8)
+			_hit_around(3.2, attack_power(), 9.0)
+		"isik_degnegi":
+			# Yıldız Atışı: the spin plus a little star bolt straight ahead
+			_hit_around(ATTACK_RADIUS, attack_power(), 7.0)
+			LightSeed.fire(get_parent(), global_position + Vector3.UP + _facing() * 0.7, _facing(), maxi(1, attack_power() / 2), "spark-yellow", 8.0, 0.8)
+		"kivilcim_kilici":
+			# Kıvılcım Dalgası: the spin plus a sky-blue wave that runs forward
+			_hit_around(ATTACK_RADIUS, attack_power(), 7.0)
+			_spark_wave()
+		_:
+			_hit_around(ATTACK_RADIUS, attack_power(), 7.0)
 
 
 ## L key / skill button: the character's special skill.
@@ -401,6 +420,7 @@ func hurt(amount: int, from: Vector3) -> bool:
 		amount = Skills.shielded_damage(amount)
 		if amount <= 0:
 			return false
+	amount = Shop.guarded(amount, _bonus)
 	_invulnerable = INVULNERABLE_TIME
 	Audio.play("hurt")
 	Effects.shake(get_viewport(), 0.22)
@@ -535,7 +555,7 @@ func _build_model() -> void:
 ## Rebuild only when the keeper, look, outfit or tool really changed.
 func _maybe_rebuild() -> void:
 	var d := GameState.data
-	speed = d.speed
+	_refresh_bonus()
 	var look: Dictionary = d.character_look.duplicate()
 	look["outfit"] = d.equipped.get("outfit", "")
 	look["weapon"] = d.equipped.get("weapon", "")
@@ -566,3 +586,59 @@ func shoot() -> void:
 	Audio.play("swish")
 	var fwd := Vector3(sin(model.rotation.y), 0, cos(model.rotation.y))
 	LightSeed.fire(get_parent(), global_position + Vector3.UP * 1.0 + fwd * 0.6, fwd, attack_power())
+
+
+## Facing direction on the ground.
+func _facing() -> Vector3:
+	return Vector3(sin(model.rotation.y), 0, cos(model.rotation.y))
+
+
+## Kıvılcım Kılıcı: a bright wave that sweeps 6 m forward and hits along the way.
+func _spark_wave() -> void:
+	var fwd := _facing()
+	var start := global_position + Vector3.UP * 0.6
+	var wave := Toon.part(get_parent(), "ellipsoid", Vector3(1.6, 0.5, 0.35), "sky", start + fwd * 0.8, Vector3.ZERO, 1.6, 0.02)
+	wave.look_at_from_position(wave.global_position, wave.global_position + fwd, Vector3.UP)
+	var hit_ids := {}
+	var tw := wave.create_tween()
+	tw.tween_method(func(t: float) -> void:
+		var p := start + fwd * (0.8 + t * 5.2)
+		wave.global_position = p
+		for m in get_tree().get_nodes_in_group("hittable"):
+			var n := m as Node3D
+			if n and not hit_ids.has(n.get_instance_id()) and (n.global_position + Vector3.UP * 0.6).distance_to(p) < 1.2 + float(n.get_meta("hit_radius", 0.5)):
+				hit_ids[n.get_instance_id()] = true
+				n.hit(attack_power(), p - fwd, 5.0), 0.0, 1.0, 0.35)
+	tw.tween_callback(wave.queue_free)
+
+
+# --- outfit bonuses -----------------------------------------------------------
+
+var _bonus: Dictionary = {}
+var _regen_t := 0.0
+var _mp_t := 0.0
+## How far Pırıl drifts to you (Kâşif Şapkası makes it bigger).
+var magnet_range := 3.2
+
+
+func _refresh_bonus() -> void:
+	var d := GameState.data
+	_bonus = Shop.outfit_bonus(d, Content.items)
+	speed = d.speed + float(_bonus.get("speed", 0.0))
+	magnet_range = 3.2 + float(_bonus.get("magnet", 0.0))
+
+
+func _process(delta: float) -> void:
+	if _bonus.is_empty() or asleep:
+		return
+	var d := GameState.data
+	if _bonus.has("regen") and d.hp < d.max_hp:
+		_regen_t += delta
+		if _regen_t >= 2.0:
+			_regen_t = 0.0
+			d.heal(int(_bonus["regen"]))
+	if _bonus.has("mp_regen") and d.mp < d.max_mp:
+		_mp_t += delta
+		if _mp_t >= 1.0:
+			_mp_t = 0.0
+			d.restore_mp(int(_bonus["mp_regen"]))

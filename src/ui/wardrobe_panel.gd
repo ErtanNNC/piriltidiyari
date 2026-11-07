@@ -64,6 +64,9 @@ func _refresh() -> void:
 				Shop.equip(d, kind, id)
 				_refresh())
 			row.add_child(b)
+		var worn: String = d.equipped.get(kind, "")
+		if worn != "":
+			_list.add_child(UiKit.label(String(Content.items[worn].get("desc", "")), "text-caption", "ink-muted"))
 		if owned.size() == 1:
 			var hint := UiKit.label("Henüz yok. Köydeki dükkândan alabilirsin.", "text-caption", "ink-muted")
 			_list.add_child(hint)

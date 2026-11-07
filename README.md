@@ -177,9 +177,12 @@ köşeleri yine yetenek ister). Koşarken ve inerken toz bulutları, dağda kard
 seçiminde kamera seçilen bekçiye doğru hafifçe kayar.
 
 **Köy evleri:** Köyde iki eve girilir ("Gir"). **Dükkân**'da Terzi Dikiş kıyafet satar (Çiçek Tacı, Kâşif
-Şapkası, Yıldız Pelerini, Minik Miğfer; alınca hemen giyilir), Usta Tıkır ışıkla çalışan aletler satar: Işık
-Değneği (+3), Yıldız Asası (+6), Kıvılcım Kılıcı (+10) vuruşu güçlendirir, Işık Sapanı ile 10'luk paketlerle
-alınan Işık Tohumları uzağa atılır (I / At). **Bekçi Evi**'nde Sihirli Ayna'dan bekçi değiştirilir (seviye,
+Şapkası, Yıldız Pelerini, Minik Miğfer; alınca hemen giyilir) ve her kıyafetin bir bonusu var: Çiçek Tacı 2
+saniyede 1 can yeniler, Kâşif Şapkası hızlandırır ve Pırıl'ı uzaktan çeker, Yıldız Pelerini enerjiyi saniyede 2
+doldurur, Minik Miğfer vuruşları %30 hafifletir. Usta Tıkır ışıkla çalışan aletler satar ve her biri vuruşu
+değiştirir: Işık Değneği (+3) önüne bir ışık yıldızı fırlatır, Yıldız Asası (+6) geniş bir yıldız halkasıyla
+vurur, Kıvılcım Kılıcı (+10) ileri koşan bir kıvılcım dalgası yollar. Işık Sapanı ile 10'luk paketlerle alınan
+Işık Tohumları uzağa atılır (I / At). **Bekçi Evi**'nde Sihirli Ayna'dan bekçi değiştirilir (seviye,
 Pırıl, eşyalar ve görevler kalır; can ve güç yeni bekçiye göre yeniden hesaplanır) ve Dolap'tan kıyafet ya da
 alet seçilir. Kapıdan çıkınca köyde evin önüne dönülür. Köy tabelaları açık renk zeminde koyu yazıyla, kameraya
 dönük ve yazı tahtaya sığacak şekilde.

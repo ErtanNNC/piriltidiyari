@@ -41,7 +41,9 @@ is a copy of the design system's tokens.
   dukkan|bekci, `SceneFlow.return_point` brings you back to the door; `go_to(id,
   save, card)`). Shop kinds in `Shop.buy`: outfit/weapon (owned + equipped in
   `PlayerData.equipped`), sling, ammo (count), charm. `PlayerData.switch_keeper`
-  keeps the adventure. Checks: `--scene=house --house=dukkan --demo=shopping`,
+  keeps the adventure. Tools change the J attack in `Player.spin_attack` (değnek
+  bolt, asa wide ring, kılıç wave); outfits give `bonus` (items.json) via
+  `Shop.outfit_bonus` (regen, speed, magnet, mp_regen, guard). Checks: `--scene=house --house=dukkan --demo=shopping`,
   `--house=bekci --demo=switch|mirror|wardrobe`, `--demo=leave`.
 - Signs: `TravelSign.board(parent, text, at, width)` (cream board, dark text,
   tilted to the camera, text shrinks to fit).
