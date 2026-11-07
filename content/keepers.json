@@ -1,0 +1,64 @@
+{
+  "keepers": {
+    "pati": {
+      "name": "Pati",
+      "species": "Kedi",
+      "color": "berry",
+      "line": "Ben hazırım!",
+      "stats": {
+        "can": 3,
+        "guc": 4,
+        "hiz": 5
+      },
+      "special": "Pençe Kombosu: üçlü hızlı vuruş",
+      "world": "Çift zıplama",
+      "story": "Meraklı ve atak. Fıstık'ın çırağı olmak istiyordu.",
+      "signature": "Fıstık'ın Eski Eldiveni"
+    },
+    "bado": {
+      "name": "Bado",
+      "species": "Ayı yavrusu",
+      "color": "leaf",
+      "line": "Ben... deneyebilirim.",
+      "stats": {
+        "can": 5,
+        "guc": 4,
+        "hiz": 2
+      },
+      "special": "Kucaklama Kalkanı: hasarı emer, dostları korur",
+      "world": "Kaya ve kütük itme",
+      "story": "Utangaç ama yumuşak kalpli. Kardeşini arıyor.",
+      "signature": "Kardeşinin Atkısı"
+    },
+    "citir": {
+      "name": "Çıtır",
+      "species": "Sincap",
+      "color": "sky",
+      "line": "Haritamı aldım, gidelim!",
+      "stats": {
+        "can": 3,
+        "guc": 3,
+        "hiz": 4
+      },
+      "special": "Fındık Fırlatma: seken, çok hedefli atış",
+      "world": "Halat atma",
+      "story": "Şakacı ve konuşkan. Diyarın haritasını çizmek istiyor.",
+      "signature": "Diyar Haritası"
+    },
+    "lumi": {
+      "name": "Lumi",
+      "species": "Ateşböceği",
+      "color": "xp",
+      "line": "Işık bizi çağırıyor.",
+      "stats": {
+        "can": 2,
+        "guc": 3,
+        "hiz": 4
+      },
+      "special": "Işık Patlaması: alan hasarı ve iyileştirme",
+      "world": "Aydınlatma",
+      "story": "Sakin ve düşünceli. Pus'un kötü olmadığını sezen ilk kişi.",
+      "signature": "İlk Yıldız Feneri"
+    }
+  }
+}

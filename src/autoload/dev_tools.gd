@@ -9,6 +9,9 @@ const ORDER := ["scene1", "scene2", "scene3", "scene4", "scene5", "scene6", "cha
 var _shot_path := ""
 var _frames := 60
 var demo := ""
+var _shot_at := -1.0
+## --auto: dialogue advances by itself (for cutscene screenshots and tests)
+var auto_dialogue := false
 
 
 func _ready() -> void:
@@ -20,6 +23,10 @@ func _ready() -> void:
 			_frames = int(arg.get_slice("=", 1))
 		elif arg.begins_with("--demo="):
 			demo = arg.get_slice("=", 1)
+		elif arg.begins_with("--at="):
+			_shot_at = float(arg.get_slice("=", 1))
+		elif arg == "--auto":
+			auto_dialogue = true
 		elif arg.begins_with("--scene="):
 			scene = arg.get_slice("=", 1)
 	if scene != "":
@@ -71,11 +78,14 @@ static func _finish(data: PlayerData, quest_id: String) -> void:
 
 
 func _take_shot() -> void:
-	for i in _frames:
-		await get_tree().process_frame
+	if _shot_at >= 0.0:
+		await get_tree().create_timer(_shot_at).timeout
+	else:
+		for i in _frames:
+			await get_tree().process_frame
 	var img := get_viewport().get_texture().get_image()
 	img.save_png(_shot_path)
 	var pl := get_tree().get_first_node_in_group("player") as Node3D
-	print("SHOT ", _shot_path, " scene=", get_tree().current_scene.name if get_tree().current_scene else "-",
+	print("SHOT ", _shot_path, " scene=", get_tree().current_scene.name if get_tree().current_scene else "-", " flow=", SceneFlow.current,
 		" player=", pl.global_position if pl else Vector3.ZERO, " mobs=", get_tree().get_nodes_in_group("mob").size())
 	get_tree().quit()

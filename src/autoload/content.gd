@@ -7,12 +7,14 @@ var quests: Dictionary = {}     # id -> quest def
 var npcs: Dictionary = {}       # npc id -> dialogue def
 var items: Dictionary = {}      # id -> item def
 var speakers: Dictionary = {}   # id -> {name, color}
+var keepers: Dictionary = {}    # id -> keeper candidate (content/keepers.json)
 var barks: Dictionary = {}      # id -> [lines]: short monologues and asides
 
 
 func _init() -> void:
 	items = read_json("res://content/items.json").get("items", {})
 	speakers = read_json("res://content/speakers.json").get("speakers", {})
+	keepers = read_json("res://content/keepers.json").get("keepers", {})
 	load_chapter("prologue")
 
 
@@ -32,6 +34,11 @@ func load_chapter(chapter_id: String) -> void:
 
 func npc(npc_id: String) -> Dictionary:
 	return npcs.get(npc_id, {})
+
+
+## A color token safe to put text on (the design system forbids text on leaf).
+static func text_safe(token: String) -> String:
+	return "spark-green" if token == "leaf" else token
 
 
 func item_name(item_id: String) -> String:

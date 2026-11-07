@@ -38,9 +38,9 @@ static func add(parent: Node, mood: String) -> Environment:
 		"sabah":
 			env.background_color = Color("#cfe6ff")
 			env.ambient_light_color = Color("#fff2dc")
-			env.ambient_light_energy = 0.45
+			env.ambient_light_energy = 0.32
 			sun.light_color = Color("#fff4dc")
-			sun.light_energy = 0.75
+			sun.light_energy = 0.6
 			sun.rotation_degrees = Vector3(-40, 30, 0)
 	var we := WorldEnvironment.new()
 	we.environment = env

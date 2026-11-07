@@ -28,6 +28,7 @@ var _boss: VBoxContainer
 var _boss_name: Label
 var _boss_bar: StatBar
 var touch := false
+var _cinematic := false
 
 
 func _ready() -> void:
@@ -51,7 +52,10 @@ func _ready() -> void:
 	portrait.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 	portrait.add_theme_stylebox_override("panel", UiKit.box(Tokens.color("honey"), "radius-pill", 3.0))
 	row.add_child(portrait)
-	var letter := UiKit.label("F", "text-title", "on-color")
+	var info: Dictionary = Content.keepers.get(GameState.data.character_id, {})
+	if not info.is_empty():
+		portrait.add_theme_stylebox_override("panel", UiKit.box(Tokens.color(Content.text_safe(info["color"])), "radius-pill", 3.0))
+	var letter := UiKit.label(GameState.data.character_name.left(1), "text-title", "on-color")
 	letter.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	letter.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	letter.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
@@ -68,7 +72,7 @@ func _ready() -> void:
 	var bars := VBoxContainer.new()
 	bars.add_theme_constant_override("separation", 2)
 	row.add_child(bars)
-	bars.add_child(UiKit.label("Fıstık", "text-heading", "ink"))
+	bars.add_child(UiKit.label(GameState.data.character_name, "text-heading", "ink"))
 	_hp = StatBar.new(); _hp.stat = "hp"; bars.add_child(_hp)
 	_mp = StatBar.new(); _mp.stat = "mp"; bars.add_child(_mp)
 	_xp = StatBar.new(); _xp.stat = "xp"; bars.add_child(_xp)
@@ -371,7 +375,7 @@ func _refresh_potions() -> void:
 	for p in GameState.data.potions:
 		if p != "":
 			any = true
-	_potion_bar.visible = any and not _dialog.is_open()
+	_potion_bar.visible = any and not _dialog.is_open() and not _cinematic
 	for c in _potion_bar.get_children():
 		(c as PotionSlot).refresh()
 
@@ -405,3 +409,41 @@ func set_boss_hp(hp: int, max_hp: int) -> void:
 func hide_boss() -> void:
 	_boss.visible = false
 	_sparks.visible = true
+
+
+## Cutscenes hide the HUD (bars, quest, buttons); dialogue still shows.
+var _was_visible: Dictionary = {}
+
+
+func cinematic(on: bool) -> void:
+	if on == _cinematic:
+		return
+	_cinematic = on
+	for c in _root.get_children():
+		if c == _dialog or c == _toast:
+			continue
+		if on:
+			_was_visible[c] = c.visible
+			c.visible = false
+		else:
+			c.visible = _was_visible.get(c, true)
+	if not on:
+		_refresh_potions()
+		_refresh_quest()
+		_boss.visible = false
+		_hint.visible = false
+		_talk.visible = false
+
+
+## A white flash over everything (the Kıvılcım bursting).
+func flash(seconds: float) -> void:
+	var f := ColorRect.new()
+	f.color = Color(1, 1, 0.94, 1)
+	f.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	f.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	add_child(f)
+	var tw := f.create_tween()
+	tw.tween_interval(seconds * 0.25)
+	tw.tween_property(f, "modulate:a", 0.0, seconds * 0.75)
+	await tw.finished
+	f.queue_free()

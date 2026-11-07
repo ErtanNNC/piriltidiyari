@@ -25,6 +25,7 @@ var hp := 100
 var max_mp := 50
 var mp := 50
 var power := 10
+var speed := 6.0
 var piril := 0
 var items: Dictionary = {}    # item_id -> count
 var potions: Array = ["", "", "", ""]   # item ids in the 4 potion slots
@@ -102,6 +103,25 @@ func unlock_skill(skill_id: String) -> bool:
 	skills.append(skill_id)
 	skills_changed.emit()
 	return true
+
+
+## The new keeper chosen in Sahne 6. Stats (1–5) come from content/keepers.json:
+## can → HP, guc → power, hiz → walking speed. Fresh at level 1; the village's
+## Pırıl and potions stay.
+func choose_keeper(id: String, stats: Dictionary, look: Dictionary, display_name: String) -> void:
+	character_id = id
+	character_look = look
+	character_name = display_name
+	level = 1
+	xp = 0
+	max_hp = 70 + int(stats.get("can", 3)) * 10
+	hp = max_hp
+	max_mp = 50
+	mp = max_mp
+	power = 6 + int(stats.get("guc", 3)) * 2
+	speed = 4.6 + float(stats.get("hiz", 3)) * 0.5
+	skills = []
+	stats_changed.emit()
 
 
 # --- items --------------------------------------------------------------
@@ -262,7 +282,7 @@ func has_flag(flag: String) -> bool:
 # --- save ---------------------------------------------------------------
 
 const SAVE_KEYS := ["character_id", "character_name", "character_look", "scene_id", "level", "xp",
-	"max_hp", "hp", "max_mp", "mp", "power", "piril", "items", "potions", "skills", "quests", "flags", "sparks"]
+	"max_hp", "hp", "max_mp", "mp", "power", "speed", "piril", "items", "potions", "skills", "quests", "flags", "sparks"]
 
 
 func to_dict() -> Dictionary:

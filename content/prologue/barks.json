@@ -68,6 +68,61 @@
         "mood": "şaşkın",
         "text": "Bu ses de neydi? Baykuş dağıldı ama Pus duruyor."
       }
+    ],
+    "s5_1": [
+      {
+        "speaker": "fistik",
+        "mood": "şaşkın",
+        "text": "Pus geri çekilmiyor... Kuleye tırmanıyor!"
+      }
+    ],
+    "s5_2": [
+      {
+        "speaker": "fistik",
+        "mood": "dertli",
+        "text": "Işık tek bir yerde durursa, Pus onu yutar."
+      },
+      {
+        "speaker": "fistik",
+        "mood": "kararlı",
+        "text": "Ama her yere dağılırsa... Pus hepsini yakalayamaz!"
+      },
+      {
+        "speaker": "fistik",
+        "mood": "kararlı",
+        "text": "Dikenlerim, son bir kez parlayın!"
+      }
+    ],
+    "s5_3": [
+      {
+        "speaker": "fistik",
+        "mood": "uykulu",
+        "text": "Beş parça... beş yürek... Biraz... kestireceğim..."
+      }
+    ],
+    "s6_1": [
+      {
+        "speaker": "tospik_nine",
+        "mood": "dertli",
+        "text": "Gençler, toplanın. Fıstık ışığı beş parçaya böldü."
+      },
+      {
+        "speaker": "tospik_nine",
+        "mood": "kararlı",
+        "text": "Tek bir bekçi yerine beş yürek taşısın diye."
+      },
+      {
+        "speaker": "tospik_nine",
+        "mood": "mutlu",
+        "text": "Fener'in son kıvılcımı yeni bekçisini kendi seçecek."
+      }
+    ],
+    "s6_2": [
+      {
+        "speaker": "tospik_nine",
+        "mood": "şaşkın",
+        "text": "Bakın! Kıvılcım birini arıyor..."
+      }
     ]
   }
 }

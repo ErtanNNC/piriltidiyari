@@ -128,6 +128,11 @@ func _show_line() -> void:
 	_typing = create_tween()
 	_typing.tween_property(_body, "visible_ratio", 1.0, _body.text.length() / CHARS_PER_SEC)
 	_typing.tween_callback(func() -> void: _next.visible = true)
+	if DevTools.auto_dialogue:
+		var shown := _index
+		await get_tree().create_timer(_body.text.length() / CHARS_PER_SEC + 1.4).timeout
+		if visible and _index == shown:
+			advance()
 
 
 func _gui_input(event: InputEvent) -> void:

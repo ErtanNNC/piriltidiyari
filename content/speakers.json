@@ -27,6 +27,22 @@
     "fisilti": {
       "name": "???",
       "color": "pus"
+    },
+    "pati": {
+      "name": "Pati",
+      "color": "berry"
+    },
+    "bado": {
+      "name": "Bado",
+      "color": "spark-green"
+    },
+    "citir": {
+      "name": "Çıtır",
+      "color": "sky"
+    },
+    "lumi": {
+      "name": "Lumi",
+      "color": "xp"
     }
   }
 }

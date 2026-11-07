@@ -44,6 +44,7 @@ var _ball_shape: SphereShape3D
 
 func _ready() -> void:
 	add_to_group("player")
+	speed = GameState.data.speed
 	respawn_point = global_position
 	collision_mask = LAYER_WORLD | LAYER_LOW_BARRIER
 	_col = CollisionShape3D.new()
