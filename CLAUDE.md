@@ -7,7 +7,7 @@ is a copy of the design system's tokens.
 ## Commands
 
 - `tools/test.sh` — import + headless tests. Run before every commit.
-- `tools/screenshot.sh out.png [--scene=scene1..scene6|chapter0..chapter4] [--demo=...] [--at=SECONDS | --frames=N] [--auto] [--touch]`
+- `tools/screenshot.sh out.png [--scene=scene1..scene6|chapter0..chapter5|final] [--flag=name] [--demo=...] [--at=SECONDS | --frames=N] [--auto] [--touch]`
   renders under Xvfb with llvmpipe. `--scene` jumps there with earlier progress
   (DevTools.preset); `--auto` advances dialogue by itself; demos live in each
   scene script's `_run_demo`. Look at the PNG after any visual change.
@@ -15,7 +15,7 @@ is a copy of the design system's tokens.
   (demos that print and quit: beamtest, touchtest, climb, hop, climb2, flow, win;
   chapter1: wrong, mobs, bossfight, spots with --keeper=pati|bado|citir|lumi;
   chapter2: crystals, bossfight; chapter3: travel, wind, balloon, bossfight,
-  spots with --keeper=...; chapter4: climb, ice, ramp, bossfight, spots).
+  spots with --keeper=...; chapter4: climb, ice, ramp, bossfight, spots; chapter5: walk, finalfight).
 - New chapters extend `ChapterBase` (src/world/chapter_base.gd): npc(),
   boss_camera(), fly_spark(), and test helpers close_dialogs()/walk_to().
 - `tools/build_android.sh` builds and signs export/PiriltiDiyari.apk; bump

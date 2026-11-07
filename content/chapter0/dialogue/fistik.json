@@ -1,0 +1,19 @@
+{
+  "npc": "fistik",
+  "variants": [
+    {
+      "lines": [
+        {
+          "speaker": "fistik",
+          "mood": "huysuz",
+          "text": "Hıh! Rozetini kaybetme, bekçi."
+        },
+        {
+          "speaker": "fistik",
+          "mood": "kararlı",
+          "text": "O kırmızı sis... Gözümü ondan ayırmıyorum."
+        }
+      ]
+    }
+  ]
+}

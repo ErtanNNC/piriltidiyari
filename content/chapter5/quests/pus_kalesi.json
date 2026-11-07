@@ -1,0 +1,38 @@
+{
+  "id": "pus_kalesi",
+  "title": "Pus Kalesi",
+  "giver": "tospik_nine",
+  "objectives": [
+    {
+      "id": "fener",
+      "text": "Kale Feneri'ni yak",
+      "type": "light",
+      "target": "kale_feneri"
+    },
+    {
+      "id": "kapilar",
+      "text": "Kıvılcım kapılarını aç",
+      "type": "light",
+      "target": "kivilcim_kapisi",
+      "count": 4
+    },
+    {
+      "id": "anilar",
+      "text": "Mırıl'ın anılarını bul",
+      "type": "collect",
+      "target": "ani",
+      "count": 4
+    },
+    {
+      "id": "miril",
+      "text": "Kalenin tepesinde Mırıl'a ulaş",
+      "type": "defeat",
+      "target": "miril"
+    }
+  ],
+  "rewards": {
+    "piril": 300,
+    "xp": 2000
+  },
+  "turn_in": "Mor Kıvılcım'ı al"
+}

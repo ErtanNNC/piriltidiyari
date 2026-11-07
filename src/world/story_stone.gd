@@ -1,9 +1,9 @@
 class_name StoryStone
 extends Interactable
-## Hikâye Taşı: one of 20 stones telling Mırıl's past, piece by piece.
-## Reads a bark ("tas_<n>") and counts toward the 20.
+## Hikâye Taşı: stones telling Mırıl's past, piece by piece. Reads a bark
+## ("tas_<n>"). Season 1 has 10; the next season adds 10 more (design: 20).
 
-const TOTAL := 20
+const TOTAL := PlayerData.STORY_STONES
 @export var stone := 1
 
 

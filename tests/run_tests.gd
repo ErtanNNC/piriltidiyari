@@ -139,7 +139,7 @@ func test_owl_plan() -> void:
 
 
 func test_content_is_valid() -> void:
-	for chapter in ["prologue", "chapter0", "chapter1", "chapter2", "chapter3", "chapter4"]:
+	for chapter in ["prologue", "chapter0", "chapter1", "chapter2", "chapter3", "chapter4", "chapter5"]:
 		_validate_chapter(chapter)
 	test_chapter0_flow()
 	test_chapter1_flow()
@@ -151,6 +151,7 @@ func test_content_is_valid() -> void:
 	test_gull_plan()
 	test_chapter4_flow()
 	test_golem_plan()
+	test_chapter5_and_ending()
 
 
 func test_chapter0_flow() -> void:
@@ -383,6 +384,49 @@ func test_golem_plan() -> void:
 	check(GolemPlan.BREATH_SLOW > 0.2, "nefes dondurmaz, sadece yavaşlatır")
 
 
+func test_chapter5_and_ending() -> void:
+	print("Bölüm 5 ve kapanış")
+	var c: Node = ContentScript.new()
+	c.load_chapter("chapter5")
+	var d := PlayerData.new()
+	d.start_quest(c.quests["pus_kalesi"])
+	d.notify("light", "kale_feneri", c.quests)
+	for i in 4:
+		d.notify("light", "kivilcim_kapisi", c.quests)
+		d.notify("collect", "ani", c.quests)
+	d.notify("defeat", "miril", c.quests)
+	check(d.quest_state("pus_kalesi") == "ready", "kale görevi tamamlanır")
+	for p in [1, 2, 3]:
+		check(MirilPlan.cycle(p).back() == "tired", "faz %d: Mırıl her döngüde yorulur (yaklaşma fırsatı)" % p)
+	check(not MirilPlan.can_offer(["green", "blue"]), "dört Kıvılcım olmadan Faz 2 başlamaz")
+	check(MirilPlan.can_offer(["green", "blue", "yellow", "white"]), "dört Kıvılcım ile Faz 2")
+	for col in MirilPlan.OFFER_ORDER:
+		check(c.barks.has("c5_isik_" + col), "Faz 2: %s Kıvılcım bir anıyı aydınlatır" % col)
+	for k: String in c.keepers:
+		check(c.barks.has("final_" + k), "kapanış cümlesi: %s" % k)
+	# every cutscene "say" exists (with {keeper} for every keeper)
+	for ch in ["prologue", "chapter3", "chapter5"]:
+		c.load_chapter(ch)
+		var dir := DirAccess.open("res://content/%s/cutscenes" % ch)
+		for f in dir.get_files():
+			if not f.ends_with(".json"):
+				continue
+			for step: Dictionary in ContentScript.read_json("res://content/%s/cutscenes/%s" % [ch, f])["steps"]:
+				if step.has("say"):
+					for k: String in c.keepers:
+						var id := String(step["say"]).replace("{keeper}", k)
+						check(c.barks.has(id), "%s/%s: konuşma %s var" % [ch, f, id])
+	check(PlayerData.STORY_STONES == 10, "Sezon 1'de 10 Hikâye Taşı")
+	var stones := {}
+	for ch in ["chapter1", "chapter2", "chapter3", "chapter4", "chapter5"]:
+		c.load_chapter(ch)
+		for id: String in c.barks:
+			if id.begins_with("tas_"):
+				stones[id] = true
+	check(stones.size() == PlayerData.STORY_STONES, "her taşın metni var (%d)" % stones.size())
+	c.free()
+
+
 func _validate_chapter(chapter: String) -> void:
 	print("İçerik paketi kuralları: ", chapter)
 	var c: Node = ContentScript.new()
@@ -421,8 +465,8 @@ func _validate_chapter(chapter: String) -> void:
 				check(c.items.has(o["item"]), "görev %s: eşya %s" % [q["id"], o["item"]])
 			if o.has("to"):
 				check(c.npcs.has(o["to"]), "görev %s: NPC %s" % [q["id"], o["to"]])
-			check(o.get("type", "deliver") in ["deliver", "defeat", "reach", "talk", "light", "ring"], "görev %s: hedef türü" % q["id"])
+			check(o.get("type", "deliver") in ["deliver", "defeat", "reach", "talk", "light", "ring", "collect"], "görev %s: hedef türü" % q["id"])
 			if o.get("type", "") == "defeat":
-				check(o["target"] in MobStats.KINDS or o["target"] in ["pus", "kutuk_kral", "kiskac", "ruzgar", "dondurma"], "görev %s: bilinmeyen mob %s" % [q["id"], o["target"]])
+				check(o["target"] in MobStats.KINDS or o["target"] in ["pus", "kutuk_kral", "kiskac", "ruzgar", "dondurma", "miril"], "görev %s: bilinmeyen mob %s" % [q["id"], o["target"]])
 	c.free()
 	t.free()

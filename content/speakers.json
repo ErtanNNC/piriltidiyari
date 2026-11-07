@@ -147,6 +147,14 @@
     "uykulu_yavru3": {
       "name": "Minik Uykucu",
       "color": "sky"
+    },
+    "miril": {
+      "name": "Mırıl",
+      "color": "spark-purple"
+    },
+    "golge_prens": {
+      "name": "Gölge Prens Mırıl",
+      "color": "pus"
     }
   }
 }

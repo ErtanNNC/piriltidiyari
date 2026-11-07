@@ -88,6 +88,19 @@ static func add(parent: Node, mood: String) -> Environment:
 			sun.light_color = Color("#fff0e0")
 			sun.light_energy = 0.42
 			sun.rotation_degrees = Vector3(-40, 35, 0)
+		"kale":
+			# Pus Kalesi: gloomy grey-purple, readable; sparks bring the color
+			env.background_color = Color("#1e1b30")
+			env.ambient_light_color = Color("#8a83b8")
+			env.ambient_light_energy = 0.5
+			env.glow_intensity = 0.5
+			env.glow_hdr_threshold = 1.0
+			env.fog_enabled = true
+			env.fog_light_color = Color("#4a4568")
+			env.fog_density = 0.01
+			env.fog_sky_affect = 0.0
+			sun.light_color = Color("#c9c0f0")
+			sun.light_energy = 0.35
 		"sabah":
 			env.background_color = Color("#cfe6ff")
 			env.ambient_light_color = Color("#fff2dc")

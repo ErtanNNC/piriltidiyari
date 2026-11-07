@@ -17,10 +17,12 @@ const SCENES := {
 	"chapter2": "res://scenes/chapter2/sekerleme_magaralari.tscn",
 	"chapter3": "res://scenes/chapter3/bulut_limani.tscn",
 	"chapter4": "res://scenes/chapter4/uyku_dagi.tscn",
+	"chapter5": "res://scenes/chapter5/pus_kalesi.tscn",
+	"final": "res://scenes/chapter5/final.tscn",
 }
 
 ## Which content pack (content/<id>/) a scene reads its story from.
-const SCENE_CHAPTER := {"chapter0": "chapter0", "chapter1": "chapter1", "chapter2": "chapter2", "chapter3": "chapter3", "chapter4": "chapter4"}
+const SCENE_CHAPTER := {"chapter0": "chapter0", "chapter1": "chapter1", "chapter2": "chapter2", "chapter3": "chapter3", "chapter4": "chapter4", "chapter5": "chapter5", "final": "chapter5"}
 
 ## [small line, big title] shown when a scene starts.
 const CARDS := {
@@ -35,6 +37,8 @@ const CARDS := {
 	"chapter2": ["Bölüm 2", "Şekerleme Mağaraları"],
 	"chapter3": ["Bölüm 3", "Bulut Limanı"],
 	"chapter4": ["Bölüm 4", "Uyku Dağı"],
+	"chapter5": ["Bölüm 5", "Pus Kalesi"],
+	"final": ["Kapanış", "Altı Renkli Fener"],
 }
 
 var current := ""
@@ -83,7 +87,8 @@ func go_to(scene_id: String, save := true) -> void:
 	if Content.chapter.get("id", "") != chapter:
 		Content.load_chapter(chapter)
 	# Gece (dark) theme for the caves and other night chapters
-	Tokens.set_theme("light" if scene_id == "title" else String(Content.chapter.get("theme", "light")))
+	# the ending is a sunny morning in the village, whatever chapter it belongs to
+	Tokens.set_theme("light" if scene_id in ["title", "final"] else String(Content.chapter.get("theme", "light")))
 	get_tree().change_scene_to_file(SCENES[scene_id])
 	current = scene_id
 	if save and scene_id != "title":

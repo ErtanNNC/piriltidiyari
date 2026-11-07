@@ -58,6 +58,21 @@ Mobilde sol yarıda sanal joystick, sağda Zıpla / Saldır butonları çıkar.
 
 | Bölüm 4 · Uyku Dağı | Teraslı karlı dağ, kamp ateşleri, Bilge Kuzey'in Mırıl hikâyesi, Dondurma, Beyaz Kıvılcım | uykulu sis, kaygan buz, yuvarlanan kar topları |
 
+| Bölüm 5 · Pus Kalesi | Kale Feneri, 4 kıvılcım kapısı, Mırıl'ın 4 anısı, Gölge Prens Mırıl, Mor Kıvılcım | gölge kopyalar, yankı saldırıları, Faz 2: kıvılcım uzatma |
+| Kapanış | Altı Renkli Fener, Fıstık uyanır, köy şenliği, kırmızı sis, Sezon 1 sonu ekranı | |
+
+**Bölüm 5:** Kalenin dört kapısı topladığın kıvılcımları gösterince açılır (yeşil, mavi, sarı, beyaz). Odalarda
+Mırıl'ın dört anısı var: oyuncak ayı, doğum günü şapkası, yıldız haritası, küçük fener. Tepede Gölge Prens Mırıl:
+Faz 1'de gölge kopyalar ve önceki bossların yankıları (baykuş dalışı, halka, buz sarkıtları), her turdan sonra
+yorulur ve vurulabilir. Faz 2'de dövüş yok: "Kıvılcım uzat" ile dört kıvılcım sırayla verilir, her biri bir anıyı
+hatırlatır ve gölge küçülür; sonunda yıldız çocuk Mırıl ortaya çıkar ve Mor Kıvılcım bulunur. Hikâye Taşları
+9–10 kalededir (toplam 10).
+
+**Kapanış:** Beş kıvılcım Fener Kulesi'ne gider, kule gökkuşağı rengine döner, Fıstık heykelden uyanır ve bekçiye
+rozet verir; köyde şenlik ve pasta. Mumlar söndüğünde ufukta kırmızı bir sis görünür. Ardından **Sezon 1 sonu
+ekranı**: toplanan kıvılcımlar, taşlar, seviye, Pırıl ve "Sezon 2'de seni neler bekliyor?" listesi. "Köyde dolaş"
+ile köye dönülür: heykel yerinde Fıstık, yanında Mırıl dolaşır, Tospik Nine yeni sözler söyler.
+
 **Bölüm 4:** Dağa teras teras tırmanılır; her kamp ateşi bir sonraki rampanın uykulu sisini eritir. Zirvede
 Bilge Kuzey Mırıl'ın hikâyesini anlatır: gökten düşen, kimsenin fark etmediği yalnız bir yıldız ("Pus kötülük
 değil, yalnızlıktır"). Moblar: Kar Topu Tavşanı (uzaktan atar), Buz Dikeni. Buz Golem Dondurma (üç top
@@ -90,6 +105,9 @@ Sahne başlarında oyun kaydedilir (`user://kayit.json`); açılıştaki "Devam 
 <img src="docs/ekran/11_kiskac.png" width="49%"> <img src="docs/ekran/12_kazma_dukkani.png" width="49%">
 <img src="docs/ekran/13_balon_adasi.png" width="49%"> <img src="docs/ekran/14_ruzgar.png" width="49%">
 <img src="docs/ekran/17_bilge_kuzey.png" width="49%"> <img src="docs/ekran/18_dondurma.png" width="49%">
+<img src="docs/ekran/19_pus_kalesi.png" width="49%"> <img src="docs/ekran/20_golge_prens.png" width="49%">
+<img src="docs/ekran/21_mor_kivilcim.png" width="49%"> <img src="docs/ekran/22_fistik_uyandi.png" width="49%">
+<img src="docs/ekran/23_sezon_sonu.png" width="49%"> <img src="docs/ekran/24_sezon_sonrasi_koy.png" width="49%">
 </p>
 
 **Kontroller:** WASD / oklar · Boşluk zıpla · J saldır · K yuvarlan · L Dikenli Dönüş · E konuş · 1–4 iksir.
@@ -99,7 +117,8 @@ Mobilde: sanal joystick, Zıpla / Saldır / Yuvarlan / Dönüş butonları, iksi
 
 - Gerçek modeller, ikonlar, logo, ses ve müzik (her şey ilkel şekillerden yer tutucu)
 - Envanter ekranı, ayarlar, Terzi Dikiş'in kozmetik dükkânı
-- Bölüm 5 – Pus Kalesi (final) ve kapanış
+- Sezon 2 (sezon sonu ekranında duyurulanlar): kırmızı sis, 10 yeni Hikâye Taşı ve Düşen Yıldız
+  Tarlası, oynanabilir Fıstık ve Mırıl (Yeni Oyun+), Işık Arenası, imza eşyası görevlerinin devamı
 
 ## Proje yapısı
 

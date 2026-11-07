@@ -1,0 +1,14 @@
+{
+  "npc": "miril",
+  "variants": [
+    {
+      "lines": [
+        {
+          "speaker": "miril",
+          "mood": "mutlu",
+          "text": "Bugün her gün doğum günüm gibi! Teşekkürler bekçi."
+        }
+      ]
+    }
+  ]
+}

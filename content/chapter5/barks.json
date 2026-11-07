@@ -1,0 +1,291 @@
+{
+  "barks": {
+    "c5_giris": [
+      {
+        "speaker": "oyuncu",
+        "mood": "kararlı",
+        "text": "Pus Kalesi... Burası çok gri ve çok sessiz."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Ama dört Kıvılcım avucumda parlıyor. Hadi!"
+      }
+    ],
+    "c5_fener": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Kale Feneri yandı! Kıvılcımlarım daha da parladı."
+      }
+    ],
+    "c5_kapi": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Kıvılcım'ı gösterdim, Pus kenara çekildi!"
+      }
+    ],
+    "ani_1": [
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Eski bir oyuncak ayı... Çok sevilmiş ama yalnız kalmış."
+      }
+    ],
+    "ani_2": [
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Bir doğum günü şapkası. Masada hiç tabak yok..."
+      }
+    ],
+    "ani_3": [
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Bir yıldız haritası. Bir yıldızın yanına kalp çizilmiş."
+      }
+    ],
+    "ani_4": [
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Küçük bir fener. Işığı sönmüş ama hâlâ sıcak."
+      }
+    ],
+    "c5_miril_basla": [
+      {
+        "speaker": "golge_prens",
+        "mood": "huysuz",
+        "text": "Gitsin! Herkes gitsin! Bu ışık benim!"
+      },
+      {
+        "speaker": "golge_prens",
+        "mood": "üzgün",
+        "text": "Kimse beni görmedi. Şimdi ben de kimseyi görmeyeceğim!"
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "kararlı",
+        "text": "Ben seni görüyorum, Mırıl. Ve buradayım."
+      }
+    ],
+    "c5_faz2": [
+      {
+        "speaker": "golge_prens",
+        "mood": "üzgün",
+        "text": "Neden hâlâ buradasın? Neden gitmiyorsun?"
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Çünkü sana bir şey göstermek istiyorum."
+      }
+    ],
+    "c5_isik_green": [
+      {
+        "speaker": "golge_prens",
+        "mood": "üzgün",
+        "text": "Bu oyuncak ayı... Kimse benimle oynamamıştı."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Ben oynarım! Hem de her gün."
+      }
+    ],
+    "c5_isik_blue": [
+      {
+        "speaker": "golge_prens",
+        "mood": "üzgün",
+        "text": "Doğum günüm vardı... ama kimse gelmedi."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Bu yıl herkes gelecek. Söz!"
+      }
+    ],
+    "c5_isik_yellow": [
+      {
+        "speaker": "golge_prens",
+        "mood": "şaşkın",
+        "text": "Gökteki evimi unuttum. Yıldızlar beni hatırlar mı?"
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Hatırlar! Bak, hepsi sana parlıyor."
+      }
+    ],
+    "c5_isik_white": [
+      {
+        "speaker": "golge_prens",
+        "mood": "şaşkın",
+        "text": "Işığım söndü sanıyordum..."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Sönmedi. Sadece çok yalnızdı."
+      }
+    ],
+    "c5_yildiz": [
+      {
+        "speaker": "miril",
+        "mood": "şaşkın",
+        "text": "Beni... gerçekten görüyor musun?"
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Görüyorum. Artık yalnız değilsin, Mırıl."
+      },
+      {
+        "speaker": "miril",
+        "mood": "mutlu",
+        "text": "O zaman... bu mor ışık hepimizin olsun."
+      }
+    ],
+    "c5_taslar": [
+      {
+        "speaker": "miril",
+        "mood": "mutlu",
+        "text": "Taşlarımın hepsini okumuşsun! Benim hikâyemi bilen biri var..."
+      }
+    ],
+    "final_1": [
+      {
+        "speaker": "tospik_nine",
+        "mood": "mutlu",
+        "text": "Beş Kıvılcım bir araya geldi! Hadi, Fener'e!"
+      }
+    ],
+    "final_fistik": [
+      {
+        "speaker": "fistik",
+        "mood": "uykulu",
+        "text": "Hıh... Hrrm... Ne kadar uyumuşum?"
+      },
+      {
+        "speaker": "tospik_nine",
+        "mood": "mutlu",
+        "text": "Epey uzun, ihtiyar şövalye! Bak, yeni bekçimiz var."
+      },
+      {
+        "speaker": "fistik",
+        "mood": "huysuz",
+        "text": "Hıh. Dikenlerim ışıl ışıl. Demek iyi iş çıkardın."
+      }
+    ],
+    "final_senlik": [
+      {
+        "speaker": "fistik",
+        "mood": "mutlu",
+        "text": "Al bakalım bekçi. Kendi dikenimden bir rozet."
+      },
+      {
+        "speaker": "tospik_nine",
+        "mood": "mutlu",
+        "text": "Fener artık altı renkle yanıyor. Altıncısı Mırıl'ın!"
+      }
+    ],
+    "final_pasta": [
+      {
+        "speaker": "tospik_nine",
+        "mood": "mutlu",
+        "text": "Mırıl, bu pasta senin. Bir dilek tut ve üfle!"
+      },
+      {
+        "speaker": "miril",
+        "mood": "mutlu",
+        "text": "Hiç pasta görmemiştim... Fuuuu!"
+      }
+    ],
+    "final_pati": [
+      {
+        "speaker": "fistik",
+        "mood": "mutlu",
+        "text": "Pati, yarından itibaren benim çırağımsın. Hıh!"
+      },
+      {
+        "speaker": "pati",
+        "mood": "mutlu",
+        "text": "Ben hazırım! Hem de çok hazırım!"
+      }
+    ],
+    "final_bado": [
+      {
+        "speaker": "bado",
+        "mood": "mutlu",
+        "text": "Kardeşim! Seni Pus'tan sonra buldum sonunda!"
+      },
+      {
+        "speaker": "bado",
+        "mood": "mutlu",
+        "text": "Ben... başardım. Gerçekten başardım."
+      }
+    ],
+    "final_citir": [
+      {
+        "speaker": "citir",
+        "mood": "mutlu",
+        "text": "Diyar haritam tamam! Her köşesini çizdim."
+      },
+      {
+        "speaker": "citir",
+        "mood": "mutlu",
+        "text": "Ama bir köşe hâlâ boş... Uzaktaki dağın ardı."
+      }
+    ],
+    "final_lumi": [
+      {
+        "speaker": "lumi",
+        "mood": "mutlu",
+        "text": "Mırıl, artık en yakın arkadaşımsın."
+      },
+      {
+        "speaker": "miril",
+        "mood": "mutlu",
+        "text": "Arkadaş... Ne güzel bir kelime."
+      }
+    ],
+    "final_kirmizi": [
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Şuraya bakın! Dağın ardında kırmızı bir sis..."
+      },
+      {
+        "speaker": "fistik",
+        "mood": "kararlı",
+        "text": "Bu Pus değil. Bu başka bir şey."
+      }
+    ],
+    "tas_9": [
+      {
+        "speaker": "hikaye_tasi",
+        "mood": "üzgün",
+        "text": "Mırıl bir kale yaptı. İçine bütün anılarını sakladı."
+      },
+      {
+        "speaker": "hikaye_tasi",
+        "mood": "üzgün",
+        "text": "Oyuncakları, şapkası, haritası... Ama kale hep sessizdi."
+      }
+    ],
+    "tas_10": [
+      {
+        "speaker": "hikaye_tasi",
+        "mood": "bilge",
+        "text": "Bir gece Fener'in ışığını gördü ve çok özledi."
+      },
+      {
+        "speaker": "hikaye_tasi",
+        "mood": "bilge",
+        "text": "Işığı yutmak istemedi aslında. Sadece ısınmak istedi."
+      }
+    ]
+  }
+}

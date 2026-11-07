@@ -11,7 +11,7 @@ const TELEGRAPH := 0.8
 
 static var attackers := 0
 
-@export_enum("sumuklu", "mantar", "dev_mantar", "kirpi_topu", "karga", "kristal_bocek", "yarasa", "firtina_yumagi", "korsan_marti", "kar_tavsani", "buz_dikeni") var kind := "sumuklu"
+@export_enum("sumuklu", "mantar", "dev_mantar", "kirpi_topu", "karga", "kristal_bocek", "yarasa", "firtina_yumagi", "korsan_marti", "kar_tavsani", "buz_dikeni", "golge_kopya") var kind := "sumuklu"
 @export var gravity := 22.0
 
 var hp := 30

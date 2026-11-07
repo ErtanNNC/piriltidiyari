@@ -4,7 +4,7 @@ extends Node
 ## --scene jumps to a story scene with the progress of the scenes before it.
 ## Never active in a normal run.
 
-const ORDER := ["scene1", "scene2", "scene3", "scene4", "scene5", "scene6", "chapter0", "chapter1", "chapter2", "chapter3", "chapter4"]
+const ORDER := ["scene1", "scene2", "scene3", "scene4", "scene5", "scene6", "chapter0", "chapter1", "chapter2", "chapter3", "chapter4", "chapter5", "final"]
 
 var _shot_path := ""
 var _frames := 60
@@ -37,6 +37,9 @@ func _ready() -> void:
 
 func _jump(scene: String) -> void:
 	preset(GameState.data, scene)
+	for arg in OS.get_cmdline_user_args():
+		if arg.begins_with("--flag="):
+			GameState.data.set_flag(arg.get_slice("=", 1))
 	SceneFlow.go_to(scene, false)
 
 
@@ -90,6 +93,15 @@ static func preset(data: PlayerData, scene: String) -> void:
 		data.add_spark("yellow")
 		data.add_piril(200)
 		data.set_flag("bolum3_bitti")
+	if idx >= 11:
+		while data.level < 20:
+			data.add_xp(Progression.xp_to_next(data.level))
+		data.add_spark("white")
+		data.add_item("hikaye_tasi", 8)
+		data.set_flag("bolum4_bitti")
+	if idx >= 12:
+		data.add_spark("purple")
+		data.set_flag("bolum5_bitti")
 
 
 static func _finish(data: PlayerData, quest_id: String) -> void:

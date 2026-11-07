@@ -1,0 +1,16 @@
+{
+  "id": "chapter5",
+  "title": "Pus Kalesi",
+  "region": "Pus Kalesi",
+  "theme": "dark",
+  "levels": [
+    25,
+    30
+  ],
+  "spark": "purple",
+  "quests": [
+    "pus_kalesi"
+  ],
+  "dialogue": [],
+  "barks": "barks"
+}

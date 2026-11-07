@@ -30,6 +30,10 @@ static func build(kind: String) -> Node3D:
 			root.add_child(c)
 		"snowman":
 			_snowman(root)
+		"fistik":
+			root.add_child(FistikModel.build())
+		"star_child":
+			root.add_child(MirilModel.star_child())
 		"bunny_sleepy":
 			_critter(root, Color("#f7faff"), "sky", 0.6)
 		"gull_captain":

@@ -3,6 +3,23 @@
   "variants": [
     {
       "when": {
+        "flag": "sezon1_bitti"
+      },
+      "lines": [
+        {
+          "speaker": "tospik_nine",
+          "mood": "mutlu",
+          "text": "Fener altı renkle yanıyor! Mırıl da artık bizden biri."
+        },
+        {
+          "speaker": "tospik_nine",
+          "mood": "bilge",
+          "text": "Fıstık o kırmızı sisi izliyor. Yeni macera yakında!"
+        }
+      ]
+    },
+    {
+      "when": {
         "flag": "bolum4_bitti"
       },
       "lines": [
@@ -19,7 +36,7 @@
         {
           "speaker": "tospik_nine",
           "mood": "kararlı",
-          "text": "Pus Kalesi'nin yolu yakında açılacak. Hazır ol."
+          "text": "Pus Kalesi'nin tabelası meydanda. Hazır olunca git!"
         }
       ]
     },

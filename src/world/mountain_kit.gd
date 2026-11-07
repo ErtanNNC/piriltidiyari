@@ -19,7 +19,7 @@ static func terrace(parent: Node3D, x_half: float, z0: float, z1: float, top_y: 
 
 
 ## A walkable ramp from (z0, y0) to (z1, y1), `width` wide, centered on x.
-static func ramp(parent: Node3D, x: float, width: float, z0: float, y0: float, z1: float, y1: float) -> void:
+static func ramp(parent: Node3D, x: float, width: float, z0: float, y0: float, z1: float, y1: float, col: Variant = SNOW_SHADE) -> void:
 	var length := Vector2(z1 - z0, y1 - y0).length()
 	var body := StaticBody3D.new()
 	var c := CollisionShape3D.new()
@@ -30,7 +30,7 @@ static func ramp(parent: Node3D, x: float, width: float, z0: float, y0: float, z
 	parent.add_child(body)
 	body.position = Vector3(x, (y0 + y1) * 0.5 - 0.3, (z0 + z1) * 0.5)
 	body.rotation.x = atan2(y1 - y0, -(z1 - z0))
-	Toon.part(body, "box", Vector3(width, 0.6, length), SNOW_SHADE, Vector3.ZERO, Vector3.ZERO, 0.0, 0.03)
+	Toon.part(body, "box", Vector3(width, 0.6, length), col, Vector3.ZERO, Vector3.ZERO, 0.0, 0.03)
 
 
 ## A rocky wall segment (keeps you on the path).

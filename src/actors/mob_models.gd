@@ -24,6 +24,8 @@ static func build(kind: String, pus: bool) -> Node3D:
 			_storm_ball(root, pus)
 		"kar_tavsani":
 			_snow_bunny(root, pus)
+		"golge_kopya":
+			_shadow_copy(root, pus)
 		"buz_dikeni":
 			_ice_spike(root, pus)
 		"korsan_marti":
@@ -181,3 +183,16 @@ static func _ice_spike(root: Node3D, pus: bool) -> void:
 		Toon.part(root, "cone", Vector3(0.35, 1.0, 0.35), ice, Vector3(sin(a) * 0.4, 0.9, cos(a) * 0.4), Vector3(cos(a) * -25, 0, sin(a) * 25), 0.0 if pus else 0.5, 0.02)
 	Toon.part(root, "cone", Vector3(0.45, 1.3, 0.45), ice, Vector3(0, 1.1, 0), Vector3.ZERO, 0.0 if pus else 0.5, 0.02)
 	_face(root, Vector3(0, 0.45, 0.5), 0.8, pus)
+
+
+## Gölge Kopya: the player's own shape, grey and misty (Pus's copy of you).
+## When calmed it turns into a soft light version and fades.
+static func _shadow_copy(root: Node3D, pus: bool) -> void:
+	var d: PlayerData = Engine.get_main_loop().root.get_node("GameState").data
+	var model := FistikModel.build() if d.character_id == "fistik" else KeeperModels.build(d.character_id, d.character_look)
+	root.add_child(model)
+	var tint := Toon.material(Color("#6e6a86") if pus else Color("#e8e2ff"), 0.035, 0.0 if pus else 0.6, 0.0)
+	for mi in model.find_children("*", "MeshInstance3D", true, false):
+		(mi as MeshInstance3D).material_override = tint
+	for side in [-1.0, 1.0]:
+		Toon.part(root, "sphere", Vector3(0.16, 0.2, 0.08), "spark-purple" if pus else "spark-white", Vector3(0.17 * side, 1.34, 0.46), Vector3.ZERO, 2.0, 0.0)

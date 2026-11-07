@@ -48,7 +48,7 @@ func _run(step: Dictionary) -> void:
 				camera.look_at(from_look.lerp(look, k)), 0.0, 1.0, t).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 			await tw.finished
 	elif step.has("say"):
-		GameState.bark(step["say"])
+		GameState.bark(String(step["say"]).replace("{keeper}", GameState.data.character_id))
 		await GameState.dialogue_closed
 	elif step.has("wait"):
 		await get_tree().create_timer(float(step["wait"])).timeout

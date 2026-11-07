@@ -35,6 +35,22 @@ func _ready() -> void:
 	sign4.requires_flag = "bolum3_bitti"
 	sign4.position = Vector3(-3.5, 0, 3.5)
 	add_child(sign4)
+	var sign5 := TravelSign.new()
+	sign5.target_scene = "chapter5"
+	sign5.title = "Pus Kalesi"
+	sign5.requires_flag = "bolum4_bitti"
+	sign5.position = Vector3(3.5, 0, 3.5)
+	add_child(sign5)
+	if GameState.data.has_flag("sezon1_bitti"):
+		# after the season: Fıstık is awake, Mırıl lives in the village
+		$Heykel.queue_free()
+		for spec in [["fistik", "fistik", Vector3(-4, 0, -11)], ["miril", "star_child", Vector3(1.5, 0, -10)]]:
+			var n := Npc.new()
+			n.npc_id = spec[0]
+			n.kind = spec[1]
+			n.position = spec[2]
+			add_child(n)
+		Pus.set_amount(0.0)
 	var d := GameState.data
 	d.quest_changed.connect(func(_id: String) -> void: _advance())
 	d.flags_changed.connect(_on_flags)
