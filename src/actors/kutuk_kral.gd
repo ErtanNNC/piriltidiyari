@@ -196,6 +196,7 @@ func _daze() -> void:
 
 
 func hit(damage: int, _from: Vector3, _push: float) -> void:
+	damage = Progression.boss_damage(damage, GameState.data.power)
 	Effects.hit(self, true)
 	if not dazed or not active:
 		return

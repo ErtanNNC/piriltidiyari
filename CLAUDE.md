@@ -45,6 +45,15 @@ is a copy of the design system's tokens.
   bolt, asa wide ring, kılıç wave); outfits give `bonus` (items.json) via
   `Shop.outfit_bonus` (regen, speed, magnet, mp_regen, guard). Checks: `--scene=house --house=dukkan --demo=shopping`,
   `--house=bekci --demo=switch|mirror|wardrobe`, `--demo=leave`.
+- Levels: mobs have `MobStats.LEVELS` (region ranges) and `MobStats.scaled(kind,
+  level)` (HP vs `Progression.expected_power`, damage vs `expected_hp`, XP =
+  22% of a level). Level gains: `Progression.hp_gain/power_gain`. Bosses take
+  `Progression.boss_damage` (same hit count at any level). Each level adds a
+  `PlayerData.power_picks`; the HUD shows `LevelUpPanel` (paused) with
+  `Powers.choices`; demos auto-pick. Powers: 4 active (2 slots, O/P, HUD buttons
+  on the left), 3 passive, rank 1–5 (`src/core/powers.gd`). `DevTools.preset`
+  levels you to the region (`LEVEL_AT`); `PlayerData.catch_up()` lifts old saves.
+  Checks: `--scene=chapter0 --demo=powers`, `--demo=levelup` (screenshot).
 - Signs: `TravelSign.board(parent, text, at, width)` (cream board, dark text,
   tilted to the camera, text shrinks to fit).
 - New chapters extend `ChapterBase` (src/world/chapter_base.gd): npc(),

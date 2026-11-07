@@ -176,6 +176,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		start_roll()
 	elif event.is_action_pressed("shoot"):
 		shoot()
+	elif event.is_action_pressed("power_1"):
+		use_power(0)
+	elif event.is_action_pressed("power_2"):
+		use_power(1)
 	elif event.is_action_pressed("skill"):
 		use_skill()
 	else:
@@ -400,7 +404,7 @@ func _ceiling_blocked() -> bool:
 
 ## Attack power, ×1.5 while a Cesaret Şekeri is active.
 func attack_power() -> int:
-	var p := GameState.data.power + Shop.weapon_power(GameState.data, Content.items)
+	var p := roundi((GameState.data.power + Shop.weapon_power(GameState.data, Content.items)) * Powers.attack_mult(GameState.data.powers))
 	return int(p * 1.5) if Time.get_ticks_msec() / 1000.0 < _power_until else p
 
 
@@ -624,7 +628,7 @@ var magnet_range := 3.2
 func _refresh_bonus() -> void:
 	var d := GameState.data
 	_bonus = Shop.outfit_bonus(d, Content.items)
-	speed = d.speed + float(_bonus.get("speed", 0.0))
+	speed = d.speed + float(_bonus.get("speed", 0.0)) + Powers.bonus_speed(d.powers)
 	magnet_range = 3.2 + float(_bonus.get("magnet", 0.0))
 
 
@@ -642,3 +646,101 @@ func _process(delta: float) -> void:
 		if _mp_t >= 1.0:
 			_mp_t = 0.0
 			d.restore_mp(int(_bonus["mp_regen"]))
+
+
+# --- level-up powers (O / P keys, power buttons) -------------------------------
+
+var _power_ready: Dictionary = {}
+
+
+## Seconds until power `id` can be used again (0 = ready).
+func power_wait(id: String) -> float:
+	return maxf(0.0, float(_power_ready.get(id, 0.0)) - Time.get_ticks_msec() / 1000.0)
+
+
+func use_power(slot: int) -> void:
+	var d := GameState.data
+	var list := Powers.actives(d.powers)
+	if slot >= list.size() or asleep or rolling or not input_enabled:
+		return
+	var id: String = list[slot]
+	var def: Dictionary = Powers.DEFS[id]
+	if power_wait(id) > 0.0:
+		return
+	if not d.use_mp(int(def["mp"])):
+		GameState.toast.emit("Enerjin az. Yıldız Tozu iç!", "drop")
+		return
+	_power_ready[id] = Time.get_ticks_msec() / 1000.0 + float(def["cd"])
+	var n := Powers.numbers(id, Powers.rank(d.powers, id))
+	var dmg := maxi(1, roundi(attack_power() * float(n.get("mult", 1.0))))
+	if _rig:
+		_rig.happy()
+	match id:
+		"yildiz_yagmuru": _star_rain(int(n["count"]), dmg, float(n["radius"]))
+		"gokkusagi_dalgasi": _rainbow_wave(float(n["reach"]), dmg)
+		"baloncuk_patlamasi": _bubble_burst(int(n["count"]), dmg)
+		"isik_donencesi": _light_orbit(int(n["count"]), dmg, float(n["seconds"]))
+
+
+func _near_targets(radius: float) -> Array:
+	var out := []
+	for m in get_tree().get_nodes_in_group("hittable"):
+		var n := m as Node3D
+		if n and n.global_position.distance_to(global_position) <= radius:
+			out.append(n)
+	out.sort_custom(func(a: Node3D, b: Node3D) -> bool: return a.global_position.distance_to(global_position) < b.global_position.distance_to(global_position))
+	return out
+
+
+## Yıldız Yağmuru: stars drop on the nearest targets (or around you).
+func _star_rain(count: int, dmg: int, radius: float) -> void:
+	Audio.play("crystal")
+	var targets := _near_targets(radius)
+	for i in count:
+		var t: Node3D = targets[i % targets.size()] if not targets.is_empty() else null
+		var spot := t.global_position if t else global_position + Vector3(randf_range(-3, 3), 0, randf_range(-3, 3))
+		var star := Effects.sprite(get_parent(), spot + Vector3.UP * 7.0, "star", Color(1.0, 0.92, 0.5), 1.1)
+		var tw := star.create_tween()
+		tw.tween_interval(i * 0.12)
+		tw.tween_property(star, "global_position", spot + Vector3.UP * 0.8, 0.3).set_ease(Tween.EASE_IN)
+		tw.tween_callback(func() -> void:
+			Effects.ring(get_parent(), spot + Vector3.UP * 0.2, 1.4, Tokens.color("spark-yellow"), 0.3)
+			if t and is_instance_valid(t) and t.is_in_group("hittable"):
+				t.hit(dmg, spot + Vector3.UP, 3.0)
+			star.queue_free())
+
+
+## Gökkuşağı Dalgası: a fan of colors sweeping forward.
+func _rainbow_wave(reach: float, dmg: int) -> void:
+	Audio.play("whoosh")
+	var fwd := _facing()
+	var cols := ["hp", "honey", "spark-yellow", "leaf", "sky", "spark-purple"]
+	for i in cols.size():
+		var arc := Toon.part(get_parent(), "ring", Vector3(1.0, 0.12, 1.0), cols[i], global_position + Vector3.UP * (0.4 + i * 0.12), Vector3.ZERO, 1.2, 0.0)
+		var tw := arc.create_tween().set_parallel()
+		tw.tween_property(arc, "scale", Vector3(reach * 2.0, 1.0, reach * 2.0) * (0.75 + i * 0.05), 0.45).set_ease(Tween.EASE_OUT)
+		tw.chain().tween_callback(arc.queue_free)
+	for n: Node3D in _near_targets(reach + 0.5):
+		var to := n.global_position - global_position
+		to.y = 0.0
+		if to.length() < 0.1 or fwd.dot(to.normalized()) > 0.55:
+			n.hit(dmg, global_position, 8.0)
+
+
+## Baloncuk Patlaması: glowing bubbles in every direction.
+func _bubble_burst(count: int, dmg: int) -> void:
+	Audio.play("pop")
+	for i in count:
+		var a := TAU * i / count
+		var dir := Vector3(sin(a), 0, cos(a))
+		LightSeed.fire(get_parent(), global_position + Vector3.UP * 0.9 + dir * 0.6, dir, dmg, "spark-blue", 6.5, 1.6)
+
+
+## Işık Dönencesi: purple light balls circle you for a few seconds.
+func _light_orbit(count: int, dmg: int, seconds: float) -> void:
+	Audio.play("skill")
+	var o := LightOrbit.new()
+	o.count = count
+	o.damage = dmg
+	o.seconds = seconds
+	add_child(o)

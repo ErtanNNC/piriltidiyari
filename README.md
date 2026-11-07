@@ -69,6 +69,16 @@ sarmaşıkları sarkan, yanında küçük taşlar uçuşan adalar, halatlı ve f
 teraslar, kayalı ve çam ağaçlı duvarlar, kütük oturaklı ve çaydanlıklı kamp ateşleri; kalede tuğla sıralı,
 kemerli mor pencereli, sütunlu ve sancaklı duvarlar. Bölge fenerleri kafesli, kurdeleli ve flamalı.
 
+**Seviye ve güçler:** Her yaratığın bir seviyesi var ve başının üstünde yazar (yeşil: kolay, bal rengi: denk,
+kırmızı: zorlu). Seviyeler bölgeye göre: Köy 1–5, Orman 5–10, Mağara 10–15, Liman 15–20, Dağ 20–25, Kale 25–30.
+Yüksek seviyeli yaratıklar daha dayanıklıdır, daha güçlü vurur ve daha çok XP verir; sakinleşince "+XP" yazar.
+Her seviye daha çok XP ister; ileri seviyeler daha fazla can ve güç kazandırır, böylece bekçi bölgesinin
+yaratıklarıyla baş eder. Bosslar her seviyede aynı sayıda vuruşta yatışır. Seviye ve XP sol üstte görünür
+("Pati · Seviye 7", "320 / 1100 XP"). Her seviye atlayışında oyun durur ve üç güç kartı çıkar: yeni bir güç
+öğren ya da bildiğini yükselt (en çok 5 kademe). Aktif güçler (en fazla 2) solda düğme olur, O / P tuşları:
+Yıldız Yağmuru, Gökkuşağı Dalgası, Baloncuk Patlaması, Işık Dönencesi. Pasifler her zaman açıktır: Güçlü Vuruş
+(+%10), Kocaman Yürek (+15 can), Çevik Patiler (hız). Eski kayıtlar yüklenince bölgelerinin seviyesine çıkar.
+
 **Kontroller:** WASD / oklar yürür · Boşluk zıplar · J saldırır (diken dönüşü) · E konuşur.
 Mobilde sol yarıda sanal joystick, sağda Zıpla / Saldır butonları çıkar.
 
@@ -149,6 +159,7 @@ Sahne başlarında oyun kaydedilir (`user://kayit.json`); açılıştaki "Devam 
 <img src="docs/ekran/29_moblar.png" width="49%"> <img src="docs/ekran/30_koy_evleri.png" width="49%">
 <img src="docs/ekran/31_bolum_yapilari.png" width="98%">
 <img src="docs/ekran/32_dukkan.png" width="49%"> <img src="docs/ekran/33_bekci_evi.png" width="49%">
+<img src="docs/ekran/34_seviye_ve_gucler.png" width="98%">
 </p>
 
 **Görünüm:** Karakterler parça parça kurulur (gövde, kafa, kulak, el, ayak, kuyruk); parlak gözleri
@@ -187,7 +198,17 @@ Pırıl, eşyalar ve görevler kalır; can ve güç yeni bekçiye göre yeniden 
 alet seçilir. Kapıdan çıkınca köyde evin önüne dönülür. Köy tabelaları açık renk zeminde koyu yazıyla, kameraya
 dönük ve yazı tahtaya sığacak şekilde.
 
-**Kontroller:** WASD / oklar · Boşluk zıpla · J saldır · K yuvarlan · L Dikenli Dönüş · I sapan · E konuş · 1–4 iksir · Esc mola.
+**Seviye ve güçler:** Her yaratığın bir seviyesi var ve başının üstünde yazar (yeşil: kolay, bal rengi: denk,
+kırmızı: zorlu). Seviyeler bölgeye göre: Köy 1–5, Orman 5–10, Mağara 10–15, Liman 15–20, Dağ 20–25, Kale 25–30.
+Yüksek seviyeli yaratıklar daha dayanıklıdır, daha güçlü vurur ve daha çok XP verir; sakinleşince "+XP" yazar.
+Her seviye daha çok XP ister; ileri seviyeler daha fazla can ve güç kazandırır, böylece bekçi bölgesinin
+yaratıklarıyla baş eder. Bosslar her seviyede aynı sayıda vuruşta yatışır. Seviye ve XP sol üstte görünür
+("Pati · Seviye 7", "320 / 1100 XP"). Her seviye atlayışında oyun durur ve üç güç kartı çıkar: yeni bir güç
+öğren ya da bildiğini yükselt (en çok 5 kademe). Aktif güçler (en fazla 2) solda düğme olur, O / P tuşları:
+Yıldız Yağmuru, Gökkuşağı Dalgası, Baloncuk Patlaması, Işık Dönencesi. Pasifler her zaman açıktır: Güçlü Vuruş
+(+%10), Kocaman Yürek (+15 can), Çevik Patiler (hız). Eski kayıtlar yüklenince bölgelerinin seviyesine çıkar.
+
+**Kontroller:** WASD / oklar · Boşluk zıpla · J saldır · K yuvarlan · L Dikenli Dönüş · I sapan · O / P güçler · E konuş · 1–4 iksir · Esc mola.
 Mobilde: sanal joystick, Zıpla / Saldır / Yuvarlan / Dönüş butonları, iksir yuvalarına dokunma.
 
 ### Henüz olmayanlar

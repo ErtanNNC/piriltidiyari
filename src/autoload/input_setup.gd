@@ -12,6 +12,8 @@ const ACTIONS := {
 	"roll": [KEY_K, KEY_SHIFT],
 	"skill": [KEY_L],
 	"shoot": [KEY_I, KEY_U],
+	"power_1": [KEY_O],
+	"power_2": [KEY_P],
 	"potion_1": [KEY_1],
 	"potion_2": [KEY_2],
 	"potion_3": [KEY_3],

@@ -166,6 +166,7 @@ func _opening(seconds: float, hint: String) -> void:
 
 
 func hit(damage: int, _from: Vector3, _push: float) -> void:
+	damage = Progression.boss_damage(damage, GameState.data.power)
 	Effects.hit(self, true)
 	if not open or not active:
 		return

@@ -108,6 +108,25 @@ func _on_flags() -> void:
 func _run_demo(which: String) -> void:
 	var player: Player = _hud.player()
 	match which:
+		"powers":
+			# every active level-up power hits nearby Pus creatures
+			var d := GameState.data
+			player.global_position = Vector3(0, 0, 2)
+			for pair: Array in [["yildiz_yagmuru", "gokkusagi_dalgasi"], ["baloncuk_patlamasi", "isik_donencesi"]]:
+				d.powers = {pair[0]: 2, pair[1]: 2}
+				for slot in 2:
+					var m := Mob.spawn(self, "mantar", Vector3(0, 0, 5.0))
+					m.level = 1
+					player.model.rotation.y = 0.0
+					d.mp = d.max_mp
+					await get_tree().create_timer(0.4).timeout
+					var hp0 := m.hp
+					player.use_power(slot)
+					await get_tree().create_timer(1.6).timeout
+					print("POWER %s hit=%s" % [pair[slot], not is_instance_valid(m) or m.hp < hp0 or m.state == "calm"])
+					if is_instance_valid(m):
+						m.queue_free()
+			get_tree().quit()
 		"signs":
 			player.global_position = Vector3(0, 0, 1.0)
 		"doors":

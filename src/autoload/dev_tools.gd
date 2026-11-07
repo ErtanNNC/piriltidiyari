@@ -38,6 +38,8 @@ func _ready() -> void:
 func _jump(scene: String) -> void:
 	# a village house: progress as after Bölüm 0, `--house=dukkan|bekci`
 	preset(GameState.data, "chapter1" if scene == "house" else scene)
+	if demo == "levelup":
+		GameState.data.power_picks += 1
 	for arg in OS.get_cmdline_user_args():
 		if arg.begins_with("--house="):
 			SceneFlow.house_id = arg.get_slice("=", 1)
@@ -51,8 +53,23 @@ func _jump(scene: String) -> void:
 	SceneFlow.go_to(scene, false)
 
 
+## The level a keeper usually has on reaching each region.
+const LEVEL_AT := {"chapter1": 5, "chapter2": 10, "chapter3": 15, "chapter4": 20, "chapter5": 25, "final": 28}
+
+
 ## Gives `data` the progress a player has when `scene` starts.
 static func preset(data: PlayerData, scene: String) -> void:
+	_preset_story(data, scene)
+	# reach the region's level and take the power cards along the way
+	var rng := RandomNumberGenerator.new()
+	rng.seed = 11
+	while data.level < int(LEVEL_AT.get(scene, 0)):
+		data.add_xp(Progression.xp_to_next(data.level) - data.xp)
+	while data.power_picks > 0:
+		Powers.pick(data, Powers.choices(data.powers, rng)[0]["id"])
+
+
+static func _preset_story(data: PlayerData, scene: String) -> void:
 	var idx := ORDER.find(scene)
 	if idx >= 1:
 		_finish(data, "kayip_fenerler")

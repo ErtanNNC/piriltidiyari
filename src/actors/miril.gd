@@ -180,6 +180,7 @@ func _tired() -> void:
 
 
 func hit(damage: int, _from: Vector3, _push: float) -> void:
+	damage = Progression.boss_damage(damage, GameState.data.power)
 	Effects.hit(self, true)
 	if not tired or not active:
 		return

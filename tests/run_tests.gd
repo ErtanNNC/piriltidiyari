@@ -39,8 +39,71 @@ func test_progression() -> void:
 	d.add_xp(50 + 152 + 10)
 	check(d.level == 3 and d.xp == 10, "212 XP ile seviye 3, artan 10 XP (seviye %d, xp %d)" % [d.level, d.xp])
 	check(levels == [2, 3], "her seviye için sinyal")
-	check(d.hp == d.max_hp and d.max_hp == 120, "seviye atlayınca can dolar ve artar")
+	check(d.hp == d.max_hp and d.max_hp == 100 + Progression.hp_gain(2) + Progression.hp_gain(3), "seviye atlayınca can dolar ve artar")
+	check(d.power_picks == 2, "her seviye bir güç seçimi bekletir")
+	check(Progression.power_gain(20) > Progression.power_gain(2) and Progression.hp_gain(20) > Progression.hp_gain(2), "ileri seviyeler daha çok güç ve can verir")
+	check(Progression.xp_to_next(10) > Progression.xp_to_next(5), "her yeni seviye daha zor")
+	test_mob_levels_and_powers()
 	check(Progression.unlocks_skill(5) and not Progression.unlocks_skill(6), "her 5 seviyede yetenek")
+
+
+func test_mob_levels_and_powers() -> void:
+	print("Mob seviyeleri ve güçler")
+	var easy := MobStats.scaled("mantar", MobStats.level_of("mantar"))
+	var hard := MobStats.scaled("golge_kopya", MobStats.level_of("golge_kopya"))
+	check(hard["xp"] > easy["xp"] * 20, "zor yaratık çok daha fazla XP verir (%d / %d)" % [hard["xp"], easy["xp"]])
+	check(hard["hp"] > easy["hp"] * 4 and hard["damage"] > easy["damage"], "ileri bölüm yaratıkları daha dayanıklı ve güçlü")
+	for k: String in MobStats.KINDS:
+		var lv := MobStats.level_of(k)
+		var st := MobStats.scaled(k, lv)
+		# a keeper of the same level calms it in a handful of hits
+		var hits := ceili(float(st["hp"]) / Progression.expected_power(lv))
+		check(hits >= 2 and hits <= (14 if k == "dev_mantar" else 9), "%s (Sv %d) aynı seviyedeki bekçiyle %d vuruşta sakinleşir" % [k, lv, hits])
+		var sleeps_after := ceili(float(Progression.expected_hp(lv)) / st["damage"])
+		check(sleeps_after >= 6, "%s bekçiyi en az 6 vuruşta uyutabilir (%d)" % [k, sleeps_after])
+	check(MobStats.level_of("kirpi_topu") >= 5 and MobStats.level_of("golge_kopya") >= 25, "mob seviyeleri bölüm aralığında")
+	check(Progression.boss_damage(36, 36) == 18 and Progression.boss_damage(10, 10) == 10, "güçlü bekçinin boss vuruşu ayarlanır, zayıfınki aynen kalır")
+	# level-up cards
+	var d := PlayerData.new()
+	var rng := RandomNumberGenerator.new()
+	rng.seed = 7
+	d.add_xp(Progression.xp_to_next(1))
+	var c := Powers.choices(d.powers, rng)
+	check(c.size() == 3 and Powers.DEFS[c[0]["id"]]["kind"] == "active" and c[0]["new"], "ilk seçimde yeni bir aktif güç var")
+	Powers.pick(d, c[0]["id"])
+	check(Powers.rank(d.powers, c[0]["id"]) == 1 and d.power_picks == 0, "seçilen güç öğrenilir, bekleyen seçim biter")
+	d.power_picks = 1
+	Powers.pick(d, c[0]["id"])
+	check(Powers.rank(d.powers, c[0]["id"]) == 2, "aynı güç seçilirse yükselir")
+	d.powers["yildiz_yagmuru"] = 1
+	d.powers["gokkusagi_dalgasi"] = 1
+	d.powers["baloncuk_patlamasi"] = 0
+	d.powers.erase("baloncuk_patlamasi")
+	d.powers.erase("isik_donencesi")
+	var ok := true
+	for i in 30:
+		for ch: Dictionary in Powers.choices(d.powers, rng):
+			if ch["new"] and Powers.DEFS[ch["id"]]["kind"] == "active" and Powers.actives(d.powers).size() >= 2:
+				ok = false
+	check(ok, "en fazla 2 aktif güç: yuvalar doluyken yeni aktif gelmez")
+	var hp0 := d.max_hp
+	d.power_picks = 1
+	Powers.pick(d, "kocaman_yurek")
+	check(d.max_hp == hp0 + 15, "Kocaman Yürek canı 15 artırır")
+	check(is_equal_approx(Powers.attack_mult({"guclu_vurus": 3}), 1.3), "Güçlü Vuruş 3: %30")
+	var full := {}
+	for id: String in Powers.DEFS:
+		full[id] = Powers.MAX_RANK
+	check(Powers.choices(full, rng)[0]["id"] == Powers.FALLBACK, "hepsi tamken Pırıl kesesi gelir")
+	var e := PlayerData.new()
+	e.load_dict(JSON.parse_string(JSON.stringify(d.to_dict())))
+	check(Powers.rank(e.powers, "kocaman_yurek") == 1, "güçler kayıtta kalır")
+	var old := PlayerData.new()
+	old.sparks = ["green", "blue"]
+	old.catch_up()
+	check(old.level == 15 and old.power_picks == 3 and not old.powers.is_empty(), "eski kayıt bölümün seviyesine yükselir; 3 kart seçilir, gerisi otomatik")
+	old.catch_up()
+	check(old.level == 15, "yakalama seviyeyi düşürmez, tekrar etmez")
 
 
 func test_quest_flow_scene1() -> void:
@@ -331,8 +394,14 @@ func test_village_shop_and_keeper_house() -> void:
 	var base := PlayerData.new()
 	base.choose_keeper("bado", keepers["bado"]["stats"], {}, "Bado")
 	check(d.character_id == "bado" and d.level == lv and d.piril == piril, "bekçi değişince seviye ve Pırıl kalır")
-	check(d.max_hp == base.max_hp + (lv - 1) * 10 + 15, "yeni bekçinin canı: kendi canı + seviyeler + tılsım")
-	check(d.power == base.power + (lv - 1) * 2, "güç seviyelerle birlikte gelir")
+	var hgain := 0
+	for l in range(2, lv + 1):
+		hgain += Progression.hp_gain(l)
+	check(d.max_hp == base.max_hp + hgain + 15, "yeni bekçinin canı: kendi canı + seviyeler + tılsım")
+	var gain := 0
+	for l in range(2, lv + 1):
+		gain += Progression.power_gain(l)
+	check(d.power == base.power + gain, "güç seviyelerle birlikte gelir")
 	check(d.skills.has(Skills.for_character("bado")) and not d.skills.has(Skills.for_character("pati")), "yeni bekçinin yeteneği gelir, eskisininki gider")
 	check(Shop.weapon_power(d, items) == 6 and d.item_count("isik_tohumu") == 10, "aletler ve tohumlar kalır")
 	var e := PlayerData.new()

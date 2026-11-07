@@ -37,6 +37,8 @@ var quests: Dictionary = {}
 var flags: Dictionary = {}
 var sparks: Array = []        # found spark colors, e.g. ["green"]
 var equipped: Dictionary = {"outfit": "", "weapon": ""}   # worn outfit / held tool (item ids)
+var powers: Dictionary = {}   # level-up powers: id -> rank (1..Powers.MAX_RANK)
+var power_picks := 0          # level-ups whose power choice is still waiting
 
 
 # --- stats --------------------------------------------------------------
@@ -46,8 +48,9 @@ func add_xp(amount: int) -> void:
 	while level < Progression.MAX_LEVEL and xp >= Progression.xp_to_next(level):
 		xp -= Progression.xp_to_next(level)
 		level += 1
-		max_hp += 10
-		power += 2
+		max_hp += Progression.hp_gain(level)
+		power += Progression.power_gain(level)
+		power_picks += 1
 		hp = max_hp
 		mp = max_mp
 		leveled_up.emit(level)
@@ -148,9 +151,10 @@ func switch_keeper(id: String, stats: Dictionary, look: Dictionary, display_name
 	var x := xp
 	var old_skills := skills.duplicate()
 	choose_keeper(id, stats, look, display_name)
-	for i in range(1, lv):
-		max_hp += 10
-		power += 2
+	for l in range(2, lv + 1):
+		max_hp += Progression.hp_gain(l)
+		power += Progression.power_gain(l)
+	max_hp += Powers.bonus_hp(powers)
 	level = lv
 	xp = x
 	for item_id: String in item_defs:
@@ -338,7 +342,7 @@ func has_flag(flag: String) -> bool:
 # --- save ---------------------------------------------------------------
 
 const SAVE_KEYS := ["character_id", "character_name", "character_look", "scene_id", "level", "xp",
-	"max_hp", "hp", "max_mp", "mp", "power", "speed", "piril", "items", "potions", "skills", "quests", "flags", "sparks", "equipped"]
+	"max_hp", "hp", "max_mp", "mp", "power", "speed", "piril", "items", "potions", "skills", "quests", "flags", "sparks", "equipped", "powers", "power_picks"]
 
 
 func to_dict() -> Dictionary:
@@ -367,3 +371,17 @@ func load_dict(d: Dictionary) -> void:
 	items_changed.emit()
 	flags_changed.emit()
 	piril_changed.emit(piril, 0)
+
+
+## Raise an old save to the level its progress calls for (see
+## Progression.catch_up_level). Each level gained waits for a power card.
+func catch_up() -> void:
+	var target := Progression.catch_up_level(sparks.size(), has_flag("bolum0_bitti"))
+	while level < target and level < Progression.MAX_LEVEL:
+		add_xp(Progression.xp_to_next(level) - xp)
+	# don't greet the keeper with a dozen card screens: three to choose,
+	# the rest are taken for them
+	var rng := RandomNumberGenerator.new()
+	rng.seed = 3
+	while power_picks > 3:
+		Powers.pick(self, Powers.choices(powers, rng)[0]["id"])

@@ -13,6 +13,9 @@ static var attackers := 0
 
 @export_enum("sumuklu", "mantar", "dev_mantar", "kirpi_topu", "karga", "kristal_bocek", "yarasa", "firtina_yumagi", "korsan_marti", "kar_tavsani", "buz_dikeni", "golge_kopya") var kind := "sumuklu"
 @export var gravity := 22.0
+## 0 = the kind's own level (MobStats.LEVELS, a little variety by place)
+@export var level := 0
+var _tag: Label3D
 
 var hp := 30
 var stats: Dictionary
@@ -36,7 +39,9 @@ var _strafe := 1.0
 
 
 func _ready() -> void:
-	stats = MobStats.KINDS[kind]
+	if level <= 0:
+		level = MobStats.level_of(kind, int(absf(global_position.x * 3.0 + global_position.z * 7.0)) % 2)
+	stats = MobStats.scaled(kind, level)
 	hp = stats["hp"]
 	add_to_group("hittable")
 	add_to_group("mob")
@@ -56,6 +61,7 @@ func _ready() -> void:
 		collision_mask = 16  # flies over hedges; only blocked by beams
 	_grey = MobModels.build(kind, true)
 	add_child(_grey)
+	_level_tag()
 	_home = global_position
 	_wander = _home
 	_t = randf() * 2.0
@@ -304,6 +310,9 @@ func _calm() -> void:
 		var p := Pickup.new()
 		get_parent().add_child(p)
 		p.global_position = global_position + Vector3(randf_range(-1.2, 1.2), 0, randf_range(-1.2, 1.2))
+	FloatText.spawn(get_parent(), global_position + Vector3.UP * 2.2, "+%d XP" % int(stats["xp"]), Tokens.color("xp"))
+	if _tag:
+		_tag.queue_free()
 	GameState.data.add_xp(stats["xp"])
 	GameState.notify("defeat", kind)
 	GameState.notify("defeat", "pus")
@@ -346,3 +355,20 @@ func _separation() -> Vector3:
 		if l > 0.01 and l < 1.6:
 			push += d / l * (1.6 - l) * 2.0
 	return push
+
+
+## "Sv 7" over its head: honey = your level, leaf = easier, berry = tougher.
+func _level_tag() -> void:
+	_tag = Label3D.new()
+	_tag.text = "Sv %d" % level
+	_tag.font = Tokens.font_for("text-heading")
+	_tag.font_size = 56
+	_tag.pixel_size = 0.006
+	_tag.outline_size = 14
+	_tag.outline_modulate = Tokens.color("outline")
+	_tag.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+	_tag.no_depth_test = true
+	var diff := level - GameState.data.level
+	_tag.modulate = Tokens.color("leaf" if diff <= -3 else ("hp" if diff >= 3 else "honey"))
+	_tag.position.y = 3.6 if kind == "dev_mantar" else (2.1 if stats.get("flies", false) else 1.7)
+	add_child(_tag)

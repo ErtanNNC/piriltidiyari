@@ -11,6 +11,10 @@ var _xp: StatBar
 var _level: Label
 var _piril: Label
 var _pause_btn: Button
+var _name_label: Label
+var _power_bar: VBoxContainer
+var _power_buttons: Array[Button] = []
+var _level_panel: LevelUpPanel
 var _pause_panel: Control
 var _quest_panel: PanelContainer
 var _quest_title: Label
@@ -76,7 +80,8 @@ func _ready() -> void:
 	var bars := VBoxContainer.new()
 	bars.add_theme_constant_override("separation", 2)
 	row.add_child(bars)
-	bars.add_child(UiKit.label(GameState.data.character_name, "text-heading", "ink"))
+	_name_label = UiKit.label(GameState.data.character_name, "text-heading", "ink")
+	bars.add_child(_name_label)
 	_hp = StatBar.new(); _hp.stat = "hp"; bars.add_child(_hp)
 	_mp = StatBar.new(); _mp.stat = "mp"; bars.add_child(_mp)
 	_xp = StatBar.new(); _xp.stat = "xp"; bars.add_child(_xp)
@@ -229,6 +234,24 @@ func _ready() -> void:
 	_root.add_child(tcs)
 	touch = tcs.visible
 
+	# level-up powers: buttons on the left edge (O / P keys)
+	_power_bar = VBoxContainer.new()
+	_power_bar.set_anchors_and_offsets_preset(Control.PRESET_CENTER_LEFT)
+	_power_bar.grow_vertical = Control.GROW_DIRECTION_BOTH
+	_power_bar.offset_left = m
+	_power_bar.offset_top = 40
+	_power_bar.add_theme_constant_override("separation", int(Tokens.px("space-2")))
+	_root.add_child(_power_bar)
+	for i in Powers.ACTIVE_SLOTS:
+		var b := UiKit.button("", true)
+		b.custom_minimum_size = Vector2(150, 60)
+		b.focus_mode = Control.FOCUS_NONE
+		var action := "power_%d" % (i + 1)
+		b.button_down.connect(func() -> void: TouchControls._send(action, true))
+		b.button_up.connect(func() -> void: TouchControls._send(action, false))
+		b.visible = false
+		_power_bar.add_child(b)
+		_power_buttons.append(b)
 	_potion_bar = HBoxContainer.new()
 	_potion_bar.set_anchors_and_offsets_preset(Control.PRESET_CENTER_BOTTOM)
 	_potion_bar.grow_horizontal = Control.GROW_DIRECTION_BOTH
@@ -248,7 +271,7 @@ func _ready() -> void:
 	d.piril_changed.connect(_on_piril)
 	d.quest_changed.connect(func(_id: String) -> void: _refresh_quest())
 	d.items_changed.connect(_refresh_potions)
-	d.leveled_up.connect(func(lv: int) -> void: show_scene_card("Seviye atladın!", "Seviye %d" % lv, ""))
+	d.skills_changed.connect(_refresh_powers)
 	GameState.dialogue_requested.connect(_open_dialogue)
 	GameState.lines_requested.connect(_open_lines)
 	GameState.shop_requested.connect(open_shop)
@@ -257,6 +280,7 @@ func _ready() -> void:
 	_refresh_quest()
 	_on_piril(d.piril, 0)
 	_refresh_potions()
+	_refresh_powers()
 	_bind_player.call_deferred()
 
 
@@ -273,8 +297,10 @@ func _refresh_stats() -> void:
 	var d := GameState.data
 	_hp.set_values(d.hp, d.max_hp)
 	_mp.set_values(d.mp, d.max_mp)
-	_xp.set_values(d.xp, Progression.xp_to_next(d.level))
+	var nxt := Progression.xp_to_next(d.level)
+	_xp.set_values(d.xp, nxt, ("%d / %d XP" % [d.xp, nxt]) if nxt > 0 else "En yüksek seviye")
 	_level.text = str(d.level)
+	_name_label.text = "%s · Seviye %d" % [d.character_name, d.level]
 
 
 func _on_piril(total: int, delta: int) -> void:
@@ -573,3 +599,58 @@ func toggle_pause() -> void:
 	v.add_child(note)
 	_root.add_child(p)
 	_pause_panel = p
+
+
+# --- level-up powers ------------------------------------------------------------
+
+func _refresh_powers() -> void:
+	var list := Powers.actives(GameState.data.powers)
+	var keys := ["O", "P"]
+	for i in _power_buttons.size():
+		var b := _power_buttons[i]
+		b.visible = i < list.size() and not _cinematic
+		if i < list.size():
+			var def: Dictionary = Powers.DEFS[list[i]]
+			b.set_meta("power", list[i])
+			b.text = "%s (%s)" % [def["short"], keys[i]] if not touch else String(def["short"])
+
+
+func _process(_delta: float) -> void:
+	# power buttons: dim while cooling down or short of energy
+	if _player and is_instance_valid(_player):
+		for b in _power_buttons:
+			if b.visible and b.has_meta("power"):
+				var id: String = b.get_meta("power")
+				var wait: float = _player.power_wait(id)
+				var mp_ok := GameState.data.mp >= int(Powers.DEFS[id]["mp"])
+				b.modulate.a = 1.0 if wait <= 0.0 and mp_ok else 0.45
+	_maybe_level_up()
+
+
+## A waiting level-up opens the power cards once nothing else is on screen.
+func _maybe_level_up() -> void:
+	var d := GameState.data
+	if d.power_picks <= 0 or _level_panel or _pause_panel or _cinematic or _dialog.is_open() \
+			or GameState.in_dialogue or SceneFlow.busy or get_tree().paused:
+		return
+	var rng := RandomNumberGenerator.new()
+	rng.seed = hash("%s%d%d" % [d.character_id, d.level, d.power_picks])
+	var choices := Powers.choices(d.powers, rng)
+	if DevTools.demo != "" and DevTools.demo != "levelup":
+		# automated checks keep running: take the first card
+		Powers.pick(d, choices[0]["id"])
+		return
+	get_tree().paused = true
+	_level_panel = LevelUpPanel.new(choices)
+	_root.add_child(_level_panel)
+	_level_panel.picked.connect(func(id: String) -> void:
+		Powers.pick(d, id)
+		_level_panel.queue_free()
+		_level_panel = null
+		get_tree().paused = false
+		_refresh_powers()
+		_refresh_stats()
+		if id != Powers.FALLBACK:
+			var def: Dictionary = Powers.DEFS[id]
+			var how := " (%s tuşu / düğmesi)" % ["O", "P"][Powers.actives(d.powers).find(id)] if def["kind"] == "active" else ""
+			show_toast("%s: kademe %d%s" % [def["name"], Powers.rank(d.powers, id), how], "star"))
