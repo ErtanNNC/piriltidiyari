@@ -156,16 +156,14 @@ func boss(on: bool) -> void:
 
 
 func music(track: String, fade := 1.2) -> void:
-	if track == _track:
+	if track == _track and (not music_on or _music[_active].playing):
 		return
 	_track = track
 	var old := _music[_active]
 	_active = 1 - _active
 	var cur := _music[_active]
 	if old.playing:
-		var tw := create_tween()
-		tw.tween_property(old, "volume_db", -60.0, fade)
-		tw.tween_callback(old.stop)
+		_fade(old, -60.0, fade, true)
 	if track == "" or not music_on:
 		return
 	var s := _stream(MUSIC_DIR + track + ".ogg")
@@ -174,21 +172,42 @@ func music(track: String, fade := 1.2) -> void:
 	cur.stream = s
 	cur.volume_db = -60.0
 	cur.play()
-	var tw2 := create_tween()
-	tw2.tween_property(cur, "volume_db", MUSIC_DB, fade)
+	_fade(cur, MUSIC_DB, fade, false)
+
+
+var _fades: Dictionary = {}
+
+
+## One volume fade per player at a time (a new fade replaces the old one).
+func _fade(p: AudioStreamPlayer, to_db: float, seconds: float, stop_after: bool) -> void:
+	var old: Tween = _fades.get(p)
+	if old and old.is_valid():
+		old.kill()
+	var tw := create_tween()
+	tw.tween_property(p, "volume_db", to_db, seconds)
+	if stop_after:
+		tw.tween_callback(p.stop)
+	_fades[p] = tw
+
+
+## Silence every music player right away (Müzik: Kapalı).
+func _stop_music(seconds := 0.35) -> void:
+	for p in _music:
+		if p.playing:
+			_fade(p, -60.0, seconds, true)
 
 
 # --- settings -----------------------------------------------------------------
 
 func set_music_on(on: bool) -> void:
 	music_on = on
-	var t := _track
-	_track = ""
 	if on:
-		music(t if t != "" else _scene_track, 0.6)
+		# start what this place should play (the boss track during a fight)
+		var t := "boss" if _in_boss else (_track if _track != "" else _scene_track)
+		_track = ""
+		music(t, 0.6)
 	else:
-		music("", 0.4)
-		_track = t
+		_stop_music()
 	_save_settings()
 
 

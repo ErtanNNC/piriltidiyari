@@ -125,7 +125,18 @@ func _audio_check() -> void:
 	await get_tree().create_timer(0.3).timeout
 	var boss_track := Audio._track
 	Audio.boss(false)
-	print("AUDIO sfx_files=%d tracks=%d missing=%s boss=%s back=%s" % [sfx, tracks.size(), missing, boss_track, Audio._track])
+	await get_tree().create_timer(0.3).timeout
+	# Müzik: Kapalı must silence it, Açık must bring it back
+	Audio.set_music_on(false)
+	await get_tree().create_timer(0.8).timeout
+	var silent: bool = not Audio._music[0].playing and not Audio._music[1].playing
+	Audio.scene_changed("chapter2")
+	await get_tree().create_timer(0.3).timeout
+	var still_silent: bool = not Audio._music[0].playing and not Audio._music[1].playing
+	Audio.set_music_on(true)
+	await get_tree().create_timer(0.3).timeout
+	var back_on: bool = Audio._music[0].playing or Audio._music[1].playing
+	print("AUDIO sfx_files=%d tracks=%d missing=%s boss=%s back=%s off=%s off_after_scene=%s on=%s" % [sfx, tracks.size(), missing, boss_track, Audio._track, silent, still_silent, back_on])
 	get_tree().quit()
 
 
