@@ -103,6 +103,31 @@ func _run_demo(which: String) -> void:
 			GameState.data.take_damage(30)
 			await get_tree().create_timer(0.4).timeout
 			player.spin_attack()
+		"touchtest":
+			# press the on-screen buttons the way a finger does
+			var tc: TouchControls = _hud.find_children("*", "TouchControls", true, false)[0]
+			var results := {}
+			for label in ["Saldır", "Yuvarlan", "Zıpla"]:
+				player.global_position = Vector3(0, 0, 4)
+				player._attack_cd = 0.0
+				await get_tree().create_timer(0.8).timeout
+				var b: Button = null
+				for c in tc.find_children("*", "Button", true, false):
+					if (c as Button).text == label:
+						b = c
+				var y0 := player.global_position.y
+				b.button_down.emit()
+				await get_tree().physics_frame
+				await get_tree().physics_frame
+				var acted := false
+				match label:
+					"Saldır": acted = player._attack_cd > 0.0
+					"Yuvarlan": acted = player.rolling
+					"Zıpla": acted = player.velocity.y > 0.0 or player.global_position.y > y0
+				b.button_up.emit()
+				results[label] = acted
+			print("TOUCHTEST ", results)
+			get_tree().quit()
 		"beamtest":
 			for m in get_tree().get_nodes_in_group("mob"):
 				m.queue_free()

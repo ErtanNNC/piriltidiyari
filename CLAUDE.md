@@ -12,7 +12,7 @@ is a copy of the design system's tokens.
   (DevTools.preset); `--auto` advances dialogue by itself; demos live in each
   scene script's `_run_demo`. Look at the PNG after any visual change.
 - Gameplay checks run headless: `godot --headless --path . -- --scene=scene3 --demo=hop`
-  (demos that print and quit: beamtest, climb, hop, climb2, flow, win).
+  (demos that print and quit: beamtest, touchtest, climb, hop, climb2, flow, win).
 - Godot is downloaded by `tools/setup_godot.sh` into `.tools/` (gitignored).
 
 ## Rules
@@ -28,6 +28,9 @@ is a copy of the design system's tokens.
   at a time (`MobStats.MAX_ATTACKERS`). Nothing a kid must reach may become
   unreachable (mobs knocked off ledges return home).
 - Game rules stay in `src/core/` (RefCounted, no nodes) so tests can run them.
+- On-screen buttons must send an `InputEventAction` (`TouchControls._send`), not
+  only `Input.action_press`: attack/roll/skill react to events. Check with
+  `-- --scene=scene2 --demo=touchtest --touch` (headless).
 - Use `set_anchors_and_offsets_preset`, not `set_anchors_preset` (the latter
   leaves size 0 for code-built Controls).
 - Identifiers in English; player-facing strings and docs in Turkish.

@@ -38,10 +38,20 @@ func _ready() -> void:
 			GameState.data.skills_changed.connect(refresh)
 		b.custom_minimum_size = Vector2(132, 72)
 		var action: String = spec[1]
-		b.button_down.connect(func() -> void: Input.action_press(action))
-		b.button_up.connect(func() -> void: Input.action_release(action))
+		# Send a real input event (like a key press), not just the action
+		# state: attack/roll/skill listen for events, jump polls the state.
+		b.button_down.connect(func() -> void: _send(action, true))
+		b.button_up.connect(func() -> void: _send(action, false))
 		box.add_child(b)
 	_stick_center = Vector2(m + STICK_RADIUS + 20, 0)
+
+
+static func _send(action: String, pressed: bool) -> void:
+	var ev := InputEventAction.new()
+	ev.action = action
+	ev.pressed = pressed
+	ev.strength = 1.0 if pressed else 0.0
+	Input.parse_input_event(ev)
 
 
 func _input(event: InputEvent) -> void:
