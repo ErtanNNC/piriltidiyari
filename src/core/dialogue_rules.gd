@@ -10,7 +10,8 @@ extends RefCounted
 ##        "has_item": id, "objective_done": "quest/objective",
 ##        "objective_not_done": "quest/objective", "flag": f, "not_flag": f}
 ## then: {"start_quest": id, "deliver": {"quest", "objective", "item"},
-##        "complete_quest": id, "set_flag": f, "give_piril": n, "give_xp": n}
+##        "complete_quest": id, "set_flag": f, "give_piril": n, "give_xp": n,
+##        "give_items": {id: n}, "advance": "quest/objective", "goto_scene": id}
 
 
 static func pick_variant(npc_def: Dictionary, data: PlayerData) -> Dictionary:
@@ -55,7 +56,7 @@ static func apply(then: Dictionary, data: PlayerData, quests: Dictionary) -> Arr
 			events.append("quest_started")
 	if then.has("deliver"):
 		var d: Dictionary = then["deliver"]
-		if data.remove_item(d["item"]):
+		if data.can_advance(d["quest"], d["objective"]) and data.remove_item(d["item"]):
 			data.complete_objective(d["quest"], d["objective"])
 			events.append("delivered")
 	if then.has("complete_quest") and quests.has(then["complete_quest"]):
@@ -67,4 +68,13 @@ static func apply(then: Dictionary, data: PlayerData, quests: Dictionary) -> Arr
 		data.add_piril(int(then["give_piril"]))
 	if then.has("give_xp"):
 		data.add_xp(int(then["give_xp"]))
+	for item_id: String in then.get("give_items", {}):
+		data.add_item(item_id, int(then["give_items"][item_id]))
+		events.append("item:" + item_id)
+	if then.has("advance"):
+		var parts: PackedStringArray = String(then["advance"]).split("/")
+		if data.advance_objective(parts[0], parts[1]):
+			events.append("advanced")
+	if then.has("goto_scene"):
+		events.append("goto:" + String(then["goto_scene"]))
 	return events

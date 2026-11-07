@@ -2,23 +2,81 @@
   "npc": "zipzip",
   "variants": [
     {
-      "when": { "objective_done": "kayip_fenerler/yesil" },
-      "lines": [ { "speaker": "zipzip", "mood": "mutlu", "text": "Vırak! Şimdi her yeri görüyorum!" } ]
-    },
-    {
-      "when": { "quest": "kayip_fenerler", "state": "active", "has_item": "fener_yesil" },
+      "when": {
+        "quest": "gri_ruzgar",
+        "state": [
+          "active",
+          "ready",
+          "done"
+        ]
+      },
       "lines": [
-        { "speaker": "zipzip", "mood": "şaşkın", "text": "Bu benim fenerim! Yeşil olan!" },
-        { "speaker": "fistik", "mood": "mutlu", "text": "Al bakalım. Bir daha düşürme." }
+        {
+          "speaker": "zipzip",
+          "mood": "üzgün",
+          "text": "Vırak! Sen yaparsın Fıstık!"
+        }
+      ]
+    },
+    {
+      "when": {
+        "objective_done": "kayip_fenerler/yesil"
+      },
+      "lines": [
+        {
+          "speaker": "zipzip",
+          "mood": "mutlu",
+          "text": "Vırak! Şimdi her yeri görüyorum!"
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "kayip_fenerler",
+        "state": "active",
+        "has_item": "fener_yesil"
+      },
+      "lines": [
+        {
+          "speaker": "zipzip",
+          "mood": "şaşkın",
+          "text": "Bu benim fenerim! Yeşil olan!"
+        },
+        {
+          "speaker": "fistik",
+          "mood": "mutlu",
+          "text": "Al bakalım. Bir daha düşürme."
+        }
       ],
-      "then": { "deliver": { "quest": "kayip_fenerler", "objective": "yesil", "item": "fener_yesil" } }
+      "then": {
+        "deliver": {
+          "quest": "kayip_fenerler",
+          "objective": "yesil",
+          "item": "fener_yesil"
+        }
+      }
     },
     {
-      "when": { "quest": "kayip_fenerler", "state": "active" },
-      "lines": [ { "speaker": "zipzip", "mood": "üzgün", "text": "Yeşil fenerim kayboldu... Çiçek tarlasında düşürdüm galiba." } ]
+      "when": {
+        "quest": "kayip_fenerler",
+        "state": "active"
+      },
+      "lines": [
+        {
+          "speaker": "zipzip",
+          "mood": "üzgün",
+          "text": "Yeşil fenerim kayboldu... Çiçek tarlasında düşürdüm galiba."
+        }
+      ]
     },
     {
-      "lines": [ { "speaker": "zipzip", "mood": "mutlu", "text": "Vırak! Kovalamaca oynayalım mı?" } ]
+      "lines": [
+        {
+          "speaker": "zipzip",
+          "mood": "mutlu",
+          "text": "Vırak! Kovalamaca oynayalım mı?"
+        }
+      ]
     }
   ]
 }

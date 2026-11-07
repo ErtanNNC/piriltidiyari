@@ -1,0 +1,231 @@
+class_name Mob
+extends CharacterBody3D
+## A Pus-touched animal. Grey and grumpy, still cute. It wanders, chases
+## when you come near, warns 0.8 s before every attack (a honey ground mark
+## and a wind-up), and when beaten turns back into its own colors, shrinks
+## and runs off — nobody dies. Drops Pırıl and a little XP.
+
+signal calmed(mob: Mob)
+
+const TELEGRAPH := 0.8
+
+static var attackers := 0
+
+@export_enum("sumuklu", "mantar", "dev_mantar") var kind := "sumuklu"
+@export var gravity := 22.0
+
+var hp := 30
+var stats: Dictionary
+var state := "idle"   # idle, chase, windup, attack, recover, hurt, calm
+var _t := 0.0
+var _home := Vector3.ZERO
+var _wander := Vector3.ZERO
+var _attack_dir := Vector3.ZERO
+var _knock := Vector3.ZERO
+var _hit_this_attack := false
+var _grey: Node3D
+var _bright: Node3D
+var _player: Player
+var _has_token := false
+var _strafe := 1.0
+
+
+func _ready() -> void:
+	stats = MobStats.KINDS[kind]
+	hp = stats["hp"]
+	add_to_group("hittable")
+	add_to_group("mob")
+	set_meta("hit_radius", 1.0 if kind == "dev_mantar" else 0.5)
+	collision_layer = 2
+	collision_mask = 1 | 16
+	var col := CollisionShape3D.new()
+	var s := CapsuleShape3D.new()
+	var big := kind == "dev_mantar"
+	s.radius = 1.0 if big else 0.45
+	s.height = 2.4 if big else 1.0
+	col.shape = s
+	col.position.y = s.height * 0.5
+	add_child(col)
+	_grey = MobModels.build(kind, true)
+	add_child(_grey)
+	_home = global_position
+	_wander = _home
+	_t = randf() * 2.0
+
+
+func _physics_process(delta: float) -> void:
+	if not _player:
+		_player = get_tree().get_first_node_in_group("player")
+	_t -= delta
+	var move := Vector3.ZERO
+	var to_player := Vector3.ZERO
+	var dist := INF
+	if _player and not _player.asleep:
+		to_player = _player.global_position - global_position
+		to_player.y = 0.0
+		dist = to_player.length()
+	match state:
+		"idle":
+			if dist < stats["aggro"]:
+				state = "chase"
+			else:
+				if _t <= 0.0:
+					_t = randf_range(1.5, 3.0)
+					_wander = _home + Vector3(randf_range(-3, 3), 0, randf_range(-3, 3))
+				var w := _wander - global_position
+				w.y = 0.0
+				if w.length() > 0.3:
+					move = w.normalized() * stats["speed"] * 0.5
+		"chase":
+			if dist > stats["aggro"] * 1.6:
+				state = "idle"
+			elif dist <= stats["range"] and (attackers < MobStats.MAX_ATTACKERS or kind == "dev_mantar"):
+				_windup(to_player)
+			elif dist <= stats["range"] + 1.8:
+				# wait for a turn: circle around at a polite distance
+				var side := to_player.normalized().cross(Vector3.UP) * _strafe
+				var keep := -to_player.normalized() * (1.0 if dist < stats["range"] + 0.8 else -0.3)
+				move = (side + keep).normalized() * stats["speed"] * 0.6
+			else:
+				move = to_player.normalized() * stats["speed"]
+			move += _separation()
+		"windup":
+			# 0.8 s tell: wobble and swell. Damage only comes after it.
+			var k := 1.0 - _t / TELEGRAPH
+			_grey.scale = Vector3.ONE * (1.0 + 0.18 * k) * Vector3(1.0 + sin(k * 40.0) * 0.04, 1.0, 1.0)
+			if _t <= 0.0:
+				_grey.scale = Vector3.ONE
+				_attack()
+		"attack":
+			if stats["attack"] == "lunge":
+				move = _attack_dir * 10.0
+				if not _hit_this_attack and dist < 1.2 and _player.hurt(stats["damage"], global_position):
+					_hit_this_attack = true
+			if _t <= 0.0:
+				state = "recover"
+				_t = 1.4
+				_release_token()
+		"recover", "hurt":
+			if _t <= 0.0:
+				state = "chase"
+		"calm":
+			var away := -to_player.normalized() if dist < INF else Vector3.BACK
+			move = away * 6.0
+	velocity.x = move.x + _knock.x
+	velocity.z = move.z + _knock.z
+	_knock = _knock.move_toward(Vector3.ZERO, 25.0 * delta)
+	velocity.y -= gravity * delta
+	if is_on_floor() and velocity.y < 0.0:
+		velocity.y = 0.0
+	move_and_slide()
+	var face := move if move.length() > 0.1 else (to_player if state == "windup" else Vector3.ZERO)
+	if face.length() > 0.1:
+		rotation.y = lerp_angle(rotation.y, atan2(face.x, face.z), 1.0 - exp(-10.0 * delta))
+
+
+func _windup(to_player: Vector3) -> void:
+	if not _has_token:
+		_has_token = true
+		attackers += 1
+	_strafe = -1.0 if randf() < 0.5 else 1.0
+	state = "windup"
+	_t = TELEGRAPH
+	_attack_dir = to_player.normalized()
+	if stats["attack"] == "burst":
+		Effects.warning(get_parent(), global_position, stats["range"], TELEGRAPH)
+	else:
+		var mark := Effects.warning(get_parent(), global_position + _attack_dir * 1.8, 1.1, TELEGRAPH)
+		mark.scale.z *= 1.6
+
+
+func _attack() -> void:
+	state = "attack"
+	_hit_this_attack = false
+	if stats["attack"] == "burst":
+		_t = 0.25
+		Effects.ring(get_parent(), global_position + Vector3.UP * 0.3, stats["range"], Tokens.color("pus"), 0.35)
+		if _player and _player.global_position.distance_to(global_position) <= stats["range"] + 0.4:
+			_player.hurt(stats["damage"], global_position)
+	else:
+		_t = 0.3
+
+
+## Called by the player's attacks.
+func hit(damage: int, from: Vector3, push: float) -> void:
+	if state == "calm":
+		return
+	hp -= damage
+	var away := global_position - from
+	away.y = 0.0
+	_knock = away.normalized() * push * (0.35 if kind == "dev_mantar" else 1.0)
+	FloatText.spawn(get_parent(), global_position + Vector3.UP * (3.0 if kind == "dev_mantar" else 1.6), str(damage), Tokens.color("panel"))
+	var tw := create_tween()
+	tw.tween_property(_grey, "scale", Vector3(1.25, 0.75, 1.25), 0.06)
+	tw.tween_property(_grey, "scale", Vector3.ONE, 0.12)
+	if hp <= 0:
+		_calm()
+	elif state != "windup" or kind != "dev_mantar":
+		if state == "windup" or state == "attack":
+			_release_token()
+		state = "hurt"
+		_t = 0.35
+
+
+## Rolling into a mob knocks it back without damage.
+func bump(from: Vector3) -> void:
+	if state == "calm":
+		return
+	var away := global_position - from
+	away.y = 0.0
+	_knock = away.normalized() * (4.0 if kind == "dev_mantar" else 8.0)
+
+
+## Beaten: back to its own colors, small, and off it runs. Never "dies".
+func _calm() -> void:
+	state = "calm"
+	_release_token()
+	remove_from_group("hittable")
+	remove_from_group("mob")
+	collision_layer = 0
+	collision_mask = 1
+	Effects.sparkle(get_parent(), global_position + Vector3.UP, Tokens.color("honey"), 14)
+	_grey.queue_free()
+	_bright = MobModels.build(kind, false)
+	add_child(_bright)
+	var tw := create_tween()
+	tw.tween_property(_bright, "scale", Vector3.ONE * 0.5, 0.35).set_trans(Tween.TRANS_BACK)
+	tw.tween_interval(1.2)
+	tw.tween_property(_bright, "scale", Vector3.ZERO, 0.3)
+	tw.tween_callback(queue_free)
+	for i in stats["piril"]:
+		var p := Pickup.new()
+		get_parent().add_child(p)
+		p.global_position = global_position + Vector3(randf_range(-1.2, 1.2), 0, randf_range(-1.2, 1.2))
+	GameState.data.add_xp(stats["xp"])
+	GameState.notify("defeat", kind)
+	GameState.notify("defeat", "pus")
+	calmed.emit(self)
+
+
+func _release_token() -> void:
+	if _has_token:
+		_has_token = false
+		attackers = maxi(attackers - 1, 0)
+
+
+func _exit_tree() -> void:
+	_release_token()
+
+
+## Keep a little space between mobs so they don't stack into one blob.
+func _separation() -> Vector3:
+	var push := Vector3.ZERO
+	for other in get_tree().get_nodes_in_group("mob"):
+		if other == self:
+			continue
+		var d: Vector3 = global_position - (other as Node3D).global_position
+		d.y = 0.0
+		var l := d.length()
+		if l > 0.01 and l < 1.6:
+			push += d / l * (1.6 - l) * 2.0
+	return push

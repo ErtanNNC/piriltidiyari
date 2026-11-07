@@ -9,12 +9,21 @@ const ACTIONS := {
 	"jump": [KEY_SPACE],
 	"attack": [KEY_J],
 	"interact": [KEY_E, KEY_ENTER],
+	"roll": [KEY_K, KEY_SHIFT],
+	"skill": [KEY_L],
+	"potion_1": [KEY_1],
+	"potion_2": [KEY_2],
+	"potion_3": [KEY_3],
+	"potion_4": [KEY_4],
 }
 
 const PAD_BUTTONS := {
 	"jump": JOY_BUTTON_A,
 	"attack": JOY_BUTTON_X,
-	"interact": JOY_BUTTON_B,
+	"interact": JOY_BUTTON_Y,
+	"roll": JOY_BUTTON_B,
+	"skill": JOY_BUTTON_RIGHT_SHOULDER,
+	"potion_1": JOY_BUTTON_LEFT_SHOULDER,
 }
 
 

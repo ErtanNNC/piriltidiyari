@@ -11,10 +11,17 @@ uniform float band_softness : hint_range(0.0, 0.5) = 0.04;
 uniform float rim_strength : hint_range(0.0, 1.0) = 0.25;
 uniform vec4 emission_color : source_color = vec4(0.0, 0.0, 0.0, 1.0);
 uniform float emission_strength = 0.0;
+// How much the Pus can grey this surface (lanterns and sparks resist it).
+uniform float pus_affect : hint_range(0.0, 1.0) = 1.0;
+// 0 = full color, 1 = everything grey. Set with Pus.set_amount().
+global uniform float pus_amount;
 
 void fragment() {
-	ALBEDO = albedo.rgb;
-	EMISSION = emission_color.rgb * emission_strength;
+	float grey = dot(albedo.rgb, vec3(0.299, 0.587, 0.114));
+	vec3 pus_tint = vec3(grey) * vec3(0.92, 0.91, 0.98);
+	float p = clamp(pus_amount * pus_affect, 0.0, 1.0);
+	ALBEDO = mix(albedo.rgb, pus_tint, p);
+	EMISSION = mix(emission_color.rgb, vec3(grey), p * 0.7) * emission_strength;
 }
 
 void light() {

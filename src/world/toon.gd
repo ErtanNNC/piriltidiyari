@@ -7,11 +7,14 @@ const TOON_SHADER := preload("res://src/world/toon.gdshader")
 const OUTLINE_SHADER := preload("res://src/world/outline.gdshader")
 
 static var _cache: Dictionary = {}
+## Parts built while this is below 1 resist the global Pus grey (mobs are
+## already grey and must stay readable in the fog).
+static var default_pus := 1.0
 
 
-static func material(col: Variant, outline := 0.035, glow := 0.0) -> ShaderMaterial:
+static func material(col: Variant, outline := 0.035, glow := 0.0, pus := 1.0) -> ShaderMaterial:
 	var c := _resolve(col)
-	var key := "%s|%s|%s" % [c.to_html(), outline, glow]
+	var key := "%s|%s|%s|%s" % [c.to_html(), outline, glow, pus]
 	if _cache.has(key):
 		return _cache[key]
 	var m := ShaderMaterial.new()
@@ -21,6 +24,9 @@ static func material(col: Variant, outline := 0.035, glow := 0.0) -> ShaderMater
 	if glow > 0.0:
 		m.set_shader_parameter("emission_color", c)
 		m.set_shader_parameter("emission_strength", glow)
+		m.set_shader_parameter("pus_affect", 0.35)
+	if pus < 1.0:
+		m.set_shader_parameter("pus_affect", pus)
 	if outline > 0.0:
 		var o := ShaderMaterial.new()
 		o.shader = OUTLINE_SHADER
@@ -34,7 +40,7 @@ static func material(col: Variant, outline := 0.035, glow := 0.0) -> ShaderMater
 ## Adds a primitive mesh child. `shape` is "sphere", "capsule", "cylinder",
 ## "cone", "box" or "torus"; `size` is the bounding size in meters.
 static func part(parent: Node3D, shape: String, size: Vector3, col: Variant,
-		pos := Vector3.ZERO, rot_deg := Vector3.ZERO, glow := 0.0, outline := 0.035) -> MeshInstance3D:
+		pos := Vector3.ZERO, rot_deg := Vector3.ZERO, glow := 0.0, outline := 0.035, pus := -1.0) -> MeshInstance3D:
 	var mi := MeshInstance3D.new()
 	match shape:
 		"sphere":
@@ -65,7 +71,7 @@ static func part(parent: Node3D, shape: String, size: Vector3, col: Variant,
 			var b := BoxMesh.new()
 			b.size = size
 			mi.mesh = b
-	mi.material_override = material(col, outline, glow)
+	mi.material_override = material(col, outline, glow, pus if pus >= 0.0 else default_pus)
 	mi.position = pos
 	mi.rotation_degrees = rot_deg
 	parent.add_child(mi)

@@ -20,6 +20,14 @@ var _toast_label: Label
 var _toast_icon: GameIcon
 var _toast_tween: Tween
 var _root: Control
+var _potion_bar: HBoxContainer
+var _hint: PanelContainer
+var _hint_label: Label
+var _sparks: SparkTracker
+var _boss: VBoxContainer
+var _boss_name: Label
+var _boss_bar: StatBar
+var touch := false
 
 
 func _ready() -> void:
@@ -67,11 +75,49 @@ func _ready() -> void:
 
 	# top-center: spark tracker
 	var tc := CenterContainer.new()
-	tc.set_anchors_and_offsets_preset(Control.PRESET_CENTER_TOP)
+	tc.set_anchors_and_offsets_preset(Control.PRESET_TOP_WIDE)
 	tc.offset_top = m
 	tc.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_root.add_child(tc)
-	tc.add_child(SparkTracker.new())
+	var top_center := VBoxContainer.new()
+	top_center.add_theme_constant_override("separation", int(Tokens.px("space-3")))
+	top_center.alignment = BoxContainer.ALIGNMENT_BEGIN
+	tc.add_child(top_center)
+	_sparks = SparkTracker.new()
+	_sparks.alignment = BoxContainer.ALIGNMENT_CENTER
+	top_center.add_child(_sparks)
+	_boss = VBoxContainer.new()
+	_boss.visible = false
+	_boss.add_theme_constant_override("separation", 2)
+	top_center.add_child(_boss)
+	_boss_name = UiKit.outlined(UiKit.label("", "text-heading", "panel"), 8)
+	_boss_name.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_boss.add_child(_boss_name)
+	_boss_bar = StatBar.new()
+	_boss_bar.stat = "hp"
+	_boss_bar.custom_minimum_size = Vector2(460, 34)
+	_boss.add_child(_boss_bar)
+	_hint = PanelContainer.new()
+	var hs := UiKit.box(Tokens.color("panel"), "radius-pill", 4.0)
+	hs.content_margin_left = 16
+	hs.content_margin_right = 20
+	hs.content_margin_top = 6
+	hs.content_margin_bottom = 6
+	_hint.add_theme_stylebox_override("panel", hs)
+	_hint.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	_hint.custom_minimum_size.x = 0
+	_hint.visible = false
+	top_center.add_child(_hint)
+	var hrow := HBoxContainer.new()
+	hrow.add_theme_constant_override("separation", int(Tokens.px("space-2")))
+	_hint.add_child(hrow)
+	var hicon := GameIcon.new()
+	hicon.kind = "quest"
+	hicon.fill = Tokens.color("sky")
+	hrow.add_child(hicon)
+	_hint_label = UiKit.label("", "text-label", "ink")
+	_hint_label.add_theme_font_size_override("font_size", 20)
+	hrow.add_child(_hint_label)
 
 	# top-right: Pırıl pill + quest tracker
 	var tr := VBoxContainer.new()
@@ -127,7 +173,7 @@ func _ready() -> void:
 	_talk.set_anchors_and_offsets_preset(Control.PRESET_CENTER_BOTTOM)
 	_talk.grow_horizontal = Control.GROW_DIRECTION_BOTH
 	_talk.grow_vertical = Control.GROW_DIRECTION_BEGIN
-	_talk.offset_bottom = -m - 8
+	_talk.offset_bottom = -m - 96
 	_talk.custom_minimum_size = Vector2(160, 60)
 	_talk.offset_left = -80
 	_talk.offset_right = 80
@@ -161,7 +207,19 @@ func _ready() -> void:
 	_toast_label.add_theme_font_size_override("font_size", 20)
 	trow.add_child(_toast_label)
 
-	_root.add_child(TouchControls.new())
+	var tcs := TouchControls.new()
+	_root.add_child(tcs)
+	touch = tcs.visible
+
+	_potion_bar = HBoxContainer.new()
+	_potion_bar.set_anchors_and_offsets_preset(Control.PRESET_CENTER_BOTTOM)
+	_potion_bar.grow_horizontal = Control.GROW_DIRECTION_BOTH
+	_potion_bar.grow_vertical = Control.GROW_DIRECTION_BEGIN
+	_potion_bar.offset_bottom = -m
+	_potion_bar.add_theme_constant_override("separation", int(Tokens.px("space-2")))
+	_root.add_child(_potion_bar)
+	for i in PlayerData.POTION_SLOTS:
+		_potion_bar.add_child(PotionSlot.new(i, self))
 
 	_dialog = DialogBox.new()
 	_root.add_child(_dialog)
@@ -171,12 +229,14 @@ func _ready() -> void:
 	d.stats_changed.connect(_refresh_stats)
 	d.piril_changed.connect(_on_piril)
 	d.quest_changed.connect(func(_id: String) -> void: _refresh_quest())
+	d.items_changed.connect(_refresh_potions)
 	d.leveled_up.connect(func(lv: int) -> void: show_scene_card("Seviye atladın!", "Seviye %d" % lv, ""))
 	GameState.dialogue_requested.connect(_open_dialogue)
 	GameState.toast.connect(show_toast)
 	_refresh_stats()
 	_refresh_quest()
 	_on_piril(d.piril, 0)
+	_refresh_potions()
 	_bind_player.call_deferred()
 
 
@@ -240,10 +300,12 @@ func _open_dialogue(npc_id: String) -> void:
 	if _player:
 		_player.input_enabled = false
 	_talk.visible = false
+	_potion_bar.visible = false
 	_dialog.open(v.get("lines", []), v.get("then", {}))
 
 
 func _on_dialog_finished() -> void:
+	_refresh_potions()
 	if _player:
 		_player.input_enabled = true
 		_talk.visible = _player.current_focus() != null
@@ -290,3 +352,48 @@ func show_scene_card(small: String, big: String, sub: String) -> void:
 	tw.tween_interval(2.5)
 	tw.tween_property(card, "modulate:a", 0.0, 0.5)
 	tw.tween_callback(card.queue_free)
+
+
+func player() -> Player:
+	return _player
+
+
+func _refresh_potions() -> void:
+	var any := false
+	for p in GameState.data.potions:
+		if p != "":
+			any = true
+	_potion_bar.visible = any and not _dialog.is_open()
+	for c in _potion_bar.get_children():
+		(c as PotionSlot).refresh()
+
+
+## Persistent tutorial bubble under the spark tracker until cleared.
+func show_hint(desktop_text: String, touch_text := "") -> void:
+	_hint_label.text = touch_text if touch and touch_text != "" else desktop_text
+	_hint.visible = true
+	_hint.pivot_offset = _hint.size * 0.5
+	var tw := _hint.create_tween()
+	_hint.scale = Vector2(0.8, 0.8)
+	tw.tween_property(_hint, "scale", Vector2.ONE, 0.25).set_trans(Tween.TRANS_BACK)
+
+
+func clear_hint() -> void:
+	_hint.visible = false
+
+
+## Boss fights put the boss's name and HP bar where the spark tracker sits.
+func show_boss(boss_name: String, hp: int, max_hp: int) -> void:
+	_sparks.visible = false
+	_boss.visible = true
+	_boss_name.text = boss_name
+	set_boss_hp(hp, max_hp)
+
+
+func set_boss_hp(hp: int, max_hp: int) -> void:
+	_boss_bar.set_values(hp, max_hp, " ")
+
+
+func hide_boss() -> void:
+	_boss.visible = false
+	_sparks.visible = true

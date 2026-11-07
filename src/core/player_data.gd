@@ -9,19 +9,30 @@ signal items_changed
 signal quest_changed(quest_id: String)
 signal leveled_up(level: int)
 signal flags_changed
+signal skills_changed
+
+const POTION_SLOTS := 4
+const POTIONS := ["bal_surubu", "yildiz_tozu", "cesaret_sekeri", "pus_kovucu"]
 
 var character_id := "fistik"
+var character_name := "Fıstık"
+var character_look := {}       # chosen color variant / accessory
+var scene_id := "scene1"       # checkpoint for "Devam et"
 var level := 1
 var xp := 0
 var max_hp := 100
 var hp := 100
 var max_mp := 50
 var mp := 50
+var power := 10
 var piril := 0
 var items: Dictionary = {}    # item_id -> count
-var quests: Dictionary = {}   # quest_id -> {state: "active"|"done", objectives: {id: bool}}
-var flags: Dictionary = {}    # flag -> true
-var sparks: Array[String] = []  # found spark colors, e.g. ["green"]
+var potions: Array = ["", "", "", ""]   # item ids in the 4 potion slots
+var skills: Array = []        # unlocked skill ids
+## quest_id -> {"state": "active"|"done", "objectives": {id: [progress, needed]}, "ordered": bool}
+var quests: Dictionary = {}
+var flags: Dictionary = {}
+var sparks: Array = []        # found spark colors, e.g. ["green"]
 
 
 # --- stats --------------------------------------------------------------
@@ -32,6 +43,7 @@ func add_xp(amount: int) -> void:
 		xp -= Progression.xp_to_next(level)
 		level += 1
 		max_hp += 10
+		power += 2
 		hp = max_hp
 		mp = max_mp
 		leveled_up.emit(level)
@@ -42,6 +54,32 @@ func add_xp(amount: int) -> void:
 
 func heal(amount: int) -> void:
 	hp = clampi(hp + amount, 0, max_hp)
+	stats_changed.emit()
+
+
+## Returns true when this hit put the player to sleep (hp reached 0).
+func take_damage(amount: int) -> bool:
+	hp = maxi(hp - amount, 0)
+	stats_changed.emit()
+	return hp == 0
+
+
+func use_mp(amount: int) -> bool:
+	if mp < amount:
+		return false
+	mp -= amount
+	stats_changed.emit()
+	return true
+
+
+func restore_mp(amount: int) -> void:
+	mp = clampi(mp + amount, 0, max_mp)
+	stats_changed.emit()
+
+
+func wake_up() -> void:
+	hp = max_hp
+	mp = max_mp
 	stats_changed.emit()
 
 
@@ -58,10 +96,20 @@ func spend_piril(amount: int) -> bool:
 	return true
 
 
+func unlock_skill(skill_id: String) -> bool:
+	if skills.has(skill_id):
+		return false
+	skills.append(skill_id)
+	skills_changed.emit()
+	return true
+
+
 # --- items --------------------------------------------------------------
 
 func add_item(item_id: String, count := 1) -> void:
 	items[item_id] = items.get(item_id, 0) + count
+	if POTIONS.has(item_id):
+		_slot_potion(item_id)
 	items_changed.emit()
 
 
@@ -79,6 +127,18 @@ func has_item(item_id: String) -> bool:
 	return items.get(item_id, 0) > 0
 
 
+func item_count(item_id: String) -> int:
+	return items.get(item_id, 0)
+
+
+func _slot_potion(item_id: String) -> void:
+	if potions.has(item_id):
+		return
+	var free := potions.find("")
+	if free != -1:
+		potions[free] = item_id
+
+
 # --- quests -------------------------------------------------------------
 
 ## "none", "active", "ready" (all objectives done, not turned in) or "done".
@@ -88,8 +148,8 @@ func quest_state(quest_id: String) -> String:
 	var q: Dictionary = quests[quest_id]
 	if q["state"] == "done":
 		return "done"
-	for done: bool in q["objectives"].values():
-		if not done:
+	for p: Array in q["objectives"].values():
+		if p[0] < p[1]:
 			return "active"
 	return "ready"
 
@@ -100,34 +160,76 @@ func start_quest(quest_def: Dictionary) -> bool:
 		return false
 	var objectives := {}
 	for o: Dictionary in quest_def.get("objectives", []):
-		objectives[o["id"]] = false
-	quests[id] = {"state": "active", "objectives": objectives}
+		objectives[o["id"]] = [0, int(o.get("count", 1))]
+	quests[id] = {"state": "active", "objectives": objectives, "ordered": quest_def.get("ordered", false)}
 	quest_changed.emit(id)
 	return true
 
 
-func complete_objective(quest_id: String, objective_id: String) -> bool:
+## The objective that can make progress now: in an ordered quest only the
+## first unfinished one; otherwise any unfinished one.
+func can_advance(quest_id: String, objective_id: String) -> bool:
 	if quest_state(quest_id) != "active":
 		return false
-	var objectives: Dictionary = quests[quest_id]["objectives"]
-	if not objectives.has(objective_id) or objectives[objective_id]:
+	var q: Dictionary = quests[quest_id]
+	var objectives: Dictionary = q["objectives"]
+	if not objectives.has(objective_id):
 		return false
-	objectives[objective_id] = true
+	var p: Array = objectives[objective_id]
+	if p[0] >= p[1]:
+		return false
+	if q.get("ordered", false):
+		for oid: String in objectives:
+			if objectives[oid][0] < objectives[oid][1]:
+				return oid == objective_id
+	return true
+
+
+func advance_objective(quest_id: String, objective_id: String, by := 1) -> bool:
+	if not can_advance(quest_id, objective_id):
+		return false
+	var p: Array = quests[quest_id]["objectives"][objective_id]
+	p[0] = mini(p[0] + by, p[1])
 	quest_changed.emit(quest_id)
 	return true
 
 
+func complete_objective(quest_id: String, objective_id: String) -> bool:
+	if not can_advance(quest_id, objective_id):
+		return false
+	var p: Array = quests[quest_id]["objectives"][objective_id]
+	return advance_objective(quest_id, objective_id, p[1] - p[0])
+
+
 func objective_done(quest_id: String, objective_id: String) -> bool:
-	return quests.get(quest_id, {}).get("objectives", {}).get(objective_id, false)
+	var p: Array = quests.get(quest_id, {}).get("objectives", {}).get(objective_id, [0, 1])
+	return p[0] >= p[1]
 
 
+func objective_count(quest_id: String, objective_id: String) -> Vector2i:
+	var p: Array = quests.get(quest_id, {}).get("objectives", {}).get(objective_id, [0, 1])
+	return Vector2i(p[0], p[1])
+
+
+## Done objectives / all objectives.
 func objective_progress(quest_id: String) -> Vector2i:
 	var objectives: Dictionary = quests.get(quest_id, {}).get("objectives", {})
 	var done := 0
-	for v: bool in objectives.values():
-		if v:
+	for p: Array in objectives.values():
+		if p[0] >= p[1]:
 			done += 1
 	return Vector2i(done, objectives.size())
+
+
+## A world event ("defeat" + mob kind, "reach" + area id, "talk" + npc id)
+## advances every matching objective of the active quests.
+func notify(event_type: String, target: String, quest_defs: Dictionary) -> void:
+	for qid: String in quests.keys():
+		if quest_state(qid) != "active" or not quest_defs.has(qid):
+			continue
+		for o: Dictionary in quest_defs[qid].get("objectives", []):
+			if o.get("type", "") == event_type and o.get("target", "") == target:
+				advance_objective(qid, o["id"])
 
 
 func complete_quest(quest_def: Dictionary) -> bool:
@@ -155,3 +257,37 @@ func set_flag(flag: String) -> void:
 
 func has_flag(flag: String) -> bool:
 	return flags.get(flag, false)
+
+
+# --- save ---------------------------------------------------------------
+
+const SAVE_KEYS := ["character_id", "character_name", "character_look", "scene_id", "level", "xp",
+	"max_hp", "hp", "max_mp", "mp", "power", "piril", "items", "potions", "skills", "quests", "flags", "sparks"]
+
+
+func to_dict() -> Dictionary:
+	var d := {"version": 1}
+	for k: String in SAVE_KEYS:
+		d[k] = get(k)
+	return d
+
+
+func load_dict(d: Dictionary) -> void:
+	for k: String in SAVE_KEYS:
+		if not d.has(k):
+			continue
+		var v: Variant = d[k]
+		if typeof(get(k)) == TYPE_INT and typeof(v) == TYPE_FLOAT:
+			v = int(v)
+		set(k, v)
+	# JSON turns ints into floats; quest progress is compared as ints.
+	for q: Dictionary in quests.values():
+		for oid: String in q["objectives"]:
+			var p: Array = q["objectives"][oid]
+			q["objectives"][oid] = [int(p[0]), int(p[1])]
+	for k: String in items.keys():
+		items[k] = int(items[k])
+	stats_changed.emit()
+	items_changed.emit()
+	flags_changed.emit()
+	piril_changed.emit(piril, 0)

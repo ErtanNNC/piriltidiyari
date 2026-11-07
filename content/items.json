@@ -1,8 +1,35 @@
 {
   "items": {
-    "fener_pembe": { "name": "Pembe Fener", "color": "berry", "kind": "quest" },
-    "fener_mavi": { "name": "Mavi Fener", "color": "sky", "kind": "quest" },
-    "fener_yesil": { "name": "Yeşil Fener", "color": "spark-green", "kind": "quest" },
-    "bal_surubu": { "name": "Bal Şurubu", "color": "hp", "kind": "potion", "heal": 40, "price": 15 }
+    "fener_pembe": {
+      "name": "Pembe Fener",
+      "color": "berry",
+      "kind": "quest"
+    },
+    "fener_mavi": {
+      "name": "Mavi Fener",
+      "color": "sky",
+      "kind": "quest"
+    },
+    "fener_yesil": {
+      "name": "Yeşil Fener",
+      "color": "spark-green",
+      "kind": "quest"
+    },
+    "bal_surubu": {
+      "name": "Bal Şurubu",
+      "color": "hp",
+      "kind": "potion",
+      "heal": 40,
+      "price": 15,
+      "icon": "heart"
+    },
+    "yildiz_tozu": {
+      "name": "Yıldız Tozu",
+      "color": "mp",
+      "kind": "potion",
+      "mp": 30,
+      "price": 20,
+      "icon": "drop"
+    }
   }
 }

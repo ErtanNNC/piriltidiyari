@@ -1,0 +1,38 @@
+{
+  "id": "gri_ruzgar",
+  "title": "Gri Rüzgâr",
+  "giver": "tospik_nine",
+  "ordered": true,
+  "objectives": [
+    {
+      "id": "sumuklu",
+      "text": "Puslu Sümüklüleri sakinleştir",
+      "type": "defeat",
+      "target": "sumuklu",
+      "count": 3
+    },
+    {
+      "id": "tospik",
+      "text": "Kirişin altından Tospik Nine'ye ulaş",
+      "type": "reach",
+      "target": "tospik_bahce"
+    },
+    {
+      "id": "konus",
+      "text": "Tospik Nine ile konuş",
+      "type": "talk",
+      "target": "tospik_nine"
+    },
+    {
+      "id": "yol",
+      "text": "Kuleye giden yolu aç",
+      "type": "defeat",
+      "target": "pus",
+      "count": 4
+    }
+  ],
+  "turn_in": "Tospik Nine'ye dön",
+  "rewards": {
+    "piril": 15
+  }
+}

@@ -13,6 +13,8 @@ var _checks := 0
 func _init() -> void:
 	test_progression()
 	test_quest_flow_scene1()
+	test_quest_flow_scene2()
+	test_save_roundtrip()
 	test_content_is_valid()
 	print("\n%d kontrol, %d hata" % [_checks, _failures])
 	quit(1 if _failures > 0 else 0)
@@ -64,12 +66,65 @@ func test_quest_flow_scene1() -> void:
 	check(d.quest_state("kayip_fenerler") == "ready", "görev teslime hazır")
 	talk.call("tospik_nine")
 	check(d.quest_state("kayip_fenerler") == "done", "görev tamamlandı")
-	check(d.piril == 30 and d.xp == 40 and d.level == 1, "ödül: 30 Pırıl, 40 XP, seviye atlamadan (Pırıl %d, XP %d)" % [d.piril, d.xp])
+	check(d.piril == 30 and d.xp == 20 and d.level == 1, "ödül: 30 Pırıl, 20 XP, seviye atlamadan (Pırıl %d, XP %d)" % [d.piril, d.xp])
 	check(d.has_flag("sahne1_bitti"), "sahne 1 bitti bayrağı")
 	var after: Dictionary = talk.call("tospik_nine")
 	check(not after.has("then"), "tekrar konuşunca ödül tekrar verilmez")
 	check(d.piril == 30, "Pırıl ikinci kez eklenmedi")
 	c.free()
+
+
+func test_quest_flow_scene2() -> void:
+	print("Sahne 2 akışı: Gri Rüzgâr")
+	var c: Node = ContentScript.new()
+	var d := PlayerData.new()
+	var q: Dictionary = c.quests["gri_ruzgar"]
+	var talk := func(npc: String) -> Dictionary:
+		var v := DialogueRules.pick_variant(c.npc(npc), d)
+		DialogueRules.apply(v.get("then", {}), d, c.quests)
+		return v
+	d.start_quest(q)
+	d.notify("defeat", "pus", c.quests)
+	check(d.objective_count("gri_ruzgar", "yol").x == 0, "sıralı görev: sonraki hedef erken ilerlemez")
+	for i in 3:
+		d.notify("defeat", "sumuklu", c.quests)
+	check(d.objective_done("gri_ruzgar", "sumuklu"), "3 sümüklü sakinleşti")
+	var early: Dictionary = talk.call("tospik_nine")
+	check(not early.has("then"), "kirişi geçmeden Tospik iksir vermez")
+	d.notify("reach", "tospik_bahce", c.quests)
+	talk.call("tospik_nine")
+	check(d.item_count("bal_surubu") == 3 and d.potions[0] == "bal_surubu", "3 Bal Şurubu, ilk iksir yuvasında")
+	check(d.objective_done("gri_ruzgar", "konus"), "konuşma hedefi tamam")
+	var again: Dictionary = talk.call("tospik_nine")
+	check(not again.has("then") and d.item_count("bal_surubu") == 3, "iksirler bir kez verilir")
+	for i in 4:
+		d.notify("defeat", "pus", c.quests)
+	check(d.quest_state("gri_ruzgar") == "ready", "yol açıldı, teslime hazır")
+	var fin: Dictionary = talk.call("tospik_nine")
+	check(fin["then"].get("goto_scene", "") == "scene3", "Sahne 3'e geçiş")
+	check(d.has_flag("sahne2_bitti") and d.quest_state("gri_ruzgar") == "done", "sahne 2 bitti")
+	check(talk.call("piti")["lines"][0]["text"].contains("Sis"), "çocuklar Sahne 2'de sisten söz eder")
+	c.free()
+
+
+func test_save_roundtrip() -> void:
+	print("Kayıt")
+	var a := PlayerData.new()
+	a.add_xp(60)
+	a.add_piril(42)
+	a.add_item("bal_surubu", 2)
+	a.unlock_skill("dikenli_donus")
+	a.start_quest({"id": "q", "objectives": [{"id": "o", "count": 3}]})
+	a.advance_objective("q", "o")
+	a.set_flag("x")
+	var json := JSON.stringify(a.to_dict())
+	var b := PlayerData.new()
+	b.load_dict(JSON.parse_string(json))
+	check(b.level == 2 and b.xp == 10 and b.piril == 42, "seviye, XP, Pırıl geri geldi")
+	check(b.item_count("bal_surubu") == 2 and b.potions[0] == "bal_surubu", "eşyalar ve iksir yuvası")
+	check(b.objective_count("q", "o") == Vector2i(1, 3), "görev ilerlemesi")
+	check(b.advance_objective("q", "o"), "yüklenen görev ilerleyebilir")
+	check(b.has_flag("x") and b.skills.has("dikenli_donus"), "bayrak ve yetenek")
 
 
 func test_content_is_valid() -> void:
@@ -101,7 +156,12 @@ func test_content_is_valid() -> void:
 		check(not c.npcs[npc_id]["variants"].back().has("when"), "%s: son konuşma koşulsuz (her zaman bir cevap var)" % npc_id)
 	for q: Dictionary in c.quests.values():
 		for o: Dictionary in q["objectives"]:
-			check(c.items.has(o["item"]), "görev %s: eşya %s" % [q["id"], o["item"]])
-			check(c.npcs.has(o["to"]), "görev %s: NPC %s" % [q["id"], o["to"]])
+			if o.has("item"):
+				check(c.items.has(o["item"]), "görev %s: eşya %s" % [q["id"], o["item"]])
+			if o.has("to"):
+				check(c.npcs.has(o["to"]), "görev %s: NPC %s" % [q["id"], o["to"]])
+			check(o.get("type", "deliver") in ["deliver", "defeat", "reach", "talk"], "görev %s: hedef türü" % q["id"])
+			if o.get("type", "") == "defeat":
+				check(o["target"] in MobStats.KINDS or o["target"] == "pus", "görev %s: bilinmeyen mob %s" % [q["id"], o["target"]])
 	c.free()
 	t.free()

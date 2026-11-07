@@ -1,75 +1,11 @@
 extends Node3D
 ## Prolog · Sahne 1 – Yıldız Şenliği. Festival evening in Gökkuşağı Köyü.
 ## Teaches walking, jumping and talking; first quest and first Pırıl.
-## Layout lives in the .tscn; this script adds ground, sky and light.
-
-const VILLAGE_RADIUS := 26.0
-
+## Layout lives in the .tscn; the shared village is scenes/prologue/village.tscn.
 
 func _ready() -> void:
-	_environment()
-	_ground()
-	_bounds()
-	GameState.data.flags_changed.connect(_on_flags_changed)
 	if DevTools.demo != "":
 		_run_demo.call_deferred(DevTools.demo)
-
-
-func _environment() -> void:
-	var env := Environment.new()
-	env.background_mode = Environment.BG_COLOR
-	env.background_color = Color("#2b2950")
-	env.ambient_light_source = Environment.AMBIENT_SOURCE_COLOR
-	env.ambient_light_color = Color("#8f86c9")
-	env.ambient_light_energy = 0.45
-	env.tonemap_mode = Environment.TONE_MAPPER_LINEAR
-	env.glow_enabled = true
-	env.glow_intensity = 0.35
-	env.glow_hdr_threshold = 1.2
-	var we := WorldEnvironment.new()
-	we.environment = env
-	add_child(we)
-	var moon := DirectionalLight3D.new()
-	moon.light_color = Color("#dcd8ff")
-	moon.light_energy = 0.55
-	moon.rotation_degrees = Vector3(-55, -35, 0)
-	moon.shadow_enabled = true
-	add_child(moon)
-
-
-func _ground() -> void:
-	var meadow := Tokens.color("spark-green").lerp(Tokens.color("bg"), 0.15)
-	var body := StaticBody3D.new()
-	var col := CollisionShape3D.new()
-	var shape := BoxShape3D.new()
-	shape.size = Vector3(80, 1, 80)
-	col.shape = shape
-	col.position.y = -0.5
-	body.add_child(col)
-	add_child(body)
-	Toon.part(self, "cylinder", Vector3(VILLAGE_RADIUS * 2.4, 1.0, VILLAGE_RADIUS * 2.4), meadow, Vector3(0, -0.5, 0), Vector3.ZERO, 0.0, 0.0)
-	# plaza and paths in cream
-	var path := Tokens.color("panel-sunken").lerp(Tokens.color("honey-deep"), 0.18)
-	Toon.part(self, "cylinder", Vector3(11, 0.06, 11), path, Vector3(0, 0.01, 0), Vector3.ZERO, 0.0, 0.0)
-	Toon.part(self, "box", Vector3(3, 0.06, 12), path, Vector3(0, 0.01, -9), Vector3.ZERO, 0.0, 0.0)
-	Toon.part(self, "box", Vector3(3, 0.06, 14), path, Vector3(0, 0.01, 10), Vector3.ZERO, 0.0, 0.0)
-
-
-## Soft invisible walls at the village edge. Later the Pus curtain lives here.
-func _bounds() -> void:
-	for n: Vector3 in [Vector3.RIGHT, Vector3.LEFT, Vector3.FORWARD, Vector3.BACK]:
-		var body := StaticBody3D.new()
-		var c := CollisionShape3D.new()
-		var w := WorldBoundaryShape3D.new()
-		w.plane = Plane(-n, -VILLAGE_RADIUS)
-		c.shape = w
-		body.add_child(c)
-		add_child(body)
-
-
-func _on_flags_changed() -> void:
-	if GameState.data.has_flag("sahne1_bitti"):
-		get_tree().call_group("hud", "show_scene_card", "Sahne 2", "Gri Rüzgâr", "Çok yakında")
 
 
 ## Puts the game in a known state for screenshots (tools/screenshot.sh).

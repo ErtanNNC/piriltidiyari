@@ -2,34 +2,203 @@
   "npc": "tospik_nine",
   "variants": [
     {
-      "when": { "quest": "kayip_fenerler", "state": "none" },
+      "when": {
+        "quest": "gri_ruzgar",
+        "state": "active",
+        "objective_done": "gri_ruzgar/tospik",
+        "objective_not_done": "gri_ruzgar/konus"
+      },
       "lines": [
-        { "speaker": "tospik_nine", "mood": "mutlu", "text": "Fıstık! Bu gece Yıldız Şenliği var." },
-        { "speaker": "tospik_nine", "mood": "mutlu", "text": "Büyük Kıvılcım'ı her yıl olduğu gibi sen yakacaksın." },
-        { "speaker": "fistik", "mood": "huysuz", "text": "Hıh. Her yıl ben. Tabii ki ben." },
-        { "speaker": "tospik_nine", "mood": "dertli", "text": "Ama bir dert var: üç çocuk fenerini kaybetmiş." },
-        { "speaker": "tospik_nine", "mood": "mutlu", "text": "Fenerleri bul, sahiplerine ver. Hadi bakalım!" }
+        {
+          "speaker": "tospik_nine",
+          "mood": "dertli",
+          "text": "Fıstık! Çok şükür buradasın."
+        },
+        {
+          "speaker": "tospik_nine",
+          "mood": "dertli",
+          "text": "Bu gri sis hayvanları huysuz yapıyor."
+        },
+        {
+          "speaker": "tospik_nine",
+          "mood": "mutlu",
+          "text": "Al, köy arılarının balı. Bal Şurubu canını doldurur."
+        },
+        {
+          "speaker": "fistik",
+          "mood": "mutlu",
+          "text": "Bal! En sevdiğim."
+        },
+        {
+          "speaker": "tospik_nine",
+          "mood": "kararlı",
+          "text": "Kulenin yolunu aç. Ben çocuklara göz kulak olurum."
+        }
       ],
-      "then": { "start_quest": "kayip_fenerler" }
+      "then": {
+        "give_items": {
+          "bal_surubu": 3
+        },
+        "advance": "gri_ruzgar/konus"
+      }
     },
     {
-      "when": { "quest": "kayip_fenerler", "state": "active" },
+      "when": {
+        "quest": "gri_ruzgar",
+        "state": "active",
+        "objective_done": "gri_ruzgar/konus"
+      },
       "lines": [
-        { "speaker": "tospik_nine", "mood": "mutlu", "text": "Çocuklara sor, nerede düşürdüklerini bilirler." }
+        {
+          "speaker": "tospik_nine",
+          "mood": "kararlı",
+          "text": "Kulenin yolundaki huysuzları sakinleştir!"
+        }
       ]
     },
     {
-      "when": { "quest": "kayip_fenerler", "state": "ready" },
+      "when": {
+        "quest": "gri_ruzgar",
+        "state": "active"
+      },
       "lines": [
-        { "speaker": "tospik_nine", "mood": "mutlu", "text": "Üç fener de yerinde! Köy pırıl pırıl oldu." },
-        { "speaker": "fistik", "mood": "huysuz", "text": "Dizlerim ağrıdı ama değdi." },
-        { "speaker": "tospik_nine", "mood": "mutlu", "text": "Al bakalım, bu da senin payın." }
+        {
+          "speaker": "tospik_nine",
+          "mood": "dertli",
+          "text": "Fıstık, dikkat et! Sis yaklaşıyor."
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "gri_ruzgar",
+        "state": "ready"
+      },
+      "lines": [
+        {
+          "speaker": "tospik_nine",
+          "mood": "mutlu",
+          "text": "Yol açıldı! Çocukları kabuğuma saklarım."
+        },
+        {
+          "speaker": "tospik_nine",
+          "mood": "kararlı",
+          "text": "Sen kuleye koş. Büyük Kıvılcım'ı koru!"
+        },
+        {
+          "speaker": "fistik",
+          "mood": "kararlı",
+          "text": "Dizlerim, dayanın bakalım. Geliyorum!"
+        }
       ],
-      "then": { "complete_quest": "kayip_fenerler", "set_flag": "sahne1_bitti" }
+      "then": {
+        "complete_quest": "gri_ruzgar",
+        "set_flag": "sahne2_bitti",
+        "goto_scene": "scene3"
+      }
+    },
+    {
+      "when": {
+        "quest": "gri_ruzgar",
+        "state": "done"
+      },
+      "lines": [
+        {
+          "speaker": "tospik_nine",
+          "mood": "kararlı",
+          "text": "Hadi Fıstık, kuleye!"
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "kayip_fenerler",
+        "state": "none"
+      },
+      "lines": [
+        {
+          "speaker": "tospik_nine",
+          "mood": "mutlu",
+          "text": "Fıstık! Bu gece Yıldız Şenliği var."
+        },
+        {
+          "speaker": "tospik_nine",
+          "mood": "mutlu",
+          "text": "Büyük Kıvılcım'ı her yıl olduğu gibi sen yakacaksın."
+        },
+        {
+          "speaker": "fistik",
+          "mood": "huysuz",
+          "text": "Hıh. Her yıl ben. Tabii ki ben."
+        },
+        {
+          "speaker": "tospik_nine",
+          "mood": "dertli",
+          "text": "Ama bir dert var: üç çocuk fenerini kaybetmiş."
+        },
+        {
+          "speaker": "tospik_nine",
+          "mood": "mutlu",
+          "text": "Fenerleri bul, sahiplerine ver. Hadi bakalım!"
+        }
+      ],
+      "then": {
+        "start_quest": "kayip_fenerler"
+      }
+    },
+    {
+      "when": {
+        "quest": "kayip_fenerler",
+        "state": "active"
+      },
+      "lines": [
+        {
+          "speaker": "tospik_nine",
+          "mood": "mutlu",
+          "text": "Çocuklara sor, nerede düşürdüklerini bilirler."
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "kayip_fenerler",
+        "state": "ready"
+      },
+      "lines": [
+        {
+          "speaker": "tospik_nine",
+          "mood": "mutlu",
+          "text": "Üç fener de yerinde! Köy pırıl pırıl oldu."
+        },
+        {
+          "speaker": "fistik",
+          "mood": "huysuz",
+          "text": "Dizlerim ağrıdı ama değdi."
+        },
+        {
+          "speaker": "tospik_nine",
+          "mood": "mutlu",
+          "text": "Al bakalım, bu da senin payın."
+        },
+        {
+          "speaker": "tospik_nine",
+          "mood": "şaşkın",
+          "text": "Aaa... Yıldızlar neden sönüyor?"
+        }
+      ],
+      "then": {
+        "complete_quest": "kayip_fenerler",
+        "set_flag": "sahne1_bitti",
+        "goto_scene": "scene2"
+      }
     },
     {
       "lines": [
-        { "speaker": "tospik_nine", "mood": "mutlu", "text": "Hadi kuleye! Yıldızlar seni bekliyor." }
+        {
+          "speaker": "tospik_nine",
+          "mood": "mutlu",
+          "text": "Hadi kuleye! Yıldızlar seni bekliyor."
+        }
       ]
     }
   ]
