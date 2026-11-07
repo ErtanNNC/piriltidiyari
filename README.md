@@ -193,7 +193,9 @@ saniyede 1 can yeniler, Kâşif Şapkası hızlandırır ve Pırıl'ı uzaktan �
 doldurur, Minik Miğfer vuruşları %30 hafifletir. Usta Tıkır ışıkla çalışan aletler satar ve her biri vuruşu
 değiştirir: Işık Değneği (+3) önüne bir ışık yıldızı fırlatır, Yıldız Asası (+6) geniş bir yıldız halkasıyla
 vurur, Kıvılcım Kılıcı (+10) ileri koşan bir kıvılcım dalgası yollar. Işık Sapanı ile 10'luk paketlerle alınan
-Işık Tohumları uzağa atılır (I / At). **Bekçi Evi**'nde Sihirli Ayna'dan bekçi değiştirilir (seviye,
+Işık Tohumları uzağa atılır (I / At). Usta Tıkır Bal Şurubu ve Yıldız Tozu da satar. Alttaki hızlı çantada
+sadece işe yarayanlar görünür: iksirler (1–4) ve satın alınan aletler (5–7); alete dokununca eline alırsın,
+tekrar dokununca kaldırırsın. Enerji (mavi) kendiliğinden yavaşça dolar; Yıldız Tozu hemen 30 doldurur. **Bekçi Evi**'nde Sihirli Ayna'dan bekçi değiştirilir (seviye,
 Pırıl, eşyalar ve görevler kalır; can ve güç yeni bekçiye göre yeniden hesaplanır) ve Dolap'tan kıyafet ya da
 alet seçilir. Kapıdan çıkınca köyde evin önüne dönülür. Köy tabelaları açık renk zeminde koyu yazıyla, kameraya
 dönük ve yazı tahtaya sığacak şekilde.

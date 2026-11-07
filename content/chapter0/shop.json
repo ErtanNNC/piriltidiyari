@@ -26,8 +26,16 @@
       ]
     },
     "tikir": {
-      "title": "Usta Tıkır'ın Aletleri",
+      "title": "Usta Tıkır'ın Aletleri ve İksirleri",
       "items": [
+        {
+          "id": "bal_surubu",
+          "price": 15
+        },
+        {
+          "id": "yildiz_tozu",
+          "price": 20
+        },
         {
           "id": "isik_degnegi",
           "price": 60,

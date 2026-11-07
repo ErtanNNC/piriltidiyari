@@ -261,6 +261,9 @@ func _ready() -> void:
 	_root.add_child(_potion_bar)
 	for i in PlayerData.POTION_SLOTS:
 		_potion_bar.add_child(PotionSlot.new(i, self))
+	# bought tools sit next to the potions: tap (or 5–7) to switch
+	for i in ToolSlot.TOOLS.size():
+		_potion_bar.add_child(ToolSlot.new(i, self))
 
 	_dialog = DialogBox.new()
 	_root.add_child(_dialog)
@@ -272,6 +275,8 @@ func _ready() -> void:
 	d.quest_changed.connect(func(_id: String) -> void: _refresh_quest())
 	d.items_changed.connect(_refresh_potions)
 	d.skills_changed.connect(_refresh_powers)
+	d.stats_changed.connect(_refresh_potions)
+	d.flags_changed.connect(_refresh_potions)
 	GameState.dialogue_requested.connect(_open_dialogue)
 	GameState.lines_requested.connect(_open_lines)
 	GameState.shop_requested.connect(open_shop)
@@ -423,13 +428,13 @@ func player() -> Player:
 
 
 func _refresh_potions() -> void:
-	var any := false
-	for p in GameState.data.potions:
-		if p != "":
+	var any := not ToolSlot.owned_tools().is_empty()
+	for p: String in GameState.data.potions:
+		if p != "" and GameState.data.item_count(p) > 0:
 			any = true
 	_potion_bar.visible = any and not _dialog.is_open() and not _cinematic
 	for c in _potion_bar.get_children():
-		(c as PotionSlot).refresh()
+		c.call("refresh")
 
 
 ## Persistent tutorial bubble under the spark tracker until cleared.

@@ -176,6 +176,12 @@ func _unhandled_input(event: InputEvent) -> void:
 		start_roll()
 	elif event.is_action_pressed("shoot"):
 		shoot()
+	elif event.is_action_pressed("tool_1"):
+		switch_tool(0)
+	elif event.is_action_pressed("tool_2"):
+		switch_tool(1)
+	elif event.is_action_pressed("tool_3"):
+		switch_tool(2)
 	elif event.is_action_pressed("power_1"):
 		use_power(0)
 	elif event.is_action_pressed("power_2"):
@@ -621,6 +627,7 @@ func _spark_wave() -> void:
 var _bonus: Dictionary = {}
 var _regen_t := 0.0
 var _mp_t := 0.0
+var _base_mp_t := 0.0
 ## How far Pırıl drifts to you (Kâşif Şapkası makes it bigger).
 var magnet_range := 3.2
 
@@ -633,9 +640,17 @@ func _refresh_bonus() -> void:
 
 
 func _process(delta: float) -> void:
-	if _bonus.is_empty() or asleep:
+	if asleep:
 		return
 	var d := GameState.data
+	# energy slowly fills up by itself (+1 every 1.5 s); Yıldız Tozu is faster
+	if d.mp < d.max_mp:
+		_base_mp_t += delta
+		if _base_mp_t >= 1.5:
+			_base_mp_t = 0.0
+			d.restore_mp(1)
+	if _bonus.is_empty():
+		return
 	if _bonus.has("regen") and d.hp < d.max_hp:
 		_regen_t += delta
 		if _regen_t >= 2.0:
@@ -744,3 +759,17 @@ func _light_orbit(count: int, dmg: int, seconds: float) -> void:
 	o.damage = dmg
 	o.seconds = seconds
 	add_child(o)
+
+
+## Quick bar tool slots (5, 6, 7 / tap): hold that tool, or put it away if
+## it's already in your paw.
+func switch_tool(index: int) -> void:
+	var d := GameState.data
+	var owned := ToolSlot.owned_tools()
+	if index >= owned.size():
+		return
+	var id: String = owned[index]
+	var now_held: bool = d.equipped.get("weapon", "") == id
+	Shop.equip(d, "weapon", "" if now_held else id)
+	Audio.play("click")
+	GameState.toast.emit(("%s kaldırıldı" if now_held else "%s elinde") % Content.items[id]["name"], "star")

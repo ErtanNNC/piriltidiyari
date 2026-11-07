@@ -32,6 +32,11 @@
           "speaker": "tikir",
           "mood": "mutlu",
           "text": "Sapanla Işık Tohumu atarsın. Uzaktaki Pus'u dağıtır!"
+        },
+        {
+          "speaker": "tikir",
+          "mood": "bilge",
+          "text": "Enerjin azalınca Yıldız Tozu iç. Bende de var!"
         }
       ],
       "then": {

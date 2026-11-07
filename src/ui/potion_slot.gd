@@ -45,6 +45,8 @@ func refresh() -> void:
 	var n := GameState.data.item_count(id) if id != "" else 0
 	var def: Dictionary = Content.items.get(id, {})
 	_icon.visible = id != ""
+	# an empty slot isn't shown: the bar only has things you can use
+	visible = id != "" and n > 0
 	_icon.kind = def.get("icon", "heart")
 	_icon.fill = Tokens.color(def.get("color", "hp")) if n > 0 else Tokens.color("spark-off")
 	_count.text = str(n) if id != "" else ""

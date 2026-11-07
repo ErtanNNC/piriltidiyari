@@ -51,7 +51,7 @@ func _ready() -> void:
 		Toon.part(self, "sphere", Vector3(0.2, 0.2, 0.2) * s, "honey", Vector3(0, 3.88, 0) * s, Vector3.ZERO, 0.5, 0.015)
 		if big:
 			Toon.part(self, "cylinder", Vector3(0.04, 0.9, 0.04) * s, "outline", Vector3(0, 4.3, 0) * s, Vector3.ZERO, 0.0, 0.0)
-			Toon.part(self, "cone", Vector3(0.5, 0.7, 0.05) * s, accent, Vector3(0.3, 4.55, 0) * s, Vector3(0, 0, -90), 0.0, 0.015)
+			Toon.part(self, "cone", Vector3(0.28, 0.4, 0.04) * s, accent, Vector3(0.18, 4.6, 0) * s, Vector3(0, 0, -90), 0.0, 0.015)
 		_flame = Toon.part(self, "sphere", Vector3(0.62, 0.78, 0.62) * s, "spark-off", Vector3(0, 2.85, 0) * s, Vector3.ZERO, 0.0, 0.03)
 	var body := StaticBody3D.new()
 	var c := CollisionShape3D.new()
