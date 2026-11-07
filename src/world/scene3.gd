@@ -105,6 +105,7 @@ func _build() -> void:
 	for y in [5.5, 11.0]:
 		Toon.part(lv, "box", Vector3(32.4, 0.5, 4.4), "honey-deep", Vector3(6, y, -28))
 	Toon.part(lv, "box", Vector3(12.4, 0.4, 8.4), "honey-deep", Vector3(28, 13.6, -30))
+	_roof_railing(lv)
 	Toon.part(lv, "box", Vector3(0.2, 2.4, 1.6), Color("#a86b45"), Vector3(22.1, 15.2, -30.5))  # door
 	Toon.part(lv, "cone", Vector3(14, 8, 14), "berry", Vector3(6, 20, -34))
 	var crystal := Toon.part(lv, "sphere", Vector3(3, 4, 3), "honey", Vector3(6, 25.5, -34), Vector3.ZERO, 2.0, 0.06)
@@ -172,6 +173,8 @@ func _checkpoint(parent: Node3D, area_id: String, at: Vector3) -> void:
 func _run_demo(which: String) -> void:
 	var player: Player = _hud.player()
 	match which:
+		"roof":
+			player.global_position = Vector3(28, 14.2, -29)
 		"climb":
 			player.global_position = Vector3(1, 0, -20.5)
 			Input.action_press("move_forward")
@@ -263,3 +266,31 @@ func _run_demo(which: String) -> void:
 			for o in ["dip", "balkon1", "balkon2"]:
 				GameState.data.complete_objective(QUEST, o)
 			player.global_position = Vector3(26, 14.2, -29)
+
+
+## A railing round the roof (top y 14, x 22..34, z -34..-26) so neither the
+## keeper nor the three Sümüklüs can fall behind the tower. The gap on the
+## front edge is where the vine comes up (x 27.6..30.4).
+func _roof_railing(lv: Node3D) -> void:
+	var y := 14.0
+	var wood := Color("#a86b45")
+	var spans := [[Vector3(28, y, -34.1), Vector3(12.2, 0, 0.2)], [Vector3(34.1, y, -30), Vector3(0.2, 0, 8.2)],
+		[Vector3(24.8, y, -25.9), Vector3(5.6, 0, 0.2)], [Vector3(32.2, y, -25.9), Vector3(3.6, 0, 0.2)]]
+	for sp: Array in spans:
+		var c: Vector3 = sp[0]
+		var sz: Vector3 = sp[1]
+		var body := StaticBody3D.new()
+		var col := CollisionShape3D.new()
+		var box := BoxShape3D.new()
+		box.size = Vector3(maxf(sz.x, 0.3), 4.0, maxf(sz.z, 0.3))
+		col.shape = box
+		body.add_child(col)
+		lv.add_child(body)
+		body.position = c + Vector3.UP * 2.0
+		# low wooden rail you can see
+		Toon.part(lv, "box", Vector3(maxf(sz.x, 0.14), 0.12, maxf(sz.z, 0.14)), wood, c + Vector3.UP * 0.75)
+		var n := int(maxf(sz.x, sz.z) / 1.2) + 1
+		for i in n:
+			var t := float(i) / maxf(n - 1, 1)
+			var p := c + Vector3((t - 0.5) * sz.x, 0.4, (t - 0.5) * sz.z)
+			Toon.part(lv, "cylinder", Vector3(0.14, 0.8, 0.14), wood, p, Vector3.ZERO, 0.0, 0.02)

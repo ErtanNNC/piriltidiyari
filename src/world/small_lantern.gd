@@ -73,6 +73,8 @@ func _ready() -> void:
 	ac.position.y = 1.0
 	_area.add_child(ac)
 	add_child(_area)
+	if not is_lit:
+		Beacon.attach(self, (4.8 if big else 4.3) if style != "campfire" else 2.4, Tokens.color("honey").lightened(0.2))
 	set_meta("action_label", "Yak")
 	_area.set_meta("interactable", self)
 
@@ -89,6 +91,8 @@ func light_up(silent := false) -> void:
 	if is_lit:
 		return
 	is_lit = true
+	if get_node_or_null("Beacon"):
+		get_node("Beacon").queue_free()
 	_area.queue_free()
 	_flame.material_override = Toon.material(accent, 0.03, 1.6, 0.0)
 	_light = OmniLight3D.new()

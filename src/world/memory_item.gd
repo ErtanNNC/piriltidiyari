@@ -32,6 +32,8 @@ func _build() -> void:
 	glow.light_energy = 1.0
 	glow.position.y = 0.8
 	add_child(glow)
+	if not display and not GameState.data.has_flag("ani_%d" % memory):
+		Beacon.attach(self, 1.9, Tokens.color("spark-purple").lightened(0.3))
 	if display:
 		(func() -> void: done()).call_deferred()
 	elif GameState.data.has_flag("ani_%d" % memory):

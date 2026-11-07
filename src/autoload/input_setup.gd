@@ -12,6 +12,8 @@ const ACTIONS := {
 	"roll": [KEY_K, KEY_SHIFT],
 	"skill": [KEY_L],
 	"shoot": [KEY_I, KEY_U],
+	"cam_left": [KEY_Q],
+	"cam_right": [KEY_R],
 	"tool_1": [KEY_5],
 	"tool_2": [KEY_6],
 	"tool_3": [KEY_7],

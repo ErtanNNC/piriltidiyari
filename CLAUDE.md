@@ -54,6 +54,12 @@ is a copy of the design system's tokens.
   on the left), 3 passive, rank 1–5 (`src/core/powers.gd`). `DevTools.preset`
   levels you to the region (`LEVEL_AT`); `PlayerData.catch_up()` lifts old saves.
   Checks: `--scene=chapter0 --demo=powers`, `--demo=levelup` (screenshot).
+- Findability: `Beacon.attach(node, height, color)` puts a through-walls star on
+  things to find (unlit crystals/lanterns, memories, unread stones); remove it when
+  done (`Interactable.done()` does). `FollowCamera.turn(±1)` (Q/R, HUD "Çevir");
+  Player input is rotated by `cam.yaw`. `--turn=N` starts turned (screenshots).
+  Mola has "Takıldım" → `Player.unstick()`. `Mob.spawn` sets the mob's home
+  (where it returns after falling).
 - Signs: `TravelSign.board(parent, text, at, width)` (cream board, dark text,
   tilted to the camera, text shrinks to fit).
 - New chapters extend `ChapterBase` (src/world/chapter_base.gd): npc(),

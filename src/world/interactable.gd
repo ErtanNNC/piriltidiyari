@@ -40,6 +40,8 @@ func use(_by: Node) -> void:
 
 ## Stop being interactable (opened chest, read stone...).
 func done() -> void:
+	if get_node_or_null("Beacon"):
+		get_node("Beacon").queue_free()
 	if _area:
 		_area.queue_free()
 		_area = null

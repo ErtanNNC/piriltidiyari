@@ -73,6 +73,10 @@ static func spawn(parent: Node, mob_kind: String, at: Vector3) -> Mob:
 	m.kind = mob_kind
 	parent.add_child(m)
 	m.global_position = at
+	# _ready ran before the move: home is where it was placed (so a mob
+	# knocked off a ledge or roof hops back here, never somewhere unreachable)
+	m._home = at
+	m._wander = at
 	Effects.sparkle(parent, at + Vector3.UP, Tokens.color("pus"), 8)
 	return m
 

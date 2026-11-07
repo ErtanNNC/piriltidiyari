@@ -32,6 +32,8 @@ func _ready() -> void:
 	c.position.y = 1.1
 	body.add_child(c)
 	add_child(body)
+	if not is_lit:
+		Beacon.attach(self, 3.0, Tokens.color(accent).lightened(0.3))
 
 
 func hit(_damage: int, _from: Vector3, _push: float) -> void:
@@ -44,6 +46,8 @@ func light_up(silent := false) -> void:
 	if is_lit:
 		return
 	is_lit = true
+	if get_node_or_null("Beacon"):
+		get_node("Beacon").queue_free()
 	remove_from_group("hittable")
 	for s in _shards:
 		s.material_override = Toon.material(accent, 0.03, 1.4, 0.0)

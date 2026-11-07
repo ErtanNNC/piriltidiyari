@@ -105,6 +105,10 @@ func _physics_process(delta: float) -> void:
 	if input_enabled and not asleep:
 		var v := Input.get_vector("move_left", "move_right", "move_forward", "move_back")
 		dir = Vector3(v.x, 0.0, v.y)
+		# "up" on the stick always goes away from the camera, even when turned
+		var cam := get_viewport().get_camera_3d() as FollowCamera
+		if cam and cam.yaw != 0.0:
+			dir = dir.rotated(Vector3.UP, cam.yaw)
 	var target := dir * speed * slow
 	var grip := acceleration * (0.12 if ice else 1.0)
 	_move.x = move_toward(_move.x, target.x, grip * delta)
@@ -773,3 +777,14 @@ func switch_tool(index: int) -> void:
 	Shop.equip(d, "weapon", "" if now_held else id)
 	Audio.play("click")
 	GameState.toast.emit(("%s kaldırıldı" if now_held else "%s elinde") % Content.items[id]["name"], "star")
+
+
+## Mola → "Takıldım": back to the last lantern / checkpoint (stuck between
+## trees, fell somewhere with no way back...).
+func unstick() -> void:
+	global_position = respawn_point + Vector3.UP * 0.3
+	velocity = Vector3.ZERO
+	_knock = Vector3.ZERO
+	climbing = false
+	Effects.sparkle(get_parent(), global_position + Vector3.UP, Tokens.color("honey"), 12)
+	Audio.play("wake")

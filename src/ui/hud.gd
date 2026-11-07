@@ -158,6 +158,12 @@ func _ready() -> void:
 	_pause_btn.custom_minimum_size = Vector2(52, 52)
 	_pause_btn.focus_mode = Control.FOCUS_NONE
 	_pause_btn.pressed.connect(toggle_pause)
+	var turn_btn := UiKit.button("Çevir", false)
+	turn_btn.custom_minimum_size = Vector2(88, 52)
+	turn_btn.focus_mode = Control.FOCUS_NONE
+	turn_btn.button_down.connect(func() -> void: TouchControls._send("cam_right", true))
+	turn_btn.button_up.connect(func() -> void: TouchControls._send("cam_right", false))
+	top_row.add_child(turn_btn)
 	top_row.add_child(_pause_btn)
 	top_row.add_child(pill)
 	var prow := HBoxContainer.new()
@@ -581,8 +587,9 @@ func toggle_pause() -> void:
 	var cont := UiKit.button("Devam et")
 	var mus := UiKit.button("", false)
 	var sfx := UiKit.button("", false)
+	var stuck := UiKit.button("Takıldım: son fenere dön", false)
 	var menu := UiKit.button("Ana menü", false)
-	for b: Button in [cont, mus, sfx, menu]:
+	for b: Button in [cont, mus, sfx, stuck, menu]:
 		b.custom_minimum_size = Vector2(280, 56)
 		v.add_child(b)
 	var refresh := func() -> void:
@@ -596,6 +603,10 @@ func toggle_pause() -> void:
 	sfx.pressed.connect(func() -> void:
 		Audio.set_sfx_on(not Audio.sfx_on)
 		refresh.call())
+	stuck.pressed.connect(func() -> void:
+		toggle_pause()
+		if _player and is_instance_valid(_player):
+			_player.unstick())
 	menu.pressed.connect(func() -> void:
 		toggle_pause()
 		SceneFlow.go_to("title", false))

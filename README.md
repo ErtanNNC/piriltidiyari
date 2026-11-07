@@ -79,6 +79,12 @@ yaratıklarıyla baş eder. Bosslar her seviyede aynı sayıda vuruşta yatış�
 Yıldız Yağmuru, Gökkuşağı Dalgası, Baloncuk Patlaması, Işık Dönencesi. Pasifler her zaman açıktır: Güçlü Vuruş
 (+%10), Kocaman Yürek (+15 can), Çevik Patiler (hız). Eski kayıtlar yüklenince bölgelerinin seviyesine çıkar.
 
+**Kaybolmamak ve takılmamak için:** Sağ üstteki **Çevir** düğmesi (ya da Q / R) kamerayı 90° döndürür;
+yürüyüş yönü kameraya göre ayarlanır. Yakılacak kristallerin, fenerlerin, anıların ve okunmamış Hikâye
+Taşlarının üstünde duvarın, ağacın arkasından bile görünen küçük bir yıldız parlar; yanınca kaybolur. Mola
+menüsünde **"Takıldım: son fenere dön"** seni son fenere / kontrol noktasına götürür. Yaratıklar bir yerden
+düşerse kendi yerlerine geri döner; prologdaki kule çatısının korkuluğu düşmeyi engeller.
+
 **Kontroller:** WASD / oklar yürür · Boşluk zıplar · J saldırır (diken dönüşü) · E konuşur.
 Mobilde sol yarıda sanal joystick, sağda Zıpla / Saldır butonları çıkar.
 
@@ -210,7 +216,13 @@ yaratıklarıyla baş eder. Bosslar her seviyede aynı sayıda vuruşta yatış�
 Yıldız Yağmuru, Gökkuşağı Dalgası, Baloncuk Patlaması, Işık Dönencesi. Pasifler her zaman açıktır: Güçlü Vuruş
 (+%10), Kocaman Yürek (+15 can), Çevik Patiler (hız). Eski kayıtlar yüklenince bölgelerinin seviyesine çıkar.
 
-**Kontroller:** WASD / oklar · Boşluk zıpla · J saldır · K yuvarlan · L Dikenli Dönüş · I sapan · O / P güçler · E konuş · 1–4 iksir · Esc mola.
+**Kaybolmamak ve takılmamak için:** Sağ üstteki **Çevir** düğmesi (ya da Q / R) kamerayı 90° döndürür;
+yürüyüş yönü kameraya göre ayarlanır. Yakılacak kristallerin, fenerlerin, anıların ve okunmamış Hikâye
+Taşlarının üstünde duvarın, ağacın arkasından bile görünen küçük bir yıldız parlar; yanınca kaybolur. Mola
+menüsünde **"Takıldım: son fenere dön"** seni son fenere / kontrol noktasına götürür. Yaratıklar bir yerden
+düşerse kendi yerlerine geri döner; prologdaki kule çatısının korkuluğu düşmeyi engeller.
+
+**Kontroller:** WASD / oklar · Boşluk zıpla · J saldır · K yuvarlan · L Dikenli Dönüş · I sapan · O / P güçler · Q / R kamera · E konuş · 1–4 iksir · Esc mola.
 Mobilde: sanal joystick, Zıpla / Saldır / Yuvarlan / Dönüş butonları, iksir yuvalarına dokunma.
 
 ### Henüz olmayanlar
