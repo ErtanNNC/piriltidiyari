@@ -1,0 +1,35 @@
+{
+  "id": "kuleye_kosu",
+  "title": "Kule'ye Koşu",
+  "giver": "tospik_nine",
+  "ordered": true,
+  "objectives": [
+    {
+      "id": "dip",
+      "text": "Düşen kirişlere dikkat, kuleye koş",
+      "type": "reach",
+      "target": "kule_dibi"
+    },
+    {
+      "id": "balkon1",
+      "text": "Sarmaşıktan tırman",
+      "type": "reach",
+      "target": "ilk_balkon"
+    },
+    {
+      "id": "balkon2",
+      "text": "Sallanan fenerlerden geç",
+      "type": "reach",
+      "target": "ikinci_balkon"
+    },
+    {
+      "id": "cati",
+      "text": "Kulenin çatısına çık",
+      "type": "reach",
+      "target": "kule_catisi"
+    }
+  ],
+  "rewards": {
+    "xp": 40
+  }
+}

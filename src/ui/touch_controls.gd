@@ -26,10 +26,11 @@ func _ready() -> void:
 	box.offset_bottom = -m
 	box.add_theme_constant_override("separation", int(Tokens.px("space-3")))
 	add_child(box)
-	for spec in [["Yuvarlan", "roll", false], ["Saldır", "attack", false], ["Zıpla", "jump", true]]:
-		if spec[1] == "skill" and not GameState.data.skills.has("dikenli_donus"):
-			continue
+	for spec in [["Dönüş", "skill", false], ["Yuvarlan", "roll", false], ["Saldır", "attack", false], ["Zıpla", "jump", true]]:
 		var b := UiKit.button(spec[0], spec[2])
+		if spec[1] == "skill":
+			b.visible = GameState.data.skills.has("dikenli_donus")
+			GameState.data.skills_changed.connect(func() -> void: b.visible = GameState.data.skills.has("dikenli_donus"))
 		b.custom_minimum_size = Vector2(132, 72)
 		var action: String = spec[1]
 		b.button_down.connect(func() -> void: Input.action_press(action))

@@ -53,6 +53,16 @@ func _ready() -> void:
 	_t = randf() * 2.0
 
 
+## Spawns a mob with a little grey puff. Used by scene directors.
+static func spawn(parent: Node, mob_kind: String, at: Vector3) -> Mob:
+	var m := Mob.new()
+	m.kind = mob_kind
+	parent.add_child(m)
+	m.global_position = at
+	Effects.sparkle(parent, at + Vector3.UP, Tokens.color("pus"), 8)
+	return m
+
+
 func _physics_process(delta: float) -> void:
 	if not _player:
 		_player = get_tree().get_first_node_in_group("player")
@@ -118,6 +128,12 @@ func _physics_process(delta: float) -> void:
 	if is_on_floor() and velocity.y < 0.0:
 		velocity.y = 0.0
 	move_and_slide()
+	if global_position.y < _home.y - 2.5 and state != "calm":
+		# knocked off a ledge: hop back to where it started (never unreachable)
+		global_position = _home + Vector3.UP * 0.5
+		velocity = Vector3.ZERO
+		_knock = Vector3.ZERO
+		Effects.sparkle(get_parent(), global_position + Vector3.UP, Tokens.color("pus"), 6)
 	var face := move if move.length() > 0.1 else (to_player if state == "windup" else Vector3.ZERO)
 	if face.length() > 0.1:
 		rotation.y = lerp_angle(rotation.y, atan2(face.x, face.z), 1.0 - exp(-10.0 * delta))

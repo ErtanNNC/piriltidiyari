@@ -63,11 +63,7 @@ func _maybe_potion_hint() -> void:
 
 func _spawn_wave(wave: Node3D) -> void:
 	for marker: Node3D in wave.get_children():
-		var m := Mob.new()
-		m.kind = marker.get_meta("kind", "sumuklu")
-		add_child(m)
-		m.global_position = marker.global_position
-		Effects.sparkle(self, marker.global_position + Vector3.UP, Tokens.color("pus"), 8)
+		Mob.spawn(self, marker.get_meta("kind", "sumuklu"), marker.global_position)
 
 
 ## Soft grey fog puffs drifting across the village.

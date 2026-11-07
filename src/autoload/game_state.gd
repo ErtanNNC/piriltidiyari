@@ -2,6 +2,8 @@ extends Node
 ## The running game's single PlayerData plus helpers the scenes share.
 
 signal dialogue_requested(npc_id: String)
+signal lines_requested(lines: Array, then: Dictionary)
+signal dialogue_closed
 signal toast(text: String, icon: String)
 
 var data := PlayerData.new()
@@ -10,6 +12,15 @@ var data := PlayerData.new()
 ## Asks the HUD to open an NPC's current conversation.
 func talk_to(npc_id: String) -> void:
 	dialogue_requested.emit(npc_id)
+
+
+## Plays a short monologue from content/<chapter>/barks.json.
+func bark(bark_id: String, then := {}) -> void:
+	var lines: Array = Content.barks.get(bark_id, [])
+	if lines.is_empty():
+		push_warning("GameState: bark yok %s" % bark_id)
+		return
+	lines_requested.emit(lines, then)
 
 
 ## A world event: "defeat" + mob kind, "reach" + area id, "talk" + npc id.

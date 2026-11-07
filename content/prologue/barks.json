@@ -1,0 +1,30 @@
+{
+  "barks": {
+    "s3_basla": [
+      {
+        "speaker": "fistik",
+        "mood": "kararlı",
+        "text": "Çocuklar güvende. Şimdi sıra kulede!"
+      },
+      {
+        "speaker": "fistik",
+        "mood": "huysuz",
+        "text": "Hıh. Bu yol eskiden daha kısaydı."
+      }
+    ],
+    "s3_yetenek": [
+      {
+        "speaker": "fistik",
+        "mood": "şaşkın",
+        "text": "Dikenlerim ışıl ışıl! Yeni bir hareket öğrendim."
+      }
+    ],
+    "s3_kapi": [
+      {
+        "speaker": "fistik",
+        "mood": "kararlı",
+        "text": "Büyük Kıvılcım'ın ışığı titriyor. Acele et, Fıstık!"
+      }
+    ]
+  }
+}

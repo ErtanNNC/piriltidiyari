@@ -232,6 +232,7 @@ func _ready() -> void:
 	d.items_changed.connect(_refresh_potions)
 	d.leveled_up.connect(func(lv: int) -> void: show_scene_card("Seviye atladın!", "Seviye %d" % lv, ""))
 	GameState.dialogue_requested.connect(_open_dialogue)
+	GameState.lines_requested.connect(_open_lines)
 	GameState.toast.connect(show_toast)
 	_refresh_stats()
 	_refresh_quest()
@@ -297,15 +298,22 @@ func _open_dialogue(npc_id: String) -> void:
 	var v := DialogueRules.pick_variant(Content.npc(npc_id), GameState.data)
 	if v.is_empty():
 		return
+	_open_lines(v.get("lines", []), v.get("then", {}))
+
+
+func _open_lines(lines: Array, then: Dictionary) -> void:
+	if _dialog.is_open():
+		await _dialog.finished
 	if _player:
 		_player.input_enabled = false
 	_talk.visible = false
 	_potion_bar.visible = false
-	_dialog.open(v.get("lines", []), v.get("then", {}))
+	_dialog.open(lines, then)
 
 
 func _on_dialog_finished() -> void:
 	_refresh_potions()
+	GameState.dialogue_closed.emit()
 	if _player:
 		_player.input_enabled = true
 		_talk.visible = _player.current_focus() != null

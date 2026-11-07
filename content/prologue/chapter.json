@@ -56,12 +56,14 @@
   ],
   "quests": [
     "kayip_fenerler",
-    "gri_ruzgar"
+    "gri_ruzgar",
+    "kuleye_kosu"
   ],
   "dialogue": [
     "tospik_nine",
     "piti",
     "tipis",
     "zipzip"
-  ]
+  ],
+  "barks": "barks"
 }

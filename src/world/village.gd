@@ -8,7 +8,6 @@ const RADIUS := 26.0
 @export_enum("aksam", "pus", "sabah") var mood := "aksam"
 
 var environment: Environment
-var moon: DirectionalLight3D
 
 
 func _ready() -> void:
@@ -18,44 +17,7 @@ func _ready() -> void:
 
 
 func _light() -> void:
-	environment = Environment.new()
-	environment.background_mode = Environment.BG_COLOR
-	environment.ambient_light_source = Environment.AMBIENT_SOURCE_COLOR
-	environment.tonemap_mode = Environment.TONE_MAPPER_LINEAR
-	environment.glow_enabled = true
-	environment.glow_intensity = 0.35
-	environment.glow_hdr_threshold = 1.2
-	moon = DirectionalLight3D.new()
-	moon.rotation_degrees = Vector3(-55, -35, 0)
-	moon.shadow_enabled = true
-	match mood:
-		"aksam":
-			environment.background_color = Color("#2b2950")
-			environment.ambient_light_color = Color("#8f86c9")
-			environment.ambient_light_energy = 0.45
-			moon.light_color = Color("#dcd8ff")
-			moon.light_energy = 0.55
-		"pus":
-			environment.background_color = Color("#3a3848")
-			environment.ambient_light_color = Color("#9a97a6")
-			environment.ambient_light_energy = 0.5
-			environment.fog_enabled = true
-			environment.fog_light_color = Tokens.color("pus")
-			environment.fog_density = 0.02
-			environment.fog_sky_affect = 0.0
-			moon.light_color = Color("#c9c6d8")
-			moon.light_energy = 0.45
-		"sabah":
-			environment.background_color = Color("#cfe6ff")
-			environment.ambient_light_color = Color("#fff2dc")
-			environment.ambient_light_energy = 0.45
-			moon.light_color = Color("#fff4dc")
-			moon.light_energy = 0.75
-			moon.rotation_degrees = Vector3(-40, 30, 0)
-	var we := WorldEnvironment.new()
-	we.environment = environment
-	add_child(we)
-	add_child(moon)
+	environment = WorldLook.add(self, mood)
 
 
 func _ground() -> void:

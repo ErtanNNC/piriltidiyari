@@ -167,7 +167,7 @@ func dikenli_donus() -> void:
 	var tw := create_tween()
 	tw.tween_property(model, "rotation:y", model.rotation.y + TAU * 2.0, 0.55).set_trans(Tween.TRANS_CUBIC)
 	Effects.ring(get_parent(), global_position + Vector3.UP * 0.4, 3.6, Tokens.color("honey"), 0.45)
-	_hit_around(3.4, GameState.data.power * 2 + 5, 12.0)
+	_hit_around(3.4, GameState.data.power * 2 + 5, 8.0)
 
 
 func _hit_around(radius: float, damage: int, push: float) -> void:
