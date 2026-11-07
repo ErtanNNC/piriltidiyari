@@ -29,6 +29,11 @@ static func hedge(parent: Node3D, a: Vector3, b: Vector3, thickness := 1.6) -> v
 	for i in n:
 		var x := -length * 0.5 + (i + 0.5) * length / n
 		Toon.part(body, "sphere", Vector3(2.2, 1.4, thickness + 0.3), HEDGE_DARK if i % 2 == 0 else HEDGE, Vector3(x, 1.9, 0), Vector3.ZERO, 0.0, 0.03)
+		# leafy tufts and a few flowers on the hedge
+		Toon.part(body, "ellipsoid", Vector3(1.1, 0.8, 1.0), HEDGE.lightened(0.1), Vector3(x + 0.5, 2.45, 0.2), Vector3.ZERO, 0.0, 0.02)
+		if (i + int(mid.x)) % 3 == 0:
+			for k in 3:
+				Toon.part(body, "sphere", Vector3(0.2, 0.2, 0.2), ["berry", "spark-yellow", Color.WHITE][k], Vector3(x - 0.5 + k * 0.45, 2.2 + (k % 2) * 0.3, thickness * 0.5 + 0.12), Vector3.ZERO, 0.12, 0.015)
 
 
 ## A big friendly tree with a sleepy face. Solid trunk.
@@ -44,6 +49,23 @@ static func face_tree(parent: Node3D, at: Vector3, s := 1.0, grey := false) -> N
 	Toon.part(root, "cylinder", Vector3(1.1, 3.2, 1.5) * s, bark, Vector3(0, 1.6, 0) * s)
 	Toon.part(root, "sphere", Vector3(3.6, 2.8, 3.4) * s, leaves, Vector3(0, 4.2, 0) * s)
 	Toon.part(root, "sphere", Vector3(2.4, 2.0, 2.2) * s, leaves2, Vector3(0.8, 5.0, 0.4) * s)
+	# a fuller crown, roots, a branch and a few mushrooms at the foot
+	Toon.part(root, "ellipsoid", Vector3(2.2, 1.8, 2.2) * s, leaves2, Vector3(-1.1, 4.6, -0.3) * s)
+	Toon.part(root, "ellipsoid", Vector3(1.8, 1.5, 1.8) * s, leaves, Vector3(-0.2, 5.5, -0.6) * s)
+	Toon.part(root, "ellipsoid", Vector3(1.6, 1.3, 1.6) * s, leaves2, Vector3(0.3, 3.6, 1.2) * s)
+	Toon.part(root, "capsule", Vector3(0.28, 1.4, 0.28) * s, bark, Vector3(0.75, 3.2, 0.1) * s, Vector3(0, 0, -50))
+	for i in 4:
+		var a := TAU * i / 4.0 + 0.5
+		Toon.part(root, "capsule", Vector3(0.36, 1.2, 0.36) * s, bark, Vector3(cos(a) * 0.55, 0.15, sin(a) * 0.55) * s, Vector3(0, -rad_to_deg(a), 72))
+	if not grey:
+		for i in 3:
+			var a2 := 2.2 + i * 0.45
+			var mp := Vector3(cos(a2) * 0.95, 0.0, sin(a2) * 0.95 + 0.2) * s
+			Toon.part(root, "cylinder", Vector3(0.12, 0.25, 0.12) * s, Color("#fff3dc"), mp + Vector3(0, 0.12, 0) * s)
+			Toon.part(root, "ellipsoid", Vector3(0.34, 0.2, 0.34) * s * (1.0 - i * 0.15), ["berry", Color("#ff9a52"), "spark-purple"][i], mp + Vector3(0, 0.28, 0) * s)
+		for i in 4:
+			var a3 := randf() * TAU
+			Toon.part(root, "sphere", Vector3(0.24, 0.24, 0.24) * s, ["berry", "spark-yellow"][i % 2], Vector3(cos(a3) * 1.5, randf_range(3.6, 5.0), sin(a3) * 1.4) * s, Vector3.ZERO, 0.15, 0.02)
 	# face on the trunk
 	for side in [-1.0, 1.0]:
 		if grey:

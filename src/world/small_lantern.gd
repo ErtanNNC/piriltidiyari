@@ -24,12 +24,34 @@ func _ready() -> void:
 			Toon.part(self, "sphere", Vector3(0.45, 0.32, 0.45), Color("#a9a3bd"), Vector3(cos(a), 0.12, sin(a)) * 0.9)
 		for k in 3:
 			Toon.part(self, "cylinder", Vector3(0.24, 1.4, 0.24), Color("#8a5a3c"), Vector3(0, 0.3, 0), Vector3(70, k * 60.0, 0))
+		# two log seats and a little kettle on a tripod
+		for sd: float in [-1.0, 1.0]:
+			Toon.part(self, "capsule", Vector3(0.45, 1.5, 0.45), Color("#8a5a3c"), Vector3(sd * 1.9, 0.22, 0.3), Vector3(90, 0, 70 * sd))
+			Toon.part(self, "cylinder", Vector3(0.36, 0.04, 0.36), Color("#d9b38a"), Vector3(sd * 1.9 + sd * 0.27, 0.36, 0.3 + 0.62), Vector3(90, 0, 0), 0.0, 0.0)
+		for k in 3:
+			var a := TAU * k / 3.0
+			Toon.part(self, "cylinder", Vector3(0.06, 1.9, 0.06), Color("#6e4a33"), Vector3(cos(a) * 0.55, 0.85, sin(a) * 0.55), Vector3(cos(a + PI * 0.5) * 18, 0, sin(a + PI * 0.5) * -18), 0.0, 0.0)
+		Toon.part(self, "cylinder", Vector3(0.02, 0.3, 0.02), "outline", Vector3(0, 1.98, 0), Vector3.ZERO, 0.0, 0.0)
+		Toon.part(self, "ellipsoid", Vector3(0.42, 0.34, 0.42), "ink-muted", Vector3(0, 1.72, 0))
 		_flame = Toon.part(self, "cone", Vector3(0.8, 1.1, 0.8), "spark-off", Vector3(0, 0.8, 0), Vector3.ZERO, 0.0, 0.03)
 	else:
-		Toon.part(self, "cylinder", Vector3(0.9, 0.3, 1.1) * s, Color("#b9b0a4"), Vector3(0, 0.15, 0) * s)
+		# stepped stone base, a post with a ribbon, a cage around the flame,
+		# a roof with a finial; the big region lantern also flies a pennant
+		Toon.part(self, "cylinder", Vector3(1.2, 0.2, 1.3) * s, Color("#a49b90"), Vector3(0, 0.1, 0) * s)
+		Toon.part(self, "cylinder", Vector3(0.9, 0.3, 1.1) * s, Color("#b9b0a4"), Vector3(0, 0.3, 0) * s)
 		Toon.part(self, "cylinder", Vector3(0.22, 2.2, 0.28) * s, Color("#8a5a3c"), Vector3(0, 1.3, 0) * s)
+		for k in 4:
+			Toon.part(self, "ring", Vector3(0.32, 0.035, 0.32) * s, accent, Vector3(0, 0.8 + k * 0.32, 0) * s, Vector3(0, k * 40.0, 12), 0.0, 0.0)
 		Toon.part(self, "cylinder", Vector3(0.9, 0.12, 0.9) * s, "outline", Vector3(0, 2.4, 0) * s, Vector3.ZERO, 0.0, 0.0)
-		Toon.part(self, "cone", Vector3(0.9, 0.5, 0.9) * s, "honey-deep", Vector3(0, 3.35, 0) * s)
+		for k in 4:
+			var a := TAU * k / 4.0 + PI * 0.25
+			Toon.part(self, "cylinder", Vector3(0.05, 0.85, 0.05) * s, "ink-muted", Vector3(cos(a) * 0.38, 2.85, sin(a) * 0.38) * s, Vector3.ZERO, 0.0, 0.0)
+		Toon.part(self, "cylinder", Vector3(1.0, 0.1, 1.0) * s, "honey-deep", Vector3(0, 3.28, 0) * s, Vector3.ZERO, 0.0, 0.02)
+		Toon.part(self, "cone", Vector3(0.9, 0.5, 0.9) * s, "honey-deep", Vector3(0, 3.55, 0) * s)
+		Toon.part(self, "sphere", Vector3(0.2, 0.2, 0.2) * s, "honey", Vector3(0, 3.88, 0) * s, Vector3.ZERO, 0.5, 0.015)
+		if big:
+			Toon.part(self, "cylinder", Vector3(0.04, 0.9, 0.04) * s, "outline", Vector3(0, 4.3, 0) * s, Vector3.ZERO, 0.0, 0.0)
+			Toon.part(self, "cone", Vector3(0.5, 0.7, 0.05) * s, accent, Vector3(0.3, 4.55, 0) * s, Vector3(0, 0, -90), 0.0, 0.015)
 		_flame = Toon.part(self, "sphere", Vector3(0.62, 0.78, 0.62) * s, "spark-off", Vector3(0, 2.85, 0) * s, Vector3.ZERO, 0.0, 0.03)
 	var body := StaticBody3D.new()
 	var c := CollisionShape3D.new()

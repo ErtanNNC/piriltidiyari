@@ -38,7 +38,8 @@ static func material(col: Variant, outline := 0.035, glow := 0.0, pus := 1.0) ->
 
 
 ## Adds a primitive mesh child. `shape` is "sphere", "ellipsoid", "capsule",
-## "cylinder", "cone", "box" or "torus"; `size` is the bounding size in meters.
+## "cylinder", "cone", "box", "torus" or "ring"; `size` is the bounding size in meters.
+## ("torus" takes size.y as the INNER radius; "ring" takes it as the tube thickness.)
 ## ("sphere" ignores size.z for older models; "ellipsoid" honors it.)
 static func part(parent: Node3D, shape: String, size: Vector3, col: Variant,
 		pos := Vector3.ZERO, rot_deg := Vector3.ZERO, glow := 0.0, outline := 0.035, pus := -1.0) -> MeshInstance3D:
@@ -63,6 +64,14 @@ static func part(parent: Node3D, shape: String, size: Vector3, col: Variant,
 			cy.height = size.y
 			cy.radial_segments = 20
 			mi.mesh = cy
+		"ring":
+			# thin ring: size.x = outer diameter, size.y = tube thickness
+			var rg := TorusMesh.new()
+			rg.outer_radius = size.x * 0.5
+			rg.inner_radius = maxf(size.x * 0.5 - size.y, 0.001)
+			rg.rings = 32
+			rg.ring_segments = 8
+			mi.mesh = rg
 		"torus":
 			var t := TorusMesh.new()
 			t.inner_radius = size.y

@@ -63,6 +63,11 @@ katmanlı çatılı ve bacaları tüten evler; Fener Kulesi'nin balkonları, pen
 kökleri ve renk renk yaprak kümeleriyle, kuyu taş halkalı ve kovalı, fener direkleri kafesli. Mağara köyünde
 köstebek kulübeleri. Moblar Pus'tayken kendi renklerinin silik bir izini taşır, asık suratlıdır ve üstlerinden
 gri tüller tüter; sakinleşince gülümser, yanakları pembeleşir. Hepsi göz kırpar ve nefes alır.
+Bölümlerde: ormanda kökleri, mantarları ve dolgun taçlarıyla yüzlü ağaçlar, çiçekli çitler; mağarada
+sarkıt-dikitli, damarlı, dibinde parlayan mantarlı kaya duvarları; limanda çimen kenarlı, kökleri ve
+sarmaşıkları sarkan, yanında küçük taşlar uçuşan adalar, halatlı ve fenerli iskeleler; dağda buz sarkıtlı
+teraslar, kayalı ve çam ağaçlı duvarlar, kütük oturaklı ve çaydanlıklı kamp ateşleri; kalede tuğla sıralı,
+kemerli mor pencereli, sütunlu ve sancaklı duvarlar. Bölge fenerleri kafesli, kurdeleli ve flamalı.
 
 **Kontroller:** WASD / oklar yürür · Boşluk zıplar · J saldırır (diken dönüşü) · E konuşur.
 Mobilde sol yarıda sanal joystick, sağda Zıpla / Saldır butonları çıkar.
@@ -142,6 +147,7 @@ Sahne başlarında oyun kaydedilir (`user://kayit.json`); açılıştaki "Devam 
 <img src="docs/ekran/25_bekciler.png" width="49%"> <img src="docs/ekran/26_orman_zemini.png" width="49%">
 <img src="docs/ekran/27_gokyuzu.png" width="49%"> <img src="docs/ekran/28_su_ve_hava.png" width="49%">
 <img src="docs/ekran/29_moblar.png" width="49%"> <img src="docs/ekran/30_koy_evleri.png" width="49%">
+<img src="docs/ekran/31_bolum_yapilari.png" width="98%">
 </p>
 
 **Görünüm:** Karakterler parça parça kurulur (gövde, kafa, kulak, el, ayak, kuyruk); parlak gözleri

@@ -15,7 +15,16 @@ static func terrace(parent: Node3D, x_half: float, z0: float, z1: float, top_y: 
 	WorldLook.block(parent, Vector3(0, top_y - h * 0.5, (z0 + z1) * 0.5), Vector3(x_half * 2, h, absf(z0 - z1)), SNOW, 0.03)
 	# a darker rocky lip along the south edge so each step reads clearly
 	if top_y > 0.0:
-		Toon.part(parent, "box", Vector3(x_half * 2, 0.5, 0.8), ROCK, Vector3(0, top_y - 0.2, maxf(z0, z1) - 0.4), Vector3.ZERO, 0.0, 0.03)
+		var lip_z := maxf(z0, z1)
+		Toon.part(parent, "box", Vector3(x_half * 2, 0.5, 0.8), ROCK, Vector3(0, top_y - 0.2, lip_z - 0.4), Vector3.ZERO, 0.0, 0.03)
+		# icicles hanging off the lip and a soft snow cornice on it
+		var n := int(x_half * 2.0 / 0.9)
+		for i in n:
+			var x := -x_half + (i + 0.5) * x_half * 2.0 / n
+			var ln := 0.35 + 0.25 * float((i * 7) % 3)
+			Toon.part(parent, "cone", Vector3(0.18, ln, 0.18), ICE, Vector3(x, top_y - 0.45 - ln * 0.5, lip_z + 0.02), Vector3(180, 0, 0), 0.4, 0.015)
+			if i % 2 == 0:
+				Toon.part(parent, "ellipsoid", Vector3(1.4, 0.35, 0.7), Color("#eef3ff"), Vector3(x, top_y + 0.05, lip_z - 0.3), Vector3.ZERO, 0.0, 0.0)
 
 
 ## A walkable ramp from (z0, y0) to (z1, y1), `width` wide, centered on x.
@@ -50,7 +59,17 @@ static func wall(parent: Node3D, a: Vector3, b: Vector3, height := 3.0) -> void:
 	Toon.part(body, "box", Vector3(length, height, 1.4), ROCK, Vector3(0, height * 0.5, 0), Vector3.ZERO, 0.0, 0.03)
 	var n := maxi(1, int(length / 2.2))
 	for i in n:
-		Toon.part(body, "sphere", Vector3(2.0, 0.8, 1.8), SNOW, Vector3(-length * 0.5 + (i + 0.5) * length / n, height, 0))
+		var x := -length * 0.5 + (i + 0.5) * length / n
+		Toon.part(body, "sphere", Vector3(2.0, 0.8, 1.8), SNOW, Vector3(x, height, 0))
+		# craggy boulders on both faces and now and then a little snowy pine on top
+		for sd: float in [-1.0, 1.0]:
+			Toon.part(body, "ellipsoid", Vector3(1.2, 0.9, 0.5), ROCK.darkened(0.08) if i % 2 == 0 else ROCK.lightened(0.06),
+				Vector3(x + 0.4 * sd, height * 0.35 + (i % 3) * 0.3, sd * 0.72), Vector3(0, 0, 15 * sd))
+		if i % 3 == 1:
+			Toon.part(body, "cylinder", Vector3(0.2, 0.6, 0.2), Color("#8a5a3c"), Vector3(x, height + 0.5, 0))
+			for k in 3:
+				Toon.part(body, "cone", Vector3(1.1 - k * 0.3, 0.8, 1.1 - k * 0.3), Color("#3f8f6a"), Vector3(x, height + 0.9 + k * 0.45, 0))
+				Toon.part(body, "cone", Vector3(0.9 - k * 0.25, 0.3, 0.9 - k * 0.25), Color("#f2f5ff"), Vector3(x, height + 1.18 + k * 0.45, 0), Vector3.ZERO, 0.0, 0.0)
 
 
 ## Slippery ice: you slide (low grip) while on it.

@@ -60,7 +60,7 @@ func _house() -> void:
 	# walls on a stone footing
 	Toon.part(self, "cylinder", Vector3(3.5, 0.45, 3.6), STONE, Vector3(0, 0.22, 0))
 	Toon.part(self, "cylinder", Vector3(3.0, 2.4, 3.2), WALL, Vector3(0, 1.4, 0))
-	Toon.part(self, "torus", Vector3(3.24, 0.09, 3.24), WOOD_LIGHT, Vector3(0, 2.45, 0), Vector3.ZERO, 0.0, 0.02)
+	Toon.part(self, "ring", Vector3(3.24, 0.09, 3.24), WOOD_LIGHT, Vector3(0, 2.45, 0), Vector3.ZERO, 0.0, 0.02)
 	# wooden posts around the wall
 	for a in [60.0, 120.0, 240.0, 300.0]:
 		var piv := _around(a)
@@ -79,7 +79,7 @@ func _house() -> void:
 	# round windows with frames, warm glass, cross bars and flower boxes
 	for a in [rng.randf_range(65, 85), rng.randf_range(-85, -65)]:
 		var w := _around(a)
-		Toon.part(w, "torus", Vector3(0.8, 0.08, 0.8), WOOD_LIGHT, Vector3(0, 1.75, 1.54), Vector3(90, 0, 0), 0.0, 0.02)
+		Toon.part(w, "ring", Vector3(0.8, 0.08, 0.8), WOOD_LIGHT, Vector3(0, 1.75, 1.54), Vector3(90, 0, 0), 0.0, 0.02)
 		Toon.part(w, "cylinder", Vector3(0.66, 0.05, 0.66), GLASS, Vector3(0, 1.75, 1.53), Vector3(90, 0, 0), 1.1, 0.0)
 		Toon.part(w, "box", Vector3(0.66, 0.05, 0.03), WOOD, Vector3(0, 1.75, 1.57), Vector3.ZERO, 0.0, 0.0)
 		Toon.part(w, "box", Vector3(0.05, 0.66, 0.03), WOOD, Vector3(0, 1.75, 1.57), Vector3.ZERO, 0.0, 0.0)
@@ -191,7 +191,7 @@ func _tower() -> void:
 
 ## A balcony railing ring: posts and a top rail.
 func _rail(radius: float, y: float, posts: int) -> void:
-	Toon.part(self, "torus", Vector3(radius * 2.0, 0.06, radius * 2.0), WOOD_LIGHT, Vector3(0, y + 0.5, 0), Vector3.ZERO, 0.0, 0.015)
+	Toon.part(self, "ring", Vector3(radius * 2.0, 0.06, radius * 2.0), WOOD_LIGHT, Vector3(0, y + 0.5, 0), Vector3.ZERO, 0.0, 0.015)
 	for i in posts:
 		var piv := _around(360.0 * i / posts)
 		Toon.part(piv, "cylinder", Vector3(0.08, 0.55, 0.08), WOOD_LIGHT, Vector3(0, y + 0.25, radius), Vector3.ZERO, 0.0, 0.0)
@@ -227,14 +227,14 @@ func _well() -> void:
 	for i in 8:
 		var piv := _around(i * 45.0 + 22.5)
 		Toon.part(piv, "box", Vector3(0.62, 0.3, 0.2), STONE.darkened(0.1), Vector3(0, 0.3 + (i % 2) * 0.32, 0.9), Vector3.ZERO, 0.0, 0.015)
-	Toon.part(self, "torus", Vector3(1.95, 0.1, 1.95), STONE.lightened(0.1), Vector3(0, 0.95, 0), Vector3.ZERO, 0.0, 0.02)
+	Toon.part(self, "ring", Vector3(1.95, 0.1, 1.95), STONE.lightened(0.1), Vector3(0, 0.95, 0), Vector3.ZERO, 0.0, 0.02)
 	WorldLook.water(Toon.part(self, "cylinder", Vector3(1.45, 0.08, 1.45), "sky", Vector3(0, 0.84, 0), Vector3.ZERO, 0.3, 0.0), "lake")
 	for x in [-0.85, 0.85]:
 		Toon.part(self, "cylinder", Vector3(0.16, 1.7, 0.16), WOOD, Vector3(x, 1.6, 0))
 	Toon.part(self, "cylinder", Vector3(0.12, 1.9, 0.12), WOOD_LIGHT, Vector3(0, 2.05, 0), Vector3(0, 0, 90))
 	Toon.part(self, "cylinder", Vector3(0.02, 0.6, 0.02), "outline", Vector3(0, 1.75, 0), Vector3.ZERO, 0.0, 0.0)
 	Toon.part(self, "cylinder", Vector3(0.32, 0.3, 0.26), WOOD_LIGHT, Vector3(0, 1.35, 0))
-	Toon.part(self, "torus", Vector3(0.34, 0.03, 0.34), "ink-muted", Vector3(0, 1.42, 0), Vector3.ZERO, 0.0, 0.0)
+	Toon.part(self, "ring", Vector3(0.34, 0.03, 0.34), "ink-muted", Vector3(0, 1.42, 0), Vector3.ZERO, 0.0, 0.0)
 	Toon.part(self, "cone", Vector3(2.4, 0.9, 1.6), Tokens.color(accent), Vector3(0, 2.75, 0))
 	Toon.part(self, "cone", Vector3(1.6, 0.6, 1.1), Tokens.color(accent).lightened(0.15), Vector3(0, 3.0, 0))
 	_collider(0.9, 1.2)
@@ -253,7 +253,7 @@ func _flowers() -> void:
 func _lantern_post() -> void:
 	Toon.part(self, "cylinder", Vector3(0.5, 0.25, 0.55), STONE, Vector3(0, 0.12, 0))
 	Toon.part(self, "cylinder", Vector3(0.18, 2.4, 0.22), WOOD, Vector3(0, 1.2, 0))
-	Toon.part(self, "torus", Vector3(0.3, 0.04, 0.3), "honey-deep", Vector3(0, 1.0, 0), Vector3.ZERO, 0.0, 0.0)
+	Toon.part(self, "ring", Vector3(0.3, 0.04, 0.3), "honey-deep", Vector3(0, 1.0, 0), Vector3.ZERO, 0.0, 0.0)
 	# lantern cage: cap, glowing core, base
 	Toon.part(self, "cone", Vector3(0.62, 0.32, 0.62), "ink-muted", Vector3(0, 2.92, 0))
 	Toon.part(self, "sphere", Vector3(0.16, 0.16, 0.16), "honey-deep", Vector3(0, 3.12, 0))

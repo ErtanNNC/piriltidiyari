@@ -31,6 +31,18 @@ static func wall(parent: Node3D, a: Vector3, b: Vector3, thickness := 1.8) -> vo
 	for i in n:
 		var x := -length * 0.5 + (i + 0.5) * length / n
 		Toon.part(body, "sphere", Vector3(2.6, 1.8, thickness + 0.4), ROCK_LIGHT if i % 2 == 0 else ROCK, Vector3(x, 2.1, 0), Vector3.ZERO, 0.0, 0.03)
+		# stalagmites on top, rubble at the foot, a light mineral vein
+		Toon.part(body, "cone", Vector3(0.6, 1.4, 0.6), ROCK_LIGHT, Vector3(x + 0.7, 3.2, rng.randf_range(-0.3, 0.3)), Vector3(0, 0, rng.randf_range(-12, 12)))
+		Toon.part(body, "cone", Vector3(0.4, 0.9, 0.4), ROCK, Vector3(x - 0.6, 3.0, rng.randf_range(-0.3, 0.3)))
+		for sd: float in [-1.0, 1.0]:
+			Toon.part(body, "ellipsoid", Vector3(0.7, 0.45, 0.5), ROCK_LIGHT if (i % 2 == 0) == (sd > 0) else ROCK, Vector3(x + rng.randf_range(-0.8, 0.8), 0.15, sd * (thickness * 0.5 + 0.05)))
+			Toon.part(body, "box", Vector3(rng.randf_range(0.8, 1.6), 0.08, 0.04), ROCK_LIGHT.lightened(0.15), Vector3(x, rng.randf_range(0.6, 1.6), sd * (thickness * 0.5 + 0.02)), Vector3(0, 0, rng.randf_range(-20, 20)), 0.0, 0.0)
+		if rng.randf() < 0.3:
+			var sd2 := 1.0 if rng.randf() < 0.5 else -1.0
+			for k in 3:
+				var mp := Vector3(x + (k - 1) * 0.3, 0.0, sd2 * (thickness * 0.5 + 0.25))
+				Toon.part(body, "cylinder", Vector3(0.08, 0.3 + k * 0.1, 0.08), Color("#e8e0ff"), mp + Vector3(0, 0.15, 0), Vector3.ZERO, 0.0, 0.0)
+				Toon.part(body, "ellipsoid", Vector3(0.3, 0.14, 0.3), ["sky", "spark-purple", "berry"][k], mp + Vector3(0, 0.32 + k * 0.1, 0), Vector3.ZERO, 0.9, 0.015)
 		if rng.randf() < 0.45:
 			var col: String = CANDY[rng.randi() % CANDY.size()]
 			for k in 3:

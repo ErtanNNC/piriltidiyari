@@ -123,8 +123,8 @@ static func _slug(root: Node3D, pus: bool) -> void:
 	# spiral shell on its back
 	var shell: Variant = _c(pus, Color("#ffb86b"), true)
 	Toon.part(root, "ellipsoid", Vector3(0.75, 0.75, 0.42), shell, Vector3(0, 0.95, -0.35), Vector3(0, 90, 0))
-	Toon.part(root, "torus", Vector3(0.52, 0.06, 0.52), _c(pus, Color("#d9823a")), Vector3(0.2, 0.95, -0.35), Vector3(0, 0, 90), 0.0, 0.0)
-	Toon.part(root, "torus", Vector3(0.28, 0.05, 0.28), _c(pus, Color("#d9823a")), Vector3(0.22, 0.98, -0.32), Vector3(0, 0, 90), 0.0, 0.0)
+	Toon.part(root, "ring", Vector3(0.52, 0.06, 0.52), _c(pus, Color("#d9823a")), Vector3(0.2, 0.95, -0.35), Vector3(0, 0, 90), 0.0, 0.0)
+	Toon.part(root, "ring", Vector3(0.28, 0.05, 0.28), _c(pus, Color("#d9823a")), Vector3(0.22, 0.98, -0.32), Vector3(0, 0, 90), 0.0, 0.0)
 	for side in [-1.0, 1.0]:
 		Toon.part(root, "cylinder", Vector3(0.07, 0.4, 0.07), body, Vector3(0.15 * side, 1.0, 0.5), Vector3(0, 0, -12 * side))
 		Toon.part(root, "sphere", Vector3(0.16, 0.16, 0.16), body, Vector3(0.19 * side, 1.2, 0.5))

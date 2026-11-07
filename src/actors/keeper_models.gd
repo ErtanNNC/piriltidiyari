@@ -59,7 +59,7 @@ static func _base(root: Node3D, fur: Color, cloth: Variant, belly: Color, head_y
 	Toon.part(body, "ellipsoid", torso, fur, Vector3.ZERO)
 	# costume: a soft tunic over the lower torso
 	Toon.part(body, "ellipsoid", Vector3(torso.x * 1.06, torso.y * 0.72, torso.z * 1.06), cloth, Vector3(0, -0.1, 0))
-	Toon.part(body, "torus", Vector3(torso.x * 0.98, 0.07, torso.x * 0.98), cloth, Vector3(0, 0.12, 0), Vector3.ZERO, 0.0, 0.025)
+	Toon.part(body, "ring", Vector3(torso.x * 0.98, 0.07, torso.x * 0.98), cloth, Vector3(0, 0.12, 0), Vector3.ZERO, 0.0, 0.025)
 	Toon.part(body, "ellipsoid", Vector3(torso.x * 0.5, torso.y * 0.5, 0.12), belly, Vector3(0, 0.08, torso.z * 0.44), Vector3.ZERO, 0.0, 0.0)
 	# the spark every keeper carries, as a pendant
 	Toon.part(body, "cylinder", Vector3(0.02, 0.14, 0.02), "outline", Vector3(0, 0.27, torso.z * 0.47), Vector3(20, 0, 0), 0.0, 0.0)
@@ -194,7 +194,7 @@ static func _firefly(root: Node3D, body_col: Color, _sig: String) -> Dictionary:
 	# glowing lantern abdomen with stripes
 	var tail := _node(root, "Tail", Vector3(0, 0.48, -0.46))
 	Toon.part(tail, "ellipsoid", Vector3(0.6, 0.58, 0.62), "spark-yellow", Vector3.ZERO, Vector3.ZERO, 2.2, 0.03)
-	Toon.part(tail, "torus", Vector3(0.58, 0.05, 0.58), body_col.darkened(0.3), Vector3(0, 0, 0.12), Vector3(80, 0, 0), 0.0, 0.0)
+	Toon.part(tail, "ring", Vector3(0.58, 0.05, 0.58), body_col.darkened(0.3), Vector3(0, 0, 0.12), Vector3(80, 0, 0), 0.0, 0.0)
 	p["Tail"] = tail
 	return p
 
@@ -207,7 +207,7 @@ static func _accessory(p: Dictionary, acc: String, _id: String) -> void:
 			var top := r.y - 0.02
 			Toon.part(head, "cylinder", Vector3(0.74, 0.07, 0.74), "honey-deep", Vector3(0, top, -0.02), Vector3(-6, 0, 0))
 			Toon.part(head, "cylinder", Vector3(0.44, 0.3, 0.48), "honey", Vector3(0, top + 0.17, -0.03), Vector3(-6, 0, 0))
-			Toon.part(head, "torus", Vector3(0.48, 0.05, 0.48), "berry", Vector3(0, top + 0.06, -0.03), Vector3(-6, 0, 0), 0.0, 0.015)
+			Toon.part(head, "ring", Vector3(0.48, 0.05, 0.48), "berry", Vector3(0, top + 0.06, -0.03), Vector3(-6, 0, 0), 0.0, 0.015)
 		"atki":
 			var body: Node3D = p["Body"]
 			Toon.part(body, "torus", Vector3(0.74, 0.2, 0.74), "sky", Vector3(0, 0.42, 0))
@@ -216,5 +216,5 @@ static func _accessory(p: Dictionary, acc: String, _id: String) -> void:
 				Toon.part(body, "box", Vector3(0.175, 0.04, 0.085), Color.WHITE, Vector3(0.2 + i * 0.0, 0.36 - i * 0.12, 0.35 + i * 0.03), Vector3(-15, 0, 12), 0.0, 0.0)
 		"gozluk":
 			for s: float in [-1.0, 1.0]:
-				Toon.part(head, "torus", Vector3(0.24, 0.03, 0.24), "outline", Face._on(Vector3.ZERO, r, 0.4 * r.x * s, 0.12 * r.y, 0.03), Vector3(90, 0, 0), 0.0, 0.0)
+				Toon.part(head, "ring", Vector3(0.24, 0.03, 0.24), "outline", Face._on(Vector3.ZERO, r, 0.4 * r.x * s, 0.12 * r.y, 0.03), Vector3(90, 0, 0), 0.0, 0.0)
 			Toon.part(head, "cylinder", Vector3(0.02, 0.12, 0.02), "outline", Face._on(Vector3.ZERO, r, 0.0, 0.16 * r.y, 0.03), Vector3(0, 0, 90), 0.0, 0.0)

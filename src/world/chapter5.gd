@@ -126,6 +126,25 @@ func _wall(parent: Node3D, a: Vector3, b: Vector3) -> void:
 	for i in n:
 		if i % 2 == 0:
 			Toon.part(body, "box", Vector3(0.8, 0.6, 1.3), STONE.lightened(0.1), Vector3(-length * 0.5 + (i + 0.5) * length / n, 3.3, 0), Vector3.ZERO, 0.0, 0.02)
+	# brick courses, a top ledge and a darker footing on both faces
+	Toon.part(body, "box", Vector3(length + 0.1, 0.18, 1.4), STONE.lightened(0.06), Vector3(0, 3.0, 0), Vector3.ZERO, 0.0, 0.02)
+	Toon.part(body, "box", Vector3(length + 0.05, 0.45, 1.32), STONE.darkened(0.12), Vector3(0, 0.22, 0), Vector3.ZERO, 0.0, 0.02)
+	for sd: float in [-1.0, 1.0]:
+		for row in 3:
+			Toon.part(body, "box", Vector3(length, 0.04, 0.02), STONE.darkened(0.2), Vector3(0, 0.9 + row * 0.7, sd * 0.61), Vector3.ZERO, 0.0, 0.0)
+	# every few meters: a pillar, an arched window with a faint purple glow, a banner
+	var bays := maxi(1, int(length / 6.0))
+	for i in bays:
+		var x := -length * 0.5 + (i + 0.5) * length / bays
+		for sd: float in [-1.0, 1.0]:
+			Toon.part(body, "box", Vector3(0.5, 3.0, 0.25), STONE.lightened(0.05), Vector3(x - 1.6, 1.5, sd * 0.68), Vector3.ZERO, 0.0, 0.02)
+			if length > 5.0:
+				Toon.part(body, "capsule", Vector3(0.8, 1.4, 0.1), Color("#2a2448"), Vector3(x, 1.75, sd * 0.61), Vector3.ZERO, 0.0, 0.02)
+				Toon.part(body, "capsule", Vector3(0.55, 1.1, 0.06), Color(0.62, 0.45, 0.95), Vector3(x, 1.75, sd * 0.64), Vector3.ZERO, 0.0, 0.0)
+			if i % 2 == 1:
+				Toon.part(body, "box", Vector3(0.7, 1.2, 0.04), "spark-purple", Vector3(x + 1.6, 2.2, sd * 0.64), Vector3.ZERO, 0.0, 0.015)
+				Toon.part(body, "cone", Vector3(0.7, 0.35, 0.04), "spark-purple", Vector3(x + 1.6, 1.45, sd * 0.64), Vector3(180, 0, 0), 0.0, 0.015)
+				Toon.part(body, "sphere", Vector3(0.2, 0.2, 0.06), "honey", Vector3(x + 1.6, 2.35, sd * 0.67), Vector3.ZERO, 0.4, 0.0)
 
 
 func _memory(parent: Node3D, n: int, at: Vector3) -> void:
