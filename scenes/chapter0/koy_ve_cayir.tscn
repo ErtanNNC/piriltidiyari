@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://src/world/chapter0.gd" id="1"]
+[ext_resource type="Script" path="res://src/actors/player.gd" id="2"]
+[ext_resource type="Script" path="res://src/world/follow_camera.gd" id="3"]
+[ext_resource type="Script" path="res://src/ui/hud.gd" id="4"]
+[ext_resource type="Script" path="res://src/actors/npc.gd" id="5"]
+[ext_resource type="PackedScene" path="res://scenes/prologue/village.tscn" id="6"]
+
+[node name="Chapter0" type="Node3D"]
+script = ExtResource("1")
+
+[node name="Village" parent="." instance=ExtResource("6")]
+mood = "sabah"
+
+[node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6)
+script = ExtResource("2")
+
+[node name="Camera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 6)
+script = ExtResource("3")
+target_path = NodePath("../Player")
+
+[node name="Hud" type="CanvasLayer" parent="."]
+script = ExtResource("4")
+
+[node name="Tospik" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -9)
+script = ExtResource("5")
+npc_id = "tospik_nine"
+kind = "turtle"
+face_angle_deg = -20
+
+[node name="Heykel" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -12)
+script = ExtResource("5")
+npc_id = "fistik_heykeli"
+kind = "statue"
+face_angle_deg = 15

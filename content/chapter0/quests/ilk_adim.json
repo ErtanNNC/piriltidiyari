@@ -1,0 +1,28 @@
+{
+  "id": "ilk_adim",
+  "title": "Bekçinin İlk Adımı",
+  "giver": "tospik_nine",
+  "ordered": true,
+  "objectives": [
+    {
+      "id": "heykel",
+      "text": "Fıstık'ın heykelini ziyaret et",
+      "type": "talk",
+      "target": "fistik_heykeli"
+    },
+    {
+      "id": "mantar",
+      "text": "Çayırdaki Dev Somurtkan Mantar'ı sakinleştir",
+      "type": "defeat",
+      "target": "dev_mantar"
+    }
+  ],
+  "turn_in": "Tospik Nine'ye dön",
+  "rewards": {
+    "piril": 40,
+    "xp": 50,
+    "items": [
+      "bal_surubu"
+    ]
+  }
+}

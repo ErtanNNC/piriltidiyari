@@ -43,6 +43,10 @@
     "lumi": {
       "name": "Lumi",
       "color": "xp"
+    },
+    "fistik_heykeli": {
+      "name": "Fıstık'ın heykeli",
+      "color": "honey"
     }
   }
 }

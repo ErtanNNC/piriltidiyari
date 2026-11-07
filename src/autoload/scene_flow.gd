@@ -68,6 +68,9 @@ func go_to(scene_id: String, save := true) -> void:
 	tw.tween_property(_fade, "modulate:a", 1.0, 0.45)
 	await tw.finished
 	Pus.set_amount(0.0)
+	var chapter := "chapter0" if scene_id == "chapter0" else "prologue"
+	if Content.chapter.get("id", "") != chapter:
+		Content.load_chapter(chapter)
 	get_tree().change_scene_to_file(SCENES[scene_id])
 	current = scene_id
 	if save and scene_id != "title":

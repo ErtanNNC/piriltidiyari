@@ -60,8 +60,9 @@ static func preset(data: PlayerData, scene: String) -> void:
 	if idx >= 5:
 		data.set_flag("sahne5_bitti")
 	if idx >= 6:
-		data.character_id = "pati"
-		data.character_name = "Pati"
+		var content: Node = Engine.get_main_loop().root.get_node_or_null("Content")
+		if content:
+			data.choose_keeper("pati", content.keepers["pati"]["stats"], {}, "Pati")
 		data.set_flag("prolog_bitti")
 
 

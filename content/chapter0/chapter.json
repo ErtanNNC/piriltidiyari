@@ -1,0 +1,19 @@
+{
+  "id": "chapter0",
+  "title": "Gökkuşağı Köyü ve Çayır",
+  "region": "Gökkuşağı Köyü",
+  "theme": "light",
+  "levels": [
+    1,
+    5
+  ],
+  "spark": null,
+  "quests": [
+    "ilk_adim"
+  ],
+  "dialogue": [
+    "tospik_nine",
+    "fistik_heykeli"
+  ],
+  "barks": "barks"
+}

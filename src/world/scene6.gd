@@ -69,6 +69,11 @@ func open_select() -> void:
 	_select.highlighted.connect(_on_highlight)
 	_select.look_changed.connect(_on_look)
 	_select.chosen.connect(_on_chosen)
+	if DevTools.demo == "choose":
+		_select.select("lumi")
+		await get_tree().create_timer(0.5).timeout
+		_select.chosen.emit("lumi", {"variant": 1, "accessory": "atki"}, "Işıltı")
+		return
 	if DevTools.demo.begins_with("pick_"):
 		_select.select(DevTools.demo.substr(5).trim_suffix("_cards"))
 		if DevTools.auto_dialogue and not DevTools.demo.ends_with("_cards"):

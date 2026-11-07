@@ -139,8 +139,38 @@ func test_owl_plan() -> void:
 
 
 func test_content_is_valid() -> void:
-	print("İçerik paketi kuralları")
+	for chapter in ["prologue", "chapter0"]:
+		_validate_chapter(chapter)
+	test_chapter0_flow()
+
+
+func test_chapter0_flow() -> void:
+	print("Bölüm 0 akışı")
 	var c: Node = ContentScript.new()
+	c.load_chapter("chapter0")
+	var d := PlayerData.new()
+	d.choose_keeper("bado", c.keepers["bado"]["stats"], {}, "Bado")
+	check(d.max_hp == 120 and d.speed < 6.0 and d.level == 1, "Bado: çok can, yavaş, seviye 1")
+	var talk := func(npc: String) -> Dictionary:
+		var v := DialogueRules.pick_variant(c.npc(npc), d)
+		DialogueRules.apply(v.get("then", {}), d, c.quests)
+		return v
+	talk.call("tospik_nine")
+	check(d.quest_state("ilk_adim") == "active", "Tospik ilk görevi verir")
+	d.notify("defeat", "dev_mantar", c.quests)
+	check(not d.objective_done("ilk_adim", "mantar"), "önce heykel ziyaret edilmeli (sıralı)")
+	talk.call("fistik_heykeli")
+	d.notify("defeat", "dev_mantar", c.quests)
+	check(d.quest_state("ilk_adim") == "ready", "mantar uyandı, görev hazır")
+	talk.call("tospik_nine")
+	check(d.has_flag("bolum0_bitti") and d.level == 2, "Bölüm 0 başlangıcı biter, seviye 2")
+	c.free()
+
+
+func _validate_chapter(chapter: String) -> void:
+	print("İçerik paketi kuralları: ", chapter)
+	var c: Node = ContentScript.new()
+	c.load_chapter(chapter)
 	var t: Node = TokensScript.new()
 	for id: String in c.speakers:
 		check(t.has_color(c.speakers[id]["color"]), "konuşan %s: renk token'ı var" % id)

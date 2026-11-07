@@ -1,0 +1,80 @@
+{
+  "npc": "tospik_nine",
+  "variants": [
+    {
+      "when": {
+        "quest": "ilk_adim",
+        "state": "none"
+      },
+      "lines": [
+        {
+          "speaker": "tospik_nine",
+          "mood": "mutlu",
+          "text": "Günaydın, yeni bekçi! Kıvılcım sana çok yakışmış."
+        },
+        {
+          "speaker": "tospik_nine",
+          "mood": "dertli",
+          "text": "Önce Fıstık'a bir merhaba de. Heykeli kulenin dibinde."
+        },
+        {
+          "speaker": "tospik_nine",
+          "mood": "kararlı",
+          "text": "Sonra çayıra bak. Koca bir mantar yolu tıkamış."
+        }
+      ],
+      "then": {
+        "start_quest": "ilk_adim"
+      }
+    },
+    {
+      "when": {
+        "quest": "ilk_adim",
+        "state": "active"
+      },
+      "lines": [
+        {
+          "speaker": "tospik_nine",
+          "mood": "mutlu",
+          "text": "Çayır köyün güneyinde. Dikkatli ol, cesur bekçi!"
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "ilk_adim",
+        "state": "ready"
+      },
+      "lines": [
+        {
+          "speaker": "tospik_nine",
+          "mood": "mutlu",
+          "text": "Mantar uyandı ve çayır yeniden pırıl pırıl!"
+        },
+        {
+          "speaker": "tospik_nine",
+          "mood": "dertli",
+          "text": "Ama Fısıltı Ormanı'nın feneri söndü."
+        },
+        {
+          "speaker": "tospik_nine",
+          "mood": "kararlı",
+          "text": "Yeşil Kıvılcım orada bir yerde. Önce o feneri yak."
+        }
+      ],
+      "then": {
+        "complete_quest": "ilk_adim",
+        "set_flag": "bolum0_bitti"
+      }
+    },
+    {
+      "lines": [
+        {
+          "speaker": "tospik_nine",
+          "mood": "kararlı",
+          "text": "Fısıltı Ormanı seni bekliyor!"
+        }
+      ]
+    }
+  ]
+}

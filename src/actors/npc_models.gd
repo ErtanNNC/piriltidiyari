@@ -16,6 +16,11 @@ static func build(kind: String) -> Node3D:
 		"duckling":
 			_critter(root, "spark-yellow", "sky", 0.7)
 			Toon.part(root, "sphere", Vector3(0.3, 0.12, 0.3), Color("#ff9a3c"), Vector3(0, 1.0, 0.36))
+		"statue":
+			Toon.part(root, "cylinder", Vector3(1.6, 1.0, 1.8), Color("#b9b0a4"), Vector3(0, 0.5, 0))
+			var f := FistikModel.build(true)
+			f.position.y = 1.0
+			root.add_child(f)
 		"frog":
 			_critter(root, "spark-green", "spark-green", 0.7)
 			for s in [-1.0, 1.0]:

@@ -1,0 +1,36 @@
+{
+  "npc": "fistik_heykeli",
+  "variants": [
+    {
+      "when": {
+        "quest": "ilk_adim",
+        "state": "active",
+        "objective_not_done": "ilk_adim/heykel"
+      },
+      "lines": [
+        {
+          "speaker": "fistik_heykeli",
+          "mood": "uykulu",
+          "text": "Hrrr... Hıh... Bekçi sen misin? Dikenlerin nerede?"
+        },
+        {
+          "speaker": "fistik_heykeli",
+          "mood": "uykulu",
+          "text": "Beş parçayı bul... Ben biraz daha uyuyayım..."
+        }
+      ],
+      "then": {
+        "advance": "ilk_adim/heykel"
+      }
+    },
+    {
+      "lines": [
+        {
+          "speaker": "fistik_heykeli",
+          "mood": "uykulu",
+          "text": "Hrrr... Bal Şurubu... Hrrr..."
+        }
+      ]
+    }
+  ]
+}

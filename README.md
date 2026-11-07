@@ -17,7 +17,7 @@
 ```bash
 tools/setup_godot.sh          # Godot 4.7.2'yi .tools/ altına indirir (bir kez)
 tools/test.sh                 # testler
-tools/screenshot.sh out.png   # sanal ekranda oyunu çizip görüntü alır
+tools/screenshot.sh out.png --scene=scene4 --at=10   # bir sahneyi açıp 10. saniyede görüntü alır
 ```
 
 Editörde açmak için Godot 4.7 ile `project.godot` dosyasını aç.
@@ -27,27 +27,49 @@ Mobilde sol yarıda sanal joystick, sağda Zıpla / Saldır butonları çıkar.
 
 ## Durum
 
-**Prolog · Sahne 1 – Yıldız Şenliği** oynanabilir (gri kutu modeller):
+**Prolog baştan sona oynanabilir** (gri kutu modellerle), ardından Bölüm 0'ın ilk görevi:
 
-- Gökkuşağı Köyü: Fener Kulesi, evler, kuyu, büyük ağaç, çiçek tarlası, fener direkleri
-- Fıstık: yürüme, zıplama, diken dönüşü, konuşma
-- Tospik Nine ve üç çocuk (Pıtı, Tıpış, Zıpzıp), **Kayıp Fenerler** görevi
-- Pırıl toplama, görev takipçisi, HP/MP/XP barları, Kıvılcım takipçisi, diyalog kutusu
-- Görev bitince "Sahne 2 – Gri Rüzgâr" kartı
+| Sahne | İçerik | Öğretilen |
+| --- | --- | --- |
+| Açılış | Just A Game Studios, başlık, Başla / Devam et | |
+| 1 · Yıldız Şenliği | Köy, Tospik Nine, üç çocuk, Kayıp Fenerler | yürüme, zıplama, konuşma, Pırıl |
+| 2 · Gri Rüzgâr | Pus gelir, Puslu Sümüklü ve Somurtkan Mantar | saldırı, yuvarlanma, Bal Şurubu |
+| 3 · Kule'ye Koşu | Düşen kirişler, sarmaşıklar, sallanan fenerler | tırmanma, platform, seviye atlama, Dikenli Dönüş |
+| 4 · Pus Baykuşu | 3 fazlı boss: tüyler, dalış, sersemleme | boss dövüşü |
+| 5 · Fıstık'ın Seçimi | Ara sahne: Kıvılcım beşe bölünür, Fıstık heykel olur | |
+| 6 · Fener'in Seçimi | Tospik'in konuşması, bekçi seçimi, renk, aksesuar, isim | |
+| Bölüm 0 | Seçilen bekçiyle: heykeli ziyaret, Dev Somurtkan Mantar | |
 
-Görünüm: toon shader (iki ton ve mor gölge tonu), koyu dış çizgi ve akşam şenliği ışığı.
+Sahne başlarında oyun kaydedilir (`user://kayit.json`); açılıştaki "Devam et" oradan sürer. Kimse ölmez: can biterse "Uykuya daldın", son yanan fenerde uyanılır.
 
-> Pıtı, Tıpış ve Zıpzıp'ın adları ve türleri hikâye dokümanında yok; geçici olarak verildi.
+> Pıtı, Tıpış ve Zıpzıp'ın adları ve türleri hikâye dokümanında yoktu; ben verdim.
+
+<p>
+<img src="docs/ekran/00_acilis.png" width="49%"> <img src="docs/ekran/02_gri_ruzgar_kiris.png" width="49%">
+<img src="docs/ekran/04_pus_baykusu.png" width="49%"> <img src="docs/ekran/06_bekci_secimi.png" width="49%">
+</p>
+
+**Kontroller:** WASD / oklar · Boşluk zıpla · J saldır · K yuvarlan · L Dikenli Dönüş · E konuş · 1–4 iksir.
+Mobilde: sanal joystick, Zıpla / Saldır / Yuvarlan / Dönüş butonları, iksir yuvalarına dokunma.
+
+### Henüz olmayanlar
+
+- Gerçek modeller, ikonlar, logo, ses ve müzik (her şey ilkel şekillerden yer tutucu)
+- Bekçilerin kendi özel yetenekleri (Pençe Kombosu, Kucaklama Kalkanı, Fındık Fırlatma, Işık Patlaması) ve dünya yetenekleri; şimdilik hepsi diken dönüşüyle saldırıyor
+- Envanter / dükkân ekranları, ayarlar, Bölüm 1 (Fısıltı Ormanı)
 
 ## Proje yapısı
 
 ```
 content/            hikâye verisi (bölüm paketleri) — kod değişmeden hikâye eklenir
   items.json, speakers.json
-  prologue/chapter.json, quests/*.json, dialogue/*.json
+  keepers.json        dört bekçi adayı (karakterler.md'den)
+  prologue/           chapter.json, quests/, dialogue/, barks.json, cutscenes/
+  chapter0/           Bölüm 0 paketi
 design/tokens.json  tasarım sistemi token'ları
 src/autoload/       Tokens, Content, GameState, InputSetup, DevTools
-src/core/           sahneden bağımsız kurallar: PlayerData, Progression, DialogueRules
+src/core/           sahneden bağımsız kurallar: PlayerData, Progression, DialogueRules,
+                    MobStats, OwlPlan, SaveGame
 src/world/          toon shader, kamera, köy parçaları, sahne betikleri
 src/actors/         oyuncu, NPC'ler, toplanabilirler (şimdilik ilkel şekillerden modeller)
 src/ui/             HUD, diyalog kutusu, barlar, ikonlar, dokunmatik kontroller
