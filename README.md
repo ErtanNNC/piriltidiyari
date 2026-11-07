@@ -50,6 +50,11 @@ Mobilde sol yarıda sanal joystick, sağda Zıpla / Saldır butonları çıkar.
 | 5 · Fıstık'ın Seçimi | Ara sahne: Kıvılcım beşe bölünür, Fıstık heykel olur | |
 | 6 · Fener'in Seçimi | Tospik'in konuşması, bekçi seçimi, renk, aksesuar, isim | |
 | Bölüm 0 | Seçilen bekçiyle: heykeli ziyaret, Dev Somurtkan Mantar | |
+| Bölüm 1 · Fısıltı Ormanı | Orman Feneri, Hu, 3 fısıltı kavşağı, 3 küçük fener, Kütük Kral, Yeşil Kıvılcım | fısıltı bulmacası, halkanın üstünden zıplama |
+
+**Bölüm 1 yan içerik:** Kayıp Yavrular (3), Hikâye Taşları 1–2, ve her bekçiye özel bir köşe:
+Pati çift zıplamayla sütuna çıkar, Bado kayayı iter, Çıtır dereye halat atar, Lumi karanlığı aydınlatır.
+Köy ile orman arasında tabelalarla gidilip gelinir.
 
 Sahne başlarında oyun kaydedilir (`user://kayit.json`); açılıştaki "Devam et" oradan sürer. Kimse ölmez: can biterse "Uykuya daldın", son yanan fenerde uyanılır.
 
@@ -58,6 +63,7 @@ Sahne başlarında oyun kaydedilir (`user://kayit.json`); açılıştaki "Devam 
 <p>
 <img src="docs/ekran/00_acilis.png" width="49%"> <img src="docs/ekran/02_gri_ruzgar_kiris.png" width="49%">
 <img src="docs/ekran/04_pus_baykusu.png" width="49%"> <img src="docs/ekran/06_bekci_secimi.png" width="49%">
+<img src="docs/ekran/08_fisilti_kavsagi.png" width="49%"> <img src="docs/ekran/09_kutuk_kral.png" width="49%">
 </p>
 
 **Kontroller:** WASD / oklar · Boşluk zıpla · J saldır · K yuvarlan · L Dikenli Dönüş · E konuş · 1–4 iksir.
@@ -66,8 +72,8 @@ Mobilde: sanal joystick, Zıpla / Saldır / Yuvarlan / Dönüş butonları, iksi
 ### Henüz olmayanlar
 
 - Gerçek modeller, ikonlar, logo, ses ve müzik (her şey ilkel şekillerden yer tutucu)
-- Bekçilerin dünya yetenekleri: Pati'nin çift zıplaması var; Bado'nun kaya itmesi, Çıtır'ın halatı ve Lumi'nin aydınlatması henüz yok (özel yeteneklerin dördü de var: L tuşu)
-- Envanter / dükkân ekranları, ayarlar, Bölüm 1 (Fısıltı Ormanı)
+- Envanter / dükkân ekranları (Terzi Dikiş'in dükkânı dahil), ayarlar
+- Bölüm 2 – Şekerleme Mağaraları ve sonrası
 
 ## Proje yapısı
 
