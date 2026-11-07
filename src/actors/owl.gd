@@ -146,7 +146,7 @@ func _daze() -> void:
 
 ## Player quills. Only lands while dazed (the group handles that).
 func hit(damage: int, _from: Vector3, _push: float) -> void:
-	Audio.play("hit")
+	Effects.hit(self, true)
 	if not dazed or not active:
 		return
 	hp = maxi(hp - damage, 0)

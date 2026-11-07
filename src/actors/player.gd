@@ -38,6 +38,8 @@ var _focus: Node = null
 var _spin_tween: Tween
 var _bob_time := 0.0
 var _rig: CharacterRig
+var _step_t := 0.0
+var _step_side := 1.0
 var _was_grounded := true
 var _air_time := 0.0
 var _nearby: Array[Area3D] = []
@@ -142,6 +144,7 @@ func _physics_process(delta: float) -> void:
 		if grounded and not _was_grounded and _air_time > 0.15:
 			_rig.land()
 			Audio.play("land")
+			_step_fx(3)
 		_air_time = 0.0 if grounded else _air_time + delta
 		_was_grounded = grounded
 		_rig.airborne = not grounded and _air_time > 0.1
@@ -151,6 +154,11 @@ func _physics_process(delta: float) -> void:
 		var want := atan2(dir.x, dir.z)
 		model.rotation.y = lerp_angle(model.rotation.y, want, 1.0 - exp(-14.0 * delta))
 		_bob_time += delta * 14.0
+		if is_on_floor() and Vector2(velocity.x, velocity.z).length() > 2.0:
+			_step_t -= delta
+			if _step_t <= 0.0:
+				_step_t = 0.26
+				_step_fx(1)
 		model.position.y = abs(sin(_bob_time)) * (0.05 if _rig else 0.12)
 	else:
 		model.position.y = move_toward(model.position.y, 0.0, delta)
@@ -395,6 +403,7 @@ func hurt(amount: int, from: Vector3) -> bool:
 			return false
 	_invulnerable = INVULNERABLE_TIME
 	Audio.play("hurt")
+	Effects.shake(get_viewport(), 0.22)
 	var away := (global_position - from)
 	away.y = 0.0
 	_knock = away.normalized() * 9.0
@@ -486,3 +495,17 @@ func carry_light() -> OmniLight3D:
 	l.position = Vector3(0, 2.2, 0.4)
 	add_child(l)
 	return l
+
+
+## A step: paw prints in snow, a small dust puff elsewhere (not on ice/syrup).
+func _step_fx(count: int) -> void:
+	var feet := global_position
+	if WorldLook.current_mood == "dag" and not ice:
+		_step_side = -_step_side
+		var side := Vector3(cos(model.rotation.y), 0, -sin(model.rotation.y)) * 0.16 * _step_side
+		Effects.footprint(get_parent(), feet + side, model.rotation.y, Color(0.62, 0.68, 0.86, 0.55))
+		if count > 1:
+			Effects.dust(get_parent(), feet, Color(1, 1, 1, 0.8), count, 0.5)
+	elif not ice and slow >= 1.0:
+		var col := Color(1.0, 0.97, 0.9, 0.55) if WorldLook.current_mood != "magara" else Color(0.75, 0.68, 0.95, 0.45)
+		Effects.dust(get_parent(), feet, col, count, 0.45 if count == 1 else 0.6)

@@ -82,12 +82,14 @@ func _run_demo(which: String) -> void:
 					if _hud._dialog.is_open():
 						_hud._dialog.advance()
 			print("WIN owl_hp=%d active=%s phase=%d t=%.1f player_hp=%d asleep=%s" % [_owl.hp, _owl.active, _owl.phase, t, GameState.data.hp, player.asleep])
-			await get_tree().create_timer(5.0).timeout
-			for i in 6:
+			# the scene moves on to Sahne 5 by itself (this node is freed then),
+			# so report and quit as soon as the flag is set
+			for i in 120:
+				if GameState.data.has_flag("sahne4_bitti") or SceneFlow.busy:
+					break
 				if _hud._dialog.is_open():
 					_hud._dialog.advance()
 					_hud._dialog.advance()
 				await get_tree().create_timer(0.3).timeout
-			await get_tree().create_timer(3.0).timeout
-			print("WIN2 flag=%s scene=%s" % [GameState.data.has_flag("sahne4_bitti"), SceneFlow.current])
+			print("WIN2 flag=%s next=%s" % [GameState.data.has_flag("sahne4_bitti"), SceneFlow.busy])
 			get_tree().quit()

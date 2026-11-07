@@ -288,6 +288,11 @@ static func texture(kind: String) -> ImageTexture:
 					var ray := absf(sin(ang * 6.0))
 					if r < 0.95 and ray < 0.12:
 						a = maxf(a, 0.7 * (1.0 - r))
+				"star":
+					# five-point star with a soft glow
+					var ang := atan2(v, u)
+					var k := 0.55 + 0.45 * pow(absf(cos(ang * 2.5)), 6.0)
+					a = clampf((k * 0.95 - r) * 10.0, 0.0, 1.0) + clampf(0.35 - r, 0.0, 0.35)
 				"streak_h", "streak_v":
 					var along := u if kind == "streak_h" else v
 					a = clampf(1.0 - absf(along), 0.0, 1.0)

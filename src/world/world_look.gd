@@ -27,7 +27,12 @@ const SKIES := {
 }
 
 
+## The mood of the scene being played (footprints, dust colors...).
+static var current_mood := ""
+
+
 static func add(parent: Node, mood: String) -> Environment:
+	current_mood = mood
 	var env := Environment.new()
 	env.background_mode = Environment.BG_COLOR
 	env.ambient_light_source = Environment.AMBIENT_SOURCE_COLOR

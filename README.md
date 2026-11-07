@@ -52,6 +52,12 @@ diyalog gibi her olayın sesi var; her saldırı görsel uyarının yanında yum
 verilir. Hepsi `tools/make_audio.py` ile sentezlenir (`assets/audio/`); açılış ekranında Müzik ve Sesler
 ayrı ayrı kapatılabilir.
 
+**His ve cilalar:** Vuruşlarda "pat!" yıldızı, hafif ekran sarsıntısı ve çok kısa bir donma; can kaybında
+sarsıntı. Pırıl yakındaki bekçiye mıknatıs gibi süzülür (duvar ya da yükseklik arkasından değil: bekçi
+köşeleri yine yetenek ister). Koşarken ve inerken toz bulutları, dağda karda ayak izleri. Sağ üstteki
+**II** düğmesi (ya da Esc) Mola menüsünü açar: Devam et, Müzik ve Sesler aç/kapa, Ana menü. Bekçi
+seçiminde kamera seçilen bekçiye doğru hafifçe kayar.
+
 **Kontroller:** WASD / oklar yürür · Boşluk zıplar · J saldırır (diken dönüşü) · E konuşur.
 Mobilde sol yarıda sanal joystick, sağda Zıpla / Saldır butonları çıkar.
 
@@ -150,7 +156,13 @@ diyalog gibi her olayın sesi var; her saldırı görsel uyarının yanında yum
 verilir. Hepsi `tools/make_audio.py` ile sentezlenir (`assets/audio/`); açılış ekranında Müzik ve Sesler
 ayrı ayrı kapatılabilir.
 
-**Kontroller:** WASD / oklar · Boşluk zıpla · J saldır · K yuvarlan · L Dikenli Dönüş · E konuş · 1–4 iksir.
+**His ve cilalar:** Vuruşlarda "pat!" yıldızı, hafif ekran sarsıntısı ve çok kısa bir donma; can kaybında
+sarsıntı. Pırıl yakındaki bekçiye mıknatıs gibi süzülür (duvar ya da yükseklik arkasından değil: bekçi
+köşeleri yine yetenek ister). Koşarken ve inerken toz bulutları, dağda karda ayak izleri. Sağ üstteki
+**II** düğmesi (ya da Esc) Mola menüsünü açar: Devam et, Müzik ve Sesler aç/kapa, Ana menü. Bekçi
+seçiminde kamera seçilen bekçiye doğru hafifçe kayar.
+
+**Kontroller:** WASD / oklar · Boşluk zıpla · J saldır · K yuvarlan · L Dikenli Dönüş · E konuş · 1–4 iksir · Esc mola.
 Mobilde: sanal joystick, Zıpla / Saldır / Yuvarlan / Dönüş butonları, iksir yuvalarına dokunma.
 
 ### Henüz olmayanlar

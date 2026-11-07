@@ -10,6 +10,8 @@ var _mp: StatBar
 var _xp: StatBar
 var _level: Label
 var _piril: Label
+var _pause_btn: Button
+var _pause_panel: Control
 var _quest_panel: PanelContainer
 var _quest_title: Label
 var _quest_lines: VBoxContainer
@@ -33,6 +35,8 @@ var _cinematic := false
 
 func _ready() -> void:
 	add_to_group("hud")
+	if DevTools.demo == "pause":
+		get_tree().create_timer(3.5).timeout.connect(toggle_pause)
 	_root = Control.new()
 	_root.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	_root.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -140,7 +144,17 @@ func _ready() -> void:
 	ps.content_margin_top = 4
 	ps.content_margin_bottom = 4
 	pill.add_theme_stylebox_override("panel", ps)
-	tr.add_child(pill)
+	# pause button left of the Pırıl pill
+	var top_row := HBoxContainer.new()
+	top_row.size_flags_horizontal = Control.SIZE_SHRINK_END
+	top_row.add_theme_constant_override("separation", int(Tokens.px("space-2")))
+	tr.add_child(top_row)
+	_pause_btn = UiKit.button("II", false)
+	_pause_btn.custom_minimum_size = Vector2(52, 52)
+	_pause_btn.focus_mode = Control.FOCUS_NONE
+	_pause_btn.pressed.connect(toggle_pause)
+	top_row.add_child(_pause_btn)
+	top_row.add_child(pill)
 	var prow := HBoxContainer.new()
 	prow.add_theme_constant_override("separation", int(Tokens.px("space-1")) + 2)
 	pill.add_child(prow)
@@ -494,3 +508,68 @@ func ask(title: String, options: Array) -> String:
 	if _player:
 		_player.input_enabled = true
 	return id
+
+
+# --- pause ("Mola") -----------------------------------------------------------
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel") and not _cinematic and not _dialog.is_open():
+		toggle_pause()
+		get_viewport().set_input_as_handled()
+
+
+## Mola: stops the game; music/sound toggles and the way back to the title.
+func toggle_pause() -> void:
+	if _pause_panel:
+		_pause_panel.queue_free()
+		_pause_panel = null
+		get_tree().paused = false
+		return
+	if _cinematic or _dialog.is_open() or SceneFlow.busy:
+		return
+	get_tree().paused = true
+	var p := Control.new()
+	p.process_mode = Node.PROCESS_MODE_ALWAYS
+	p.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	var bg := ColorRect.new()
+	bg.color = Tokens.color("scrim")
+	bg.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	p.add_child(bg)
+	var panel := PanelContainer.new()
+	panel.add_theme_stylebox_override("panel", UiKit.panel_style())
+	panel.set_anchors_and_offsets_preset(Control.PRESET_CENTER)
+	panel.grow_horizontal = Control.GROW_DIRECTION_BOTH
+	panel.grow_vertical = Control.GROW_DIRECTION_BOTH
+	p.add_child(panel)
+	var v := VBoxContainer.new()
+	v.add_theme_constant_override("separation", int(Tokens.px("space-3")))
+	panel.add_child(v)
+	var title := UiKit.label("Mola", "text-title", "ink")
+	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	v.add_child(title)
+	var cont := UiKit.button("Devam et")
+	var mus := UiKit.button("", false)
+	var sfx := UiKit.button("", false)
+	var menu := UiKit.button("Ana menü", false)
+	for b: Button in [cont, mus, sfx, menu]:
+		b.custom_minimum_size = Vector2(280, 56)
+		v.add_child(b)
+	var refresh := func() -> void:
+		mus.text = "Müzik: " + ("Açık" if Audio.music_on else "Kapalı")
+		sfx.text = "Sesler: " + ("Açık" if Audio.sfx_on else "Kapalı")
+	refresh.call()
+	cont.pressed.connect(toggle_pause)
+	mus.pressed.connect(func() -> void:
+		Audio.set_music_on(not Audio.music_on)
+		refresh.call())
+	sfx.pressed.connect(func() -> void:
+		Audio.set_sfx_on(not Audio.sfx_on)
+		refresh.call())
+	menu.pressed.connect(func() -> void:
+		toggle_pause()
+		SceneFlow.go_to("title", false))
+	var note := UiKit.label("Oyun her bölüm başında kaydedilir.", "text-caption", "ink-muted")
+	note.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	v.add_child(note)
+	_root.add_child(p)
+	_pause_panel = p

@@ -9,6 +9,8 @@ extends Area3D
 var _visual: Node3D
 var _t := randf() * TAU
 var _taken := false
+var _pull := 0.0
+const MAGNET := 3.2
 
 
 func _ready() -> void:
@@ -33,6 +35,17 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	_t += delta
+	# Pırıl drifts to a nearby keeper like a little magnet
+	if item_id == "" and not _taken:
+		var p := get_tree().get_first_node_in_group("player") as Node3D
+		if p:
+			var to := p.global_position - global_position
+			var d := to.length()
+			if d < MAGNET and d > 0.05 and absf(to.y) < 0.8 and _clear_to(p):
+				_pull = minf(_pull + delta * 14.0, 12.0)
+				global_position += to / d * minf(_pull * delta, d)
+			else:
+				_pull = 0.0
 	_visual.position.y = sin(_t * 2.5) * 0.12
 	_visual.rotation.y += delta * 1.6
 
@@ -64,3 +77,11 @@ static func _lantern(parent: Node3D, col: String) -> void:
 	light.light_energy = 1.5
 	light.position.y = 0.62
 	parent.add_child(light)
+
+
+## Only pull through open air: keeper-only corners (behind walls, up on
+## ledges, past barriers) must still need the keeper's ability.
+func _clear_to(p: Node3D) -> bool:
+	var q := PhysicsRayQueryParameters3D.create(global_position + Vector3.UP * 0.6, p.global_position + Vector3.UP * 0.6)
+	q.collision_mask = Player.LAYER_WORLD | Player.LAYER_LOW_BARRIER
+	return get_world_3d().direct_space_state.intersect_ray(q).is_empty()

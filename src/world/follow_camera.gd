@@ -13,6 +13,22 @@ extends Camera3D
 @export_range(0.0, 1.0) var anchor_weight := 0.0
 
 var _target: Node3D
+var _shake := 0.0
+
+
+## Small screen shake (hits, landings); fades by itself.
+func shake(amount: float) -> void:
+	_shake = maxf(_shake, amount)
+
+
+func _process(delta: float) -> void:
+	if _shake > 0.0:
+		_shake = move_toward(_shake, 0.0, delta * 1.2)
+		h_offset = randf_range(-1.0, 1.0) * _shake
+		v_offset = randf_range(-1.0, 1.0) * _shake
+	elif h_offset != 0.0 or v_offset != 0.0:
+		h_offset = 0.0
+		v_offset = 0.0
 
 
 func _ready() -> void:

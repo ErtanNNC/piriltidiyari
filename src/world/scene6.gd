@@ -11,6 +11,8 @@ var _spark: MeshInstance3D
 var _select: KeeperSelect
 @onready var _hud: Hud = $Hud
 @onready var _cam: Camera3D = $Camera
+var _cam_home: Transform3D
+var _cam_tween: Tween
 
 
 func _ready() -> void:
@@ -64,6 +66,7 @@ func spark_wakes() -> void:
 func open_select() -> void:
 	await get_tree().process_frame  # after the cutscene hands the HUD back
 	_hud.cinematic(true)
+	_cam_home = _cam.global_transform
 	_select = KeeperSelect.new()
 	_hud.add_child(_select)
 	_select.highlighted.connect(_on_highlight)
@@ -87,6 +90,7 @@ func _on_highlight(id: String) -> void:
 	var tw := create_tween()
 	tw.tween_property(_spark, "position", to, 0.45).set_trans(Tween.TRANS_BACK)
 	Effects.sparkle(self, to, Tokens.color("honey"), 8)
+	_focus_camera(id)
 	for k: String in _keepers:
 		var m: Node3D = _keepers[k]
 		var t2 := create_tween()
@@ -117,3 +121,22 @@ func _on_chosen(id: String, look: Dictionary, display_name: String) -> void:
 	_hud.show_scene_card("Yeni bekçi", display_name, "Kıvılcım avucunda. Macera başlıyor!")
 	await get_tree().create_timer(3.4).timeout
 	SceneFlow.go_to("chapter0")
+
+
+## The camera leans in toward the highlighted keeper (and a bit to the left,
+## so the cards on the screen don't cover them).
+func _focus_camera(id: String) -> void:
+	var m: Node3D = _keepers.get(id)
+	if m == null:
+		return
+	var at := m.global_position
+	# a gentle dolly: keep the wide shot, slide a little toward the keeper and
+	# turn partly to them, so all four stay in view above the cards
+	var home := _cam_home
+	var from := home.origin + Vector3((at.x - home.origin.x) * 0.35, 0.5, -1.2)
+	var look := Transform3D(Basis(), from).looking_at(at + Vector3(0, -0.6, 0), Vector3.UP)
+	var target := Transform3D(home.basis.slerp(look.basis, 0.45), from)
+	if _cam_tween:
+		_cam_tween.kill()
+	_cam_tween = create_tween()
+	_cam_tween.tween_property(_cam, "global_transform", target, 0.6).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)

@@ -252,7 +252,7 @@ func _attack() -> void:
 
 ## Called by the player's attacks.
 func hit(damage: int, from: Vector3, push: float) -> void:
-	Audio.play("hit")
+	Effects.hit(self)
 	if state == "calm":
 		return
 	hp -= damage

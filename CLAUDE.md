@@ -12,7 +12,7 @@ is a copy of the design system's tokens.
   (DevTools.preset); `--auto` advances dialogue by itself; demos live in each
   scene script's `_run_demo`. Look at the PNG after any visual change.
 - Gameplay checks run headless: `godot --headless --path . -- --scene=scene3 --demo=hop`
-  (demos that print and quit: beamtest, touchtest, climb, hop, climb2, flow, win;
+  (demos that print and quit: beamtest, touchtest, climb, hop, climb2, flow, win (scene4);
   chapter1: wrong, mobs, bossfight, spots with --keeper=pati|bado|citir|lumi;
   chapter2: crystals, bossfight; chapter3: travel, wind, balloon, bossfight,
   spots with --keeper=...; chapter4: climb, ice, ramp, bossfight, spots; chapter5: walk, finalfight with --auto).
@@ -31,6 +31,10 @@ is a copy of the design system's tokens.
   `Audio.SCENE_MUSIC`, boss track via `Hud.show_boss/hide_boss`. Files are made by
   `python3 tools/make_audio.py [sfx|music [track...]]`; check with
   `--scene=preview --demo=audio` (headless). Every `Effects.warning` also plays "warn".
+- Landed hits go through `Effects.hit(target, strong)` (sound, star, shake, 45 ms
+  hit-stop via Engine.time_scale). Pırıl pickups have a magnet that needs a clear
+  line and the same height, so keeper-only corners stay keeper-only.
+- HUD has a Mola (pause) menu: `Hud.toggle_pause()`, Esc; `--demo=pause` opens it.
 - New chapters extend `ChapterBase` (src/world/chapter_base.gd): npc(),
   boss_camera(), fly_spark(), and test helpers close_dialogs()/walk_to().
 - `tools/build_android.sh` builds and signs export/PiriltiDiyari.apk; bump
