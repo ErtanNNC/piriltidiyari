@@ -25,6 +25,49 @@
         "mood": "kararlı",
         "text": "Büyük Kıvılcım'ın ışığı titriyor. Acele et, Fıstık!"
       }
+    ],
+    "s4_basla": [
+      {
+        "speaker": "fistik",
+        "mood": "kararlı",
+        "text": "Büyük Kıvılcım! Dayan, geliyorum!"
+      },
+      {
+        "speaker": "pus_baykusu",
+        "mood": "huysuz",
+        "text": "Hu-huuu! Bu parlak ışık artık benim!"
+      },
+      {
+        "speaker": "fistik",
+        "mood": "huysuz",
+        "text": "Önce benim dikenlerimi geçmen lazım, tüy yumağı!"
+      }
+    ],
+    "s4_faz2": [
+      {
+        "speaker": "pus_baykusu",
+        "mood": "huysuz",
+        "text": "Hu-hu! Daha hızlı uçarım!"
+      }
+    ],
+    "s4_faz3": [
+      {
+        "speaker": "pus_baykusu",
+        "mood": "üzgün",
+        "text": "Huuu... Bırak beni, ışığa yaklaşmak istiyorum!"
+      }
+    ],
+    "s4_son": [
+      {
+        "speaker": "fisilti",
+        "mood": "üzgün",
+        "text": "Beni... kimse... görmüyor..."
+      },
+      {
+        "speaker": "fistik",
+        "mood": "şaşkın",
+        "text": "Bu ses de neydi? Baykuş dağıldı ama Pus duruyor."
+      }
     ]
   }
 }

@@ -8,6 +8,9 @@ extends Camera3D
 @export var distance := 14.0
 @export var look_height := 0.8
 @export var smoothing := 6.0
+## Boss fights: look between the player and this point to keep both in view.
+@export var anchor := Vector3.ZERO
+@export_range(0.0, 1.0) var anchor_weight := 0.0
 
 var _target: Node3D
 
@@ -17,7 +20,7 @@ func _ready() -> void:
 	fov = 45.0
 	if _target:
 		global_position = _desired_position()
-		look_at(_target.global_position + Vector3.UP * look_height)
+		look_at(global_position - _offset())
 
 
 func _physics_process(delta: float) -> void:
@@ -34,4 +37,5 @@ func _offset() -> Vector3:
 
 
 func _desired_position() -> Vector3:
-	return _target.global_position + Vector3.UP * look_height + _offset()
+	var focus := _target.global_position.lerp(anchor, anchor_weight)
+	return focus + Vector3.UP * look_height + _offset()

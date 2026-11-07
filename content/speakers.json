@@ -1,9 +1,32 @@
 {
   "speakers": {
-    "fistik": { "name": "Fıstık", "color": "honey" },
-    "tospik_nine": { "name": "Tospik Nine", "color": "spark-green" },
-    "piti": { "name": "Pıtı", "color": "berry" },
-    "tipis": { "name": "Tıpış", "color": "sky" },
-    "zipzip": { "name": "Zıpzıp", "color": "spark-green" }
+    "fistik": {
+      "name": "Fıstık",
+      "color": "honey"
+    },
+    "tospik_nine": {
+      "name": "Tospik Nine",
+      "color": "spark-green"
+    },
+    "piti": {
+      "name": "Pıtı",
+      "color": "berry"
+    },
+    "tipis": {
+      "name": "Tıpış",
+      "color": "sky"
+    },
+    "zipzip": {
+      "name": "Zıpzıp",
+      "color": "spark-green"
+    },
+    "pus_baykusu": {
+      "name": "Pus Baykuşu",
+      "color": "pus"
+    },
+    "fisilti": {
+      "name": "???",
+      "color": "pus"
+    }
   }
 }

@@ -15,6 +15,7 @@ func _init() -> void:
 	test_quest_flow_scene1()
 	test_quest_flow_scene2()
 	test_save_roundtrip()
+	test_owl_plan()
 	test_content_is_valid()
 	print("\n%d kontrol, %d hata" % [_checks, _failures])
 	quit(1 if _failures > 0 else 0)
@@ -127,6 +128,16 @@ func test_save_roundtrip() -> void:
 	check(b.has_flag("x") and b.skills.has("dikenli_donus"), "bayrak ve yetenek")
 
 
+func test_owl_plan() -> void:
+	print("Pus Baykuşu planı")
+	check(OwlPlan.phase(OwlPlan.MAX_HP) == 1 and OwlPlan.phase(OwlPlan.MAX_HP / 2) == 2 and OwlPlan.phase(10) == 3, "üç faz")
+	for p in [1, 2, 3]:
+		check(OwlPlan.cycle(p).has("dive"), "faz %d: her döngüde dalış (vurma fırsatı) var" % p)
+		check(OwlPlan.rest(p) >= 1.0, "faz %d: saldırılar arası en az 1 sn" % p)
+	check(OwlPlan.volley(1).x < OwlPlan.volley(3).x, "fazlar zorlaşır")
+	check(OwlPlan.FEATHER_DAMAGE * 3 + OwlPlan.DIVE_DAMAGE < 100, "ilk döngüde hiç kaçmayan oyuncu bile uyumaz")
+
+
 func test_content_is_valid() -> void:
 	print("İçerik paketi kuralları")
 	var c: Node = ContentScript.new()
@@ -134,6 +145,10 @@ func test_content_is_valid() -> void:
 	for id: String in c.speakers:
 		check(t.has_color(c.speakers[id]["color"]), "konuşan %s: renk token'ı var" % id)
 		check(c.speakers[id]["color"] != "leaf", "konuşan %s: leaf üstüne metin yazılmaz" % id)
+	for id: String in c.barks:
+		for line: Dictionary in c.barks[id]:
+			check(c.speakers.has(line["speaker"]), "bark %s: bilinmeyen konuşan" % id)
+			check(String(line["text"]).length() <= 70, "bark %s: satır en fazla 70 harf: %s" % [id, line["text"]])
 	for id: String in c.items:
 		check(t.has_color(c.items[id]["color"]), "eşya %s: renk token'ı var" % id)
 	for npc_id: String in c.npcs:
