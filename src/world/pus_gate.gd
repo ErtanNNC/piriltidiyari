@@ -59,6 +59,8 @@ func open(silent := false) -> void:
 	if is_open:
 		return
 	is_open = true
+	if not silent:
+		Audio.play("door")
 	_body.queue_free()
 	if silent:
 		for mi in _puffs:

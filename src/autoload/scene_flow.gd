@@ -81,6 +81,7 @@ func go_to(scene_id: String, save := true) -> void:
 	if busy or not SCENES.has(scene_id):
 		return
 	busy = true
+	Audio.scene_changed(scene_id)
 	var tw := create_tween()
 	tw.tween_property(_fade, "modulate:a", 1.0, 0.45)
 	await tw.finished

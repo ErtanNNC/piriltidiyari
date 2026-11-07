@@ -17,4 +17,5 @@ func _build() -> void:
 
 
 func use(_by: Node) -> void:
+	Audio.play("whoosh")
 	travel_requested.emit()

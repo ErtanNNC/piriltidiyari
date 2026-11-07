@@ -252,6 +252,7 @@ func _attack() -> void:
 
 ## Called by the player's attacks.
 func hit(damage: int, from: Vector3, push: float) -> void:
+	Audio.play("hit")
 	if state == "calm":
 		return
 	hp -= damage
@@ -284,6 +285,7 @@ func bump(from: Vector3) -> void:
 ## Beaten: back to its own colors, small, and off it runs. Never "dies".
 func _calm() -> void:
 	state = "calm"
+	Audio.play("calm")
 	_release_token()
 	remove_from_group("hittable")
 	remove_from_group("mob")

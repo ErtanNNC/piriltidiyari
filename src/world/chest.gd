@@ -29,6 +29,7 @@ func use(_by: Node) -> void:
 	if GameState.data.has_flag("sandik_" + chest_id):
 		return
 	GameState.data.set_flag("sandik_" + chest_id)
+	Audio.play("chest")
 	var tw := create_tween()
 	tw.tween_property(_lid, "rotation_degrees:x", -70.0, 0.3).set_trans(Tween.TRANS_BACK)
 	Effects.sparkle(get_parent(), global_position + Vector3.UP, Tokens.color("piril"), 14)

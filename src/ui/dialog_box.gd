@@ -87,6 +87,7 @@ func open(lines: Array, then: Dictionary) -> void:
 	_then = then
 	_index = 0
 	visible = true
+	Audio.play("pop")
 	_show_line()
 
 
@@ -111,6 +112,7 @@ func advance() -> void:
 
 func _show_line() -> void:
 	var line: Dictionary = _lines[_index]
+	Audio.play("blip")
 	var sp := Content.speaker(line.get("speaker", ""))
 	var c := Tokens.color(sp["color"])
 	_name.text = sp["name"]

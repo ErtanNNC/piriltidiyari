@@ -58,6 +58,7 @@ func use(_by: Node) -> void:
 	GameState.data.set_flag("kapi_" + spark)
 	_open(false)
 	GameState.notify("light", "kivilcim_kapisi")
+	Audio.play("door")
 	opened.emit(self)
 
 

@@ -165,6 +165,7 @@ func _dive() -> void:
 
 
 func hit(damage: int, _from: Vector3, _push: float) -> void:
+	Audio.play("hit")
 	if not dazed or not active:
 		return
 	hp = maxi(hp - damage, 0)

@@ -27,6 +27,9 @@ func _ready() -> void:
 	if which == "import":
 		_import_check()
 		return
+	if which == "audio":
+		_audio_check()
+		return
 	var list: Array = KEEPERS if which == "keepers" else NPCS
 	var gap := 2.0 if which == "keepers" else 2.4
 	for i in list.size():
@@ -76,4 +79,35 @@ func _import_check() -> void:
 			else:
 				other += 1
 	print("IMPORT err=%d height=%.2f bottom=%.2f toon=%d other=%d rig=%s" % [err, box.size.y, box.position.y, toon, other, CharacterRig.of(model) != null])
+	get_tree().quit()
+
+
+## Headless check that every sound and track loads and plays.
+##   godot --headless --path . -- --scene=preview --demo=audio
+func _audio_check() -> void:
+	var sfx := 0
+	var missing: Array = []
+	for f in DirAccess.get_files_at(Audio.SFX_DIR):
+		if f.ends_with(".wav"):
+			sfx += 1
+	var names := ["jump", "jump2", "land", "swish", "hit", "hurt", "roll", "skill", "sleep", "wake", "fall",
+		"coin", "heal", "levelup", "quest", "fanfare", "lantern", "crystal", "stone", "memory", "calm",
+		"boss_calm", "chest", "door", "bell", "boing", "wind", "whoosh", "warn", "click", "pop", "blip", "card", "shop"]
+	for n in names:
+		if Audio._stream(Audio.SFX_DIR + n + ".wav") == null:
+			missing.append(n)
+		Audio.play(n)
+	var tracks := {}
+	for t: String in Audio.SCENE_MUSIC.values():
+		tracks[t] = true
+	tracks["boss"] = true
+	for t: String in tracks:
+		if Audio._stream(Audio.MUSIC_DIR + t + ".ogg") == null:
+			missing.append(t + ".ogg")
+	Audio.scene_changed("chapter1")
+	Audio.boss(true)
+	await get_tree().create_timer(0.3).timeout
+	var boss_track := Audio._track
+	Audio.boss(false)
+	print("AUDIO sfx_files=%d tracks=%d missing=%s boss=%s back=%s" % [sfx, tracks.size(), missing, boss_track, Audio._track])
 	get_tree().quit()

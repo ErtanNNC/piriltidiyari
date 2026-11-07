@@ -166,6 +166,7 @@ func _opening(seconds: float, hint: String) -> void:
 
 
 func hit(damage: int, _from: Vector3, _push: float) -> void:
+	Audio.play("hit")
 	if not open or not active:
 		return
 	hp = maxi(hp - damage, 0)

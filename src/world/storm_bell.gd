@@ -35,6 +35,7 @@ func use(_by: Node) -> void:
 	if GameState.data.has_flag("can_" + bell_id):
 		return
 	GameState.data.set_flag("can_" + bell_id)
+	Audio.play("bell")
 	var tw := create_tween()
 	for i in 3:
 		tw.tween_property(_bell, "rotation:z", 0.5, 0.12)

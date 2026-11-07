@@ -18,6 +18,7 @@ func _build() -> void:
 func use(_by: Node) -> void:
 	var first := not GameState.data.has_flag("tas_%d" % stone)
 	GameState.bark("tas_%d" % stone)
+	Audio.play("stone")
 	if first:
 		GameState.data.set_flag("tas_%d" % stone)
 		GameState.data.add_item("hikaye_tasi")

@@ -34,6 +34,7 @@ func _cycle() -> void:
 		await get_tree().create_timer(Mob.TELEGRAPH).timeout
 		if not active:
 			continue
+		Audio.play("wind")
 		gust_started.emit(_dir)
 		_blowing = true
 		_streaks(_dir)

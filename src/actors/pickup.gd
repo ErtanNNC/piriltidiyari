@@ -46,6 +46,7 @@ func _on_body_entered(body: Node3D) -> void:
 		FloatText.spawn(get_parent(), global_position + Vector3.UP * 1.2, "+%d" % amount, Tokens.color("piril"))
 	else:
 		GameState.data.add_item(item_id, amount)
+		Audio.play("coin")
 		GameState.toast.emit("%s bulundu!" % Content.item_name(item_id), "lantern")
 	var tw := create_tween()
 	tw.tween_property(_visual, "scale", Vector3.ZERO, 0.18).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)

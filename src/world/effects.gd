@@ -52,6 +52,7 @@ static func sparkle(parent: Node, at: Vector3, col: Color, count := 10) -> void:
 
 ## A ground warning that fills up over `seconds` — the 0.8 s attack tell.
 static func warning(parent: Node, at: Vector3, radius: float, seconds := 0.8) -> MeshInstance3D:
+	Audio.play("warn")  # every attack is announced by sound too
 	var mi := MeshInstance3D.new()
 	var c := CylinderMesh.new()
 	c.top_radius = 1.0

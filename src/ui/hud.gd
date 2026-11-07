@@ -344,6 +344,12 @@ func show_toast(text: String, icon := "star") -> void:
 
 ## Full-screen title card: chapter titles, "Seviye atladın!" and the like.
 func show_scene_card(small: String, big: String, sub: String) -> void:
+	if small.begins_with("Kıvılcım"):
+		Audio.play("fanfare")
+	elif big.ends_with("uyandı!"):
+		Audio.play("boss_calm")
+	elif not big.begins_with("Uykuya") and not big.begins_with("Seviye"):
+		Audio.play("card")
 	var card := Control.new()
 	card.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	card.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -405,6 +411,7 @@ func show_boss(boss_name: String, hp: int, max_hp: int) -> void:
 	_sparks.visible = false
 	_quest_panel.visible = false
 	_boss.visible = true
+	Audio.boss(true)
 	_boss_name.text = boss_name
 	set_boss_hp(hp, max_hp)
 
@@ -414,6 +421,7 @@ func set_boss_hp(hp: int, max_hp: int) -> void:
 
 
 func hide_boss() -> void:
+	Audio.boss(false)
 	_boss.visible = false
 	_sparks.visible = true
 	_refresh_quest()

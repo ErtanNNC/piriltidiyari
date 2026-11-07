@@ -56,4 +56,5 @@ func light_up(silent := false) -> void:
 	if not silent:
 		Effects.sparkle(get_parent(), global_position + Vector3.UP * 1.4, Tokens.color(accent), 14)
 		Effects.ring(get_parent(), global_position + Vector3.UP * 0.3, 2.4, Tokens.color(accent), 0.4)
+		Audio.play("crystal")
 		lit.emit(self)  # silent = restoring a save

@@ -45,6 +45,13 @@ parlayan toz, Bulut Limanı'nda rüzgâr çizgileri ve Pus varken yağmur, dağd
 yerde süzülen gri tüller olarak görünür; fener yandıkça tüller dağılır, gökyüzü renklenir, güneş çıkar.
 Bulut Limanı temizlenince gökkuşağı belirir. Göl dalgalanır, şurup akar, buz pırıldar, bulut denizi süzülür.
 
+**Ses ve müzik:** Her bölümün kendi müziği var (köy marimbası, ormanda flüt, mağarada yankılı çanlar,
+limanda oynak bas, dağda ninni, kalede arp; boss dövüşlerinde enerjik bir parça). Pus varken müzik boğuk
+duyulur, fenerler yandıkça açılır. Zıplama, vuruş, Pırıl, fener, kapı, çan, balon, sandık, hikâye taşı ve
+diyalog gibi her olayın sesi var; her saldırı görsel uyarının yanında yumuşak bir "ding-ding" ile de haber
+verilir. Hepsi `tools/make_audio.py` ile sentezlenir (`assets/audio/`); açılış ekranında Müzik ve Sesler
+ayrı ayrı kapatılabilir.
+
 **Kontroller:** WASD / oklar yürür · Boşluk zıplar · J saldırır (diken dönüşü) · E konuşur.
 Mobilde sol yarıda sanal joystick, sağda Zıpla / Saldır butonları çıkar.
 
@@ -136,13 +143,21 @@ parlayan toz, Bulut Limanı'nda rüzgâr çizgileri ve Pus varken yağmur, dağd
 yerde süzülen gri tüller olarak görünür; fener yandıkça tüller dağılır, gökyüzü renklenir, güneş çıkar.
 Bulut Limanı temizlenince gökkuşağı belirir. Göl dalgalanır, şurup akar, buz pırıldar, bulut denizi süzülür.
 
+**Ses ve müzik:** Her bölümün kendi müziği var (köy marimbası, ormanda flüt, mağarada yankılı çanlar,
+limanda oynak bas, dağda ninni, kalede arp; boss dövüşlerinde enerjik bir parça). Pus varken müzik boğuk
+duyulur, fenerler yandıkça açılır. Zıplama, vuruş, Pırıl, fener, kapı, çan, balon, sandık, hikâye taşı ve
+diyalog gibi her olayın sesi var; her saldırı görsel uyarının yanında yumuşak bir "ding-ding" ile de haber
+verilir. Hepsi `tools/make_audio.py` ile sentezlenir (`assets/audio/`); açılış ekranında Müzik ve Sesler
+ayrı ayrı kapatılabilir.
+
 **Kontroller:** WASD / oklar · Boşluk zıpla · J saldır · K yuvarlan · L Dikenli Dönüş · E konuş · 1–4 iksir.
 Mobilde: sanal joystick, Zıpla / Saldır / Yuvarlan / Dönüş butonları, iksir yuvalarına dokunma.
 
 ### Henüz olmayanlar
 
 - Gerçek 3B modeller: yer hazır, `assets/models/<ad>.glb` konunca otomatik kullanılır
-  (bkz. [assets/models/README.md](assets/models/README.md)); ikonlar, logo, ses ve müzik
+  (bkz. [assets/models/README.md](assets/models/README.md)); ikonlar, logo
+- Stüdyo kalitesinde ses ve müzik: şimdikiler kodla sentezlendi, aynı adlı gerçek kayıtlar konunca onlar çalar
 - Envanter ekranı, ayarlar, Terzi Dikiş'in kozmetik dükkânı
 - Sezon 2 (sezon sonu ekranında duyurulanlar): kırmızı sis, 10 yeni Hikâye Taşı ve Düşen Yıldız
   Tarlası, oynanabilir Fıstık ve Mırıl (Yeni Oyun+), Işık Arenası, imza eşyası görevlerinin devamı

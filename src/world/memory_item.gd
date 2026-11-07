@@ -46,6 +46,7 @@ func use(_by: Node) -> void:
 	if GameState.data.has_flag("ani_%d" % memory):
 		return
 	GameState.data.set_flag("ani_%d" % memory)
+	Audio.play("memory")
 	GameState.notify("collect", "ani")
 	GameState.bark("ani_%d" % memory)
 	Effects.sparkle(get_parent(), global_position + Vector3.UP, Tokens.color("spark-purple"), 14)

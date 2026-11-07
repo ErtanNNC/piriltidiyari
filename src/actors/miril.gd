@@ -180,6 +180,7 @@ func _tired() -> void:
 
 
 func hit(damage: int, _from: Vector3, _push: float) -> void:
+	Audio.play("hit")
 	if not tired or not active:
 		return
 	hp = maxi(hp - damage, 0)

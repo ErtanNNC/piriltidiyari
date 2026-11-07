@@ -10,6 +10,7 @@ var _ui: CanvasLayer
 
 func _ready() -> void:
 	Pus.set_amount(0.0)
+	Audio.scene_changed("title")
 	_cam.make_current()
 	_ui = CanvasLayer.new()
 	add_child(_ui)
@@ -73,6 +74,26 @@ func _build_menu() -> void:
 		root.add_child(cont)
 		start.text = "Yeni oyun"
 	root.add_child(start)
+	# sound settings: two small toggles under the menu
+	var row := HBoxContainer.new()
+	row.alignment = BoxContainer.ALIGNMENT_CENTER
+	row.add_theme_constant_override("separation", int(Tokens.px("space-3")))
+	root.add_child(row)
+	var mus := UiKit.button("", false)
+	var sfx := UiKit.button("", false)
+	for b: Button in [mus, sfx]:
+		b.custom_minimum_size = Vector2(170, 52)
+		row.add_child(b)
+	var refresh := func() -> void:
+		mus.text = "Müzik: " + ("Açık" if Audio.music_on else "Kapalı")
+		sfx.text = "Sesler: " + ("Açık" if Audio.sfx_on else "Kapalı")
+	refresh.call()
+	mus.pressed.connect(func() -> void:
+		Audio.set_music_on(not Audio.music_on)
+		refresh.call())
+	sfx.pressed.connect(func() -> void:
+		Audio.set_sfx_on(not Audio.sfx_on)
+		refresh.call())
 	root.modulate.a = 0.0
 	var tw := create_tween()
 	tw.tween_property(root, "modulate:a", 1.0, 0.6)

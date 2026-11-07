@@ -121,6 +121,7 @@ func _physics_process(delta: float) -> void:
 		_air_jumps = 1 if GameState.data.character_id == "pati" else 0
 		if input_enabled and not asleep and Input.is_action_just_pressed("jump"):
 			velocity.y = jump_velocity
+			Audio.play("jump")
 			if _rig:
 				_rig.jump()
 	else:
@@ -129,6 +130,7 @@ func _physics_process(delta: float) -> void:
 		if _air_jumps > 0 and input_enabled and not asleep and Input.is_action_just_pressed("jump"):
 			_air_jumps -= 1
 			velocity.y = jump_velocity * 0.9
+			Audio.play("jump2")
 			if _rig:
 				_rig.jump()
 			Effects.ring(get_parent(), global_position + Vector3.UP * 0.2, 1.2, Tokens.color("berry"), 0.25)
@@ -139,6 +141,7 @@ func _physics_process(delta: float) -> void:
 		var grounded := is_on_floor() or climbing
 		if grounded and not _was_grounded and _air_time > 0.15:
 			_rig.land()
+			Audio.play("land")
 		_air_time = 0.0 if grounded else _air_time + delta
 		_was_grounded = grounded
 		_rig.airborne = not grounded and _air_time > 0.1
@@ -188,6 +191,7 @@ func spin_attack() -> void:
 	if _attack_cd > 0.0 or rolling:
 		return
 	_attack_cd = 0.38
+	Audio.play("swish")
 	if _rig:
 		_rig.attack()
 	if _spin_tween and _spin_tween.is_running():
@@ -206,6 +210,7 @@ func use_skill() -> void:
 	if not GameState.data.use_mp(int(Skills.DEFS[id]["mp"])):
 		GameState.toast.emit("Enerjin az. Yıldız Tozu iç!", "drop")
 		return
+	Audio.play("skill")
 	match id:
 		"dikenli_donus": _dikenli_donus()
 		"pence_kombosu": _pence_kombosu()
@@ -326,6 +331,7 @@ func start_roll() -> void:
 	if rolling or not is_on_floor() or climbing:
 		return
 	rolling = true
+	Audio.play("roll")
 	_roll_left = ROLL_TIME
 	_col.shape = _ball_shape
 	_col.position.y = 0.45
@@ -388,6 +394,7 @@ func hurt(amount: int, from: Vector3) -> bool:
 		if amount <= 0:
 			return false
 	_invulnerable = INVULNERABLE_TIME
+	Audio.play("hurt")
 	var away := (global_position - from)
 	away.y = 0.0
 	_knock = away.normalized() * 9.0
@@ -419,11 +426,13 @@ func drink_potion(slot: int) -> void:
 		GameState.repel_until = Time.get_ticks_msec() / 1000.0 + float(def["seconds"])
 		GameState.toast.emit("%d saniye moblar seni zor fark eder" % int(def["seconds"]), "drop")
 	d.remove_item(id)
+	Audio.play("heal")
 	Effects.ring(get_parent(), global_position + Vector3.UP * 0.2, 1.4, Tokens.color(def.get("color", "honey")), 0.3)
 
 
 func _fall_asleep() -> void:
 	asleep = true
+	Audio.play("sleep")
 	fell_asleep.emit()
 	var tw := create_tween()
 	tw.tween_property(model, "rotation:z", PI / 2.2, 0.4).set_trans(Tween.TRANS_BOUNCE)
@@ -434,6 +443,7 @@ func _fall_asleep() -> void:
 	velocity = Vector3.ZERO
 	model.rotation.z = 0.0
 	GameState.data.wake_up()
+	Audio.play("wake")
 	asleep = false
 	_invulnerable = 2.0
 
@@ -441,6 +451,7 @@ func _fall_asleep() -> void:
 func _fall_back() -> void:
 	global_position = respawn_point + Vector3.UP * 0.5
 	velocity = Vector3.ZERO
+	Audio.play("fall")
 	fell_off.emit()
 	hurt(10, global_position)
 	_invulnerable = 1.5

@@ -17,6 +17,7 @@ Tokens="*res://src/autoload/tokens.gd"
 InputSetup="*res://src/autoload/input_setup.gd"
 Content="*res://src/autoload/content.gd"
 GameState="*res://src/autoload/game_state.gd"
+Audio="*res://src/autoload/audio.gd"
 SceneFlow="*res://src/autoload/scene_flow.gd"
 DevTools="*res://src/autoload/dev_tools.gd"
 

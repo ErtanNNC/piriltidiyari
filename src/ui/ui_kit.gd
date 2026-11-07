@@ -50,6 +50,7 @@ static func outlined(l: Label, size := 8) -> Label:
 ## pressed state slides 2px down and the shadow shrinks from 4px to 2px.
 static func button(text: String, primary := true) -> Button:
 	var b := Button.new()
+	b.pressed.connect(func() -> void: Audio.play("click"))
 	b.text = text
 	b.custom_minimum_size = Vector2(120, 56)
 	b.focus_mode = Control.FOCUS_NONE

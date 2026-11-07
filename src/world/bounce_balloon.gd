@@ -31,6 +31,7 @@ func _on_body(b: Node3D) -> void:
 	if not (b is Player):
 		return
 	var p := b as Player
+	Audio.play("boing")
 	p.velocity.y = power
 	p.global_position.y = maxf(p.global_position.y, global_position.y + 1.4)
 	var tw := _ball.create_tween()

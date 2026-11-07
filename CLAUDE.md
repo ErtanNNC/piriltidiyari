@@ -27,6 +27,10 @@ is a copy of the design system's tokens.
   ground cloud shadows (global `cloud_shadow`), `Weather` particles + Pus wisps
   that follow Pus.amount, `Backdrop` scenery ring. Flat water/syrup/ice:
   `WorldLook.water(mesh, kind)`. Sky check: `--scene=preview --demo=sky --mood=...`.
+- Sound: `Audio.play("name")` (assets/audio/sfx/<name>.wav), music per scene in
+  `Audio.SCENE_MUSIC`, boss track via `Hud.show_boss/hide_boss`. Files are made by
+  `python3 tools/make_audio.py [sfx|music [track...]]`; check with
+  `--scene=preview --demo=audio` (headless). Every `Effects.warning` also plays "warn".
 - New chapters extend `ChapterBase` (src/world/chapter_base.gd): npc(),
   boss_camera(), fly_spark(), and test helpers close_dialogs()/walk_to().
 - `tools/build_android.sh` builds and signs export/PiriltiDiyari.apk; bump
