@@ -15,7 +15,14 @@ is a copy of the design system's tokens.
   (demos that print and quit: beamtest, touchtest, climb, hop, climb2, flow, win;
   chapter1: wrong, mobs, bossfight, spots with --keeper=pati|bado|citir|lumi;
   chapter2: crystals, bossfight; chapter3: travel, wind, balloon, bossfight,
-  spots with --keeper=...; chapter4: climb, ice, ramp, bossfight, spots; chapter5: walk, finalfight).
+  spots with --keeper=...; chapter4: climb, ice, ramp, bossfight, spots; chapter5: walk, finalfight with --auto).
+- Characters: build with named parts (Body, Head, HandL/R, FootL/R, Tail, EarL/R,
+  WingL/R), faces via `Face.add`, then `CharacterRig.attach(root)` (blink, breath,
+  steps). Use `"ellipsoid"` (honors size.z) for new parts. A `assets/models/<id>.glb`
+  replaces any keeper/Fıstık/NPC placeholder through `ModelImport`. Preview:
+  `--scene=preview [--demo=npcs|import]`.
+- Ground decor is automatic: `Decor.auto(scene, style)` in each scene's `_ready`
+  scatters non-colliding MultiMesh props on upright floors; thin meshes are paths.
 - New chapters extend `ChapterBase` (src/world/chapter_base.gd): npc(),
   boss_camera(), fly_spark(), and test helpers close_dialogs()/walk_to().
 - `tools/build_android.sh` builds and signs export/PiriltiDiyari.apk; bump

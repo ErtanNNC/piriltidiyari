@@ -72,7 +72,7 @@ static func _flower(st: SurfaceTool, rng: RandomNumberGenerator, petals: int) ->
 		_v(st, -s, STEM, 0.0); _v(st, s, STEM, 0.0); _v(st, top + s, STEM, 1.0)
 		_v(st, -s, STEM, 0.0); _v(st, top + s, STEM, 1.0); _v(st, top - s, STEM, 1.0)
 	# two leaves
-	for s in [-1.0, 1.0]:
+	for s: float in [-1.0, 1.0]:
 		var b := Vector3(0, 0.06, 0)
 		var l := Vector3(0.11 * s, 0.13, 0.02)
 		_v(st, b, STEM, 0.2); _v(st, b + Vector3(0, 0.05, 0.025), STEM, 0.3); _v(st, l, STEM, 0.45)

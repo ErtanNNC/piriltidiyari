@@ -1,8 +1,11 @@
 class_name KeeperModels
 extends RefCounted
-## The four keeper candidates (placeholders). Each has one signature color
-## (karakterler.md) on the biggest costume area and a small honey spark on
-## the chest. Faces +Z. `look` = {"variant": 0..2, "accessory": "..."}.
+## The four keeper candidates, built from primitives with a proper part
+## hierarchy (Body, Head, HandL/R, FootL/R, Tail, EarL/R, WingL/R) so a
+## CharacterRig can animate them. Each has one signature color
+## (karakterler.md) on the costume and a small honey spark on the chest.
+## Faces +Z. `look` = {"variant": 0..2, "accessory": "..."}.
+## If assets/models/<id>.glb exists, ModelImport uses that instead.
 
 const INFO := {
 	"pati": {"name": "Pati", "species": "Kedi", "color": "berry", "line": "Ben hazırım!",
@@ -16,93 +19,202 @@ const INFO := {
 }
 const ACCESSORIES := ["yok", "sapka", "atki", "gozluk"]
 const ACCESSORY_NAMES := {"yok": "Yok", "sapka": "Şapka", "atki": "Atkı", "gozluk": "Gözlük"}
+const CREAM := Color("#fff1dc")
+const PAD := Color("#ff9db4")
 
 
 static func build(id: String, look := {}) -> Node3D:
+	var imported := ModelImport.load_model(id)
+	if imported:
+		return imported
 	var root := Node3D.new()
 	var info: Dictionary = INFO.get(id, INFO["pati"])
 	var fur: Color = info["variants"][clampi(int(look.get("variant", 0)), 0, 2)]
 	var sig: String = info["color"]
+	var parts := {}
 	match id:
-		"pati": _cat(root, fur, sig)
-		"bado": _bear(root, fur, sig)
-		"citir": _squirrel(root, fur, sig)
-		"lumi": _firefly(root, fur, sig)
-	_accessory(root, String(look.get("accessory", "yok")), id)
-	# the spark every keeper carries
-	Toon.part(root, "sphere", Vector3(0.16, 0.16, 0.12), "honey", Vector3(0, 0.75, 0.42), Vector3.ZERO, 2.0, 0.02)
+		"pati": parts = _cat(root, fur, sig)
+		"bado": parts = _bear(root, fur, sig)
+		"citir": parts = _squirrel(root, fur, sig)
+		"lumi": parts = _firefly(root, fur, sig)
+		_: parts = _cat(root, fur, sig)
+	_accessory(parts, String(look.get("accessory", "yok")), id)
+	CharacterRig.attach(root)
 	return root
 
 
-static func _head(root: Node3D, fur: Variant, y := 1.3, size := 0.9) -> void:
-	Toon.part(root, "sphere", Vector3(size, size * 0.9, size * 0.88), fur, Vector3(0, y, 0.02))
-	for s in [-1.0, 1.0]:
-		Toon.part(root, "sphere", Vector3(0.14, 0.19, 0.07), "outline", Vector3(0.17 * s, y + 0.04, size * 0.43), Vector3.ZERO, 0.0, 0.0)
-		Toon.part(root, "sphere", Vector3(0.05, 0.06, 0.03), Color.WHITE, Vector3(0.15 * s + 0.02, y + 0.09, size * 0.47), Vector3.ZERO, 0.0, 0.0)
-		Toon.part(root, "sphere", Vector3(0.15, 0.08, 0.05), "berry", Vector3(0.29 * s, y - 0.12, size * 0.4), Vector3.ZERO, 0.0, 0.0)
-	Toon.part(root, "sphere", Vector3(0.09, 0.07, 0.06), "outline", Vector3(0, y - 0.06, size * 0.47), Vector3.ZERO, 0.0, 0.0)
+static func _node(parent: Node3D, n: String, pos: Vector3) -> Node3D:
+	var node := Node3D.new()
+	node.name = n
+	node.position = pos
+	parent.add_child(node)
+	return node
 
 
-static func _body(root: Node3D, fur: Variant, cloth: Variant) -> void:
-	Toon.part(root, "sphere", Vector3(0.8, 0.85, 0.72), cloth, Vector3(0, 0.55, 0))
-	for s in [-1.0, 1.0]:
-		Toon.part(root, "sphere", Vector3(0.26, 0.2, 0.34), fur, Vector3(0.2 * s, 0.1, 0.1))
-		Toon.part(root, "sphere", Vector3(0.2, 0.2, 0.2), fur, Vector3(0.42 * s, 0.6, 0.12))
+## Shared chibi body: round torso with a costume, belly patch, paws, feet and
+## the honey spark. Returns the part nodes.
+static func _base(root: Node3D, fur: Color, cloth: Variant, belly: Color, head_y: float,
+		head_size: Vector3, torso := Vector3(0.78, 0.8, 0.7)) -> Dictionary:
+	var body := _node(root, "Body", Vector3(0, 0.5, 0))
+	Toon.part(body, "ellipsoid", torso, fur, Vector3.ZERO)
+	# costume: a soft tunic over the lower torso
+	Toon.part(body, "ellipsoid", Vector3(torso.x * 1.06, torso.y * 0.72, torso.z * 1.06), cloth, Vector3(0, -0.1, 0))
+	Toon.part(body, "torus", Vector3(torso.x * 0.98, 0.07, torso.x * 0.98), cloth, Vector3(0, 0.12, 0), Vector3.ZERO, 0.0, 0.025)
+	Toon.part(body, "ellipsoid", Vector3(torso.x * 0.5, torso.y * 0.5, 0.12), belly, Vector3(0, 0.08, torso.z * 0.44), Vector3.ZERO, 0.0, 0.0)
+	# the spark every keeper carries, as a pendant
+	Toon.part(body, "cylinder", Vector3(0.02, 0.14, 0.02), "outline", Vector3(0, 0.27, torso.z * 0.47), Vector3(20, 0, 0), 0.0, 0.0)
+	Toon.part(body, "ellipsoid", Vector3(0.15, 0.17, 0.1), "honey", Vector3(0, 0.18, torso.z * 0.5 + 0.03), Vector3.ZERO, 2.0, 0.02)
+	var parts := {"Body": body}
+	for s: float in [1.0, -1.0]:
+		var side := "L" if s > 0 else "R"
+		var hand := _node(root, "Hand" + side, Vector3(0.43 * s * torso.x / 0.78, 0.55, 0.1))
+		Toon.part(hand, "ellipsoid", Vector3(0.22, 0.24, 0.22), fur, Vector3.ZERO)
+		Toon.part(hand, "ellipsoid", Vector3(0.1, 0.08, 0.05), PAD, Vector3(0, -0.03, 0.1), Vector3.ZERO, 0.0, 0.0)
+		var foot := _node(root, "Foot" + side, Vector3(0.2 * s, 0.1, 0.06))
+		Toon.part(foot, "ellipsoid", Vector3(0.27, 0.2, 0.36), fur, Vector3(0, 0, 0.04))
+		Toon.part(foot, "ellipsoid", Vector3(0.17, 0.06, 0.16), belly, Vector3(0, 0.05, 0.14), Vector3.ZERO, 0.0, 0.0)
+		parts["Hand" + side] = hand
+		parts["Foot" + side] = foot
+	var head := _node(root, "Head", Vector3(0, head_y, 0.02))
+	Toon.part(head, "ellipsoid", head_size, fur, Vector3.ZERO)
+	parts["Head"] = head
+	parts["head_r"] = head_size * 0.5
+	return parts
 
 
-static func _cat(root: Node3D, fur: Color, sig: String) -> void:
-	_body(root, fur, sig)
-	_head(root, fur)
-	for s in [-1.0, 1.0]:
-		Toon.part(root, "cone", Vector3(0.32, 0.38, 0.32), fur, Vector3(0.28 * s, 1.75, 0), Vector3(0, 0, -18 * s))
-		Toon.part(root, "cone", Vector3(0.16, 0.22, 0.16), "berry", Vector3(0.27 * s, 1.72, 0.07), Vector3(0, 0, -18 * s), 0.0, 0.0)
-	Toon.part(root, "capsule", Vector3(0.14, 0.9, 0.14), fur, Vector3(0, 0.6, -0.5), Vector3(-50, 0, 0))
-	Toon.part(root, "torus", Vector3(0.62, 0.2, 0.62), sig, Vector3(0, 0.93, 0))
+static func _cat(root: Node3D, fur: Color, sig: String) -> Dictionary:
+	var hs := Vector3(0.96, 0.84, 0.86)
+	var p := _base(root, fur, sig, CREAM, 1.32, hs)
+	var head: Node3D = p["Head"]
+	var r: Vector3 = p["head_r"]
+	# cheek fluff and muzzle
+	for s: float in [-1.0, 1.0]:
+		Toon.part(head, "ellipsoid", Vector3(0.26, 0.2, 0.24), fur, Vector3(0.38 * s, -0.16, 0.12), Vector3(0, 0, 30 * s))
+		Toon.part(head, "ellipsoid", Vector3(0.17, 0.13, 0.12), CREAM, Vector3(0.06 * s, -0.15, r.z - 0.06), Vector3.ZERO, 0.0, 0.0)
+		for k in 2:
+			Toon.part(head, "cylinder", Vector3(0.012, 0.26, 0.012), "outline", Vector3(0.24 * s, -0.12 - k * 0.05, r.z - 0.08), Vector3(0, 0, (80 + k * 14) * s), 0.0, 0.0)
+		var ear := _node(head, "Ear" + ("L" if s > 0 else "R"), Vector3(0.27 * s, 0.33, -0.02))
+		ear.rotation_degrees = Vector3(0, 0, -16 * s)
+		Toon.part(ear, "cone", Vector3(0.32, 0.36, 0.32), fur, Vector3(0, 0.12, 0))
+		Toon.part(ear, "cone", Vector3(0.17, 0.22, 0.17), PAD, Vector3(0, 0.09, 0.08), Vector3(8, 0, 0), 0.0, 0.0)
+		p["Ear" + ("L" if s > 0 else "R")] = ear
+	Toon.part(head, "ellipsoid", Vector3(0.09, 0.065, 0.06), PAD, Vector3(0, -0.08, r.z + 0.01), Vector3.ZERO, 0.0, 0.015)
+	Face.add(head, Vector3.ZERO, r, "cat", false, 0.4, 0.12)
+	# striped forehead
+	for i in 3:
+		Toon.part(head, "ellipsoid", Vector3(0.05, 0.14, 0.05), fur.darkened(0.25), Vector3((i - 1) * 0.08, 0.3, r.z * 0.62), Vector3(-35, 0, (i - 1) * -12), 0.0, 0.0)
+	# curled tail: three beads rising up, last one lighter
+	var tail := _node(root, "Tail", Vector3(0, 0.38, -0.36))
+	var pts := [Vector3(0, 0.0, 0), Vector3(0, 0.15, -0.16), Vector3(0, 0.38, -0.24), Vector3(0.0, 0.6, -0.2)]
+	for i in pts.size():
+		Toon.part(tail, "ellipsoid", Vector3(0.17, 0.2, 0.17) * (1.0 - i * 0.06), fur if i < 3 else fur.lightened(0.35), pts[i])
+	p["Tail"] = tail
+	return p
 
 
-static func _bear(root: Node3D, fur: Color, sig: String) -> void:
-	Toon.part(root, "sphere", Vector3(1.0, 1.0, 0.9), sig, Vector3(0, 0.58, 0))
-	for s in [-1.0, 1.0]:
-		Toon.part(root, "sphere", Vector3(0.3, 0.22, 0.38), fur, Vector3(0.24 * s, 0.1, 0.1))
-		Toon.part(root, "sphere", Vector3(0.24, 0.24, 0.24), fur, Vector3(0.5 * s, 0.62, 0.12))
-		Toon.part(root, "sphere", Vector3(0.3, 0.3, 0.2), fur, Vector3(0.36 * s, 1.72, 0))
-	_head(root, fur, 1.35, 1.0)
-	Toon.part(root, "sphere", Vector3(0.36, 0.26, 0.2), fur.lightened(0.35), Vector3(0, 1.22, 0.42), Vector3.ZERO, 0.0, 0.0)
-	Toon.part(root, "cylinder", Vector3(0.8, 0.12, 0.8), Color("#c98d5e"), Vector3(-0.62, 0.6, 0.1), Vector3(0, 0, 80))
+static func _bear(root: Node3D, fur: Color, sig: String) -> Dictionary:
+	var hs := Vector3(1.04, 0.94, 0.94)
+	var p := _base(root, fur, sig, fur.lightened(0.35), 1.38, hs, Vector3(0.96, 0.92, 0.84))
+	var body: Node3D = p["Body"]
+	# overall straps and buttons
+	for s: float in [-1.0, 1.0]:
+		Toon.part(body, "box", Vector3(0.1, 0.42, 0.06), sig, Vector3(0.22 * s, 0.22, 0.36), Vector3(-12, 0, 0), 0.0, 0.02)
+		Toon.part(body, "ellipsoid", Vector3(0.08, 0.08, 0.05), "honey", Vector3(0.22 * s, 0.08, 0.42), Vector3.ZERO, 0.0, 0.015)
+	var head: Node3D = p["Head"]
+	var r: Vector3 = p["head_r"]
+	for s: float in [-1.0, 1.0]:
+		var ear := _node(head, "Ear" + ("L" if s > 0 else "R"), Vector3(0.36 * s, 0.36, -0.02))
+		Toon.part(ear, "ellipsoid", Vector3(0.3, 0.3, 0.18), fur, Vector3.ZERO)
+		Toon.part(ear, "ellipsoid", Vector3(0.16, 0.16, 0.06), fur.lightened(0.35), Vector3(0, -0.01, 0.07), Vector3.ZERO, 0.0, 0.0)
+		p["Ear" + ("L" if s > 0 else "R")] = ear
+	Toon.part(head, "ellipsoid", Vector3(0.42, 0.3, 0.22), fur.lightened(0.38), Vector3(0, -0.18, r.z - 0.08), Vector3.ZERO, 0.0, 0.0)
+	Toon.part(head, "ellipsoid", Vector3(0.14, 0.1, 0.08), "outline", Vector3(0, -0.11, r.z + 0.02), Vector3.ZERO, 0.0, 0.0)
+	Toon.part(head, "ellipsoid", Vector3(0.05, 0.03, 0.02), Color.WHITE, Vector3(-0.025, -0.09, r.z + 0.06), Vector3.ZERO, 0.4, 0.0)
+	# shy worried brows
+	Face.add(head, Vector3(0, 0.02, 0), r, "smile", true, 0.4, 0.12)
+	# wooden pot-lid shield in the right paw
+	var hand: Node3D = p["HandR"]
+	Toon.part(hand, "cylinder", Vector3(0.78, 0.1, 0.78), Color("#c98d5e"), Vector3(-0.14, 0.05, 0.05), Vector3(0, 0, 80))
+	Toon.part(hand, "ellipsoid", Vector3(0.16, 0.16, 0.16), Color("#8a5a3c"), Vector3(-0.21, 0.05, 0.05))
+	var tail := _node(root, "Tail", Vector3(0, 0.35, -0.42))
+	Toon.part(tail, "ellipsoid", Vector3(0.22, 0.2, 0.2), fur, Vector3.ZERO)
+	p["Tail"] = tail
+	return p
 
 
-static func _squirrel(root: Node3D, fur: Color, sig: String) -> void:
-	_body(root, fur, sig)
-	_head(root, fur)
-	for s in [-1.0, 1.0]:
-		Toon.part(root, "cone", Vector3(0.2, 0.34, 0.2), fur, Vector3(0.26 * s, 1.78, -0.02))
-	# big fluffy tail
-	Toon.part(root, "sphere", Vector3(0.7, 1.3, 0.6), fur, Vector3(0, 1.0, -0.62), Vector3(-15, 0, 0))
-	Toon.part(root, "sphere", Vector3(0.55, 0.6, 0.5), fur.lightened(0.25), Vector3(0, 1.62, -0.55))
-	Toon.part(root, "cylinder", Vector3(0.18, 0.55, 0.18), Color("#fff3dc"), Vector3(0.32, 0.75, -0.3), Vector3(0, 0, 70))
+static func _squirrel(root: Node3D, fur: Color, sig: String) -> Dictionary:
+	var hs := Vector3(0.92, 0.84, 0.84)
+	var p := _base(root, fur, sig, CREAM, 1.32, hs, Vector3(0.74, 0.8, 0.68))
+	var head: Node3D = p["Head"]
+	var r: Vector3 = p["head_r"]
+	for s: float in [-1.0, 1.0]:
+		var ear := _node(head, "Ear" + ("L" if s > 0 else "R"), Vector3(0.25 * s, 0.36, -0.04))
+		ear.rotation_degrees = Vector3(0, 0, -8 * s)
+		Toon.part(ear, "cone", Vector3(0.22, 0.34, 0.22), fur, Vector3(0, 0.1, 0))
+		Toon.part(ear, "cone", Vector3(0.1, 0.18, 0.1), fur.lightened(0.4), Vector3(0, 0.29, 0), Vector3.ZERO, 0.0, 0.0)  # tuft
+		p["Ear" + ("L" if s > 0 else "R")] = ear
+		Toon.part(head, "ellipsoid", Vector3(0.26, 0.2, 0.22), CREAM, Vector3(0.13 * s, -0.16, r.z - 0.1), Vector3.ZERO, 0.0, 0.0)
+	Toon.part(head, "ellipsoid", Vector3(0.08, 0.06, 0.06), Color("#5a3a2e"), Vector3(0, -0.07, r.z + 0.01), Vector3.ZERO, 0.0, 0.015)
+	Face.add(head, Vector3.ZERO, r, "teeth", false, 0.4, 0.13)
+	# satchel strap and map scroll
+	var body: Node3D = p["Body"]
+	Toon.part(body, "box", Vector3(0.08, 0.86, 0.06), Color("#8a5a3c"), Vector3(0.02, 0.06, 0.34), Vector3(-10, 0, 38), 0.0, 0.02)
+	var hand: Node3D = p["HandL"]
+	Toon.part(hand, "cylinder", Vector3(0.16, 0.5, 0.16), Color("#fff3dc"), Vector3(0.05, 0.08, 0.06), Vector3(0, 0, 70))
+	Toon.part(hand, "cylinder", Vector3(0.2, 0.06, 0.2), "sky", Vector3(0.27, 0.17, 0.06), Vector3(0, 0, 70), 0.0, 0.015)
+	# big fluffy S tail
+	var tail := _node(root, "Tail", Vector3(0, 0.45, -0.4))
+	var beads := [[Vector3(0, 0.0, 0), 0.38], [Vector3(0, 0.3, -0.25), 0.5], [Vector3(0, 0.72, -0.3), 0.56], [Vector3(0, 1.08, -0.12), 0.48], [Vector3(0, 1.28, 0.08), 0.34]]
+	for i in beads.size():
+		var b: Array = beads[i]
+		Toon.part(tail, "ellipsoid", Vector3(b[1], b[1], b[1] * 0.9), fur if i < 3 else fur.lightened(0.22 + i * 0.05), b[0])
+	p["Tail"] = tail
+	return p
 
 
-static func _firefly(root: Node3D, body: Color, _sig: String) -> void:
-	Toon.part(root, "sphere", Vector3(0.75, 0.8, 0.7), body, Vector3(0, 0.62, 0))
-	_head(root, body, 1.3, 0.85)
-	Toon.part(root, "sphere", Vector3(0.62, 0.6, 0.6), "spark-yellow", Vector3(0, 0.45, -0.5), Vector3.ZERO, 2.2, 0.03)
-	for s in [-1.0, 1.0]:
-		var wing := Toon.part(root, "sphere", Vector3(0.7, 0.9, 0.08), Color("#e8f1ff"), Vector3(0.38 * s, 1.0, -0.3), Vector3(10, 25 * s, 30 * s), 0.3, 0.02)
-		wing.transparency = 0.35
-		Toon.part(root, "cylinder", Vector3(0.04, 0.4, 0.04), "outline", Vector3(0.14 * s, 1.85, 0.05), Vector3(0, 0, -15 * s), 0.0, 0.0)
-		Toon.part(root, "sphere", Vector3(0.12, 0.12, 0.12), "spark-yellow", Vector3(0.2 * s, 2.05, 0.05), Vector3.ZERO, 1.5, 0.02)
-		Toon.part(root, "sphere", Vector3(0.2, 0.16, 0.26), body, Vector3(0.18 * s, 0.12, 0.1))
+static func _firefly(root: Node3D, body_col: Color, _sig: String) -> Dictionary:
+	var hs := Vector3(0.88, 0.82, 0.82)
+	var p := _base(root, body_col, body_col.darkened(0.25), body_col.lightened(0.45), 1.3, hs, Vector3(0.72, 0.78, 0.66))
+	var head: Node3D = p["Head"]
+	var r: Vector3 = p["head_r"]
+	Face.add(head, Vector3.ZERO, r, "smile", false, 0.38, 0.06, 1.05)
+	for s: float in [-1.0, 1.0]:
+		var ant := _node(head, "Ear" + ("L" if s > 0 else "R"), Vector3(0.14 * s, 0.34, 0.02))
+		ant.rotation_degrees = Vector3(0, 0, -16 * s)
+		Toon.part(ant, "cylinder", Vector3(0.04, 0.42, 0.04), "outline", Vector3(0, 0.2, 0), Vector3.ZERO, 0.0, 0.0)
+		Toon.part(ant, "ellipsoid", Vector3(0.14, 0.14, 0.14), "spark-yellow", Vector3(0, 0.44, 0), Vector3.ZERO, 1.5, 0.02)
+		p["Ear" + ("L" if s > 0 else "R")] = ant
+		var wing := _node(root, "Wing" + ("L" if s > 0 else "R"), Vector3(0.16 * s, 0.95, -0.34))
+		wing.rotation_degrees = Vector3(10, 25 * s, 30 * s)
+		var w := Toon.part(wing, "ellipsoid", Vector3(0.5, 0.78, 0.05), Color("#9fd2ff"), Vector3(0.2 * s, 0.12, 0), Vector3.ZERO, 0.12, 0.015)
+		w.transparency = 0.5
+		var w2 := Toon.part(wing, "ellipsoid", Vector3(0.34, 0.46, 0.04), Color("#9fd2ff"), Vector3(0.18 * s, -0.3, 0.02), Vector3(0, 0, 30 * s), 0.12, 0.015)
+		w2.transparency = 0.55
+		p["Wing" + ("L" if s > 0 else "R")] = wing
+	# glowing lantern abdomen with stripes
+	var tail := _node(root, "Tail", Vector3(0, 0.48, -0.46))
+	Toon.part(tail, "ellipsoid", Vector3(0.6, 0.58, 0.62), "spark-yellow", Vector3.ZERO, Vector3.ZERO, 2.2, 0.03)
+	Toon.part(tail, "torus", Vector3(0.58, 0.05, 0.58), body_col.darkened(0.3), Vector3(0, 0, 0.12), Vector3(80, 0, 0), 0.0, 0.0)
+	p["Tail"] = tail
+	return p
 
 
-static func _accessory(root: Node3D, acc: String, id: String) -> void:
-	var top := 2.0 if id == "bado" else 1.85
+static func _accessory(p: Dictionary, acc: String, _id: String) -> void:
+	var head: Node3D = p["Head"]
+	var r: Vector3 = p["head_r"]
 	match acc:
 		"sapka":
-			Toon.part(root, "cylinder", Vector3(0.7, 0.08, 0.7), "honey-deep", Vector3(0, top - 0.12, 0))
-			Toon.part(root, "cylinder", Vector3(0.42, 0.32, 0.46), "honey", Vector3(0, top + 0.05, 0))
+			var top := r.y - 0.02
+			Toon.part(head, "cylinder", Vector3(0.74, 0.07, 0.74), "honey-deep", Vector3(0, top, -0.02), Vector3(-6, 0, 0))
+			Toon.part(head, "cylinder", Vector3(0.44, 0.3, 0.48), "honey", Vector3(0, top + 0.17, -0.03), Vector3(-6, 0, 0))
+			Toon.part(head, "torus", Vector3(0.48, 0.05, 0.48), "berry", Vector3(0, top + 0.06, -0.03), Vector3(-6, 0, 0), 0.0, 0.015)
 		"atki":
-			Toon.part(root, "torus", Vector3(0.7, 0.22, 0.7), "sky", Vector3(0, 0.98, 0))
-			Toon.part(root, "box", Vector3(0.18, 0.4, 0.08), "sky", Vector3(0.18, 0.8, 0.32), Vector3(0, 0, 10))
+			var body: Node3D = p["Body"]
+			Toon.part(body, "torus", Vector3(0.74, 0.2, 0.74), "sky", Vector3(0, 0.42, 0))
+			Toon.part(body, "box", Vector3(0.17, 0.42, 0.08), "sky", Vector3(0.2, 0.26, 0.34), Vector3(-15, 0, 12))
+			for i in 3:
+				Toon.part(body, "box", Vector3(0.175, 0.04, 0.085), Color.WHITE, Vector3(0.2 + i * 0.0, 0.36 - i * 0.12, 0.35 + i * 0.03), Vector3(-15, 0, 12), 0.0, 0.0)
 		"gozluk":
-			for s in [-1.0, 1.0]:
-				Toon.part(root, "torus", Vector3(0.28, 0.035, 0.28), "outline", Vector3(0.17 * s, 1.34, 0.45), Vector3(90, 0, 0), 0.0, 0.0)
+			for s: float in [-1.0, 1.0]:
+				Toon.part(head, "torus", Vector3(0.24, 0.03, 0.24), "outline", Face._on(Vector3.ZERO, r, 0.4 * r.x * s, 0.12 * r.y, 0.03), Vector3(90, 0, 0), 0.0, 0.0)
+			Toon.part(head, "cylinder", Vector3(0.02, 0.12, 0.02), "outline", Face._on(Vector3.ZERO, r, 0.0, 0.16 * r.y, 0.03), Vector3(0, 0, 90), 0.0, 0.0)

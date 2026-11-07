@@ -7,6 +7,10 @@ extends RefCounted
 ## stone = true builds the statue Fıstık becomes in Sahne 5: grey stone,
 ## only the quills still glowing honey ("ışıkla uyuyor").
 static func build(stone := false) -> Node3D:
+	if not stone:
+		var imported := ModelImport.load_model("fistik")
+		if imported:
+			return imported
 	var root := Node3D.new()
 	root.name = "Fistik"
 	var cream := Color("#f3dcb4") if not stone else Color("#b3aca2")
@@ -35,8 +39,13 @@ static func build(stone := false) -> Node3D:
 			# eyes closed: sleeping in the light
 			Toon.part(root, "box", Vector3(0.16, 0.03, 0.04), "outline", Vector3(0.15 * s, 1.28, 0.52), Vector3(0, 0, -8 * s), 0.0, 0.0)
 		else:
-			Toon.part(root, "sphere", Vector3(0.13, 0.17, 0.08), "outline", Vector3(0.15 * s, 1.3, 0.5), Vector3.ZERO, 0.0, 0.0)
-			Toon.part(root, "sphere", Vector3(0.05, 0.05, 0.03), Color.WHITE, Vector3(0.13 * s + 0.02, 1.34, 0.54), Vector3.ZERO, 0.0, 0.0)
+			var eye := Node3D.new()
+			eye.add_to_group("rig_eye")
+			eye.position = Vector3(0.15 * s, 1.3, 0.5)
+			root.add_child(eye)
+			Toon.part(eye, "sphere", Vector3(0.13, 0.17, 0.08), "outline", Vector3.ZERO, Vector3.ZERO, 0.0, 0.0)
+			Toon.part(eye, "sphere", Vector3(0.05, 0.05, 0.03), Color.WHITE, Vector3(-0.02 * s + 0.0, 0.04, 0.04), Vector3.ZERO, 0.7, 0.0)
+			Toon.part(eye, "sphere", Vector3(0.025, 0.025, 0.02), Color.WHITE, Vector3(0.03 * s, -0.04, 0.045), Vector3.ZERO, 0.7, 0.0)
 			Toon.part(root, "sphere", Vector3(0.14, 0.08, 0.05), "berry", Vector3(0.25 * s, 1.14, 0.5), Vector3.ZERO, 0.0, 0.0)
 		# white whiskers (moustache)
 		Toon.part(root, "capsule", Vector3(0.07, 0.3, 0.07), Color.WHITE if not stone else cream, Vector3(0.14 * s, 1.07, 0.6), Vector3(0, 0, 70 * s), 0.0, 0.02)
@@ -49,4 +58,6 @@ static func build(stone := false) -> Node3D:
 	# honey cape
 	Toon.part(root, "cylinder", Vector3(0.7, 0.75, 1.0), "honey" if not stone else Color("#a39c91"), Vector3(0, 0.62, -0.33), Vector3(-12, 0, 0))
 	Toon.default_pus = 1.0
+	if not stone:
+		CharacterRig.attach(root)
 	return root

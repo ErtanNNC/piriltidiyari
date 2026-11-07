@@ -37,18 +37,19 @@ static func material(col: Variant, outline := 0.035, glow := 0.0, pus := 1.0) ->
 	return m
 
 
-## Adds a primitive mesh child. `shape` is "sphere", "capsule", "cylinder",
-## "cone", "box" or "torus"; `size` is the bounding size in meters.
+## Adds a primitive mesh child. `shape` is "sphere", "ellipsoid", "capsule",
+## "cylinder", "cone", "box" or "torus"; `size` is the bounding size in meters.
+## ("sphere" ignores size.z for older models; "ellipsoid" honors it.)
 static func part(parent: Node3D, shape: String, size: Vector3, col: Variant,
 		pos := Vector3.ZERO, rot_deg := Vector3.ZERO, glow := 0.0, outline := 0.035, pus := -1.0) -> MeshInstance3D:
 	var mi := MeshInstance3D.new()
 	match shape:
-		"sphere":
+		"sphere", "ellipsoid":
 			var s := SphereMesh.new()
 			s.radius = size.x * 0.5
 			s.height = size.y
-			s.radial_segments = 24
-			s.rings = 12
+			s.radial_segments = 24 if shape == "sphere" else 28
+			s.rings = 12 if shape == "sphere" else 14
 			mi.mesh = s
 		"capsule":
 			var c := CapsuleMesh.new()
@@ -74,6 +75,8 @@ static func part(parent: Node3D, shape: String, size: Vector3, col: Variant,
 	mi.material_override = material(col, outline, glow, pus if pus >= 0.0 else default_pus)
 	mi.position = pos
 	mi.rotation_degrees = rot_deg
+	if shape == "ellipsoid" and size.x > 0.0:
+		mi.scale = Vector3(1, 1, size.z / size.x)
 	parent.add_child(mi)
 	return mi
 

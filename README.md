@@ -33,6 +33,11 @@ Android SDK gerekmez: Godot'nun Gradle'sız dışa aktarımı kullanılır, APK
 `.tools/debug-key.pem` dosyasında durur (git'e girmez). Anahtar değişirse
 telefondaki eski sürümü kaldırıp yenisini kurmak gerekir.
 
+**Görünüm:** Karakterler parça parça kurulur (gövde, kafa, kulak, el, ayak, kuyruk); parlak gözleri
+kırpışır, nefes alır, yürürken adım atıp kol sallar, zıplarken esner. Köylülerde de göz kırpma ve nefes var.
+Her sahnenin zemini kendiliğinden süslenir: çim (rüzgârda sallanır), çiçek, taş; ormanda eğrelti, mantar
+ve yaprak, mağarada parlayan kristaller, dağda kar öbekleri, kalede moloz. Yollar boş kalır, süsler çarpışmaz.
+
 **Kontroller:** WASD / oklar yürür · Boşluk zıplar · J saldırır (diken dönüşü) · E konuşur.
 Mobilde sol yarıda sanal joystick, sağda Zıpla / Saldır butonları çıkar.
 
@@ -108,14 +113,21 @@ Sahne başlarında oyun kaydedilir (`user://kayit.json`); açılıştaki "Devam 
 <img src="docs/ekran/19_pus_kalesi.png" width="49%"> <img src="docs/ekran/20_golge_prens.png" width="49%">
 <img src="docs/ekran/21_mor_kivilcim.png" width="49%"> <img src="docs/ekran/22_fistik_uyandi.png" width="49%">
 <img src="docs/ekran/23_sezon_sonu.png" width="49%"> <img src="docs/ekran/24_sezon_sonrasi_koy.png" width="49%">
+<img src="docs/ekran/25_bekciler.png" width="49%"> <img src="docs/ekran/26_orman_zemini.png" width="49%">
 </p>
+
+**Görünüm:** Karakterler parça parça kurulur (gövde, kafa, kulak, el, ayak, kuyruk); parlak gözleri
+kırpışır, nefes alır, yürürken adım atıp kol sallar, zıplarken esner. Köylülerde de göz kırpma ve nefes var.
+Her sahnenin zemini kendiliğinden süslenir: çim (rüzgârda sallanır), çiçek, taş; ormanda eğrelti, mantar
+ve yaprak, mağarada parlayan kristaller, dağda kar öbekleri, kalede moloz. Yollar boş kalır, süsler çarpışmaz.
 
 **Kontroller:** WASD / oklar · Boşluk zıpla · J saldır · K yuvarlan · L Dikenli Dönüş · E konuş · 1–4 iksir.
 Mobilde: sanal joystick, Zıpla / Saldır / Yuvarlan / Dönüş butonları, iksir yuvalarına dokunma.
 
 ### Henüz olmayanlar
 
-- Gerçek modeller, ikonlar, logo, ses ve müzik (her şey ilkel şekillerden yer tutucu)
+- Gerçek 3B modeller: yer hazır, `assets/models/<ad>.glb` konunca otomatik kullanılır
+  (bkz. [assets/models/README.md](assets/models/README.md)); ikonlar, logo, ses ve müzik
 - Envanter ekranı, ayarlar, Terzi Dikiş'in kozmetik dükkânı
 - Sezon 2 (sezon sonu ekranında duyurulanlar): kırmızı sis, 10 yeni Hikâye Taşı ve Düşen Yıldız
   Tarlası, oynanabilir Fıstık ve Mırıl (Yeni Oyun+), Işık Arenası, imza eşyası görevlerinin devamı

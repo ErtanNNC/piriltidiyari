@@ -37,6 +37,9 @@ var climbing := false   ## set by ClimbZone while touching a vine wall
 var _focus: Node = null
 var _spin_tween: Tween
 var _bob_time := 0.0
+var _rig: CharacterRig
+var _was_grounded := true
+var _air_time := 0.0
 var _nearby: Array[Area3D] = []
 var _attack_cd := 0.0
 var _invulnerable := 0.0
@@ -70,6 +73,7 @@ func _ready() -> void:
 	model = FistikModel.build() if GameState.data.character_id == "fistik" \
 		else KeeperModels.build(GameState.data.character_id, GameState.data.character_look)
 	add_child(model)
+	_rig = CharacterRig.of(model)
 	var sensor := Area3D.new()
 	sensor.collision_layer = 0
 	sensor.collision_mask = 4  # interactables
@@ -117,22 +121,34 @@ func _physics_process(delta: float) -> void:
 		_air_jumps = 1 if GameState.data.character_id == "pati" else 0
 		if input_enabled and not asleep and Input.is_action_just_pressed("jump"):
 			velocity.y = jump_velocity
+			if _rig:
+				_rig.jump()
 	else:
 		velocity.y -= gravity * delta
 		# Pati's world ability: a second jump in the air
 		if _air_jumps > 0 and input_enabled and not asleep and Input.is_action_just_pressed("jump"):
 			_air_jumps -= 1
 			velocity.y = jump_velocity * 0.9
+			if _rig:
+				_rig.jump()
 			Effects.ring(get_parent(), global_position + Vector3.UP * 0.2, 1.2, Tokens.color("berry"), 0.25)
 	move_and_slide()
 	if global_position.y < -12.0:
 		_fall_back()
+	if _rig:
+		var grounded := is_on_floor() or climbing
+		if grounded and not _was_grounded and _air_time > 0.15:
+			_rig.land()
+		_air_time = 0.0 if grounded else _air_time + delta
+		_was_grounded = grounded
+		_rig.airborne = not grounded and _air_time > 0.1
+		_rig.speed = Vector2(_move.x, _move.z).length() / maxf(speed, 0.1)
 	if dir.length() > 0.1:
 		_roll_dir = dir.normalized()
 		var want := atan2(dir.x, dir.z)
 		model.rotation.y = lerp_angle(model.rotation.y, want, 1.0 - exp(-14.0 * delta))
 		_bob_time += delta * 14.0
-		model.position.y = abs(sin(_bob_time)) * 0.12
+		model.position.y = abs(sin(_bob_time)) * (0.05 if _rig else 0.12)
 	else:
 		model.position.y = move_toward(model.position.y, 0.0, delta)
 	_update_focus()
@@ -172,6 +188,8 @@ func spin_attack() -> void:
 	if _attack_cd > 0.0 or rolling:
 		return
 	_attack_cd = 0.38
+	if _rig:
+		_rig.attack()
 	if _spin_tween and _spin_tween.is_running():
 		_spin_tween.kill()
 	_spin_tween = create_tween()

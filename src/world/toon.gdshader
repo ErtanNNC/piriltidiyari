@@ -5,6 +5,8 @@ shader_type spatial;
 render_mode specular_disabled;
 
 uniform vec4 albedo : source_color = vec4(1.0);
+// Imported models (ModelImport) bring their own color texture.
+uniform sampler2D albedo_tex : source_color, hint_default_white, filter_linear_mipmap;
 uniform vec4 shade_color : source_color = vec4(0.62, 0.56, 0.78, 1.0);
 uniform float band_threshold : hint_range(-1.0, 1.0) = 0.2;
 uniform float band_softness : hint_range(0.0, 0.5) = 0.04;
@@ -40,7 +42,7 @@ void vertex() {
 }
 
 void fragment() {
-	vec3 base = albedo.rgb;
+	vec3 base = albedo.rgb * texture(albedo_tex, UV).rgb;
 	if (patch_strength > 0.0) {
 		vec2 q = world_pos.xz;
 		float n = vnoise(q * 0.16) * 0.65 + vnoise(q * 0.47 + 7.1) * 0.35;

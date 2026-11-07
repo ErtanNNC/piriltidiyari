@@ -158,5 +158,10 @@ func season_end() -> void:
 	SaveGame.write(d)
 	var panel := SeasonEnd.new()
 	_hud.add_child(panel)
+	if DevTools.demo == "finalfight" and DisplayServer.get_name() == "headless":
+		# end of the chapter5 finalfight check (the chapter node is gone by now)
+		print("FINAL sparks=%s sezon1=%s scene_id=%s" % [d.sparks, d.has_flag("sezon1_bitti"), d.scene_id])
+		get_tree().quit()
+		return
 	var to: String = await panel.chosen
 	SceneFlow.go_to(to, to != "title")

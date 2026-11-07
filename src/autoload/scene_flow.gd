@@ -19,6 +19,8 @@ const SCENES := {
 	"chapter4": "res://scenes/chapter4/uyku_dagi.tscn",
 	"chapter5": "res://scenes/chapter5/pus_kalesi.tscn",
 	"final": "res://scenes/chapter5/final.tscn",
+	# dev only: all characters side by side (tools/screenshot.sh --scene=preview)
+	"preview": "res://scenes/dev/model_preview.tscn",
 }
 
 ## Which content pack (content/<id>/) a scene reads its story from.
@@ -88,7 +90,7 @@ func go_to(scene_id: String, save := true) -> void:
 		Content.load_chapter(chapter)
 	# Gece (dark) theme for the caves and other night chapters
 	# the ending is a sunny morning in the village, whatever chapter it belongs to
-	Tokens.set_theme("light" if scene_id in ["title", "final"] else String(Content.chapter.get("theme", "light")))
+	Tokens.set_theme("light" if scene_id in ["title", "final", "preview"] else String(Content.chapter.get("theme", "light")))
 	get_tree().change_scene_to_file(SCENES[scene_id])
 	current = scene_id
 	if save and scene_id != "title":
