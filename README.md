@@ -22,6 +22,17 @@ tools/screenshot.sh out.png --scene=scene4 --at=10   # bir sahneyi açıp 10. sa
 
 Editörde açmak için Godot 4.7 ile `project.godot` dosyasını aç.
 
+### Android APK
+
+```bash
+tools/build_android.sh        # export/PiriltiDiyari.apk (debug, arm64, Android 7+)
+```
+
+Android SDK gerekmez: Godot'nun Gradle'sız dışa aktarımı kullanılır, APK
+`tools/sign_apk.py` ile APK Signature Scheme v2 kullanılarak imzalanır. İmza anahtarı
+`.tools/debug-key.pem` dosyasında durur (git'e girmez). Anahtar değişirse
+telefondaki eski sürümü kaldırıp yenisini kurmak gerekir.
+
 **Kontroller:** WASD / oklar yürür · Boşluk zıplar · J saldırır (diken dönüşü) · E konuşur.
 Mobilde sol yarıda sanal joystick, sağda Zıpla / Saldır butonları çıkar.
 
