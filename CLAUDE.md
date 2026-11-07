@@ -20,7 +20,8 @@ is a copy of the design system's tokens.
   WingL/R), faces via `Face.add`, then `CharacterRig.attach(root)` (blink, breath,
   steps). Use `"ellipsoid"` (honors size.z) for new parts. A `assets/models/<id>.glb`
   replaces any keeper/Fıstık/NPC placeholder through `ModelImport`. Preview:
-  `--scene=preview [--demo=npcs|import]`.
+  `--scene=preview [--demo=npcs|import|props|mobs]`. Mobs get the same rig
+  (blink/breath); Pus mobs keep a faint tint of their own color (`MobModels._c`).
 - Ground decor is automatic: `Decor.auto(scene, style)` in each scene's `_ready`
   scatters non-colliding MultiMesh props on upright floors; thin meshes are paths.
 - Atmosphere comes with `WorldLook.add(parent, mood)`: sky shader (SKIES table),

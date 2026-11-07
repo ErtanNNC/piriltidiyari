@@ -33,6 +33,13 @@ static func build(kind: String, pus: bool) -> Node3D:
 		"yarasa":
 			_bat(root, pus)
 	Toon.default_pus = 1.0
+	if kind != "golge_kopya":
+		if pus:
+			var top := 1.4
+			for mi in root.find_children("*", "MeshInstance3D", true, false):
+				top = maxf(top, (mi as MeshInstance3D).position.y + 0.3)
+			_pus_wisps(root, top)
+		CharacterRig.attach(root)
 	return root
 
 
@@ -40,21 +47,71 @@ const GREY := Color("#77738a")
 const GREY_LIGHT := Color("#a19db2")
 
 
+## Pus-touched colors keep a faint hint of the mob's own color (so each
+## mob still reads as itself) under a cool grey-violet.
 static func _c(pus: bool, own: Variant, light := false) -> Variant:
 	if pus:
-		return GREY_LIGHT if light else GREY
+		var c := Toon._resolve(own)
+		var g := (GREY_LIGHT if light else GREY).lerp(c, 0.22)
+		return g.lightened(0.05) if light else g
 	return own
 
 
 static func _face(root: Node3D, at: Vector3, s: float, pus: bool) -> void:
-	for side in [-1.0, 1.0]:
-		Toon.part(root, "sphere", Vector3(0.12, 0.16, 0.06) * s, "outline", at + Vector3(0.13 * side, 0.04, 0) * s, Vector3.ZERO, 0.0, 0.0)
-		Toon.part(root, "sphere", Vector3(0.045, 0.05, 0.03) * s, Color.WHITE, at + Vector3(0.12 * side + 0.015, 0.08, 0.03) * s, Vector3.ZERO, 0.0, 0.0)
+	for side: float in [-1.0, 1.0]:
+		var eye := Node3D.new()
+		eye.add_to_group("rig_eye")
+		eye.position = at + Vector3(0.13 * side, 0.04, 0) * s
+		root.add_child(eye)
+		Toon.part(eye, "ellipsoid", Vector3(0.13, 0.17, 0.06) * s, "outline", Vector3.ZERO, Vector3.ZERO, 0.0, 0.0)
+		Toon.part(eye, "ellipsoid", Vector3(0.05, 0.055, 0.02) * s, Color.WHITE, Vector3(0.022 * side, 0.04, 0.028) * s, Vector3.ZERO, 0.7, 0.0)
 		if pus:
-			# grumpy slanted brows
-			Toon.part(root, "box", Vector3(0.16, 0.035, 0.03) * s, "outline", at + Vector3(0.13 * side, 0.15, 0.01) * s, Vector3(0, 0, 18 * side), 0.0, 0.0)
+			# grumpy: a heavy lid over the top of the eye and a slanted brow
+			Toon.part(eye, "ellipsoid", Vector3(0.16, 0.08, 0.07) * s, GREY.darkened(0.15), Vector3(0, 0.06, 0.012) * s, Vector3(0, 0, 14 * side), 0.0, 0.0)
+			Toon.part(root, "capsule", Vector3(0.035, 0.17, 0.035) * s, "outline", at + Vector3(0.13 * side, 0.17, 0.015) * s, Vector3(0, 0, 70 * side), 0.0, 0.0)
 		else:
-			Toon.part(root, "sphere", Vector3(0.12, 0.07, 0.04) * s, "berry", at + Vector3(0.24 * side, -0.07, -0.01) * s, Vector3.ZERO, 0.0, 0.0)
+			Toon.part(eye, "ellipsoid", Vector3(0.08, 0.07, 0.025) * s, Color("#6a55a8"), Vector3(0, -0.04, 0.02) * s, Vector3.ZERO, 0.0, 0.0)
+			Toon.part(eye, "ellipsoid", Vector3(0.025, 0.025, 0.015) * s, Color.WHITE, Vector3(-0.03 * side, -0.045, 0.03) * s, Vector3.ZERO, 0.7, 0.0)
+			var blush := Toon.part(root, "ellipsoid", Vector3(0.12, 0.06, 0.03) * s, "berry", at + Vector3(0.25 * side, -0.07, -0.01) * s, Vector3.ZERO, 0.0, 0.0)
+			blush.transparency = 0.3
+	# mouth: a little frown in the Pus, a smile once calm
+	var my := at + Vector3(0, -0.11, 0.01) * s
+	for side: float in [-1.0, 1.0]:
+		Toon.part(root, "capsule", Vector3(0.024, 0.075, 0.024) * s, "outline", my + Vector3(0.026 * side, 0, 0) * s,
+			Vector3(0, 0, (60.0 if pus else -60.0) * side), 0.0, 0.0)
+
+
+## Grey wisps drifting off a Pus-touched mob.
+static func _pus_wisps(root: Node3D, height: float) -> void:
+	var p := CPUParticles3D.new()
+	p.amount = 5
+	p.lifetime = 2.2
+	p.preprocess = 2.2
+	p.local_coords = true
+	p.position = Vector3(0, height, 0)
+	p.emission_shape = CPUParticles3D.EMISSION_SHAPE_SPHERE
+	p.emission_sphere_radius = 0.35
+	p.direction = Vector3(0, 1, 0)
+	p.spread = 40.0
+	p.gravity = Vector3.ZERO
+	p.initial_velocity_min = 0.2
+	p.initial_velocity_max = 0.45
+	var g := Gradient.new()
+	g.offsets = PackedFloat32Array([0.0, 0.3, 1.0])
+	g.colors = PackedColorArray([Color(0.55, 0.52, 0.66, 0.0), Color(0.55, 0.52, 0.66, 0.55), Color(0.55, 0.52, 0.66, 0.0)])
+	p.color_ramp = g
+	var q := QuadMesh.new()
+	q.size = Vector2(0.45, 0.45)
+	var m := StandardMaterial3D.new()
+	m.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	m.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	m.billboard_mode = BaseMaterial3D.BILLBOARD_PARTICLES
+	m.vertex_color_use_as_albedo = true
+	m.albedo_texture = Weather.texture("soft")
+	q.material = m
+	p.mesh = q
+	p.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	root.add_child(p)
 
 
 ## Puslu Sümüklü: a round slug with two eye stalks.
@@ -63,6 +120,11 @@ static func _slug(root: Node3D, pus: bool) -> void:
 	Toon.part(root, "capsule", Vector3(0.8, 1.5, 0.8), body, Vector3(0, 0.32, -0.1), Vector3(90, 0, 0))
 	Toon.part(root, "sphere", Vector3(0.75, 0.7, 0.7), body, Vector3(0, 0.55, 0.45))
 	Toon.part(root, "sphere", Vector3(0.8, 0.55, 0.9), _c(pus, "spark-purple", true), Vector3(0, 0.62, -0.35))
+	# spiral shell on its back
+	var shell: Variant = _c(pus, Color("#ffb86b"), true)
+	Toon.part(root, "ellipsoid", Vector3(0.75, 0.75, 0.42), shell, Vector3(0, 0.95, -0.35), Vector3(0, 90, 0))
+	Toon.part(root, "torus", Vector3(0.52, 0.06, 0.52), _c(pus, Color("#d9823a")), Vector3(0.2, 0.95, -0.35), Vector3(0, 0, 90), 0.0, 0.0)
+	Toon.part(root, "torus", Vector3(0.28, 0.05, 0.28), _c(pus, Color("#d9823a")), Vector3(0.22, 0.98, -0.32), Vector3(0, 0, 90), 0.0, 0.0)
 	for side in [-1.0, 1.0]:
 		Toon.part(root, "cylinder", Vector3(0.07, 0.4, 0.07), body, Vector3(0.15 * side, 1.0, 0.5), Vector3(0, 0, -12 * side))
 		Toon.part(root, "sphere", Vector3(0.16, 0.16, 0.16), body, Vector3(0.19 * side, 1.2, 0.5))
@@ -79,6 +141,10 @@ static func _mushroom(root: Node3D, pus: bool, s: float) -> void:
 			Vector3(sin(a) * 0.4, 1.22, cos(a) * 0.4) * s, Vector3(cos(a) * -35, 0, sin(a) * 35), 0.0, 0.0)
 	for side in [-1.0, 1.0]:
 		Toon.part(root, "sphere", Vector3(0.2, 0.18, 0.24) * s, _c(pus, Color("#fff3dc"), true), Vector3(0.18 * side, 0.08, 0.15) * s)
+		# little stubby arms
+		Toon.part(root, "capsule", Vector3(0.14, 0.32, 0.14) * s, _c(pus, Color("#fff3dc"), true), Vector3(0.36 * side, 0.4, 0.05) * s, Vector3(0, 0, 50 * side))
+	# a gill frill under the cap
+	Toon.part(root, "cylinder", Vector3(1.1, 0.08, 1.1) * s, _c(pus, Color("#ffd9c4"), true), Vector3(0, 0.72, 0) * s, Vector3.ZERO, 0.0, 0.0)
 	_face(root, Vector3(0, 0.45, 0.34) * s, s, pus)
 
 
@@ -108,6 +174,11 @@ static func _crow(root: Node3D, pus: bool) -> void:
 		var w := Toon.part(root, "sphere", Vector3(0.9, 0.18, 0.6), body, Vector3(0.62 * side, 0.7, -0.05), Vector3(0, 0, -20 * side))
 		w.name = "Wing%s" % ("L" if side < 0 else "R")
 		Toon.part(root, "sphere", Vector3(0.12, 0.1, 0.16), _c(pus, "honey", true), Vector3(0.18 * side, 0.08, 0.1))
+		for k in 3:
+			Toon.part(root, "capsule", Vector3(0.05, 0.18, 0.05), _c(pus, "honey", true), Vector3(0.18 * side + (k - 1) * 0.05, 0.04, 0.2), Vector3(80, (k - 1) * 25, 0), 0.0, 0.0)
+	# tail feathers
+	for k in 3:
+		Toon.part(root, "ellipsoid", Vector3(0.2, 0.5, 0.08), body, Vector3((k - 1) * 0.14, 0.62, -0.55), Vector3(-55, 0, (k - 1) * 20))
 	_face(root, Vector3(0, 1.12, 0.52), 0.9, pus)
 
 

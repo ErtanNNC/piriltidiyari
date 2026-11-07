@@ -27,6 +27,22 @@ func _ready() -> void:
 	if which == "import":
 		_import_check()
 		return
+	if which == "props":
+		_row([["house", "berry"], ["house", "sky"], ["well", "spark-purple"], ["lantern_post", "honey"], ["big_tree", ""], ["bush", ""], ["rock", ""]], 4.6, Vector3(0, 4.0, 15.0), Vector3(0, 1.8, 0))
+		return
+	if which == "mobs":
+		var kinds := ["sumuklu", "mantar", "kirpi_topu", "karga", "kristal_bocek", "yarasa", "firtina_yumagi", "korsan_marti", "kar_tavsani", "buz_dikeni"]
+		for i in kinds.size():
+			for row in 2:
+				var m := MobModels.build(kinds[i], row == 0)
+				m.position = Vector3((i - (kinds.size() - 1) * 0.5) * 2.3, 0, -row * 3.4)
+				add_child(m)
+		var c2 := Camera3D.new()
+		c2.fov = 45.0
+		c2.position = Vector3(0, 5.5, 14.5)
+		add_child(c2)
+		c2.look_at(Vector3(0, 0.4, -1.3))
+		return
 	if which == "audio":
 		_audio_check()
 		return
@@ -111,3 +127,19 @@ func _audio_check() -> void:
 	Audio.boss(false)
 	print("AUDIO sfx_files=%d tracks=%d missing=%s boss=%s back=%s" % [sfx, tracks.size(), missing, boss_track, Audio._track])
 	get_tree().quit()
+
+
+func _row(items: Array, gap: float, cam_at: Vector3, look: Vector3) -> void:
+	for i in items.size():
+		var pr := Prop.new()
+		pr.kind = items[i][0]
+		if items[i][1] != "":
+			pr.accent = items[i][1]
+		pr.name = "P%d" % i
+		pr.position = Vector3((i - (items.size() - 1) * 0.5) * gap, 0, 0)
+		add_child(pr)
+	var c := Camera3D.new()
+	c.fov = 50.0
+	c.position = cam_at
+	add_child(c)
+	c.look_at(look)

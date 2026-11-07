@@ -163,8 +163,23 @@ func _build() -> void:
 
 
 func _hut(parent: Node3D, at: Vector3) -> void:
-	Toon.part(parent, "sphere", Vector3(4.0, 3.2, 4.0), Color("#b08a76"), at + Vector3(0, 0.6, 0))
+	# a mole-family burrow house: earthen dome with stone rings, a round
+	# framed door, a glowing porthole window, a pipe chimney and a lamp
+	var earth := Color("#b08a76")
+	Toon.part(parent, "sphere", Vector3(4.0, 3.2, 4.0), earth, at + Vector3(0, 0.6, 0))
+	Toon.part(parent, "torus", Vector3(4.05, 0.14, 4.05), Color("#8f6f60"), at + Vector3(0, 0.75, 0), Vector3.ZERO, 0.0, 0.02)
+	Toon.part(parent, "ellipsoid", Vector3(2.6, 1.2, 2.6), Color("#c79f88"), at + Vector3(0, 1.85, 0), Vector3.ZERO, 0.0, 0.0)
+	for i in 6:
+		var a2 := TAU * i / 6.0 + 0.4
+		Toon.part(parent, "ellipsoid", Vector3(0.5, 0.32, 0.4), Color("#9a8d9e"), at + Vector3(cos(a2) * 1.95, 0.15, sin(a2) * 1.95))
+	Toon.part(parent, "torus", Vector3(1.3, 0.12, 1.3), Color("#c98d5e"), at + Vector3(0, 0.85, 1.72), Vector3(90, 0, 0), 0.0, 0.02)
 	Toon.part(parent, "capsule", Vector3(1.0, 1.6, 0.4), Color("#4a3a32"), at + Vector3(0, 0.8, 1.85))
+	Toon.part(parent, "sphere", Vector3(0.12, 0.12, 0.12), "honey", at + Vector3(0.3, 0.8, 2.05), Vector3.ZERO, 0.6, 0.015)
+	Toon.part(parent, "torus", Vector3(0.7, 0.08, 0.7), Color("#c98d5e"), at + Vector3(-1.05, 1.5, 1.42), Vector3(70, -35, 0), 0.0, 0.02)
+	Toon.part(parent, "cylinder", Vector3(0.56, 0.05, 0.56), Color("#ffe08a"), at + Vector3(-1.05, 1.5, 1.42), Vector3(70, -35, 0), 1.2, 0.0)
+	Toon.part(parent, "cylinder", Vector3(0.3, 1.3, 0.3), Color("#8a8fa8"), at + Vector3(0.9, 2.3, -0.6))
+	Toon.part(parent, "cylinder", Vector3(0.42, 0.14, 0.42), Color("#6f738a"), at + Vector3(0.9, 2.98, -0.6))
+	Toon.part(parent, "cylinder", Vector3(0.04, 0.5, 0.04), "outline", at + Vector3(1.0, 1.75, 1.75), Vector3.ZERO, 0.0, 0.0)
 	Toon.part(parent, "sphere", Vector3(0.5, 0.5, 0.25), "honey", at + Vector3(1.0, 1.4, 1.65), Vector3(0, 35, 0), 1.0, 0.02)
 	var body := StaticBody3D.new()
 	var c := CollisionShape3D.new()

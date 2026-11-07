@@ -58,6 +58,12 @@ köşeleri yine yetenek ister). Koşarken ve inerken toz bulutları, dağda kard
 **II** düğmesi (ya da Esc) Mola menüsünü açar: Devam et, Müzik ve Sesler aç/kapa, Ana menü. Bekçi
 seçiminde kamera seçilen bekçiye doğru hafifçe kayar.
 
+**Evler ve moblar:** Köy evleri taş temelli, ahşap kuşaklı, yuvarlak ışıklı pencereli, çiçek saksılı,
+katmanlı çatılı ve bacaları tüten evler; Fener Kulesi'nin balkonları, pencereleri ve flamaları var. Ağaçlar
+kökleri ve renk renk yaprak kümeleriyle, kuyu taş halkalı ve kovalı, fener direkleri kafesli. Mağara köyünde
+köstebek kulübeleri. Moblar Pus'tayken kendi renklerinin silik bir izini taşır, asık suratlıdır ve üstlerinden
+gri tüller tüter; sakinleşince gülümser, yanakları pembeleşir. Hepsi göz kırpar ve nefes alır.
+
 **Kontroller:** WASD / oklar yürür · Boşluk zıplar · J saldırır (diken dönüşü) · E konuşur.
 Mobilde sol yarıda sanal joystick, sağda Zıpla / Saldır butonları çıkar.
 
@@ -135,6 +141,7 @@ Sahne başlarında oyun kaydedilir (`user://kayit.json`); açılıştaki "Devam 
 <img src="docs/ekran/23_sezon_sonu.png" width="49%"> <img src="docs/ekran/24_sezon_sonrasi_koy.png" width="49%">
 <img src="docs/ekran/25_bekciler.png" width="49%"> <img src="docs/ekran/26_orman_zemini.png" width="49%">
 <img src="docs/ekran/27_gokyuzu.png" width="49%"> <img src="docs/ekran/28_su_ve_hava.png" width="49%">
+<img src="docs/ekran/29_moblar.png" width="49%"> <img src="docs/ekran/30_koy_evleri.png" width="49%">
 </p>
 
 **Görünüm:** Karakterler parça parça kurulur (gövde, kafa, kulak, el, ayak, kuyruk); parlak gözleri
