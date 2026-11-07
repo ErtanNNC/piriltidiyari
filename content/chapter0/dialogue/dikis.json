@@ -1,0 +1,43 @@
+{
+  "npc": "dikis",
+  "variants": [
+    {
+      "when": {
+        "flag": "dikis_koyde"
+      },
+      "lines": [
+        {
+          "speaker": "dikis",
+          "mood": "mutlu",
+          "text": "Yeni bir şey denemek ister misin? Hepsini sekiz bacakla diktim!"
+        }
+      ],
+      "then": {
+        "open_shop": "dikis"
+      }
+    },
+    {
+      "lines": [
+        {
+          "speaker": "dikis",
+          "mood": "mutlu",
+          "text": "Hoş geldin! Renkler dönünce köye dükkân açtım."
+        },
+        {
+          "speaker": "dikis",
+          "mood": "mutlu",
+          "text": "Taç, şapka, pelerin... Aldığını hemen giyersin."
+        },
+        {
+          "speaker": "dikis",
+          "mood": "bilge",
+          "text": "Bekçi Evi'ndeki dolaptan istediğin zaman değiştirebilirsin."
+        }
+      ],
+      "then": {
+        "set_flag": "dikis_koyde",
+        "open_shop": "dikis"
+      }
+    }
+  ]
+}

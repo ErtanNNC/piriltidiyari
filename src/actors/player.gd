@@ -72,10 +72,8 @@ func _ready() -> void:
 	_col.shape = _stand_shape
 	_col.position.y = 0.75
 	add_child(_col)
-	model = FistikModel.build() if GameState.data.character_id == "fistik" \
-		else KeeperModels.build(GameState.data.character_id, GameState.data.character_look)
-	add_child(model)
-	_rig = CharacterRig.of(model)
+	_build_model()
+	GameState.data.stats_changed.connect(_maybe_rebuild)
 	var sensor := Area3D.new()
 	sensor.collision_layer = 0
 	sensor.collision_mask = 4  # interactables
@@ -175,6 +173,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		spin_attack()
 	elif event.is_action_pressed("roll"):
 		start_roll()
+	elif event.is_action_pressed("shoot"):
+		shoot()
 	elif event.is_action_pressed("skill"):
 		use_skill()
 	else:
@@ -381,7 +381,7 @@ func _ceiling_blocked() -> bool:
 
 ## Attack power, ×1.5 while a Cesaret Şekeri is active.
 func attack_power() -> int:
-	var p := GameState.data.power
+	var p := GameState.data.power + Shop.weapon_power(GameState.data, Content.items)
 	return int(p * 1.5) if Time.get_ticks_msec() / 1000.0 < _power_until else p
 
 
@@ -509,3 +509,60 @@ func _step_fx(count: int) -> void:
 	elif not ice and slow >= 1.0:
 		var col := Color(1.0, 0.97, 0.9, 0.55) if WorldLook.current_mood != "magara" else Color(0.75, 0.68, 0.95, 0.45)
 		Effects.dust(get_parent(), feet, col, count, 0.45 if count == 1 else 0.6)
+
+
+# --- looks (Bekçi Evi, Terzi Dikiş) ------------------------------------------
+
+var _look_key := ""
+
+
+## The keeper's model with their look plus the worn outfit and held tool.
+func _build_model() -> void:
+	var d := GameState.data
+	var look: Dictionary = d.character_look.duplicate()
+	look["outfit"] = d.equipped.get("outfit", "")
+	look["weapon"] = d.equipped.get("weapon", "")
+	_look_key = "%s|%s" % [d.character_id, JSON.stringify(look)]
+	var yaw := model.rotation.y if model else 0.0
+	if model:
+		model.queue_free()
+	model = FistikModel.build() if d.character_id == "fistik" else KeeperModels.build(d.character_id, look)
+	model.rotation.y = yaw
+	add_child(model)
+	_rig = CharacterRig.of(model)
+
+
+## Rebuild only when the keeper, look, outfit or tool really changed.
+func _maybe_rebuild() -> void:
+	var d := GameState.data
+	speed = d.speed
+	var look: Dictionary = d.character_look.duplicate()
+	look["outfit"] = d.equipped.get("outfit", "")
+	look["weapon"] = d.equipped.get("weapon", "")
+	if "%s|%s" % [d.character_id, JSON.stringify(look)] != _look_key:
+		_build_model()
+		Effects.sparkle(get_parent(), global_position + Vector3.UP, Tokens.color("honey"), 12)
+
+
+# --- Işık Sapanı ------------------------------------------------------------
+
+const SEED := "isik_tohumu"
+var _shoot_cd := 0.0
+
+
+## I key / At button: fling a Işık Tohumu forward (needs the sling and seeds).
+func shoot() -> void:
+	var d := GameState.data
+	if not d.has_flag("owned_isik_sapani") or asleep or rolling:
+		return
+	var now := Time.get_ticks_msec() / 1000.0
+	if now < _shoot_cd:
+		return
+	if d.item_count(SEED) <= 0:
+		GameState.toast.emit("Işık Tohumun kalmadı. Usta Tıkır'dan alabilirsin", "drop")
+		return
+	_shoot_cd = now + 0.35
+	d.remove_item(SEED)
+	Audio.play("swish")
+	var fwd := Vector3(sin(model.rotation.y), 0, cos(model.rotation.y))
+	LightSeed.fire(get_parent(), global_position + Vector3.UP * 1.0 + fwd * 0.6, fwd, attack_power())

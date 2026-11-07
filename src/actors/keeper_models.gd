@@ -20,6 +20,7 @@ const INFO := {
 const ACCESSORIES := ["yok", "sapka", "atki", "gozluk"]
 const ACCESSORY_NAMES := {"yok": "Yok", "sapka": "Şapka", "atki": "Atkı", "gozluk": "Gözlük"}
 const CREAM := Color("#fff1dc")
+const HEADWEAR := ["cicek_taci", "kasif_sapkasi", "minik_migfer"]
 const PAD := Color("#ff9db4")
 
 
@@ -38,7 +39,13 @@ static func build(id: String, look := {}) -> Node3D:
 		"citir": parts = _squirrel(root, fur, sig)
 		"lumi": parts = _firefly(root, fur, sig)
 		_: parts = _cat(root, fur, sig)
-	_accessory(parts, String(look.get("accessory", "yok")), id)
+	var outfit := String(look.get("outfit", ""))
+	var acc := String(look.get("accessory", "yok"))
+	if outfit in HEADWEAR and acc == "sapka":
+		acc = "yok"  # one hat at a time
+	_accessory(parts, acc, id)
+	_outfit(parts, outfit)
+	_tool(parts, String(look.get("weapon", "")), id)
 	CharacterRig.attach(root)
 	return root
 
@@ -218,3 +225,94 @@ static func _accessory(p: Dictionary, acc: String, _id: String) -> void:
 			for s: float in [-1.0, 1.0]:
 				Toon.part(head, "ring", Vector3(0.24, 0.03, 0.24), "outline", Face._on(Vector3.ZERO, r, 0.4 * r.x * s, 0.12 * r.y, 0.03), Vector3(90, 0, 0), 0.0, 0.0)
 			Toon.part(head, "cylinder", Vector3(0.02, 0.12, 0.02), "outline", Face._on(Vector3.ZERO, r, 0.0, 0.16 * r.y, 0.03), Vector3(0, 0, 90), 0.0, 0.0)
+
+
+# --- shop outfits and tools ---------------------------------------------------
+
+## Terzi Dikiş's outfits, worn on the keeper's head or back.
+static func _outfit(p: Dictionary, outfit: String) -> void:
+	if outfit == "":
+		return
+	var head: Node3D = p["Head"]
+	var r: Vector3 = p["head_r"]
+	if outfit == "yildiz_pelerini":
+		_cape(p["Body"] as Node3D)
+	else:
+		var piece := outfit_piece(outfit)
+		piece.position = Vector3(0, r.y - 0.04, -0.02)
+		piece.rotation_degrees.x = -6
+		head.add_child(piece)
+
+
+## A wearable piece built on its own (also used on the shop shelves).
+static func outfit_piece(outfit: String) -> Node3D:
+	var n := Node3D.new()
+	match outfit:
+		"cicek_taci":
+			Toon.part(n, "ring", Vector3(0.62, 0.07, 0.62), Color("#58b86a"), Vector3(0, 0.02, 0), Vector3.ZERO, 0.0, 0.015)
+			for i in 7:
+				var a := TAU * i / 7.0
+				var col: Variant = ["berry", "spark-yellow", "sky", Color.WHITE, "spark-purple", "berry", "honey"][i]
+				Toon.part(n, "sphere", Vector3(0.15, 0.12, 0.15), col, Vector3(cos(a) * 0.3, 0.07, sin(a) * 0.3), Vector3.ZERO, 0.15, 0.015)
+				Toon.part(n, "sphere", Vector3(0.06, 0.06, 0.06), "honey", Vector3(cos(a) * 0.3, 0.12, sin(a) * 0.3), Vector3.ZERO, 0.0, 0.0)
+		"kasif_sapkasi":
+			Toon.part(n, "cylinder", Vector3(0.95, 0.06, 0.95), Color("#b98a52"), Vector3(0, 0.02, 0))
+			Toon.part(n, "cylinder", Vector3(0.5, 0.3, 0.56), Color("#c99a5e"), Vector3(0, 0.18, 0))
+			Toon.part(n, "ring", Vector3(0.56, 0.07, 0.56), Color("#7a5236"), Vector3(0, 0.1, 0), Vector3.ZERO, 0.0, 0.015)
+			Toon.part(n, "ellipsoid", Vector3(0.1, 0.32, 0.04), "berry", Vector3(0.24, 0.24, -0.05), Vector3(0, 30, -25), 0.0, 0.015)
+		"minik_migfer":
+			Toon.part(n, "ellipsoid", Vector3(0.72, 0.5, 0.72), Color("#c9d3e6"), Vector3(0, 0.12, 0))
+			Toon.part(n, "ring", Vector3(0.74, 0.06, 0.74), "honey-deep", Vector3(0, -0.04, 0), Vector3.ZERO, 0.0, 0.015)
+			Toon.part(n, "box", Vector3(0.06, 0.4, 0.62), "honey-deep", Vector3(0, 0.2, 0), Vector3.ZERO, 0.0, 0.015)
+			for k in 3:
+				Toon.part(n, "ellipsoid", Vector3(0.16, 0.4, 0.12), "berry", Vector3(0, 0.5 + k * 0.05, -0.1 - k * 0.12), Vector3(-30 - k * 20, 0, 0), 0.0, 0.015)
+		"yildiz_pelerini":
+			_cape(n)
+	return n
+
+
+static func _cape(body: Node3D) -> void:
+	var cape := Node3D.new()
+	cape.name = "Cape"
+	cape.position = Vector3(0, 0.05, -0.34)
+	cape.rotation_degrees.x = 10
+	body.add_child(cape)
+	Toon.part(cape, "ellipsoid", Vector3(0.82, 0.95, 0.12), "spark-purple", Vector3(0, -0.05, 0))
+	Toon.part(cape, "ring", Vector3(0.5, 0.06, 0.5), "honey", Vector3(0, 0.38, 0.22), Vector3(70, 0, 0), 0.3, 0.015)
+	for pos: Vector3 in [Vector3(-0.18, 0.1, -0.07), Vector3(0.2, -0.15, -0.07), Vector3(-0.05, -0.3, -0.07), Vector3(0.12, 0.25, -0.07)]:
+		Toon.part(cape, "sphere", Vector3(0.09, 0.09, 0.04), "spark-yellow", pos, Vector3.ZERO, 1.2, 0.0)
+
+
+## Usta Tıkır's tools, held in a paw (Bado's other paw holds his shield).
+static func _tool(p: Dictionary, tool: String, id: String) -> void:
+	if tool == "":
+		return
+	var hand: Node3D = p["HandL" if id == "bado" else "HandR"]
+	var piece := tool_piece(tool)
+	piece.position = Vector3(0, -0.02, 0.06)
+	piece.rotation_degrees = Vector3(35, 0, 0)
+	hand.add_child(piece)
+
+
+static func tool_piece(tool: String) -> Node3D:
+	var n := Node3D.new()
+	match tool:
+		"isik_degnegi":
+			Toon.part(n, "cylinder", Vector3(0.06, 0.7, 0.06), Color("#c98d5e"), Vector3(0, 0.25, 0))
+			Toon.part(n, "sphere", Vector3(0.2, 0.2, 0.2), "spark-yellow", Vector3(0, 0.64, 0), Vector3.ZERO, 1.6, 0.02)
+		"yildiz_asasi":
+			Toon.part(n, "cylinder", Vector3(0.07, 1.2, 0.07), Color("#8a5a3c"), Vector3(0, 0.4, 0))
+			Toon.part(n, "ring", Vector3(0.36, 0.05, 0.36), "honey", Vector3(0, 1.04, 0), Vector3(90, 0, 0), 0.4, 0.015)
+			Toon.part(n, "cone", Vector3(0.22, 0.34, 0.22), "spark-purple", Vector3(0, 1.08, 0), Vector3.ZERO, 1.4, 0.02)
+			Toon.part(n, "cone", Vector3(0.22, 0.2, 0.22), "spark-purple", Vector3(0, 0.93, 0), Vector3(180, 0, 0), 1.4, 0.02)
+		"kivilcim_kilici":
+			Toon.part(n, "cylinder", Vector3(0.07, 0.24, 0.07), Color("#7a5236"), Vector3(0, 0.05, 0))
+			Toon.part(n, "box", Vector3(0.36, 0.06, 0.1), "honey", Vector3(0, 0.19, 0))
+			Toon.part(n, "box", Vector3(0.12, 0.7, 0.05), "sky", Vector3(0, 0.57, 0), Vector3.ZERO, 1.0, 0.02)
+			Toon.part(n, "cone", Vector3(0.12, 0.14, 0.05), "sky", Vector3(0, 0.98, 0), Vector3.ZERO, 1.0, 0.02)
+		"isik_sapani":
+			Toon.part(n, "cylinder", Vector3(0.06, 0.32, 0.06), Color("#a86b45"), Vector3(0, 0.1, 0))
+			for sd: float in [-1.0, 1.0]:
+				Toon.part(n, "cylinder", Vector3(0.05, 0.26, 0.05), Color("#a86b45"), Vector3(0.08 * sd, 0.34, 0), Vector3(0, 0, -22 * sd))
+			Toon.part(n, "sphere", Vector3(0.12, 0.12, 0.12), "spark-yellow", Vector3(0, 0.46, 0), Vector3.ZERO, 1.2, 0.015)
+	return n

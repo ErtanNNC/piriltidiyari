@@ -14,7 +14,7 @@ const SCENE_MUSIC := {
 	"title": "title", "scene1": "festival", "scene2": "pus", "scene3": "pus",
 	"scene4": "tower", "scene5": "tower", "scene6": "village", "chapter0": "village",
 	"chapter1": "forest", "chapter2": "cave", "chapter3": "harbor", "chapter4": "mountain",
-	"chapter5": "castle", "final": "festival", "preview": "village",
+	"chapter5": "castle", "final": "festival", "preview": "village", "house": "title",
 }
 ## per-sound loudness in dB (0 = as generated) and how much the pitch may wander
 const LEVEL := {"blip": -9.0, "click": -6.0, "pop": -6.0, "warn": -9.0, "land": -8.0,

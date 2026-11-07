@@ -19,12 +19,14 @@ const SCENES := {
 	"chapter4": "res://scenes/chapter4/uyku_dagi.tscn",
 	"chapter5": "res://scenes/chapter5/pus_kalesi.tscn",
 	"final": "res://scenes/chapter5/final.tscn",
+	# inside a village house (which one: SceneFlow.house_id)
+	"house": "res://scenes/chapter0/ev.tscn",
 	# dev only: all characters side by side (tools/screenshot.sh --scene=preview)
 	"preview": "res://scenes/dev/model_preview.tscn",
 }
 
 ## Which content pack (content/<id>/) a scene reads its story from.
-const SCENE_CHAPTER := {"chapter0": "chapter0", "chapter1": "chapter1", "chapter2": "chapter2", "chapter3": "chapter3", "chapter4": "chapter4", "chapter5": "chapter5", "final": "chapter5"}
+const SCENE_CHAPTER := {"chapter0": "chapter0", "chapter1": "chapter1", "chapter2": "chapter2", "chapter3": "chapter3", "chapter4": "chapter4", "chapter5": "chapter5", "final": "chapter5", "house": "chapter0"}
 
 ## [small line, big title] shown when a scene starts.
 const CARDS := {
@@ -77,7 +79,13 @@ func _ready() -> void:
 			current = id
 
 
-func go_to(scene_id: String, save := true) -> void:
+## Which village house "house" shows ("dukkan" or "bekci"), and where the
+## keeper stands when they come back out (Vector3.INF = the scene's start).
+var house_id := "dukkan"
+var return_point := Vector3.INF
+
+
+func go_to(scene_id: String, save := true, card := true) -> void:
 	if busy or not SCENES.has(scene_id):
 		return
 	busy = true
@@ -100,7 +108,7 @@ func go_to(scene_id: String, save := true) -> void:
 	await get_tree().process_frame
 	await get_tree().process_frame
 	scene_started.emit(scene_id)
-	if CARDS.has(scene_id):
+	if card and CARDS.has(scene_id):
 		_small.text = CARDS[scene_id][0]
 		_big.text = CARDS[scene_id][1]
 		var c := create_tween()

@@ -53,7 +53,7 @@ func _ready() -> void:
 		"kale":
 			_mist(14, Color(0.55, 0.42, 0.85, 0.22))
 			_motes(30, true)
-	if mood != "magara":
+	if mood != "magara" and mood != "ev":
 		_pus_wisps()
 	_follow()
 

@@ -36,6 +36,7 @@ var skills: Array = []        # unlocked skill ids
 var quests: Dictionary = {}
 var flags: Dictionary = {}
 var sparks: Array = []        # found spark colors, e.g. ["green"]
+var equipped: Dictionary = {"outfit": "", "weapon": ""}   # worn outfit / held tool (item ids)
 
 
 # --- stats --------------------------------------------------------------
@@ -134,6 +135,39 @@ func choose_keeper(id: String, stats: Dictionary, look: Dictionary, display_name
 	var own := Skills.for_character(id)
 	if own != "":
 		skills.append(own)
+	stats_changed.emit()
+	skills_changed.emit()
+
+
+## Bekçi Evi: become another keeper but keep the adventure. Level, XP,
+## Pırıl, items, quests and sparks stay; HP/power/speed are rebuilt from the
+## new keeper's stats plus the level-ups and the charms already bought.
+## `item_defs` = Content.items (for charm bonuses).
+func switch_keeper(id: String, stats: Dictionary, look: Dictionary, display_name: String, item_defs: Dictionary) -> void:
+	var lv := level
+	var x := xp
+	var old_skills := skills.duplicate()
+	choose_keeper(id, stats, look, display_name)
+	for i in range(1, lv):
+		max_hp += 10
+		power += 2
+	level = lv
+	xp = x
+	for item_id: String in item_defs:
+		var def: Dictionary = item_defs[item_id]
+		if def.get("kind", "") == "charm" and has_flag("owned_" + item_id):
+			max_hp += int(def.get("max_hp", 0))
+			speed += float(def.get("speed", 0.0))
+	# shared skills (like Dikenli Dönüş) stay; other keepers' own skills don't
+	var others := []
+	for k: String in ["pati", "bado", "citir", "lumi", "fistik"]:
+		if k != id:
+			others.append(Skills.for_character(k))
+	for s: String in old_skills:
+		if not others.has(s) and not skills.has(s):
+			skills.append(s)
+	hp = max_hp
+	mp = max_mp
 	stats_changed.emit()
 	skills_changed.emit()
 
@@ -304,7 +338,7 @@ func has_flag(flag: String) -> bool:
 # --- save ---------------------------------------------------------------
 
 const SAVE_KEYS := ["character_id", "character_name", "character_look", "scene_id", "level", "xp",
-	"max_hp", "hp", "max_mp", "mp", "power", "speed", "piril", "items", "potions", "skills", "quests", "flags", "sparks"]
+	"max_hp", "hp", "max_mp", "mp", "power", "speed", "piril", "items", "potions", "skills", "quests", "flags", "sparks", "equipped"]
 
 
 func to_dict() -> Dictionary:

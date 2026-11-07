@@ -155,6 +155,10 @@
     "golge_prens": {
       "name": "Gölge Prens Mırıl",
       "color": "pus"
+    },
+    "tikir": {
+      "name": "Usta Tıkır",
+      "color": "spark-green"
     }
   }
 }

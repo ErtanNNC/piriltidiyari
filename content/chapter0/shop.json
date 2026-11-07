@@ -1,0 +1,58 @@
+{
+  "shops": {
+    "dikis": {
+      "title": "Terzi Dikiş'in Kıyafetleri",
+      "items": [
+        {
+          "id": "cicek_taci",
+          "price": 40,
+          "once": true
+        },
+        {
+          "id": "kasif_sapkasi",
+          "price": 60,
+          "once": true
+        },
+        {
+          "id": "yildiz_pelerini",
+          "price": 90,
+          "once": true
+        },
+        {
+          "id": "minik_migfer",
+          "price": 110,
+          "once": true
+        }
+      ]
+    },
+    "tikir": {
+      "title": "Usta Tıkır'ın Aletleri",
+      "items": [
+        {
+          "id": "isik_degnegi",
+          "price": 60,
+          "once": true
+        },
+        {
+          "id": "yildiz_asasi",
+          "price": 150,
+          "once": true
+        },
+        {
+          "id": "kivilcim_kilici",
+          "price": 280,
+          "once": true
+        },
+        {
+          "id": "isik_sapani",
+          "price": 80,
+          "once": true
+        },
+        {
+          "id": "isik_tohumu",
+          "price": 15
+        }
+      ]
+    }
+  }
+}

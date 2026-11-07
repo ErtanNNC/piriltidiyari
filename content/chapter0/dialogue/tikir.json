@@ -1,0 +1,43 @@
+{
+  "npc": "tikir",
+  "variants": [
+    {
+      "when": {
+        "flag": "tikir_tanisti"
+      },
+      "lines": [
+        {
+          "speaker": "tikir",
+          "mood": "mutlu",
+          "text": "Vırak! Aletlerim parıl parıl, bak bakalım."
+        }
+      ],
+      "then": {
+        "open_shop": "tikir"
+      }
+    },
+    {
+      "lines": [
+        {
+          "speaker": "tikir",
+          "mood": "mutlu",
+          "text": "Vırak! Ben Usta Tıkır. Işıkla çalışan aletler yaparım."
+        },
+        {
+          "speaker": "tikir",
+          "mood": "bilge",
+          "text": "Değnek, asa, kılıç: vuruşların daha parlak olur."
+        },
+        {
+          "speaker": "tikir",
+          "mood": "mutlu",
+          "text": "Sapanla Işık Tohumu atarsın. Uzaktaki Pus'u dağıtır!"
+        }
+      ],
+      "then": {
+        "set_flag": "tikir_tanisti",
+        "open_shop": "tikir"
+      }
+    }
+  ]
+}

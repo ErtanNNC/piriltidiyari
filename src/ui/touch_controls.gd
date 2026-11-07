@@ -26,8 +26,17 @@ func _ready() -> void:
 	box.offset_bottom = -m
 	box.add_theme_constant_override("separation", int(Tokens.px("space-3")))
 	add_child(box)
-	for spec in [["Dönüş", "skill", false], ["Yuvarlan", "roll", false], ["Saldır", "attack", false], ["Zıpla", "jump", true]]:
+	for spec in [["At", "shoot", false], ["Dönüş", "skill", false], ["Yuvarlan", "roll", false], ["Saldır", "attack", false], ["Zıpla", "jump", true]]:
 		var b := UiKit.button(spec[0], spec[2])
+		if spec[1] == "shoot":
+			# only with the Işık Sapanı; shows how many seeds are left
+			var refresh_shot := func() -> void:
+				var d := GameState.data
+				b.visible = d.has_flag("owned_isik_sapani")
+				b.text = "At (%d)" % d.item_count("isik_tohumu")
+			refresh_shot.call()
+			GameState.data.items_changed.connect(refresh_shot)
+			GameState.data.flags_changed.connect(refresh_shot)
 		if spec[1] == "skill":
 			var refresh := func() -> void:
 				var sk := GameState.data.active_skill()

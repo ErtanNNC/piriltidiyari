@@ -296,6 +296,40 @@ func test_shop() -> void:
 	var e := PlayerData.new()
 	e.load_dict(JSON.parse_string(json))
 	check(e.max_hp == d.max_hp and e.has_flag("owned_kristal_tilsim"), "tılsım kayıtta kalır")
+	test_village_shop_and_keeper_house()
+
+
+func test_village_shop_and_keeper_house() -> void:
+	print("Köy dükkânı ve Bekçi Evi")
+	var items: Dictionary = ContentScript.read_json("res://content/items.json")["items"]
+	var keepers: Dictionary = ContentScript.read_json("res://content/keepers.json")["keepers"]
+	var d := PlayerData.new()
+	d.choose_keeper("pati", keepers["pati"]["stats"], {}, "Pati")
+	d.add_piril(1000)
+	check(Shop.buy(d, items["kasif_sapkasi"], "kasif_sapkasi", 60, true) == "ok" and d.equipped["outfit"] == "kasif_sapkasi", "kıyafet alınınca giyilir")
+	check(Shop.weapon_power(d, items) == 0, "alet yokken ek güç yok")
+	check(Shop.buy(d, items["yildiz_asasi"], "yildiz_asasi", 150, true) == "ok" and Shop.weapon_power(d, items) == 6, "Yıldız Asası +6 güç")
+	check(Shop.buy(d, items["yildiz_asasi"], "yildiz_asasi", 150, true) == "owned", "asa ikinci kez satılmaz")
+	check(Shop.buy(d, items["isik_tohumu"], "isik_tohumu", 15) == "ok" and d.item_count("isik_tohumu") == 10, "tohum paketi 10 tane")
+	check(Shop.buy(d, items["isik_sapani"], "isik_sapani", 80, true) == "ok" and d.has_flag("owned_isik_sapani"), "sapan alınır")
+	check(not Shop.equip(d, "weapon", "kivilcim_kilici"), "sahip olunmayan alet takılamaz")
+	check(Shop.equip(d, "outfit", "") and d.equipped["outfit"] == "", "kıyafet çıkarılabilir")
+	# keeper house: switch keepers but keep the adventure
+	Shop.buy(d, items["kristal_tilsim"], "kristal_tilsim", 120, true)
+	d.add_xp(Progression.xp_to_next(1) + Progression.xp_to_next(2))
+	var lv := d.level
+	var piril := d.piril
+	d.switch_keeper("bado", keepers["bado"]["stats"], {"variant": 1}, "Bado", items)
+	var base := PlayerData.new()
+	base.choose_keeper("bado", keepers["bado"]["stats"], {}, "Bado")
+	check(d.character_id == "bado" and d.level == lv and d.piril == piril, "bekçi değişince seviye ve Pırıl kalır")
+	check(d.max_hp == base.max_hp + (lv - 1) * 10 + 15, "yeni bekçinin canı: kendi canı + seviyeler + tılsım")
+	check(d.power == base.power + (lv - 1) * 2, "güç seviyelerle birlikte gelir")
+	check(d.skills.has(Skills.for_character("bado")) and not d.skills.has(Skills.for_character("pati")), "yeni bekçinin yeteneği gelir, eskisininki gider")
+	check(Shop.weapon_power(d, items) == 6 and d.item_count("isik_tohumu") == 10, "aletler ve tohumlar kalır")
+	var e := PlayerData.new()
+	e.load_dict(JSON.parse_string(JSON.stringify(d.to_dict())))
+	check(e.equipped["weapon"] == "yildiz_asasi", "takılı alet kayıtta kalır")
 
 
 func test_chapter3_flow() -> void:

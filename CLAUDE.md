@@ -37,6 +37,14 @@ is a copy of the design system's tokens.
   hit-stop via Engine.time_scale). Pırıl pickups have a magnet that needs a clear
   line and the same height, so keeper-only corners stay keeper-only.
 - HUD has a Mola (pause) menu: `Hud.toggle_pause()`, Esc; `--demo=pause` opens it.
+- Village houses: `HouseDoor` (chapter0) → scene "house" (`SceneFlow.house_id`
+  dukkan|bekci, `SceneFlow.return_point` brings you back to the door; `go_to(id,
+  save, card)`). Shop kinds in `Shop.buy`: outfit/weapon (owned + equipped in
+  `PlayerData.equipped`), sling, ammo (count), charm. `PlayerData.switch_keeper`
+  keeps the adventure. Checks: `--scene=house --house=dukkan --demo=shopping`,
+  `--house=bekci --demo=switch|mirror|wardrobe`, `--demo=leave`.
+- Signs: `TravelSign.board(parent, text, at, width)` (cream board, dark text,
+  tilted to the camera, text shrinks to fit).
 - New chapters extend `ChapterBase` (src/world/chapter_base.gd): npc(),
   boss_camera(), fly_spark(), and test helpers close_dialogs()/walk_to().
 - `tools/build_android.sh` builds and signs export/PiriltiDiyari.apk; bump

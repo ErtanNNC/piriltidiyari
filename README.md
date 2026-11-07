@@ -148,6 +148,7 @@ Sahne başlarında oyun kaydedilir (`user://kayit.json`); açılıştaki "Devam 
 <img src="docs/ekran/27_gokyuzu.png" width="49%"> <img src="docs/ekran/28_su_ve_hava.png" width="49%">
 <img src="docs/ekran/29_moblar.png" width="49%"> <img src="docs/ekran/30_koy_evleri.png" width="49%">
 <img src="docs/ekran/31_bolum_yapilari.png" width="98%">
+<img src="docs/ekran/32_dukkan.png" width="49%"> <img src="docs/ekran/33_bekci_evi.png" width="49%">
 </p>
 
 **Görünüm:** Karakterler parça parça kurulur (gövde, kafa, kulak, el, ayak, kuyruk); parlak gözleri
@@ -175,7 +176,15 @@ köşeleri yine yetenek ister). Koşarken ve inerken toz bulutları, dağda kard
 **II** düğmesi (ya da Esc) Mola menüsünü açar: Devam et, Müzik ve Sesler aç/kapa, Ana menü. Bekçi
 seçiminde kamera seçilen bekçiye doğru hafifçe kayar.
 
-**Kontroller:** WASD / oklar · Boşluk zıpla · J saldır · K yuvarlan · L Dikenli Dönüş · E konuş · 1–4 iksir · Esc mola.
+**Köy evleri:** Köyde iki eve girilir ("Gir"). **Dükkân**'da Terzi Dikiş kıyafet satar (Çiçek Tacı, Kâşif
+Şapkası, Yıldız Pelerini, Minik Miğfer; alınca hemen giyilir), Usta Tıkır ışıkla çalışan aletler satar: Işık
+Değneği (+3), Yıldız Asası (+6), Kıvılcım Kılıcı (+10) vuruşu güçlendirir, Işık Sapanı ile 10'luk paketlerle
+alınan Işık Tohumları uzağa atılır (I / At). **Bekçi Evi**'nde Sihirli Ayna'dan bekçi değiştirilir (seviye,
+Pırıl, eşyalar ve görevler kalır; can ve güç yeni bekçiye göre yeniden hesaplanır) ve Dolap'tan kıyafet ya da
+alet seçilir. Kapıdan çıkınca köyde evin önüne dönülür. Köy tabelaları açık renk zeminde koyu yazıyla, kameraya
+dönük ve yazı tahtaya sığacak şekilde.
+
+**Kontroller:** WASD / oklar · Boşluk zıpla · J saldır · K yuvarlan · L Dikenli Dönüş · I sapan · E konuş · 1–4 iksir · Esc mola.
 Mobilde: sanal joystick, Zıpla / Saldır / Yuvarlan / Dönüş butonları, iksir yuvalarına dokunma.
 
 ### Henüz olmayanlar
@@ -183,7 +192,7 @@ Mobilde: sanal joystick, Zıpla / Saldır / Yuvarlan / Dönüş butonları, iksi
 - Gerçek 3B modeller: yer hazır, `assets/models/<ad>.glb` konunca otomatik kullanılır
   (bkz. [assets/models/README.md](assets/models/README.md)); ikonlar, logo
 - Stüdyo kalitesinde ses ve müzik: şimdikiler kodla sentezlendi, aynı adlı gerçek kayıtlar konunca onlar çalar
-- Envanter ekranı, ayarlar, Terzi Dikiş'in kozmetik dükkânı
+- Envanter ekranı
 - Sezon 2 (sezon sonu ekranında duyurulanlar): kırmızı sis, 10 yeni Hikâye Taşı ve Düşen Yıldız
   Tarlası, oynanabilir Fıstık ve Mırıl (Yeni Oyun+), Işık Arenası, imza eşyası görevlerinin devamı
 

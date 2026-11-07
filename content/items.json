@@ -68,6 +68,73 @@
       "speed": 0.6,
       "icon": "spark",
       "desc": "Kalıcı olarak biraz daha hızlı koşarsın"
+    },
+    "cicek_taci": {
+      "name": "Çiçek Tacı",
+      "color": "berry",
+      "kind": "outfit",
+      "icon": "star",
+      "desc": "Başında rengârenk çiçekler"
+    },
+    "kasif_sapkasi": {
+      "name": "Kâşif Şapkası",
+      "color": "honey-deep",
+      "kind": "outfit",
+      "icon": "star",
+      "desc": "Geniş kenarlı, yolculuk şapkası"
+    },
+    "yildiz_pelerini": {
+      "name": "Yıldız Pelerini",
+      "color": "spark-purple",
+      "kind": "outfit",
+      "icon": "spark",
+      "desc": "Yıldızlı, uçuşan bir pelerin"
+    },
+    "minik_migfer": {
+      "name": "Minik Miğfer",
+      "color": "sky",
+      "kind": "outfit",
+      "icon": "spark",
+      "desc": "Tüylü, parlak bir bekçi miğferi"
+    },
+    "isik_degnegi": {
+      "name": "Işık Değneği",
+      "color": "spark-yellow",
+      "kind": "weapon",
+      "power": 3,
+      "icon": "star",
+      "desc": "Vuruşların biraz güçlenir (+3)"
+    },
+    "yildiz_asasi": {
+      "name": "Yıldız Asası",
+      "color": "spark-purple",
+      "kind": "weapon",
+      "power": 6,
+      "icon": "spark",
+      "desc": "Vuruşların güçlenir (+6)"
+    },
+    "kivilcim_kilici": {
+      "name": "Kıvılcım Kılıcı",
+      "color": "sky",
+      "kind": "weapon",
+      "power": 10,
+      "icon": "spark",
+      "desc": "Parıl parıl oyuncak kılıç (+10)"
+    },
+    "isik_sapani": {
+      "name": "Işık Sapanı",
+      "color": "leaf",
+      "kind": "sling",
+      "icon": "star",
+      "desc": "Işık Tohumu fırlatır: I tuşu / At"
+    },
+    "isik_tohumu": {
+      "name": "Işık Tohumu (10)",
+      "color": "spark-yellow",
+      "kind": "ammo",
+      "count": 10,
+      "icon": "drop",
+      "desc": "Sapanla uzağa atılır, Pus'u dağıtır"
     }
   }
 }

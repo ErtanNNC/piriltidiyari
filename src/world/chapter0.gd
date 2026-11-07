@@ -51,6 +51,20 @@ func _ready() -> void:
 			n.position = spec[2]
 			add_child(n)
 		Pus.set_amount(0.0)
+	# two houses you can go into: the shop and the Bekçi Evi
+	for spec in [["dukkan", "Dükkân", Vector3(11, 0, -5.2)], ["bekci", "Bekçi Evi", Vector3(-11, 0, -5.2)]]:
+		var door := HouseDoor.new()
+		door.house_id = spec[0]
+		door.title = spec[1]
+		door.position = spec[2]
+		add_child(door)
+	if SceneFlow.return_point != Vector3.INF:
+		$Player.global_position = SceneFlow.return_point
+		$Player.respawn_point = SceneFlow.return_point
+		SceneFlow.return_point = Vector3.INF
+		if DevTools.demo == "leave" and DisplayServer.get_name() == "headless":
+			print("RETURN pos=%s scene=%s" % [$Player.global_position, GameState.data.scene_id])
+			get_tree().quit()
 	var d := GameState.data
 	d.quest_changed.connect(func(_id: String) -> void: _advance())
 	d.flags_changed.connect(_on_flags)
@@ -94,6 +108,10 @@ func _on_flags() -> void:
 func _run_demo(which: String) -> void:
 	var player: Player = _hud.player()
 	match which:
+		"signs":
+			player.global_position = Vector3(0, 0, 1.0)
+		"doors":
+			player.global_position = Vector3(8.5, 0, -3.2)
 		"skills":
 			var d := GameState.data
 			var mobs: Array[Mob] = []

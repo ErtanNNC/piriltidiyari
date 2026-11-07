@@ -36,7 +36,11 @@ func _ready() -> void:
 
 
 func _jump(scene: String) -> void:
-	preset(GameState.data, scene)
+	# a village house: progress as after Bölüm 0, `--house=dukkan|bekci`
+	preset(GameState.data, "chapter1" if scene == "house" else scene)
+	for arg in OS.get_cmdline_user_args():
+		if arg.begins_with("--house="):
+			SceneFlow.house_id = arg.get_slice("=", 1)
 	for arg in OS.get_cmdline_user_args():
 		if arg.begins_with("--flag="):
 			GameState.data.set_flag(arg.get_slice("=", 1))

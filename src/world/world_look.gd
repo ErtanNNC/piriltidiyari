@@ -122,6 +122,15 @@ static func add(parent: Node, mood: String) -> Environment:
 			env.fog_sky_affect = 0.0
 			sun.light_color = Color("#c9c0f0")
 			sun.light_energy = 0.35
+		"ev":
+			# inside a cosy house: warm lamps, no sky
+			env.background_color = Color("#2b2140")
+			env.ambient_light_color = Color("#ffe6c4")
+			env.ambient_light_energy = 0.55
+			sun.light_color = Color("#fff0d8")
+			sun.light_energy = 0.35
+			sun.rotation_degrees = Vector3(-65, 20, 0)
+			sun.shadow_enabled = false
 		"sabah":
 			env.background_color = Color("#cfe6ff")
 			env.ambient_light_color = Color("#fff2dc")
