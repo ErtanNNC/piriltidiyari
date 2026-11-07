@@ -9,8 +9,12 @@ uniform float sway = 0.0;
 uniform float tip_light = 0.0;
 uniform float band_threshold = 0.15;
 global uniform float pus_amount;
+global uniform float cloud_shadow;
+
+#include "res://src/world/noise.gdshaderinc"
 
 varying vec3 tint;
+varying vec3 world_pos;
 varying float glow;
 varying float h;
 
@@ -19,6 +23,7 @@ void vertex() {
 	tint = base;
 	glow = INSTANCE_CUSTOM.a;
 	h = UV.y;
+	world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
 	if (sway > 0.0) {
 		vec3 wp = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
 		float t = TIME * 1.6 + wp.x * 0.35 + wp.z * 0.27;
@@ -43,6 +48,9 @@ void light() {
 	if (LIGHT_IS_DIRECTIONAL) {
 		float lit = smoothstep(band_threshold - 0.05, band_threshold + 0.05, max(ndl, 0.35) * ATTENUATION);
 		band = mix(vec3(0.66, 0.6, 0.8), vec3(1.0), lit);
+		if (cloud_shadow > 0.0) {
+			band = mix(band, mix(band, vec3(0.66, 0.6, 0.8), 0.75), cloud_mask(world_pos, TIME) * cloud_shadow);
+		}
 	} else {
 		band = mix(vec3(0.66, 0.6, 0.8), vec3(1.0), smoothstep(0.1, 0.2, ndl)) * ATTENUATION;
 	}

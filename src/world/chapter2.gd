@@ -134,6 +134,7 @@ func _build() -> void:
 	# --- the lake shore (boss arena)
 	var water := Toon.part(lv, "box", Vector3(EDGE * 2, 0.1, 10), Color("#6fb8e8"), Vector3(0, 0.03, -69), Vector3.ZERO, 0.5, 0.0)
 	water.name = "Lake"
+	WorldLook.water(water, "lake")
 	var shore := StaticBody3D.new()
 	var sc := CollisionShape3D.new()
 	var sb := BoxShape3D.new()

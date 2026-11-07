@@ -17,25 +17,15 @@ uniform float emission_strength = 0.0;
 uniform float pus_affect : hint_range(0.0, 1.0) = 1.0;
 // 0 = full color, 1 = everything grey. Set with Pus.set_amount().
 global uniform float pus_amount;
+// Drifting cloud shadows on sunny moods (WorldLook sets it per mood).
+global uniform float cloud_shadow;
 // Soft lighter/darker blotches in world space (ground surfaces, see Decor).
 uniform float patch_strength = 0.0;
 uniform vec4 patch_color : source_color = vec4(1.0);
 
 varying vec3 world_pos;
 
-float hash21(vec2 p) {
-	p = fract(p * vec2(123.34, 456.21));
-	p += dot(p, p + 45.32);
-	return fract(p.x * p.y);
-}
-
-float vnoise(vec2 p) {
-	vec2 i = floor(p);
-	vec2 f = fract(p);
-	f = f * f * (3.0 - 2.0 * f);
-	return mix(mix(hash21(i), hash21(i + vec2(1.0, 0.0)), f.x),
-			mix(hash21(i + vec2(0.0, 1.0)), hash21(i + vec2(1.0, 1.0)), f.x), f.y);
-}
+#include "res://src/world/noise.gdshaderinc"
 
 void vertex() {
 	world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
@@ -67,6 +57,9 @@ void light() {
 		float lit = smoothstep(band_threshold - band_softness, band_threshold + band_softness, ndl * ATTENUATION);
 		band = mix(shade_color.rgb, vec3(1.0), lit);
 		band += smoothstep(0.62, 0.68, 1.0 - dot(NORMAL, VIEW)) * lit * rim_strength;
+		if (cloud_shadow > 0.0) {
+			band = mix(band, mix(band, shade_color.rgb, 0.75), cloud_mask(world_pos, TIME) * cloud_shadow);
+		}
 	} else {
 		// Lanterns: same bands, faded by distance so they make soft pools.
 		float lit = smoothstep(band_threshold - band_softness, band_threshold + band_softness, ndl);

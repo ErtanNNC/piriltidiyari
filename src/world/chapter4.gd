@@ -158,7 +158,7 @@ func _build() -> void:
 		_pine(lv, at)
 	MountainKit.ice(lv, LAKE + Vector3(-6, 0, 4), Vector2(4, 8))
 	MountainKit.ice(lv, LAKE + Vector3(6, 0, 4), Vector2(4, 8))
-	Toon.part(lv, "cylinder", Vector3(20, 0.06, 20), MountainKit.ICE, LAKE + Vector3(0, 0.02, -2), Vector3.ZERO, 0.15, 0.0)
+	WorldLook.water(Toon.part(lv, "cylinder", Vector3(20, 0.06, 20), MountainKit.ICE, LAKE + Vector3(0, 0.02, -2), Vector3.ZERO, 0.15, 0.0), "ice")
 	var kf := SmallLantern.new()
 	kf.name = "KivilcimFeneri"
 	kf.big = true
@@ -276,6 +276,12 @@ func _melt(instant: bool) -> void:
 	var tw := create_tween().set_parallel()
 	tw.tween_property(_env, "background_color", Color("#bfe3ff"), t)
 	tw.tween_property(_env, "ambient_light_color", Color("#fff2dc"), t)
+	# the sky warms up too: bluer top, golden horizon, more sun
+	var sky := WorldLook.sky_material(_env)
+	if sky:
+		tw.tween_property(sky, "shader_parameter/top_color", Color("#6fb2f0"), t)
+		tw.tween_property(sky, "shader_parameter/horizon_color", Color("#fff1d6"), t)
+		tw.tween_property(sky, "shader_parameter/cloud_amount", 0.3, t)
 	if not instant:
 		for i in 14:
 			var at := Vector3(randf_range(-10, 10), 9.05, randf_range(-90, -40))

@@ -23,6 +23,10 @@ is a copy of the design system's tokens.
   `--scene=preview [--demo=npcs|import]`.
 - Ground decor is automatic: `Decor.auto(scene, style)` in each scene's `_ready`
   scatters non-colliding MultiMesh props on upright floors; thin meshes are paths.
+- Atmosphere comes with `WorldLook.add(parent, mood)`: sky shader (SKIES table),
+  ground cloud shadows (global `cloud_shadow`), `Weather` particles + Pus wisps
+  that follow Pus.amount, `Backdrop` scenery ring. Flat water/syrup/ice:
+  `WorldLook.water(mesh, kind)`. Sky check: `--scene=preview --demo=sky --mood=...`.
 - New chapters extend `ChapterBase` (src/world/chapter_base.gd): npc(),
   boss_camera(), fly_spark(), and test helpers close_dialogs()/walk_to().
 - `tools/build_android.sh` builds and signs export/PiriltiDiyari.apk; bump

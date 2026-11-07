@@ -38,6 +38,13 @@ kırpışır, nefes alır, yürürken adım atıp kol sallar, zıplarken esner. 
 Her sahnenin zemini kendiliğinden süslenir: çim (rüzgârda sallanır), çiçek, taş; ormanda eğrelti, mantar
 ve yaprak, mağarada parlayan kristaller, dağda kar öbekleri, kalede moloz. Yollar boş kalır, süsler çarpışmaz.
 
+**Atmosfer:** Her bölümün kendi gökyüzü var (renk geçişi, güneş/ay, kayan bulutlar, akşam ve kalede yıldızlar),
+ufukta uzak tepeler, orman, uçan adalar, karlı zirveler ya da kale kuleleri. Güneşli bölümlerde zeminde bulut
+gölgeleri kayar. Hava: köyde karahindiba tohumları ve akşam ateşböcekleri, ormanda süzülen yapraklar, mağarada
+parlayan toz, Bulut Limanı'nda rüzgâr çizgileri ve Pus varken yağmur, dağda kar, kalede mor sis. Pus her yerde
+yerde süzülen gri tüller olarak görünür; fener yandıkça tüller dağılır, gökyüzü renklenir, güneş çıkar.
+Bulut Limanı temizlenince gökkuşağı belirir. Göl dalgalanır, şurup akar, buz pırıldar, bulut denizi süzülür.
+
 **Kontroller:** WASD / oklar yürür · Boşluk zıplar · J saldırır (diken dönüşü) · E konuşur.
 Mobilde sol yarıda sanal joystick, sağda Zıpla / Saldır butonları çıkar.
 
@@ -114,12 +121,20 @@ Sahne başlarında oyun kaydedilir (`user://kayit.json`); açılıştaki "Devam 
 <img src="docs/ekran/21_mor_kivilcim.png" width="49%"> <img src="docs/ekran/22_fistik_uyandi.png" width="49%">
 <img src="docs/ekran/23_sezon_sonu.png" width="49%"> <img src="docs/ekran/24_sezon_sonrasi_koy.png" width="49%">
 <img src="docs/ekran/25_bekciler.png" width="49%"> <img src="docs/ekran/26_orman_zemini.png" width="49%">
+<img src="docs/ekran/27_gokyuzu.png" width="49%"> <img src="docs/ekran/28_su_ve_hava.png" width="49%">
 </p>
 
 **Görünüm:** Karakterler parça parça kurulur (gövde, kafa, kulak, el, ayak, kuyruk); parlak gözleri
 kırpışır, nefes alır, yürürken adım atıp kol sallar, zıplarken esner. Köylülerde de göz kırpma ve nefes var.
 Her sahnenin zemini kendiliğinden süslenir: çim (rüzgârda sallanır), çiçek, taş; ormanda eğrelti, mantar
 ve yaprak, mağarada parlayan kristaller, dağda kar öbekleri, kalede moloz. Yollar boş kalır, süsler çarpışmaz.
+
+**Atmosfer:** Her bölümün kendi gökyüzü var (renk geçişi, güneş/ay, kayan bulutlar, akşam ve kalede yıldızlar),
+ufukta uzak tepeler, orman, uçan adalar, karlı zirveler ya da kale kuleleri. Güneşli bölümlerde zeminde bulut
+gölgeleri kayar. Hava: köyde karahindiba tohumları ve akşam ateşböcekleri, ormanda süzülen yapraklar, mağarada
+parlayan toz, Bulut Limanı'nda rüzgâr çizgileri ve Pus varken yağmur, dağda kar, kalede mor sis. Pus her yerde
+yerde süzülen gri tüller olarak görünür; fener yandıkça tüller dağılır, gökyüzü renklenir, güneş çıkar.
+Bulut Limanı temizlenince gökkuşağı belirir. Göl dalgalanır, şurup akar, buz pırıldar, bulut denizi süzülür.
 
 **Kontroller:** WASD / oklar · Boşluk zıpla · J saldır · K yuvarlan · L Dikenli Dönüş · E konuş · 1–4 iksir.
 Mobilde: sanal joystick, Zıpla / Saldır / Yuvarlan / Dönüş butonları, iksir yuvalarına dokunma.

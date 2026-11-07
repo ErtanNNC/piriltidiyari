@@ -11,6 +11,22 @@ extends RefCounted
 ##   dag    – Uyku Dağı (Bölüm 4), snowy sleepy dusk
 
 
+const SKY_SHADER := preload("res://src/world/sky.gdshader")
+
+## Sky per mood: [top, horizon, bottom, cloud, cloud shade, cloud amount,
+## stars, sun color, sun size, cloud shadow on the ground]
+const SKIES := {
+	"aksam": ["#3a3478", "#d99ac0", "#2b2950", "#c9b0dc", "#7d6aa8", 0.35, 0.7, "#fff2d8", 0.0008, 0.0],
+	"pus": ["#4a4858", "#77738a", "#3a3848", "#8e8a9c", "#5e5a6e", 0.75, 0.0, "#d8d4e8", 0.0, 0.0],
+	"kule": ["#34324a", "#6a6684", "#2e2c40", "#7e7a96", "#4e4a66", 0.7, 0.15, "#d8d4e8", 0.0, 0.0],
+	"sabah": ["#6fb2f0", "#eaf6ff", "#cfe6ff", "#ffffff", "#c8d8f2", 0.45, 0.0, "#fff4d0", 0.0016, 0.22],
+	"orman": ["#3d6f62", "#b7d9b8", "#22362e", "#e2f0dc", "#9cbca8", 0.35, 0.0, "#fff6d8", 0.0014, 0.16],
+	"liman": ["#4f9ff0", "#e2f2ff", "#8fc4f2", "#ffffff", "#c6dcf4", 0.5, 0.0, "#fff4d0", 0.0016, 0.2],
+	"dag": ["#8494d4", "#f2e6f2", "#9fadd6", "#ffffff", "#c8cdec", 0.4, 0.1, "#fff0e0", 0.0013, 0.12],
+	"kale": ["#100d24", "#4a3f72", "#1e1b30", "#3e3666", "#2a2448", 0.4, 0.85, "#e8e0ff", 0.0009, 0.0],
+}
+
+
 static func add(parent: Node, mood: String) -> Environment:
 	var env := Environment.new()
 	env.background_mode = Environment.BG_COLOR
@@ -108,11 +124,76 @@ static func add(parent: Node, mood: String) -> Environment:
 			sun.light_color = Color("#fff4dc")
 			sun.light_energy = 0.6
 			sun.rotation_degrees = Vector3(-40, 30, 0)
+	_sky(env, mood)
+	RenderingServer.global_shader_parameter_set("cloud_shadow", float(SKIES[mood][9]) if SKIES.has(mood) else 0.0)
 	var we := WorldEnvironment.new()
 	we.environment = env
 	parent.add_child(we)
 	parent.add_child(sun)
+	if parent is Node3D:
+		Weather.add(parent as Node3D, mood, env)
+		Backdrop.add(parent as Node3D, mood)
 	return env
+
+
+## Replaces the flat background with the cartoon sky for this mood.
+static func _sky(env: Environment, mood: String) -> void:
+	if not SKIES.has(mood):
+		return
+	var k: Array = SKIES[mood]
+	var m := ShaderMaterial.new()
+	m.shader = SKY_SHADER
+	m.set_shader_parameter("top_color", Color(String(k[0])))
+	m.set_shader_parameter("horizon_color", Color(String(k[1])))
+	m.set_shader_parameter("bottom_color", Color(String(k[2])))
+	m.set_shader_parameter("cloud_color", Color(String(k[3])))
+	m.set_shader_parameter("cloud_shade", Color(String(k[4])))
+	m.set_shader_parameter("cloud_amount", float(k[5]))
+	m.set_shader_parameter("star_amount", float(k[6]))
+	m.set_shader_parameter("sun_color", Color(String(k[7])))
+	m.set_shader_parameter("sun_size", float(k[8]))
+	m.set_shader_parameter("sun_visible", 1.0 if float(k[8]) > 0.0 else 0.0)
+	var sky := Sky.new()
+	sky.sky_material = m
+	# the sky only paints the background: ambient stays a flat color and
+	# reflections are off, so the animated sky never re-bakes radiance
+	sky.radiance_size = Sky.RADIANCE_SIZE_32
+	sky.process_mode = Sky.PROCESS_MODE_INCREMENTAL
+	env.sky = sky
+	env.background_mode = Environment.BG_SKY
+	env.reflected_light_source = Environment.REFLECTION_SOURCE_DISABLED
+
+
+const WATER_SHADER := preload("res://src/world/water.gdshader")
+## kind -> [deep, light, speed, bob, sparkle, scale]
+const WATERS := {
+	"lake": ["#4fa3e0", "#d9f3ff", 1.0, 0.03, 1.0, 1.0],
+	"syrup": ["#ff8fbd", "#ffe3f0", 0.45, 0.015, 0.6, 0.8],
+	"ice": ["#b9def2", "#ffffff", 0.12, 0.0, 1.6, 0.7],
+}
+static var _waters: Dictionary = {}
+
+
+## Gives a flat water/syrup/ice surface the moving cartoon-water look.
+static func water(mi: MeshInstance3D, kind: String) -> void:
+	if not _waters.has(kind):
+		var k: Array = WATERS[kind]
+		var m := ShaderMaterial.new()
+		m.shader = WATER_SHADER
+		m.set_shader_parameter("deep", Color(String(k[0])))
+		m.set_shader_parameter("light", Color(String(k[1])))
+		m.set_shader_parameter("speed", float(k[2]))
+		m.set_shader_parameter("bob", float(k[3]))
+		m.set_shader_parameter("sparkle", float(k[4]))
+		m.set_shader_parameter("scale", float(k[5]))
+		_waters[kind] = m
+	mi.material_override = _waters[kind]
+
+
+static func sky_material(env: Environment) -> ShaderMaterial:
+	if env and env.sky:
+		return env.sky.sky_material as ShaderMaterial
+	return null
 
 
 ## A solid block (ground piece, ledge, wall) with the toon look.

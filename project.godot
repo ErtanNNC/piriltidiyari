@@ -45,3 +45,7 @@ pus_amount={
 "type": "float",
 "value": 0.0
 }
+cloud_shadow={
+"type": "float",
+"value": 0.0
+}

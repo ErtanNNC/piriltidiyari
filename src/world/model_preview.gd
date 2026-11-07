@@ -8,10 +8,22 @@ const NPCS := ["turtle", "bunny", "duckling", "owl_teacher", "spider", "mole", "
 
 func _ready() -> void:
 	Pus.set_amount(0.0)
-	WorldLook.add(self, "sabah")
+	var mood := "sabah"
+	for arg in OS.get_cmdline_user_args():
+		if arg.begins_with("--mood="):
+			mood = arg.get_slice("=", 1)
+	WorldLook.add(self, mood)
 	WorldLook.block(self, Vector3(0, -0.5, 0), Vector3(40, 1, 24), Tokens.color("spark-green").lerp(Tokens.color("bg"), 0.15), 0.0)
 	Decor.auto(self, "koy")
 	var which := DevTools.demo if DevTools.demo != "" else "keepers"
+	if which == "sky":
+		# look up at the sky over a strip of ground (--mood=sabah|aksam|...)
+		var c := Camera3D.new()
+		c.fov = 60.0
+		c.position = Vector3(0, 1.6, 10)
+		add_child(c)
+		c.look_at(Vector3(0, 5.5, -20))
+		return
 	if which == "import":
 		_import_check()
 		return

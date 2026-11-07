@@ -55,7 +55,8 @@ static func wall(parent: Node3D, a: Vector3, b: Vector3, height := 3.0) -> void:
 
 ## Slippery ice: you slide (low grip) while on it.
 static func ice(parent: Node3D, center: Vector3, size: Vector2) -> Area3D:
-	Toon.part(parent, "box", Vector3(size.x, 0.06, size.y), ICE, center + Vector3.UP * 0.03, Vector3.ZERO, 0.25, 0.0)
+	var sheet := Toon.part(parent, "box", Vector3(size.x, 0.06, size.y), ICE, center + Vector3.UP * 0.03, Vector3.ZERO, 0.25, 0.0)
+	WorldLook.water(sheet, "ice")
 	var area := Area3D.new()
 	area.collision_layer = 0
 	area.collision_mask = 1

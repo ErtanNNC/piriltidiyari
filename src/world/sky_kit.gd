@@ -46,6 +46,12 @@ static func cloud_sea(parent: Node3D, center: Vector3, extent: float) -> void:
 		parent.add_child(mi)
 		mi.position = center + Vector3(rng.randf_range(-extent, extent), rng.randf_range(-16, -12), rng.randf_range(-extent, extent))
 		mi.scale = Vector3(rng.randf_range(6, 12), rng.randf_range(2, 3.5), rng.randf_range(6, 12))
+		# slow drift and breathing so the sea of clouds feels alive
+		var tw := mi.create_tween().set_loops()
+		var drift := Vector3(rng.randf_range(2.0, 4.0), rng.randf_range(-0.4, 0.4), 0)
+		var dur := rng.randf_range(9.0, 15.0)
+		tw.tween_property(mi, "position", mi.position + drift, dur).set_trans(Tween.TRANS_SINE)
+		tw.tween_property(mi, "position", mi.position, dur).set_trans(Tween.TRANS_SINE)
 
 
 ## A wooden dock sticking out of an island edge.

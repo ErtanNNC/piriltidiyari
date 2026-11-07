@@ -40,7 +40,7 @@ static func wall(parent: Node3D, a: Vector3, b: Vector3, thickness := 1.8) -> vo
 
 ## A pool of sticky pink syrup: walking through it is slow (never harmful).
 static func syrup(parent: Node3D, center: Vector3, size: Vector2) -> Area3D:
-	Toon.part(parent, "box", Vector3(size.x, 0.1, size.y), Color("#ff9ec4"), center + Vector3.UP * 0.05, Vector3.ZERO, 0.35, 0.0)
+	WorldLook.water(Toon.part(parent, "box", Vector3(size.x, 0.1, size.y), Color("#ff9ec4"), center + Vector3.UP * 0.05, Vector3.ZERO, 0.35, 0.0), "syrup")
 	for i in int(size.x * size.y / 6.0):
 		var b := Toon.part(parent, "sphere", Vector3(0.3, 0.2, 0.3), Color("#ffc4dc"),
 			center + Vector3(randf_range(-size.x * 0.45, size.x * 0.45), 0.12, randf_range(-size.y * 0.45, size.y * 0.45)), Vector3.ZERO, 0.4, 0.0)
