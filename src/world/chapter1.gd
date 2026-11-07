@@ -136,11 +136,139 @@ func _build() -> void:
 				ForestKit.face_tree(lv, Vector3(side * (EDGE - 2.2), 0, z + rng.randf_range(-2, 2)), rng.randf_range(0.8, 1.1))
 	for zc in [28.0, -14.0, -42.0, -72.0]:
 		ForestKit.fireflies(lv, Vector3(0, 0, zc), Vector3(10, 0, 8), 18)
+	_side_content(lv)
 	# mobs
 	for spec in [["kirpi_topu", Vector3(-4, 0, -12)], ["kirpi_topu", Vector3(5, 0, -17)],
 			["karga", Vector3(-3, 0, -38)], ["karga", Vector3(4, 0, -44)], ["kirpi_topu", Vector3(0, 0, -36)]]:
 		Mob.spawn(self, spec[0], spec[1])
 	_player.respawn_point = _player.global_position
+
+
+## Kayıp yavrular, Hikâye Taşları and one corner per keeper's world ability.
+func _side_content(lv: Node3D) -> void:
+	var d := GameState.data
+	if d.quest_state("kayip_yavrular") == "none":
+		d.start_quest(Content.quests["kayip_yavrular"])
+	var kids := [["yavru1", "bunny", Vector3(-11, 0, 38)], ["yavru2", "duckling", Vector3(11, 0, -21)], ["yavru3", "frog", Vector3(11, 0, -46)]]
+	for k: Array in kids:
+		if d.has_flag(k[0]):
+			continue
+		var n := Npc.new()
+		n.name = "Yavru_" + k[0]
+		n.npc_id = k[0]
+		n.kind = k[1]
+		n.position = k[2]
+		n.scale = Vector3.ONE * 0.75
+		lv.add_child(n)
+	d.flags_changed.connect(_kids_go_home)
+	for spec in [[1, Vector3(-6, 0, 22)], [2, Vector3(-5.5, 0, -44)]]:
+		var st := StoryStone.new()
+		st.stone = spec[0]
+		st.position = spec[1]
+		lv.add_child(st)
+	var stone := Color("#b9b0a4")
+	# Pati: a tall pillar with a chest on top — only a double jump gets there
+	WorldLook.block(lv, Vector3(10, 1.15, 30), Vector3(2.2, 2.3, 2.2), stone)
+	var c1 := Chest.new()
+	c1.chest_id = "c1_sutun"
+	c1.position = Vector3(10, 2.3, 30)
+	lv.add_child(c1)
+	# Bado: an alcove blocked by a big rock
+	ForestKit.hedge(lv, Vector3(-EDGE, 0, 26), Vector3(-10, 0, 26), 1.2)
+	ForestKit.hedge(lv, Vector3(-EDGE, 0, 20), Vector3(-10, 0, 20), 1.2)
+	var rock := WorldLook.block(lv, Vector3(-10.4, 1.1, 23), Vector3(1.8, 2.2, 3.6), Color("#a49c92"))
+	var c2 := Chest.new()
+	c2.chest_id = "c1_kaya"
+	c2.position = Vector3(-12.6, 0, 23)
+	c2.rotation_degrees.y = 90
+	lv.add_child(c2)
+	var s1 := AbilitySpot.new()
+	s1.keeper = "bado"
+	s1.spot_id = "c1_kaya"
+	s1.blocker = rock
+	s1.push = Vector3(0, 0, -3.4)
+	s1.position = Vector3(-8.9, 0, 23)
+	lv.add_child(s1)
+	# Çıtır: a stream cuts off a corner; a rope bridge spans it
+	ForestKit.hedge(lv, Vector3(-7, 0, -4), Vector3(-7, 0, -10.4), 1.2)
+	var water := Color("#7cc6ee")
+	Toon.part(lv, "box", Vector3(7, 0.08, 1.8), water, Vector3(-10.5, 0.04, -9.6), Vector3.ZERO, 0.4, 0.0)
+	for seg in [[-13.0, 3.0], [-8.0, 2.0]]:
+		var wall := StaticBody3D.new()
+		var wc := CollisionShape3D.new()
+		var wb := BoxShape3D.new()
+		wb.size = Vector3(seg[1], 4.0, 1.8)
+		wc.shape = wb
+		wc.position.y = 2.0
+		wall.add_child(wc)
+		lv.add_child(wall)
+		wall.position = Vector3(seg[0], 0, -9.6)
+	var bridge := Node3D.new()
+	bridge.position = Vector3(-10.5, 0, -9.6)
+	lv.add_child(bridge)
+	var planks := Node3D.new()
+	planks.visible = false
+	bridge.add_child(planks)
+	for i in 4:
+		Toon.part(planks, "box", Vector3(1.8, 0.12, 0.42), Color("#c98d5e"), Vector3(0, 0.14, -0.75 + i * 0.5), Vector3.ZERO, 0.0, 0.02)
+	var gap := StaticBody3D.new()
+	var gc := CollisionShape3D.new()
+	var gb := BoxShape3D.new()
+	gb.size = Vector3(2.0, 4.0, 1.8)
+	gc.shape = gb
+	gc.position.y = 2.0
+	gap.add_child(gc)
+	bridge.add_child(gap)
+	var c3 := Chest.new()
+	c3.chest_id = "c1_dere"
+	c3.position = Vector3(-11, 0, -6.4)
+	lv.add_child(c3)
+	var s2 := AbilitySpot.new()
+	s2.keeper = "citir"
+	s2.spot_id = "c1_dere"
+	s2.blocker = bridge
+	s2.position = Vector3(-9.2, 0, -11.6)
+	lv.add_child(s2)
+	# Lumi: a corner behind dark brambles
+	ForestKit.hedge(lv, Vector3(7, 0, -38.4), Vector3(EDGE, 0, -38.4), 1.2)
+	var dark := StaticBody3D.new()
+	var dc := CollisionShape3D.new()
+	var db := BoxShape3D.new()
+	db.size = Vector3(1.4, 4.0, 6.0)
+	dc.shape = db
+	dc.position.y = 2.0
+	dark.add_child(dc)
+	lv.add_child(dark)
+	dark.position = Vector3(7.2, 0, -35.2)
+	for i in 5:
+		Toon.part(dark, "sphere", Vector3(1.6, 1.6, 1.6), Color("#2b2440"), Vector3(0, 0.8 + (i % 2) * 0.5, -2.4 + i * 1.2), Vector3.ZERO, 0.0, 0.03)
+	var c4 := Chest.new()
+	c4.chest_id = "c1_karanlik"
+	c4.position = Vector3(11, 0, -35)
+	lv.add_child(c4)
+	var s3 := AbilitySpot.new()
+	s3.keeper = "lumi"
+	s3.spot_id = "c1_karanlik"
+	s3.blocker = dark
+	s3.position = Vector3(5.6, 0, -35.2)
+	lv.add_child(s3)
+
+
+func _kids_go_home() -> void:
+	for i in [1, 2, 3]:
+		var n := get_node_or_null("Level/Yavru_yavru%d" % i)
+		if n and GameState.data.has_flag("yavru%d" % i) and not n.has_meta("leaving"):
+			n.set_meta("leaving", true)
+			Effects.sparkle(self, n.global_position + Vector3.UP, Tokens.color("panel"), 12)
+			var tw := n.create_tween()
+			tw.tween_interval(0.6)
+			tw.tween_property(n, "scale", Vector3.ZERO, 0.4).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
+			tw.tween_callback(n.queue_free)
+	var d := GameState.data
+	if d.quest_state("kayip_yavrular") == "ready":
+		d.complete_quest(Content.quests["kayip_yavrular"])
+		d.set_flag("c1_yavrular")
+		GameState.bark("c1_yavrular")
 
 
 func _path(parent: Node3D, a: Vector3, b: Vector3) -> void:
@@ -291,6 +419,62 @@ func _run_demo(which: String) -> void:
 	match which:
 		"start":
 			pass
+		"spots":
+			var d := GameState.data
+			var me := d.character_id
+			var target: Vector3 = {"bado": Vector3(-8.9, 0, 23), "citir": Vector3(-9.2, 0, -11.6), "lumi": Vector3(5.6, 0, -35.2), "pati": Vector3(10, 0, 32.4)}[me]
+			var chest: Vector3 = {"bado": Vector3(-12.6, 0, 23), "citir": Vector3(-11, 0, -6.4), "lumi": Vector3(11, 0, -35), "pati": Vector3(10, 2.3, 30)}[me]
+			_player.global_position = target
+			await get_tree().create_timer(0.4).timeout
+			if me == "pati":
+				# double jump onto the pillar from the south, stop on top
+				_player.global_position = Vector3(10, 0, 32.0)
+				await get_tree().create_timer(0.3).timeout
+				Input.action_press("move_forward")
+				Input.action_press("jump")
+				await get_tree().physics_frame
+				Input.action_release("jump")
+				await get_tree().create_timer(0.3).timeout
+				Input.action_press("jump")
+				await get_tree().physics_frame
+				Input.action_release("jump")
+				var top := 0.0
+				for i in 30:
+					await get_tree().physics_frame
+					top = maxf(top, _player.global_position.y)
+					if _player.global_position.z < 30.6 and _player.global_position.y > 2.0:
+						break
+				Input.action_release("move_forward")
+				await get_tree().create_timer(0.6).timeout
+				print("PATI top=%.2f on_pillar_y=%.2f" % [top, _player.global_position.y])
+			elif me == "citir":
+				_player.interact()
+				await get_tree().create_timer(1.0).timeout
+				_player.global_position = Vector3(-10.5, 0, -11.4)
+				await get_tree().create_timer(0.2).timeout
+				Input.action_press("move_back")
+				await get_tree().create_timer(1.3).timeout
+				Input.action_release("move_back")
+			else:
+				_player.interact()
+				await get_tree().create_timer(1.2).timeout
+				# walk toward the chest
+				var to: Vector3 = chest - _player.global_position
+				to.y = 0
+				var dir: Vector3 = to.normalized()
+				Input.action_press("move_right" if dir.x > 0.3 else ("move_left" if dir.x < -0.3 else "move_forward"), 1.0)
+				if absf(dir.z) > 0.3:
+					Input.action_press("move_back" if dir.z > 0 else "move_forward", absf(dir.z))
+				for i in 40:
+					await get_tree().create_timer(0.05).timeout
+					if _player.global_position.distance_to(chest) < 1.4:
+						break
+				for a in ["move_right", "move_left", "move_forward", "move_back"]:
+					Input.action_release(a)
+			await get_tree().create_timer(0.3).timeout
+			print("SPOT %s player=(%.1f, %.1f, %.1f) chest_dist=%.2f flag=%s" % [me, _player.global_position.x, _player.global_position.y, _player.global_position.z,
+				_player.global_position.distance_to(chest), d.has_flag("spot_" + {"bado": "c1_kaya", "citir": "c1_dere", "lumi": "c1_karanlik", "pati": "-"}[me])])
+			get_tree().quit()
 		"boss", "bossfight":
 			var d := GameState.data
 			for o in ["fener", "hu", "fenerler"]:
@@ -365,6 +549,13 @@ func _run_demo(which: String) -> void:
 					hit_on_ground = c.hp < before
 			print("KARGA y %.2f..%.2f yerde_vuruldu=%s player_hp %d->%d" % [min_y, max_y, hit_on_ground, hp0, GameState.data.hp])
 			get_tree().quit()
+		"pastwall":
+			$Level/OrmanFeneri.light_up(true)
+			_player.global_position = Vector3(8, 0, 1.8)
+			await get_tree().create_timer(0.3).timeout
+			while _hud._dialog.is_open():
+				_hud._dialog.advance()
+				await get_tree().create_timer(0.05).timeout
 		"junction":
 			$Level/OrmanFeneri.light_up(true)
 			await get_tree().create_timer(0.3).timeout

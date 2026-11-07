@@ -1,0 +1,18 @@
+{
+  "id": "kayip_yavrular",
+  "title": "Kayıp Yavrular",
+  "giver": "hu",
+  "objectives": [
+    {
+      "id": "yavru",
+      "text": "Ormanda kaybolan yavruları bul",
+      "type": "talk",
+      "target": "kayip_yavru",
+      "count": 3
+    }
+  ],
+  "rewards": {
+    "piril": 30,
+    "xp": 30
+  }
+}

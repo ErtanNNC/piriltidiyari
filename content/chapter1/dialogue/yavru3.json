@@ -1,0 +1,40 @@
+{
+  "npc": "yavru3",
+  "variants": [
+    {
+      "when": {
+        "not_flag": "yavru3"
+      },
+      "lines": [
+        {
+          "speaker": "yavru3",
+          "mood": "üzgün",
+          "text": "Karga beni korkuttu... yani biraz şaşırttı!"
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "mutlu",
+          "text": "Korkma! Yuva şu tarafta, peşimden gel."
+        },
+        {
+          "speaker": "yavru3",
+          "mood": "mutlu",
+          "text": "Teşekkürler bekçi! Yaşasın!"
+        }
+      ],
+      "then": {
+        "set_flag": "yavru3",
+        "advance": "kayip_yavrular/yavru"
+      }
+    },
+    {
+      "lines": [
+        {
+          "speaker": "yavru3",
+          "mood": "mutlu",
+          "text": "Yuvamın yolunu artık biliyorum!"
+        }
+      ]
+    }
+  ]
+}

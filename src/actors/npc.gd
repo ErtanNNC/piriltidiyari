@@ -62,7 +62,7 @@ func interact(_by: Node) -> void:
 func _refresh_marker() -> void:
 	var v := DialogueRules.pick_variant(Content.npc(npc_id), GameState.data)
 	var then: Dictionary = v.get("then", {})
-	_marker.visible = then.has("start_quest") or then.has("complete_quest") or then.has("deliver")
+	_marker.visible = then.has("start_quest") or then.has("complete_quest") or then.has("deliver") or then.has("advance")
 
 
 func _label(t: String, style: String, size: int, col: Color) -> Label3D:

@@ -1,0 +1,40 @@
+{
+  "npc": "yavru1",
+  "variants": [
+    {
+      "when": {
+        "not_flag": "yavru1"
+      },
+      "lines": [
+        {
+          "speaker": "yavru1",
+          "mood": "üzgün",
+          "text": "Hıçk... Sis yüzünden yuvamı bulamıyorum."
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "mutlu",
+          "text": "Korkma! Yuva şu tarafta, peşimden gel."
+        },
+        {
+          "speaker": "yavru1",
+          "mood": "mutlu",
+          "text": "Teşekkürler bekçi! Yaşasın!"
+        }
+      ],
+      "then": {
+        "set_flag": "yavru1",
+        "advance": "kayip_yavrular/yavru"
+      }
+    },
+    {
+      "lines": [
+        {
+          "speaker": "yavru1",
+          "mood": "mutlu",
+          "text": "Yuvamın yolunu artık biliyorum!"
+        }
+      ]
+    }
+  ]
+}

@@ -205,6 +205,13 @@ func test_chapter1_flow() -> void:
 	check(d.quest_state("fisilti_ormani") == "ready", "Kral uyandı, görev hazır")
 	check(d.complete_quest(q) and d.piril == 80 and d.item_count("bal_surubu") == 2, "ödüller: 80 Pırıl, 2 Bal Şurubu")
 	check(d.add_spark("green") and not d.add_spark("green"), "Yeşil Kıvılcım bir kez eklenir")
+	# side quest: three lost young ones
+	d.start_quest(c.quests["kayip_yavrular"])
+	for i in [1, 2, 3]:
+		var first: Dictionary = talk.call("yavru%d" % i)
+		check(first.has("then"), "yavru%d ilk konuşmada bulunur" % i)
+		check(not talk.call("yavru%d" % i).has("then"), "yavru%d ikinci kez sayılmaz" % i)
+	check(d.quest_state("kayip_yavrular") == "ready", "üç yavru bulundu")
 	# whisper rule: every crossroads has one consistent answer
 	for j: Dictionary in c.chapter["junctions"]:
 		for t: Array in j["trees"]:

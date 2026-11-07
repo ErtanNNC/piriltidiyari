@@ -83,6 +83,37 @@
         "mood": "bilge",
         "text": "Köye dön, Tospik Nine'ye müjdeyi ver."
       }
+    ],
+    "tas_1": [
+      {
+        "speaker": "hikaye_tasi",
+        "mood": "bilge",
+        "text": "Bir gece gökten küçük bir yıldız düştü."
+      },
+      {
+        "speaker": "hikaye_tasi",
+        "mood": "bilge",
+        "text": "Çayırın ortasına kondu ve parıldayarak bekledi."
+      }
+    ],
+    "tas_2": [
+      {
+        "speaker": "hikaye_tasi",
+        "mood": "üzgün",
+        "text": "Kimse başını kaldırıp bakmadı. Herkes çok meşguldü."
+      },
+      {
+        "speaker": "hikaye_tasi",
+        "mood": "üzgün",
+        "text": "Küçük yıldız üşüdü. Işığı yavaş yavaş griye döndü."
+      }
+    ],
+    "c1_yavrular": [
+      {
+        "speaker": "hu",
+        "mood": "mutlu",
+        "text": "Hu-hu! Üç yavru da yuvasında. Sen gerçek bir bekçisin!"
+      }
     ]
   }
 }

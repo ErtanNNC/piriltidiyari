@@ -9,11 +9,15 @@
   ],
   "spark": "green",
   "quests": [
-    "fisilti_ormani"
+    "fisilti_ormani",
+    "kayip_yavrular"
   ],
   "dialogue": [
     "hu",
-    "dikis"
+    "dikis",
+    "yavru1",
+    "yavru2",
+    "yavru3"
   ],
   "barks": "barks",
   "junctions": [

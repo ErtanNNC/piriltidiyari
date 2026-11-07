@@ -71,6 +71,22 @@
     "orman_cocugu": {
       "name": "Kayıp Yavru",
       "color": "sky"
+    },
+    "yavru1": {
+      "name": "Kayıp Tavşan Yavrusu",
+      "color": "sky"
+    },
+    "yavru2": {
+      "name": "Kayıp Ördek Yavrusu",
+      "color": "spark-yellow"
+    },
+    "yavru3": {
+      "name": "Kayıp Kurbağa Yavrusu",
+      "color": "spark-green"
+    },
+    "hikaye_tasi": {
+      "name": "Hikâye Taşı",
+      "color": "spark-purple"
     }
   }
 }
