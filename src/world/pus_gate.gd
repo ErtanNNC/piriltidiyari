@@ -55,11 +55,15 @@ func _ready() -> void:
 			GameState.toast.emit(message, "lantern"))
 
 
-func open() -> void:
+func open(silent := false) -> void:
 	if is_open:
 		return
 	is_open = true
 	_body.queue_free()
+	if silent:
+		for mi in _puffs:
+			mi.queue_free()
+		return
 	for mi in _puffs:
 		var tw := mi.create_tween()
 		tw.tween_property(mi, "scale", Vector3.ZERO, 0.8).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)

@@ -7,7 +7,7 @@ is a copy of the design system's tokens.
 ## Commands
 
 - `tools/test.sh` — import + headless tests. Run before every commit.
-- `tools/screenshot.sh out.png [--scene=scene1..scene6|chapter0..chapter3] [--demo=...] [--at=SECONDS | --frames=N] [--auto] [--touch]`
+- `tools/screenshot.sh out.png [--scene=scene1..scene6|chapter0..chapter4] [--demo=...] [--at=SECONDS | --frames=N] [--auto] [--touch]`
   renders under Xvfb with llvmpipe. `--scene` jumps there with earlier progress
   (DevTools.preset); `--auto` advances dialogue by itself; demos live in each
   scene script's `_run_demo`. Look at the PNG after any visual change.
@@ -15,7 +15,9 @@ is a copy of the design system's tokens.
   (demos that print and quit: beamtest, touchtest, climb, hop, climb2, flow, win;
   chapter1: wrong, mobs, bossfight, spots with --keeper=pati|bado|citir|lumi;
   chapter2: crystals, bossfight; chapter3: travel, wind, balloon, bossfight,
-  spots with --keeper=...).
+  spots with --keeper=...; chapter4: climb, ice, ramp, bossfight, spots).
+- New chapters extend `ChapterBase` (src/world/chapter_base.gd): npc(),
+  boss_camera(), fly_spark(), and test helpers close_dialogs()/walk_to().
 - `tools/build_android.sh` builds and signs export/PiriltiDiyari.apk; bump
   version/code in export_presets.cfg for every APK you hand out.
 - Godot is downloaded by `tools/setup_godot.sh` into `.tools/` (gitignored).
@@ -41,6 +43,8 @@ is a copy of the design system's tokens.
 - Story stones must be reachable by every keeper; keeper-only corners hold Pırıl.
   Test each corner both ways: blocked without the ability, reachable with it
   (and the spot to stand on must be on solid ground).
+- Keep side corners and props off the main route: a full scripted walk of the
+  chapter (like chapter4 `climb`) catches walls placed across a path.
 - An NPC's lesson/quest variant should also require the region lantern
   (`objective_done: <quest>/fener`), so "light the lantern first" can show.
 - Game rules stay in `src/core/` (RefCounted, no nodes) so tests can run them.

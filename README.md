@@ -56,6 +56,14 @@ Mobilde sol yarıda sanal joystick, sağda Zıpla / Saldır butonları çıkar.
 
 | Bölüm 3 · Bulut Limanı | Bulutların üstünde 4 ada, Pırpır'ın gemisiyle yolculuk, fırtına çanları, balonlar, Rüzgâr, Sarı Kıvılcım, gölge figür | rüzgârda kayanın dibine saklanma, balonla zıplama |
 
+| Bölüm 4 · Uyku Dağı | Teraslı karlı dağ, kamp ateşleri, Bilge Kuzey'in Mırıl hikâyesi, Dondurma, Beyaz Kıvılcım | uykulu sis, kaygan buz, yuvarlanan kar topları |
+
+**Bölüm 4:** Dağa teras teras tırmanılır; her kamp ateşi bir sonraki rampanın uykulu sisini eritir. Zirvede
+Bilge Kuzey Mırıl'ın hikâyesini anlatır: gökten düşen, kimsenin fark etmediği yalnız bir yıldız ("Pus kötülük
+değil, yalnızlıktır"). Moblar: Kar Topu Tavşanı (uzaktan atar), Buz Dikeni. Buz Golem Dondurma (üç top
+dondurma!) yenilince dağ erir. Yan içerik: 3 uykucu yavru, Hikâye Taşları 7–8, dört bekçi köşesi;
+Bilge Kuzey toplanan taşları sayar.
+
 **Bölüm 3:** Adalar arasında Kaptan Pırpır'ın gemisiyle uçulur ("Nereye uçalım?"). Fırtına rüzgârı oklarla
 haber verilir; kaya dibinde rüzgâr işlemez. Bulutlara düşen bekçiyi Pırpır yakalar. Moblar: Fırtına Yumağı
 (iter), Korsan Martı (3 Pırıl kapar, sakinleşince geri bırakır). **Pırpır'ın Nadir Pazarı:** Cesaret Şekeri
@@ -81,6 +89,7 @@ Sahne başlarında oyun kaydedilir (`user://kayit.json`); açılıştaki "Devam 
 <img src="docs/ekran/08_fisilti_kavsagi.png" width="49%"> <img src="docs/ekran/09_kutuk_kral.png" width="49%">
 <img src="docs/ekran/11_kiskac.png" width="49%"> <img src="docs/ekran/12_kazma_dukkani.png" width="49%">
 <img src="docs/ekran/13_balon_adasi.png" width="49%"> <img src="docs/ekran/14_ruzgar.png" width="49%">
+<img src="docs/ekran/17_bilge_kuzey.png" width="49%"> <img src="docs/ekran/18_dondurma.png" width="49%">
 </p>
 
 **Kontroller:** WASD / oklar · Boşluk zıpla · J saldır · K yuvarlan · L Dikenli Dönüş · E konuş · 1–4 iksir.
@@ -90,7 +99,7 @@ Mobilde: sanal joystick, Zıpla / Saldır / Yuvarlan / Dönüş butonları, iksi
 
 - Gerçek modeller, ikonlar, logo, ses ve müzik (her şey ilkel şekillerden yer tutucu)
 - Envanter ekranı, ayarlar, Terzi Dikiş'in kozmetik dükkânı
-- Bölüm 4 – Uyku Dağı ve Bölüm 5 – Pus Kalesi (final)
+- Bölüm 5 – Pus Kalesi (final) ve kapanış
 
 ## Proje yapısı
 

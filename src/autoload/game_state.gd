@@ -63,6 +63,9 @@ func apply_dialogue_effects(then: Dictionary) -> void:
 			var id := e.substr(5)
 			toast.emit("%s ×%d aldın" % [Content.item_name(id), int(then["give_items"][id])], "piril")
 			continue
+		if e == "stones":
+			toast.emit("Hikâye Taşları: %d/%d" % [data.item_count("hikaye_tasi"), StoryStone.TOTAL], "star")
+			continue
 		if e.begins_with("shop:"):
 			shop_requested.emit(e.substr(5))
 			continue

@@ -11,7 +11,7 @@ const TELEGRAPH := 0.8
 
 static var attackers := 0
 
-@export_enum("sumuklu", "mantar", "dev_mantar", "kirpi_topu", "karga", "kristal_bocek", "yarasa", "firtina_yumagi", "korsan_marti") var kind := "sumuklu"
+@export_enum("sumuklu", "mantar", "dev_mantar", "kirpi_topu", "karga", "kristal_bocek", "yarasa", "firtina_yumagi", "korsan_marti", "kar_tavsani", "buz_dikeni") var kind := "sumuklu"
 @export var gravity := 22.0
 
 var hp := 30
@@ -99,7 +99,10 @@ func _physics_process(delta: float) -> void:
 				state = "idle"
 			elif dist <= stats["range"] and not GameState.in_dialogue and (attackers < MobStats.MAX_ATTACKERS or kind == "dev_mantar"):
 				_windup(to_player)
-			elif dist <= stats["range"] + 1.8:
+			elif stats["attack"] == "throw" and dist < 3.5:
+				# a thrower keeps its distance: hop back
+				move = -to_player.normalized() * stats["speed"]
+			elif dist <= stats["range"] + 1.8 and stats["attack"] != "throw":
 				# wait for a turn: circle around at a polite distance
 				var side := to_player.normalized().cross(Vector3.UP) * _strafe
 				var keep := -to_player.normalized() * (1.0 if dist < stats["range"] + 0.8 else -0.3)
@@ -185,6 +188,9 @@ func _windup(to_player: Vector3) -> void:
 	elif stats["attack"] == "charge":
 		for k in 4:
 			Effects.warning(get_parent(), global_position + _attack_dir * (1.5 + k * 2.0), 0.7, TELEGRAPH)
+	elif stats["attack"] == "throw":
+		_swoop_to = _player.global_position if _player else global_position
+		Effects.warning(get_parent(), _swoop_to, 1.2, TELEGRAPH)
 	elif stats["attack"] == "swoop" or stats["attack"] == "burrow":
 		_swoop_to = _player.global_position if _player else global_position
 		_swoop_to.y = global_position.y if stats["attack"] == "burrow" else 0.0
@@ -220,6 +226,10 @@ func _attack() -> void:
 		if _player and Vector2(_player.global_position.x - global_position.x, _player.global_position.z - global_position.z).length() < 1.3:
 			_player.hurt(stats["damage"], global_position)
 		add_to_group("hittable")
+		return
+	if stats["attack"] == "throw":
+		_t = 0.5
+		_throw_snowball(_swoop_to)
 		return
 	if stats["attack"] == "blast":
 		# a puff of storm: shoves you away, small damage
@@ -296,6 +306,20 @@ func _calm() -> void:
 	GameState.notify("defeat", kind)
 	GameState.notify("defeat", "pus")
 	calmed.emit(self)
+
+
+## A snowball in a little arc onto the warned spot.
+func _throw_snowball(spot: Vector3) -> void:
+	var ball := Toon.part(get_parent(), "sphere", Vector3(0.5, 0.5, 0.5), MountainKit.SNOW, global_position + Vector3.UP * 1.0)
+	var from := ball.global_position
+	var tw := ball.create_tween()
+	tw.tween_method(func(k: float) -> void:
+		ball.global_position = from.lerp(spot, k) + Vector3.UP * (sin(k * PI) * 2.5 + (1.0 - k) * 0.2), 0.0, 1.0, 0.4)
+	await tw.finished
+	Effects.ring(get_parent(), spot + Vector3.UP * 0.2, 1.4, Tokens.color("panel@light"), 0.25)
+	if _player and Vector2(_player.global_position.x - spot.x, _player.global_position.z - spot.z).length() < 1.3:
+		_player.hurt(stats["damage"], spot)
+	ball.queue_free()
 
 
 func _release_token() -> void:

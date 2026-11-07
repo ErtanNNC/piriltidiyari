@@ -1,0 +1,22 @@
+{
+  "id": "chapter4",
+  "title": "Uyku Dağı",
+  "region": "Uyku Dağı",
+  "theme": "light",
+  "levels": [
+    20,
+    25
+  ],
+  "spark": "white",
+  "quests": [
+    "uyku_dagi",
+    "uykulu_yavrular"
+  ],
+  "dialogue": [
+    "kuzey",
+    "uykulu_yavru1",
+    "uykulu_yavru2",
+    "uykulu_yavru3"
+  ],
+  "barks": "barks"
+}

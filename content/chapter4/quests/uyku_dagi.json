@@ -1,0 +1,41 @@
+{
+  "id": "uyku_dagi",
+  "title": "Uyku Dağı",
+  "giver": "tospik_nine",
+  "objectives": [
+    {
+      "id": "fener",
+      "text": "Dağ Feneri'ni yak",
+      "type": "light",
+      "target": "dag_feneri"
+    },
+    {
+      "id": "ates",
+      "text": "Kamp ateşlerini yak, uykulu sisi erit",
+      "type": "light",
+      "target": "kamp_atesi",
+      "count": 3
+    },
+    {
+      "id": "kuzey",
+      "text": "Zirvede Bilge Kuzey'i dinle",
+      "type": "talk",
+      "target": "kuzey"
+    },
+    {
+      "id": "dondurma",
+      "text": "Buz Golem Dondurma'yı uyandır",
+      "type": "defeat",
+      "target": "dondurma"
+    }
+  ],
+  "rewards": {
+    "piril": 200,
+    "xp": 1200,
+    "items": [
+      "bal_surubu",
+      "bal_surubu",
+      "yildiz_tozu"
+    ]
+  }
+}

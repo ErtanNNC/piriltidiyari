@@ -3,6 +3,28 @@
   "variants": [
     {
       "when": {
+        "flag": "bolum4_bitti"
+      },
+      "lines": [
+        {
+          "speaker": "tospik_nine",
+          "mood": "mutlu",
+          "text": "Beyaz Kıvılcım da geldi! Dört oldu, bir kaldı."
+        },
+        {
+          "speaker": "tospik_nine",
+          "mood": "dertli",
+          "text": "Demek Pus'un adı Mırıl... Yalnız bir yıldız."
+        },
+        {
+          "speaker": "tospik_nine",
+          "mood": "kararlı",
+          "text": "Pus Kalesi'nin yolu yakında açılacak. Hazır ol."
+        }
+      ]
+    },
+    {
+      "when": {
         "flag": "bolum3_bitti"
       },
       "lines": [
@@ -19,7 +41,7 @@
         {
           "speaker": "tospik_nine",
           "mood": "bilge",
-          "text": "Uyku Dağı'ndaki Bilge Kuzey belki bir şey bilir."
+          "text": "Uyku Dağı'ndaki Bilge Kuzey belki bilir. Tabelası meydanda!"
         }
       ]
     },

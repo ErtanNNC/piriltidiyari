@@ -29,6 +29,12 @@ func _ready() -> void:
 	sign3.requires_flag = "bolum2_bitti"
 	sign3.position = Vector3(0, 0, 3.5)
 	add_child(sign3)
+	var sign4 := TravelSign.new()
+	sign4.target_scene = "chapter4"
+	sign4.title = "Uyku Dağı"
+	sign4.requires_flag = "bolum3_bitti"
+	sign4.position = Vector3(-3.5, 0, 3.5)
+	add_child(sign4)
 	var d := GameState.data
 	d.quest_changed.connect(func(_id: String) -> void: _advance())
 	d.flags_changed.connect(_on_flags)

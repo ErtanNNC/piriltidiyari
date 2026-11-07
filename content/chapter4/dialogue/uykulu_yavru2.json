@@ -1,0 +1,40 @@
+{
+  "npc": "uykulu_yavru2",
+  "variants": [
+    {
+      "when": {
+        "not_flag": "uykulu_yavru2"
+      },
+      "lines": [
+        {
+          "speaker": "uykulu_yavru2",
+          "mood": "uykulu",
+          "text": "Hrrr... Havuç rüyası görüyordum..."
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "mutlu",
+          "text": "Günaydın uykucu! Yuvan seni bekliyor."
+        },
+        {
+          "speaker": "uykulu_yavru2",
+          "mood": "mutlu",
+          "text": "Uyandım! Zıp zıp eve!"
+        }
+      ],
+      "then": {
+        "set_flag": "uykulu_yavru2",
+        "advance": "uykulu_yavrular/yavru"
+      }
+    },
+    {
+      "lines": [
+        {
+          "speaker": "uykulu_yavru2",
+          "mood": "mutlu",
+          "text": "Bir daha karda uyumayacağım. Galiba."
+        }
+      ]
+    }
+  ]
+}

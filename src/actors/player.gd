@@ -27,6 +27,8 @@ var input_enabled := true
 var slow := 1.0
 ## Steady push from storm wind (m/s), set by WindZone; shelters zero it.
 var wind := Vector3.ZERO
+## On slippery ice: very low grip, you slide.
+var ice := false
 var model: Node3D
 var respawn_point := Vector3.ZERO
 var rolling := false
@@ -99,8 +101,9 @@ func _physics_process(delta: float) -> void:
 		var v := Input.get_vector("move_left", "move_right", "move_forward", "move_back")
 		dir = Vector3(v.x, 0.0, v.y)
 	var target := dir * speed * slow
-	_move.x = move_toward(_move.x, target.x, acceleration * delta)
-	_move.z = move_toward(_move.z, target.z, acceleration * delta)
+	var grip := acceleration * (0.12 if ice else 1.0)
+	_move.x = move_toward(_move.x, target.x, grip * delta)
+	_move.z = move_toward(_move.z, target.z, grip * delta)
 	velocity.x = _move.x + _knock.x + wind.x
 	velocity.z = _move.z + _knock.z + wind.z
 	_knock = _knock.move_toward(Vector3.ZERO, 30.0 * delta)

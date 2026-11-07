@@ -139,7 +139,7 @@ func test_owl_plan() -> void:
 
 
 func test_content_is_valid() -> void:
-	for chapter in ["prologue", "chapter0", "chapter1", "chapter2", "chapter3"]:
+	for chapter in ["prologue", "chapter0", "chapter1", "chapter2", "chapter3", "chapter4"]:
 		_validate_chapter(chapter)
 	test_chapter0_flow()
 	test_chapter1_flow()
@@ -149,6 +149,8 @@ func test_content_is_valid() -> void:
 	test_shop()
 	test_chapter3_flow()
 	test_gull_plan()
+	test_chapter4_flow()
+	test_golem_plan()
 
 
 func test_chapter0_flow() -> void:
@@ -338,6 +340,49 @@ func test_gull_plan() -> void:
 	check(GullPlan.BOLT_DAMAGE * GullPlan.bolts(3) < 100, "bütün yıldırımlar değse bile uyunmaz")
 
 
+func test_chapter4_flow() -> void:
+	print("Bölüm 4 akışı: Uyku Dağı")
+	var c: Node = ContentScript.new()
+	c.load_chapter("chapter4")
+	var d := PlayerData.new()
+	var q: Dictionary = c.quests["uyku_dagi"]
+	var talk := func(npc: String) -> Dictionary:
+		var v := DialogueRules.pick_variant(c.npc(npc), d)
+		DialogueRules.apply(v.get("then", {}), d, c.quests)
+		return v
+	d.start_quest(q)
+	check(not talk.call("kuzey").has("then"), "Kuzey önce Dağ Feneri'ni ister")
+	d.notify("light", "dag_feneri", c.quests)
+	var lore: Dictionary = talk.call("kuzey")
+	var text := ""
+	for l: Dictionary in lore["lines"]:
+		text += String(l["text"]) + " "
+	check(text.contains("Mırıl") and text.contains("yıldız") and text.contains("yalnızlık"), "Kuzey Mırıl'ın hikâyesini anlatır: düşen yıldız, Pus = yalnızlık")
+	check(d.has_flag("miril_ogrenildi") and d.quest_state("uykulu_yavrular") == "active", "hikâye öğrenildi, yavru görevi başladı")
+	for i in 3:
+		d.notify("light", "kamp_atesi", c.quests)
+	d.notify("defeat", "dondurma", c.quests)
+	check(d.quest_state("uyku_dagi") == "ready", "Dondurma uyandı, görev hazır")
+	for i in [1, 2, 3]:
+		talk.call("uykulu_yavru%d" % i)
+	check(d.quest_state("uykulu_yavrular") == "ready", "üç uykucu yavru uyandı")
+	d.complete_quest(q)
+	d.add_item("hikaye_tasi", 3)
+	var then: Dictionary = talk.call("kuzey").get("then", {})
+	check(then.get("read_stones", false), "görev sonrası Kuzey Hikâye Taşlarını okur")
+	c.free()
+
+
+func test_golem_plan() -> void:
+	print("Dondurma planı")
+	for p in [1, 2, 3]:
+		check(GolemPlan.cycle(p).has("slam"), "faz %d: yumruk darbesi (vurma fırsatı) var" % p)
+	check(GolemPlan.in_breath(Vector3.FORWARD, Vector3(0, 0, -4)), "önündeki nefes koninin içinde")
+	check(not GolemPlan.in_breath(Vector3.FORWARD, Vector3(4, 0, 0)), "yanındaki nefesten etkilenmez")
+	check(not GolemPlan.in_breath(Vector3.FORWARD, Vector3(0, 0, -9)), "uzaktaki nefesten etkilenmez")
+	check(GolemPlan.BREATH_SLOW > 0.2, "nefes dondurmaz, sadece yavaşlatır")
+
+
 func _validate_chapter(chapter: String) -> void:
 	print("İçerik paketi kuralları: ", chapter)
 	var c: Node = ContentScript.new()
@@ -378,6 +423,6 @@ func _validate_chapter(chapter: String) -> void:
 				check(c.npcs.has(o["to"]), "görev %s: NPC %s" % [q["id"], o["to"]])
 			check(o.get("type", "deliver") in ["deliver", "defeat", "reach", "talk", "light", "ring"], "görev %s: hedef türü" % q["id"])
 			if o.get("type", "") == "defeat":
-				check(o["target"] in MobStats.KINDS or o["target"] in ["pus", "kutuk_kral", "kiskac", "ruzgar"], "görev %s: bilinmeyen mob %s" % [q["id"], o["target"]])
+				check(o["target"] in MobStats.KINDS or o["target"] in ["pus", "kutuk_kral", "kiskac", "ruzgar", "dondurma"], "görev %s: bilinmeyen mob %s" % [q["id"], o["target"]])
 	c.free()
 	t.free()

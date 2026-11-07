@@ -28,6 +28,10 @@ static func build(kind: String) -> Node3D:
 			var c := KiskacModel.build()
 			c.scale = Vector3.ONE * 0.55
 			root.add_child(c)
+		"snowman":
+			_snowman(root)
+		"bunny_sleepy":
+			_critter(root, Color("#f7faff"), "sky", 0.6)
 		"gull_captain":
 			_gull(root, 1.0, true)
 		"gull_chick":
@@ -143,3 +147,21 @@ static func _gull(root: Node3D, s: float, captain: bool) -> void:
 		Toon.part(r, "cylinder", Vector3(1.0, 0.12, 1.0), "outline", Vector3(0, 1.66, 0.15), Vector3.ZERO, 0.0, 0.0)
 		Toon.part(r, "cylinder", Vector3(0.7, 0.4, 0.8), "sky", Vector3(0, 1.85, 0.15))
 		Toon.part(r, "sphere", Vector3(0.2, 0.2, 0.08), "spark-yellow", Vector3(0, 1.88, 0.55), Vector3.ZERO, 0.6, 0.0)
+
+
+## Bilge Kuzey: a wise old snowman with a scarf, a hat and twig arms.
+static func _snowman(root: Node3D) -> void:
+	var snow := MountainKit.SNOW
+	Toon.part(root, "sphere", Vector3(1.8, 1.6, 1.8), snow, Vector3(0, 0.8, 0))
+	Toon.part(root, "sphere", Vector3(1.3, 1.2, 1.3), snow, Vector3(0, 2.1, 0))
+	Toon.part(root, "sphere", Vector3(1.0, 0.95, 1.0), snow, Vector3(0, 3.1, 0))
+	Toon.part(root, "torus", Vector3(1.1, 0.26, 1.1), "spark-white", Vector3(0, 2.65, 0))
+	Toon.part(root, "torus", Vector3(1.05, 0.22, 1.05), "sky", Vector3(0, 2.62, 0))
+	Toon.part(root, "cone", Vector3(0.18, 0.5, 0.18), Color("#ff9a3c"), Vector3(0, 3.05, 0.6), Vector3(90, 0, 0))
+	for side in [-1.0, 1.0]:
+		Toon.part(root, "sphere", Vector3(0.14, 0.16, 0.08), "outline", Vector3(0.2 * side, 3.25, 0.44), Vector3.ZERO, 0.0, 0.0)
+		Toon.part(root, "torus", Vector3(0.3, 0.035, 0.3), "ink-muted", Vector3(0.2 * side, 3.25, 0.47), Vector3(90, 0, 0), 0.0, 0.0)
+		Toon.part(root, "cylinder", Vector3(0.08, 1.3, 0.08), Color("#8a5a3c"), Vector3(0.95 * side, 2.3, 0), Vector3(0, 0, 55 * side))
+		Toon.part(root, "sphere", Vector3(0.12, 0.08, 0.05), "berry", Vector3(0.32 * side, 3.0, 0.42), Vector3.ZERO, 0.0, 0.0)
+	Toon.part(root, "cylinder", Vector3(1.2, 0.1, 1.2), "outline", Vector3(0, 3.5, 0), Vector3.ZERO, 0.0, 0.0)
+	Toon.part(root, "cylinder", Vector3(0.7, 0.7, 0.7), "spark-purple", Vector3(0, 3.85, 0))

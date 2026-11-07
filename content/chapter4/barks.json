@@ -1,0 +1,114 @@
+{
+  "barks": {
+    "c4_giris": [
+      {
+        "speaker": "oyuncu",
+        "mood": "uykulu",
+        "text": "Brrr... Burası çok sessiz. Neden bu kadar uykum geldi?"
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "kararlı",
+        "text": "Önce Dağ Feneri'ni yakayım. Biraz ısınırım."
+      }
+    ],
+    "c4_fener": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Fener yandı! Ama yukarıdaki sis çok uykulu görünüyor."
+      }
+    ],
+    "c4_ates": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Ateş yandı! Uykulu sis eriyip gitti."
+      }
+    ],
+    "c4_sis": [
+      {
+        "speaker": "oyuncu",
+        "mood": "uykulu",
+        "text": "Hıııı... Bu sis insanın gözünü kapatıyor..."
+      }
+    ],
+    "c4_dondurma_basla": [
+      {
+        "speaker": "dondurma",
+        "mood": "huysuz",
+        "text": "Kim geldi? Herkes gibi sen de beni soğuk mu buluyorsun?"
+      },
+      {
+        "speaker": "dondurma",
+        "mood": "huysuz",
+        "text": "Bu beyaz ışık benimle kalacak! Donsun her şey!"
+      }
+    ],
+    "c4_dondurma_son": [
+      {
+        "speaker": "dondurma",
+        "mood": "üzgün",
+        "text": "Brrr... Pus bana kimsenin beni sevmediğini söyledi."
+      },
+      {
+        "speaker": "dondurma",
+        "mood": "üzgün",
+        "text": "Çok soğuğum diye kimse sarılmazmış. Özür dilerim."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Ama sen dondurmasın! Herkes dondurma sever!"
+      },
+      {
+        "speaker": "dondurma",
+        "mood": "mutlu",
+        "text": "Gerçekten mi? O zaman... Al, bu ışık senin olsun."
+      }
+    ],
+    "c4_eriyor": [
+      {
+        "speaker": "kuzey",
+        "mood": "mutlu",
+        "text": "Dağ eriyor! Pus Kalesi'nin yolu açıldı."
+      },
+      {
+        "speaker": "kuzey",
+        "mood": "bilge",
+        "text": "Mırıl orada bekliyor. Kalbini açık tut, bekçi."
+      }
+    ],
+    "c4_yavrular": [
+      {
+        "speaker": "kuzey",
+        "mood": "mutlu",
+        "text": "Üç uykucu da uyandı! Dağa bahar geldi sanki."
+      }
+    ],
+    "tas_7": [
+      {
+        "speaker": "hikaye_tasi",
+        "mood": "üzgün",
+        "text": "Mırıl bir gün köye yaklaştı. Şenlikte herkes gülüyordu."
+      },
+      {
+        "speaker": "hikaye_tasi",
+        "mood": "üzgün",
+        "text": "Kapının önünde durdu ama içeri giremedi. Kimse çağırmadı."
+      }
+    ],
+    "tas_8": [
+      {
+        "speaker": "hikaye_tasi",
+        "mood": "bilge",
+        "text": "O gece Mırıl bir şey fark etti: Kıvılcım'ın ışığı sıcaktı."
+      },
+      {
+        "speaker": "hikaye_tasi",
+        "mood": "üzgün",
+        "text": "Belki o ışık kendisininkini de geri getirirdi..."
+      }
+    ]
+  }
+}

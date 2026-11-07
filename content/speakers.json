@@ -127,6 +127,26 @@
     "marti_yavru3": {
       "name": "Minicik Martı",
       "color": "sky"
+    },
+    "kuzey": {
+      "name": "Bilge Kuzey",
+      "color": "spark-white"
+    },
+    "dondurma": {
+      "name": "Buz Golem Dondurma",
+      "color": "berry"
+    },
+    "uykulu_yavru1": {
+      "name": "Uykucu Tavşan",
+      "color": "sky"
+    },
+    "uykulu_yavru2": {
+      "name": "Uykucu Yavru",
+      "color": "sky"
+    },
+    "uykulu_yavru3": {
+      "name": "Minik Uykucu",
+      "color": "sky"
     }
   }
 }

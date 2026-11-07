@@ -8,6 +8,7 @@ signal lit(lantern: SmallLantern)
 @export var lantern_id := "kucuk_fener"
 @export var accent := "spark-green"
 @export var big := false   ## the region's Kıvılcım Feneri
+@export_enum("lantern", "campfire") var style := "lantern"
 var is_lit := false
 var _flame: MeshInstance3D
 var _light: OmniLight3D
@@ -16,11 +17,20 @@ var _area: Area3D
 
 func _ready() -> void:
 	var s := 1.6 if big else 1.0
-	Toon.part(self, "cylinder", Vector3(0.9, 0.3, 1.1) * s, Color("#b9b0a4"), Vector3(0, 0.15, 0) * s)
-	Toon.part(self, "cylinder", Vector3(0.22, 2.2, 0.28) * s, Color("#8a5a3c"), Vector3(0, 1.3, 0) * s)
-	Toon.part(self, "cylinder", Vector3(0.9, 0.12, 0.9) * s, "outline", Vector3(0, 2.4, 0) * s, Vector3.ZERO, 0.0, 0.0)
-	Toon.part(self, "cone", Vector3(0.9, 0.5, 0.9) * s, "honey-deep", Vector3(0, 3.35, 0) * s)
-	_flame = Toon.part(self, "sphere", Vector3(0.62, 0.78, 0.62) * s, "spark-off", Vector3(0, 2.85, 0) * s, Vector3.ZERO, 0.0, 0.03)
+	if style == "campfire":
+		# a ring of stones, crossed logs and a fire that is out
+		for i in 7:
+			var a := TAU * i / 7.0
+			Toon.part(self, "sphere", Vector3(0.45, 0.32, 0.45), Color("#a9a3bd"), Vector3(cos(a), 0.12, sin(a)) * 0.9)
+		for k in 3:
+			Toon.part(self, "cylinder", Vector3(0.24, 1.4, 0.24), Color("#8a5a3c"), Vector3(0, 0.3, 0), Vector3(70, k * 60.0, 0))
+		_flame = Toon.part(self, "cone", Vector3(0.8, 1.1, 0.8), "spark-off", Vector3(0, 0.8, 0), Vector3.ZERO, 0.0, 0.03)
+	else:
+		Toon.part(self, "cylinder", Vector3(0.9, 0.3, 1.1) * s, Color("#b9b0a4"), Vector3(0, 0.15, 0) * s)
+		Toon.part(self, "cylinder", Vector3(0.22, 2.2, 0.28) * s, Color("#8a5a3c"), Vector3(0, 1.3, 0) * s)
+		Toon.part(self, "cylinder", Vector3(0.9, 0.12, 0.9) * s, "outline", Vector3(0, 2.4, 0) * s, Vector3.ZERO, 0.0, 0.0)
+		Toon.part(self, "cone", Vector3(0.9, 0.5, 0.9) * s, "honey-deep", Vector3(0, 3.35, 0) * s)
+		_flame = Toon.part(self, "sphere", Vector3(0.62, 0.78, 0.62) * s, "spark-off", Vector3(0, 2.85, 0) * s, Vector3.ZERO, 0.0, 0.03)
 	var body := StaticBody3D.new()
 	var c := CollisionShape3D.new()
 	var cyl := CylinderShape3D.new()
@@ -63,7 +73,7 @@ func light_up(silent := false) -> void:
 	_light.light_color = Tokens.color(accent)
 	_light.light_energy = 2.4 if big else 1.6
 	_light.omni_range = 9.0 if big else 6.0
-	_light.position.y = 2.85 * (1.6 if big else 1.0)
+	_light.position.y = 1.0 if style == "campfire" else 2.85 * (1.6 if big else 1.0)
 	add_child(_light)
 	if not silent:
 		Effects.sparkle(get_parent(), _flame.global_position, Tokens.color(accent), 16)

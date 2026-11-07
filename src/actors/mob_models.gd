@@ -22,6 +22,10 @@ static func build(kind: String, pus: bool) -> Node3D:
 			_beetle(root, pus)
 		"firtina_yumagi":
 			_storm_ball(root, pus)
+		"kar_tavsani":
+			_snow_bunny(root, pus)
+		"buz_dikeni":
+			_ice_spike(root, pus)
 		"korsan_marti":
 			_pirate_gull(root, pus)
 		"yarasa":
@@ -154,3 +158,26 @@ static func _pirate_gull(root: Node3D, pus: bool) -> void:
 		var w := Toon.part(root, "sphere", Vector3(1.0, 0.16, 0.6), _c(pus, Color("#9aa7b8")), Vector3(0.66 * side, 0.7, -0.05), Vector3(0, 0, -20 * side))
 		w.name = "Wing%s" % ("L" if side < 0 else "R")
 	_face(root, Vector3(0, 1.1, 0.52), 0.9, pus)
+
+
+## Kar Topu Tavşanı: a fluffy snow bunny holding a snowball.
+static func _snow_bunny(root: Node3D, pus: bool) -> void:
+	var fur: Variant = _c(pus, Color("#f7faff"), true)
+	Toon.part(root, "sphere", Vector3(0.9, 0.95, 0.85), fur, Vector3(0, 0.5, 0))
+	Toon.part(root, "sphere", Vector3(0.85, 0.75, 0.8), fur, Vector3(0, 1.15, 0.05))
+	for side in [-1.0, 1.0]:
+		Toon.part(root, "capsule", Vector3(0.2, 0.7, 0.14), fur, Vector3(0.15 * side, 1.7, -0.02), Vector3(0, 0, -12 * side))
+		Toon.part(root, "capsule", Vector3(0.1, 0.45, 0.06), _c(pus, "sky", true), Vector3(0.15 * side, 1.7, 0.05), Vector3(0, 0, -12 * side), 0.0, 0.0)
+	Toon.part(root, "sphere", Vector3(0.45, 0.45, 0.45), MountainKit.SNOW, Vector3(0.45, 0.7, 0.4))
+	_face(root, Vector3(0, 1.15, 0.42), 0.9, pus)
+
+
+## Buz Dikeni: a little plant of ice spikes with a grumpy face.
+static func _ice_spike(root: Node3D, pus: bool) -> void:
+	var ice: Variant = _c(pus, MountainKit.ICE, true)
+	Toon.part(root, "sphere", Vector3(1.1, 0.7, 1.1), ice, Vector3(0, 0.35, 0))
+	for i in 6:
+		var a := TAU * i / 6.0
+		Toon.part(root, "cone", Vector3(0.35, 1.0, 0.35), ice, Vector3(sin(a) * 0.4, 0.9, cos(a) * 0.4), Vector3(cos(a) * -25, 0, sin(a) * 25), 0.0 if pus else 0.5, 0.02)
+	Toon.part(root, "cone", Vector3(0.45, 1.3, 0.45), ice, Vector3(0, 1.1, 0), Vector3.ZERO, 0.0 if pus else 0.5, 0.02)
+	_face(root, Vector3(0, 0.45, 0.5), 0.8, pus)

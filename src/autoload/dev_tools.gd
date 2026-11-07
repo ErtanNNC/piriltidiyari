@@ -4,7 +4,7 @@ extends Node
 ## --scene jumps to a story scene with the progress of the scenes before it.
 ## Never active in a normal run.
 
-const ORDER := ["scene1", "scene2", "scene3", "scene4", "scene5", "scene6", "chapter0", "chapter1", "chapter2", "chapter3"]
+const ORDER := ["scene1", "scene2", "scene3", "scene4", "scene5", "scene6", "chapter0", "chapter1", "chapter2", "chapter3", "chapter4"]
 
 var _shot_path := ""
 var _frames := 60
@@ -84,6 +84,12 @@ static func preset(data: PlayerData, scene: String) -> void:
 		data.add_spark("blue")
 		data.add_piril(200)
 		data.set_flag("bolum2_bitti")
+	if idx >= 10:
+		while data.level < 14:
+			data.add_xp(Progression.xp_to_next(data.level))
+		data.add_spark("yellow")
+		data.add_piril(200)
+		data.set_flag("bolum3_bitti")
 
 
 static func _finish(data: PlayerData, quest_id: String) -> void:

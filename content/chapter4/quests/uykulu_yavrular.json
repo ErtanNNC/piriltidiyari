@@ -1,0 +1,18 @@
+{
+  "id": "uykulu_yavrular",
+  "title": "Uykucu Yavrular",
+  "giver": "kuzey",
+  "objectives": [
+    {
+      "id": "yavru",
+      "text": "Karda uyuyakalan tavşan yavrularını uyandır",
+      "type": "talk",
+      "target": "uykulu_yavru",
+      "count": 3
+    }
+  ],
+  "rewards": {
+    "piril": 60,
+    "xp": 200
+  }
+}

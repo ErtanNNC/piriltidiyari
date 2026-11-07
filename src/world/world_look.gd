@@ -8,6 +8,7 @@ extends RefCounted
 ##   orman  – Fısıltı Ormanı (Bölüm 1)
 ##   magara – Şekerleme Mağaraları (Bölüm 2), dark
 ##   liman  – Bulut Limanı (Bölüm 3), floating islands over clouds
+##   dag    – Uyku Dağı (Bölüm 4), snowy sleepy dusk
 
 
 static func add(parent: Node, mood: String) -> Environment:
@@ -74,6 +75,19 @@ static func add(parent: Node, mood: String) -> Environment:
 			sun.light_color = Color("#fff3dc")
 			sun.light_energy = 0.55
 			sun.rotation_degrees = Vector3(-50, 25, 0)
+		"dag":
+			# Uyku Dağı: pale snowy dusk, soft and sleepy
+			env.background_color = Color("#9fadd6")
+			env.ambient_light_color = Color("#c9d0f0")
+			env.ambient_light_energy = 0.26
+			env.glow_hdr_threshold = 1.4
+			env.fog_enabled = true
+			env.fog_light_color = Color("#b8c2e2")
+			env.fog_density = 0.005
+			env.fog_sky_affect = 0.0
+			sun.light_color = Color("#fff0e0")
+			sun.light_energy = 0.42
+			sun.rotation_degrees = Vector3(-40, 35, 0)
 		"sabah":
 			env.background_color = Color("#cfe6ff")
 			env.ambient_light_color = Color("#fff2dc")

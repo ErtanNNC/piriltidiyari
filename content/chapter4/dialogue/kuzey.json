@@ -1,0 +1,102 @@
+{
+  "npc": "kuzey",
+  "variants": [
+    {
+      "when": {
+        "quest": "uyku_dagi",
+        "state": "active",
+        "objective_done": "uyku_dagi/fener",
+        "objective_not_done": "uyku_dagi/kuzey"
+      },
+      "lines": [
+        {
+          "speaker": "kuzey",
+          "mood": "bilge",
+          "text": "Hoş geldin bekçi. Buraya kadar çok yol geldin."
+        },
+        {
+          "speaker": "kuzey",
+          "mood": "bilge",
+          "text": "Sana bir hikâye anlatayım. Pus'un hikâyesini."
+        },
+        {
+          "speaker": "kuzey",
+          "mood": "bilge",
+          "text": "Yıllar önce gökten küçük bir yıldız düştü."
+        },
+        {
+          "speaker": "kuzey",
+          "mood": "üzgün",
+          "text": "Kimse onu fark etmedi. Herkes kendi işindeydi."
+        },
+        {
+          "speaker": "kuzey",
+          "mood": "üzgün",
+          "text": "Soğukta bekledi, bekledi. Üzüntüsü griye döndü."
+        },
+        {
+          "speaker": "kuzey",
+          "mood": "üzgün",
+          "text": "O gri üzüntü Pus oldu. Yıldızın adı Mırıl'dı."
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "şaşkın",
+          "text": "Yani Mırıl kötü değil... Sadece yalnız mı?"
+        },
+        {
+          "speaker": "kuzey",
+          "mood": "bilge",
+          "text": "Evet. Pus kötülük değil, yalnızlıktır. Bunu unutma."
+        },
+        {
+          "speaker": "kuzey",
+          "mood": "kararlı",
+          "text": "Şimdi göle git. Dondurma Beyaz Kıvılcım'ı dondurdu."
+        }
+      ],
+      "then": {
+        "advance": "uyku_dagi/kuzey",
+        "set_flag": "miril_ogrenildi",
+        "start_quest": "uykulu_yavrular"
+      }
+    },
+    {
+      "when": {
+        "quest": "uyku_dagi",
+        "state": "done"
+      },
+      "lines": [
+        {
+          "speaker": "kuzey",
+          "mood": "bilge",
+          "text": "Topladığın Hikâye Taşları'nı bir okuyayım..."
+        }
+      ],
+      "then": {
+        "read_stones": true
+      }
+    },
+    {
+      "when": {
+        "objective_done": "uyku_dagi/kuzey"
+      },
+      "lines": [
+        {
+          "speaker": "kuzey",
+          "mood": "bilge",
+          "text": "Göl kuzeyde. Dondurma'yı uyandır, Kıvılcım'ı kurtar."
+        }
+      ]
+    },
+    {
+      "lines": [
+        {
+          "speaker": "kuzey",
+          "mood": "uykulu",
+          "text": "Hrrm... Önce dağın fenerini yak, bekçi. Çok üşüdüm."
+        }
+      ]
+    }
+  ]
+}

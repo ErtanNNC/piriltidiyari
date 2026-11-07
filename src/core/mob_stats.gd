@@ -12,6 +12,8 @@ const KINDS := {
 	"yarasa": {"name": "Yarasa Fısıltısı", "hp": 30, "speed": 3.8, "damage": 9, "attack": "swoop", "range": 6.5, "aggro": 12.0, "xp": 8, "piril": 3, "flies": true},
 	"firtina_yumagi": {"name": "Fırtına Yumağı", "hp": 55, "speed": 2.2, "damage": 6, "attack": "blast", "range": 3.0, "aggro": 9.0, "xp": 12, "piril": 4},
 	"korsan_marti": {"name": "Korsan Martı", "hp": 45, "speed": 4.0, "damage": 8, "attack": "swoop", "range": 6.5, "aggro": 12.0, "xp": 12, "piril": 4, "flies": true, "steals": 3},
+	"kar_tavsani": {"name": "Kar Topu Tavşanı", "hp": 60, "speed": 2.8, "damage": 9, "attack": "throw", "range": 8.0, "aggro": 12.0, "xp": 16, "piril": 5},
+	"buz_dikeni": {"name": "Buz Dikeni", "hp": 80, "speed": 0.0, "damage": 11, "attack": "burst", "range": 2.6, "aggro": 4.0, "xp": 16, "piril": 5},
 	"dev_mantar": {"name": "Dev Somurtkan Mantar", "hp": 160, "speed": 1.4, "damage": 15, "attack": "burst", "range": 3.4, "aggro": 10.0, "xp": 20, "piril": 15},
 }
 
