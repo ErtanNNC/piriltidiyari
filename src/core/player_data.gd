@@ -121,7 +121,19 @@ func choose_keeper(id: String, stats: Dictionary, look: Dictionary, display_name
 	power = 6 + int(stats.get("guc", 3)) * 2
 	speed = 4.6 + float(stats.get("hiz", 3)) * 0.5
 	skills = []
+	var own := Skills.for_character(id)
+	if own != "":
+		skills.append(own)
 	stats_changed.emit()
+	skills_changed.emit()
+
+
+## The skill the L key / skill button uses right now ("" if none yet).
+func active_skill() -> String:
+	var own := Skills.for_character(character_id)
+	if skills.has(own):
+		return own
+	return skills[0] if not skills.is_empty() else ""
 
 
 # --- items --------------------------------------------------------------

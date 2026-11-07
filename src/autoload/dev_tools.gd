@@ -62,7 +62,11 @@ static func preset(data: PlayerData, scene: String) -> void:
 	if idx >= 6:
 		var content: Node = Engine.get_main_loop().root.get_node_or_null("Content")
 		if content:
-			data.choose_keeper("pati", content.keepers["pati"]["stats"], {}, "Pati")
+			var k := "pati"
+			for arg in OS.get_cmdline_user_args():
+				if arg.begins_with("--keeper="):
+					k = arg.get_slice("=", 1)
+			data.choose_keeper(k, content.keepers[k]["stats"], {}, content.keepers[k]["name"])
 		data.set_flag("prolog_bitti")
 
 

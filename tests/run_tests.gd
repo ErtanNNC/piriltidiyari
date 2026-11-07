@@ -151,6 +151,14 @@ func test_chapter0_flow() -> void:
 	var d := PlayerData.new()
 	d.choose_keeper("bado", c.keepers["bado"]["stats"], {}, "Bado")
 	check(d.max_hp == 120 and d.speed < 6.0 and d.level == 1, "Bado: çok can, yavaş, seviye 1")
+	check(d.active_skill() == "kucaklama_kalkani", "Bado'nun özel yeteneği Kucaklama Kalkanı")
+	for k: String in c.keepers:
+		check(Skills.for_character(k) != "", "%s için özel yetenek tanımlı" % k)
+		check(String(c.keepers[k]["special"]).begins_with(Skills.DEFS[Skills.for_character(k)]["name"]), "%s: yetenek adı karakter dokümanıyla aynı" % k)
+	var f := PlayerData.new()
+	check(f.active_skill() == "", "Fıstık Sahne 3'ten önce yeteneksiz")
+	f.unlock_skill("dikenli_donus")
+	check(f.active_skill() == "dikenli_donus", "Fıstık: Dikenli Dönüş")
 	var talk := func(npc: String) -> Dictionary:
 		var v := DialogueRules.pick_variant(c.npc(npc), d)
 		DialogueRules.apply(v.get("then", {}), d, c.quests)

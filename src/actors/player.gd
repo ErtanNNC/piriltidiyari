@@ -37,6 +37,9 @@ var _roll_left := 0.0
 var _roll_dir := Vector3.FORWARD
 var _knock := Vector3.ZERO
 var _move := Vector3.ZERO   ## walking velocity, without knockback
+var _air_jumps := 0
+var _shield := 0.0
+var _shield_mesh: MeshInstance3D
 var _col: CollisionShape3D
 var _stand_shape: CapsuleShape3D
 var _ball_shape: SphereShape3D
@@ -76,6 +79,11 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	_attack_cd = maxf(_attack_cd - delta, 0.0)
 	_invulnerable = maxf(_invulnerable - delta, 0.0)
+	if _shield > 0.0:
+		_shield -= delta
+		if _shield <= 0.0 and _shield_mesh:
+			_shield_mesh.queue_free()
+			_shield_mesh = null
 	model.visible = _invulnerable <= 0.0 or rolling or fmod(_invulnerable, 0.16) < 0.1
 	if rolling:
 		_process_roll(delta)
@@ -97,10 +105,16 @@ func _physics_process(delta: float) -> void:
 			climbing = false
 			velocity.y = jump_velocity * 0.8
 	elif is_on_floor():
+		_air_jumps = 1 if GameState.data.character_id == "pati" else 0
 		if input_enabled and not asleep and Input.is_action_just_pressed("jump"):
 			velocity.y = jump_velocity
 	else:
 		velocity.y -= gravity * delta
+		# Pati's world ability: a second jump in the air
+		if _air_jumps > 0 and input_enabled and not asleep and Input.is_action_just_pressed("jump"):
+			_air_jumps -= 1
+			velocity.y = jump_velocity * 0.9
+			Effects.ring(get_parent(), global_position + Vector3.UP * 0.2, 1.2, Tokens.color("berry"), 0.25)
 	move_and_slide()
 	if global_position.y < -12.0:
 		_fall_back()
@@ -126,7 +140,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	elif event.is_action_pressed("roll"):
 		start_roll()
 	elif event.is_action_pressed("skill"):
-		dikenli_donus()
+		use_skill()
 	else:
 		for i in 4:
 			if event.is_action_pressed("potion_%d" % (i + 1)):
@@ -157,18 +171,121 @@ func spin_attack() -> void:
 	_hit_around(ATTACK_RADIUS, GameState.data.power, 7.0)
 
 
-## Skill unlocked in Sahne 3: a big double spin with a shock ring. Costs MP.
-func dikenli_donus() -> void:
-	if not GameState.data.skills.has("dikenli_donus") or _attack_cd > 0.0 or rolling:
+## L key / skill button: the character's special skill.
+func use_skill() -> void:
+	var id := GameState.data.active_skill()
+	if id == "" or _attack_cd > 0.0 or rolling or asleep:
 		return
-	if not GameState.data.use_mp(SKILL_COST):
+	if not GameState.data.use_mp(int(Skills.DEFS[id]["mp"])):
 		GameState.toast.emit("Enerjin az. Yıldız Tozu iç!", "drop")
 		return
+	match id:
+		"dikenli_donus": _dikenli_donus()
+		"pence_kombosu": _pence_kombosu()
+		"kucaklama_kalkani": _kucaklama_kalkani()
+		"findik_firlatma": _findik_firlatma()
+		"isik_patlamasi": _isik_patlamasi()
+
+
+## Kept for older callers (tests, demos).
+func dikenli_donus() -> void:
+	if GameState.data.active_skill() == "dikenli_donus":
+		use_skill()
+
+
+## Fıstık, learned in Sahne 3: a big double spin with a shock ring.
+func _dikenli_donus() -> void:
 	_attack_cd = 0.7
 	var tw := create_tween()
 	tw.tween_property(model, "rotation:y", model.rotation.y + TAU * 2.0, 0.55).set_trans(Tween.TRANS_CUBIC)
 	Effects.ring(get_parent(), global_position + Vector3.UP * 0.4, 3.6, Tokens.color("honey"), 0.45)
 	_hit_around(3.4, GameState.data.power * 2 + 5, 8.0)
+
+
+## Pati: three quick claw swipes in front.
+func _pence_kombosu() -> void:
+	_attack_cd = 0.75
+	var fwd := Vector3(sin(model.rotation.y), 0, cos(model.rotation.y))
+	for i in 3:
+		var tw := create_tween()
+		tw.tween_property(model, "position", fwd * 0.5, 0.06)
+		tw.tween_property(model, "position", Vector3.ZERO, 0.08)
+		Effects.ring(get_parent(), global_position + fwd * 1.4 + Vector3.UP * 0.6, 1.0, Tokens.color("berry"), 0.18)
+		for m in get_tree().get_nodes_in_group("hittable"):
+			var n := m as Node3D
+			var to := n.global_position - global_position
+			to.y = 0.0
+			if to.length() <= 2.6 + n.get_meta("hit_radius", 0.5) and (to.length() < 0.8 or to.normalized().dot(fwd) > 0.3):
+				n.hit(GameState.data.power, global_position, 3.0)
+		await get_tree().create_timer(0.16).timeout
+
+
+## Bado: a big warm hug-shield — no damage for a while.
+func _kucaklama_kalkani() -> void:
+	_attack_cd = 0.4
+	_shield = 4.0
+	if _shield_mesh:
+		_shield_mesh.queue_free()
+	_shield_mesh = MeshInstance3D.new()
+	var sm := SphereMesh.new()
+	sm.radius = 1.1
+	sm.height = 2.2
+	_shield_mesh.mesh = sm
+	var mat := StandardMaterial3D.new()
+	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	mat.albedo_color = Tokens.color("spark-green")
+	mat.albedo_color.a = 0.3
+	mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	_shield_mesh.material_override = mat
+	_shield_mesh.position.y = 0.9
+	add_child(_shield_mesh)
+	Effects.ring(get_parent(), global_position + Vector3.UP * 0.3, 2.4, Tokens.color("spark-green"), 0.4)
+
+
+## Çıtır: a hazelnut that bounces between up to three mobs.
+func _findik_firlatma() -> void:
+	_attack_cd = 0.5
+	var targets: Array[Node3D] = []
+	var from := global_position + Vector3.UP * 0.9
+	for b in Skills.NUT_BOUNCES:
+		var best: Node3D = null
+		var best_d := 9.0
+		for m in get_tree().get_nodes_in_group("hittable"):
+			var n := m as Node3D
+			if targets.has(n):
+				continue
+			var d := n.global_position.distance_to(from)
+			if d < best_d:
+				best_d = d
+				best = n
+		if best == null:
+			break
+		targets.append(best)
+		from = best.global_position
+	var nut := Toon.part(get_parent(), "sphere", Vector3(0.3, 0.34, 0.3), Color("#b5713e"), global_position + Vector3.UP * 0.9)
+	if targets.is_empty():
+		var fwd := Vector3(sin(model.rotation.y), 0, cos(model.rotation.y))
+		var tw := nut.create_tween()
+		tw.tween_property(nut, "global_position", nut.global_position + fwd * 6.0, 0.35)
+		tw.tween_callback(nut.queue_free)
+		return
+	for t in targets:
+		var tw := nut.create_tween()
+		tw.tween_property(nut, "global_position", t.global_position + Vector3.UP * 0.8, 0.15)
+		await tw.finished
+		if is_instance_valid(t) and t.is_in_group("hittable"):
+			t.hit(GameState.data.power + 4, nut.global_position, 4.0)
+	nut.queue_free()
+
+
+## Lumi: a burst of light that hits everything around and heals.
+func _isik_patlamasi() -> void:
+	_attack_cd = 0.7
+	Effects.ring(get_parent(), global_position + Vector3.UP * 0.5, 4.2, Tokens.color("spark-yellow"), 0.5)
+	Effects.sparkle(get_parent(), global_position + Vector3.UP, Tokens.color("spark-yellow"), 16)
+	_hit_around(4.0, GameState.data.power + 6, 6.0)
+	GameState.data.heal(Skills.LIGHT_HEAL)
+	FloatText.spawn(get_parent(), global_position + Vector3.UP * 2.0, "+%d" % Skills.LIGHT_HEAL, Tokens.color("leaf"))
 
 
 func _hit_around(radius: float, damage: int, push: float) -> void:
@@ -225,6 +342,11 @@ func _ceiling_blocked() -> bool:
 func hurt(amount: int, from: Vector3) -> bool:
 	if _invulnerable > 0.0 or rolling or asleep:
 		return false
+	if _shield > 0.0:
+		Effects.ring(get_parent(), global_position + Vector3.UP * 0.9, 1.6, Tokens.color("spark-green"), 0.2)
+		amount = Skills.shielded_damage(amount)
+		if amount <= 0:
+			return false
 	_invulnerable = INVULNERABLE_TIME
 	var away := (global_position - from)
 	away.y = 0.0

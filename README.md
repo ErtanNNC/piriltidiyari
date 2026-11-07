@@ -55,7 +55,7 @@ Mobilde: sanal joystick, Zıpla / Saldır / Yuvarlan / Dönüş butonları, iksi
 ### Henüz olmayanlar
 
 - Gerçek modeller, ikonlar, logo, ses ve müzik (her şey ilkel şekillerden yer tutucu)
-- Bekçilerin kendi özel yetenekleri (Pençe Kombosu, Kucaklama Kalkanı, Fındık Fırlatma, Işık Patlaması) ve dünya yetenekleri; şimdilik hepsi diken dönüşüyle saldırıyor
+- Bekçilerin dünya yetenekleri: Pati'nin çift zıplaması var; Bado'nun kaya itmesi, Çıtır'ın halatı ve Lumi'nin aydınlatması henüz yok (özel yeteneklerin dördü de var: L tuşu)
 - Envanter / dükkân ekranları, ayarlar, Bölüm 1 (Fısıltı Ormanı)
 
 ## Proje yapısı

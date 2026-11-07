@@ -29,8 +29,13 @@ func _ready() -> void:
 	for spec in [["Dönüş", "skill", false], ["Yuvarlan", "roll", false], ["Saldır", "attack", false], ["Zıpla", "jump", true]]:
 		var b := UiKit.button(spec[0], spec[2])
 		if spec[1] == "skill":
-			b.visible = GameState.data.skills.has("dikenli_donus")
-			GameState.data.skills_changed.connect(func() -> void: b.visible = GameState.data.skills.has("dikenli_donus"))
+			var refresh := func() -> void:
+				var sk := GameState.data.active_skill()
+				b.visible = sk != ""
+				if sk != "":
+					b.text = Skills.DEFS[sk]["short"]
+			refresh.call()
+			GameState.data.skills_changed.connect(refresh)
 		b.custom_minimum_size = Vector2(132, 72)
 		var action: String = spec[1]
 		b.button_down.connect(func() -> void: Input.action_press(action))

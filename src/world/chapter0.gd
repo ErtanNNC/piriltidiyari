@@ -17,6 +17,9 @@ func _ready() -> void:
 	_advance()
 	await get_tree().create_timer(1.9).timeout
 	if d.quest_state(QUEST) == "none":
+		var sk := d.active_skill()
+		if sk != "":
+			GameState.toast.emit("Özel yeteneğin: %s (L)" % Skills.DEFS[sk]["name"], "star")
 		_hud.show_hint("Tospik Nine ile konuş", "Tospik Nine ile konuş")
 	if DevTools.demo != "":
 		_run_demo(DevTools.demo)
@@ -51,6 +54,38 @@ func _on_flags() -> void:
 func _run_demo(which: String) -> void:
 	var player: Player = _hud.player()
 	match which:
+		"skills":
+			var d := GameState.data
+			var mobs: Array[Mob] = []
+			for at in [Vector3(0, 0, 3.5), Vector3(1.5, 0, 4.5), Vector3(-1.5, 0, 4.5)]:
+				mobs.append(Mob.spawn(self, "dev_mantar", at))
+			player.global_position = Vector3(0, 0, 2)
+			player.model.rotation.y = 0.0
+			await get_tree().create_timer(0.3).timeout
+			d.take_damage(30)
+			var hp_before := d.hp
+			var before := mobs.map(func(m: Mob) -> int: return m.hp)
+			player.use_skill()
+			await get_tree().create_timer(1.0).timeout
+			var after := mobs.map(func(m: Mob) -> int: return m.hp)
+			var shield_test := player.hurt(20, player.global_position + Vector3.FORWARD)
+			print("SKILL %s mp=%d mobs %s -> %s hp %d -> %d hurt_while_shield=%s" % [d.active_skill(), d.mp, before, after, hp_before, d.hp, shield_test])
+			# double jump
+			player.global_position = Vector3(8, 0, 0)
+			await get_tree().create_timer(0.4).timeout
+			var top := 0.0
+			Input.action_press("jump")
+			await get_tree().physics_frame
+			Input.action_release("jump")
+			await get_tree().create_timer(0.25).timeout
+			Input.action_press("jump")
+			await get_tree().physics_frame
+			Input.action_release("jump")
+			for i in 60:
+				top = maxf(top, player.global_position.y)
+				await get_tree().physics_frame
+			print("JUMP top=%.2f" % top)
+			get_tree().quit()
 		"walk":
 			player.global_position = Vector3(0, 0, 2)
 		"meadow":
