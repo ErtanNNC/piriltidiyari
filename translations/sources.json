@@ -573,7 +573,16 @@
   "Duydum. Sen bir 'Sus!' sözünden doğmuşsun, değil mi?",
   "Küçük biri vardı. Her konuşunca ona 'Sus!' dediler.",
   "Teşekkürler... Artık hafifim.",
-  "O küçük biri kim? Onu da bulacağım."
+  "O küçük biri kim? Onu da bulacağım.",
+  "Yankı buradan geliyordu. Kimse var mı?",
+  "Hırrr! Kimsin sen? Git buradan!",
+  "Herkes gider zaten! Kimse dinlemez! HIRRR!",
+  "Kaçmıyorum. Bu sesi tanıyorum.",
+  "Ben de bir zamanlar kimsenin görmediği bir yıldızdım.",
+  "Ben seni duyuyorum.",
+  "...Ne? Sen beni... duyuyor musun?",
+  "O zaman benimle kal! Hep kal! Bırakmam seni!",
+  "Kalacağım. Ama arkadaşlarım merak etmesin."
  ],
  "content/s2_prologue/chapter.json": [
   "Kırmızı Ufuk",
@@ -583,6 +592,10 @@
   "Gürledek",
   "Mırıl'ın Seçimi",
   "Kulak Bekçileri"
+ ],
+ "content/s2_prologue/cutscenes/miril_secimi.json": [
+  "Mırıl kendi isteğiyle gitti",
+  "Hırıl'ı yalnız bırakmamak için."
  ],
  "content/s2_prologue/dialogue/bado.json": [
   "Kardeşim Minnoş nerede? Onu bulmam lazım!",

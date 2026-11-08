@@ -193,6 +193,59 @@
         "mood": "kararlı",
         "text": "O küçük biri kim? Onu da bulacağım."
       }
+    ],
+    "s5b_1": [
+      {
+        "speaker": "miril",
+        "mood": "kararlı",
+        "text": "Yankı buradan geliyordu. Kimse var mı?"
+      }
+    ],
+    "s5b_2": [
+      {
+        "speaker": "hiril",
+        "mood": "huysuz",
+        "text": "Hırrr! Kimsin sen? Git buradan!"
+      },
+      {
+        "speaker": "hiril",
+        "mood": "huysuz",
+        "text": "Herkes gider zaten! Kimse dinlemez! HIRRR!"
+      },
+      {
+        "speaker": "miril",
+        "mood": "kararlı",
+        "text": "Kaçmıyorum. Bu sesi tanıyorum."
+      },
+      {
+        "speaker": "miril",
+        "mood": "dertli",
+        "text": "Ben de bir zamanlar kimsenin görmediği bir yıldızdım."
+      }
+    ],
+    "s5b_3": [
+      {
+        "speaker": "miril",
+        "mood": "mutlu",
+        "text": "Ben seni duyuyorum."
+      },
+      {
+        "speaker": "hiril",
+        "mood": "şaşkın",
+        "text": "...Ne? Sen beni... duyuyor musun?"
+      },
+      {
+        "speaker": "hiril",
+        "mood": "kararlı",
+        "text": "O zaman benimle kal! Hep kal! Bırakmam seni!"
+      }
+    ],
+    "s5b_4": [
+      {
+        "speaker": "miril",
+        "mood": "kararlı",
+        "text": "Kalacağım. Ama arkadaşlarım merak etmesin."
+      }
     ]
   }
 }

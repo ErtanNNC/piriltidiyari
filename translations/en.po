@@ -45,6 +45,9 @@ msgstr "You got %s ×%d"
 msgid "%s: kademe %d%s"
 msgstr "%s: rank %d%s"
 
+msgid "...Ne? Sen beni... duyuyor musun?"
+msgstr "...What? You... can hear me?"
+
 msgid "1: Bal Şurubu iç, canın dolsun!"
 msgstr "1: Drink Honey Syrup to fill your health!"
 
@@ -279,6 +282,9 @@ msgstr "Maybe that light could bring its own light back too..."
 msgid "Ben Kıvılcım'ı Pus'tan saklıyordum. Seni de Pus sandım."
 msgstr "I was hiding the Spark from the Gloom. I thought you were the Gloom."
 
+msgid "Ben de bir zamanlar kimsenin görmediği bir yıldızdım."
+msgstr "I was once a star nobody could see, too."
+
 msgid "Ben de kapıda nöbet tutarım. Artık dostuz!"
 msgstr "I'll guard the door too. We're friends now!"
 
@@ -299,6 +305,9 @@ msgstr "I'm ready! Super, super ready!"
 
 msgid "Ben oynarım! Hem de her gün."
 msgstr "I'll play with you! Every single day."
+
+msgid "Ben seni duyuyorum."
+msgstr "I hear you."
 
 msgid "Ben seni görüyorum, Mırıl. Ve buradayım."
 msgstr "I see you, Mumble. And I'm here."
@@ -1086,6 +1095,9 @@ msgstr "Always open"
 msgid "Herkes geliyor demek. Aferin sana, küçük yıldız."
 msgstr "So everyone's coming. Well done, little star."
 
+msgid "Herkes gider zaten! Kimse dinlemez! HIRRR!"
+msgstr "Everyone leaves anyway! Nobody listens! GRRR!"
+
 msgid "Herkes hatırladı. Hadi, Fıstık pastayı bekliyor!"
 msgstr "Everyone remembered. Come on, Peanut is waiting with the cake!"
 
@@ -1179,8 +1191,14 @@ msgstr "Hmph... Hrrm... How long was I asleep?"
 msgid "Hıh? Sis beni başa döndürdü."
 msgstr "Huh? The mist sent me back to the start."
 
+msgid "Hırrr! Kimsin sen? Git buradan!"
+msgstr "Grrr! Who are you? Go away!"
+
 msgid "Hırıl"
 msgstr "Grumble"
+
+msgid "Hırıl'ı yalnız bırakmamak için."
+msgstr "So that Grumble wouldn't be alone."
 
 msgid "Hız"
 msgstr "Speed"
@@ -1253,6 +1271,9 @@ msgstr "K: Roll into a ball, go under the beam!"
 
 msgid "Kademe %d → %d"
 msgstr "Rank %d → %d"
+
+msgid "Kalacağım. Ama arkadaşlarım merak etmesin."
+msgstr "I'll stay. But my friends shouldn't worry."
 
 msgid "Kalbe dokun: Bal Şurubu iç!"
 msgstr "Tap the heart: drink Honey Syrup!"
@@ -1391,6 +1412,9 @@ msgstr "Digby's shop is open! You can go back to the village"
 
 msgid "Kazma'nın Çocukları"
 msgstr "Digby's Kids"
+
+msgid "Kaçmıyorum. Bu sesi tanıyorum."
+msgstr "I'm not running away. I know that voice."
 
 msgid "Kaçtı. Ama sanki... çok yalnız görünüyordu."
 msgstr "It ran off. But it looked... so lonely."
@@ -1749,6 +1773,9 @@ msgstr "One day Mumble came close to the village. Everyone at the festival was l
 msgid "Mırıl bir kale yaptı. İçine bütün anılarını sakladı."
 msgstr "Mumble built a castle. He kept all his memories inside."
 
+msgid "Mırıl kendi isteğiyle gitti"
+msgstr "Mumble chose to go"
+
 msgid "Mırıl orada bekliyor. Kalbini açık tut, bekçi."
 msgstr "Mumble is waiting there. Keep your heart open, keeper."
 
@@ -1820,6 +1847,9 @@ msgstr "That red mist... I'm keeping my eye on it."
 
 msgid "O sesin peşinden git. Ama dikkatli ol, yavrum."
 msgstr "Follow that voice. But be careful, little one."
+
+msgid "O zaman benimle kal! Hep kal! Bırakmam seni!"
+msgstr "Then stay with me! Stay forever! I won't let you go!"
 
 msgid "O zaman... bu mor ışık hepimizin olsun."
 msgstr "Then... let this purple light belong to all of us."
@@ -2390,6 +2420,9 @@ msgstr "Stars fall on gloomy creatures nearby"
 
 msgid "Yani Mırıl kötü değil... Sadece yalnız mı?"
 msgstr "So Mumble isn't bad... Just lonely?"
+
+msgid "Yankı buradan geliyordu. Kimse var mı?"
+msgstr "The echo came from here. Is anyone there?"
 
 msgid "Yankıların Peşinde"
 msgstr "Chasing Echoes"

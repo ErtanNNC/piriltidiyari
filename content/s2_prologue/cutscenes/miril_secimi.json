@@ -1,0 +1,106 @@
+{
+  "steps": [
+    {
+      "cam": {
+        "pos": [
+          0,
+          6,
+          12
+        ],
+        "look": [
+          0,
+          1.4,
+          -2
+        ],
+        "time": 0
+      }
+    },
+    {
+      "pus": 0.35,
+      "time": 2.0
+    },
+    {
+      "wait": 1.0
+    },
+    {
+      "say": "s5b_1"
+    },
+    {
+      "do": "hiril_appears"
+    },
+    {
+      "wait": 1.6
+    },
+    {
+      "cam": {
+        "pos": [
+          5.5,
+          2.8,
+          3.0
+        ],
+        "look": [
+          -0.4,
+          1.1,
+          -1.2
+        ],
+        "time": 2.0
+      }
+    },
+    {
+      "say": "s5b_2"
+    },
+    {
+      "do": "mist_swell"
+    },
+    {
+      "wait": 1.0
+    },
+    {
+      "say": "s5b_3"
+    },
+    {
+      "cam": {
+        "pos": [
+          0,
+          5,
+          11
+        ],
+        "look": [
+          0,
+          2,
+          -3
+        ],
+        "time": 1.4
+      }
+    },
+    {
+      "say": "s5b_4"
+    },
+    {
+      "do": "throw_light"
+    },
+    {
+      "wait": 1.6
+    },
+    {
+      "do": "red_wind"
+    },
+    {
+      "wait": 3.0
+    },
+    {
+      "card": [
+        "",
+        "Mırıl kendi isteğiyle gitti",
+        "Hırıl'ı yalnız bırakmamak için."
+      ],
+      "time": 3.8
+    },
+    {
+      "do": "finish"
+    },
+    {
+      "goto": "s2_scene6"
+    }
+  ]
+}
