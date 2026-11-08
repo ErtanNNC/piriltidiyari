@@ -9,7 +9,7 @@ config/name="Pırıltı Diyarı"
 config/description="Kıvılcım Bekçileri serisinin ilk oyunu. Just A Game Studios."
 run/main_scene="res://scenes/title.tscn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://assets/icon/icon_512.png"
 
 [autoload]
 

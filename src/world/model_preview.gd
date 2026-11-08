@@ -79,6 +79,8 @@ func _ready() -> void:
 			var bm := boss(BOSSES[i])
 			bm.position = Vector3(xs[i], 0, -2.0 if BOSSES[i] == "dondurma" else 0.0)
 			add_child(bm)
+			if "--blink" in OS.get_cmdline_user_args() and CharacterRig.of(bm):
+				CharacterRig.of(bm).hold_blink = 1.0
 		var cb := Camera3D.new()
 		cb.fov = 50.0
 		cb.position = Vector3(0, 6.0, 24.0)

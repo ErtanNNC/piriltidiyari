@@ -44,6 +44,21 @@ is a copy of the design system's tokens.
   (blink/breath); Pus mobs keep a faint tint of their own color (`MobModels._c`).
 - Ground decor is automatic: `Decor.auto(scene, style)` in each scene's `_ready`
   scatters non-colliding MultiMesh props on upright floors; thin meshes are paths.
+- Rigged models: Pati has real bones (Meshy auto-rig, one clip per call:
+  idle/walk/run/jump/attack); `tools/merge_anims.py` retargets the clips onto
+  one skeleton (drops vertical twist of hips/spine/head so the character
+  faces forward) and CharacterRig plays them (`CLIP_SPEED`), blink still via
+  the toon shader. Bado/Çıtır/Lumi rigged badly (kept shader rig). Check:
+  `--scene=preview --demo=rigtest --model=pati`.
+- World props: `PropModel.swap(node, "prop_<kind>", keep, roof)` replaces a
+  prop's primitive meshes with `assets/models/prop_*.glb` (same height and
+  footprint; colliders, lights, particles and `keep` nodes stay; roof hue via
+  json "fur"). Used by Prop (house, tree, well, lantern_post, bush, tower),
+  ForestKit.face_tree, chapter4 pines, SmallLantern (lantern, campfire).
+- Music: generated tracks become loops with `tools/music_loop.py`; sounds in
+  `tools/make_audio.py` REAL come from `tools/sfx_prep.py` (not re-synthesized).
+  Store assets and the Play guide: `docs/yayin-rehberi.md`, `docs/play/`,
+  `assets/icon/`.
 - Life: grass bends in rolling gusts (decor.gdshader), tree crowns rock via
   `Sway.crown(tree, from_y, pivot_y)` (one Sway node per scene), `AmbientLife`
   adds drifting 3D clouds and butterflies (when Pus < 0.45).
