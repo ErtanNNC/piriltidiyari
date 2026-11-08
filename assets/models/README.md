@@ -68,3 +68,22 @@ Tripo H3.1 ile üretildi (çizim 0,25 + model 9 kredi, 19,5 bin üçgen).
 cinsinden, model yerde ve +Z'ye bakarken). Kontrol:
 `--scene=preview --demo=looks --model=pati`.
 Kürk rengi seçenekleri (beyaz/gri) dokulu modelde uygulanmaz.
+
+## Tüm karakterler (Kasım 2026)
+
+Bekçiler (pati, bado, citir, lumi), fistik, köylüler (turtle, bunny,
+duckling, owl_teacher, spider, mole, snowman, gull_captain, gull_chick, frog,
+star_child) ve yaratıklar (sumuklu, mantar, kirpi_topu, karga, kristal_bocek,
+yarasa, korsan_marti, kar_tavsani, buz_dikeni) aynı yolla yapıldı:
+
+1. `--scene=preview --demo=ref --model=<id>` ile oyunun kendi tasarımı çizilir.
+2. Higgsfield GPT Image 2.6: bu referans + Pati çizimi (tarz ve beyaz zemin
+   için) → temiz karakter çizimi (0,25 kredi).
+3. Tripo H3.1 Image to 3D (9 kredi) → GLB.
+4. `python3 tools/shrink_glb.py indirilen.glb assets/models/<id>.glb`
+5. `<id>.json` (facing -90, height = eski modelin boyu: `--demo=heights`).
+6. `tools/model_textures.sh`
+
+Eski modeli kullananlar: bunny_sleepy → bunny, mole_kid → mole,
+dev_mantar → mantar. Bosslar ve fırtına yumağı hâlâ parça parça kurulan
+modellerle (hareketli parçaları var).

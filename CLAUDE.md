@@ -22,8 +22,13 @@ is a copy of the design system's tokens.
   replaces any keeper/Fıstık/NPC placeholder through `ModelImport`. Preview:
   `--scene=preview [--demo=npcs|import|props|mobs]`; `--demo=ref --model=<id>` renders one
   character front-on, flat unlit colors, no outline, white background (reference for
-  image-to-3D). `<id>.json` may set facing/height/outline/tint. An imported keeper
-  model drops outfits/tools/variants; the Tripo trial lives in assets/models/deneme/. Thin rings: use shape
+  image-to-3D). Real models (Higgsfield art + Tripo) exist for the keepers, Fıstık,
+  villagers and 9 mobs; `<id>.json` sets facing (-90 for Tripo), height, tint,
+  outline, glow, lift, "model" (reuse another id's file) and keeper "anchors"
+  (Head/head_r/hat_scale/Body/HandL/HandR) so outfits and tools still attach.
+  Imported mobs drain to Pus grey via the toon `desat` uniform. New model:
+  `tools/shrink_glb.py` (1024 px textures) then `tools/model_textures.sh`
+  (lossy WebP imports). Fur variants don't apply to textured keepers. Thin rings: use shape
   `"ring"` (size.y = tube thickness); `"torus"` reads size.y as the inner radius. Mobs get the same rig
   (blink/breath); Pus mobs keep a faint tint of their own color (`MobModels._c`).
 - Ground decor is automatic: `Decor.auto(scene, style)` in each scene's `_ready`
