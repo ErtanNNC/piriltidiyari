@@ -48,6 +48,25 @@ func _ready() -> void:
 		add_child(c2)
 		c2.look_at(Vector3(0, 0.4, -1.3))
 		return
+	if which == "looks":
+		# one keeper (--model=pati) in four shop looks
+		var kid := "pati"
+		for arg in OS.get_cmdline_user_args():
+			if arg.begins_with("--model="):
+				kid = arg.get_slice("=", 1)
+		var looks := [{}, {"outfit": "kasif_sapkasi", "weapon": "isik_degnegi"}, {"outfit": "yildiz_pelerini", "accessory": "atki"}, {"outfit": "cicek_taci", "weapon": "kivilcim_kilici"}]
+		for i in looks.size():
+			var lk: Dictionary = looks[i]
+			var km := KeeperModels.build(kid, lk)
+			km.position = Vector3((i - 1.5) * 2.2, 0, 0)
+			km.rotation_degrees.y = 0.0 if i != 2 else 160.0
+			add_child(km)
+		var c3 := Camera3D.new()
+		c3.fov = 40.0
+		c3.position = Vector3(0, 2.4, 8.5)
+		add_child(c3)
+		c3.look_at(Vector3(0, 1.0, 0))
+		return
 	if which == "audio":
 		_audio_check()
 		return

@@ -27,6 +27,15 @@ const PAD := Color("#ff9db4")
 static func build(id: String, look := {}) -> Node3D:
 	var imported := ModelImport.load_model(id)
 	if imported:
+		# a real model: hats, capes, scarves and tools still go on, at anchor
+		# points (defaults per keeper, or "anchors" in assets/models/<id>.json)
+		var ap := _anchors(imported, id)
+		var a2 := String(look.get("accessory", "yok"))
+		if String(look.get("outfit", "")) in HEADWEAR and a2 == "sapka":
+			a2 = "yok"
+		_accessory(ap, a2, id)
+		_outfit(ap, String(look.get("outfit", "")))
+		_tool(ap, String(look.get("weapon", "")), id)
 		return imported
 	var root := Node3D.new()
 	var info: Dictionary = INFO.get(id, INFO["pati"])
@@ -48,6 +57,37 @@ static func build(id: String, look := {}) -> Node3D:
 	_tool(parts, String(look.get("weapon", "")), id)
 	CharacterRig.attach(root)
 	return root
+
+
+## Where the procedural keepers have their head/body/hands (meters, model
+## standing on y=0 facing +Z). Head: center and half size of the head.
+const ANCHORS := {
+	"pati": {"Head": [0, 1.32, 0.02], "head_r": [0.48, 0.42, 0.43], "Body": [0, 0.5, 0], "HandL": [0.43, 0.55, 0.1], "HandR": [-0.43, 0.55, 0.1]},
+	"bado": {"Head": [0, 1.38, 0.02], "head_r": [0.5, 0.44, 0.44], "Body": [0, 0.5, 0], "HandL": [0.53, 0.55, 0.1], "HandR": [-0.53, 0.55, 0.1]},
+	"citir": {"Head": [0, 1.32, 0.02], "head_r": [0.46, 0.42, 0.42], "Body": [0, 0.5, 0], "HandL": [0.41, 0.55, 0.1], "HandR": [-0.41, 0.55, 0.1]},
+	"lumi": {"Head": [0, 1.3, 0.02], "head_r": [0.46, 0.42, 0.42], "Body": [0, 0.5, 0], "HandL": [0.4, 0.55, 0.1], "HandR": [-0.4, 0.55, 0.1]},
+}
+
+
+## Empty anchor nodes on an imported model (under its Pose, so they breathe
+## and bob with it). "anchors" in the model's json overrides any of them.
+static func _anchors(model: Node3D, id: String) -> Dictionary:
+	var def: Dictionary = ANCHORS.get(id, ANCHORS["pati"]).duplicate()
+	var over: Variant = ModelImport._options(id).get("anchors")
+	if over is Dictionary:
+		def.merge(over, true)
+	var pose: Node3D = model.get_node_or_null("Pose") if model.has_node("Pose") else model
+	var p := {}
+	for k: String in ["Head", "Body", "HandL", "HandR"]:
+		var v: Array = def[k]
+		var n := Node3D.new()
+		n.name = "Anchor" + k
+		n.position = Vector3(float(v[0]), float(v[1]), float(v[2]))
+		pose.add_child(n)
+		p[k] = n
+	var r: Array = def["head_r"]
+	p["head_r"] = Vector3(float(r[0]), float(r[1]), float(r[2]))
+	return p
 
 
 static func _node(parent: Node3D, n: String, pos: Vector3) -> Node3D:
