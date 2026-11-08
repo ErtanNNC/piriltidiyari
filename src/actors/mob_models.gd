@@ -13,7 +13,7 @@ static func build(kind: String, pus: bool) -> Node3D:
 		# (a faint trace of its own color stays), calm shows its own colors
 		_no_pus(imported)
 		if pus:
-			_drain(imported, 0.78)
+			_drain(imported, 0.86)
 			var box := ModelImport._bounds(imported, Transform3D.IDENTITY)
 			_pus_wisps(imported, maxf(1.4, box.end.y + 0.2))
 		Toon.default_pus = 1.0
