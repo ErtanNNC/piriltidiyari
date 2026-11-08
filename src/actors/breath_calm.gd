@@ -31,6 +31,8 @@ var heat := 0.0
 
 var _ring: MeshInstance3D
 var _label: Label3D
+## Over the nearest dazed creature: "Yanına git" / "Sakinleş'e basılı tut!"
+var _guide: Label3D
 var _player: Player
 
 
@@ -62,6 +64,10 @@ func _ready() -> void:
 	_label.top_level = true
 	_label.visible = false
 	add_child(_label)
+	_guide = _label.duplicate() as Label3D
+	_guide.modulate = Tokens.color("honey")
+	_guide.font_size = 72
+	add_child(_guide)
 
 
 func is_angry() -> bool:
@@ -84,6 +90,33 @@ func _physics_process(delta: float) -> void:
 	else:
 		breath = maxf(breath - delta * 0.35, 0.0)
 	_show(held)
+	_show_guide(held)
+
+
+## Tells the player what to do next with the nearest dazed creature: walk up
+## to it, then hold Sakinleş (and keep holding until the ring is done).
+func _show_guide(held: bool) -> void:
+	var m: Node3D = null
+	var best := 12.0
+	for n in get_tree().get_nodes_in_group("dazed"):
+		var d := (n as Node3D).global_position.distance_to(_player.global_position)
+		if d < best:
+			best = d
+			m = n
+	_guide.visible = m != null and not is_angry() and not (held and target != null)
+	if not _guide.visible:
+		return
+	if target == null:
+		_guide.text = TranslationServer.translate("Yanına git!")
+	elif breath > 0.05:
+		_guide.text = TranslationServer.translate("Bırakma! Tekrar basılı tut.")
+	elif TouchControls.is_touch():
+		_guide.text = TranslationServer.translate("Sakinleş'e basılı tut!")
+	else:
+		_guide.text = TranslationServer.translate("C tuşuna basılı tut!")
+	var k := 1.0 + 0.08 * sin(Time.get_ticks_msec() / 140.0)
+	_guide.scale = Vector3(k, k, k)
+	_guide.global_position = m.global_position + Vector3.UP * 2.9
 
 
 ## In (0 → 0.5): the ring grows; out (0.5 → 1): it shrinks.
@@ -102,6 +135,7 @@ func _show(held: bool) -> void:
 	_ring.global_position = target.global_position + Vector3.UP * 0.25
 	_ring.scale = Vector3(r, 1.0, r)
 	_label.text = TranslationServer.translate("Nefes al...") if breath < 0.5 else TranslationServer.translate("Nefes ver...")
+	_label.text += "  %d%%" % roundi(breath * 100.0)
 	_label.global_position = target.global_position + Vector3.UP * 2.6
 
 

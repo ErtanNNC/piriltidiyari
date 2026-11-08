@@ -49,7 +49,7 @@ func _process(delta: float) -> void:
 	if not _dazed_bark and not get_tree().get_nodes_in_group("dazed").is_empty():
 		_dazed_bark = true
 		GameState.bark("s2_sersem")
-		_hud.show_hint("C'ye basılı tut: Sakinleş! Halka büyür, küçülür: nefes al, ver.", "Sakinleş'e basılı tut: nefes al, ver!")
+		_hud.show_hint("Yanına git, C'ye basılı tut. Halka bitene kadar bırakma!", "Yanına git, Sakinleş'e basılı tut. Bırakma!")
 	if not _angry_bark and _player.calm.anger > 0.35:
 		_angry_bark = true
 		GameState.bark("s2_kizgin")
@@ -70,7 +70,7 @@ func _advance() -> void:
 		_stage = 1
 		for p: Vector3 in [Vector3(-4, 0, -2), Vector3(4, 0, -1), Vector3(0, 0, -5)]:
 			Mob.spawn(self, "kopuklu_tavuk", p)
-		_hud.show_hint("J: vur! Sersemleyince yanına git.", "Vur'a bas! Sersemleyince yanına git.")
+		_hud.show_hint("J: hafifçe vur. Oturunca yanına git!", "Vur'a bas. Oturunca yanına git!")
 	if _stage == 1 and d.objective_done(QUEST, "tavuk") and d.objective_done(QUEST, "nefes"):
 		_stage = 2
 		_hud.clear_hint()
@@ -83,9 +83,11 @@ func _advance() -> void:
 		for k in 3:
 			var a := TAU * k / 3.0
 			Mob.spawn(self, "gurultucu_kurbaga", HOT_SPOT + Vector3(cos(a) * 2.5, 0, sin(a) * 2.5))
-		_hud.show_hint("Kurbağalar kızıl sisin içinde. Öfke barına dikkat!", "Öfke barına dikkat!")
+		_hot_spot_shown(true)
+		_hud.show_hint("Kurbağalar yoğun sisin içinde. Orada sen de kızarsın!", "Yoğun sis seni de kızdırır!")
 	if _stage == 3 and d.quest_state(QUEST) == "ready":
 		_stage = 4
+		_hot_spot_shown(false)
 		Pus.fade_to(self, 0.25, 2.5)
 		_hud.show_hint("Tospik Nine'ye dön", "Tospik Nine'ye dön")
 		Beacon.attach(get_node("Tospik"), 2.6, Tokens.color("spark-white"))
@@ -157,23 +159,63 @@ func _red_wind() -> void:
 	add_child(p)
 
 
-## The thick red mist by the pond: a soft red dome you can see from afar.
+## The thick red mist by the pond: billowing red puffs low over the grass
+## with a "Yoğun Kızıl Sis" label, there only while the frogs are (stage 3–4).
 func _hot_spot() -> void:
-	var mi := MeshInstance3D.new()
-	var s := SphereMesh.new()
-	s.radius = HOT_RADIUS
-	s.height = HOT_RADIUS * 0.7
-	mi.mesh = s
+	var root := Node3D.new()
+	root.name = "HotSpot"
+	root.position = HOT_SPOT
+	root.visible = false
+	add_child(root)
+	var p := CPUParticles3D.new()
+	p.amount = 46
+	p.lifetime = 5.0
+	p.preprocess = 5.0
+	p.emission_shape = CPUParticles3D.EMISSION_SHAPE_SPHERE
+	p.emission_sphere_radius = HOT_RADIUS * 0.8
+	p.scale_amount_min = 0.8
+	p.scale_amount_max = 1.5
+	p.direction = Vector3.UP
+	p.spread = 60.0
+	p.gravity = Vector3.ZERO
+	p.initial_velocity_min = 0.1
+	p.initial_velocity_max = 0.35
+	var g := Gradient.new()
+	g.offsets = PackedFloat32Array([0.0, 0.3, 0.7, 1.0])
+	var c := Tokens.color("hp")
+	g.colors = PackedColorArray([Color(c, 0.0), Color(c, 0.32), Color(c, 0.32), Color(c, 0.0)])
+	p.color_ramp = g
+	var q := QuadMesh.new()
+	q.size = Vector2(3.0, 3.0)
 	var m := StandardMaterial3D.new()
 	m.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-	m.albedo_color = Tokens.color("hp")
-	m.albedo_color.a = 0.16
 	m.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
-	m.cull_mode = BaseMaterial3D.CULL_DISABLED
-	mi.material_override = m
-	mi.position = HOT_SPOT
-	mi.name = "HotSpot"
-	add_child(mi)
+	m.billboard_mode = BaseMaterial3D.BILLBOARD_PARTICLES
+	m.vertex_color_use_as_albedo = true
+	m.albedo_texture = Weather.texture("soft")
+	q.material = m
+	p.mesh = q
+	p.position.y = 0.8
+	p.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	root.add_child(p)
+	var l := Label3D.new()
+	l.text = "Yoğun Kızıl Sis"
+	l.font = Tokens.font_for("text-heading")
+	l.font_size = 72
+	l.pixel_size = 0.008
+	l.outline_size = 16
+	l.outline_modulate = Tokens.color("outline")
+	l.modulate = Tokens.color("panel@light")
+	l.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+	l.position.y = 3.6
+	root.add_child(l)
+
+
+## The thick mist shows with the frogs and blows away when they're calm.
+func _hot_spot_shown(on: bool) -> void:
+	var h := get_node_or_null("HotSpot") as Node3D
+	if h and h.visible != on:
+		h.visible = on
 
 
 func _run_demo(which: String) -> void:
@@ -228,6 +270,16 @@ func _run_demo(which: String) -> void:
 			await get_tree().create_timer(0.3).timeout
 			GameState.talk_to("tospik_nine")
 			await close_dialogs()
+		"guide":
+			# screenshot: walk up to a hen, tap it dizzy, the guide shows over it
+			var mobs := get_tree().get_nodes_in_group("mob")
+			if not mobs.is_empty():
+				var m: Mob = mobs[0]
+				await walk_to(m.global_position + Vector3(0.3, 0, 1.7), 3.0)
+				m.hit(999, _player.global_position, 0.1)
+				await close_dialogs()
+				if OS.get_cmdline_user_args().has("--hold"):
+					Input.action_press("calm")
 		"breath":
 			# screenshot: a dazed hen and the breathing ring
 			var mobs := get_tree().get_nodes_in_group("mob")
@@ -240,4 +292,6 @@ func _run_demo(which: String) -> void:
 				Input.action_press("calm")
 		"angry":
 			_stage = 3
+			_hot_spot_shown(true)
 			_player.global_position = HOT_SPOT + Vector3(0, 0.3, 3.0)
+

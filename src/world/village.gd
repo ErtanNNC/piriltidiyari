@@ -33,9 +33,11 @@ func _ground() -> void:
 	add_child(body)
 	Toon.part(self, "cylinder", Vector3(RADIUS * 2.4, 1.0, RADIUS * 2.4), meadow, Vector3(0, -0.5, 0), Vector3.ZERO, 0.0, 0.0)
 	var path := Tokens.color("panel-sunken").lerp(Tokens.color("honey-deep"), 0.18)
-	Toon.part(self, "cylinder", Vector3(11, 0.06, 11), path, Vector3(0, 0.01, 0), Vector3.ZERO, 0.0, 0.0)
-	Toon.part(self, "box", Vector3(3, 0.06, 12), path, Vector3(0, 0.01, -9), Vector3.ZERO, 0.0, 0.0)
-	Toon.part(self, "box", Vector3(3, 0.06, 14), path, Vector3(0, 0.01, 10), Vector3.ZERO, 0.0, 0.0)
+	# the round square sits a hair above the two paths: where they overlap the
+	# tops are never level (no flicker where the road meets the square)
+	Toon.part(self, "cylinder", Vector3(11, 0.06, 11), path, Vector3(0, 0.02, 0), Vector3.ZERO, 0.0, 0.0)
+	Toon.part(self, "box", Vector3(3, 0.06, 12), path, Vector3(0, 0.0, -9), Vector3.ZERO, 0.0, 0.0)
+	Toon.part(self, "box", Vector3(3, 0.06, 14), path, Vector3(0, 0.0, 10), Vector3.ZERO, 0.0, 0.0)
 
 
 ## Soft invisible walls at the village edge.

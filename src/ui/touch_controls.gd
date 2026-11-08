@@ -33,8 +33,7 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
-	visible = OS.has_feature("mobile") or OS.get_cmdline_user_args().has("--touch") \
-		or (OS.has_feature("web") and DisplayServer.is_touchscreen_available())
+	visible = is_touch()
 	if not visible:
 		return
 	var main := _round_button("Vur", "attack", MAIN_R, "honey", 26)
@@ -75,6 +74,26 @@ func _ready() -> void:
 	refresh_skill.call()
 	GameState.data.skills_changed.connect(refresh_skill)
 	_stick_center = Vector2(Tokens.px("space-6") + STICK_RADIUS + 20, 0)
+
+
+## Touch screen (or `-- --touch` previews): the on-screen controls are used.
+static func is_touch() -> bool:
+	return OS.has_feature("mobile") or OS.get_cmdline_user_args().has("--touch") \
+		or (OS.has_feature("web") and DisplayServer.is_touchscreen_available())
+
+
+## Season 2: the Sakinleş button pulses while a dazed creature is close
+## enough to breathe calm (so it's clear what to press, and when).
+func _process(_delta: float) -> void:
+	var calm := get_node_or_null("Calm") as Button
+	if not visible or not calm or not calm.visible:
+		return
+	var p := get_tree().get_first_node_in_group("player") as Player
+	var near := p != null and p.calm != null and p.calm.target != null
+	var k := 1.0 + (0.12 * (0.5 + 0.5 * sin(Time.get_ticks_msec() / 130.0)) if near else 0.0)
+	calm.pivot_offset = calm.size * 0.5
+	calm.scale = Vector2(k, k)
+	calm.modulate = Color(1.25, 1.25, 1.25) if near else Color(1, 1, 1, 0.8)
 
 
 ## A round button that sends `action` while held.

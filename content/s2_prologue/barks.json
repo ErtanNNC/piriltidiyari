@@ -21,16 +21,36 @@
         "text": "Bu rüzgâr sıcak... ve kırmızı. Bu Pus değil!"
       },
       {
-        "speaker": "fistik",
+        "speaker": "tospik_nine",
+        "mood": "dertli",
+        "text": "Hayvanlar kızdı! Mırıl, kızgın kalp vurmakla geçmez."
+      },
+      {
+        "speaker": "tospik_nine",
         "mood": "kararlı",
-        "text": "Hayvanlar kızdı! Mırıl, onları sakinleştir!"
+        "text": "Önce hafifçe vur. Oturup başında yıldızlar dönecek."
+      },
+      {
+        "speaker": "tospik_nine",
+        "mood": "kararlı",
+        "text": "Sonra yanına git ve Sakinleş'e basılı tut."
+      },
+      {
+        "speaker": "tospik_nine",
+        "mood": "mutlu",
+        "text": "Halka büyür, küçülür. Bitene kadar bırakma, yavrum!"
       }
     ],
     "s2_sersem": [
       {
         "speaker": "miril",
         "mood": "kararlı",
-        "text": "Sersemledi! Yanında Sakinleş'e basılı tut."
+        "text": "Oturdu, yıldızlar dönüyor! Şimdi yanına gideyim."
+      },
+      {
+        "speaker": "miril",
+        "mood": "mutlu",
+        "text": "Sakinleş'e basılı tutacağım. Nefes al... nefes ver..."
       }
     ],
     "s2_kizgin": [

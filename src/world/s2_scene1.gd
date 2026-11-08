@@ -112,7 +112,10 @@ func _build_glide_course() -> void:
 	var hill := WorldLook.block(self, HILL, Vector3(3.4, 3.0, 3.4), stone)
 	hill.name = "Hill"
 	Toon.part(hill, "box", Vector3(3.45, 0.12, 3.45), grass, Vector3(0, 1.52, 0), Vector3.ZERO, 0.0, 0.0)
-	TravelSign.board(self, "Çıtır'ın tepesi →", Vector3(LEDGE.x - 2.2, 0, LEDGE.z - 6.5), 2.6)
+	# the sign stands on a post in front of the stairs (not sunk in the grass)
+	var sign_at := Vector3(LEDGE.x - 2.4, 0, LEDGE.z - 6.8)
+	Toon.part(self, "box", Vector3(0.16, 1.2, 0.16), Color("#a86b45"), sign_at + Vector3(0, 0.6, -0.05))
+	TravelSign.board(self, "Çıtır'ın tepesi →", sign_at + Vector3(0, 1.35, 0), 2.6)
 
 
 ## All invitations out and the cake blown: the candles go out, wishes rise.
@@ -169,6 +172,8 @@ func _run_demo(which: String) -> void:
 			_player.global_position = _npcs["fistik"].global_position + Vector3(0, 0, 2.0)
 			await get_tree().create_timer(0.3).timeout
 			GameState.talk_to("fistik")
+		"stairs":
+			_player.global_position = Vector3(LEDGE.x - 1.0, 0.3, LEDGE.z - 9.0)
 		"hill":
 			_player.global_position = HILL + Vector3(-0.6, 1.7, 0.6)
 

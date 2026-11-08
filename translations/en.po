@@ -522,8 +522,11 @@ msgstr "You'll light the Great Spark, just like every year."
 msgid "Büyük Kıvılcım'ın ışığı titriyor. Acele et, Fıstık!"
 msgstr "The Great Spark's light is flickering. Hurry, Peanut!"
 
-msgid "C'ye basılı tut: Sakinleş! Halka büyür, küçülür: nefes al, ver."
-msgstr "Hold C: Breathe! The ring grows and shrinks: in, then out."
+msgid "Bırakma! Tekrar basılı tut."
+msgstr "Don't let go! Hold it again."
+
+msgid "C tuşuna basılı tut!"
+msgstr "Hold the C key!"
 
 msgid "Can"
 msgstr "Health"
@@ -975,6 +978,9 @@ msgstr "Throw rope"
 msgid "Halat atma"
 msgstr "Rope throw"
 
+msgid "Halka büyür, küçülür. Bitene kadar bırakma, yavrum!"
+msgstr "The ring grows, then shrinks. Don't let go till it's done!"
+
 msgid "Halka geliyor: zıpla!"
 msgstr "A ring is coming: jump!"
 
@@ -993,8 +999,8 @@ msgstr "Got my map, let's go!"
 msgid "Hatırlar! Bak, hepsi sana parlıyor."
 msgstr "They will! Look, they're all shining for you."
 
-msgid "Hayvanlar kızdı! Mırıl, onları sakinleştir!"
-msgstr "The animals are cross! Mumble, calm them down!"
+msgid "Hayvanlar kızdı! Mırıl, kızgın kalp vurmakla geçmez."
+msgstr "The animals are cross! Mumble, hitting won't fix a cross heart."
 
 msgid "Hediye"
 msgstr "Gift"
@@ -1170,8 +1176,8 @@ msgstr "I thought my light had gone out..."
 msgid "J: Dikenlerinle vur!"
 msgstr "J: Hit with your spikes!"
 
-msgid "J: vur! Sersemleyince yanına git."
-msgstr "J: hit! When it's dizzy, go up close."
+msgid "J: hafifçe vur. Oturunca yanına git!"
+msgstr "J: tap gently. When it sits down, go up close!"
 
 msgid "K: Top ol, kirişin altından geç!"
 msgstr "K: Roll into a ball, go under the beam!"
@@ -1407,8 +1413,8 @@ msgstr "Clear the road to the tower"
 msgid "Kurbağalar hâlâ bağırıyor. Onları da dinlerim!"
 msgstr "The frogs are still shouting. I'll listen to them too!"
 
-msgid "Kurbağalar kızıl sisin içinde. Öfke barına dikkat!"
-msgstr "The frogs are in the red mist. Watch your Steam Meter!"
+msgid "Kurbağalar yoğun sisin içinde. Orada sen de kızarsın!"
+msgstr "The frogs are in the thick mist. In there, you'll get cross too!"
 
 msgid "Kuyruğum kabardı... Bu rüzgâr hiç hoş değil!"
 msgstr "My tail is all puffed up... I don't like this wind!"
@@ -1740,6 +1746,9 @@ msgstr "The forest is green again! Even King Stump is smiling."
 msgid "Ormanda kaybolan yavruları bul"
 msgstr "Find the chicks lost in the forest"
 
+msgid "Oturdu, yıldızlar dönüyor! Şimdi yanına gideyim."
+msgstr "It sat down, stars are spinning! Now I'll go up close."
+
 msgid "Oynadığın için teşekkürler! · Just A Game Studios"
 msgstr "Thanks for playing! · Just A Game Studios"
 
@@ -1935,8 +1944,11 @@ msgstr "Calm and thoughtful. First to sense the Gloom isn't bad."
 msgid "Sakinleş"
 msgstr "Breathe"
 
-msgid "Sakinleş'e basılı tut: nefes al, ver!"
-msgstr "Hold Breathe: in, then out!"
+msgid "Sakinleş'e basılı tut!"
+msgstr "Hold Breathe!"
+
+msgid "Sakinleş'e basılı tutacağım. Nefes al... nefes ver..."
+msgstr "I'll hold Breathe. Breathe in... breathe out..."
 
 msgid "Saldır'a bas: dikenlerinle vur!"
 msgstr "Press Attack: hit with your spikes!"
@@ -1994,9 +2006,6 @@ msgstr "You run to the tower. Protect the Great Spark!"
 
 msgid "Seni de Pus gönderdi, değil mi? Kıskaçlarım hazır!"
 msgstr "The Gloom sent you too, didn't it? My pincers are ready!"
-
-msgid "Sersemledi! Yanında Sakinleş'e basılı tut."
-msgstr "It's dizzy! Stand close and hold Breathe."
 
 msgid "Sersemledi! Şimdi vur!"
 msgstr "He's dazed! Hit now!"
@@ -2057,6 +2066,9 @@ msgstr "Go left..."
 
 msgid "Somurtkan Mantar"
 msgstr "Sulky Shroom"
+
+msgid "Sonra yanına git ve Sakinleş'e basılı tut."
+msgstr "Then go up close and hold Breathe."
 
 msgid "Sonra çayıra bak. Koca bir mantar yolu tıkamış."
 msgstr "Then check the meadow. A huge mushroom is blocking the path."
@@ -2214,8 +2226,8 @@ msgstr "Hit"
 msgid "Vur ama kırma. Sersemleyince nefes aldır, yavrum!"
 msgstr "Tap them gently. When they're dizzy, help them breathe!"
 
-msgid "Vur'a bas! Sersemleyince yanına git."
-msgstr "Press Hit! When it's dizzy, go up close."
+msgid "Vur'a bas. Oturunca yanına git!"
+msgstr "Press Hit. When it sits down, go up close!"
 
 msgid "Vuruşun geniş bir yıldız halkası olur (+6)"
 msgstr "Your hit becomes a wide ring of stars (+6)"
@@ -2246,6 +2258,15 @@ msgstr "Stars fall on gloomy creatures nearby"
 
 msgid "Yani Mırıl kötü değil... Sadece yalnız mı?"
 msgstr "So Mumble isn't bad... Just lonely?"
+
+msgid "Yanına git!"
+msgstr "Go up close!"
+
+msgid "Yanına git, C'ye basılı tut. Halka bitene kadar bırakma!"
+msgstr "Go close, hold C. Don't let go till the ring is done!"
+
+msgid "Yanına git, Sakinleş'e basılı tut. Bırakma!"
+msgstr "Go close, hold Breathe. Don't let go!"
 
 msgid "Yarasa Fısıltısı"
 msgstr "Whisper Bat"
@@ -2312,6 +2333,12 @@ msgstr "On a journey"
 
 msgid "Yorulunca yaklaş!"
 msgstr "Get close when he's tired!"
+
+msgid "Yoğun Kızıl Sis"
+msgstr "Thick Crimson Mist"
+
+msgid "Yoğun sis seni de kızdırır!"
+msgstr "Thick mist makes you cross too!"
 
 msgid "Yumruklar saplanınca vur!"
 msgstr "Hit when the fists get stuck!"
@@ -2451,9 +2478,6 @@ msgstr "Your Steam Meter is filling! Press Breathe."
 msgid "Öfke barın doluyor! Sisten çık ya da Sakinleş'e bas."
 msgstr "Your Steam Meter is filling! Leave the mist or press Breathe."
 
-msgid "Öfke barına dikkat!"
-msgstr "Watch your Steam Meter!"
-
 msgid "Öfke barını soğutur, canını 10 doldurur"
 msgstr "Cools your Steam Meter, gives 10 HP"
 
@@ -2477,6 +2501,9 @@ msgstr "First you have to get past my spines, fluffball!"
 
 msgid "Önce feneri yakayım, karanlıkta yolumu bulamam."
 msgstr "I'll light the lantern first, I can't find my way in the dark."
+
+msgid "Önce hafifçe vur. Oturup başında yıldızlar dönecek."
+msgstr "First tap it gently. It'll sit down with stars spinning."
 
 msgid "Önce sen sakinleş..."
 msgstr "Calm yourself first..."

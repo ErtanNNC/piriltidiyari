@@ -545,8 +545,12 @@
   "Bugün benim doğum günüm! Köyde ilk doğum günüm.",
   "Süzülüyorum! Yıldız olmanın en güzel yanı bu.",
   "Bu rüzgâr sıcak... ve kırmızı. Bu Pus değil!",
-  "Hayvanlar kızdı! Mırıl, onları sakinleştir!",
-  "Sersemledi! Yanında Sakinleş'e basılı tut.",
+  "Hayvanlar kızdı! Mırıl, kızgın kalp vurmakla geçmez.",
+  "Önce hafifçe vur. Oturup başında yıldızlar dönecek.",
+  "Sonra yanına git ve Sakinleş'e basılı tut.",
+  "Halka büyür, küçülür. Bitene kadar bırakma, yavrum!",
+  "Oturdu, yıldızlar dönüyor! Şimdi yanına gideyim.",
+  "Sakinleş'e basılı tutacağım. Nefes al... nefes ver...",
   "Ben de kızıyorum... Derin bir nefes alayım.",
   "Kimse beni dinlemiyor... diyen kim? Seni duyuyorum!"
  ],
@@ -657,9 +661,14 @@
  ],
  "src/actors/breath_calm.gd": [
   "panel@light",
+  "Yanına git!",
+  "Bırakma! Tekrar basılı tut.",
+  "Sakinleş'e basılı tut!",
+  "C tuşuna basılı tut!",
   "Önce sen sakinleş...",
   "Nefes al...",
   "Nefes ver...",
+  "  %d%%",
   "Oh... Sakinleştin.",
   "Kızgınsın! Güçlü vurursun ama zor yürürsün. Sakinleş'e bas."
  ],
@@ -1076,17 +1085,18 @@
   "Çıtır'ın tepesi →"
  ],
  "src/world/s2_scene2.gd": [
-  "C'ye basılı tut: Sakinleş! Halka büyür, küçülür: nefes al, ver.",
-  "Sakinleş'e basılı tut: nefes al, ver!",
+  "Yanına git, C'ye basılı tut. Halka bitene kadar bırakma!",
+  "Yanına git, Sakinleş'e basılı tut. Bırakma!",
   "Öfke barın doluyor! Sisten çık ya da Sakinleş'e bas.",
   "Öfke barın doluyor! Sakinleş'e bas.",
-  "J: vur! Sersemleyince yanına git.",
-  "Vur'a bas! Sersemleyince yanına git.",
+  "J: hafifçe vur. Oturunca yanına git!",
+  "Vur'a bas. Oturunca yanına git!",
   "Tospik Nine: Mırıl, buraya gel!",
-  "Kurbağalar kızıl sisin içinde. Öfke barına dikkat!",
-  "Öfke barına dikkat!",
+  "Kurbağalar yoğun sisin içinde. Orada sen de kızarsın!",
+  "Yoğun sis seni de kızdırır!",
   "Prolog devam edecek: Sahne 3 çok yakında!",
-  "Sahne 3 çok yakında!"
+  "Sahne 3 çok yakında!",
+  "Yoğun Kızıl Sis"
  ],
  "src/world/scene2.gd": [
   "J: Dikenlerinle vur!",
