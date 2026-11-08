@@ -76,6 +76,19 @@ func _build_menu() -> void:
 		cont.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 		cont.pressed.connect(func() -> void: _continue(SaveGame.latest_slot()))
 		root.add_child(cont)
+		# Season 1 finished in the newest save: Season 2 can begin from here too
+		var latest := PlayerData.new()
+		if SaveGame.read_into(latest, SaveGame.path_for(maxi(SaveGame.latest_slot(), 1))) and latest.can_start_season2():
+			var s2 := UiKit.button("Sezon 2'ye başla")
+			s2.name = "Season2"
+			s2.custom_minimum_size = Vector2(260, 64)
+			s2.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+			s2.pressed.connect(func() -> void:
+				SaveGame.slot = maxi(SaveGame.latest_slot(), 1)
+				latest.recompute_stats(Content.items)
+				GameState.data = latest
+				SeasonFlow.start_season2())
+			root.add_child(s2)
 		start.text = "Yeni oyun"
 	root.add_child(start)
 	if has_save:

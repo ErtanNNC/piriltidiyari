@@ -1,0 +1,51 @@
+{
+  "barks": {
+    "s2_basla": [
+      {
+        "speaker": "miril",
+        "mood": "mutlu",
+        "text": "Bugün benim doğum günüm! Köyde ilk doğum günüm."
+      }
+    ],
+    "s2_suzul": [
+      {
+        "speaker": "miril",
+        "mood": "mutlu",
+        "text": "Süzülüyorum! Yıldız olmanın en güzel yanı bu."
+      }
+    ],
+    "s2_ruzgar": [
+      {
+        "speaker": "miril",
+        "mood": "şaşkın",
+        "text": "Bu rüzgâr sıcak... ve kırmızı. Bu Pus değil!"
+      },
+      {
+        "speaker": "fistik",
+        "mood": "kararlı",
+        "text": "Hayvanlar kızdı! Mırıl, onları sakinleştir!"
+      }
+    ],
+    "s2_sersem": [
+      {
+        "speaker": "miril",
+        "mood": "kararlı",
+        "text": "Sersemledi! Yanında Sakinleş'e basılı tut."
+      }
+    ],
+    "s2_kizgin": [
+      {
+        "speaker": "miril",
+        "mood": "şaşkın",
+        "text": "Ben de kızıyorum... Derin bir nefes alayım."
+      }
+    ],
+    "s2_son": [
+      {
+        "speaker": "miril",
+        "mood": "kararlı",
+        "text": "Kimse beni dinlemiyor... diyen kim? Seni duyuyorum!"
+      }
+    ]
+  }
+}

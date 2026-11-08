@@ -1,0 +1,36 @@
+{
+  "id": "davetiyeler",
+  "title": "Doğum Günü Davetiyeleri",
+  "giver": "fistik",
+  "objectives": [
+    {
+      "id": "pati",
+      "text": "Pati'ye davetiyesini ver",
+      "item": "davetiye",
+      "to": "pati"
+    },
+    {
+      "id": "bado",
+      "text": "Bado'ya davetiyesini ver",
+      "item": "davetiye",
+      "to": "bado"
+    },
+    {
+      "id": "citir",
+      "text": "Çıtır'a davetiyesini ver (tepeye süzül!)",
+      "item": "davetiye",
+      "to": "citir"
+    },
+    {
+      "id": "lumi",
+      "text": "Lumi'ye davetiyesini ver",
+      "item": "davetiye",
+      "to": "lumi"
+    }
+  ],
+  "turn_in": "Pastanın yanında Fıstık'a dön",
+  "rewards": {
+    "piril": 20,
+    "xp": 10
+  }
+}

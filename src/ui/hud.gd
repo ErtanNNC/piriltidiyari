@@ -8,6 +8,7 @@ var _player: Player
 var _hp: StatBar
 var _mp: StatBar
 var _xp: StatBar
+var _anger: StatBar
 var _level: Label
 var _piril: Label
 var _pause_btn: Button
@@ -88,6 +89,8 @@ func _ready() -> void:
 	_hp = StatBar.new(); _hp.stat = "hp"; bars.add_child(_hp)
 	_mp = StatBar.new(); _mp.stat = "mp"; bars.add_child(_mp)
 	_xp = StatBar.new(); _xp.stat = "xp"; bars.add_child(_xp)
+	# Season 2: the Öfke barı, shown while the Kızıl Sis heats the keeper up
+	_anger = StatBar.new(); _anger.stat = "anger"; _anger.visible = false; bars.add_child(_anger)
 
 	# top-center: spark tracker
 	var tc := CenterContainer.new()
@@ -101,6 +104,7 @@ func _ready() -> void:
 	tc.add_child(top_center)
 	_sparks = SparkTracker.new()
 	_sparks.alignment = BoxContainer.ALIGNMENT_CENTER
+	_sparks.visible = GameState.data.season < 2  # Season 2 has its own Kor
 	top_center.add_child(_sparks)
 	_boss = VBoxContainer.new()
 	_boss.visible = false
@@ -702,7 +706,15 @@ func _process(_delta: float) -> void:
 				var wait: float = _player.power_wait(id)
 				var mp_ok := GameState.data.mp >= int(Powers.DEFS[id]["mp"])
 				b.modulate.a = 1.0 if wait <= 0.0 and mp_ok else 0.45
+	_update_anger()
 	_maybe_level_up()
+
+
+func _update_anger() -> void:
+	var c: BreathCalm = _player.calm if _player and is_instance_valid(_player) else null
+	_anger.visible = c != null and (c.anger > 0.01 or c.is_angry())
+	if _anger.visible:
+		_anger.set_values(c.anger * 100.0, 100.0, TranslationServer.translate("Kızgın!") if c.is_angry() else TranslationServer.translate("Öfke"))
 
 
 ## A waiting level-up opens the power cards once nothing else is on screen.

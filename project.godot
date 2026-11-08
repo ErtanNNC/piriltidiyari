@@ -49,6 +49,10 @@ pus_amount={
 "type": "float",
 "value": 0.0
 }
+pus_color={
+"type": "vec3",
+"value": Vector3(0.92, 0.91, 0.98)
+}
 cloud_shadow={
 "type": "float",
 "value": 0.0
@@ -57,3 +61,4 @@ cloud_shadow={
 [internationalization]
 
 locale/translations=PackedStringArray("res://translations/en.po")
+locale/fallback="tr"

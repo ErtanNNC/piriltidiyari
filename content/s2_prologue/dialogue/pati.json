@@ -1,0 +1,69 @@
+{
+  "npc": "pati",
+  "variants": [
+    {
+      "when": {
+        "quest": "kirmizi_ruzgar",
+        "state": [
+          "active",
+          "ready",
+          "done"
+        ]
+      },
+      "lines": [
+        {
+          "speaker": "pati",
+          "mood": "şaşkın",
+          "text": "Kuyruğum kabardı... Bu rüzgâr hiç hoş değil!"
+        }
+      ]
+    },
+    {
+      "when": {
+        "objective_done": "davetiyeler/pati"
+      },
+      "lines": [
+        {
+          "speaker": "pati",
+          "mood": "mutlu",
+          "text": "Pastanın en çilekli yeri benim, haberin olsun!"
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "davetiyeler",
+        "state": "active",
+        "has_item": "davetiye"
+      },
+      "lines": [
+        {
+          "speaker": "miril",
+          "mood": "utangaç",
+          "text": "Pati! Bu senin davetiyen. Bu akşam pasta var!"
+        },
+        {
+          "speaker": "pati",
+          "mood": "mutlu",
+          "text": "Pasta mı? Ben ilk gelirim! Sonra ikinci kez gelirim!"
+        }
+      ],
+      "then": {
+        "deliver": {
+          "quest": "davetiyeler",
+          "objective": "pati",
+          "item": "davetiye"
+        }
+      }
+    },
+    {
+      "lines": [
+        {
+          "speaker": "pati",
+          "mood": "mutlu",
+          "text": "Pastanın en çilekli yeri benim, haberin olsun!"
+        }
+      ]
+    }
+  ]
+}

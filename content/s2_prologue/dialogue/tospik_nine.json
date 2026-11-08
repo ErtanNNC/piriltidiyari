@@ -1,0 +1,90 @@
+{
+  "npc": "tospik_nine",
+  "variants": [
+    {
+      "when": {
+        "quest": "kirmizi_ruzgar",
+        "state": "active",
+        "objective_done": "kirmizi_ruzgar/nefes",
+        "objective_not_done": "kirmizi_ruzgar/konus"
+      },
+      "lines": [
+        {
+          "speaker": "tospik_nine",
+          "mood": "dertli",
+          "text": "Mırıl, gördün mü? Kızgın kalpler bile nefesle yumuşar."
+        },
+        {
+          "speaker": "tospik_nine",
+          "mood": "mutlu",
+          "text": "Al, yeni tarifim: Nane Şekeri. Seni serinletir."
+        },
+        {
+          "speaker": "tospik_nine",
+          "mood": "kararlı",
+          "text": "Kızıl rüzgâr seni de kızdırırsa bir tane ye."
+        },
+        {
+          "speaker": "miril",
+          "mood": "kararlı",
+          "text": "Kurbağalar hâlâ bağırıyor. Onları da dinlerim!"
+        }
+      ],
+      "then": {
+        "give_items": {
+          "nane_sekeri": 3
+        },
+        "advance": "kirmizi_ruzgar/konus"
+      }
+    },
+    {
+      "when": {
+        "quest": "kirmizi_ruzgar",
+        "state": "ready"
+      },
+      "lines": [
+        {
+          "speaker": "tospik_nine",
+          "mood": "dertli",
+          "text": "Köy sustu... Ama rüzgâr hâlâ dağdan esiyor."
+        },
+        {
+          "speaker": "miril",
+          "mood": "şaşkın",
+          "text": "Rüzgârın içinde bir ses var: Kimse beni dinlemiyor!"
+        },
+        {
+          "speaker": "tospik_nine",
+          "mood": "kararlı",
+          "text": "O sesin peşinden git. Ama dikkatli ol, yavrum."
+        }
+      ],
+      "then": {
+        "complete_quest": "kirmizi_ruzgar",
+        "set_flag": "s2_sahne2_bitti"
+      }
+    },
+    {
+      "when": {
+        "quest": "kirmizi_ruzgar",
+        "state": "active"
+      },
+      "lines": [
+        {
+          "speaker": "tospik_nine",
+          "mood": "dertli",
+          "text": "Vur ama kırma. Sersemleyince nefes aldır, yavrum!"
+        }
+      ]
+    },
+    {
+      "lines": [
+        {
+          "speaker": "tospik_nine",
+          "mood": "mutlu",
+          "text": "Doğum günün kutlu olsun, Mırıl. Işığın hep parlasın."
+        }
+      ]
+    }
+  ]
+}

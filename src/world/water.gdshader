@@ -5,6 +5,7 @@ render_mode unshaded, cull_disabled, shadows_disabled;
 
 #include "res://src/world/noise.gdshaderinc"
 global uniform float pus_amount;
+global uniform vec3 pus_color;
 global uniform float cloud_shadow;
 
 uniform vec4 deep : source_color = vec4(0.3, 0.6, 0.9, 1.0);
@@ -37,6 +38,6 @@ void fragment() {
 	float tw = step(0.965, r) * smoothstep(0.6, 1.0, sin(TIME * 3.0 * speed + r * 50.0));
 	c = mix(c, vec3(1.0), tw * sparkle * (1.0 - smoothstep(0.0, 0.35, length(fract(q * 3.0) - 0.5))));
 	float grey = dot(c, vec3(0.299, 0.587, 0.114));
-	c = mix(c, vec3(grey) * vec3(0.92, 0.91, 0.98), clamp(pus_amount, 0.0, 1.0));
+	c = mix(c, vec3(grey) * pus_color, clamp(pus_amount, 0.0, 1.0));
 	ALBEDO = c;
 }

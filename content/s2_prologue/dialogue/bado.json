@@ -1,0 +1,69 @@
+{
+  "npc": "bado",
+  "variants": [
+    {
+      "when": {
+        "quest": "kirmizi_ruzgar",
+        "state": [
+          "active",
+          "ready",
+          "done"
+        ]
+      },
+      "lines": [
+        {
+          "speaker": "bado",
+          "mood": "üzgün",
+          "text": "Kardeşim Minnoş nerede? Onu bulmam lazım!"
+        }
+      ]
+    },
+    {
+      "when": {
+        "objective_done": "davetiyeler/bado"
+      },
+      "lines": [
+        {
+          "speaker": "bado",
+          "mood": "mutlu",
+          "text": "Şarkımı söylerken gülme ama, tamam mı?"
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "davetiyeler",
+        "state": "active",
+        "has_item": "davetiye"
+      },
+      "lines": [
+        {
+          "speaker": "miril",
+          "mood": "utangaç",
+          "text": "Bado, akşam doğum günüm var. Gelir misin?"
+        },
+        {
+          "speaker": "bado",
+          "mood": "utangaç",
+          "text": "Ben... tabii gelirim. Sana bir şarkı bile öğrendim."
+        }
+      ],
+      "then": {
+        "deliver": {
+          "quest": "davetiyeler",
+          "objective": "bado",
+          "item": "davetiye"
+        }
+      }
+    },
+    {
+      "lines": [
+        {
+          "speaker": "bado",
+          "mood": "mutlu",
+          "text": "Şarkımı söylerken gülme ama, tamam mı?"
+        }
+      ]
+    }
+  ]
+}

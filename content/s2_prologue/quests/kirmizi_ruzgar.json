@@ -1,0 +1,40 @@
+{
+  "id": "kirmizi_ruzgar",
+  "title": "Kırmızı Rüzgâr",
+  "giver": "tospik_nine",
+  
+  "objectives": [
+    {
+      "id": "tavuk",
+      "text": "Köpüklü Tavukları sakinleştir",
+      "type": "defeat",
+      "target": "kopuklu_tavuk",
+      "count": 3
+    },
+    {
+      "id": "nefes",
+      "text": "Bir Köpüklü'ye Sakinleş ile derin nefes aldır",
+      "type": "breathe",
+      "target": "any",
+      "count": 1
+    },
+    {
+      "id": "konus",
+      "text": "Tospik Nine ile konuş",
+      "type": "talk",
+      "target": "tospik_nine"
+    },
+    {
+      "id": "kurbaga",
+      "text": "Gürültücü Kurbağaları sakinleştir",
+      "type": "defeat",
+      "target": "gurultucu_kurbaga",
+      "count": 3
+    }
+  ],
+  "turn_in": "Tospik Nine'ye dön",
+  "rewards": {
+    "piril": 15,
+    "xp": 15
+  }
+}

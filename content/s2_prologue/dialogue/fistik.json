@@ -1,0 +1,115 @@
+{
+  "npc": "fistik",
+  "variants": [
+    {
+      "when": {
+        "quest": "kirmizi_ruzgar",
+        "state": [
+          "active",
+          "ready",
+          "done"
+        ]
+      },
+      "lines": [
+        {
+          "speaker": "fistik",
+          "mood": "huysuz",
+          "text": "Hıh! Bu rüzgâr pastamın kremasını bozdu!"
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "davetiyeler",
+        "state": "ready"
+      },
+      "lines": [
+        {
+          "speaker": "fistik",
+          "mood": "mutlu",
+          "text": "Herkes geliyor demek. Aferin sana, küçük yıldız."
+        },
+        {
+          "speaker": "fistik",
+          "mood": "huysuz",
+          "text": "Hıh. Mumları ben diktim. Beş tane, sayarsın."
+        },
+        {
+          "speaker": "fistik",
+          "mood": "mutlu",
+          "text": "Bu sefer üflemeyi unutma. Bir dilek tut!"
+        },
+        {
+          "speaker": "miril",
+          "mood": "mutlu",
+          "text": "Dileğim hazır. Bir... iki... üç!"
+        }
+      ],
+      "then": {
+        "complete_quest": "davetiyeler",
+        "set_flag": "s2_sahne1_bitti"
+      }
+    },
+    {
+      "when": {
+        "quest": "davetiyeler",
+        "state": "active"
+      },
+      "lines": [
+        {
+          "speaker": "fistik",
+          "mood": "huysuz",
+          "text": "Davetiyeler bitmeden pastaya dokunmak yok!"
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "davetiyeler",
+        "state": "none"
+      },
+      "lines": [
+        {
+          "speaker": "fistik",
+          "mood": "mutlu",
+          "text": "İşte doğum günü yıldızımız! Bir yıl oldu, inanabiliyor musun?"
+        },
+        {
+          "speaker": "miril",
+          "mood": "utangaç",
+          "text": "Bir yıl önce yalnızdım. Şimdi bir köyüm var."
+        },
+        {
+          "speaker": "fistik",
+          "mood": "huysuz",
+          "text": "Hıh, duygusallık sonra. Önce davetiyeleri dağıt!"
+        },
+        {
+          "speaker": "fistik",
+          "mood": "mutlu",
+          "text": "Al, dört davetiye. Çıtır yine tepeye çıkmış."
+        },
+        {
+          "speaker": "fistik",
+          "mood": "mutlu",
+          "text": "Zıpla, havada zıplamayı basılı tut: süzülürsün!"
+        }
+      ],
+      "then": {
+        "start_quest": "davetiyeler",
+        "give_items": {
+          "davetiye": 4
+        }
+      }
+    },
+    {
+      "lines": [
+        {
+          "speaker": "fistik",
+          "mood": "mutlu",
+          "text": "Mumlar seni bekliyor, doğum günü yıldızı!"
+        }
+      ]
+    }
+  ]
+}

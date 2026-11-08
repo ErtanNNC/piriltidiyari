@@ -17,12 +17,15 @@ uniform float emission_strength = 0.0;
 uniform float pus_affect : hint_range(0.0, 1.0) = 1.0;
 // 0 = full color, 1 = everything grey. Set with Pus.set_amount().
 global uniform float pus_amount;
+global uniform vec3 pus_color;
 // Drifting cloud shadows on sunny moods (WorldLook sets it per mood).
 global uniform float cloud_shadow;
 // Soft lighter/darker blotches in world space (ground surfaces, see Decor).
 uniform float patch_strength = 0.0;
 // 0..1: drains the color toward the Pus grey-violet (imported Pus mobs)
 uniform float desat : hint_range(0.0, 1.0) = 0.0;
+// what `desat` fades toward (times the grey): Pus grey-violet, or warm red for Kızıl Sis mobs
+uniform vec3 desat_tint = vec3(0.82, 0.8, 0.93);
 uniform vec4 patch_color : source_color = vec4(1.0);
 // Blinking on textured models: eye centers in character space (xyz) and
 // radius (w, 0 = no eye); the lid takes the skin color around the eye.
@@ -112,9 +115,9 @@ void fragment() {
 	}
 	float grey = dot(base, vec3(0.299, 0.587, 0.114));
 	if (desat > 0.0) {
-		base = mix(base, vec3(grey) * vec3(0.82, 0.8, 0.93), desat);
+		base = mix(base, vec3(grey) * desat_tint, desat);
 	}
-	vec3 pus_tint = vec3(grey) * vec3(0.92, 0.91, 0.98);
+	vec3 pus_tint = vec3(grey) * pus_color;
 	float p = clamp(pus_amount * pus_affect, 0.0, 1.0);
 	ALBEDO = mix(base, pus_tint, p);
 	EMISSION = mix(emission_color.rgb, vec3(grey), p * 0.7) * emission_strength;

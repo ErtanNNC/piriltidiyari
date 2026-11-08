@@ -14,7 +14,7 @@ signal skills_changed
 const POTION_SLOTS := 4
 ## Hikâye Taşları in Season 1 (the design's 20 arrive over two seasons).
 const STORY_STONES := 10
-const POTIONS := ["bal_surubu", "yildiz_tozu", "cesaret_sekeri", "pus_kovucu"]
+const POTIONS := ["bal_surubu", "yildiz_tozu", "cesaret_sekeri", "pus_kovucu", "nane_sekeri"]
 
 var character_id := "fistik"
 var character_name := "Fıstık"
@@ -42,6 +42,11 @@ var power_picks := 0          # level-ups whose power choice is still waiting
 ## The keeper's own starting numbers; max_hp/power/speed are derived from
 ## these (recompute_stats). Empty in saves from before version 2.
 var base_stats: Dictionary = {"hp": 100, "power": 10, "speed": 6.0}
+## 1 = Pırıltı Diyarı, 2 = Kor Vadisi (opens after "sezon1_bitti").
+var season := 1
+## Season 1's keeper {"id", "name", "look"}: Season 2's prologue is played as
+## Mırıl, then the keepers come back (Sahne 6).
+var s1_keeper: Dictionary = {}
 
 
 # --- stats --------------------------------------------------------------
@@ -347,10 +352,44 @@ func has_flag(flag: String) -> bool:
 	return flags.get(flag, false)
 
 
+# --- seasons ------------------------------------------------------------
+
+## True when this save may start Season 2 (Season 1 done, not started yet).
+func can_start_season2() -> bool:
+	return has_flag("sezon1_bitti") and season < 2
+
+
+## Season 2 (Kor Vadisi) starts here: the keepers left their power in the
+## Fener, so it's level 1 again (no powers, no skills, no Pırıl). Owned
+## outfits, tools and charms stay. The prologue is played as Mırıl.
+func start_season2(item_defs: Dictionary) -> void:
+	s1_keeper = {"id": character_id, "name": character_name, "look": character_look.duplicate()}
+	season = 2
+	character_id = "miril"
+	character_name = "Mırıl"
+	character_look = {}
+	level = 1
+	xp = 0
+	powers = {}
+	power_picks = 0
+	skills = []
+	piril = 0
+	base_stats = {"hp": 90, "power": 9, "speed": 6.2}
+	max_mp = 50
+	recompute_stats(item_defs)
+	hp = max_hp
+	mp = max_mp
+	scene_id = "s2_scene1"
+	set_flag("sezon2")
+	stats_changed.emit()
+	skills_changed.emit()
+	piril_changed.emit(piril, 0)
+
+
 # --- save ---------------------------------------------------------------
 
 const SAVE_KEYS := ["character_id", "character_name", "character_look", "scene_id", "level", "xp",
-	"max_hp", "hp", "max_mp", "mp", "power", "speed", "piril", "items", "potions", "skills", "quests", "flags", "sparks", "equipped", "powers", "power_picks", "base_stats"]
+	"max_hp", "hp", "max_mp", "mp", "power", "speed", "piril", "items", "potions", "skills", "quests", "flags", "sparks", "equipped", "powers", "power_picks", "base_stats", "season", "s1_keeper"]
 
 
 func to_dict() -> Dictionary:
@@ -384,6 +423,8 @@ func load_dict(d: Dictionary) -> void:
 ## Raise an old save to the level its progress calls for (see
 ## Progression.catch_up_level). Each level gained waits for a power card.
 func catch_up() -> void:
+	if season >= 2:
+		return  # Season 2 starts over at level 1 on purpose
 	var target := Progression.catch_up_level(sparks.size(), has_flag("bolum0_bitti"))
 	while level < target and level < Progression.MAX_LEVEL:
 		add_xp(Progression.xp_to_next(level) - xp)

@@ -1,0 +1,74 @@
+{
+  "npc": "lumi",
+  "variants": [
+    {
+      "when": {
+        "quest": "kirmizi_ruzgar",
+        "state": [
+          "active",
+          "ready",
+          "done"
+        ]
+      },
+      "lines": [
+        {
+          "speaker": "lumi",
+          "mood": "kararlı",
+          "text": "Mırıl, bu ses... Rüzgârın içinde biri ağlıyor sanki."
+        }
+      ]
+    },
+    {
+      "when": {
+        "objective_done": "davetiyeler/lumi"
+      },
+      "lines": [
+        {
+          "speaker": "lumi",
+          "mood": "mutlu",
+          "text": "En güzel mumu ben seçtim. Mor olanı!"
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "davetiyeler",
+        "state": "active",
+        "has_item": "davetiye"
+      },
+      "lines": [
+        {
+          "speaker": "lumi",
+          "mood": "mutlu",
+          "text": "Mırıl! Bugün senin günün, biliyor muydun?"
+        },
+        {
+          "speaker": "miril",
+          "mood": "utangaç",
+          "text": "Biliyorum. Ama ilk defa birisi hatırladı."
+        },
+        {
+          "speaker": "lumi",
+          "mood": "mutlu",
+          "text": "Herkes hatırladı. Hadi, Fıstık pastayı bekliyor!"
+        }
+      ],
+      "then": {
+        "deliver": {
+          "quest": "davetiyeler",
+          "objective": "lumi",
+          "item": "davetiye"
+        }
+      }
+    },
+    {
+      "lines": [
+        {
+          "speaker": "lumi",
+          "mood": "mutlu",
+          "text": "En güzel mumu ben seçtim. Mor olanı!"
+        }
+      ]
+    }
+  ]
+}

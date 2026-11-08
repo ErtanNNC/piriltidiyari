@@ -4,7 +4,7 @@ extends Control
 ##   left side   - a floating joystick wherever the thumb lands
 ##   bottom right - a big round Vur button with the other actions on an arc
 ##                 around it (Zıpla, Yuvarlan, the keeper's skill, both
-##                 level-up powers, the sling)
+##                 level-up powers, the sling, Season 2's Sakinleş)
 ##   anywhere else on the right - drag to turn the camera around the keeper
 ##                 (sideways) and tilt it (up / down)
 ## Shown only on touch screens, or with `-- --touch` for previews. Keeps
@@ -45,6 +45,10 @@ func _ready() -> void:
 	var p1 := _round_button("", "power_1", SMALL_R, "berry", 14)
 	var p2 := _round_button("", "power_2", SMALL_R, "berry", 14)
 	var shoot := _round_button("At", "shoot", SMALL_R, "spark-green", 15)
+	# Season 2: hold next to a dazed creature to breathe it calm
+	var calm := _round_button("Sakinleş", "calm", SMALL_R, "spark-green", 14)
+	calm.name = "Calm"
+	calm.visible = GameState.data.season >= 2
 	power_buttons = [p1, p2]
 	for b in [p1, p2]:
 		b.visible = false
@@ -55,6 +59,7 @@ func _ready() -> void:
 	_place(p1, 195.0, ARC_DIST * 1.78)
 	_place(p2, 238.0, ARC_DIST * 1.78)
 	_place(shoot, 275.0, ARC_DIST * 1.78)
+	_place(calm, 170.0, ARC_DIST * 1.78)
 	var refresh_shot := func() -> void:
 		var d := GameState.data
 		shoot.visible = d.has_flag("owned_isik_sapani")

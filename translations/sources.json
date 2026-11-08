@@ -377,11 +377,14 @@
   "Mor Kıvılcım'ı al"
  ],
  "content/items.json": [
+  "Davetiye",
   "Pembe Fener",
   "Mavi Fener",
   "Yeşil Fener",
   "Bal Şurubu",
   "Canını 40 doldurur",
+  "Nane Şekeri",
+  "Öfke barını soğutur, canını 10 doldurur",
   "Yıldız Tozu",
   "Enerjini 30 doldurur",
   "Kristal Tılsım",
@@ -538,6 +541,84 @@
   "Sallanan fenerlerden geç",
   "Kulenin çatısına çık"
  ],
+ "content/s2_prologue/barks.json": [
+  "Bugün benim doğum günüm! Köyde ilk doğum günüm.",
+  "Süzülüyorum! Yıldız olmanın en güzel yanı bu.",
+  "Bu rüzgâr sıcak... ve kırmızı. Bu Pus değil!",
+  "Hayvanlar kızdı! Mırıl, onları sakinleştir!",
+  "Sersemledi! Yanında Sakinleş'e basılı tut.",
+  "Ben de kızıyorum... Derin bir nefes alayım.",
+  "Kimse beni dinlemiyor... diyen kim? Seni duyuyorum!"
+ ],
+ "content/s2_prologue/chapter.json": [
+  "Kırmızı Ufuk",
+  "Mırıl'ın İlk Doğum Günü",
+  "Kırmızı Rüzgâr"
+ ],
+ "content/s2_prologue/dialogue/bado.json": [
+  "Kardeşim Minnoş nerede? Onu bulmam lazım!",
+  "Şarkımı söylerken gülme ama, tamam mı?",
+  "Bado, akşam doğum günüm var. Gelir misin?",
+  "Ben... tabii gelirim. Sana bir şarkı bile öğrendim."
+ ],
+ "content/s2_prologue/dialogue/citir.json": [
+  "Haritamda o dağın arkası bomboş. Ne var orada?",
+  "Buradan bütün köy görünüyor. Süzülmek ne güzel, değil mi?",
+  "Vay! Buraya kadar süzüldün mü? Harika!",
+  "Bu senin davetiyen. Haritana pastayı da çiz!",
+  "Çizdim bile! Pasta tam burada, kocaman bir yıldız."
+ ],
+ "content/s2_prologue/dialogue/fistik.json": [
+  "Hıh! Bu rüzgâr pastamın kremasını bozdu!",
+  "Herkes geliyor demek. Aferin sana, küçük yıldız.",
+  "Hıh. Mumları ben diktim. Beş tane, sayarsın.",
+  "Bu sefer üflemeyi unutma. Bir dilek tut!",
+  "Dileğim hazır. Bir... iki... üç!",
+  "Davetiyeler bitmeden pastaya dokunmak yok!",
+  "İşte doğum günü yıldızımız! Bir yıl oldu, inanabiliyor musun?",
+  "Bir yıl önce yalnızdım. Şimdi bir köyüm var.",
+  "Hıh, duygusallık sonra. Önce davetiyeleri dağıt!",
+  "Al, dört davetiye. Çıtır yine tepeye çıkmış.",
+  "Zıpla, havada zıplamayı basılı tut: süzülürsün!",
+  "Mumlar seni bekliyor, doğum günü yıldızı!"
+ ],
+ "content/s2_prologue/dialogue/lumi.json": [
+  "Mırıl, bu ses... Rüzgârın içinde biri ağlıyor sanki.",
+  "En güzel mumu ben seçtim. Mor olanı!",
+  "Mırıl! Bugün senin günün, biliyor muydun?",
+  "Biliyorum. Ama ilk defa birisi hatırladı.",
+  "Herkes hatırladı. Hadi, Fıstık pastayı bekliyor!"
+ ],
+ "content/s2_prologue/dialogue/pati.json": [
+  "Kuyruğum kabardı... Bu rüzgâr hiç hoş değil!",
+  "Pastanın en çilekli yeri benim, haberin olsun!",
+  "Pati! Bu senin davetiyen. Bu akşam pasta var!",
+  "Pasta mı? Ben ilk gelirim! Sonra ikinci kez gelirim!"
+ ],
+ "content/s2_prologue/dialogue/tospik_nine.json": [
+  "Mırıl, gördün mü? Kızgın kalpler bile nefesle yumuşar.",
+  "Al, yeni tarifim: Nane Şekeri. Seni serinletir.",
+  "Kızıl rüzgâr seni de kızdırırsa bir tane ye.",
+  "Kurbağalar hâlâ bağırıyor. Onları da dinlerim!",
+  "Köy sustu... Ama rüzgâr hâlâ dağdan esiyor.",
+  "Rüzgârın içinde bir ses var: Kimse beni dinlemiyor!",
+  "O sesin peşinden git. Ama dikkatli ol, yavrum.",
+  "Vur ama kırma. Sersemleyince nefes aldır, yavrum!",
+  "Doğum günün kutlu olsun, Mırıl. Işığın hep parlasın."
+ ],
+ "content/s2_prologue/quests/davetiyeler.json": [
+  "Doğum Günü Davetiyeleri",
+  "Pati'ye davetiyesini ver",
+  "Bado'ya davetiyesini ver",
+  "Çıtır'a davetiyesini ver (tepeye süzül!)",
+  "Lumi'ye davetiyesini ver",
+  "Pastanın yanında Fıstık'a dön"
+ ],
+ "content/s2_prologue/quests/kirmizi_ruzgar.json": [
+  "Köpüklü Tavukları sakinleştir",
+  "Bir Köpüklü'ye Sakinleş ile derin nefes aldır",
+  "Gürültücü Kurbağaları sakinleştir"
+ ],
  "content/speakers.json": [
   "Fıstık",
   "Tospik Nine",
@@ -574,8 +655,15 @@
   "Gölge Prens Mırıl",
   "Usta Tıkır"
  ],
- "src/actors/dondurma.gd": [
+ "src/actors/breath_calm.gd": [
   "panel@light",
+  "Önce sen sakinleş...",
+  "Nefes al...",
+  "Nefes ver...",
+  "Oh... Sakinleştin.",
+  "Kızgınsın! Güçlü vurursun ama zor yürürsün. Sakinleş'e bas."
+ ],
+ "src/actors/dondurma.gd": [
   "Brrr! Biraz donakaldın",
   "Halka geliyor: zıpla!",
   "Halka: zıpla!",
@@ -603,6 +691,7 @@
  ],
  "src/actors/mob.gd": [
   "Korsan Martı %d Pırıl kaptı!",
+  "Derin nefes!",
   "+%d XP",
   "Sv %d"
  ],
@@ -618,6 +707,7 @@
  ],
  "src/actors/player.gd": [
   "Enerjin az. Yıldız Tozu iç!",
+  "Oh, serinledin!",
   "Canın zaten dolu",
   "%d saniye gücün arttı!",
   "%d saniye moblar seni zor fark eder",
@@ -656,7 +746,9 @@
   "Bölüm 4",
   "Bölüm 5",
   "Kapanış",
-  "Altı Renkli Fener"
+  "Altı Renkli Fener",
+  "Sezon 2 · Prolog · Sahne 1",
+  "Sezon 2 · Prolog · Sahne 2"
  ],
  "src/autoload/tokens.gd": [
   "fontSize",
@@ -674,6 +766,8 @@
   "Kar Topu Tavşanı",
   "Buz Dikeni",
   "Gölge Kopya",
+  "Köpüklü Tavuk",
+  "Gürültücü Kurbağa",
   "Dev Somurtkan Mantar"
  ],
  "src/core/player_data.gd": [
@@ -750,6 +844,8 @@
   "Bölüm başlarında kendiliğinden de kaydedilir. · %d FPS",
   "%s (%s)",
   "Oyun kaydedilemedi. Telefonda yer var mı?",
+  "Kızgın!",
+  "Öfke",
   " (%s tuşu / düğmesi)",
   "%s: kademe %d%s"
  ],
@@ -799,19 +895,20 @@
   "%02d.%02d.%d  %02d:%02d"
  ],
  "src/ui/season_end.gd": [
-  "Kırmızı sis: diyarın ötesinde yeni bir gizem",
-  "10 yeni Hikâye Taşı ve Düşen Yıldız Tarlası",
-  "Fıstık ve Mırıl oynanabilir oluyor (Yeni Oyun+)",
-  "Işık Arenası: dalga dalga gelen eski dostlar",
-  "Bekçilerin imza eşyası görevlerinin devamı",
+  "Dağların ardında Kor Vadisi ve Kızıl Sis",
+  "Prologda Mırıl'ı sen oynuyorsun: süzül, ışık saç!",
+  "Yeni yol: kızgın yaratıkları nefesle sakinleştir",
+  "Beş Kor, beş öfkeli bekçi ve yeni dost Tıpış",
+  "Yeniden seviye 1'den başla; kıyafetlerin seninle",
   "Sezon 1 tamamlandı!",
   "Pırıltı Diyarı · Kıvılcım Bekçileri",
   "Kıvılcımlar %d/5",
   "Hikâye Taşları %d/%d",
   "Seviye %d",
   "%d Pırıl",
-  "Sezon 2'de seni neler bekliyor?",
+  "Sezon 2: Kor Vadisi",
   "Oynadığın için teşekkürler! · Just A Game Studios",
+  "Sezon 2'ye başla",
   "Köyde dolaş"
  ],
  "src/ui/shop_panel.gd": [
@@ -833,6 +930,7 @@
   "Zıpla",
   "Yuvarlan",
   "At",
+  "Sakinleş",
   "At\n%d"
  ],
  "src/ui/wardrobe_panel.gd": [
@@ -971,6 +1069,24 @@
  ],
  "src/world/pus_gate.gd": [
   "Fener henüz yanmadı"
+ ],
+ "src/world/s2_scene1.gd": [
+  "Boşluk: zıpla, havada basılı tut: süzül!",
+  "Zıpla'ya basılı tut: süzül!",
+  "Çıtır'ın tepesi →"
+ ],
+ "src/world/s2_scene2.gd": [
+  "C'ye basılı tut: Sakinleş! Halka büyür, küçülür: nefes al, ver.",
+  "Sakinleş'e basılı tut: nefes al, ver!",
+  "Öfke barın doluyor! Sisten çık ya da Sakinleş'e bas.",
+  "Öfke barın doluyor! Sakinleş'e bas.",
+  "J: vur! Sersemleyince yanına git.",
+  "Vur'a bas! Sersemleyince yanına git.",
+  "Tospik Nine: Mırıl, buraya gel!",
+  "Kurbağalar kızıl sisin içinde. Öfke barına dikkat!",
+  "Öfke barına dikkat!",
+  "Prolog devam edecek: Sahne 3 çok yakında!",
+  "Sahne 3 çok yakında!"
  ],
  "src/world/scene2.gd": [
   "J: Dikenlerinle vur!",

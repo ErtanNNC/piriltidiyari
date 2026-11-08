@@ -8,10 +8,13 @@ extends CharacterBody3D
 signal calmed(mob: Mob)
 
 const TELEGRAPH := 0.8
+## Köpüklüler sit dazed this long waiting for a breath (Sakinleş), then
+## calm down by themselves (with a smaller reward).
+const DAZE_TIME := 9.0
 
 static var attackers := 0
 
-@export_enum("sumuklu", "mantar", "dev_mantar", "kirpi_topu", "karga", "kristal_bocek", "yarasa", "firtina_yumagi", "korsan_marti", "kar_tavsani", "buz_dikeni", "golge_kopya") var kind := "sumuklu"
+@export_enum("kopuklu_tavuk", "gurultucu_kurbaga", "sumuklu", "mantar", "dev_mantar", "kirpi_topu", "karga", "kristal_bocek", "yarasa", "firtina_yumagi", "korsan_marti", "kar_tavsani", "buz_dikeni", "golge_kopya") var kind := "sumuklu"
 @export var gravity := 22.0
 ## 0 = the kind's own level (MobStats.LEVELS, a little variety by place)
 @export var level := 0
@@ -19,7 +22,7 @@ var _tag: Label3D
 
 var hp := 30
 var stats: Dictionary
-var state := "idle"   # idle, chase, windup, attack, recover, hurt, calm
+var state := "idle"   # idle, chase, windup, attack, recover, hurt, dazed, calm
 var _t := 0.0
 var _home := Vector3.ZERO
 var _wander := Vector3.ZERO
@@ -157,6 +160,9 @@ func _physics_process(delta: float) -> void:
 		"recover", "hurt":
 			if _t <= 0.0:
 				state = "chase"
+		"dazed":
+			if _t <= 0.0:
+				_calm()
 		"calm":
 			var away := -to_player.normalized() if dist < INF else Vector3.BACK
 			move = away * 6.0
@@ -270,7 +276,7 @@ func _attack() -> void:
 ## Called by the player's attacks.
 func hit(damage: int, from: Vector3, push: float) -> void:
 	Effects.hit(self)
-	if state == "calm":
+	if state == "calm" or state == "dazed":
 		return
 	hp -= damage
 	var away := global_position - from
@@ -281,7 +287,10 @@ func hit(damage: int, from: Vector3, push: float) -> void:
 	tw.tween_property(_grey, "scale", Vector3(1.25, 0.75, 1.25), 0.06)
 	tw.tween_property(_grey, "scale", Vector3.ONE, 0.12)
 	if hp <= 0:
-		_calm()
+		if MobStats.breathes(kind):
+			_daze()
+		else:
+			_calm()
 	elif state != "windup" or kind != "dev_mantar":
 		if state == "windup" or state == "attack":
 			_release_token()
@@ -299,8 +308,48 @@ func bump(from: Vector3) -> void:
 	_knock = away.normalized() * (4.0 if kind == "dev_mantar" else 8.0)
 
 
+## A Köpüklü at 0 HP: it plops down, stars spin over its head and the steam
+## keeps puffing. A breath (Sakinleş, `breathe_calm`) calms it for a bigger
+## reward; left alone it calms down by itself after DAZE_TIME.
+func _daze() -> void:
+	state = "dazed"
+	_t = DAZE_TIME
+	_release_token()
+	_knock = Vector3.ZERO
+	add_to_group("dazed")
+	remove_from_group("mob")
+	var tw := create_tween()
+	tw.tween_property(_grey, "scale", Vector3(1.15, 0.8, 1.15), 0.18).set_trans(Tween.TRANS_BACK)
+	var stars := Node3D.new()
+	stars.name = "DazeStars"
+	stars.position.y = 1.7
+	add_child(stars)
+	for i in 3:
+		var a := TAU * i / 3.0
+		Toon.part(stars, "sphere", Vector3(0.16, 0.16, 0.16), "spark-yellow", Vector3(cos(a) * 0.4, 0, sin(a) * 0.4), Vector3.ZERO, 1.6, 0.0)
+	var spin := stars.create_tween().set_loops()
+	spin.tween_property(stars, "rotation:y", TAU, 1.2).from(0.0)
+	GameState.notify("daze", kind)
+
+
+## Sakinleş finished on this mob: a deep breath, steam gone, double Pırıl.
+func breathe_calm() -> void:
+	if state != "dazed":
+		return
+	_breathed = true
+	GameState.notify("breathe", kind)
+	GameState.notify("breathe", "any")
+	_calm()
+
+
+var _breathed := false
+
+
 ## Beaten: back to its own colors, small, and off it runs. Never "dies".
 func _calm() -> void:
+	remove_from_group("dazed")
+	if has_node("DazeStars"):
+		get_node("DazeStars").queue_free()
 	state = "calm"
 	Audio.play("calm")
 	_release_token()
@@ -317,7 +366,10 @@ func _calm() -> void:
 	tw.tween_interval(1.2)
 	tw.tween_property(_bright, "scale", Vector3.ZERO, 0.3)
 	tw.tween_callback(queue_free)
-	for i in stats["piril"] + _stolen:
+	var drops: int = int(stats["piril"]) * (2 if _breathed else 1) + _stolen
+	if _breathed:
+		FloatText.spawn(get_parent(), global_position + Vector3.UP * 2.7, TranslationServer.translate("Derin nefes!"), Tokens.color("leaf"))
+	for i in drops:
 		var p := Pickup.new()
 		get_parent().add_child(p)
 		p.global_position = global_position + Vector3(randf_range(-1.2, 1.2), 0, randf_range(-1.2, 1.2))

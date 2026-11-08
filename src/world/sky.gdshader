@@ -4,6 +4,7 @@ shader_type sky;
 // (same pus_amount as the world). Colors come per mood from WorldLook.
 
 global uniform float pus_amount;
+global uniform vec3 pus_color;
 global uniform float cloud_shadow;
 #include "res://src/world/noise.gdshaderinc"
 
@@ -80,6 +81,6 @@ void sky() {
 		}
 	}
 	float grey = dot(col, vec3(0.299, 0.587, 0.114));
-	col = mix(col, vec3(grey) * vec3(0.92, 0.91, 0.98), clamp(pus_amount * 0.85, 0.0, 1.0));
+	col = mix(col, vec3(grey) * pus_color, clamp(pus_amount * 0.85, 0.0, 1.0));
 	COLOR = col;
 }

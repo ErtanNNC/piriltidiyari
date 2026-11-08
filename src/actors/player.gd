@@ -60,6 +60,13 @@ var _shield_mesh: MeshInstance3D
 var _col: CollisionShape3D
 var _stand_shape: CapsuleShape3D
 var _ball_shape: SphereShape3D
+## Season 2: Sakinleş (breath) and the Öfke barı (see BreathCalm).
+var calm: BreathCalm
+## Mırıl's world ability: holding jump while falling floats down (seconds left).
+var _glide_left := 0.0
+var _glide_fx := 0.0
+const GLIDE_TIME := 1.6
+const GLIDE_FALL := 1.4
 
 
 func _ready() -> void:
@@ -78,6 +85,10 @@ func _ready() -> void:
 	add_child(_col)
 	_build_model()
 	_refresh_bonus()
+	if GameState.data.season >= 2:
+		calm = BreathCalm.new()
+		calm.name = "BreathCalm"
+		add_child(calm)
 	GameState.data.stats_changed.connect(_maybe_rebuild)
 	var sensor := Area3D.new()
 	sensor.collision_layer = 0
@@ -113,6 +124,9 @@ func _physics_process(delta: float) -> void:
 		var cam := get_viewport().get_camera_3d() as FollowCamera
 		if cam and cam.yaw != 0.0:
 			dir = dir.rotated(Vector3.UP, cam.yaw)
+		if calm and calm.is_angry() and dir.length() > 0.1:
+			# kızgın: the steps go a little where they want
+			dir = dir.rotated(Vector3.UP, sin(Time.get_ticks_msec() / 260.0) * 0.6)
 	var target := dir * speed * slow
 	var grip := acceleration * (0.12 if ice else 1.0)
 	_move.x = move_toward(_move.x, target.x, grip * delta)
@@ -128,6 +142,7 @@ func _physics_process(delta: float) -> void:
 			velocity.y = jump_velocity * 0.8
 	elif is_on_floor():
 		_air_jumps = 1 if GameState.data.character_id == "pati" else 0
+		_glide_left = GLIDE_TIME
 		if input_enabled and not asleep and Input.is_action_just_pressed("jump"):
 			velocity.y = jump_velocity
 			Audio.play("jump")
@@ -135,6 +150,15 @@ func _physics_process(delta: float) -> void:
 				_rig.jump()
 	else:
 		velocity.y -= gravity * delta
+		# Mırıl's world ability: hold jump while falling to float down
+		if GameState.data.character_id == "miril" and _glide_left > 0.0 and velocity.y < 0.0 \
+				and input_enabled and not asleep and Input.is_action_pressed("jump"):
+			_glide_left -= delta
+			velocity.y = maxf(velocity.y, -GLIDE_FALL)
+			_glide_fx -= delta
+			if _glide_fx <= 0.0:
+				_glide_fx = 0.12
+				Effects.sparkle(get_parent(), global_position + Vector3.UP * 0.6, Tokens.color("spark-white"), 2)
 		# Pati's world ability: a second jump in the air
 		if _air_jumps > 0 and input_enabled and not asleep and Input.is_action_just_pressed("jump"):
 			_air_jumps -= 1
@@ -232,7 +256,7 @@ func spin_attack() -> void:
 	_spin_tween.tween_property(model, "rotation:y", start, 0.16).set_trans(Tween.TRANS_BACK)
 	Effects.ring(get_parent(), global_position + Vector3.UP * 0.7 + _facing() * 0.5, ATTACK_RADIUS * 0.8, Color(1, 1, 1, 0.8), 0.2)
 	var tool: String = GameState.data.equipped.get("weapon", "")
-	if not GameState.data.has_flag("owned_" + tool):
+	if not GameState.data.has_flag("owned_" + tool) or GameState.data.character_id == "miril":
 		tool = ""
 	match tool:
 		"yildiz_asasi":
@@ -444,6 +468,8 @@ func _ceiling_blocked() -> bool:
 ## Attack power, ×1.5 while a Cesaret Şekeri is active.
 func attack_power() -> int:
 	var p := roundi((GameState.data.power + Shop.weapon_power(GameState.data, Content.items)) * Powers.attack_mult(GameState.data.powers))
+	if calm and calm.is_angry():
+		p = int(p * 1.5)
 	return int(p * 1.5) if Time.get_ticks_msec() / 1000.0 < _power_until else p
 
 
@@ -482,7 +508,13 @@ func drink_potion(slot: int) -> void:
 	if id == "" or not d.has_item(id):
 		return
 	var def: Dictionary = Content.items.get(id, {})
-	if def.has("heal"):
+	if def.get("buff", "") == "serin":
+		# Nane Şekeri: the Öfke barı cools down, and a little HP
+		if calm:
+			calm.cool_down()
+		d.heal(int(def.get("heal", 0)))
+		GameState.toast.emit("Oh, serinledin!", "heart")
+	elif def.has("heal"):
 		if d.hp >= d.max_hp:
 			GameState.toast.emit("Canın zaten dolu", "heart")
 			return
@@ -589,7 +621,18 @@ func _build_model() -> void:
 	var yaw := model.rotation.y if model else 0.0
 	if model:
 		model.queue_free()
-	model = FistikModel.build() if d.character_id == "fistik" else KeeperModels.build(d.character_id, look)
+	if d.character_id == "fistik":
+		model = FistikModel.build()
+	elif d.character_id == "miril":
+		model = MirilModel.star_child()
+		# a softer glow when Mırıl is the one walking around (no glare)
+		for l: OmniLight3D in model.find_children("*", "OmniLight3D", true, false):
+			l.light_energy = 0.4
+			l.omni_range = 2.5
+		# a star keeps its own light: the mist never greys Mırıl out
+		MobModels._no_pus(model)
+	else:
+		model = KeeperModels.build(d.character_id, look)
 	model.rotation.y = yaw
 	add_child(model)
 	_rig = CharacterRig.of(model)

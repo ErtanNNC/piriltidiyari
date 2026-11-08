@@ -4,6 +4,8 @@ extends RefCounted
 
 
 static func build(kind: String) -> Node3D:
+	if kind in ["pati", "bado", "citir", "lumi"]:
+		return KeeperModels.build(kind, {})  # the keepers as villagers (Season 2)
 	var imported := ModelImport.load_model(kind)
 	if imported:
 		return imported

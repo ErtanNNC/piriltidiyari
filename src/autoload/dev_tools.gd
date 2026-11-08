@@ -4,7 +4,7 @@ extends Node
 ## --scene jumps to a story scene with the progress of the scenes before it.
 ## Never active in a normal run.
 
-const ORDER := ["scene1", "scene2", "scene3", "scene4", "scene5", "scene6", "chapter0", "chapter1", "chapter2", "chapter3", "chapter4", "chapter5", "final"]
+const ORDER := ["scene1", "scene2", "scene3", "scene4", "scene5", "scene6", "chapter0", "chapter1", "chapter2", "chapter3", "chapter4", "chapter5", "final", "s2_scene1", "s2_scene2"]
 
 var _shot_path := ""
 var _frames := 60
@@ -139,6 +139,13 @@ static func _preset_story(data: PlayerData, scene: String) -> void:
 	if idx >= 12:
 		data.add_spark("purple")
 		data.set_flag("bolum5_bitti")
+	if idx >= 13:
+		# Season 2: the first season is done, its keeper rests, Mırıl plays
+		data.set_flag("sezon1_bitti")
+		var content: Node = Engine.get_main_loop().root.get_node_or_null("Content")
+		data.start_season2(content.items if content else {})
+	if idx >= 14:
+		data.set_flag("s2_sahne1_bitti")
 
 
 static func _finish(data: PlayerData, quest_id: String) -> void:

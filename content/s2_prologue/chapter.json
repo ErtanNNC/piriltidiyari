@@ -1,0 +1,41 @@
+{
+  "id": "s2_prologue",
+  "title": "Kırmızı Ufuk",
+  "region": "Gökkuşağı Köyü",
+  "theme": "light",
+  "spark": null,
+  "scenes": [
+    {
+      "id": "s2_scene1",
+      "title": "Mırıl'ın İlk Doğum Günü",
+      "teaches": [
+        "yürüme",
+        "süzülme",
+        "konuşma"
+      ]
+    },
+    {
+      "id": "s2_scene2",
+      "title": "Kırmızı Rüzgâr",
+      "teaches": [
+        "saldırı",
+        "Sakinleş",
+        "öfke barı",
+        "Nane Şekeri"
+      ]
+    }
+  ],
+  "quests": [
+    "davetiyeler",
+    "kirmizi_ruzgar"
+  ],
+  "dialogue": [
+    "fistik",
+    "pati",
+    "bado",
+    "citir",
+    "lumi",
+    "tospik_nine"
+  ],
+  "barks": "barks"
+}

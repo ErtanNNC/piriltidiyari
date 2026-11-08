@@ -9,6 +9,7 @@ uniform float sway = 0.0;
 uniform float tip_light = 0.0;
 uniform float band_threshold = 0.15;
 global uniform float pus_amount;
+global uniform vec3 pus_color;
 global uniform float cloud_shadow;
 
 #include "res://src/world/noise.gdshaderinc"
@@ -46,7 +47,7 @@ void fragment() {
 	c *= 1.0 + gust * h * 0.14 * tip_light;
 	float grey = dot(c, vec3(0.299, 0.587, 0.114));
 	float p = clamp(pus_amount * (1.0 - glow * 0.6), 0.0, 1.0);
-	ALBEDO = mix(c, vec3(grey) * vec3(0.92, 0.91, 0.98), p);
+	ALBEDO = mix(c, vec3(grey) * pus_color, p);
 	EMISSION = ALBEDO * glow * 1.6;
 }
 

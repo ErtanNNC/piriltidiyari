@@ -1,16 +1,17 @@
 class_name SeasonEnd
 extends Control
 ## "Sezon 1 tamamlandı!" — a summary of the season and a short look at what
-## the next season brings. Buttons: keep exploring the village, or the menu.
+## the next season brings (Kor Vadisi). Buttons: start Season 2, keep
+## exploring the village, or the menu.
 
 signal chosen(id: String)
 
 const NEXT := [
-	["spark", "hp", "Kırmızı sis: diyarın ötesinde yeni bir gizem"],
-	["star", "spark-purple", "10 yeni Hikâye Taşı ve Düşen Yıldız Tarlası"],
-	["heart", "honey", "Fıstık ve Mırıl oynanabilir oluyor (Yeni Oyun+)"],
-	["star", "sky", "Işık Arenası: dalga dalga gelen eski dostlar"],
-	["quest", "leaf", "Bekçilerin imza eşyası görevlerinin devamı"],
+	["spark", "hp", "Dağların ardında Kor Vadisi ve Kızıl Sis"],
+	["star", "spark-white", "Prologda Mırıl'ı sen oynuyorsun: süzül, ışık saç!"],
+	["heart", "leaf", "Yeni yol: kızgın yaratıkları nefesle sakinleştir"],
+	["quest", "honey", "Beş Kor, beş öfkeli bekçi ve yeni dost Tıpış"],
+	["star", "sky", "Yeniden seviye 1'den başla; kıyafetlerin seninle"],
 ]
 
 
@@ -48,7 +49,7 @@ func _ready() -> void:
 			["star", "xp", TranslationServer.translate("Seviye %d") % d.level], ["piril", "piril", TranslationServer.translate("%d Pırıl") % d.piril]]:
 		chips.add_child(_chip(c[0], c[1], c[2]))
 	v.add_child(HSeparator.new())
-	v.add_child(UiKit.label("Sezon 2'de seni neler bekliyor?", "text-heading", "ink"))
+	v.add_child(UiKit.label("Sezon 2: Kor Vadisi", "text-heading", "ink"))
 	for n: Array in NEXT:
 		var row := HBoxContainer.new()
 		row.add_theme_constant_override("separation", int(Tokens.px("space-2")))
@@ -67,8 +68,13 @@ func _ready() -> void:
 	buttons.alignment = BoxContainer.ALIGNMENT_CENTER
 	buttons.add_theme_constant_override("separation", int(Tokens.px("space-3")))
 	v.add_child(buttons)
-	var stay := UiKit.button("Köyde dolaş")
-	stay.custom_minimum_size = Vector2(220, 60)
+	var next := UiKit.button("Sezon 2'ye başla")
+	next.name = "Season2"
+	next.custom_minimum_size = Vector2(240, 60)
+	next.pressed.connect(func() -> void: chosen.emit("season2"))
+	buttons.add_child(next)
+	var stay := UiKit.button("Köyde dolaş", false)
+	stay.custom_minimum_size = Vector2(200, 60)
 	stay.pressed.connect(func() -> void: chosen.emit("chapter0"))
 	buttons.add_child(stay)
 	var menu := UiKit.button("Ana menü", false)

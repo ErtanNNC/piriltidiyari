@@ -1,5 +1,10 @@
 {
   "items": {
+    "davetiye": {
+      "name": "Davetiye",
+      "color": "spark-purple",
+      "kind": "quest"
+    },
     "fener_pembe": {
       "name": "Pembe Fener",
       "color": "berry",
@@ -23,6 +28,16 @@
       "price": 15,
       "icon": "heart",
       "desc": "Canını 40 doldurur"
+    },
+    "nane_sekeri": {
+      "name": "Nane Şekeri",
+      "color": "leaf",
+      "kind": "potion",
+      "buff": "serin",
+      "heal": 10,
+      "price": 15,
+      "icon": "heart",
+      "desc": "Öfke barını soğutur, canını 10 doldurur"
     },
     "yildiz_tozu": {
       "name": "Yıldız Tozu",

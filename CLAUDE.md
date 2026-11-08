@@ -129,6 +129,30 @@ is a copy of the design system's tokens.
   version/code in export_presets.cfg for every APK you hand out.
 - Godot is downloaded by `tools/setup_godot.sh` into `.tools/` (gitignored).
 
+## Season 2 (Kor Vadisi)
+
+- Opens only after Season 1's ending (flag "sezon1_bitti"): the season summary
+  (`SeasonEnd`) has "Sezon 2'ye başla" next to "Köyde dolaş"/"Ana menü", and the
+  title shows it while the newest save qualifies (`PlayerData.can_start_season2`).
+  `SeasonFlow.start_season2` → `PlayerData.start_season2`: level 1, no powers,
+  skills or Pırıl; owned outfits/tools/charms stay; `season` = 2, the Season 1
+  keeper is kept in `s1_keeper`; `catch_up` never lifts a Season 2 save.
+- Story pack `content/s2_prologue/`; scenes `s2_scene1` (Mırıl'ın İlk Doğum
+  Günü: invitations, glide course to Çıtır's hill) and `s2_scene2` (Kırmızı
+  Rüzgâr). The prologue is played as Mırıl (`character_id` "miril",
+  `MirilModel.star_child`, no Pus grey): hold jump while falling to float
+  (`Player.GLIDE_TIME`). Keepers can be NPC kinds (`Npc.kind` pati/bado/citir/lumi).
+- Kızıl Sis: `Pus.set_color(Pus.RED)` (global `pus_color`; SceneFlow resets to
+  grey). Köpüklüler (`MobStats` "breath": kopuklu_tavuk, gurultucu_kurbaga) sit
+  dazed at 0 HP (`Mob._daze`, group "dazed") until Sakinleş (C / touch
+  "Sakinleş", hold: `BreathCalm` ring, `Mob.breathe_calm`, double Pırıl,
+  events "breathe" + kind/"any"), or calm by themselves after `DAZE_TIME`.
+  Their angry look: toon `desat` toward `desat_tint` (warm red) + steam.
+- Öfke barı (`BreathCalm.anger`, HUD `StatBar` "anger"): scenes set
+  `player.calm.heat` inside thick mist; full = kızgın (×1.5 hits, wobbly walk, no
+  Sakinleş for others); hold Sakinleş alone or Nane Şekeri (`buff` "serin") cools it.
+- Checks: `--scene=s2_scene1 --demo=glide|jump|party`, `--scene=s2_scene2 --demo=redwind|breath|angry`.
+
 ## Agent skills
 
 `.claude/skills/` holds a selection of gamedev skills from
@@ -185,7 +209,8 @@ from exports (`.claude/*` in export_presets.cfg).
   fill the empty English values, `python3 tools/i18n_build.py`; `tools/test.sh`
   fails on any untranslated string. Language: `Audio.language` ("tr"/"en",
   first run follows the phone), Dil/Language button on the title and in Mola,
-  `--lang=en` for screenshots.
+  `--lang=en` for screenshots (the fallback locale is "tr", so Turkish shows the
+  source text; with the default "en" fallback Turkish players saw English).
   English names follow the story doc's "İngilizce İsimler" tab: Glimmerland
   (app name via `config/name_localized`), the Gloom (Pus), Glim (Pırıl), Peanut,
   Paws, Crunch, Mumble, Granny Shelly, Teacher Hoo, King Stump, Pinch, Gale.

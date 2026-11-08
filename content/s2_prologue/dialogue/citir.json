@@ -1,0 +1,74 @@
+{
+  "npc": "citir",
+  "variants": [
+    {
+      "when": {
+        "quest": "kirmizi_ruzgar",
+        "state": [
+          "active",
+          "ready",
+          "done"
+        ]
+      },
+      "lines": [
+        {
+          "speaker": "citir",
+          "mood": "kararlı",
+          "text": "Haritamda o dağın arkası bomboş. Ne var orada?"
+        }
+      ]
+    },
+    {
+      "when": {
+        "objective_done": "davetiyeler/citir"
+      },
+      "lines": [
+        {
+          "speaker": "citir",
+          "mood": "mutlu",
+          "text": "Buradan bütün köy görünüyor. Süzülmek ne güzel, değil mi?"
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "davetiyeler",
+        "state": "active",
+        "has_item": "davetiye"
+      },
+      "lines": [
+        {
+          "speaker": "citir",
+          "mood": "şaşkın",
+          "text": "Vay! Buraya kadar süzüldün mü? Harika!"
+        },
+        {
+          "speaker": "miril",
+          "mood": "mutlu",
+          "text": "Bu senin davetiyen. Haritana pastayı da çiz!"
+        },
+        {
+          "speaker": "citir",
+          "mood": "mutlu",
+          "text": "Çizdim bile! Pasta tam burada, kocaman bir yıldız."
+        }
+      ],
+      "then": {
+        "deliver": {
+          "quest": "davetiyeler",
+          "objective": "citir",
+          "item": "davetiye"
+        }
+      }
+    },
+    {
+      "lines": [
+        {
+          "speaker": "citir",
+          "mood": "mutlu",
+          "text": "Buradan bütün köy görünüyor. Süzülmek ne güzel, değil mi?"
+        }
+      ]
+    }
+  ]
+}

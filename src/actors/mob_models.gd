@@ -12,7 +12,14 @@ static func build(kind: String, pus: bool) -> Node3D:
 		# a real model: the Pus look drains its colors to the grey-violet
 		# (a faint trace of its own color stays), calm shows its own colors
 		_no_pus(imported)
-		if pus:
+		if pus and MobStats.breathes(kind):
+			# Kızıl Sis: hot-tempered, a warm red cast and steam from the head
+			_each_material(imported, func(m: ShaderMaterial) -> void:
+				m.set_shader_parameter("desat", 0.5)
+				m.set_shader_parameter("desat_tint", Vector3(1.3, 0.66, 0.56)))
+			var hb := ModelImport._bounds(imported, Transform3D.IDENTITY)
+			_pus_wisps(imported, maxf(1.0, hb.end.y), Color(1, 1, 1), 8, 0.9)
+		elif pus:
 			_drain(imported, 0.86)
 			var box := ModelImport._bounds(imported, Transform3D.IDENTITY)
 			_pus_wisps(imported, maxf(1.4, box.end.y + 0.2))
@@ -112,10 +119,10 @@ static func _face(root: Node3D, at: Vector3, s: float, pus: bool) -> void:
 			Vector3(0, 0, (60.0 if pus else -60.0) * side), 0.0, 0.0)
 
 
-## Grey wisps drifting off a Pus-touched mob.
-static func _pus_wisps(root: Node3D, height: float) -> void:
+## Grey wisps drifting off a Pus-touched mob (or white steam: `col`, `speed`).
+static func _pus_wisps(root: Node3D, height: float, col := Color(0.55, 0.52, 0.66), amount := 5, speed := 0.45) -> void:
 	var p := CPUParticles3D.new()
-	p.amount = 5
+	p.amount = amount
 	p.lifetime = 2.2
 	p.preprocess = 2.2
 	p.local_coords = true
@@ -126,10 +133,10 @@ static func _pus_wisps(root: Node3D, height: float) -> void:
 	p.spread = 40.0
 	p.gravity = Vector3.ZERO
 	p.initial_velocity_min = 0.2
-	p.initial_velocity_max = 0.45
+	p.initial_velocity_max = speed
 	var g := Gradient.new()
 	g.offsets = PackedFloat32Array([0.0, 0.3, 1.0])
-	g.colors = PackedColorArray([Color(0.55, 0.52, 0.66, 0.0), Color(0.55, 0.52, 0.66, 0.55), Color(0.55, 0.52, 0.66, 0.0)])
+	g.colors = PackedColorArray([Color(col, 0.0), Color(col, 0.55), Color(col, 0.0)])
 	p.color_ramp = g
 	var q := QuadMesh.new()
 	q.size = Vector2(0.45, 0.45)

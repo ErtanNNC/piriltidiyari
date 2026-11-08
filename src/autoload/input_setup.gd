@@ -12,6 +12,7 @@ const ACTIONS := {
 	"roll": [KEY_K, KEY_SHIFT],
 	"skill": [KEY_L],
 	"shoot": [KEY_I, KEY_U],
+	"calm": [KEY_C],
 	"cam_left": [KEY_Q],
 	"cam_right": [KEY_R],
 	"tool_1": [KEY_5],
@@ -31,6 +32,7 @@ const PAD_BUTTONS := {
 	"interact": JOY_BUTTON_Y,
 	"roll": JOY_BUTTON_B,
 	"skill": JOY_BUTTON_RIGHT_SHOULDER,
+	"calm": JOY_BUTTON_LEFT_STICK,
 	"potion_1": JOY_BUTTON_LEFT_SHOULDER,
 }
 

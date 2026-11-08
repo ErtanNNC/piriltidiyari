@@ -3,7 +3,7 @@ extends Control
 ## StatBar: icon + outlined bar + number. Color never carries meaning alone:
 ## the icon and the number are always there.
 
-@export_enum("hp", "mp", "xp") var stat := "hp"
+@export_enum("hp", "mp", "xp", "anger") var stat := "hp"
 var value := 1.0
 var max_value := 1.0
 var _icon: GameIcon
@@ -13,12 +13,17 @@ var _text := ""
 func _ready() -> void:
 	custom_minimum_size = Vector2(220, 30)
 	_icon = GameIcon.new()
-	_icon.kind = {"hp": "heart", "mp": "drop", "xp": "star"}[stat]
-	_icon.fill = Tokens.color(stat)
+	_icon.kind = {"hp": "heart", "mp": "drop", "xp": "star", "anger": "spark"}[stat]
+	_icon.fill = Tokens.color(_token())
 	_icon.outline_color = Tokens.color("outline")
 	_icon.position = Vector2(0, 1)
 	_icon.size = Vector2(28, 28)
 	add_child(_icon)
+
+
+## The color token of the fill: the stat's own, berry for the Öfke barı.
+func _token() -> String:
+	return "berry" if stat == "anger" else stat
 
 
 func set_values(v: float, m: float, text := "") -> void:
@@ -34,7 +39,7 @@ func _draw() -> void:
 	draw_style_box(track, r)
 	var ratio := clampf(value / max_value, 0.0, 1.0)
 	if ratio > 0.0:
-		var fill := UiKit.box(Tokens.color(stat), "radius-pill")
+		var fill := UiKit.box(Tokens.color(_token()), "radius-pill")
 		draw_style_box(fill, Rect2(r.position, Vector2(maxf(r.size.y, r.size.x * ratio), r.size.y)))
 	var font := Tokens.font_for("text-caption")
 	var fs := Tokens.type_size("text-caption")

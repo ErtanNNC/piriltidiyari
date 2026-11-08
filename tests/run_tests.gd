@@ -298,7 +298,7 @@ func test_owl_plan() -> void:
 
 
 func test_content_is_valid() -> void:
-	for chapter in ["prologue", "chapter0", "chapter1", "chapter2", "chapter3", "chapter4", "chapter5"]:
+	for chapter in ["prologue", "chapter0", "chapter1", "chapter2", "chapter3", "chapter4", "chapter5", "s2_prologue"]:
 		_validate_chapter(chapter)
 	test_chapter0_flow()
 	test_chapter1_flow()
@@ -311,6 +311,8 @@ func test_content_is_valid() -> void:
 	test_chapter4_flow()
 	test_golem_plan()
 	test_chapter5_and_ending()
+	test_season2()
+	test_language()
 
 
 func test_chapter0_flow() -> void:
@@ -591,6 +593,54 @@ func test_golem_plan() -> void:
 	check(GolemPlan.BREATH_SLOW > 0.2, "nefes dondurmaz, sadece yavaşlatır")
 
 
+func test_language() -> void:
+	print("Dil")
+	TranslationServer.set_locale("tr")
+	check(TranslationServer.translate("Başla") == "Başla", "Türkçe seçiliyken metin Türkçe kalır (yedek dil İngilizce değil)")
+	TranslationServer.set_locale("en")
+	check(TranslationServer.translate("Başla") == "Start", "İngilizce seçiliyken metin İngilizce")
+	TranslationServer.set_locale("tr")
+
+
+func test_season2() -> void:
+	print("Sezon 2: Kor Vadisi")
+	var d := PlayerData.new()
+	d.choose_keeper("pati", {"can": 3, "guc": 4, "hiz": 5}, {"variant": 2}, "Pati")
+	while d.level < 12:
+		d.add_xp(Progression.xp_to_next(d.level) - d.xp)
+	d.set_flag("owned_yildiz_pelerini")
+	d.equipped["outfit"] = "yildiz_pelerini"
+	d.add_piril(300)
+	check(not d.can_start_season2(), "Sezon 1 bitmeden Sezon 2 açılmaz")
+	d.set_flag("sezon1_bitti")
+	check(d.can_start_season2(), "Sezon 1 bitince Sezon 2 açılır")
+	d.start_season2({})
+	check(d.season == 2 and not d.can_start_season2(), "Sezon 2 başladı, bir daha başlatılmaz")
+	check(d.level == 1 and d.xp == 0 and d.powers.is_empty() and d.skills.is_empty(), "Sezon 2 seviye 1, güç ve yetenek yok")
+	check(d.piril == 0, "Sezon 2 Pırıl sıfırdan")
+	check(d.character_id == "miril" and d.scene_id == "s2_scene1", "Prolog Mırıl ile, Sahne 1'den")
+	check(d.has_flag("owned_yildiz_pelerini") and d.equipped["outfit"] == "yildiz_pelerini", "Kıyafetler kalır")
+	check(d.s1_keeper.get("id", "") == "pati" and int(d.s1_keeper["look"].get("variant", 0)) == 2, "Sezon 1 bekçisi ve rengi saklanır")
+	d.catch_up()
+	check(d.level == 1, "Eski kayıt düzeltmesi Sezon 2'de seviyeyi yükseltmez")
+	var e := PlayerData.new()
+	e.load_dict(JSON.parse_string(JSON.stringify(d.to_dict())))
+	check(e.season == 2 and e.s1_keeper.get("id", "") == "pati", "Sezon bilgisi kayda girer")
+	check(MobStats.breathes("kopuklu_tavuk") and MobStats.breathes("gurultucu_kurbaga") and not MobStats.breathes("sumuklu"),
+		"Köpüklüler nefesle sakinleşir, eski moblar değil")
+	for k: String in ["kopuklu_tavuk", "gurultucu_kurbaga"]:
+		check(int(MobStats.LEVELS[k]) <= 5, "%s köy seviyesinde" % k)
+	check(PlayerData.POTIONS.has("nane_sekeri"), "Nane Şekeri iksir yuvasına girer")
+	var c := ContentScript.new()
+	c.load_chapter("s2_prologue")
+	check(c.quests.has("davetiyeler") and c.quests.has("kirmizi_ruzgar"), "Sezon 2 prolog görevleri")
+	var f := PlayerData.new()
+	f.start_quest(c.quests["kirmizi_ruzgar"])
+	f.notify("breathe", "any", c.quests)
+	check(f.objective_done("kirmizi_ruzgar", "nefes"), "Bir nefes 'nefes' hedefini tamamlar")
+	c.free()
+
+
 func test_chapter5_and_ending() -> void:
 	print("Bölüm 5 ve kapanış")
 	var c: Node = ContentScript.new()
@@ -672,7 +722,7 @@ func _validate_chapter(chapter: String) -> void:
 				check(c.items.has(o["item"]), "görev %s: eşya %s" % [q["id"], o["item"]])
 			if o.has("to"):
 				check(c.npcs.has(o["to"]), "görev %s: NPC %s" % [q["id"], o["to"]])
-			check(o.get("type", "deliver") in ["deliver", "defeat", "reach", "talk", "light", "ring", "collect"], "görev %s: hedef türü" % q["id"])
+			check(o.get("type", "deliver") in ["deliver", "defeat", "reach", "talk", "light", "ring", "collect", "breathe"], "görev %s: hedef türü" % q["id"])
 			if o.get("type", "") == "defeat":
 				check(o["target"] in MobStats.KINDS or o["target"] in ["pus", "kutuk_kral", "kiskac", "ruzgar", "dondurma", "miril"], "görev %s: bilinmeyen mob %s" % [q["id"], o["target"]])
 	c.free()

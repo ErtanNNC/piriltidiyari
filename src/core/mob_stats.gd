@@ -15,6 +15,10 @@ const KINDS := {
 	"kar_tavsani": {"name": "Kar Topu Tavşanı", "hp": 60, "speed": 2.8, "damage": 9, "attack": "throw", "range": 8.0, "aggro": 12.0, "xp": 16, "piril": 5},
 	"buz_dikeni": {"name": "Buz Dikeni", "hp": 80, "speed": 0.0, "damage": 11, "attack": "burst", "range": 2.6, "aggro": 4.0, "xp": 16, "piril": 5},
 	"golge_kopya": {"name": "Gölge Kopya", "hp": 80, "speed": 3.0, "damage": 12, "attack": "lunge", "range": 2.8, "aggro": 11.0, "xp": 30, "piril": 6},
+	# Season 2 (Kor Vadisi): Köpüklüler. "breath": at 0 HP they sit dazed and
+	# wait for Sakinleş (a breath); left alone they calm down by themselves.
+	"kopuklu_tavuk": {"name": "Köpüklü Tavuk", "hp": 30, "speed": 2.8, "damage": 8, "attack": "lunge", "range": 2.6, "aggro": 9.0, "xp": 3, "piril": 2, "breath": true},
+	"gurultucu_kurbaga": {"name": "Gürültücü Kurbağa", "hp": 38, "speed": 2.0, "damage": 9, "attack": "burst", "range": 2.6, "aggro": 8.0, "xp": 3, "piril": 3, "breath": true},
 	"dev_mantar": {"name": "Dev Somurtkan Mantar", "hp": 160, "speed": 1.4, "damage": 15, "attack": "burst", "range": 3.4, "aggro": 10.0, "xp": 20, "piril": 15},
 }
 
@@ -24,9 +28,14 @@ const MAX_ATTACKERS := 1
 
 ## Each kind's level: it belongs to its region's level range
 ## (Köy 1–5, Orman 5–10, Mağara 10–15, Liman 15–20, Dağ 20–25, Kale 25–30).
-const LEVELS := {"sumuklu": 1, "mantar": 2, "dev_mantar": 4, "kirpi_topu": 6, "karga": 7,
+const LEVELS := {"kopuklu_tavuk": 1, "gurultucu_kurbaga": 2, "sumuklu": 1, "mantar": 2, "dev_mantar": 4, "kirpi_topu": 6, "karga": 7,
 	"kristal_bocek": 11, "yarasa": 12, "firtina_yumagi": 16, "korsan_marti": 17,
 	"kar_tavsani": 21, "buz_dikeni": 22, "golge_kopya": 26}
+
+
+## Kinds that are calmed with a breath (Sakinleş) instead of on the spot.
+static func breathes(kind: String) -> bool:
+	return KINDS.get(kind, {}).get("breath", false)
 
 
 static func level_of(kind: String, variety := 0) -> int:

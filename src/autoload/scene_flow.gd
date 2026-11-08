@@ -19,6 +19,9 @@ const SCENES := {
 	"chapter4": "res://scenes/chapter4/uyku_dagi.tscn",
 	"chapter5": "res://scenes/chapter5/pus_kalesi.tscn",
 	"final": "res://scenes/chapter5/final.tscn",
+	# Season 2 · Kor Vadisi
+	"s2_scene1": "res://scenes/season2/s2_scene1_dogum_gunu.tscn",
+	"s2_scene2": "res://scenes/season2/s2_scene2_kirmizi_ruzgar.tscn",
 	# inside a village house (which one: SceneFlow.house_id)
 	"house": "res://scenes/chapter0/ev.tscn",
 	# dev only: all characters side by side (tools/screenshot.sh --scene=preview)
@@ -26,7 +29,8 @@ const SCENES := {
 }
 
 ## Which content pack (content/<id>/) a scene reads its story from.
-const SCENE_CHAPTER := {"chapter0": "chapter0", "chapter1": "chapter1", "chapter2": "chapter2", "chapter3": "chapter3", "chapter4": "chapter4", "chapter5": "chapter5", "final": "chapter5", "house": "chapter0"}
+const SCENE_CHAPTER := {"chapter0": "chapter0", "chapter1": "chapter1", "chapter2": "chapter2", "chapter3": "chapter3", "chapter4": "chapter4", "chapter5": "chapter5", "final": "chapter5", "house": "chapter0",
+	"s2_scene1": "s2_prologue", "s2_scene2": "s2_prologue"}
 
 ## [small line, big title] shown when a scene starts.
 const CARDS := {
@@ -43,6 +47,8 @@ const CARDS := {
 	"chapter4": ["Bölüm 4", "Uyku Dağı"],
 	"chapter5": ["Bölüm 5", "Pus Kalesi"],
 	"final": ["Kapanış", "Altı Renkli Fener"],
+	"s2_scene1": ["Sezon 2 · Prolog · Sahne 1", "Mırıl'ın İlk Doğum Günü"],
+	"s2_scene2": ["Sezon 2 · Prolog · Sahne 2", "Kırmızı Rüzgâr"],
 }
 
 var current := ""
@@ -94,6 +100,7 @@ func go_to(scene_id: String, save := true, card := true) -> void:
 	tw.tween_property(_fade, "modulate:a", 1.0, 0.45)
 	await tw.finished
 	Pus.set_amount(0.0)
+	Pus.set_color(Pus.GREY)
 	var chapter: String = SCENE_CHAPTER.get(scene_id, "prologue")
 	if Content.chapter.get("id", "") != chapter:
 		Content.load_chapter(chapter)
