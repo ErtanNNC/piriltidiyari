@@ -128,6 +128,8 @@ func _build() -> void:
 	kf.lantern_id = "kivilcim_feneri"
 	kf.position = Vector3(0, 0, -82)
 	lv.add_child(kf)
+	# after the boss: a shortcut home next to the Kıvılcım Feneri
+	TravelSign.exit_home(lv, kf.position + Vector3(4, 0, 3), "bolum1_bitti")
 	# decoration: friendly trees along the walls, fireflies in each area
 	var rng := RandomNumberGenerator.new()
 	rng.seed = 11
@@ -515,7 +517,7 @@ func _run_demo(which: String) -> void:
 					_hud._dialog.advance()
 					_hud._dialog.advance()
 				await get_tree().create_timer(0.1).timeout
-			print("BOSS2 quest=%s sparks=%s flag=%s level=%d piril=%d" % [d.quest_state(QUEST), d.sparks, d.has_flag("bolum1_bitti"), d.level, d.piril])
+			print("BOSS2 quest=%s sparks=%s flag=%s level=%d piril=%d exit=%s" % [d.quest_state(QUEST), d.sparks, d.has_flag("bolum1_bitti"), d.level, d.piril, ($Level/ExitSign as Node3D).visible])
 			get_tree().quit()
 		"mobs":
 			for m in get_tree().get_nodes_in_group("mob"):

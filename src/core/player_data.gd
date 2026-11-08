@@ -231,6 +231,17 @@ func quest_state(quest_id: String) -> String:
 	return "ready"
 
 
+## The open quest to show on the HUD among `chapter_quests` (the loaded
+## chapter's, in its order: main quest first). Open quests of other chapters
+## are skipped: their text isn't loaded here.
+func tracked_quest(chapter_quests: Dictionary) -> String:
+	for id: String in chapter_quests:
+		var s := quest_state(id)
+		if s == "active" or s == "ready":
+			return id
+	return ""
+
+
 func start_quest(quest_def: Dictionary) -> bool:
 	var id: String = quest_def["id"]
 	if quests.has(id):

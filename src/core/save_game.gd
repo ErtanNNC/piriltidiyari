@@ -1,11 +1,16 @@
 class_name SaveGame
 extends RefCounted
-## One save slot in user://kayit.json, written at every scene checkpoint.
+## Three save slots (Kayıt 1–3), written at every scene checkpoint and from
+## the Mola menu. Slot 1 is user://kayit.json (the old single save), the others
+## user://kayit_2.json and user://kayit_3.json. `slot` is the one in play.
 ## Crash-safe: the new save goes to a .tmp file first, the previous one is
 ## kept as .bak, then the .tmp is renamed into place. Loading tries the main
 ## file, then the .bak. Old saves are migrated step by step (VERSION).
 
 const PATH := "user://kayit.json"
+const SLOTS := 3
+## The slot the current adventure saves into.
+static var slot := 1
 ## 1: first release · 2: base stats, equipped, powers (Sezon 1 güncellemeleri)
 const VERSION := 2
 
@@ -13,13 +18,66 @@ const VERSION := 2
 static var last_error := OK
 
 
+## File name stem of the slots (tests point it elsewhere).
+static var base := "user://kayit"
+
+
+static func path_for(s: int) -> String:
+	return base + ".json" if s <= 1 else "%s_%d.json" % [base, s]
+
+
+static func current_path() -> String:
+	return path_for(slot)
+
+
+## Is there any save at all (any slot)?
 static func exists() -> bool:
-	return FileAccess.file_exists(PATH) or FileAccess.file_exists(PATH + ".bak")
+	for s in range(1, SLOTS + 1):
+		if slot_exists(s):
+			return true
+	return false
 
 
-static func write(data: PlayerData, path := PATH) -> Error:
+static func slot_exists(s: int) -> bool:
+	var p := path_for(s)
+	return FileAccess.file_exists(p) or FileAccess.file_exists(p + ".bak")
+
+
+## The slot saved most recently (0 = none), for "Devam et".
+static func latest_slot() -> int:
+	var best := 0
+	var best_t := -1.0
+	for s in range(1, SLOTS + 1):
+		if not slot_exists(s):
+			continue
+		var t := float(summary(s).get("saved_at", 0))
+		if t > best_t:
+			best_t = t
+			best = s
+	return best
+
+
+## What a slot card shows: {} for an empty slot, otherwise name, level,
+## scene_id, piril, sparks, saved_at (unix seconds).
+static func summary(s: int) -> Dictionary:
+	var d := load_dict(path_for(s))
+	if d.is_empty():
+		return {}
+	var t: float = d.get("saved_at", 0.0)
+	if t <= 0.0 and FileAccess.file_exists(path_for(s)):
+		t = FileAccess.get_modified_time(path_for(s))
+	return {"name": d.get("character_name", ""), "level": int(d.get("level", 1)),
+		"scene_id": d.get("scene_id", "scene1"), "piril": int(d.get("piril", 0)),
+		"sparks": (d.get("sparks", []) as Array).size() if d.get("sparks") is Array else 0,
+		"saved_at": t}
+
+
+static func write(data: PlayerData, path := "") -> Error:
+	if path == "":
+		path = current_path()
 	var d := data.to_dict()
 	d["version"] = VERSION
+	d["saved_at"] = Time.get_unix_time_from_system()
 	last_error = write_atomic(path, JSON.stringify(d, "\t"))
 	return last_error
 
@@ -44,7 +102,9 @@ static func write_atomic(path: String, text: String) -> Error:
 
 
 ## The newest loadable save as a migrated Dictionary ({} = none).
-static func load_dict(path := PATH) -> Dictionary:
+static func load_dict(path := "") -> Dictionary:
+	if path == "":
+		path = current_path()
 	for p: String in [path, path + ".bak"]:
 		if not FileAccess.file_exists(p):
 			continue
@@ -59,7 +119,7 @@ static func load_dict(path := PATH) -> Dictionary:
 	return {}
 
 
-static func read_into(data: PlayerData, path := PATH) -> bool:
+static func read_into(data: PlayerData, path := "") -> bool:
 	var d := load_dict(path)
 	if d.is_empty():
 		return false
@@ -88,7 +148,9 @@ static func migrate(d: Dictionary) -> Dictionary:
 	return d
 
 
-static func clear() -> void:
-	for p: String in [PATH, PATH + ".bak", PATH + ".tmp"]:
+## Remove a slot (default: the one in play).
+static func clear(s := 0) -> void:
+	var base := path_for(s if s > 0 else slot)
+	for p: String in [base, base + ".bak", base + ".tmp"]:
 		if FileAccess.file_exists(p):
 			DirAccess.remove_absolute(ProjectSettings.globalize_path(p))

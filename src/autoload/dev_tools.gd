@@ -50,7 +50,19 @@ func _jump(scene: String) -> void:
 			# screenshot helper: override the Pus once the scene has set its own
 			var v := float(arg.get_slice("=", 1))
 			get_tree().create_timer(1.0).timeout.connect(func() -> void: Pus.set_amount(v))
+		elif arg.begins_with("--near="):
+			# screenshot helper: put the keeper 3 m in front of a named node
+			var target := arg.get_slice("=", 1)
+			get_tree().create_timer(1.2).timeout.connect(func() -> void: _put_near(target))
 	SceneFlow.go_to(scene, false)
+
+
+func _put_near(node_name: String) -> void:
+	var root := get_tree().current_scene
+	var n := root.find_child(node_name, true, false) as Node3D if root else null
+	var p := root.get_node_or_null("Player") as Node3D if root else null
+	if n and p:
+		p.global_position = n.global_position + Vector3(0, 0.5, 3.0)
 
 
 ## The level a keeper usually has on reaching each region.

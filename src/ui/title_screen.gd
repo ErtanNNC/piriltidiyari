@@ -1,7 +1,7 @@
 extends Node3D
 ## Opening: "Just A Game Studios" splash, then the title over the evening
-## village with a slowly circling camera. Başla starts a new game, Devam et
-## loads the checkpoint save.
+## village with a slowly circling camera. Başla / Yeni oyun starts a new game
+## in a save slot, Devam et loads the newest save, Kayıtlar picks any slot.
 
 @onready var _cam: Camera3D = $Camera
 var _t := 0.0
@@ -65,15 +65,25 @@ func _build_menu() -> void:
 	var start := UiKit.button("Başla", not has_save)
 	start.custom_minimum_size = Vector2(260, 64)
 	start.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
-	start.pressed.connect(_new_game)
+	start.pressed.connect(func() -> void:
+		if SaveGame.exists():
+			_open_slots("new")
+		else:
+			_start_in(1))
 	if has_save:
 		var cont := UiKit.button("Devam et")
 		cont.custom_minimum_size = Vector2(260, 64)
 		cont.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
-		cont.pressed.connect(_continue)
+		cont.pressed.connect(func() -> void: _continue(SaveGame.latest_slot()))
 		root.add_child(cont)
 		start.text = "Yeni oyun"
 	root.add_child(start)
+	if has_save:
+		var saves := UiKit.button("Kayıtlar", false)
+		saves.custom_minimum_size = Vector2(260, 56)
+		saves.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+		saves.pressed.connect(func() -> void: _open_slots("load"))
+		root.add_child(saves)
 	# sound settings: two small toggles under the menu
 	var row := HBoxContainer.new()
 	row.alignment = BoxContainer.ALIGNMENT_CENTER
@@ -97,17 +107,44 @@ func _build_menu() -> void:
 	root.modulate.a = 0.0
 	var tw := create_tween()
 	tw.tween_property(root, "modulate:a", 1.0, 0.6)
+	_menu = root
+	if DevTools.demo in ["slots", "slotsnew"] and not _demo_shown:
+		_demo_shown = true
+		_open_slots("new" if DevTools.demo == "slotsnew" else "load")
 
 
-func _new_game() -> void:
+var _menu: Control
+var _demo_shown := false
+
+
+func _open_slots(mode: String) -> void:
+	var p := SaveSlotsPanel.new(mode)
+	p.chosen.connect(func(s: int) -> void:
+		if mode == "new":
+			_start_in(s)
+		else:
+			_continue(s))
+	p.closed.connect(func() -> void:
+		# rebuild: a deleted save may change Devam et / Kayıtlar
+		_menu.queue_free()
+		_build_menu())
+	_menu.visible = false
+	_ui.add_child(p)
+
+
+## A new adventure in slot `s` (its old save is cleared first).
+func _start_in(s: int) -> void:
+	SaveGame.slot = maxi(s, 1)
+	SaveGame.clear(SaveGame.slot)
 	GameState.data = PlayerData.new()
 	SceneFlow.go_to("scene1")
 
 
-func _continue() -> void:
+func _continue(s: int) -> void:
+	SaveGame.slot = maxi(s, 1)
 	var d := PlayerData.new()
 	if not SaveGame.read_into(d):
-		_new_game()
+		_start_in(SaveGame.slot)
 		return
 	d.recompute_stats(Content.items)  # derived stats, never drifting
 	d.catch_up()  # saves from before mob levels

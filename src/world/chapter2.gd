@@ -158,6 +158,8 @@ func _build() -> void:
 	kf.lantern_id = "kivilcim_feneri"
 	kf.position = Vector3(10, 0, -50)
 	lv.add_child(kf)
+	# after the boss: a shortcut home next to the Kıvılcım Feneri
+	TravelSign.exit_home(lv, kf.position + Vector3(-6, 0, 5), "bolum2_bitti")
 	_side_content(lv)
 	_player.respawn_point = _player.global_position
 
@@ -511,7 +513,7 @@ func _run_demo(which: String) -> void:
 					_hud._dialog.advance()
 					_hud._dialog.advance()
 				await get_tree().create_timer(0.1).timeout
-			print("CRAB2 quest=%s sparks=%s shop=%s flag=%s" % [d.quest_state(QUEST), d.sparks, d.has_flag("kazma_dukkan"), d.has_flag("bolum2_bitti")])
+			print("CRAB2 quest=%s sparks=%s shop=%s flag=%s exit=%s" % [d.quest_state(QUEST), d.sparks, d.has_flag("kazma_dukkan"), d.has_flag("bolum2_bitti"), ($Level/ExitSign as Node3D).visible])
 			get_tree().quit()
 
 

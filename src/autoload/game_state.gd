@@ -82,9 +82,9 @@ func apply_dialogue_effects(then: Dictionary) -> void:
 
 
 ## The quest the HUD tracker shows: the first active/ready one.
+## The quest shown on the HUD: an open quest of the chapter that is loaded,
+## in the chapter's order (main quest first). A side quest left open in
+## another chapter has no text here, so it is skipped instead of leaving an
+## empty panel.
 func tracked_quest() -> String:
-	for id: String in data.quests:
-		var s := data.quest_state(id)
-		if s == "active" or s == "ready":
-			return id
-	return ""
+	return data.tracked_quest(Content.quests)

@@ -16,6 +16,7 @@ func _init() -> void:
 	test_quest_flow_scene2()
 	test_save_roundtrip()
 	test_save_safety_and_stats()
+	test_save_slots_and_tracker()
 	test_owl_plan()
 	test_content_is_valid()
 	print("\n%d kontrol, %d hata" % [_checks, _failures])
@@ -170,6 +171,55 @@ func test_quest_flow_scene2() -> void:
 	check(d.has_flag("sahne2_bitti") and d.quest_state("gri_ruzgar") == "done", "sahne 2 bitti")
 	check(talk.call("piti")["lines"][0]["text"].contains("Sis"), "çocuklar Sahne 2'de sisten söz eder")
 	c.free()
+
+
+func test_save_slots_and_tracker() -> void:
+	print("Kayıt yuvaları ve görev paneli")
+	var old_base := SaveGame.base
+	var old_slot := SaveGame.slot
+	SaveGame.base = "user://test_yuva"
+	for s in range(1, SaveGame.SLOTS + 1):
+		SaveGame.clear(s)
+	check(not SaveGame.exists() and SaveGame.latest_slot() == 0, "boş yuvalar: kayıt yok")
+	var a := PlayerData.new()
+	a.character_name = "Pati"
+	a.add_piril(7)
+	a.scene_id = "chapter3"
+	SaveGame.slot = 1
+	SaveGame.write(a)
+	var b := PlayerData.new()
+	b.character_name = "Bado"
+	b.scene_id = "scene1"
+	SaveGame.slot = 3
+	SaveGame.write(b)
+	check(SaveGame.slot_exists(1) and not SaveGame.slot_exists(2) and SaveGame.slot_exists(3), "iki ayrı yuvaya kaydedilir")
+	var s1 := SaveGame.summary(1)
+	check(s1["name"] == "Pati" and s1["piril"] == 7 and s1["scene_id"] == "chapter3" and float(s1["saved_at"]) > 0.0, "yuva özeti: ad, Pırıl, yer, saat")
+	check(SaveGame.summary(2).is_empty(), "boş yuvanın özeti boş")
+	check(SaveGame.latest_slot() == 3, "Devam et en son kaydedilen yuvayı açar")
+	SaveGame.slot = 1
+	var e := PlayerData.new()
+	check(SaveGame.read_into(e) and e.character_name == "Pati", "seçilen yuva yüklenir (öteki yuva karışmaz)")
+	SaveGame.clear(3)
+	check(not SaveGame.slot_exists(3) and SaveGame.slot_exists(1), "yuva silinir, ötekiler kalır")
+	check(SaveGame.path_for(1) == "user://test_yuva.json", "1. yuva eski tek kaydın dosyası")
+	for s in range(1, SaveGame.SLOTS + 1):
+		SaveGame.clear(s)
+	SaveGame.base = old_base
+	SaveGame.slot = old_slot
+	# the quest panel only follows quests of the loaded chapter
+	var c3 := {"marti_yavrulari": _quest("chapter3", "marti_yavrulari")}
+	var c4 := {"uyku_dagi": _quest("chapter4", "uyku_dagi"), "uykulu_yavrular": _quest("chapter4", "uykulu_yavrular")}
+	var d := PlayerData.new()
+	d.start_quest(c3["marti_yavrulari"])
+	check(d.tracked_quest(c4) == "", "başka bölümün açık görevi boş panel açmaz")
+	d.start_quest(c4["uykulu_yavrular"])
+	d.start_quest(c4["uyku_dagi"])
+	check(d.tracked_quest(c4) == "uyku_dagi", "bölümün ana görevi önce gösterilir")
+
+
+func _quest(chapter: String, id: String) -> Dictionary:
+	return JSON.parse_string(FileAccess.get_file_as_string("res://content/%s/quests/%s.json" % [chapter, id]))
 
 
 func test_save_safety_and_stats() -> void:

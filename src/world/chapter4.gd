@@ -166,6 +166,8 @@ func _build() -> void:
 	kf.lantern_id = "kivilcim_feneri"
 	kf.position = LAKE + Vector3(-8, 0, -12)
 	lv.add_child(kf)
+	# after the boss: a shortcut home next to the Kıvılcım Feneri
+	TravelSign.exit_home(lv, kf.position + Vector3(4, 0, 2.5), "bolum4_bitti")
 	var arena := TriggerArea.new()
 	arena.area_id = "donmus_gol"
 	arena.radius = 3.0
@@ -522,7 +524,7 @@ func _run_demo(which: String) -> void:
 					_hud._dialog.advance()
 					_hud._dialog.advance()
 				await get_tree().create_timer(0.1).timeout
-			print("GOLEM2 quest=%s sparks=%s flag=%s" % [d.quest_state(QUEST), d.sparks, d.has_flag("bolum4_bitti")])
+			print("GOLEM2 quest=%s sparks=%s flag=%s exit=%s" % [d.quest_state(QUEST), d.sparks, d.has_flag("bolum4_bitti"), ($Level/ExitSign as Node3D).visible])
 			get_tree().quit()
 		"spots":
 			var me := d.character_id

@@ -34,8 +34,34 @@ func _ready() -> void:
 
 func _refresh() -> void:
 	var ok := requires_flag == "" or GameState.data.has_flag(requires_flag)
+	var appeared := ok and not visible and is_inside_tree() and _ready_done
 	visible = ok
 	_area.collision_layer = 4 if ok else 0
+	if appeared:
+		# shows up right now (the boss just woke up): pop in with a star
+		scale = Vector3(0.2, 0.2, 0.2)
+		create_tween().tween_property(self, "scale", Vector3.ONE, 0.5).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+		Beacon.attach(self, 3.4)
+		GameState.toast.emit("Köye dönüş tabelası çıktı", "star")
+	_ready_done = true
+
+
+var _ready_done := false
+
+
+## The shortcut home after a boss: a "Köye dön" sign by the Kıvılcım Feneri
+## that appears once the chapter is done, so nobody walks the whole way back.
+static func exit_home(parent: Node3D, at: Vector3, done_flag: String, face_deg := 0.0) -> TravelSign:
+	var t := TravelSign.new()
+	t.name = "ExitSign"
+	t.target_scene = "chapter0"
+	t.title = "Gökkuşağı Köyü"
+	t.action = "Köye dön"
+	t.requires_flag = done_flag
+	t.position = at
+	t.rotation_degrees.y = face_deg
+	parent.add_child(t)
+	return t
 
 
 func interact(_by: Node) -> void:

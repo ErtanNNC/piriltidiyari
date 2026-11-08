@@ -611,9 +611,11 @@ func toggle_pause() -> void:
 				Audio.play("coin"))
 		row.add_child(sl)
 		v.add_child(row)
+	var save := UiKit.button("Kaydet (Kayıt %d)" % SaveGame.slot, false)
+	save.name = "SaveButton"
 	var stuck := UiKit.button("Takıldım: son fenere dön", false)
 	var menu := UiKit.button("Ana menü", false)
-	for b: Button in [cont, mus, sfx, stuck, menu]:
+	for b: Button in [cont, save, mus, sfx, stuck, menu]:
 		b.custom_minimum_size = Vector2(280, 56)
 		v.add_child(b)
 	var refresh := func() -> void:
@@ -631,10 +633,14 @@ func toggle_pause() -> void:
 		toggle_pause()
 		if _player and is_instance_valid(_player):
 			_player.unstick())
+	save.pressed.connect(func() -> void:
+		var ok := SaveGame.write(GameState.data) == OK
+		save.text = "Kaydedildi!" if ok else "Kaydedilemedi"
+		Audio.play("coin" if ok else "warn"))
 	menu.pressed.connect(func() -> void:
 		toggle_pause()
 		SceneFlow.go_to("title", false))
-	var note := UiKit.label("Oyun her bölüm başında kaydedilir. · %d FPS" % Engine.get_frames_per_second(), "text-caption", "ink-muted")
+	var note := UiKit.label("Bölüm başlarında kendiliğinden de kaydedilir. · %d FPS" % Engine.get_frames_per_second(), "text-caption", "ink-muted")
 	note.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	v.add_child(note)
 	_root.add_child(p)

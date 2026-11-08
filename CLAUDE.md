@@ -68,6 +68,12 @@ is a copy of the design system's tokens.
   requests with `tools/fetch_template.py`); `tools/publish_itch.sh` pushes it
   with butler (BUTLER_API_KEY, ITCH_TARGET). `.github/workflows/ci.yml` runs
   tests on every push/PR and builds web on main.
+- Save slots: `SaveGame.SLOTS` (3), `SaveGame.slot` is the one in play (slot 1 =
+  the old `user://kayit.json`); title has Devam et (`latest_slot`), Yeni oyun and
+  Kayıtlar (`SaveSlotsPanel`, `--demo=slots|slotsnew`); Mola has "Kaydet".
+  The HUD quest panel follows `PlayerData.tracked_quest(Content.quests)` (only
+  the loaded chapter's quests). After a boss, `TravelSign.exit_home` shows a
+  "Köye dön" sign by the Kıvılcım Feneri (`--near=ExitSign` for screenshots).
 - Saves: `SaveGame.write` is atomic (.tmp → rename, .bak kept), `load_dict`
   falls back to .bak, `SaveGame.migrate` upgrades by VERSION. Stats are derived:
   `PlayerData.recompute_stats(Content.items)` from `base_stats` + level + charms

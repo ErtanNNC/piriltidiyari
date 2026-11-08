@@ -235,6 +235,8 @@ func _storm_island(lv: Node3D) -> void:
 	kf.lantern_id = "kivilcim_feneri"
 	kf.position = c + Vector3(-4.5, 0, -3)
 	lv.add_child(kf)
+	# after the boss: a shortcut home next to the Kıvılcım Feneri
+	TravelSign.exit_home(lv, kf.position + Vector3(3.5, 0, 1.5), "bolum3_bitti")
 	var nest := TriggerArea.new()
 	nest.area_id = "firtina_yuvasi"
 	nest.radius = 3.0
@@ -702,7 +704,7 @@ func _run_demo(which: String) -> void:
 					_hud._dialog.advance()
 					_hud._dialog.advance()
 				await get_tree().create_timer(0.1).timeout
-			print("GULL2 quest=%s sparks=%s pazar=%s flag=%s cam_current=%s" % [d.quest_state(QUEST), d.sparks, d.has_flag("pirpir_pazar"), d.has_flag("bolum3_bitti"), ($Camera as Camera3D).current])
+			print("GULL2 quest=%s sparks=%s pazar=%s flag=%s cam_current=%s exit=%s" % [d.quest_state(QUEST), d.sparks, d.has_flag("pirpir_pazar"), d.has_flag("bolum3_bitti"), ($Camera as Camera3D).current, ($Level/ExitSign as Node3D).visible])
 			get_tree().quit()
 
 
