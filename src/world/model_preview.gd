@@ -194,20 +194,35 @@ func _reference() -> void:
 	cam.look_at(Vector3(0, 1.0, 0))
 
 
-## The game draws the outline itself, so the reference must not have one.
+## The reference must hold only flat base colors: no outline (the game draws
+## it) and no light (the game lights the model; light baked into the texture
+## would be added twice and wash the colors out).
 func _no_outline(n: Node) -> void:
 	if n is GeometryInstance3D:
 		var g := n as GeometryInstance3D
 		if g.material_override:
-			g.material_override = g.material_override.duplicate()
-			g.material_override.next_pass = null
+			g.material_override = _flat(g.material_override)
 		if n is MeshInstance3D:
 			var mi := n as MeshInstance3D
 			for i in mi.get_surface_override_material_count():
 				var mat := mi.get_active_material(i)
-				if mat and mat.next_pass:
-					mat = mat.duplicate()
-					mat.next_pass = null
-					mi.set_surface_override_material(i, mat)
+				if mat:
+					mi.set_surface_override_material(i, _flat(mat))
 	for c in n.get_children():
 		_no_outline(c)
+
+
+static func _flat(src: Material) -> Material:
+	var col := Color.WHITE
+	if src is ShaderMaterial:
+		var v: Variant = (src as ShaderMaterial).get_shader_parameter("albedo")
+		if v is Color:
+			col = v
+	elif src is BaseMaterial3D:
+		col = (src as BaseMaterial3D).albedo_color
+	var m := StandardMaterial3D.new()
+	m.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	m.albedo_color = col
+	if col.a < 0.99:
+		m.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	return m

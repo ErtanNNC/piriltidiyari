@@ -8,7 +8,9 @@ extends RefCounted
 ##   - scaled so it is `height` meters tall (default from HEIGHTS) and stands on y=0
 ##   - given the toon look: each material's color/texture goes into
 ##     toon.gdshader with the dark outline as next pass
-## Optional `assets/models/<id>.json`: {"height": 2.0, "facing": 180, "outline": 0.03}
+## Optional `assets/models/<id>.json`: {"height": 2.0, "facing": 180, "outline": 0.03,
+## "tint": [r, g, b]} (tint multiplies the texture, e.g. to take out light that
+## was baked into an AI-made texture)
 ## Animations named idle / walk / run / jump / attack (any case, any prefix)
 ## are played by CharacterRig.
 
@@ -49,7 +51,11 @@ static func from_scene(model: Node3D, id: String) -> Node3D:
 	pose.add_child(fit)
 	fit.add_child(model)
 	model.rotation_degrees.y = float(opts.get("facing", 0.0))
-	toonify(model, float(opts.get("outline", 0.03)))
+	var tint := Color.WHITE
+	var t: Variant = opts.get("tint")
+	if t is Array and (t as Array).size() >= 3:
+		tint = Color(float(t[0]), float(t[1]), float(t[2]))
+	toonify(model, float(opts.get("outline", 0.03)), tint)
 	var box := _bounds(model, Transform3D.IDENTITY)
 	if box.size.y > 0.001:
 		var s := float(opts.get("height", HEIGHTS.get(id, 2.0))) / box.size.y
@@ -71,18 +77,18 @@ static func _options(id: String) -> Dictionary:
 
 
 ## Replaces every material under `node` with the toon shader (+ outline).
-static func toonify(node: Node, outline := 0.03) -> void:
+static func toonify(node: Node, outline := 0.03, tint := Color.WHITE) -> void:
 	if node is MeshInstance3D:
 		var mi := node as MeshInstance3D
 		if mi.mesh:
 			for i in mi.mesh.get_surface_count():
 				var src := mi.get_active_material(i)
-				mi.set_surface_override_material(i, _toon_from(src, outline))
+				mi.set_surface_override_material(i, _toon_from(src, outline, tint))
 	for c in node.get_children():
-		toonify(c, outline)
+		toonify(c, outline, tint)
 
 
-static func _toon_from(src: Material, outline: float) -> ShaderMaterial:
+static func _toon_from(src: Material, outline: float, tint := Color.WHITE) -> ShaderMaterial:
 	var col := Color.WHITE
 	var tex: Texture2D = null
 	var glow := 0.0
@@ -92,6 +98,7 @@ static func _toon_from(src: Material, outline: float) -> ShaderMaterial:
 		tex = b.albedo_texture
 		if b.emission_enabled:
 			glow = b.emission_energy_multiplier
+	col *= tint
 	var m := Toon.material(col, outline, glow).duplicate() as ShaderMaterial
 	if tex:
 		m.set_shader_parameter("albedo_tex", tex)

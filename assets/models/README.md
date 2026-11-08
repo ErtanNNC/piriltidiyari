@@ -41,3 +41,20 @@ Oyun modeli kendisi hazırlar (`src/actors/model_import.gd`):
 Kontrol: `tools/screenshot.sh out.png --scene=preview` (bekçiler yan yana),
 `--demo=npcs` (köylüler). Aktarma zincirinin testi:
 `godot --headless --path . -- --scene=preview --demo=import`.
+
+## Deneme: `deneme/pati.glb` (Kasım 2026)
+
+Oyunun kendi Pati'sinin referans görselinden (`--scene=preview --demo=ref
+--model=pati`) Higgsfield → Tripo H3.1 ile üretildi (9 kredi, 14,8 bin üçgen,
+2048 px doku). Oyunda **kullanılmıyor**; denemek için `pati.glb` ve
+`pati.json` dosyalarını bu klasöre taşı. Öğrenilenler:
+
+- Yön: Tripo modeli +X'e bakıyor → `"facing": -90`.
+- Işık: referans ışıklı çizilince ışık dokuya işlendi, renkler sarıya kaçtı
+  (`"tint"` ile düzeltildi). Referans artık ışıksız, düz renkli çiziliyor.
+- Kabarık yüz ayrıntılarında dış çizgi kalın durdu → `"outline": 0.012`.
+- Kendi basit modelimizi referans vermek kaliteyi pek artırmıyor (aynı tasarımın
+  biraz pürüzlü kopyası). Asıl fark için referans, profesyonel bir karakter
+  çizimi olmalı.
+- Dışarıdan gelen bekçi modeli dükkân kıyafetlerini, aletleri ve renk
+  seçeneklerini göstermez (bunlar parça parça kurulan modele takılıyor).
