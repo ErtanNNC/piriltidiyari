@@ -298,7 +298,7 @@ func test_owl_plan() -> void:
 
 
 func test_content_is_valid() -> void:
-	for chapter in ["prologue", "chapter0", "chapter1", "chapter2", "chapter3", "chapter4", "chapter5", "s2_prologue", "s2_chapter0", "s2_chapter1", "s2_chapter2"]:
+	for chapter in ["prologue", "chapter0", "chapter1", "chapter2", "chapter3", "chapter4", "chapter5", "s2_prologue", "s2_chapter0", "s2_chapter1", "s2_chapter2", "s2_chapter3"]:
 		_validate_chapter(chapter)
 	test_chapter0_flow()
 	test_chapter1_flow()
@@ -690,6 +690,15 @@ func test_season2() -> void:
 	sb.advance_objective("sira_bekle", "kucuk")
 	check(sb.quest_state("sira_bekle") == "ready", "Sıra bekle: sırayla dinleyince tamam")
 	check(c.items.has("papatya_cayi") and PlayerData.POTIONS.has("papatya_cayi"), "Papatya Çayı iksir")
+	for k in ["patlayan_misir", "kiskanc_civciv"]:
+		check(MobStats.breathes(k) and int(MobStats.LEVELS[k]) in range(15, 21), "%s: nefesle sakinleşir, tarla seviyesi" % k)
+	c.load_chapter("s2_chapter3")
+	var pn := PlayerData.new()
+	pn.start_quest(c.quests["panayir"])
+	pn.notify("win", "balon", c.quests)
+	check(pn.quest_state("panayir") == "active", "Panayır: tek oyun yetmez")
+	pn.notify("win", "kosu", c.quests)
+	check(pn.quest_state("panayir") == "ready", "Panayır: iki oyun kazanılınca tamam")
 	var tp := PlayerData.new()
 	tp.choose_keeper("tipis_panda", c.keeper("tipis_panda")["stats"], {}, "Tıpış")
 	check(tp.level == 1 and tp.active_skill() == "derin_nefes", "Tıpış seçilince seviye 1 ve Derin Nefes")
@@ -789,7 +798,7 @@ func _validate_chapter(chapter: String) -> void:
 				check(c.items.has(o["item"]), "görev %s: eşya %s" % [q["id"], o["item"]])
 			if o.has("to"):
 				check(c.npcs.has(o["to"]), "görev %s: NPC %s" % [q["id"], o["to"]])
-			check(o.get("type", "deliver") in ["deliver", "defeat", "reach", "talk", "light", "ring", "collect", "breathe", "lull"], "görev %s: hedef türü" % q["id"])
+			check(o.get("type", "deliver") in ["deliver", "defeat", "reach", "talk", "light", "ring", "collect", "breathe", "lull", "win"], "görev %s: hedef türü" % q["id"])
 			if o.get("type", "") == "defeat":
 				check(o["target"] in MobStats.KINDS or o["target"] in ["pus", "kutuk_kral", "kiskac", "ruzgar", "dondurma", "miril"], "görev %s: bilinmeyen mob %s" % [q["id"], o["target"]])
 	c.free()

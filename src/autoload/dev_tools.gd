@@ -4,7 +4,7 @@ extends Node
 ## --scene jumps to a story scene with the progress of the scenes before it.
 ## Never active in a normal run.
 
-const ORDER := ["scene1", "scene2", "scene3", "scene4", "scene5", "scene6", "chapter0", "chapter1", "chapter2", "chapter3", "chapter4", "chapter5", "final", "s2_scene1", "s2_scene2", "s2_scene3", "s2_scene4", "s2_scene5", "s2_scene6", "s2_chapter0", "s2_chapter1", "s2_chapter2"]
+const ORDER := ["scene1", "scene2", "scene3", "scene4", "scene5", "scene6", "chapter0", "chapter1", "chapter2", "chapter3", "chapter4", "chapter5", "final", "s2_scene1", "s2_scene2", "s2_scene3", "s2_scene4", "s2_scene5", "s2_scene6", "s2_chapter0", "s2_chapter1", "s2_chapter2", "s2_chapter3"]
 
 var _shot_path := ""
 var _frames := 60
@@ -182,11 +182,15 @@ static func _preset_story(data: PlayerData, scene: String) -> void:
 			Powers.pick(data, Powers.choices(data.powers, RandomNumberGenerator.new())[0]["id"])
 		data.add_item("bal_surubu", 3)
 		data.add_item("nane_sekeri", 2)
+	if idx >= 22:
+		data.set_flag("s2_can2")
+		data.set_flag("kor_mercan")
+		data.set_flag("s2_bolum2_bitti")
 	if idx >= 21:
 		data.set_flag("s2_can1")
 		data.set_flag("kor_turuncu")
 		data.set_flag("s2_bolum1_bitti")
-		while data.level < 10:
+		while data.level < (15 if idx >= 22 else 10):
 			data.add_xp(Progression.xp_to_next(data.level) - data.xp)
 		while data.power_picks > 0:
 			Powers.pick(data, Powers.choices(data.powers, RandomNumberGenerator.new())[0]["id"])

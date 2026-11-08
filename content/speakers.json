@@ -239,6 +239,18 @@
     "fokur": {
       "name": "Kaynar Kurbağa Fokur",
       "color": "hp"
+    },
+    "kukuri": {
+      "name": "Horoz Kukuri",
+      "color": "hp"
+    },
+    "patpat": {
+      "name": "Tavuk Patpat",
+      "color": "spark-yellow"
+    },
+    "minnos": {
+      "name": "Minnoş",
+      "color": "spark-green"
     }
   }
 }

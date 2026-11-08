@@ -185,11 +185,20 @@ is a copy of the design system's tokens.
   (`FokurPlan` + `Fokur`: bubbles, croak ring, hop → tired = hittable), Mercan
   Kor (flag `kor_mercan`). Exits back are TriggerAreas at the map edges (keep
   spawn points away from them).
+- Bölüm 3 `s2_chapter3` (Patpat Tarlaları, from the lake island's north edge
+  after `s2_bolum2_bitti`): fair games at `FairStall`s ("Oyna" → `_on_play`):
+  Balon Patlat (`FairBalloon`, hittable) and Bayrak Koşusu (flags in order),
+  timed; losing just lets you play again (events "win"/<game>). Popping corn
+  spots in the fields (warned). Boss Tavuk Patpat = `Patpat extends Firfir`
+  (`_make_model`, `attack_color`, `tired_hint`, `calm_event`), Kehribar Kor
+  (`kor_kehribar`), then Minnoş runs off (`s2_minnos_kacti`). HUD shows the five
+  Kor (`KorTracker`, flags `kor_<id>`) once `s2_prolog_bitti`.
 - Checks: `--scene=s2_scene1 --demo=glide|jump|party`, `--scene=s2_scene2 --demo=redwind|breath|guide|angry`,
   `--scene=s2_scene3 --demo=path|jumponly|stairs`, `--scene=s2_scene4 --demo=win --auto`,
   `--scene=s2_scene5 --demo=flow --auto`, `--scene=s2_scene6 --demo=pick_<id> --auto`,
   `--scene=s2_chapter0 --demo=village|bell_locked|stairs [--keeper=tipis_panda]`,
-  `--scene=s2_chapter1 --demo=forest|veil|boss`, `--scene=s2_chapter2 --demo=lake|water|pads`.
+  `--scene=s2_chapter1 --demo=forest|veil|boss`, `--scene=s2_chapter2 --demo=lake|water|pads`,
+  `--scene=s2_chapter3 --demo=fair|stalls`.
 
 ## Agent skills
 

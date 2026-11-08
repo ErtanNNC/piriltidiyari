@@ -326,6 +326,16 @@ func _build() -> void:
 		wall.material_override = m
 		wall.position.y = 1.5
 		_veil.add_child(wall)
+	TravelSign.board(lv, "Patpat Tarlaları ↑", Vector3(-2.6, 1.3, ISLAND.z - ISLAND_R + 1.6), 2.4)
+	Toon.part(lv, "box", Vector3(0.16, 1.2, 0.16), Color("#a86b45"), Vector3(-2.6, 0.6, ISLAND.z - ISLAND_R + 1.55))
+	var on := TriggerArea.new()
+	on.radius = 1.5
+	on.once = false
+	lv.add_child(on)
+	on.position = ISLAND + Vector3(0, 0, -ISLAND_R + 0.8)
+	on.reached.connect(func() -> void:
+		if GameState.data.has_flag("s2_bolum2_bitti"):
+			SceneFlow.go_to("s2_chapter3"))
 	TravelSign.board(lv, "Kızıl Yaprak Ormanı ↓", Vector3(-3.0, 1.3, 29.5), 2.8)
 	Toon.part(lv, "box", Vector3(0.16, 1.2, 0.16), Color("#a86b45"), Vector3(-3.0, 0.6, 29.45))
 	var back := TriggerArea.new()

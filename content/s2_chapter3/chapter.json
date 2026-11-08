@@ -1,0 +1,19 @@
+{
+  "id": "s2_chapter3",
+  "title": "Patpat Tarlaları",
+  "region": "Patpat Tarlaları",
+  "theme": "light",
+  "levels": [
+    15,
+    20
+  ],
+  "spark": null,
+  "quests": [
+    "panayir",
+    "patpat"
+  ],
+  "dialogue": [
+    "kukuri"
+  ],
+  "barks": "barks"
+}

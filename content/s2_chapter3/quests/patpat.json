@@ -1,0 +1,31 @@
+{
+  "id": "patpat",
+  "title": "Tavuk Patpat",
+  "giver": "kukuri",
+  "ordered": true,
+  "objectives": [
+    {
+      "id": "can",
+      "text": "Tarlaların Ses Çanı'nı çal",
+      "type": "ring",
+      "target": "ses_cani"
+    },
+    {
+      "id": "patpat",
+      "text": "Tavuk Patpat'ı dinle",
+      "type": "breathe",
+      "target": "patpat"
+    },
+    {
+      "id": "kor",
+      "text": "Kehribar Kor'u al",
+      "type": "reach",
+      "target": "kehribar_kor"
+    }
+  ],
+  "turn_in": "Horoz Kukuri'ye dön",
+  "rewards": {
+    "piril": 100,
+    "xp": 700
+  }
+}

@@ -780,6 +780,60 @@
  "content/s2_chapter2/shop.json": [
   "Demlik'in Çay Tezgâhı"
  ],
+ "content/s2_chapter3/barks.json": [
+  "Patpat Tarlaları! Mısırlar sıcakta patlıyor!",
+  "Panayır şurada. Horoz Kukuri'yi bulayım.",
+  "Kazandım! Ama kaybetseydim de tekrar denerdim.",
+  "Kaybettim... Olsun! Kaybetmek de oyunun parçası.",
+  "Bir daha deneyeyim. 'Oyna' diyerek başlarım.",
+  "Çan çalmıyor... Önce panayır oyunlarını oynamalıyım.",
+  "Çan çaldı! Panayır meydanının sisi kalkıyor!",
+  "Gıdak! Yine mi oyun? Ben hep kaybediyorum! Hep!",
+  "Panayır kapalı! Kimse oynamasın! GIDAAK!",
+  "Gıdak... Yine kaybettim. Hep ben kaybediyorum...",
+  "Bu sefer sen yenildin. Peki, bir daha oynayalım mı?",
+  "Bir daha mı? Kaybettiğim hâlde mi?",
+  "Tabii! Kaybetmek de oyunun parçası. Eğlenmek önemli.",
+  "Gıdak gıdak! O zaman bir daha! Hem de hemen!",
+  "Al, Kehribar Kor. Panayır ışıkları gibi parlıyor.",
+  "Kehribar Kor! Bal gibi altın sarısı.",
+  "Kimse beni dinlemiyor! Ağabeyim bile!",
+  "Ben de gidiyorum! Kızıl Sis'e! Hırrr!",
+  "Minnoş, dur! Bado seni arıyor!"
+ ],
+ "content/s2_chapter3/chapter.json": [
+  "Patpat Tarlaları"
+ ],
+ "content/s2_chapter3/dialogue/kukuri.json": [
+  "Panayır açık! Patpat da oynuyor, kaybedince bile gülüyor!",
+  "Patpat bir daha oynamak mı istedi? Ü-ürü-üü! Harika!",
+  "Kaybetmek de oyunun parçası. Önemli olan birlikte oynamak.",
+  "Ama... Minnoş'u gördün mü? Kızıl Sis'in içine koştu.",
+  "Gümbür Kanyonu'na doğru gitti. Bado'ya haber vermeli!",
+  "Patpat panayır meydanında. Önce tarlaların çanını çal.",
+  "İki oyunu da kazandın! Ü-ürü-üü!",
+  "Ama Tavuk Patpat hiç kazanamadı. Kızdı, panayırı kapattı.",
+  "Tarlaların çanını çal. Sonra meydanda Patpat'ı dinle.",
+  "Tezgâhlara git, 'Oyna' de. Kaybedersen tekrar oynarsın.",
+  "Kaybetmek ayıp değil. Bir daha denemek cesaret ister!",
+  "Ü-ürü-üü! Ben Horoz Kukuri, panayırın sahibi!",
+  "Kızıl Sis geldi, herkes kaybedince küsüyor.",
+  "Panayırım bomboş! Oyunlarımı kimse oynamıyor.",
+  "Balon Patlat ve Bayrak Koşusu. İkisini de dener misin?",
+  "Ü-ürü-üü! Mısırlar patlıyor, panayır başlıyor!"
+ ],
+ "content/s2_chapter3/quests/panayir.json": [
+  "Panayırı Aç",
+  "Balon Patlat oyununu kazan",
+  "Bayrak Koşusu'nu kazan",
+  "Horoz Kukuri'ye dön"
+ ],
+ "content/s2_chapter3/quests/patpat.json": [
+  "Tavuk Patpat",
+  "Tarlaların Ses Çanı'nı çal",
+  "Tavuk Patpat'ı dinle",
+  "Kehribar Kor'u al"
+ ],
  "content/s2_prologue/barks.json": [
   "Bugün benim doğum günüm! Köyde ilk doğum günüm.",
   "Süzülüyorum! Yıldız olmanın en güzel yanı bu.",
@@ -965,7 +1019,9 @@
   "Çay Ustası Demlik",
   "Dede Vırak",
   "Vrakvrak",
-  "Vık"
+  "Vık",
+  "Horoz Kukuri",
+  "Minnoş"
  ],
  "src/actors/breath_calm.gd": [
   "panel@light",
@@ -1035,6 +1091,9 @@
  "src/actors/owl.gd": [
   "Sersemledi! Şimdi vur!"
  ],
+ "src/actors/patpat.gd": [
+  "Patpat oturdu, soluk soluğa! Şimdi vur!"
+ ],
  "src/actors/pickup.gd": [
   "+%d",
   "%s bulundu!"
@@ -1090,7 +1149,8 @@
   "Sezon 2 · Prolog · Sahne 6",
   "Sezon 2 · Bölüm 0",
   "Sezon 2 · Bölüm 1",
-  "Sezon 2 · Bölüm 2"
+  "Sezon 2 · Bölüm 2",
+  "Sezon 2 · Bölüm 3"
  ],
  "src/autoload/tokens.gd": [
   "fontSize",
@@ -1114,6 +1174,8 @@
   "Somurtkan Sincap",
   "Kaynar Balon Balık",
   "Laf Kesen Ördek",
+  "Patlayan Mısır Tanesi",
+  "Kıskanç Civciv",
   "Dev Somurtkan Mantar"
  ],
  "src/core/player_data.gd": [
@@ -1408,6 +1470,10 @@
  "src/world/effects.gd": [
   "%s|%s|%s"
  ],
+ "src/world/fair_stall.gd": [
+  "Balon Patlat",
+  "Oyna"
+ ],
  "src/world/follow_camera.gd": [
   "--turn="
  ],
@@ -1465,7 +1531,21 @@
   "Yanına git, Sakinleş'e basılı tut. Şarkısını dinle.",
   "Mercan Kor",
   "Fokurdayan Göl serinledi",
+  "Patpat Tarlaları ↑",
   "Kızıl Yaprak Ormanı ↓"
+ ],
+ "src/world/s2_chapter3.gd": [
+  "Balon: %d kaldı · %d sn",
+  "Bayrak %d/%d · %d sn",
+  "Balloon%d",
+  "Tarlaların çanını çal",
+  "Mısır halkalarından ve koşusundan kaç. Oturunca vur!",
+  "Yanına git, Sakinleş'e basılı tut. Ona bir daha oynamayı sor.",
+  "Kehribar Kor",
+  "Patpat Tarlaları'nda panayır yeniden açıldı",
+  "Bayrak Koşusu",
+  "Flag%d",
+  "Fokurdayan Göl ↓"
  ],
  "src/world/s2_scene1.gd": [
   "Boşluk: zıpla, havada basılı tut: süzül!",

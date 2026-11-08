@@ -29,6 +29,8 @@ static func build(kind: String) -> Node3D:
 			_smith_turtle(root)
 		"squirrel_tailor":
 			_squirrel_tailor(root)
+		"rooster":
+			_rooster(root)
 		"spider":
 			_spider(root)
 		"mole":
@@ -183,6 +185,34 @@ static func _squirrel_tailor(root: Node3D) -> void:
 	for i in 5:
 		var a := i * 0.55
 		Toon.part(root, "sphere", Vector3(0.55, 0.55, 0.55) * (1.0 - i * 0.08), fur.lightened(0.04 * i), Vector3(0, 0.5 + sin(a) * 0.8, -0.5 - cos(a) * 0.4 + i * 0.02))
+
+
+## Horoz Kukuri (Season 2): the fair's proud rooster in a little striped vest.
+static func _rooster(root: Node3D) -> void:
+	var white := Color("#fbf6ee")
+	Toon.part(root, "ellipsoid", Vector3(1.0, 1.15, 1.0), white, Vector3(0, 0.75, 0))
+	Toon.part(root, "ellipsoid", Vector3(1.05, 0.7, 1.05), "berry", Vector3(0, 0.75, 0.02))
+	for i in 3:
+		Toon.part(root, "box", Vector3(0.08, 0.6, 0.02), "honey", Vector3(-0.25 + i * 0.25, 0.75, 0.52), Vector3.ZERO, 0.0, 0.0)
+	var head := Node3D.new()
+	head.name = "Head"
+	head.position = Vector3(0, 1.6, 0.15)
+	root.add_child(head)
+	Toon.part(head, "ellipsoid", Vector3(0.7, 0.7, 0.68), white, Vector3.ZERO)
+	for i in 3:
+		Toon.part(head, "sphere", Vector3(0.24, 0.3, 0.16), "hp", Vector3(-0.15 + i * 0.15, 0.42 + (0.06 if i == 1 else 0.0), 0.0))
+	Toon.part(head, "cone", Vector3(0.22, 0.25, 0.16), "honey", Vector3(0, -0.02, 0.42), Vector3(90, 0, 0))
+	Toon.part(head, "ellipsoid", Vector3(0.12, 0.22, 0.1), "hp", Vector3(0, -0.2, 0.32))
+	for side: float in [-1.0, 1.0]:
+		_eye(Toon.part(head, "ellipsoid", Vector3(0.1, 0.13, 0.05), "outline", Vector3(0.16 * side, 0.08, 0.31), Vector3.ZERO, 0.0, 0.0))
+		var hand := Node3D.new()
+		hand.name = "HandL" if side > 0 else "HandR"
+		hand.position = Vector3(0.52 * side, 0.85, 0.0)
+		root.add_child(hand)
+		Toon.part(hand, "ellipsoid", Vector3(0.18, 0.5, 0.55), white, Vector3.ZERO, Vector3(0, 0, 20 * side))
+		Toon.part(root, "cylinder", Vector3(0.06, 0.3, 0.06), "honey", Vector3(0.18 * side, 0.15, 0.05))
+	for i in 3:
+		Toon.part(root, "ellipsoid", Vector3(0.18, 0.7, 0.3), ["leaf", "sky", "hp"][i], Vector3(-0.15 + i * 0.15, 1.2, -0.55), Vector3(-30, 0, -15 + i * 15))
 
 
 ## Tospik Nine: wise old turtle, leaf shell, honey shawl.

@@ -1,0 +1,24 @@
+{
+  "id": "panayir",
+  "title": "Panayırı Aç",
+  "giver": "kukuri",
+  "objectives": [
+    {
+      "id": "balon",
+      "text": "Balon Patlat oyununu kazan",
+      "type": "win",
+      "target": "balon"
+    },
+    {
+      "id": "kosu",
+      "text": "Bayrak Koşusu'nu kazan",
+      "type": "win",
+      "target": "kosu"
+    }
+  ],
+  "turn_in": "Horoz Kukuri'ye dön",
+  "rewards": {
+    "piril": 80,
+    "xp": 500
+  }
+}

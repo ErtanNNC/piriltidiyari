@@ -1,0 +1,151 @@
+{
+  "npc": "kukuri",
+  "variants": [
+    {
+      "when": {
+        "quest": "patpat",
+        "state": "done"
+      },
+      "lines": [
+        {
+          "speaker": "kukuri",
+          "mood": "mutlu",
+          "text": "Panayır açık! Patpat da oynuyor, kaybedince bile gülüyor!"
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "patpat",
+        "state": "ready"
+      },
+      "lines": [
+        {
+          "speaker": "kukuri",
+          "mood": "mutlu",
+          "text": "Patpat bir daha oynamak mı istedi? Ü-ürü-üü! Harika!"
+        },
+        {
+          "speaker": "kukuri",
+          "mood": "sakin",
+          "text": "Kaybetmek de oyunun parçası. Önemli olan birlikte oynamak."
+        },
+        {
+          "speaker": "kukuri",
+          "mood": "dertli",
+          "text": "Ama... Minnoş'u gördün mü? Kızıl Sis'in içine koştu."
+        },
+        {
+          "speaker": "kukuri",
+          "mood": "kararlı",
+          "text": "Gümbür Kanyonu'na doğru gitti. Bado'ya haber vermeli!"
+        }
+      ],
+      "then": {
+        "complete_quest": "patpat",
+        "set_flag": "s2_bolum3_bitti"
+      }
+    },
+    {
+      "when": {
+        "quest": "patpat",
+        "state": "active"
+      },
+      "lines": [
+        {
+          "speaker": "kukuri",
+          "mood": "dertli",
+          "text": "Patpat panayır meydanında. Önce tarlaların çanını çal."
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "panayir",
+        "state": "ready"
+      },
+      "lines": [
+        {
+          "speaker": "kukuri",
+          "mood": "mutlu",
+          "text": "İki oyunu da kazandın! Ü-ürü-üü!"
+        },
+        {
+          "speaker": "kukuri",
+          "mood": "dertli",
+          "text": "Ama Tavuk Patpat hiç kazanamadı. Kızdı, panayırı kapattı."
+        },
+        {
+          "speaker": "kukuri",
+          "mood": "kararlı",
+          "text": "Tarlaların çanını çal. Sonra meydanda Patpat'ı dinle."
+        }
+      ],
+      "then": {
+        "complete_quest": "panayir",
+        "start_quest": "patpat",
+        "give_items": {
+          "nane_sekeri": 2
+        }
+      }
+    },
+    {
+      "when": {
+        "quest": "panayir",
+        "state": "active"
+      },
+      "lines": [
+        {
+          "speaker": "kukuri",
+          "mood": "sakin",
+          "text": "Tezgâhlara git, 'Oyna' de. Kaybedersen tekrar oynarsın."
+        },
+        {
+          "speaker": "kukuri",
+          "mood": "mutlu",
+          "text": "Kaybetmek ayıp değil. Bir daha denemek cesaret ister!"
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "panayir",
+        "state": "none"
+      },
+      "lines": [
+        {
+          "speaker": "kukuri",
+          "mood": "mutlu",
+          "text": "Ü-ürü-üü! Ben Horoz Kukuri, panayırın sahibi!"
+        },
+        {
+          "speaker": "kukuri",
+          "mood": "dertli",
+          "text": "Kızıl Sis geldi, herkes kaybedince küsüyor."
+        },
+        {
+          "speaker": "kukuri",
+          "mood": "dertli",
+          "text": "Panayırım bomboş! Oyunlarımı kimse oynamıyor."
+        },
+        {
+          "speaker": "kukuri",
+          "mood": "kararlı",
+          "text": "Balon Patlat ve Bayrak Koşusu. İkisini de dener misin?"
+        }
+      ],
+      "then": {
+        "start_quest": "panayir"
+      }
+    },
+    {
+      "lines": [
+        {
+          "speaker": "kukuri",
+          "mood": "mutlu",
+          "text": "Ü-ürü-üü! Mısırlar patlıyor, panayır başlıyor!"
+        }
+      ]
+    }
+  ]
+}

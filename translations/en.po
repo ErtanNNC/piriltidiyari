@@ -102,6 +102,9 @@ msgstr "Here you go, this is your share."
 msgid "Al bakalım. Bir daha düşürme."
 msgstr "Here you go. Don't drop it again."
 
+msgid "Al, Kehribar Kor. Panayır ışıkları gibi parlıyor."
+msgstr "Here, the Amber Ember. It glows like fair lights."
+
 msgid "Al, Mercan Kor. Şarkımın en güzel notası bu."
 msgstr "Here, the Coral Ember. The loveliest note of my song."
 
@@ -144,6 +147,9 @@ msgstr "But the Gloom turned all my thread grey. The colors must come back first
 msgid "Ama Pus'a bulanmış gri ağaçlar hep tersini söyler!"
 msgstr "But grey trees covered in Gloom always say the opposite!"
 
+msgid "Ama Tavuk Patpat hiç kazanamadı. Kızdı, panayırı kapattı."
+msgstr "But Popper the Hen never won once. She got cross and closed the fair."
+
 msgid "Ama arkasında bir fısıltı kaldı..."
 msgstr "But a whisper stayed behind..."
 
@@ -176,6 +182,9 @@ msgstr "But you're ice cream! Everybody loves ice cream!"
 
 msgid "Ama önce biraz dinlen. Bal Şurubu ister misin?"
 msgstr "But rest a little first. Would you like some Honey Syrup?"
+
+msgid "Ama... Minnoş'u gördün mü? Kızıl Sis'in içine koştu."
+msgstr "But... did you see Cubby? He ran into the Crimson Mist."
 
 msgid "Aman, bir bekçi! Ben Madenci Kazma."
 msgstr "Oh my, a keeper! I'm Digby the Mole."
@@ -273,6 +282,18 @@ msgstr "You can see Gale's nest from the top of Balloon Isle, too."
 msgid "Balon Adası'nın tepesine çık"
 msgstr "Climb to the top of Balloon Isle"
 
+msgid "Balon Patlat"
+msgstr "Balloon Pop"
+
+msgid "Balon Patlat oyununu kazan"
+msgstr "Win the Balloon Pop game"
+
+msgid "Balon Patlat ve Bayrak Koşusu. İkisini de dener misin?"
+msgstr "Balloon Pop and the Flag Race. Will you try both?"
+
+msgid "Balon: %d kaldı · %d sn"
+msgstr "Balloons: %d left · %d s"
+
 msgid "Baloncuk"
 msgstr "Bubble"
 
@@ -299,6 +320,15 @@ msgstr "Teacher Hoo"
 
 msgid "Baykuş Öğretmen Hu ile konuş"
 msgstr "Talk to Teacher Hoo"
+
+msgid "Bayrak %d/%d · %d sn"
+msgstr "Flag %d/%d · %d s"
+
+msgid "Bayrak Koşusu"
+msgstr "Flag Race"
+
+msgid "Bayrak Koşusu'nu kazan"
+msgstr "Win the Flag Race"
 
 msgid "Başla"
 msgstr "Start"
@@ -338,6 +368,9 @@ msgstr "I'm Pitter. I know Ember Valley, I know the way."
 
 msgid "Ben de bir zamanlar kimsenin görmediği bir yıldızdım."
 msgstr "I was once a star nobody could see, too."
+
+msgid "Ben de gidiyorum! Kızıl Sis'e! Hırrr!"
+msgstr "I'm going too! Into the Crimson Mist! Grrr!"
 
 msgid "Ben de kapıda nöbet tutarım. Artık dostuz!"
 msgstr "I'll guard the door too. We're friends now!"
@@ -423,8 +456,14 @@ msgstr "I know. But it's the first time anyone remembered."
 msgid "Bir Köpüklü'ye Sakinleş ile derin nefes aldır"
 msgstr "Help a Fizzler take a deep breath with Breathe"
 
+msgid "Bir daha deneyeyim. 'Oyna' diyerek başlarım."
+msgstr "I'll try again. I start by pressing 'Play'."
+
 msgid "Bir daha karda uyumayacağım. Galiba."
 msgstr "I won't sleep in the snow again. Probably."
+
+msgid "Bir daha mı? Kaybettiğim hâlde mi?"
+msgstr "Again? Even though I lost?"
 
 msgid "Bir dakika!"
 msgstr "One minute!"
@@ -545,6 +584,9 @@ msgstr "This yellow light is mine! My storm will blow you away!"
 
 msgid "Bu sefer ben öndeyim!"
 msgstr "I'm leading this time!"
+
+msgid "Bu sefer sen yenildin. Peki, bir daha oynayalım mı?"
+msgstr "This time you lost. So, shall we play again?"
 
 msgid "Bu sefer üflemeyi unutma. Bir dilek tut!"
 msgstr "Don't forget to blow this time. Make a wish!"
@@ -1011,6 +1053,9 @@ msgstr "Bubbling Lake cooled down"
 msgid "Fokurdayan Göl ↑"
 msgstr "Bubbling Lake ↑"
 
+msgid "Fokurdayan Göl ↓"
+msgstr "Bubbling Lake ↓"
+
 msgid "Fokurdayan Göl! Su kaynıyor, nilüferler buhar içinde."
 msgstr "Bubbling Lake! The water boils, the lily pads are steaming."
 
@@ -1227,6 +1272,9 @@ msgstr "I do. You're not alone anymore, Mumble."
 msgid "Gözlük"
 msgstr "Glasses"
 
+msgid "Gümbür Kanyonu'na doğru gitti. Bado'ya haber vermeli!"
+msgstr "He went toward Rumble Canyon. We must tell Bado!"
+
 msgid "Günaydın uykucu! Yuvan seni bekliyor."
 msgstr "Good morning, sleepyhead! Your burrow is waiting."
 
@@ -1256,6 +1304,15 @@ msgstr "Strong Hit"
 
 msgid "Gıcık Karga"
 msgstr "Cranky Crow"
+
+msgid "Gıdak gıdak! O zaman bir daha! Hem de hemen!"
+msgstr "Cluck cluck! Then again! Right now!"
+
+msgid "Gıdak! Yine mi oyun? Ben hep kaybediyorum! Hep!"
+msgstr "Cluck! Another game? I always lose! Always!"
+
+msgid "Gıdak... Yine kaybettim. Hep ben kaybediyorum..."
+msgstr "Cluck... I lost again. I'm the one who always loses..."
 
 msgid "Ha? Sabah mı oldu? Esnemekten çenem ağrıdı!"
 msgstr "Huh? Is it morning? I yawned so much my jaw hurts!"
@@ -1394,6 +1451,12 @@ msgstr "The Grumbling Kettle and the first Echo Bell"
 
 msgid "Hop! Balonlar beni havaya fırlatıyor!"
 msgstr "Whee! The balloons bounce me into the air!"
+
+msgid "Horoz Kukuri"
+msgstr "Doodle the Rooster"
+
+msgid "Horoz Kukuri'ye dön"
+msgstr "Go back to Doodle"
 
 msgid "Hoş geldin bekçi! Dükkânımız açık, bak bakalım."
 msgstr "Welcome, keeper! Our shop is open, take a look."
@@ -1674,6 +1737,15 @@ msgstr "Push rocks and logs"
 msgid "Kayayı it"
 msgstr "Push rock"
 
+msgid "Kaybetmek ayıp değil. Bir daha denemek cesaret ister!"
+msgstr "Losing is nothing to be ashamed of. Trying again takes courage!"
+
+msgid "Kaybetmek de oyunun parçası. Önemli olan birlikte oynamak."
+msgstr "Losing is part of the game. Playing together is what counts."
+
+msgid "Kaybettim... Olsun! Kaybetmek de oyunun parçası."
+msgstr "I lost... That's okay! Losing is part of the game."
+
 msgid "Kaydedildi!"
 msgstr "Saved!"
 
@@ -1722,6 +1794,9 @@ msgstr "The kettle grumbles. When it tires, its lid pops: hit then."
 msgid "Kazan soğuyor. Yanına git, Sakinleş'e basılı tut!"
 msgstr "The kettle is cooling. Go close and hold Breathe!"
 
+msgid "Kazandım! Ama kaybetseydim de tekrar denerdim."
+msgstr "I won! But if I'd lost, I'd have tried again."
+
 msgid "Kazma Ailesi Dükkânı"
 msgstr "The Digby Family Shop"
 
@@ -1743,6 +1818,15 @@ msgstr "It ran off. But it looked... so lonely."
 msgid "Kedi"
 msgstr "Cat"
 
+msgid "Kehribar Kor"
+msgstr "Amber Ember"
+
+msgid "Kehribar Kor! Bal gibi altın sarısı."
+msgstr "The Amber Ember! Golden like honey."
+
+msgid "Kehribar Kor'u al"
+msgstr "Take the Amber Ember"
+
 msgid "Kim geldi yuvama? Pırpır mı yolladı seni?"
 msgstr "Who's at my nest? Did Flutter send you?"
 
@@ -1757,6 +1841,9 @@ msgstr "Who's there? I can't sleep anyway, and now you're here?"
 
 msgid "Kimse başını kaldırıp bakmadı. Herkes çok meşguldü."
 msgstr "Nobody looked up. Everyone was too busy."
+
+msgid "Kimse beni dinlemiyor! Ağabeyim bile!"
+msgstr "Nobody listens to me! Not even my big brother!"
 
 msgid "Kimse beni dinlemiyor... diyen kim? Seni duyuyorum!"
 msgstr "Who said nobody listens? I can hear you!"
@@ -1959,6 +2046,9 @@ msgstr "Hit when the claw gets stuck!"
 msgid "Kıskandım ve fırtına oldum. Özür dilerim."
 msgstr "I got jealous and became a storm. I'm sorry."
 
+msgid "Kıskanç Civciv"
+msgstr "Jealous Chick"
+
 msgid "Kıskaç dost oldu!"
 msgstr "Pinch is a friend now!"
 
@@ -2015,6 +2105,9 @@ msgstr "You're steamed up! Strong hits, wobbly steps. Press Breathe."
 
 msgid "Kızıl Sis geldi geleli kimse kimseyi dinlemiyor."
 msgstr "Since the Crimson Mist came, nobody listens to anybody."
+
+msgid "Kızıl Sis geldi, herkes kaybedince küsüyor."
+msgstr "The Crimson Mist came, and now everyone sulks when they lose."
 
 msgid "Kızıl Sis geldi, kurbağalarımız birbirinin sözünü kesiyor."
 msgstr "The Crimson Mist came, and our frogs keep cutting each other off."
@@ -2160,8 +2253,14 @@ msgstr "Give Tiny the rag doll back"
 msgid "Minik'in Bez Bebeği"
 msgstr "Tiny's Rag Doll"
 
+msgid "Minnoş"
+msgstr "Cubby"
+
 msgid "Minnoş da geliyor... değil mi?"
 msgstr "Cubby's coming too... right?"
+
+msgid "Minnoş, dur! Bado seni arıyor!"
+msgstr "Cubby, wait! Bado is looking for you!"
 
 msgid "Mola"
 msgstr "Pause"
@@ -2231,6 +2330,9 @@ msgstr "Mumble, we're coming."
 
 msgid "Mırıl, gördün mü? Kızgın kalpler bile nefesle yumuşar."
 msgstr "See, Mumble? Even cross hearts soften with a breath."
+
+msgid "Mısır halkalarından ve koşusundan kaç. Oturunca vur!"
+msgstr "Dodge the corn rings and her dash. Hit when she sits!"
 
 msgid "Nane Şekeri"
 msgstr "Mint Drop"
@@ -2337,6 +2439,9 @@ msgstr "He sat down! Hit now!"
 msgid "Oturdu, yıldızlar dönüyor! Şimdi yanına gideyim."
 msgstr "It sat down, stars are spinning! Now I'll go up close."
 
+msgid "Oyna"
+msgstr "Play"
+
 msgid "Oynadığın için teşekkürler! · Just A Game Studios"
 msgstr "Thanks for playing! · Just A Game Studios"
 
@@ -2354,6 +2459,21 @@ msgstr "Cotton"
 
 msgid "Pamuk'u dinle"
 msgstr "Listen to Cotton"
+
+msgid "Panayır açık! Patpat da oynuyor, kaybedince bile gülüyor!"
+msgstr "The fair is open! Popper plays too, and laughs even when she loses!"
+
+msgid "Panayır kapalı! Kimse oynamasın! GIDAAK!"
+msgstr "The fair is closed! Nobody plays! CLUUUCK!"
+
+msgid "Panayır şurada. Horoz Kukuri'yi bulayım."
+msgstr "The fair is over there. Let me find Doodle the Rooster."
+
+msgid "Panayırı Aç"
+msgstr "Open the Fair"
+
+msgid "Panayırım bomboş! Oyunlarımı kimse oynamıyor."
+msgstr "My fair is empty! Nobody plays my games."
 
 msgid "Papatya Çayı"
 msgstr "Chamomile Tea"
@@ -2381,6 +2501,30 @@ msgstr "Give Paws an invitation"
 
 msgid "Pati, yarından itibaren benim çırağımsın. Hıh!"
 msgstr "Paws, from tomorrow you're my helper. Hmph!"
+
+msgid "Patlayan Mısır Tanesi"
+msgstr "Popping Kernel"
+
+msgid "Patpat Tarlaları"
+msgstr "Pop-Pop Fields"
+
+msgid "Patpat Tarlaları ↑"
+msgstr "Pop-Pop Fields ↑"
+
+msgid "Patpat Tarlaları! Mısırlar sıcakta patlıyor!"
+msgstr "Pop-Pop Fields! The corn pops in the heat!"
+
+msgid "Patpat Tarlaları'nda panayır yeniden açıldı"
+msgstr "The fair at Pop-Pop Fields is open again"
+
+msgid "Patpat bir daha oynamak mı istedi? Ü-ürü-üü! Harika!"
+msgstr "Popper wants to play again? Cock-a-doodle-doo! Wonderful!"
+
+msgid "Patpat oturdu, soluk soluğa! Şimdi vur!"
+msgstr "Popper sat down, out of breath! Hit now!"
+
+msgid "Patpat panayır meydanında. Önce tarlaların çanını çal."
+msgstr "Popper is in the fair square. Ring the fields' bell first."
 
 msgid "Paylaşmak güzel. Ama önce sormak gerek, değil mi?"
 msgstr "Sharing is lovely. But first you ask, right?"
@@ -2688,6 +2832,9 @@ msgstr "Season 2 · Chapter 1"
 msgid "Sezon 2 · Bölüm 2"
 msgstr "Season 2 · Chapter 2"
 
+msgid "Sezon 2 · Bölüm 3"
+msgstr "Season 2 · Chapter 3"
+
 msgid "Sezon 2 · Prolog · Sahne 1"
 msgstr "Season 2 · Prologue · Scene 1"
 
@@ -2817,11 +2964,29 @@ msgstr "Next: Whispering Woods"
 msgid "Sırayla konuştular! Kırk yıldır ilk kez!"
 msgstr "They spoke in turn! For the first time in forty years!"
 
+msgid "Tabii! Kaybetmek de oyunun parçası. Eğlenmek önemli."
+msgstr "Of course! Losing is part of the game. Having fun matters."
+
 msgid "Tak tak! Ben Demirci Kalay. Örsüm Kızıl Sis'te soğudu."
 msgstr "Clink clink! I'm Tin the Smith. My anvil went cold in the mist."
 
 msgid "Takıldım: son fenere dön"
 msgstr "I'm stuck: back to last lantern"
+
+msgid "Tarlaların Ses Çanı'nı çal"
+msgstr "Ring the fields' Echo Bell"
+
+msgid "Tarlaların çanını çal"
+msgstr "Ring the fields' bell"
+
+msgid "Tarlaların çanını çal. Sonra meydanda Patpat'ı dinle."
+msgstr "Ring the fields' bell. Then listen to Popper in the square."
+
+msgid "Tavuk Patpat"
+msgstr "Popper the Hen"
+
+msgid "Tavuk Patpat'ı dinle"
+msgstr "Listen to Popper"
 
 msgid "Taç, şapka, pelerin... Aldığını hemen giyersin."
 msgstr "Crowns, hats, capes... You can wear what you buy right away."
@@ -2855,6 +3020,9 @@ msgstr "Go back to Pinecone"
 
 msgid "Terzi Örümcek Dikiş"
 msgstr "Stitch the Spider Tailor"
+
+msgid "Tezgâhlara git, 'Oyna' de. Kaybedersen tekrar oynarsın."
+msgstr "Go to the stalls and press 'Play'. If you lose, you play again."
 
 msgid "Teşekkürler bekçi! Yaşasın!"
 msgstr "Thank you, keeper! Hooray!"
@@ -3102,6 +3270,9 @@ msgstr "Go close, hold Breathe!"
 msgid "Yanına git, Sakinleş'e basılı tut. Bırakma!"
 msgstr "Go close, hold Breathe. Don't let go!"
 
+msgid "Yanına git, Sakinleş'e basılı tut. Ona bir daha oynamayı sor."
+msgstr "Go close and hold Breathe. Ask her to play again."
+
 msgid "Yanına git, Sakinleş'e basılı tut. Onu dinle."
 msgstr "Go close, hold Breathe. Listen to it."
 
@@ -3306,6 +3477,9 @@ msgstr "The bell rang! The mist lifts off the lake, the island shows!"
 msgid "Çan çaldı! Kızıl Sis köyden çekiliyor!"
 msgstr "The bell rang! The Crimson Mist is leaving the village!"
 
+msgid "Çan çaldı! Panayır meydanının sisi kalkıyor!"
+msgstr "The bell rang! The mist over the fair square is lifting!"
+
 msgid "Çan çaldı! Sis perdesi açılıyor!"
 msgstr "The bell rang! The mist veil is opening!"
 
@@ -3314,6 +3488,9 @@ msgstr "The bell won't ring... I need to calm the kettle first."
 
 msgid "Çan çalmıyor... Önce kurbağaları sırayla dinlemeliyim."
 msgstr "The bell won't ring... First I must hear the frogs in turn."
+
+msgid "Çan çalmıyor... Önce panayır oyunlarını oynamalıyım."
+msgstr "The bell won't ring... I need to play the fair games first."
 
 msgid "Çan çalmıyor... Önce yavruların oyuncaklarını vereyim."
 msgstr "The bell won't ring... First I'll give the little ones their toys."
@@ -3462,6 +3639,12 @@ msgstr "I'm sorry, little keeper. Here, this light is yours."
 msgid "Özür dilerim, minik bekçi. Mavi Kıvılcım artık sende."
 msgstr "I'm sorry, tiny keeper. The Blue Spark is yours now."
 
+msgid "Ü-ürü-üü! Ben Horoz Kukuri, panayırın sahibi!"
+msgstr "Cock-a-doodle-doo! I'm Doodle the Rooster, owner of the fair!"
+
+msgid "Ü-ürü-üü! Mısırlar patlıyor, panayır başlıyor!"
+msgstr "Cock-a-doodle-doo! The corn pops, the fair begins!"
+
 msgid "Üstüne yaz"
 msgstr "Write over"
 
@@ -3488,6 +3671,9 @@ msgstr "All three bells rang! Pinwheel Isle is calm now."
 
 msgid "İki baloncuk daha"
 msgstr "Two more bubbles"
+
+msgid "İki oyunu da kazandın! Ü-ürü-üü!"
+msgstr "You won both games! Cock-a-doodle-doo!"
 
 msgid "İki parlak göz! Küçücük bir gölge..."
 msgstr "Two shiny eyes! A tiny little shadow..."

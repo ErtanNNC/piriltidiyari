@@ -1,0 +1,119 @@
+{
+  "barks": {
+    "s2c3_basla": [
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Patpat Tarlaları! Mısırlar sıcakta patlıyor!"
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "kararlı",
+        "text": "Panayır şurada. Horoz Kukuri'yi bulayım."
+      }
+    ],
+    "s2c3_kazandin": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Kazandım! Ama kaybetseydim de tekrar denerdim."
+      }
+    ],
+    "s2c3_kaybettin": [
+      {
+        "speaker": "oyuncu",
+        "mood": "dertli",
+        "text": "Kaybettim... Olsun! Kaybetmek de oyunun parçası."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "kararlı",
+        "text": "Bir daha deneyeyim. 'Oyna' diyerek başlarım."
+      }
+    ],
+    "s2c3_kilit": [
+      {
+        "speaker": "oyuncu",
+        "mood": "dertli",
+        "text": "Çan çalmıyor... Önce panayır oyunlarını oynamalıyım."
+      }
+    ],
+    "s2c3_can": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Çan çaldı! Panayır meydanının sisi kalkıyor!"
+      }
+    ],
+    "s2c3_patpat": [
+      {
+        "speaker": "patpat",
+        "mood": "huysuz",
+        "text": "Gıdak! Yine mi oyun? Ben hep kaybediyorum! Hep!"
+      },
+      {
+        "speaker": "patpat",
+        "mood": "huysuz",
+        "text": "Panayır kapalı! Kimse oynamasın! GIDAAK!"
+      }
+    ],
+    "s2c3_patpat_yorgun": [
+      {
+        "speaker": "patpat",
+        "mood": "üzgün",
+        "text": "Gıdak... Yine kaybettim. Hep ben kaybediyorum..."
+      }
+    ],
+    "s2c3_patpat_son": [
+      {
+        "speaker": "oyuncu",
+        "mood": "sakin",
+        "text": "Bu sefer sen yenildin. Peki, bir daha oynayalım mı?"
+      },
+      {
+        "speaker": "patpat",
+        "mood": "şaşkın",
+        "text": "Bir daha mı? Kaybettiğim hâlde mi?"
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Tabii! Kaybetmek de oyunun parçası. Eğlenmek önemli."
+      },
+      {
+        "speaker": "patpat",
+        "mood": "mutlu",
+        "text": "Gıdak gıdak! O zaman bir daha! Hem de hemen!"
+      },
+      {
+        "speaker": "patpat",
+        "mood": "mutlu",
+        "text": "Al, Kehribar Kor. Panayır ışıkları gibi parlıyor."
+      }
+    ],
+    "s2c3_kor": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Kehribar Kor! Bal gibi altın sarısı."
+      }
+    ],
+    "s2c3_minnos": [
+      {
+        "speaker": "minnos",
+        "mood": "üzgün",
+        "text": "Kimse beni dinlemiyor! Ağabeyim bile!"
+      },
+      {
+        "speaker": "minnos",
+        "mood": "huysuz",
+        "text": "Ben de gidiyorum! Kızıl Sis'e! Hırrr!"
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Minnoş, dur! Bado seni arıyor!"
+      }
+    ]
+  }
+}

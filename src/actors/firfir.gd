@@ -21,10 +21,15 @@ var _soft: Node3D
 var _t := 0.0
 var _busy := false
 var _tail: Node3D
+## Reused by other bosses with the same moves (Tavuk Patpat): their own
+## model, attack color, hint line and calm event.
+var attack_color := Color("#e8833a")
+var tired_hint := "Fırfır oturdu, soluk soluğa! Şimdi vur!"
+var calm_event := "firfir"
 
 
 func _ready() -> void:
-	_model = build_model()
+	_model = _make_model()
 	add_child(_model)
 	_cross = _model.find_child("CrossFace", true, false)
 	_soft = _model.find_child("SoftFace", true, false)
@@ -32,6 +37,10 @@ func _ready() -> void:
 	set_meta("hit_radius", 1.3)
 	set_meta("calm_reach", 3.2)
 	home = position
+
+
+func _make_model() -> Node3D:
+	return build_model()
 
 
 static func build_model() -> Node3D:
@@ -141,9 +150,9 @@ func _leaves() -> void:
 	spin.tween_property(_model, "rotation:y", _model.rotation.y + TAU, Mob.TELEGRAPH)
 	await spin.finished
 	for s in spots:
-		Effects.ring(get_parent(), s + Vector3.UP * 0.3, FirfirPlan.LEAF_RADIUS, Color("#e8833a"), 0.4)
+		Effects.ring(get_parent(), s + Vector3.UP * 0.3, FirfirPlan.LEAF_RADIUS, attack_color, 0.4)
 		for k in 4:
-			Effects.sparkle(get_parent(), s + Vector3(randf_range(-1, 1), 0.6, randf_range(-1, 1)), Color("#e8833a"), 2)
+			Effects.sparkle(get_parent(), s + Vector3(randf_range(-1, 1), 0.6, randf_range(-1, 1)), attack_color, 2)
 	for s in spots:
 		if Vector2(p.global_position.x - s.x, p.global_position.z - s.z).length() < FirfirPlan.LEAF_RADIUS:
 			p.hurt(FirfirPlan.LEAF_DAMAGE, s)
@@ -173,7 +182,7 @@ func _dash() -> void:
 		if not hit and p.global_position.distance_to(global_position) < 1.3:
 			hit = p.hurt(FirfirPlan.DASH_DAMAGE, global_position), 0.0, 1.0, 0.45)
 	await tw.finished
-	Effects.ring(get_parent(), global_position + Vector3.UP * 0.2, 1.6, Color("#e8833a"), 0.3)
+	Effects.ring(get_parent(), global_position + Vector3.UP * 0.2, 1.6, attack_color, 0.3)
 	_busy = false
 
 
@@ -184,7 +193,7 @@ func _rest() -> void:
 	add_to_group("hittable")
 	var sit := create_tween()
 	sit.tween_property(_model, "scale", Vector3(1.1, 0.85, 1.1), 0.25)
-	get_tree().call_group("hud", "show_hint", "Fırfır oturdu, soluk soluğa! Şimdi vur!", "Oturdu! Şimdi vur!")
+	get_tree().call_group("hud", "show_hint", tired_hint, "Oturdu! Şimdi vur!")
 	await get_tree().create_timer(FirfirPlan.TIRED_TIME).timeout
 	if not active:
 		return
@@ -231,6 +240,6 @@ func breathe_calm() -> void:
 	is_sad = false
 	remove_from_group("dazed")
 	_model.scale = Vector3.ONE
-	Effects.sparkle(get_parent(), global_position + Vector3.UP * 2.0, Color("#e8833a"), 18)
-	GameState.notify("breathe", "firfir")
+	Effects.sparkle(get_parent(), global_position + Vector3.UP * 2.0, attack_color, 18)
+	GameState.notify("breathe", calm_event)
 	calmed.emit()
