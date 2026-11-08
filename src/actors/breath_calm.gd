@@ -144,6 +144,8 @@ func _nearest_dazed() -> Node3D:
 	var best_d := REACH
 	for m in get_tree().get_nodes_in_group("dazed"):
 		var d := (m as Node3D).global_position.distance_to(_player.global_position)
+		# big ones (a boss) can be reached from a little further away
+		d -= float(m.get_meta("calm_reach", REACH)) - REACH
 		if d < best_d:
 			best_d = d
 			best = m

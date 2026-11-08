@@ -159,6 +159,14 @@
     "tikir": {
       "name": "Usta Tıkır",
       "color": "spark-green"
+    },
+    "gurledek": {
+      "name": "Gürledek",
+      "color": "hp"
+    },
+    "hiril": {
+      "name": "Hırıl",
+      "color": "hp"
     }
   }
 }

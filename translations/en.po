@@ -108,6 +108,9 @@ msgstr "Tools"
 msgid "Altı Renkli Fener"
 msgstr "The Six-Color Lantern"
 
+msgid "Alçaldı! Şimdi vur!"
+msgstr "It's low! Hit now!"
+
 msgid "Alındı"
 msgstr "Bought"
 
@@ -149,6 +152,9 @@ msgstr "Oh my, a keeper! I'm Digby the Mole."
 
 msgid "Ana menü"
 msgstr "Main menu"
+
+msgid "Ardında kırmızı bir yankı kaldı..."
+msgstr "It left a red echo behind..."
 
 msgid "Arkadaş... Ne güzel bir kelime."
 msgstr "Friend... What a lovely word."
@@ -281,6 +287,9 @@ msgstr "I'm getting cross too... Let me take a deep breath."
 
 msgid "Ben dinliyorum! Neredesin?"
 msgstr "I'm listening! Where are you?"
+
+msgid "Ben dinliyorum. Yanına geliyorum."
+msgstr "I'm listening. I'm coming over."
 
 msgid "Ben hazırım!"
 msgstr "I'm ready!"
@@ -672,6 +681,9 @@ msgstr "Stop right there! Nobody touches this light!"
 msgid "Dur, dur! Sen Pus değilsin... Sen bir bekçisin!"
 msgstr "Wait, wait! You're not the Gloom... You're a keeper!"
 
+msgid "Duydum. Sen bir 'Sus!' sözünden doğmuşsun, değil mi?"
+msgstr "I did. You were born from a 'Shush!', weren't you?"
+
 msgid "Dönence"
 msgstr "Orbit"
 
@@ -927,6 +939,9 @@ msgstr "Hit the grey crystals!"
 msgid "Gri kristallere vur, parlasınlar!"
 msgstr "Hit the grey crystals so they shine!"
 
+msgid "GÜRRR! Kimse geçemez! Kimse dinlemez!"
+msgstr "RUMBLE! Nobody passes! Nobody listens!"
+
 msgid "Gökkuşağı"
 msgstr "Rainbow"
 
@@ -978,6 +993,12 @@ msgstr "Good morning, new keeper! The Spark really suits you."
 msgid "Gürledek"
 msgstr "Kaboom"
 
+msgid "Gürledek dağıldı"
+msgstr "Kaboom drifted away"
+
+msgid "Gürr... gürr... Çok yoruldum..."
+msgstr "Rumble... rumble... I'm so tired..."
+
 msgid "Gürültücü Kurbağa"
 msgstr "Noisy Frog"
 
@@ -1022,6 +1043,15 @@ msgstr "A ring is coming: jump over it!"
 
 msgid "Halka: zıpla!"
 msgstr "Ring: jump!"
+
+msgid "Halkalara dikkat edeyim. Yorulunca alçalır belki."
+msgstr "I'll watch the rings. Maybe it sinks when it's tired."
+
+msgid "Halkalardan kaç, alçalınca vur!"
+msgstr "Dodge the rings, hit when it's low!"
+
+msgid "Halkalardan kaç. Bulut alçalınca vur!"
+msgstr "Dodge the rings. Hit when the cloud sinks low!"
 
 msgid "Haritamda o dağın arkası bomboş. Ne var orada?"
 msgstr "Behind that mountain, my map is empty. What's there?"
@@ -1149,11 +1179,17 @@ msgstr "Hmph... Hrrm... How long was I asleep?"
 msgid "Hıh? Sis beni başa döndürdü."
 msgstr "Huh? The mist sent me back to the start."
 
+msgid "Hırıl"
+msgstr "Grumble"
+
 msgid "Hız"
 msgstr "Speed"
 
 msgid "Hıçk... Karanlıkta annemi bulamıyorum."
 msgstr "Sniff... I can't find my mom in the dark."
+
+msgid "Hıçk... Kimse beni dinlemedi... Hiç..."
+msgstr "Sniff... Nobody ever listened to me... Never..."
 
 msgid "Hıçk... Sis yüzünden yuvamı bulamıyorum."
 msgstr "Sniff... I can't find my nest in this mist."
@@ -1395,6 +1431,9 @@ msgstr "Reach Granny Shelly under the beam"
 msgid "Kocaman Yürek"
 msgstr "Big Heart"
 
+msgid "Kocaman bir bulut! Geçidi kapatıyor."
+msgstr "A huge cloud! It's blocking the pass."
+
 msgid "Kombo"
 msgstr "Combo"
 
@@ -1514,6 +1553,9 @@ msgstr "Wake up King Stump"
 
 msgid "Küçük bir fener. Işığı sönmüş ama hâlâ sıcak."
 msgstr "A little lantern. Its light is out, but it's still warm."
+
+msgid "Küçük biri vardı. Her konuşunca ona 'Sus!' dediler."
+msgstr "There was a little one. Each time they spoke, they heard 'Shush!'"
 
 msgid "Küçük fenerleri yak"
 msgstr "Light the little lanterns"
@@ -1769,6 +1811,9 @@ msgstr "That night Mumble noticed something: the Spark's light was warm."
 
 msgid "O gri üzüntü Pus oldu. Yıldızın adı Mırıl'dı."
 msgstr "That grey sadness became the Gloom. The star's name was Mumble."
+
+msgid "O küçük biri kim? Onu da bulacağım."
+msgstr "Who is that little one? I'll find them too."
 
 msgid "O kırmızı sis... Gözümü ondan ayırmıyorum."
 msgstr "That red mist... I'm keeping my eye on it."
@@ -2058,6 +2103,9 @@ msgstr "I sew with eight legs, my shop opens soon!"
 msgid "Sen kuleye koş. Büyük Kıvılcım'ı koru!"
 msgstr "You run to the tower. Protect the Great Spark!"
 
+msgid "Sen... beni duydun mu?"
+msgstr "Did you... hear me?"
+
 msgid "Seni de Pus gönderdi, değil mi? Kıskaçlarım hazır!"
 msgstr "The Gloom sent you too, didn't it? My pincers are ready!"
 
@@ -2192,6 +2240,9 @@ msgstr "Stitch the Spider Tailor"
 
 msgid "Teşekkürler bekçi! Yaşasın!"
 msgstr "Thank you, keeper! Hooray!"
+
+msgid "Teşekkürler... Artık hafifim."
+msgstr "Thank you... I feel light now."
 
 msgid "Topladığın Hikâye Taşları'nı bir okuyayım..."
 msgstr "Let me read the Story Stones you've gathered..."
@@ -2349,11 +2400,20 @@ msgstr "Go up close!"
 msgid "Yanına git, C'ye basılı tut. Halka bitene kadar bırakma!"
 msgstr "Go close, hold C. Don't let go till the ring is done!"
 
+msgid "Yanına git, Sakinleş'e basılı tut!"
+msgstr "Go close, hold Breathe!"
+
 msgid "Yanına git, Sakinleş'e basılı tut. Bırakma!"
 msgstr "Go close, hold Breathe. Don't let go!"
 
+msgid "Yanına git, Sakinleş'e basılı tut. Onu dinle."
+msgstr "Go close, hold Breathe. Listen to it."
+
 msgid "Yarasa Fısıltısı"
 msgstr "Whisper Bat"
+
+msgid "Yağmurum da var! Gürrr!"
+msgstr "I've got rain too! Rumble!"
 
 msgid "Yaşasın! Eve koşuyorum!"
 msgstr "Hooray! I'm running home!"
@@ -2417,6 +2477,9 @@ msgstr "On a journey"
 
 msgid "Yoldaki Köpüklülere nefes aldır"
 msgstr "Help the Fizzlers on the path breathe"
+
+msgid "Yoruldu, alçaldı! Şimdi vur!"
+msgstr "It's tired and low! Hit now!"
 
 msgid "Yorulunca yaklaş!"
 msgstr "Get close when he's tired!"

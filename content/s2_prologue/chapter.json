@@ -33,6 +33,26 @@
         "seviye atlama",
         "Yıldız Ninnisi"
       ]
+    },
+    {
+      "id": "s2_scene4",
+      "title": "Gürledek",
+      "teaches": [
+        "ilk boss",
+        "Sakinleş ile bitiş"
+      ]
+    },
+    {
+      "id": "s2_scene5",
+      "title": "Mırıl'ın Seçimi",
+      "teaches": []
+    },
+    {
+      "id": "s2_scene6",
+      "title": "Kulak Bekçileri",
+      "teaches": [
+        "karakter seçimi"
+      ]
     }
   ],
   "quests": [

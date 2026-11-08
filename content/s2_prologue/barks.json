@@ -123,6 +123,76 @@
         "mood": "şaşkın",
         "text": "Geçitte bir şey var. Kocaman, kırmızı bir bulut!"
       }
+    ],
+    "s4b_basla": [
+      {
+        "speaker": "miril",
+        "mood": "şaşkın",
+        "text": "Kocaman bir bulut! Geçidi kapatıyor."
+      },
+      {
+        "speaker": "gurledek",
+        "mood": "huysuz",
+        "text": "GÜRRR! Kimse geçemez! Kimse dinlemez!"
+      },
+      {
+        "speaker": "miril",
+        "mood": "kararlı",
+        "text": "Halkalara dikkat edeyim. Yorulunca alçalır belki."
+      }
+    ],
+    "s4b_faz2": [
+      {
+        "speaker": "gurledek",
+        "mood": "huysuz",
+        "text": "Yağmurum da var! Gürrr!"
+      }
+    ],
+    "s4b_faz3": [
+      {
+        "speaker": "gurledek",
+        "mood": "üzgün",
+        "text": "Gürr... gürr... Çok yoruldum..."
+      }
+    ],
+    "s4b_aglama": [
+      {
+        "speaker": "gurledek",
+        "mood": "üzgün",
+        "text": "Hıçk... Kimse beni dinlemedi... Hiç..."
+      },
+      {
+        "speaker": "miril",
+        "mood": "kararlı",
+        "text": "Ben dinliyorum. Yanına geliyorum."
+      }
+    ],
+    "s4b_son": [
+      {
+        "speaker": "gurledek",
+        "mood": "üzgün",
+        "text": "Sen... beni duydun mu?"
+      },
+      {
+        "speaker": "miril",
+        "mood": "mutlu",
+        "text": "Duydum. Sen bir 'Sus!' sözünden doğmuşsun, değil mi?"
+      },
+      {
+        "speaker": "gurledek",
+        "mood": "üzgün",
+        "text": "Küçük biri vardı. Her konuşunca ona 'Sus!' dediler."
+      },
+      {
+        "speaker": "gurledek",
+        "mood": "mutlu",
+        "text": "Teşekkürler... Artık hafifim."
+      },
+      {
+        "speaker": "miril",
+        "mood": "kararlı",
+        "text": "O küçük biri kim? Onu da bulacağım."
+      }
     ]
   }
 }

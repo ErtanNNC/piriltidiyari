@@ -634,6 +634,10 @@ func test_season2() -> void:
 	check(Skills.for_character("miril") == "yildiz_ninnisi", "Mırıl'ın yeteneği Yıldız Ninnisi")
 	d.unlock_skill("yildiz_ninnisi")
 	check(d.active_skill() == "yildiz_ninnisi", "Ninni öğrenilince L tuşunda")
+	check(GurledekPlan.phase(GurledekPlan.MAX_HP) == 1 and GurledekPlan.phase(GurledekPlan.MAX_HP / 2) == 2 and GurledekPlan.phase(10) == 3, "Gürledek üç faz")
+	for p in [1, 2, 3]:
+		check(GurledekPlan.cycle(p).back() == "low", "Gürledek her turun sonunda alçalır (faz %d)" % p)
+		check(GurledekPlan.rest(p) >= 1.0, "Gürledek saldırıları arası en az 1 sn (faz %d)" % p)
 	var c := ContentScript.new()
 	c.load_chapter("s2_prologue")
 	check(c.quests.has("davetiyeler") and c.quests.has("kirmizi_ruzgar"), "Sezon 2 prolog görevleri")

@@ -561,13 +561,28 @@
   "Çok kalabalık! Ninnimi söyleyeyim: L tuşu ya da Ninni!",
   "Kimse... beni... dinlemiyor!",
   "Ben dinliyorum! Neredesin?",
-  "Geçitte bir şey var. Kocaman, kırmızı bir bulut!"
+  "Geçitte bir şey var. Kocaman, kırmızı bir bulut!",
+  "Kocaman bir bulut! Geçidi kapatıyor.",
+  "GÜRRR! Kimse geçemez! Kimse dinlemez!",
+  "Halkalara dikkat edeyim. Yorulunca alçalır belki.",
+  "Yağmurum da var! Gürrr!",
+  "Gürr... gürr... Çok yoruldum...",
+  "Hıçk... Kimse beni dinlemedi... Hiç...",
+  "Ben dinliyorum. Yanına geliyorum.",
+  "Sen... beni duydun mu?",
+  "Duydum. Sen bir 'Sus!' sözünden doğmuşsun, değil mi?",
+  "Küçük biri vardı. Her konuşunca ona 'Sus!' dediler.",
+  "Teşekkürler... Artık hafifim.",
+  "O küçük biri kim? Onu da bulacağım."
  ],
  "content/s2_prologue/chapter.json": [
   "Kırmızı Ufuk",
   "Mırıl'ın İlk Doğum Günü",
   "Kırmızı Rüzgâr",
-  "Yankıların Peşinde"
+  "Yankıların Peşinde",
+  "Gürledek",
+  "Mırıl'ın Seçimi",
+  "Kulak Bekçileri"
  ],
  "content/s2_prologue/dialogue/bado.json": [
   "Kardeşim Minnoş nerede? Onu bulmam lazım!",
@@ -674,7 +689,8 @@
   "Minik Uykucu",
   "Mırıl",
   "Gölge Prens Mırıl",
-  "Usta Tıkır"
+  "Usta Tıkır",
+  "Hırıl"
  ],
  "src/actors/breath_calm.gd": [
   "panel@light",
@@ -695,6 +711,10 @@
   "Halka: zıpla!",
   "Yumrukları buza saplandı! Şimdi vur!",
   "Yumrukları saplandı! Vur!"
+ ],
+ "src/actors/gurledek.gd": [
+  "Yoruldu, alçaldı! Şimdi vur!",
+  "Alçaldı! Şimdi vur!"
  ],
  "src/actors/keeper_models.gd": [
   "Yok",
@@ -777,11 +797,8 @@
   "Sezon 2 · Prolog · Sahne 2",
   "Sezon 2 · Prolog · Sahne 3",
   "Sezon 2 · Prolog · Sahne 4",
-  "Gürledek",
   "Sezon 2 · Prolog · Sahne 5",
-  "Mırıl'ın Seçimi",
-  "Sezon 2 · Prolog · Sahne 6",
-  "Kulak Bekçileri"
+  "Sezon 2 · Prolog · Sahne 6"
  ],
  "src/autoload/tokens.gd": [
   "fontSize",
@@ -1135,6 +1152,14 @@
   "L: Yıldız Ninnisi! Hepsi birden otursun.",
   "Ninni'ye bas: hepsi birden otursun!",
   "Dağ Geçidi ↑"
+ ],
+ "src/world/s2_scene4.gd": [
+  "Halkalardan kaç. Bulut alçalınca vur!",
+  "Halkalardan kaç, alçalınca vur!",
+  "Yanına git, Sakinleş'e basılı tut. Onu dinle.",
+  "Yanına git, Sakinleş'e basılı tut!",
+  "Gürledek dağıldı",
+  "Ardında kırmızı bir yankı kaldı..."
  ],
  "src/world/scene2.gd": [
   "J: Dikenlerinle vur!",

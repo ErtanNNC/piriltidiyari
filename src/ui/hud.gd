@@ -487,7 +487,7 @@ func set_boss_hp(hp: int, max_hp: int) -> void:
 func hide_boss() -> void:
 	Audio.boss(false)
 	_boss.visible = false
-	_sparks.visible = true
+	_sparks.visible = GameState.data.season < 2
 	_refresh_quest()
 
 
