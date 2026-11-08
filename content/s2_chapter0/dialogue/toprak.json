@@ -1,0 +1,57 @@
+{
+  "npc": "toprak",
+  "variants": [
+    {
+      "when": {
+        "objective_done": "kopuk_koy/toprak"
+      },
+      "lines": [
+        {
+          "speaker": "toprak",
+          "mood": "mutlu",
+          "text": "Tünelimi gördün! Artık kızgın değilim."
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "kopuk_koy",
+        "state": "active"
+      },
+      "lines": [
+        {
+          "speaker": "toprak",
+          "mood": "huysuz",
+          "text": "Herkes bana 'Sonra!' diyor. Sonra ne zaman?"
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "sakin",
+          "text": "Şimdi. Şimdi dinliyorum."
+        },
+        {
+          "speaker": "toprak",
+          "mood": "üzgün",
+          "text": "Bir tünel kazdım, göstermek istedim. Kimse bakmadı."
+        },
+        {
+          "speaker": "toprak",
+          "mood": "mutlu",
+          "text": "Bak, şuradan başlıyor! Oh, ne güzel anlattım."
+        }
+      ],
+      "then": {
+        "advance": "kopuk_koy/toprak"
+      }
+    },
+    {
+      "lines": [
+        {
+          "speaker": "toprak",
+          "mood": "huysuz",
+          "text": "Herkes konuşuyor, kimse dinlemiyor! Hıh!"
+        }
+      ]
+    }
+  ]
+}

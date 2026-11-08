@@ -1,0 +1,25 @@
+{
+  "id": "s2_chapter0",
+  "title": "Buharlı Kaplıca Köyü",
+  "region": "Buharlı Kaplıca Köyü",
+  "theme": "light",
+  "levels": [
+    1,
+    5
+  ],
+  "spark": null,
+  "quests": [
+    "kopuk_koy",
+    "homurdanan_caydanlik"
+  ],
+  "dialogue": [
+    "bulut",
+    "kalay",
+    "pitpit",
+    "pamuk",
+    "toprak",
+    "bidik"
+  ],
+  "barks": "barks",
+  "shop": "shop"
+}

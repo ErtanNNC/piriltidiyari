@@ -1,0 +1,54 @@
+{
+  "barks": {
+    "s2c0_basla": [
+      {
+        "speaker": "oyuncu",
+        "mood": "kararlı",
+        "text": "İşte Buharlı Kaplıca Köyü! Her yerden buhar çıkıyor."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "kararlı",
+        "text": "Önce kaplıcanın yanındaki Bulut Nine'yi bulayım."
+      }
+    ],
+    "s2c0_kazan": [
+      {
+        "speaker": "caydanlik",
+        "mood": "huysuz",
+        "text": "FOKUR FOKUR! Kimse bana bakmaz, ben de kaynarım!"
+      }
+    ],
+    "s2c0_kazan_son": [
+      {
+        "speaker": "caydanlik",
+        "mood": "üzgün",
+        "text": "Fokur... fokur... Sen beni dinledin mi?"
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "sakin",
+        "text": "Dinledim. Artık soğuyabilirsin."
+      },
+      {
+        "speaker": "caydanlik",
+        "mood": "mutlu",
+        "text": "Fıss... Ohh. Ne güzel bir serinlik."
+      }
+    ],
+    "s2c0_can": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Çan çaldı! Kızıl Sis köyden çekiliyor!"
+      }
+    ],
+    "s2c0_kilit": [
+      {
+        "speaker": "oyuncu",
+        "mood": "dertli",
+        "text": "Çan çalmıyor... Önce kazanı sakinleştirmeliyim."
+      }
+    ]
+  }
+}

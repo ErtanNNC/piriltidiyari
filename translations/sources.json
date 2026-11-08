@@ -554,6 +554,85 @@
   "Sallanan fenerlerden geç",
   "Kulenin çatısına çık"
  ],
+ "content/s2_chapter0/barks.json": [
+  "İşte Buharlı Kaplıca Köyü! Her yerden buhar çıkıyor.",
+  "Önce kaplıcanın yanındaki Bulut Nine'yi bulayım.",
+  "FOKUR FOKUR! Kimse bana bakmaz, ben de kaynarım!",
+  "Fokur... fokur... Sen beni dinledin mi?",
+  "Dinledim. Artık soğuyabilirsin.",
+  "Fıss... Ohh. Ne güzel bir serinlik.",
+  "Çan çaldı! Kızıl Sis köyden çekiliyor!",
+  "Çan çalmıyor... Önce kazanı sakinleştirmeliyim."
+ ],
+ "content/s2_chapter0/chapter.json": [
+  "Buharlı Kaplıca Köyü"
+ ],
+ "content/s2_chapter0/dialogue/bidik.json": [
+  "Vrak! Merhaba! Bir daha merhaba!",
+  "VRAK! Ben de konuşmak istiyorum, sıra hiç gelmiyor!",
+  "Sıra sende. Buyur.",
+  "Bana mı? Gerçekten mi? Şey... Merhaba!",
+  "Tek istediğim buydu. Bir merhaba demek.",
+  "Herkes konuşuyor, kimse dinlemiyor! Hıh!"
+ ],
+ "content/s2_chapter0/dialogue/bulut.json": [
+  "Çanımız çaldı, köyümüz serinledi. Aferin sana, yavrum.",
+  "Çan çaldı! Duydun mu? Kızıl Sis köyümüzden çekildi.",
+  "Bundan sonra buradaki çan, yolculukta sana yuva olur.",
+  "Dağın ötesinde Kızıl Yaprak Ormanı var. Orada da biri kızgın.",
+  "Kazan homurdanıyor. Yorulunca kapağı kalkar, o zaman vur.",
+  "Herkesi dinledin. Bak, buharları geçti.",
+  "Öfke bir çaydanlık gibidir, yavrum. Kapağını kapatırsan patlar.",
+  "Köyün büyük kazanı da öyle. Kızıl Sis onu kaynattı.",
+  "Git, onu da dinle. Sonra tepedeki çanı çal.",
+  "Hepsi aynı anda konuşuyor. Teker teker dinle, yavrum.",
+  "Hoş geldin, bekçi! Ben Bulut, kaplıcanın ninesiyim.",
+  "Kızıl Sis geldi geleli kimse kimseyi dinlemiyor.",
+  "Herkes aynı anda konuşuyor. Buhar kulaklarından çıkıyor!",
+  "Dört komşumu teker teker dinler misin?",
+  "Kaplıcanın suyu ılık, yavrum. Bir nefes al."
+ ],
+ "content/s2_chapter0/dialogue/kalay.json": [
+  "Tak tak! Ben Demirci Kalay. Örsüm Kızıl Sis'te soğudu.",
+  "Ateşimi yakınca aletlerini güçlendiririm. Yakında!"
+ ],
+ "content/s2_chapter0/dialogue/pamuk.json": [
+  "Bu gece mışıl mışıl uyuyacağım.",
+  "Kulaklarım dikildi! Gürültüden uyuyamıyorum!",
+  "Anlat bakalım, dinliyorum.",
+  "Bir gece sessizlik istedim. Sadece bir gece...",
+  "Seninle konuşunca içim serinledi."
+ ],
+ "content/s2_chapter0/dialogue/pitpit.json": [
+  "Vak vak! Şarkımı akşam herkese söyleyeceğim.",
+  "Vak! Herkes bağırıyor, kendi sesimi duyamıyorum!",
+  "Ben seni dinliyorum. Ne oldu?",
+  "Yeni şarkımı söylemek istedim. Kimse susmadı...",
+  "Dinledin mi gerçekten? Oh, buharım geçti!"
+ ],
+ "content/s2_chapter0/dialogue/toprak.json": [
+  "Tünelimi gördün! Artık kızgın değilim.",
+  "Herkes bana 'Sonra!' diyor. Sonra ne zaman?",
+  "Şimdi. Şimdi dinliyorum.",
+  "Bir tünel kazdım, göstermek istedim. Kimse bakmadı.",
+  "Bak, şuradan başlıyor! Oh, ne güzel anlattım."
+ ],
+ "content/s2_chapter0/quests/homurdanan_caydanlik.json": [
+  "Homurdanan Çaydanlık",
+  "Köyün büyük kazanını sakinleştir",
+  "Tepedeki Ses Çanı'nı çal",
+  "Bulut Nine'ye dön"
+ ],
+ "content/s2_chapter0/quests/kopuk_koy.json": [
+  "Herkes Aynı Anda Konuşuyor",
+  "Pıtpıt'ı dinle",
+  "Pamuk'u dinle",
+  "Toprak'ı dinle",
+  "Bıdık'ı dinle"
+ ],
+ "content/s2_chapter0/shop.json": [
+  "Bulut Nine'nin Kaplıca Tezgâhı"
+ ],
  "content/s2_prologue/barks.json": [
   "Bugün benim doğum günüm! Köyde ilk doğum günüm.",
   "Süzülüyorum! Yıldız olmanın en güzel yanı bu.",
@@ -725,7 +804,13 @@
   "Mırıl",
   "Gölge Prens Mırıl",
   "Usta Tıkır",
-  "Hırıl"
+  "Hırıl",
+  "Bulut Nine",
+  "Demirci Kalay",
+  "Pıtpıt",
+  "Pamuk",
+  "Toprak",
+  "Bıdık"
  ],
  "src/actors/breath_calm.gd": [
   "panel@light",
@@ -757,6 +842,10 @@
   "Şapka",
   "Atkı",
   "Gözlük"
+ ],
+ "src/actors/kettle.gd": [
+  "Kapağı kalktı! Şimdi vur!",
+  "Kapak kalktı! Şimdi vur!"
  ],
  "src/actors/kiskac.gd": [
   "Kıskacı saplandı! Şimdi vur!",
@@ -834,7 +923,8 @@
   "Sezon 2 · Prolog · Sahne 3",
   "Sezon 2 · Prolog · Sahne 4",
   "Sezon 2 · Prolog · Sahne 5",
-  "Sezon 2 · Prolog · Sahne 6"
+  "Sezon 2 · Prolog · Sahne 6",
+  "Sezon 2 · Bölüm 0"
  ],
  "src/autoload/tokens.gd": [
   "fontSize",
@@ -969,13 +1059,13 @@
  ],
  "src/ui/prologue_done.gd": [
   "Bölüm 0: Buharlı Kaplıca Köyü",
-  "Kaplıca Ninesi ve hiç susmayan köylüler",
-  "Beş Kor, beş öfkeli bekçi",
-  "Tıpış ile Hırıl'ın sırrı",
+  "Bulut Nine ve hiç susmayan köylüler",
+  "Homurdanan Çaydanlık ve ilk Ses Çanı",
+  "Sonra: beş Kor, beş öfkeli bekçi",
   "Prolog tamamlandı!",
   "Sezon 2: Kor Vadisi",
-  "Çok yakında",
-  "Köyde dolaş"
+  "Sırada ne var?",
+  "Kor Vadisi'ne in"
  ],
  "src/ui/save_slots_panel.gd": [
   "Yeni macera: bir yuva seç",
@@ -1007,7 +1097,8 @@
   "Seviye %d",
   "%d Pırıl",
   "Oynadığın için teşekkürler! · Just A Game Studios",
-  "Sezon 2'ye başla"
+  "Sezon 2'ye başla",
+  "Köyde dolaş"
  ],
  "src/ui/shop_panel.gd": [
   "Dükkân",
@@ -1141,6 +1232,9 @@
   "mesh|cx|cz",
   "%s|%d|%d"
  ],
+ "src/world/echo_bell.gd": [
+  "Çal"
+ ],
  "src/world/effects.gd": [
   "%s|%s|%s"
  ],
@@ -1166,6 +1260,22 @@
  ],
  "src/world/pus_gate.gd": [
   "Fener henüz yanmadı"
+ ],
+ "src/world/s2_chapter0.gd": [
+  "Benim sıram!",
+  "Dinle beni!",
+  "Hayır, ben!",
+  "Bir dakika!",
+  "Hıh!",
+  "Ama ben...",
+  "Meydandaki büyük kazana git",
+  "Büyük kazana git",
+  "Tepedeki çanı çal",
+  "Buhar çizgilerinden kaç. Kapak kalkınca vur!",
+  "Buhardan kaç, kapak kalkınca vur!",
+  "Kazan soğuyor. Yanına git, Sakinleş'e basılı tut!",
+  "Yanına git, Sakinleş'e basılı tut!",
+  "Kızıl Yaprak Ormanı ↑ (yakında)"
  ],
  "src/world/s2_scene1.gd": [
   "Boşluk: zıpla, havada basılı tut: süzül!",
@@ -1202,7 +1312,6 @@
   "Halkalardan kaç. Bulut alçalınca vur!",
   "Halkalardan kaç, alçalınca vur!",
   "Yanına git, Sakinleş'e basılı tut. Onu dinle.",
-  "Yanına git, Sakinleş'e basılı tut!",
   "Gürledek dağıldı",
   "Ardında kırmızı bir yankı kaldı..."
  ],
@@ -1249,9 +1358,6 @@
  "src/world/spark_door.gd": [
   "Kıvılcımı göster",
   "Bu kapı bir Kıvılcım daha istiyor"
- ],
- "src/world/storm_bell.gd": [
-  "Çal"
  ],
  "src/world/story_stone.gd": [
   "Oku",

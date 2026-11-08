@@ -1,0 +1,19 @@
+{
+  "npc": "kalay",
+  "variants": [
+    {
+      "lines": [
+        {
+          "speaker": "kalay",
+          "mood": "huysuz",
+          "text": "Tak tak! Ben Demirci Kalay. Örsüm Kızıl Sis'te soğudu."
+        },
+        {
+          "speaker": "kalay",
+          "mood": "mutlu",
+          "text": "Ateşimi yakınca aletlerini güçlendiririm. Yakında!"
+        }
+      ]
+    }
+  ]
+}

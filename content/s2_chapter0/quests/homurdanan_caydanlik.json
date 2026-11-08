@@ -1,0 +1,25 @@
+{
+  "id": "homurdanan_caydanlik",
+  "title": "Homurdanan Çaydanlık",
+  "giver": "bulut",
+  "ordered": true,
+  "objectives": [
+    {
+      "id": "caydanlik",
+      "text": "Köyün büyük kazanını sakinleştir",
+      "type": "breathe",
+      "target": "caydanlik"
+    },
+    {
+      "id": "can",
+      "text": "Tepedeki Ses Çanı'nı çal",
+      "type": "ring",
+      "target": "ses_cani"
+    }
+  ],
+  "turn_in": "Bulut Nine'ye dön",
+  "rewards": {
+    "piril": 40,
+    "xp": 60
+  }
+}

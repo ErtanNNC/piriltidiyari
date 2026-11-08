@@ -1,0 +1,149 @@
+{
+  "npc": "bulut",
+  "variants": [
+    {
+      "when": {
+        "quest": "homurdanan_caydanlik",
+        "state": "done"
+      },
+      "lines": [
+        {
+          "speaker": "bulut",
+          "mood": "mutlu",
+          "text": "Çanımız çaldı, köyümüz serinledi. Aferin sana, yavrum."
+        }
+      ],
+      "then": {
+        "open_shop": "bulut"
+      }
+    },
+    {
+      "when": {
+        "quest": "homurdanan_caydanlik",
+        "state": "ready"
+      },
+      "lines": [
+        {
+          "speaker": "bulut",
+          "mood": "mutlu",
+          "text": "Çan çaldı! Duydun mu? Kızıl Sis köyümüzden çekildi."
+        },
+        {
+          "speaker": "bulut",
+          "mood": "mutlu",
+          "text": "Bundan sonra buradaki çan, yolculukta sana yuva olur."
+        },
+        {
+          "speaker": "bulut",
+          "mood": "kararlı",
+          "text": "Dağın ötesinde Kızıl Yaprak Ormanı var. Orada da biri kızgın."
+        }
+      ],
+      "then": {
+        "complete_quest": "homurdanan_caydanlik",
+        "set_flag": "s2_bolum0_bitti"
+      }
+    },
+    {
+      "when": {
+        "quest": "homurdanan_caydanlik",
+        "state": "active"
+      },
+      "lines": [
+        {
+          "speaker": "bulut",
+          "mood": "dertli",
+          "text": "Kazan homurdanıyor. Yorulunca kapağı kalkar, o zaman vur."
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "kopuk_koy",
+        "state": "ready"
+      },
+      "lines": [
+        {
+          "speaker": "bulut",
+          "mood": "mutlu",
+          "text": "Herkesi dinledin. Bak, buharları geçti."
+        },
+        {
+          "speaker": "bulut",
+          "mood": "sakin",
+          "text": "Öfke bir çaydanlık gibidir, yavrum. Kapağını kapatırsan patlar."
+        },
+        {
+          "speaker": "bulut",
+          "mood": "dertli",
+          "text": "Köyün büyük kazanı da öyle. Kızıl Sis onu kaynattı."
+        },
+        {
+          "speaker": "bulut",
+          "mood": "kararlı",
+          "text": "Git, onu da dinle. Sonra tepedeki çanı çal."
+        }
+      ],
+      "then": {
+        "complete_quest": "kopuk_koy",
+        "start_quest": "homurdanan_caydanlik"
+      }
+    },
+    {
+      "when": {
+        "quest": "kopuk_koy",
+        "state": "active"
+      },
+      "lines": [
+        {
+          "speaker": "bulut",
+          "mood": "sakin",
+          "text": "Hepsi aynı anda konuşuyor. Teker teker dinle, yavrum."
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "kopuk_koy",
+        "state": "none"
+      },
+      "lines": [
+        {
+          "speaker": "bulut",
+          "mood": "mutlu",
+          "text": "Hoş geldin, bekçi! Ben Bulut, kaplıcanın ninesiyim."
+        },
+        {
+          "speaker": "bulut",
+          "mood": "dertli",
+          "text": "Kızıl Sis geldi geleli kimse kimseyi dinlemiyor."
+        },
+        {
+          "speaker": "bulut",
+          "mood": "sakin",
+          "text": "Herkes aynı anda konuşuyor. Buhar kulaklarından çıkıyor!"
+        },
+        {
+          "speaker": "bulut",
+          "mood": "kararlı",
+          "text": "Dört komşumu teker teker dinler misin?"
+        }
+      ],
+      "then": {
+        "start_quest": "kopuk_koy",
+        "give_items": {
+          "nane_sekeri": 2
+        }
+      }
+    },
+    {
+      "lines": [
+        {
+          "speaker": "bulut",
+          "mood": "sakin",
+          "text": "Kaplıcanın suyu ılık, yavrum. Bir nefes al."
+        }
+      ]
+    }
+  ]
+}

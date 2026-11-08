@@ -171,6 +171,34 @@
     "tipis_panda": {
       "name": "Tıpış",
       "color": "hp"
+    },
+    "bulut": {
+      "name": "Bulut Nine",
+      "color": "sky"
+    },
+    "kalay": {
+      "name": "Demirci Kalay",
+      "color": "spark-blue"
+    },
+    "pitpit": {
+      "name": "Pıtpıt",
+      "color": "spark-yellow"
+    },
+    "pamuk": {
+      "name": "Pamuk",
+      "color": "berry"
+    },
+    "toprak": {
+      "name": "Toprak",
+      "color": "honey"
+    },
+    "bidik": {
+      "name": "Bıdık",
+      "color": "spark-green"
+    },
+    "caydanlik": {
+      "name": "Homurdanan Çaydanlık",
+      "color": "hp"
     }
   }
 }

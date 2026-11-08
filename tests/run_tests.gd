@@ -298,7 +298,7 @@ func test_owl_plan() -> void:
 
 
 func test_content_is_valid() -> void:
-	for chapter in ["prologue", "chapter0", "chapter1", "chapter2", "chapter3", "chapter4", "chapter5", "s2_prologue"]:
+	for chapter in ["prologue", "chapter0", "chapter1", "chapter2", "chapter3", "chapter4", "chapter5", "s2_prologue", "s2_chapter0"]:
 		_validate_chapter(chapter)
 	test_chapter0_flow()
 	test_chapter1_flow()
@@ -647,6 +647,21 @@ func test_season2() -> void:
 		check(Skills.for_character(k) != "", "Sezon 2 bekçisinin yeteneği var: %s" % k)
 		check(KeeperModels.INFO.has(k), "Sezon 2 bekçisinin renkleri var: %s" % k)
 	check(Skills.for_character("tipis_panda") == "derin_nefes", "Tıpış: Derin Nefes")
+	check(KettlePlan.phase(KettlePlan.MAX_HP) == 1 and KettlePlan.phase(10) == 2, "Çaydanlık iki faz")
+	for p in [1, 2]:
+		check(KettlePlan.cycle(p).back() == "lid", "Çaydanlık her turun sonunda kapağını kaldırır (faz %d)" % p)
+	c.load_chapter("s2_chapter0")
+	var v := PlayerData.new()
+	v.start_quest(c.quests["kopuk_koy"])
+	for nid: String in ["pitpit", "pamuk", "toprak", "bidik"]:
+		check(c.npcs.has(nid), "Bölüm 0 komşusu konuşur: %s" % nid)
+	v.start_quest(c.quests["homurdanan_caydanlik"])
+	v.notify("ring", "ses_cani", c.quests)
+	check(not v.objective_done("homurdanan_caydanlik", "can"), "Çan, kazan sakinleşmeden sayılmaz (sıralı)")
+	v.notify("breathe", "caydanlik", c.quests)
+	v.notify("ring", "ses_cani", c.quests)
+	check(v.quest_state("homurdanan_caydanlik") == "ready", "Kazan + çan: görev hazır")
+	check(c.shops.has("bulut"), "Bulut Nine'nin dükkânı var")
 	var tp := PlayerData.new()
 	tp.choose_keeper("tipis_panda", c.keeper("tipis_panda")["stats"], {}, "Tıpış")
 	check(tp.level == 1 and tp.active_skill() == "derin_nefes", "Tıpış seçilince seviye 1 ve Derin Nefes")

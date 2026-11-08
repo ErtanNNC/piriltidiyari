@@ -1,0 +1,57 @@
+{
+  "npc": "bidik",
+  "variants": [
+    {
+      "when": {
+        "objective_done": "kopuk_koy/bidik"
+      },
+      "lines": [
+        {
+          "speaker": "bidik",
+          "mood": "mutlu",
+          "text": "Vrak! Merhaba! Bir daha merhaba!"
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "kopuk_koy",
+        "state": "active"
+      },
+      "lines": [
+        {
+          "speaker": "bidik",
+          "mood": "huysuz",
+          "text": "VRAK! Ben de konuşmak istiyorum, sıra hiç gelmiyor!"
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "sakin",
+          "text": "Sıra sende. Buyur."
+        },
+        {
+          "speaker": "bidik",
+          "mood": "şaşkın",
+          "text": "Bana mı? Gerçekten mi? Şey... Merhaba!"
+        },
+        {
+          "speaker": "bidik",
+          "mood": "mutlu",
+          "text": "Tek istediğim buydu. Bir merhaba demek."
+        }
+      ],
+      "then": {
+        "advance": "kopuk_koy/bidik"
+      }
+    },
+    {
+      "lines": [
+        {
+          "speaker": "bidik",
+          "mood": "huysuz",
+          "text": "Herkes konuşuyor, kimse dinlemiyor! Hıh!"
+        }
+      ]
+    }
+  ]
+}

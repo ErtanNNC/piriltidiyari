@@ -1,0 +1,36 @@
+{
+  "id": "kopuk_koy",
+  "title": "Herkes Aynı Anda Konuşuyor",
+  "giver": "bulut",
+  "objectives": [
+    {
+      "id": "pitpit",
+      "text": "Pıtpıt'ı dinle",
+      "type": "talk",
+      "target": "pitpit"
+    },
+    {
+      "id": "pamuk",
+      "text": "Pamuk'u dinle",
+      "type": "talk",
+      "target": "pamuk"
+    },
+    {
+      "id": "toprak",
+      "text": "Toprak'ı dinle",
+      "type": "talk",
+      "target": "toprak"
+    },
+    {
+      "id": "bidik",
+      "text": "Bıdık'ı dinle",
+      "type": "talk",
+      "target": "bidik"
+    }
+  ],
+  "turn_in": "Bulut Nine'ye dön",
+  "rewards": {
+    "piril": 25,
+    "xp": 30
+  }
+}

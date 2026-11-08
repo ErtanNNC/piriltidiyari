@@ -1,0 +1,57 @@
+{
+  "npc": "pitpit",
+  "variants": [
+    {
+      "when": {
+        "objective_done": "kopuk_koy/pitpit"
+      },
+      "lines": [
+        {
+          "speaker": "pitpit",
+          "mood": "mutlu",
+          "text": "Vak vak! Şarkımı akşam herkese söyleyeceğim."
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "kopuk_koy",
+        "state": "active"
+      },
+      "lines": [
+        {
+          "speaker": "pitpit",
+          "mood": "huysuz",
+          "text": "Vak! Herkes bağırıyor, kendi sesimi duyamıyorum!"
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "sakin",
+          "text": "Ben seni dinliyorum. Ne oldu?"
+        },
+        {
+          "speaker": "pitpit",
+          "mood": "üzgün",
+          "text": "Yeni şarkımı söylemek istedim. Kimse susmadı..."
+        },
+        {
+          "speaker": "pitpit",
+          "mood": "mutlu",
+          "text": "Dinledin mi gerçekten? Oh, buharım geçti!"
+        }
+      ],
+      "then": {
+        "advance": "kopuk_koy/pitpit"
+      }
+    },
+    {
+      "lines": [
+        {
+          "speaker": "pitpit",
+          "mood": "huysuz",
+          "text": "Herkes konuşuyor, kimse dinlemiyor! Hıh!"
+        }
+      ]
+    }
+  ]
+}

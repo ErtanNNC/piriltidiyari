@@ -1,0 +1,57 @@
+{
+  "npc": "pamuk",
+  "variants": [
+    {
+      "when": {
+        "objective_done": "kopuk_koy/pamuk"
+      },
+      "lines": [
+        {
+          "speaker": "pamuk",
+          "mood": "mutlu",
+          "text": "Bu gece mışıl mışıl uyuyacağım."
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "kopuk_koy",
+        "state": "active"
+      },
+      "lines": [
+        {
+          "speaker": "pamuk",
+          "mood": "huysuz",
+          "text": "Kulaklarım dikildi! Gürültüden uyuyamıyorum!"
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "sakin",
+          "text": "Anlat bakalım, dinliyorum."
+        },
+        {
+          "speaker": "pamuk",
+          "mood": "üzgün",
+          "text": "Bir gece sessizlik istedim. Sadece bir gece..."
+        },
+        {
+          "speaker": "pamuk",
+          "mood": "mutlu",
+          "text": "Seninle konuşunca içim serinledi."
+        }
+      ],
+      "then": {
+        "advance": "kopuk_koy/pamuk"
+      }
+    },
+    {
+      "lines": [
+        {
+          "speaker": "pamuk",
+          "mood": "huysuz",
+          "text": "Herkes konuşuyor, kimse dinlemiyor! Hıh!"
+        }
+      ]
+    }
+  ]
+}

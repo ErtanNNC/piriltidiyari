@@ -8,9 +8,9 @@ signal chosen(id: String)
 
 const NEXT := [
 	["spark", "hp", "Bölüm 0: Buharlı Kaplıca Köyü"],
-	["heart", "honey", "Kaplıca Ninesi ve hiç susmayan köylüler"],
-	["star", "spark-purple", "Beş Kor, beş öfkeli bekçi"],
-	["quest", "sky", "Tıpış ile Hırıl'ın sırrı"],
+	["heart", "honey", "Bulut Nine ve hiç susmayan köylüler"],
+	["star", "spark-purple", "Homurdanan Çaydanlık ve ilk Ses Çanı"],
+	["quest", "sky", "Sonra: beş Kor, beş öfkeli bekçi"],
 ]
 
 
@@ -39,7 +39,7 @@ func _ready() -> void:
 	sub.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	v.add_child(sub)
 	v.add_child(HSeparator.new())
-	v.add_child(UiKit.label("Çok yakında", "text-heading", "ink"))
+	v.add_child(UiKit.label("Sırada ne var?", "text-heading", "ink"))
 	for n: Array in NEXT:
 		var row := HBoxContainer.new()
 		row.add_theme_constant_override("separation", int(Tokens.px("space-2")))
@@ -55,10 +55,10 @@ func _ready() -> void:
 	buttons.alignment = BoxContainer.ALIGNMENT_CENTER
 	buttons.add_theme_constant_override("separation", int(Tokens.px("space-3")))
 	v.add_child(buttons)
-	var stay := UiKit.button("Köyde dolaş")
-	stay.custom_minimum_size = Vector2(220, 60)
-	stay.pressed.connect(func() -> void: chosen.emit("chapter0"))
-	buttons.add_child(stay)
+	var go := UiKit.button("Kor Vadisi'ne in")
+	go.custom_minimum_size = Vector2(240, 60)
+	go.pressed.connect(func() -> void: chosen.emit("s2_chapter0"))
+	buttons.add_child(go)
 	var menu := UiKit.button("Ana menü", false)
 	menu.custom_minimum_size = Vector2(180, 60)
 	menu.pressed.connect(func() -> void: chosen.emit("title"))

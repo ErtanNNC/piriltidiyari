@@ -1,0 +1,21 @@
+{
+  "shops": {
+    "bulut": {
+      "title": "Bulut Nine'nin Kaplıca Tezgâhı",
+      "items": [
+        {
+          "id": "bal_surubu",
+          "price": 15
+        },
+        {
+          "id": "nane_sekeri",
+          "price": 15
+        },
+        {
+          "id": "yildiz_tozu",
+          "price": 20
+        }
+      ]
+    }
+  }
+}

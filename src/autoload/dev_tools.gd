@@ -4,7 +4,7 @@ extends Node
 ## --scene jumps to a story scene with the progress of the scenes before it.
 ## Never active in a normal run.
 
-const ORDER := ["scene1", "scene2", "scene3", "scene4", "scene5", "scene6", "chapter0", "chapter1", "chapter2", "chapter3", "chapter4", "chapter5", "final", "s2_scene1", "s2_scene2", "s2_scene3", "s2_scene4", "s2_scene5", "s2_scene6"]
+const ORDER := ["scene1", "scene2", "scene3", "scene4", "scene5", "scene6", "chapter0", "chapter1", "chapter2", "chapter3", "chapter4", "chapter5", "final", "s2_scene1", "s2_scene2", "s2_scene3", "s2_scene4", "s2_scene5", "s2_scene6", "s2_chapter0"]
 
 var _shot_path := ""
 var _frames := 60
@@ -159,6 +159,18 @@ static func _preset_story(data: PlayerData, scene: String) -> void:
 		data.set_flag("s2_sahne4_bitti")
 	if idx >= 18:
 		data.set_flag("s2_sahne5_bitti")
+	if idx >= 19:
+		# Season 2 keeper chosen (--keeper=..., Tıpış too), fresh at level 1
+		var content: Node = Engine.get_main_loop().root.get_node_or_null("Content")
+		if content:
+			var k := "pati"
+			for arg in OS.get_cmdline_user_args():
+				if arg.begins_with("--keeper="):
+					k = arg.get_slice("=", 1)
+			data.powers = {}
+			data.power_picks = 0
+			data.choose_keeper(k, content.keeper(k)["stats"], {}, content.keeper(k)["name"])
+		data.set_flag("s2_prolog_bitti")
 
 
 static func _finish(data: PlayerData, quest_id: String) -> void:

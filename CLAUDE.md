@@ -161,9 +161,17 @@ is a copy of the design system's tokens.
   5-keeper select (`KeeperSelect.order/lines` from `content/keepers_s2.json`,
   `Content.keeper(id)` finds S1 and S2 keepers; S1 tests iterate only
   `Content.keepers`). Choosing resets powers, level 1, then `PrologueDone`.
+- Bölüm 0 `s2_chapter0` (Buharlı Kaplıca Köyü, pack `content/s2_chapter0/`):
+  four neighbours talk over each other (Label3D shouts until heard; quest
+  `kopuk_koy`), Bulut Nine (`hippo` NPC, shop "bulut"), Demirci Kalay
+  (`smith_turtle`), mini boss Homurdanan Çaydanlık (`KettlePlan` + `Kettle`:
+  jets/splash warned, hittable while the lid is up, Sakinleş at the end), and
+  the first Ses Çanı (`EchoBell`, `needs` = "quest/objective", flag `s2_can0`,
+  event "ring"/"ses_cani") that lifts the Kızıl Sis. `PrologueDone` leads here.
 - Checks: `--scene=s2_scene1 --demo=glide|jump|party`, `--scene=s2_scene2 --demo=redwind|breath|guide|angry`,
   `--scene=s2_scene3 --demo=path|jumponly|stairs`, `--scene=s2_scene4 --demo=win --auto`,
-  `--scene=s2_scene5 --demo=flow --auto`, `--scene=s2_scene6 --demo=pick_<id> --auto`.
+  `--scene=s2_scene5 --demo=flow --auto`, `--scene=s2_scene6 --demo=pick_<id> --auto`,
+  `--scene=s2_chapter0 --demo=village|bell_locked|stairs [--keeper=tipis_panda]`.
 
 ## Agent skills
 
