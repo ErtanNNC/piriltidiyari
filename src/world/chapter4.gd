@@ -187,7 +187,8 @@ func _pine(parent: Node3D, at: Vector3) -> void:
 	for k in 3:
 		Toon.part(tree, "cone", Vector3(2.4 - k * 0.6, 1.6, 2.4 - k * 0.6), Color("#5a9e78"), Vector3(0, 1.6 + k * 0.9, 0))
 		Toon.part(tree, "cone", Vector3(1.8 - k * 0.5, 0.5, 1.8 - k * 0.5), MountainKit.SNOW, Vector3(0, 2.2 + k * 0.9, 0), Vector3.ZERO, 0.0, 0.0)
-	Sway.crown(tree, 1.5, 1.1, 0.025)
+	if PropModel.swap(tree, "prop_pine") == null:
+		Sway.crown(tree, 1.5, 1.1, 0.025)
 
 
 func _clear_fog(i: int, silent := false) -> void:

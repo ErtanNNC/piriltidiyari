@@ -21,6 +21,25 @@ func _ready() -> void:
 		"fence": _fence()
 		"low_beam": _low_beam()
 		"rock": _rock()
+	_real_model()
+
+
+## A real model (assets/models/prop_<kind>.glb) takes the primitive look's
+## place; colliders, lights, smoke and the glowing parts stay.
+func _real_model() -> void:
+	var id: String = {"house": "prop_house", "tree": "prop_tree", "big_tree": "prop_tree", "well": "prop_well",
+		"lantern_post": "prop_lantern", "bush": "prop_bush", "tower": "prop_tower"}.get(kind, "")
+	if id == "":
+		return
+	var keep: Array = []
+	for n in ["BuyukKivilcim", "Glow"]:
+		var k := get_node_or_null(n)
+		if k:
+			keep.append(k)
+	var roof: Variant = Tokens.color(accent) if kind in ["house", "well"] else null
+	var m := PropModel.swap(self, id, keep, roof)
+	if m and kind in ["tree", "big_tree"]:
+		Sway.add(m, 0.014)
 
 
 func _collider(radius: float, height: float) -> void:
@@ -262,7 +281,7 @@ func _lantern_post() -> void:
 	for i in 4:
 		var piv := _around(45.0 + i * 90.0)
 		Toon.part(piv, "cylinder", Vector3(0.04, 0.6, 0.04), "ink-muted", Vector3(0, 2.5, 0.22), Vector3.ZERO, 0.0, 0.0)
-	Toon.part(self, "sphere", Vector3(0.42, 0.55, 0.42), accent, Vector3(0, 2.5, 0), Vector3.ZERO, 1.3, 0.02)
+	Toon.part(self, "sphere", Vector3(0.42, 0.55, 0.42), accent, Vector3(0, 2.5, 0), Vector3.ZERO, 1.3, 0.02).name = "Glow"
 	var l := OmniLight3D.new()
 	l.light_color = Tokens.color(accent)
 	l.light_energy = 2.0

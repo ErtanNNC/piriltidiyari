@@ -28,6 +28,7 @@ var _phase := 0.0
 ## Imported models: their own AnimationPlayer clips (idle/walk/run/jump/attack).
 var _anim: AnimationPlayer
 var _clips: Dictionary = {}
+const CLIP_SPEED := {"attack": 2.6, "jump": 1.6, "run": 1.0, "walk": 1.2}
 var _oneshot := 0.0
 ## Imported models without a skeleton: their toon materials take the shape
 ## rig (rig.gdshaderinc); set by ModelImport.
@@ -97,12 +98,16 @@ func _play(key: String, oneshot := false) -> bool:
 		clip = _clips.get("wave")
 	if clip == null and key == "run":
 		clip = _clips.get("walk")
+	if clip == null and key == "walk":
+		clip = _clips.get("run")
 	if clip == null:
 		return false
+	# auto-rigged clips are slow for a game: strikes and hops play faster
+	var speed: float = CLIP_SPEED.get(key, 1.0)
 	if _anim.current_animation != clip:
-		_anim.play(clip, 0.15)
+		_anim.play(clip, 0.15, speed)
 	if oneshot:
-		_oneshot = _anim.get_animation(clip).length
+		_oneshot = _anim.get_animation(clip).length / speed
 	return true
 
 
@@ -156,6 +161,11 @@ func _process(delta: float) -> void:
 		_oneshot -= delta
 		if _oneshot <= 0.0:
 			_play("idle" if speed < 0.1 else ("run" if speed > 0.7 else "walk"))
+		if not materials.is_empty():
+			# bones do the moving; the toon shader still draws the blinks
+			var blink := _blink_amount(delta)
+			for m: ShaderMaterial in materials:
+				m.set_shader_parameter("rig_blink", blink)
 		return
 	if not materials.is_empty():
 		_animate_shape(delta)

@@ -85,6 +85,31 @@ func _ready() -> void:
 		add_child(cb)
 		cb.look_at(Vector3(0, 3.0, 0))
 		return
+	if which == "rigtest":
+		# --model=pati: every clip of a rigged model side by side (idle walk run jump attack)
+		var rid := "pati"
+		for arg in OS.get_cmdline_user_args():
+			if arg.begins_with("--model="):
+				rid = arg.get_slice("=", 1)
+		var clips := ["idle", "walk", "run", "jump", "attack"]
+		for i in clips.size():
+			var wrap := ModelImport.load_model(rid)
+			wrap.position = Vector3((i - 2) * 2.2, 0, 0)
+			add_child(wrap)
+			var ap := wrap.find_children("*", "AnimationPlayer", true, false)
+			if not ap.is_empty():
+				var a: AnimationPlayer = ap[0]
+				CharacterRig.of(wrap).set_process("--live" in OS.get_cmdline_user_args())
+				if a.has_animation(clips[i]):
+					a.get_animation(clips[i]).loop_mode = Animation.LOOP_LINEAR
+					a.play(clips[i])
+					a.seek(0.4, true)
+		var cr := Camera3D.new()
+		cr.fov = 45.0
+		cr.position = Vector3(0, 2.0, 9.5)
+		add_child(cr)
+		cr.look_at(Vector3(0, 1.0, 0))
+		return
 	if which == "fur":
 		# every keeper in its three fur colors
 		for row in 3:

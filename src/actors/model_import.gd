@@ -44,6 +44,28 @@ static func load_model(id: String) -> Node3D:
 	return from_scene(scene.instantiate() as Node3D, id)
 
 
+## A model for a prop: toon look and facing, no fit and no rig.
+static func load_static(id: String) -> Node3D:
+	var path := path_for(id)
+	if path == "":
+		return null
+	var scene := load(path) as PackedScene
+	if scene == null:
+		return null
+	var opts := _options(id)
+	var model := scene.instantiate() as Node3D
+	var root := Node3D.new()
+	root.name = id.capitalize()
+	root.add_child(model)
+	model.rotation_degrees.y = float(opts.get("facing", 0.0))
+	var tint := Color.WHITE
+	var t: Variant = opts.get("tint")
+	if t is Array and (t as Array).size() >= 3:
+		tint = Color(float(t[0]), float(t[1]), float(t[2]))
+	toonify(model, float(opts.get("outline", 0.03)), tint, float(opts.get("glow", 0.0)))
+	return root
+
+
 ## Wraps any loaded model (fit, toon look, rig). Also used by the import check.
 static func from_scene(model: Node3D, id: String) -> Node3D:
 	var opts := _options(id)
@@ -251,7 +273,14 @@ static func _bounds(node: Node, xf: Transform3D) -> AABB:
 	if node is Node3D:
 		t = xf * (node as Node3D).transform
 	if node is VisualInstance3D:
-		var b := t * (node as VisualInstance3D).get_aabb()
+		var vt := t
+		if node is MeshInstance3D and (node as MeshInstance3D).skin != null:
+			# a skinned mesh is placed by its bones, not by the (often 0.01)
+			# armature scale above it: its rest pose is in its own units
+			vt = Transform3D(t.basis.orthonormalized(), t.origin)
+		var b := vt * (node as VisualInstance3D).get_aabb()
+		if node is MeshInstance3D and (node as MeshInstance3D).skin != null and (node as MeshInstance3D).mesh:
+			b = vt * (node as MeshInstance3D).mesh.get_aabb()
 		box = b
 		first = false
 	for c in node.get_children():

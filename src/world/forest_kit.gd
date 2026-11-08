@@ -75,7 +75,8 @@ static func face_tree(parent: Node3D, at: Vector3, s := 1.0, grey := false) -> N
 		Toon.part(root, "sphere", Vector3(0.2, 0.1, 0.05) * s, "berry" if not grey else Color("#8d89a0"), Vector3(0.36 * side, 2.05, 0.55) * s, Vector3.ZERO, 0.0, 0.0)
 	Toon.part(root, "box", Vector3(0.2, 0.05, 0.05) * s, "outline", Vector3(0, 1.88, 0.62) * s, Vector3(0, 0, 0 if not grey else 180), 0.0, 0.0)
 	Toon.default_pus = 1.0
-	Sway.crown(root, 3.5 * s, 3.0 * s, 0.025)
+	if grey or PropModel.swap(root, "prop_face_tree") == null:
+		Sway.crown(root, 3.5 * s, 3.0 * s, 0.025)
 	var body := StaticBody3D.new()
 	var c := CollisionShape3D.new()
 	var cyl := CylinderShape3D.new()
