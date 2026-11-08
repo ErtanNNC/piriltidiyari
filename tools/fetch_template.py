@@ -20,22 +20,27 @@ dest = os.path.expanduser("~/.local/share/godot/export_templates/%s" % ver.repla
 os.makedirs(dest, exist_ok=True)
 
 
-def get(start, end, tries=5):
+def fetch(start, end, tries=6):
+    """Range GET with retries; returns (bytes, total archive size)."""
     for i in range(tries):  # GitHub sometimes answers 5xx for a moment
         try:
             req = urllib.request.Request(url, headers={"Range": "bytes=%d-%d" % (start, end)})
-            with urllib.request.urlopen(req) as r:
-                return r.read()
-        except Exception:
+            with urllib.request.urlopen(req, timeout=120) as r:
+                total = int(r.headers.get("Content-Range", "/0").rsplit("/", 1)[1])
+                return r.read(), total
+        except Exception as e:
             if i == tries - 1:
                 raise
-            time.sleep(5)
+            print("yeniden deneniyor (%s)" % e, file=sys.stderr)
+            time.sleep(5 * (i + 1))
 
 
-# total size
-req = urllib.request.Request(url, method="HEAD")
-with urllib.request.urlopen(req) as r:
-    size = int(r.headers["Content-Length"])
+def get(start, end):
+    return fetch(start, end)[0]
+
+
+# total size (from the Content-Range of a 1-byte read; retried like the rest)
+size = fetch(0, 0)[1]
 tail = get(max(0, size - 65536 - 22), size - 1)
 eocd = tail.rfind(b"PK\x05\x06")
 cd_size, cd_off = struct.unpack_from("<II", tail, eocd + 12)

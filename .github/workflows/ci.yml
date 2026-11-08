@@ -40,6 +40,11 @@ jobs:
         with:
           path: .tools/godot-4.7.2-stable
           key: godot-4.7.2-stable
+      - name: Cache web template
+        uses: actions/cache@v4
+        with:
+          path: ~/.local/share/godot/export_templates
+          key: godot-web-template-4.7.2-stable
       - name: Build web version
         run: tools/build_web.sh
       - uses: actions/upload-artifact@v4
