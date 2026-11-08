@@ -4,7 +4,7 @@ extends Node
 ## --scene jumps to a story scene with the progress of the scenes before it.
 ## Never active in a normal run.
 
-const ORDER := ["scene1", "scene2", "scene3", "scene4", "scene5", "scene6", "chapter0", "chapter1", "chapter2", "chapter3", "chapter4", "chapter5", "final", "s2_scene1", "s2_scene2"]
+const ORDER := ["scene1", "scene2", "scene3", "scene4", "scene5", "scene6", "chapter0", "chapter1", "chapter2", "chapter3", "chapter4", "chapter5", "final", "s2_scene1", "s2_scene2", "s2_scene3", "s2_scene4", "s2_scene5", "s2_scene6"]
 
 var _shot_path := ""
 var _frames := 60
@@ -146,6 +146,19 @@ static func _preset_story(data: PlayerData, scene: String) -> void:
 		data.start_season2(content.items if content else {})
 	if idx >= 14:
 		data.set_flag("s2_sahne1_bitti")
+	if idx >= 15:
+		data.set_flag("s2_sahne2_bitti")
+		data.add_xp(Progression.xp_to_next(1))
+		data.add_item("nane_sekeri", 2)
+	if idx >= 16:
+		if data.level < 3:
+			data.add_xp(Progression.xp_to_next(data.level) - data.xp)
+		data.unlock_skill("yildiz_ninnisi")
+		data.set_flag("s2_sahne3_bitti")
+	if idx >= 17:
+		data.set_flag("s2_sahne4_bitti")
+	if idx >= 18:
+		data.set_flag("s2_sahne5_bitti")
 
 
 static func _finish(data: PlayerData, quest_id: String) -> void:

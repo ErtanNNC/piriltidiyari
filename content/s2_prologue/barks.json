@@ -66,6 +66,63 @@
         "mood": "kararlı",
         "text": "Kimse beni dinlemiyor... diyen kim? Seni duyuyorum!"
       }
+    ],
+    "s3b_basla": [
+      {
+        "speaker": "miril",
+        "mood": "kararlı",
+        "text": "Ses dağdan geliyor. Kimse beni dinlemiyor, diyordu."
+      },
+      {
+        "speaker": "miril",
+        "mood": "kararlı",
+        "text": "Dinleyen biri olacaksa, o ben olayım!"
+      }
+    ],
+    "s3b_kaynak": [
+      {
+        "speaker": "miril",
+        "mood": "şaşkın",
+        "text": "Su fokurduyor! Halka çıkınca uzak durayım."
+      }
+    ],
+    "s3b_ucurum": [
+      {
+        "speaker": "miril",
+        "mood": "kararlı",
+        "text": "Karşıya atlayamam... ama süzülebilirim!"
+      }
+    ],
+    "s3b_yetenek": [
+      {
+        "speaker": "miril",
+        "mood": "mutlu",
+        "text": "İçimde bir ninni var. Yıldızlar uyurken söylediğim."
+      }
+    ],
+    "s3b_ninni": [
+      {
+        "speaker": "miril",
+        "mood": "kararlı",
+        "text": "Çok kalabalık! Ninnimi söyleyeyim: L tuşu ya da Ninni!"
+      }
+    ],
+    "s3b_ses": [
+      {
+        "speaker": "fisilti",
+        "mood": "dertli",
+        "text": "Kimse... beni... dinlemiyor!"
+      },
+      {
+        "speaker": "miril",
+        "mood": "kararlı",
+        "text": "Ben dinliyorum! Neredesin?"
+      },
+      {
+        "speaker": "miril",
+        "mood": "şaşkın",
+        "text": "Geçitte bir şey var. Kocaman, kırmızı bir bulut!"
+      }
     ]
   }
 }

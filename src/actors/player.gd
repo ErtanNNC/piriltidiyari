@@ -291,6 +291,7 @@ func use_skill() -> void:
 		"kucaklama_kalkani": _kucaklama_kalkani()
 		"findik_firlatma": _findik_firlatma()
 		"isik_patlamasi": _isik_patlamasi()
+		"yildiz_ninnisi": _yildiz_ninnisi()
 
 
 ## Kept for older callers (tests, demos).
@@ -392,6 +393,27 @@ func _isik_patlamasi() -> void:
 	_hit_around(4.0, attack_power() + 6, 6.0)
 	GameState.data.heal(Skills.LIGHT_HEAL)
 	FloatText.spawn(get_parent(), global_position + Vector3.UP * 2.0, TranslationServer.translate("+%d") % Skills.LIGHT_HEAL, Tokens.color("leaf"))
+
+
+## Mırıl (Season 2): a soft star lullaby. Hot-tempered Köpüklüler nearby
+## sit down dazed at once (ready for Sakinleş); others get a gentle hit.
+const LULLABY_RADIUS := 4.5
+
+
+func _yildiz_ninnisi() -> void:
+	_attack_cd = 0.7
+	Effects.ring(get_parent(), global_position + Vector3.UP * 0.4, LULLABY_RADIUS, Tokens.color("spark-white"), 0.7)
+	for i in 6:
+		var a := TAU * i / 6.0
+		Effects.sparkle(get_parent(), global_position + Vector3(cos(a) * 2.2, 1.6, sin(a) * 2.2), Tokens.color("spark-yellow"), 3)
+	for m in get_tree().get_nodes_in_group("hittable"):
+		var n := m as Node3D
+		if n.global_position.distance_to(global_position) > LULLABY_RADIUS:
+			continue
+		if n.has_method("lull"):
+			n.call("lull")
+		else:
+			n.call("hit", attack_power(), global_position, 3.0)
 
 
 func _hit_around(radius: float, damage: int, push: float) -> void:

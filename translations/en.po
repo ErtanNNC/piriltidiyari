@@ -231,6 +231,12 @@ msgstr "Dodge the bubbles. Hit Pinch when his claw gets stuck!"
 msgid "Balonlar çok eğlenceli ama annemi özledim."
 msgstr "The balloons are lots of fun, but I miss my mom."
 
+msgid "Basamaklardan çık, süzül!"
+msgstr "Climb the steps, then float!"
+
+msgid "Basamaklardan çık, uçurumdan süzül!"
+msgstr "Climb the steps, float over the chasm!"
+
 msgid "Baykuş Öğretmen Hu"
 msgstr "Teacher Hoo"
 
@@ -272,6 +278,9 @@ msgstr "I'll guard the door too. We're friends now!"
 
 msgid "Ben de kızıyorum... Derin bir nefes alayım."
 msgstr "I'm getting cross too... Let me take a deep breath."
+
+msgid "Ben dinliyorum! Neredesin?"
+msgstr "I'm listening! Where are you?"
 
 msgid "Ben hazırım!"
 msgstr "I'm ready!"
@@ -579,8 +588,17 @@ msgstr "No touching the cake until the invitations are out!"
 msgid "Dağ Feneri'ni yak"
 msgstr "Light the Mountain Lantern"
 
+msgid "Dağ Geçidi ↑"
+msgstr "Mountain Pass ↑"
+
 msgid "Dağ eriyor! Pus Kalesi'nin yolu açıldı."
 msgstr "The mountain is melting! The way to Gloom Castle is open."
+
+msgid "Dağ geçidine ulaş"
+msgstr "Reach the mountain pass"
+
+msgid "Dağ geçidine yürü"
+msgstr "Walk to the mountain pass"
 
 msgid "Dağların ardında Kor Vadisi ve Kızıl Sis"
 msgstr "Beyond the mountains: Ember Valley and the Crimson Mist"
@@ -611,6 +629,9 @@ msgstr "Spiky Spin"
 
 msgid "Dileğim hazır. Bir... iki... üç!"
 msgstr "My wish is ready. One... two... three!"
+
+msgid "Dinleyen biri olacaksa, o ben olayım!"
+msgstr "If someone has to listen, let it be me!"
 
 msgid "Diyar Haritası"
 msgstr "Map of Glimmerland"
@@ -762,6 +783,12 @@ msgstr "My lantern is glowing! Thank you, Peanut!"
 msgid "Fenerleri bul, sahiplerine ver. Hadi bakalım!"
 msgstr "Find the lanterns and give them back. Off you go!"
 
+msgid "Fokurdayan suya dikkat!"
+msgstr "Watch out for the bubbling water!"
+
+msgid "Fokurdayan suya dikkat: halka çıkınca uzak dur!"
+msgstr "Watch the bubbling water: step away when a ring shows!"
+
 msgid "Fındık"
 msgstr "Nut"
 
@@ -864,6 +891,9 @@ msgstr "Back"
 msgid "Gerçekten mi? O zaman... Al, bu ışık senin olsun."
 msgstr "Really? Then... here, this light can be yours."
 
+msgid "Geçitte bir şey var. Kocaman, kırmızı bir bulut!"
+msgstr "Something's in the pass. A huge red cloud!"
+
 msgid "Gir"
 msgstr "Enter"
 
@@ -944,6 +974,9 @@ msgstr "Good morning, sleepyhead! Your burrow is waiting."
 
 msgid "Günaydın, yeni bekçi! Kıvılcım sana çok yakışmış."
 msgstr "Good morning, new keeper! The Spark really suits you."
+
+msgid "Gürledek"
+msgstr "Kaboom"
 
 msgid "Gürültücü Kurbağa"
 msgstr "Noisy Frog"
@@ -1266,6 +1299,9 @@ msgstr "Little Sibling's Scarf"
 msgid "Karga beni korkuttu... yani biraz şaşırttı!"
 msgstr "The crow startled me... well, it surprised me a little!"
 
+msgid "Karşıya atlayamam... ama süzülebilirim!"
+msgstr "I can't jump that far... but I can float!"
+
 msgid "Karşıya halat lazım. %s atabilirdi!"
 msgstr "You need a rope to get across. %s could throw one!"
 
@@ -1283,6 +1319,9 @@ msgstr "Could not save"
 
 msgid "Kaydet (Kayıt %d)"
 msgstr "Save (Save %d)"
+
+msgid "Kaynayan su birikintilerinin arasından geç"
+msgstr "Get past the bubbling pools"
 
 msgid "Kayıp Fenerler"
 msgstr "Lost Lanterns"
@@ -1347,6 +1386,9 @@ msgstr "Nobody noticed it. Everyone was busy with their own things."
 msgid "Kimse onu görmezse, kimse onu üzemezdi."
 msgstr "If nobody saw it, nobody could make it sad."
 
+msgid "Kimse... beni... dinlemiyor!"
+msgstr "Nobody... listens... to me!"
+
 msgid "Kirişin altından Tospik Nine'ye ulaş"
 msgstr "Reach Granny Shelly under the beam"
 
@@ -1395,6 +1437,9 @@ msgstr "Hug Shield"
 msgid "Kucaklama Kalkanı: hasarı emer, dostları korur"
 msgstr "Hug Shield: soaks up hits, guards friends"
 
+msgid "Kulak Bekçileri"
+msgstr "Keepers Who Listen"
+
 msgid "Kule'ye Koşu"
 msgstr "Race to the Tower"
 
@@ -1433,6 +1478,9 @@ msgstr "Fizzy Hen"
 
 msgid "Köpüklü Tavukları sakinleştir"
 msgstr "Calm the Fizzy Hens"
+
+msgid "Köpüklüler! Vur, oturunca Sakinleş."
+msgstr "Fizzlers! Hit, then Breathe when they sit."
 
 msgid "Köy sustu... Ama rüzgâr hâlâ dağdan esiyor."
 msgstr "The village is quiet... But the wind still blows from the mountain."
@@ -1547,6 +1595,9 @@ msgstr "If the red wind makes you cross too, eat one."
 
 msgid "L: Dikenli Dönüş! Hepsini birden sakinleştir"
 msgstr "L: Spiky Spin! Calm them all at once"
+
+msgid "L: Yıldız Ninnisi! Hepsi birden otursun."
+msgstr "L: Star Lullaby! Everyone sits down at once."
 
 msgid "Liman"
 msgstr "Harbor"
@@ -1668,6 +1719,9 @@ msgstr "Mumble is tired. Go closer now!"
 msgid "Mırıl! Bugün senin günün, biliyor muydun?"
 msgstr "Mumble! Today is your day, did you know?"
 
+msgid "Mırıl'ın Seçimi"
+msgstr "Mumble's Choice"
+
 msgid "Mırıl'ın anılarını bul"
 msgstr "Find Mumble's memories"
 
@@ -1703,6 +1757,12 @@ msgstr "Dodge the breath, jump the ring, hit when fists get stuck!"
 
 msgid "Nereye uçalım?"
 msgstr "Where shall we fly?"
+
+msgid "Ninni"
+msgstr "Lullaby"
+
+msgid "Ninni'ye bas: hepsi birden otursun!"
+msgstr "Press Lullaby: everyone sits down!"
 
 msgid "O gece Mırıl bir şey fark etti: Kıvılcım'ın ışığı sıcaktı."
 msgstr "That night Mumble noticed something: the Spark's light was warm."
@@ -1802,9 +1862,6 @@ msgstr "Hit after the dive!"
 
 msgid "Prolog bitti! Macera daha yeni başlıyor."
 msgstr "The prologue is over! The adventure is just beginning."
-
-msgid "Prolog devam edecek: Sahne 3 çok yakında!"
-msgstr "The prologue continues: Scene 3 is coming soon!"
 
 msgid "Prolog tamamlandı!"
 msgstr "Prologue complete!"
@@ -1935,9 +1992,6 @@ msgstr "Gale and I will race again. This time with no storm!"
 msgid "Rüzgârın içinde bir ses var: Kimse beni dinlemiyor!"
 msgstr "There's a voice in the wind: Nobody listens to me!"
 
-msgid "Sahne 3 çok yakında!"
-msgstr "Scene 3 is coming soon!"
-
 msgid "Sakin ve düşünceli. Pus'un kötü olmadığını sezen ilk kişi."
 msgstr "Calm and thoughtful. First to sense the Gloom isn't bad."
 
@@ -2010,6 +2064,9 @@ msgstr "The Gloom sent you too, didn't it? My pincers are ready!"
 msgid "Sersemledi! Şimdi vur!"
 msgstr "He's dazed! Hit now!"
 
+msgid "Ses dağdan geliyor. Kimse beni dinlemiyor, diyordu."
+msgstr "The voice comes from the mountain. 'Nobody listens to me,' it said."
+
 msgid "Sesler: %s"
 msgstr "Sounds: %s"
 
@@ -2030,6 +2087,18 @@ msgstr "Season 2 · Prologue · Scene 1"
 
 msgid "Sezon 2 · Prolog · Sahne 2"
 msgstr "Season 2 · Prologue · Scene 2"
+
+msgid "Sezon 2 · Prolog · Sahne 3"
+msgstr "Season 2 · Prologue · Scene 3"
+
+msgid "Sezon 2 · Prolog · Sahne 4"
+msgstr "Season 2 · Prologue · Scene 4"
+
+msgid "Sezon 2 · Prolog · Sahne 5"
+msgstr "Season 2 · Prologue · Scene 5"
+
+msgid "Sezon 2 · Prolog · Sahne 6"
+msgstr "Season 2 · Prologue · Scene 6"
 
 msgid "Sezon 2'ye başla"
 msgstr "Start Season 2"
@@ -2078,6 +2147,9 @@ msgstr "At last he'll get a good sleep"
 
 msgid "Soğukta bekledi, bekledi. Üzüntüsü griye döndü."
 msgstr "It waited and waited in the cold. Its sadness turned grey."
+
+msgid "Su fokurduyor! Halka çıkınca uzak durayım."
+msgstr "The water's bubbling! I'll stay away when a ring shows."
 
 msgid "Sv %d"
 msgstr "Lv %d"
@@ -2199,6 +2271,9 @@ msgstr "You fell asleep"
 msgid "Uç"
 msgstr "Fly"
 
+msgid "Uçurumun üstünden süzül"
+msgstr "Float over the chasm"
+
 msgid "Vak vak! En güzel fener benimki!"
 msgstr "Quack quack! My lantern is the prettiest!"
 
@@ -2229,6 +2304,9 @@ msgstr "Tap them gently. When they're dizzy, help them breathe!"
 msgid "Vur'a bas. Oturunca yanına git!"
 msgstr "Press Hit. When it sits down, go up close!"
 
+msgid "Vur, oturunca Sakinleş!"
+msgstr "Hit, then Breathe when it sits!"
+
 msgid "Vuruşun geniş bir yıldız halkası olur (+6)"
 msgstr "Your hit becomes a wide ring of stars (+6)"
 
@@ -2253,11 +2331,17 @@ msgstr "NEW · %s"
 msgid "Yak"
 msgstr "Light"
 
+msgid "Yakındaki Köpüklüler oturup sersemler"
+msgstr "Nearby Fizzlers sit down, dizzy"
+
 msgid "Yakındaki Pus'lu yaratıkların üstüne yıldızlar yağar"
 msgstr "Stars fall on gloomy creatures nearby"
 
 msgid "Yani Mırıl kötü değil... Sadece yalnız mı?"
 msgstr "So Mumble isn't bad... Just lonely?"
+
+msgid "Yankıların Peşinde"
+msgstr "Chasing Echoes"
 
 msgid "Yanına git!"
 msgstr "Go up close!"
@@ -2331,6 +2415,9 @@ msgstr "The way is open! I'll hide the kids in my shell."
 msgid "Yolculukta"
 msgstr "On a journey"
 
+msgid "Yoldaki Köpüklülere nefes aldır"
+msgstr "Help the Fizzlers on the path breathe"
+
 msgid "Yorulunca yaklaş!"
 msgstr "Get close when he's tired!"
 
@@ -2366,6 +2453,12 @@ msgstr "Star"
 
 msgid "Yıldız Asası"
 msgstr "Star Staff"
+
+msgid "Yıldız Ninnisi"
+msgstr "Star Lullaby"
+
+msgid "Yıldız Ninnisi ile Köpüklüleri uyut"
+msgstr "Lull the Fizzlers with Star Lullaby"
 
 msgid "Yıldız Pelerini"
 msgstr "Star Cape"
@@ -2453,6 +2546,9 @@ msgstr "The kids are safe. Now, to the tower!"
 
 msgid "Çocuklara sor, nerede düşürdüklerini bilirler."
 msgstr "Ask the kids, they know where they dropped them."
+
+msgid "Çok kalabalık! Ninnimi söyleyeyim: L tuşu ya da Ninni!"
+msgstr "So many! I'll sing my lullaby: L key or Lullaby!"
 
 msgid "Çok soğuğum diye kimse sarılmazmış. Özür dilerim."
 msgstr "Nobody hugs me because I'm too cold. I'm sorry."
@@ -2558,6 +2654,9 @@ msgstr "Two shiny eyes! A tiny little shadow..."
 
 msgid "İlk Yıldız Feneri"
 msgstr "First Star Lantern"
+
+msgid "İçimde bir ninni var. Yıldızlar uyurken söylediğim."
+msgstr "There's a lullaby in me. The one I sing as stars sleep."
 
 msgid "İşte doğum günü yıldızımız! Bir yıl oldu, inanabiliyor musun?"
 msgstr "Here's our birthday star! A whole year, can you believe it?"

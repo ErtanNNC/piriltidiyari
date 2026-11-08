@@ -9,6 +9,8 @@ const DEFS := {
 	"kucaklama_kalkani": {"name": "Kucaklama Kalkanı", "short": "Kalkan", "mp": 20, "owner": "bado"},
 	"findik_firlatma": {"name": "Fındık Fırlatma", "short": "Fındık", "mp": 15, "owner": "citir"},
 	"isik_patlamasi": {"name": "Işık Patlaması", "short": "Işık", "mp": 25, "owner": "lumi"},
+	# Season 2: Mırıl's lullaby, learned in Sahne 3 (Yankıların Peşinde)
+	"yildiz_ninnisi": {"name": "Yıldız Ninnisi", "short": "Ninni", "mp": 20, "owner": "miril"},
 }
 
 

@@ -332,6 +332,24 @@ func _daze() -> void:
 	GameState.notify("daze", kind)
 
 
+## Yıldız Ninnisi: a Köpüklü sits down dazed right away; anything else
+## takes a soft hit.
+func lull() -> void:
+	if state == "calm" or state == "dazed":
+		return
+	if MobStats.breathes(kind):
+		hp = 0
+		_knock = Vector3.ZERO
+		if state == "windup" or state == "attack":
+			_grey.scale = Vector3.ONE
+			_grey.position.y = 0.0
+		GameState.notify("lull", kind)
+		GameState.notify("lull", "any")
+		_daze()
+	else:
+		hit(maxi(1, stats["hp"] / 3), global_position + Vector3.BACK, 2.0)
+
+
 ## Sakinleş finished on this mob: a deep breath, steam gone, double Pırıl.
 func breathe_calm() -> void:
 	if state != "dazed":

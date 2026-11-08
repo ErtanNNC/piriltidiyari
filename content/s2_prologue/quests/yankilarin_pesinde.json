@@ -1,0 +1,44 @@
+{
+  "id": "yankilarin_pesinde",
+  "title": "Yankıların Peşinde",
+  "giver": "tospik_nine",
+  "ordered": true,
+  "objectives": [
+    {
+      "id": "kaynak",
+      "text": "Kaynayan su birikintilerinin arasından geç",
+      "type": "reach",
+      "target": "kaynak_sonu"
+    },
+    {
+      "id": "nefes",
+      "text": "Yoldaki Köpüklülere nefes aldır",
+      "type": "breathe",
+      "target": "any",
+      "count": 2
+    },
+    {
+      "id": "ucurum",
+      "text": "Uçurumun üstünden süzül",
+      "type": "reach",
+      "target": "ucurum_ote"
+    },
+    {
+      "id": "ninni",
+      "text": "Yıldız Ninnisi ile Köpüklüleri uyut",
+      "type": "lull",
+      "target": "any",
+      "count": 3
+    },
+    {
+      "id": "gecit",
+      "text": "Dağ geçidine ulaş",
+      "type": "reach",
+      "target": "dag_gecidi"
+    }
+  ],
+  "rewards": {
+    "xp": 60,
+    "piril": 20
+  }
+}

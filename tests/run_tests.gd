@@ -631,6 +631,9 @@ func test_season2() -> void:
 	for k: String in ["kopuklu_tavuk", "gurultucu_kurbaga"]:
 		check(int(MobStats.LEVELS[k]) <= 5, "%s köy seviyesinde" % k)
 	check(PlayerData.POTIONS.has("nane_sekeri"), "Nane Şekeri iksir yuvasına girer")
+	check(Skills.for_character("miril") == "yildiz_ninnisi", "Mırıl'ın yeteneği Yıldız Ninnisi")
+	d.unlock_skill("yildiz_ninnisi")
+	check(d.active_skill() == "yildiz_ninnisi", "Ninni öğrenilince L tuşunda")
 	var c := ContentScript.new()
 	c.load_chapter("s2_prologue")
 	check(c.quests.has("davetiyeler") and c.quests.has("kirmizi_ruzgar"), "Sezon 2 prolog görevleri")
@@ -722,7 +725,7 @@ func _validate_chapter(chapter: String) -> void:
 				check(c.items.has(o["item"]), "görev %s: eşya %s" % [q["id"], o["item"]])
 			if o.has("to"):
 				check(c.npcs.has(o["to"]), "görev %s: NPC %s" % [q["id"], o["to"]])
-			check(o.get("type", "deliver") in ["deliver", "defeat", "reach", "talk", "light", "ring", "collect", "breathe"], "görev %s: hedef türü" % q["id"])
+			check(o.get("type", "deliver") in ["deliver", "defeat", "reach", "talk", "light", "ring", "collect", "breathe", "lull"], "görev %s: hedef türü" % q["id"])
 			if o.get("type", "") == "defeat":
 				check(o["target"] in MobStats.KINDS or o["target"] in ["pus", "kutuk_kral", "kiskac", "ruzgar", "dondurma", "miril"], "görev %s: bilinmeyen mob %s" % [q["id"], o["target"]])
 	c.free()

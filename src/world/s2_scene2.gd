@@ -99,8 +99,7 @@ func _advance() -> void:
 		_end()
 
 
-## Mırıl hears the voice in the wind. The next scenes (the mountain path,
-## Gürledek, Hırıl) come in the next update.
+## Mırıl hears the voice in the wind and follows it up the mountain (Sahne 3).
 func _end() -> void:
 	await get_tree().create_timer(0.8).timeout
 	GameState.bark("s2_son")
@@ -115,7 +114,7 @@ func _end() -> void:
 
 
 func _after_end() -> void:
-	_hud.show_hint("Prolog devam edecek: Sahne 3 çok yakında!", "Sahne 3 çok yakında!")
+	SceneFlow.go_to("s2_scene3")
 
 
 ## The birthday table, candles out, crumbs of cake.

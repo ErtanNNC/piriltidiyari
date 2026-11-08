@@ -552,12 +552,22 @@
   "Oturdu, yıldızlar dönüyor! Şimdi yanına gideyim.",
   "Sakinleş'e basılı tutacağım. Nefes al... nefes ver...",
   "Ben de kızıyorum... Derin bir nefes alayım.",
-  "Kimse beni dinlemiyor... diyen kim? Seni duyuyorum!"
+  "Kimse beni dinlemiyor... diyen kim? Seni duyuyorum!",
+  "Ses dağdan geliyor. Kimse beni dinlemiyor, diyordu.",
+  "Dinleyen biri olacaksa, o ben olayım!",
+  "Su fokurduyor! Halka çıkınca uzak durayım.",
+  "Karşıya atlayamam... ama süzülebilirim!",
+  "İçimde bir ninni var. Yıldızlar uyurken söylediğim.",
+  "Çok kalabalık! Ninnimi söyleyeyim: L tuşu ya da Ninni!",
+  "Kimse... beni... dinlemiyor!",
+  "Ben dinliyorum! Neredesin?",
+  "Geçitte bir şey var. Kocaman, kırmızı bir bulut!"
  ],
  "content/s2_prologue/chapter.json": [
   "Kırmızı Ufuk",
   "Mırıl'ın İlk Doğum Günü",
-  "Kırmızı Rüzgâr"
+  "Kırmızı Rüzgâr",
+  "Yankıların Peşinde"
  ],
  "content/s2_prologue/dialogue/bado.json": [
   "Kardeşim Minnoş nerede? Onu bulmam lazım!",
@@ -622,6 +632,13 @@
   "Köpüklü Tavukları sakinleştir",
   "Bir Köpüklü'ye Sakinleş ile derin nefes aldır",
   "Gürültücü Kurbağaları sakinleştir"
+ ],
+ "content/s2_prologue/quests/yankilarin_pesinde.json": [
+  "Kaynayan su birikintilerinin arasından geç",
+  "Yoldaki Köpüklülere nefes aldır",
+  "Uçurumun üstünden süzül",
+  "Yıldız Ninnisi ile Köpüklüleri uyut",
+  "Dağ geçidine ulaş"
  ],
  "content/speakers.json": [
   "Fıstık",
@@ -757,7 +774,14 @@
   "Kapanış",
   "Altı Renkli Fener",
   "Sezon 2 · Prolog · Sahne 1",
-  "Sezon 2 · Prolog · Sahne 2"
+  "Sezon 2 · Prolog · Sahne 2",
+  "Sezon 2 · Prolog · Sahne 3",
+  "Sezon 2 · Prolog · Sahne 4",
+  "Gürledek",
+  "Sezon 2 · Prolog · Sahne 5",
+  "Mırıl'ın Seçimi",
+  "Sezon 2 · Prolog · Sahne 6",
+  "Kulak Bekçileri"
  ],
  "src/autoload/tokens.gd": [
   "fontSize",
@@ -819,7 +843,9 @@
   "Fındık Fırlatma",
   "Fındık",
   "Işık Patlaması",
-  "Işık"
+  "Işık",
+  "Yıldız Ninnisi",
+  "Ninni"
  ],
  "src/ui/choice_panel.gd": [
   "Vazgeç"
@@ -1094,9 +1120,21 @@
   "Tospik Nine: Mırıl, buraya gel!",
   "Kurbağalar yoğun sisin içinde. Orada sen de kızarsın!",
   "Yoğun sis seni de kızdırır!",
-  "Prolog devam edecek: Sahne 3 çok yakında!",
-  "Sahne 3 çok yakında!",
   "Yoğun Kızıl Sis"
+ ],
+ "src/world/s2_scene3.gd": [
+  "Fokurdayan suya dikkat: halka çıkınca uzak dur!",
+  "Fokurdayan suya dikkat!",
+  "Köpüklüler! Vur, oturunca Sakinleş.",
+  "Vur, oturunca Sakinleş!",
+  "Basamaklardan çık, uçurumdan süzül!",
+  "Basamaklardan çık, süzül!",
+  "Dağ geçidine yürü",
+  "Yeni yetenek!",
+  "Yakındaki Köpüklüler oturup sersemler",
+  "L: Yıldız Ninnisi! Hepsi birden otursun.",
+  "Ninni'ye bas: hepsi birden otursun!",
+  "Dağ Geçidi ↑"
  ],
  "src/world/scene2.gd": [
   "J: Dikenlerinle vur!",
@@ -1116,7 +1154,6 @@
   "Sarmaşığa yürü, joystick yukarı!",
   "Sallanan fenerlere zıpla!",
   "Bir sarmaşık daha! Çatıya tırman",
-  "Yeni yetenek!",
   "Etrafındaki herkese birden vurur",
   "L: Dikenli Dönüş! Hepsini birden sakinleştir",
   "Dönüş'e bas: hepsini birden sakinleştir!",

@@ -23,11 +23,22 @@
         "öfke barı",
         "Nane Şekeri"
       ]
+    },
+    {
+      "id": "s2_scene3",
+      "title": "Yankıların Peşinde",
+      "teaches": [
+        "süzülme",
+        "platform",
+        "seviye atlama",
+        "Yıldız Ninnisi"
+      ]
     }
   ],
   "quests": [
     "davetiyeler",
-    "kirmizi_ruzgar"
+    "kirmizi_ruzgar",
+    "yankilarin_pesinde"
   ],
   "dialogue": [
     "fistik",

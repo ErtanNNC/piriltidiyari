@@ -22,6 +22,10 @@ const SCENES := {
 	# Season 2 · Kor Vadisi
 	"s2_scene1": "res://scenes/season2/s2_scene1_dogum_gunu.tscn",
 	"s2_scene2": "res://scenes/season2/s2_scene2_kirmizi_ruzgar.tscn",
+	"s2_scene3": "res://scenes/season2/s2_scene3_yankilar.tscn",
+	"s2_scene4": "res://scenes/season2/s2_scene4_gurledek.tscn",
+	"s2_scene5": "res://scenes/season2/s2_scene5_miril_secimi.tscn",
+	"s2_scene6": "res://scenes/season2/s2_scene6_kulak_bekcileri.tscn",
 	# inside a village house (which one: SceneFlow.house_id)
 	"house": "res://scenes/chapter0/ev.tscn",
 	# dev only: all characters side by side (tools/screenshot.sh --scene=preview)
@@ -30,7 +34,8 @@ const SCENES := {
 
 ## Which content pack (content/<id>/) a scene reads its story from.
 const SCENE_CHAPTER := {"chapter0": "chapter0", "chapter1": "chapter1", "chapter2": "chapter2", "chapter3": "chapter3", "chapter4": "chapter4", "chapter5": "chapter5", "final": "chapter5", "house": "chapter0",
-	"s2_scene1": "s2_prologue", "s2_scene2": "s2_prologue"}
+	"s2_scene1": "s2_prologue", "s2_scene2": "s2_prologue", "s2_scene3": "s2_prologue",
+	"s2_scene4": "s2_prologue", "s2_scene5": "s2_prologue", "s2_scene6": "s2_prologue"}
 
 ## [small line, big title] shown when a scene starts.
 const CARDS := {
@@ -49,6 +54,10 @@ const CARDS := {
 	"final": ["Kapanış", "Altı Renkli Fener"],
 	"s2_scene1": ["Sezon 2 · Prolog · Sahne 1", "Mırıl'ın İlk Doğum Günü"],
 	"s2_scene2": ["Sezon 2 · Prolog · Sahne 2", "Kırmızı Rüzgâr"],
+	"s2_scene3": ["Sezon 2 · Prolog · Sahne 3", "Yankıların Peşinde"],
+	"s2_scene4": ["Sezon 2 · Prolog · Sahne 4", "Gürledek"],
+	"s2_scene5": ["Sezon 2 · Prolog · Sahne 5", "Mırıl'ın Seçimi"],
+	"s2_scene6": ["Sezon 2 · Prolog · Sahne 6", "Kulak Bekçileri"],
 }
 
 var current := ""
