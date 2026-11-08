@@ -294,6 +294,24 @@ static func _shadow_copy(root: Node3D, pus: bool) -> void:
 	var model := FistikModel.build() if d.character_id == "fistik" else KeeperModels.build(d.character_id, d.character_look)
 	root.add_child(model)
 	var tint := Toon.material(Color("#6e6a86") if pus else Color("#e8e2ff"), 0.035, 0.0 if pus else 0.6, 0.0)
+	var rig := CharacterRig.of(model)
+	if rig and not rig.materials.is_empty():
+		# a real model: drain its texture to shadow grey (or a pale glow once
+		# calm) so it still walks, swings and blinks
+		for m: ShaderMaterial in rig.materials:
+			if m.shader == Toon.TOON_SHADER:
+				m.set_shader_parameter("desat", 1.0)
+				m.set_shader_parameter("pus_affect", 0.0)
+				m.set_shader_parameter("albedo", Color("#8a85a8") if pus else Color("#ffffff"))
+				if not pus:
+					m.set_shader_parameter("emission_color", Color("#e8e2ff"))
+					m.set_shader_parameter("emission_strength", 0.35)
+		# hats and tools on it take the flat shadow tint
+		var fit := model.get_node_or_null("Pose/Fit")
+		for mi in model.find_children("*", "MeshInstance3D", true, false):
+			if fit == null or not fit.is_ancestor_of(mi):
+				(mi as MeshInstance3D).material_override = tint
+		return
 	for mi in model.find_children("*", "MeshInstance3D", true, false):
 		(mi as MeshInstance3D).material_override = tint
 	for side in [-1.0, 1.0]:

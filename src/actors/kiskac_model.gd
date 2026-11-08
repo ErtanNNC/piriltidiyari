@@ -5,6 +5,9 @@ extends RefCounted
 
 
 static func build() -> Node3D:
+	var real := ModelImport.with_parts("kiskac", {"Shell": Vector3(0, 0, 0), "ClawL": Vector3(-1.6, 1.2, 1.0), "ClawR": Vector3(1.6, 1.2, 1.0)})
+	if real:
+		return real
 	var root := Node3D.new()
 	var body := Color("#ff7a8f")
 	var dark := Color("#d9506a")

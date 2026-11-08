@@ -30,6 +30,9 @@ func _ready() -> void:
 
 
 static func build_model() -> Node3D:
+	var real := ModelImport.with_parts("dondurma", {"ArmL": Vector3(-1.6, 3.4, 0), "ArmR": Vector3(1.6, 3.4, 0)})
+	if real:
+		return real
 	var root := Node3D.new()
 	# three scoops: pistachio, vanilla, strawberry, a cone hat, waffle arms
 	Toon.part(root, "sphere", Vector3(3.4, 2.6, 3.2), Color("#b8e6a8"), Vector3(0, 1.3, 0))

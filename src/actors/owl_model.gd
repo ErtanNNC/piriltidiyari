@@ -5,6 +5,9 @@ extends RefCounted
 
 
 static func build() -> Node3D:
+	var real := ModelImport.with_parts("pus_baykusu", {"WingL": Vector3(-1.05, 2.0, -0.1), "WingR": Vector3(1.05, 2.0, -0.1)})
+	if real:
+		return real
 	var root := Node3D.new()
 	Toon.default_pus = 0.0
 	var grey := Color("#77738a")

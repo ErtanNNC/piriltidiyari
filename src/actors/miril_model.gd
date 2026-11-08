@@ -6,6 +6,9 @@ extends RefCounted
 
 
 static func shadow() -> Node3D:
+	var real := ModelImport.with_parts("miril", {"ArmL": Vector3(-1.4, 3.6, 0.2), "ArmR": Vector3(1.4, 3.6, 0.2)})
+	if real:
+		return real
 	var root := Node3D.new()
 	Toon.default_pus = 0.0
 	var mist := Color("#5c5a72")
@@ -31,6 +34,15 @@ static func shadow() -> Node3D:
 
 
 static func star_child() -> Node3D:
+	var real := ModelImport.load_model("star_child")
+	if real:
+		var glow := OmniLight3D.new()
+		glow.light_color = Tokens.color("spark-white")
+		glow.omni_range = 4.0
+		glow.light_energy = 1.2
+		glow.position.y = 1.0
+		real.add_child(glow)
+		return real
 	var root := Node3D.new()
 	Toon.default_pus = 0.0
 	for i in 5:

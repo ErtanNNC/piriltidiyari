@@ -42,6 +42,8 @@ Oyun modeli kendisi hazırlar (`src/actors/model_import.gd`):
   kuyruk sallanır). Bölgeler `<id>.json` içindeki `"rig"` ile ayarlanır.
 - Göz kırpma için gözlerin yeri bir kez bulunur (iki kez çalıştır):
   `--scene=preview --demo=eyes --out=DIR` → `python3 tools/find_eyes.py DIR --write`.
+- Bosslar tek parça modeldir; kanat/kol/kıskaç hareketleri kodun döndürdüğü
+  boş parçalardan gölgelendiriciye geçer (`ModelImport.with_parts`).
 - Bekçilerde `"fur"` kendi kürk rengidir; dolaptaki renk seçimi bu tonu kaydırır.
 
 Kontrol: `tools/screenshot.sh out.png --scene=preview` (bekçiler yan yana),

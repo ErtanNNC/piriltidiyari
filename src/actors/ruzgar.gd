@@ -26,6 +26,9 @@ func _ready() -> void:
 
 
 static func build_model() -> Node3D:
+	var real := ModelImport.with_parts("ruzgar", {"WingL": Vector3(-0.95, 1.8, -0.1), "WingR": Vector3(0.95, 1.8, -0.1)})
+	if real:
+		return real
 	var root := Node3D.new()
 	var white := Color("#f4f7ff")
 	var storm := Color("#7d8fb0")

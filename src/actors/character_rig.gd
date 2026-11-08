@@ -32,6 +32,9 @@ var _oneshot := 0.0
 ## Imported models without a skeleton: their toon materials take the shape
 ## rig (rig.gdshaderinc); set by ModelImport.
 var materials: Array = []
+## Empty nodes that game code turns (a boss's "WingL", "ClawR"...): their
+## rotation.x/z is passed on to that side's arm region. [node, side]
+var proxies: Array = []
 var _strike := 0.0
 var _look := 0.0
 var _look_to := 0.0
@@ -226,7 +229,17 @@ func _animate_shape(delta: float) -> void:
 	var motion := Vector4(_step, _walk, strike, up)
 	var head := Vector4(_look, nod, tilt, wag)
 	var blink := _blink_amount(delta)
+	var arms := Vector4.ZERO
+	for pr: Array in proxies:
+		var n: Node3D = pr[0]
+		if float(pr[1]) > 0.0:
+			arms.x += n.rotation.x
+			arms.y += n.rotation.z
+		else:
+			arms.z += n.rotation.x
+			arms.w += n.rotation.z
 	for m: ShaderMaterial in materials:
+		m.set_shader_parameter("rig_arms", arms)
 		m.set_shader_parameter("rig_motion", motion)
 		m.set_shader_parameter("rig_head", head)
 		m.set_shader_parameter("rig_blink", blink)

@@ -6,6 +6,7 @@ extends Node3D
 
 const KEEPERS := ["pati", "bado", "citir", "lumi", "fistik"]
 const MOBS := ["sumuklu", "mantar", "dev_mantar", "kirpi_topu", "karga", "kristal_bocek", "yarasa", "firtina_yumagi", "korsan_marti", "kar_tavsani", "buz_dikeni"]
+const BOSSES := ["pus_baykusu", "kutuk_kral", "kiskac", "ruzgar", "dondurma", "miril"]
 const NPCS := ["turtle", "bunny", "duckling", "owl_teacher", "spider", "mole", "gull_captain", "snowman", "frog", "star_child"]
 
 
@@ -40,7 +41,7 @@ func _ready() -> void:
 		_row([["house", "berry"], ["house", "sky"], ["well", "spark-purple"], ["lantern_post", "honey"], ["big_tree", ""], ["bush", ""], ["rock", ""]], 4.6, Vector3(0, 4.0, 15.0), Vector3(0, 1.8, 0))
 		return
 	if which == "mobs":
-		var kinds := ["sumuklu", "mantar", "kirpi_topu", "karga", "kristal_bocek", "yarasa", "firtina_yumagi", "korsan_marti", "kar_tavsani", "buz_dikeni"]
+		var kinds := ["sumuklu", "mantar", "kirpi_topu", "karga", "kristal_bocek", "yarasa", "firtina_yumagi", "korsan_marti", "kar_tavsani", "buz_dikeni", "golge_kopya"]
 		for i in kinds.size():
 			for row in 2:
 				var m := MobModels.build(kinds[i], row == 0)
@@ -70,6 +71,19 @@ func _ready() -> void:
 		c3.position = Vector3(0, 2.4, 8.5)
 		add_child(c3)
 		c3.look_at(Vector3(0, 1.0, 0))
+		return
+	if which == "bosses":
+		# the six bosses side by side (real models when the files exist)
+		var xs := [-13.0, -7.5, -2.5, 2.5, 7.5, 13.5]
+		for i in BOSSES.size():
+			var bm := boss(BOSSES[i])
+			bm.position = Vector3(xs[i], 0, -2.0 if BOSSES[i] == "dondurma" else 0.0)
+			add_child(bm)
+		var cb := Camera3D.new()
+		cb.fov = 50.0
+		cb.position = Vector3(0, 6.0, 24.0)
+		add_child(cb)
+		cb.look_at(Vector3(0, 3.0, 0))
 		return
 	if which == "fur":
 		# every keeper in its three fur colors
@@ -314,6 +328,16 @@ static func _flat(src: Material) -> Material:
 	return m
 
 
+static func boss(id: String) -> Node3D:
+	match id:
+		"pus_baykusu": return OwlModel.build()
+		"kutuk_kral": return KutukKral._build_model()
+		"kiskac": return KiskacModel.build()
+		"ruzgar": return Ruzgar.build_model()
+		"dondurma": return Dondurma.build_model()
+	return MirilModel.shadow()
+
+
 ## --demo=eyes --out=DIR: every imported character front-on, flat and
 ## orthographic, one PNG each (DIR/<id>.png) plus a line "EYESHOT id height
 ## size" so tools/find_eyes.py can map pixels back to meters.
@@ -333,11 +357,13 @@ func _eye_shots() -> void:
 	add_child(cam)
 	for i in 10:
 		await get_tree().process_frame
-	for id: String in ["pati"] + KEEPERS + NPCS + ["gull_chick"] + MOBS:
+	for id: String in ["pati"] + KEEPERS + NPCS + ["gull_chick"] + MOBS + BOSSES:
 		if ModelImport.path_for(id) == "" or ModelImport._options(id).has("model"):
 			continue
 		var m: Node3D
-		if id in MOBS:
+		if id in BOSSES:
+			m = boss(id)
+		elif id in MOBS:
 			m = MobModels.build(id, false)
 		elif id in KEEPERS:
 			m = FistikModel.build() if id == "fistik" else KeeperModels.build(id, {})

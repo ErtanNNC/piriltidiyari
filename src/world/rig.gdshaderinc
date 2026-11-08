@@ -20,6 +20,9 @@ uniform vec4 rig_shape2 = vec4(0.46, 0.0, 0.0, 1.0);
 uniform vec4 rig_motion = vec4(0.0);
 // x: head yaw, y: nod, z: tilt, w: tail wag (radians)
 uniform vec4 rig_head = vec4(0.0);
+// Extra arm/wing/claw turns driven by game code (bosses): x/y = rotation
+// around X/Z of the +x side, z/w = the same for the -x side.
+uniform vec4 rig_arms = vec4(0.0);
 
 // set in vertex() before deforming: rig_pos = rig_rest(VERTEX);
 varying vec3 rig_pos;
@@ -84,6 +87,9 @@ vec3 rig_deform(vec3 v, float time) {
 			r = rig_rx(r, (swing + strike) * wa);
 			r = rig_rz(r, sgn * rig_motion.w * 1.2 * wa);
 		}
+		vec2 extra = sgn > 0.0 ? rig_arms.xy : rig_arms.zw;
+		r = rig_rx(r, extra.x * wa);
+		r = rig_rz(r, extra.y * wa);
 		p = piv + r;
 	}
 	// --- legs: the low part steps, left and right in turn

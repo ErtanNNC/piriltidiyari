@@ -62,6 +62,13 @@ static func from_scene(model: Node3D, id: String) -> Node3D:
 	if t is Array and (t as Array).size() >= 3:
 		tint = Color(float(t[0]), float(t[1]), float(t[2]))
 	toonify(model, float(opts.get("outline", 0.03)), tint, float(opts.get("glow", 0.0)))
+	if opts.has("pus"):
+		# how much the scene's Pus greys it (bosses keep their own look)
+		for mi: MeshInstance3D in model.find_children("*", "MeshInstance3D", true, false):
+			for i in mi.get_surface_override_material_count():
+				var sm := mi.get_surface_override_material(i) as ShaderMaterial
+				if sm:
+					sm.set_shader_parameter("pus_affect", float(opts["pus"]))
 	var box := _bounds(model, Transform3D.IDENTITY)
 	if box.size.y > 0.001:
 		var s := float(opts.get("height", HEIGHTS.get(id, 2.0))) / box.size.y
@@ -176,6 +183,26 @@ static func _eyes(model: Node3D, pose: Node3D, id: String, opts: Dictionary, h: 
 		out = []
 	_eye_cache[id] = out
 	return out
+
+
+## A real model for a boss whose code turns named parts: each name in
+## `parts` (e.g. {"WingL": Vector3(-1, 2, 0)}) becomes an empty node at that
+## place; turning it bends that side of the model (see CharacterRig.proxies).
+## Returns null if there is no file.
+static func with_parts(id: String, parts: Dictionary) -> Node3D:
+	var root := load_model(id)
+	if root == null:
+		return null
+	var rig := CharacterRig.of(root)
+	for n: String in parts:
+		var at: Vector3 = parts[n]
+		var p := Node3D.new()
+		p.name = n
+		p.position = at
+		root.add_child(p)
+		if rig and absf(at.x) > 0.01:
+			rig.proxies.append([p, signf(at.x)])
+	return root
 
 
 static func _options(id: String) -> Dictionary:

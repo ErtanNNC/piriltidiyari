@@ -49,6 +49,9 @@ func _process(_delta: float) -> void:
 
 
 static func _build_model() -> Node3D:
+	var real := ModelImport.load_model("kutuk_kral")
+	if real:
+		return real
 	var root := Node3D.new()
 	var bark := Color("#9a6744")
 	Toon.part(root, "cylinder", Vector3(3.4, 3.0, 3.9), bark, Vector3(0, 1.5, 0))

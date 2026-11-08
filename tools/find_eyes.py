@@ -21,6 +21,8 @@ import numpy as np
 from PIL import Image, ImageDraw
 
 W, H = 1280, 720
+# found wrong (hands on a dark cloak): keep these jsons as they are
+SKIP = {"miril"}
 
 
 def components(mask):
@@ -145,6 +147,8 @@ def main():
             if mid in depth:
                 out = [o + [depth[mid][k]] for k, o in enumerate(out)]
             print(mid, json.dumps(out), hexc)
+            if mid in SKIP:
+                continue
             for e in eyes:
                 cx, cy, rp = e["px"]
                 rp *= 1.15

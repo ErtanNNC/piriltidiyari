@@ -22,8 +22,12 @@ is a copy of the design system's tokens.
   replaces any keeper/Fıstık/NPC placeholder through `ModelImport`. Preview:
   `--scene=preview [--demo=npcs|import|props|mobs]`; `--demo=ref --model=<id>` renders one
   character front-on, flat unlit colors, no outline, white background (reference for
-  image-to-3D). Real models (Higgsfield art + Tripo) exist for the keepers, Fıstık,
-  villagers and 9 mobs; `<id>.json` sets facing (-90 for Tripo), height, tint,
+  image-to-3D). Real models (Higgsfield art + Tripo) exist for every character:
+  keepers, Fıstık, villagers, all mobs (Gölge Kopya greys the player's own model)
+  and the six bosses (`--demo=bosses`; `ModelImport.with_parts(id, {"WingL": pos...})`
+  adds the empty parts the boss code turns, and CharacterRig passes their
+  rotation to that side of the model via `rig_arms`); json "pus": 0 keeps a
+  model out of the scene's Pus grey; `<id>.json` sets facing (-90 for Tripo), height, tint,
   outline, glow, lift, "model" (reuse another id's file) and keeper "anchors"
   (Head/head_r/hat_scale/Body/HandL/HandR) so outfits and tools still attach.
   Imported mobs drain to Pus grey via the toon `desat` uniform. New model:
