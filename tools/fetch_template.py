@@ -9,6 +9,7 @@ Files land in ~/.local/share/godot/export_templates/<version>/.
 import os
 import struct
 import sys
+import time
 import urllib.request
 import zlib
 
@@ -19,10 +20,16 @@ dest = os.path.expanduser("~/.local/share/godot/export_templates/%s" % ver.repla
 os.makedirs(dest, exist_ok=True)
 
 
-def get(start, end):
-    req = urllib.request.Request(url, headers={"Range": "bytes=%d-%d" % (start, end)})
-    with urllib.request.urlopen(req) as r:
-        return r.read()
+def get(start, end, tries=5):
+    for i in range(tries):  # GitHub sometimes answers 5xx for a moment
+        try:
+            req = urllib.request.Request(url, headers={"Range": "bytes=%d-%d" % (start, end)})
+            with urllib.request.urlopen(req) as r:
+                return r.read()
+        except Exception:
+            if i == tries - 1:
+                raise
+            time.sleep(5)
 
 
 # total size
