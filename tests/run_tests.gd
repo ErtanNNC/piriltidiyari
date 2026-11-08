@@ -298,7 +298,7 @@ func test_owl_plan() -> void:
 
 
 func test_content_is_valid() -> void:
-	for chapter in ["prologue", "chapter0", "chapter1", "chapter2", "chapter3", "chapter4", "chapter5", "s2_prologue", "s2_chapter0", "s2_chapter1", "s2_chapter2", "s2_chapter3", "s2_chapter4"]:
+	for chapter in ["prologue", "chapter0", "chapter1", "chapter2", "chapter3", "chapter4", "chapter5", "s2_prologue", "s2_chapter0", "s2_chapter1", "s2_chapter2", "s2_chapter3", "s2_chapter4", "s2_chapter5"]:
 		_validate_chapter(chapter)
 	test_chapter0_flow()
 	test_chapter1_flow()
@@ -719,6 +719,33 @@ func test_season2() -> void:
 	yk.notify("collect", "yanki", c.quests)
 	check(yk.quest_state("yankilar") == "ready", "Yankılar: beş yankı ve tokmak bulununca tamam")
 	check(c.quests["gumbur"].get("ordered", false), "Gümbür görevi sıralı (önce çan)")
+	# Bölüm 5: Hırıl's final and the words on the mountain
+	for p in [1, 2, 3]:
+		check(HirilPlan.cycle(p).back() == "tired", "Hırıl her turu buharı bitip yorularak bitirir (faz %d)" % p)
+	check(not "summon" in HirilPlan.cycle(1), "Hırıl ilk fazda kimseyi çağırmaz")
+	check(HirilPlan.MAX_SUMMONED <= 2, "Hırıl en fazla iki eski öfkeyi çağırır")
+	for k in HirilPlan.SUMMONS:
+		check(MobStats.breathes(k), "Hırıl'ın çağırdığı %s nefesle sakinleşir" % k)
+	check(HirilPlan.steam_left(0) == 1.0 and HirilPlan.steam_left(HirilPlan.ECHOES) == 0.0, "Faz 2: her söz buharı azaltır, sonuncusu bitirir")
+	for k in ["lav_damlacigi", "sus_bulutu"]:
+		check(MobStats.breathes(k) and int(MobStats.LEVELS[k]) in range(25, 31), "%s: nefesle sakinleşir, dağ seviyesi" % k)
+	c.load_chapter("s2_chapter5")
+	for i in HirilPlan.ECHOES:
+		check(c.barks.has("s2c5_e%d" % i), "Hırıl'ın söylenemeyen sözü %d var" % i)
+	check(c.barks.get("s2c5_cevap", []).size() >= 2, "Faz 2: en az iki cevap seçeneği")
+	var sz := PlayerData.new()
+	sz.start_quest(c.quests["soylenemeyen"])
+	for i in 5:
+		sz.notify("collect", "hiril_soz", c.quests)
+	check(sz.quest_state("soylenemeyen") == "active", "Söylenemeyen sözler: Minnoş bulunmadan bitmez")
+	sz.notify("breathe", "minnos", c.quests)
+	check(sz.quest_state("soylenemeyen") == "ready", "Söylenemeyen sözler: beş söz ve Minnoş ile tamam")
+	var fin := PlayerData.new()
+	fin.start_quest(c.quests["hiril"])
+	fin.notify("listen", "hiril", c.quests)
+	check(not fin.objective_done("hiril", "hiril"), "Hırıl'ı dinlemek çandan önce sayılmaz (sıralı)")
+	for k: String in ["pati", "bado", "citir", "lumi", "tipis_panda"]:
+		check(Season2End.ENDINGS.has(k), "Sezon 2 kapanış cümlesi: %s" % k)
 	var tp := PlayerData.new()
 	tp.choose_keeper("tipis_panda", c.keeper("tipis_panda")["stats"], {}, "Tıpış")
 	check(tp.level == 1 and tp.active_skill() == "derin_nefes", "Tıpış seçilince seviye 1 ve Derin Nefes")
@@ -818,7 +845,7 @@ func _validate_chapter(chapter: String) -> void:
 				check(c.items.has(o["item"]), "görev %s: eşya %s" % [q["id"], o["item"]])
 			if o.has("to"):
 				check(c.npcs.has(o["to"]), "görev %s: NPC %s" % [q["id"], o["to"]])
-			check(o.get("type", "deliver") in ["deliver", "defeat", "reach", "talk", "light", "ring", "collect", "breathe", "lull", "win"], "görev %s: hedef türü" % q["id"])
+			check(o.get("type", "deliver") in ["deliver", "defeat", "reach", "talk", "light", "ring", "collect", "breathe", "lull", "win", "listen"], "görev %s: hedef türü" % q["id"])
 			if o.get("type", "") == "defeat":
 				check(o["target"] in MobStats.KINDS or o["target"] in ["pus", "kutuk_kral", "kiskac", "ruzgar", "dondurma", "miril"], "görev %s: bilinmeyen mob %s" % [q["id"], o["target"]])
 	c.free()

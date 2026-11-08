@@ -893,6 +893,81 @@
   "Kanyondaki alay yankılarını topla",
   "Kanyonda kaybolan şeyi bul"
  ],
+ "content/s2_chapter5/barks.json": [
+  "Kükreyen Dağ! Yer bile sıcacık, buhar her yerde.",
+  "Gümbür de gelmiş! Önce onunla konuşayım.",
+  "Bu söz Hırıl'ın... Kimse duymamış, duvarda kalmış.",
+  "Saklayayım. Zirvede ona geri götüreceğim.",
+  "Gelme! Ağabeyim hep kızıyor. Kimse beni dinlemiyor.",
+  "Kovalamayayım. Yanına oturup birlikte nefes alayım.",
+  "Kızmadın mı? Sadece... oturdun mu yanımda?",
+  "Ağabeyime söyle, onu özledim. Ben köye dönüyorum!",
+  "Çan çalmıyor... Önce Gümbür'ün dediklerini yapayım.",
+  "Çan çaldı! Zirvenin yolu açılıyor!",
+  "Yine mi geldiniz? Herkes 'Sus!' der, sen de diyeceksin!",
+  "Hırıl, dur! O seni dinlemeye geldi!",
+  "Kimse dinlemez! HIRRR! Kor benim, kimseye vermem!",
+  "Lav toplarından kaç. Buharı bitince vur!",
+  "Hırr... Yoruldum. Ama içim hâlâ kaynıyor...",
+  "Dövüşmek yok artık. Sözlerini sana geri getireceğim.",
+  "Parlayan sözlere git. Her biri onu bir adım sakinleştirir.",
+  "Ben de oynamak istiyorum. Ama kimse çağırmadı.",
+  "Dinle beni. Bir kere olsun, sözümü bitireyim.",
+  "Bu benim davulum. Gürültü değil, şarkı çalıyordum.",
+  "Bana da sıra gelsin. Hep en sona kaldım.",
+  "Yalnız kalmak istemiyorum. Kızgınken bile.",
+  "Seni duyuyorum.",
+  "Ben de öyle hissederdim.",
+  "Anlat, dinliyorum.",
+  "Buhar... gitti. İçim sıcak ama yakmıyor.",
+  "Kimse bana böyle cevap vermemişti.",
+  "Hırıl... O gün sana 'Sus!' dememeliydim. Özür dilerim.",
+  "Tıpış? Sen... tokmağımı da mı getirdin?",
+  "Kırık ama tamir ederiz. Birlikte çalarız, söz!",
+  "Al Kor! Beş Kor tamam! Kızıl Sis dağılıyor!",
+  "Gel, Hırıl! Fener'in yedinci rengi seni bekliyor."
+ ],
+ "content/s2_chapter5/chapter.json": [
+  "Kükreyen Dağ"
+ ],
+ "content/s2_chapter5/dialogue/gumbur.json": [
+  "Bum-bum-tak! Hırıl'la birlikte çalacağız. Gel dinle!",
+  "Çanı çal, sonra zirveye çık. Hırıl orada kaynıyor.",
+  "Önce dinle. Sonra sözlerini ona geri götür.",
+  "Minnoş'u buldun! Kovalamadan, yanına oturarak. Aferin.",
+  "Bu sözler Hırıl'ın içinde kalmış. Kimse duymamış.",
+  "Çanı çal. Zirvede sözleri ona tek tek geri götür.",
+  "Ona cevap ver. Kızma, susturma. Sadece dinle.",
+  "Parlayan yazıları bul. Minnoş da buralarda bir yerde.",
+  "Minnoş'u kovalama. Yanına git, Sakinleş'e basılı tut.",
+  "Bum. Ben de geldim. Hırıl'ın davulunu ben dinlerdim.",
+  "Bak, duvarlarda yazılar var. Hırıl'ın söyleyemedikleri.",
+  "Beş sözü topla. Zirvede onları ona geri götüreceğiz.",
+  "Minnoş da buraya kaçtı. Bir köşede tek başına oturuyor.",
+  "Dağ kükrüyor ama içinde küçük bir ses var."
+ ],
+ "content/s2_chapter5/dialogue/miril.json": [
+  "Hadi eve dönelim! Fener'in kırmızı rengi bizde.",
+  "Geldin! Onu dinledin. Ben de hep bunu istedim.",
+  "Mırıl hiç gitmedi. Bağırdım ama yanımda oturdu.",
+  "Çünkü ben de bir zamanlar kimsenin görmediği bir yıldızdım.",
+  "Beş Kor bir oldu. Fener'e götürelim mi? Birlikte?",
+  "Birlikte! Pırıltı Diyarı'nda şenlik var, davul da lazım!",
+  "Hırıl'ı yalnız bırakmadım. Onu dinler misin?"
+ ],
+ "content/s2_chapter5/quests/hiril.json": [
+  "Hırıl",
+  "Dağın Ses Çanı'nı çal",
+  "Zirvede Hırıl'ı dinle",
+  "Al Kor'u al",
+  "Mırıl ile konuş"
+ ],
+ "content/s2_chapter5/quests/soylenemeyen.json": [
+  "Söylenemeyen Sözler",
+  "Duvarlardaki söylenemeyen sözleri topla",
+  "Minnoş'un yanına otur, birlikte nefes al",
+  "Davulcu Gümbür'e dön"
+ ],
  "content/s2_prologue/barks.json": [
   "Bugün benim doğum günüm! Köyde ilk doğum günüm.",
   "Süzülüyorum! Yıldız olmanın en güzel yanı bu.",
@@ -1064,7 +1139,6 @@
   "Mırıl",
   "Gölge Prens Mırıl",
   "Usta Tıkır",
-  "Hırıl",
   "Bulut Nine",
   "Demirci Kalay",
   "Pıtpıt",
@@ -1118,6 +1192,10 @@
  "src/actors/gurledek.gd": [
   "Yoruldu, alçaldı! Şimdi vur!",
   "Alçaldı! Şimdi vur!"
+ ],
+ "src/actors/hiril.gd": [
+  "Hırıl'ın buharı bitti! Şimdi vur!",
+  "Buharı bitti! Şimdi vur!"
  ],
  "src/actors/keeper_models.gd": [
   "Yolu biliyorum.",
@@ -1215,7 +1293,8 @@
   "Sezon 2 · Bölüm 1",
   "Sezon 2 · Bölüm 2",
   "Sezon 2 · Bölüm 3",
-  "Sezon 2 · Bölüm 4"
+  "Sezon 2 · Bölüm 4",
+  "Sezon 2 · Bölüm 5"
  ],
  "src/autoload/tokens.gd": [
   "fontSize",
@@ -1243,6 +1322,8 @@
   "Kıskanç Civciv",
   "Yankı Yarasası",
   "Tepinen Keçi",
+  "Lav Damlacığı",
+  "\"Sus!\" Bulutu",
   "Dev Somurtkan Mantar"
  ],
  "src/core/player_data.gd": [
@@ -1383,6 +1464,22 @@
   "Evet",
   "%02d.%02d.%d  %02d:%02d"
  ],
+ "src/ui/season2_end.gd": [
+  "Fıstık sana kendi kalkanını verdi: artık çırak değil, şövalyesin!",
+  "Minnoş ilk kez söyledi: \"Beni dinlediğin için teşekkürler, ağabey.\"",
+  "İki diyarı tek haritada birleştirdin ve araya bir dağ yolu çizdin.",
+  "Mırıl, Hırıl ve sen: artık üç arkadaşsınız.",
+  "Hırıl ile kırık davulu birlikte tamir ettiniz.",
+  "Sezon 2 tamamlandı!",
+  "Kor Vadisi · Kıvılcım Bekçileri 2",
+  "Beş Kor bir oldu, Kızıl Sis dağıldı.",
+  "Mırıl ve Hırıl birlikte Pırıltı Diyarı'na dönüyor.",
+  "Fener yedinci rengini aldı: kırmızı. Gökkuşağı tamam!",
+  "Seviye %d",
+  "%d Pırıl",
+  "Oynadığın için teşekkürler! · Just A Game Studios",
+  "Köyde dolaş"
+ ],
  "src/ui/season_end.gd": [
   "Dağların ardında Kor Vadisi ve Kızıl Sis",
   "Prologda Mırıl'ı sen oynuyorsun: süzül, ışık saç!",
@@ -1393,11 +1490,7 @@
   "Pırıltı Diyarı · Kıvılcım Bekçileri",
   "Kıvılcımlar %d/5",
   "Hikâye Taşları %d/%d",
-  "Seviye %d",
-  "%d Pırıl",
-  "Oynadığın için teşekkürler! · Just A Game Studios",
-  "Sezon 2'ye başla",
-  "Köyde dolaş"
+  "Sezon 2'ye başla"
  ],
  "src/ui/shop_panel.gd": [
   "Dükkân",
@@ -1633,7 +1726,21 @@
   "Bakır Kor",
   "Gümbür Kanyonu artık şarkı yankılıyor",
   "Echo%d",
+  "Kükreyen Dağ ↑",
   "Patpat Tarlaları ↓"
+ ],
+ "src/world/s2_chapter5.gd": [
+  "Önce Davulcu Gümbür'le konuş",
+  "Önce Gümbür'le konuş",
+  "Dağın çanını çal",
+  "Lavdan kaç, buharı bitince vur!",
+  "Parlayan sözlere git. Her birini Hırıl'a geri götür.",
+  "Sözlere git, Hırıl'a götür",
+  "Ne dersin?",
+  "Al Kor",
+  "Beş Kor tamam! Kızıl Sis dağılıyor",
+  "Word%d",
+  "Gümbür Kanyonu ↓"
  ],
  "src/world/s2_scene1.gd": [
   "Boşluk: zıpla, havada basılı tut: süzül!",

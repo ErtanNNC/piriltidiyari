@@ -1,0 +1,20 @@
+{
+  "id": "s2_chapter5",
+  "title": "Kükreyen Dağ",
+  "region": "Kükreyen Dağ",
+  "theme": "light",
+  "levels": [
+    25,
+    30
+  ],
+  "spark": null,
+  "quests": [
+    "soylenemeyen",
+    "hiril"
+  ],
+  "dialogue": [
+    "gumbur",
+    "miril"
+  ],
+  "barks": "barks"
+}

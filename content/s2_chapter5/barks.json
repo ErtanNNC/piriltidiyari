@@ -1,0 +1,198 @@
+{
+  "barks": {
+    "s2c5_basla": [
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Kükreyen Dağ! Yer bile sıcacık, buhar her yerde."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "kararlı",
+        "text": "Gümbür de gelmiş! Önce onunla konuşayım."
+      }
+    ],
+    "s2c5_soz": [
+      {
+        "speaker": "oyuncu",
+        "mood": "dertli",
+        "text": "Bu söz Hırıl'ın... Kimse duymamış, duvarda kalmış."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "kararlı",
+        "text": "Saklayayım. Zirvede ona geri götüreceğim."
+      }
+    ],
+    "s2c5_minnos_gor": [
+      {
+        "speaker": "minnos",
+        "mood": "dertli",
+        "text": "Gelme! Ağabeyim hep kızıyor. Kimse beni dinlemiyor."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "sakin",
+        "text": "Kovalamayayım. Yanına oturup birlikte nefes alayım."
+      }
+    ],
+    "s2c5_minnos": [
+      {
+        "speaker": "minnos",
+        "mood": "şaşkın",
+        "text": "Kızmadın mı? Sadece... oturdun mu yanımda?"
+      },
+      {
+        "speaker": "minnos",
+        "mood": "mutlu",
+        "text": "Ağabeyime söyle, onu özledim. Ben köye dönüyorum!"
+      }
+    ],
+    "s2c5_kilit": [
+      {
+        "speaker": "oyuncu",
+        "mood": "dertli",
+        "text": "Çan çalmıyor... Önce Gümbür'ün dediklerini yapayım."
+      }
+    ],
+    "s2c5_can": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Çan çaldı! Zirvenin yolu açılıyor!"
+      }
+    ],
+    "s2c5_hiril": [
+      {
+        "speaker": "hiril",
+        "mood": "huysuz",
+        "text": "Yine mi geldiniz? Herkes 'Sus!' der, sen de diyeceksin!"
+      },
+      {
+        "speaker": "miril",
+        "mood": "dertli",
+        "text": "Hırıl, dur! O seni dinlemeye geldi!"
+      },
+      {
+        "speaker": "hiril",
+        "mood": "huysuz",
+        "text": "Kimse dinlemez! HIRRR! Kor benim, kimseye vermem!"
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "kararlı",
+        "text": "Lav toplarından kaç. Buharı bitince vur!"
+      }
+    ],
+    "s2c5_faz2": [
+      {
+        "speaker": "hiril",
+        "mood": "dertli",
+        "text": "Hırr... Yoruldum. Ama içim hâlâ kaynıyor..."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "sakin",
+        "text": "Dövüşmek yok artık. Sözlerini sana geri getireceğim."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "kararlı",
+        "text": "Parlayan sözlere git. Her biri onu bir adım sakinleştirir."
+      }
+    ],
+    "s2c5_e0": [
+      {
+        "speaker": "hiril",
+        "mood": "dertli",
+        "text": "Ben de oynamak istiyorum. Ama kimse çağırmadı."
+      }
+    ],
+    "s2c5_e1": [
+      {
+        "speaker": "hiril",
+        "mood": "dertli",
+        "text": "Dinle beni. Bir kere olsun, sözümü bitireyim."
+      }
+    ],
+    "s2c5_e2": [
+      {
+        "speaker": "hiril",
+        "mood": "dertli",
+        "text": "Bu benim davulum. Gürültü değil, şarkı çalıyordum."
+      }
+    ],
+    "s2c5_e3": [
+      {
+        "speaker": "hiril",
+        "mood": "dertli",
+        "text": "Bana da sıra gelsin. Hep en sona kaldım."
+      }
+    ],
+    "s2c5_e4": [
+      {
+        "speaker": "hiril",
+        "mood": "dertli",
+        "text": "Yalnız kalmak istemiyorum. Kızgınken bile."
+      }
+    ],
+    "s2c5_cevap": [
+      {
+        "speaker": "oyuncu",
+        "mood": "sakin",
+        "text": "Seni duyuyorum."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "sakin",
+        "text": "Ben de öyle hissederdim."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "sakin",
+        "text": "Anlat, dinliyorum."
+      }
+    ],
+    "s2c5_sakin": [
+      {
+        "speaker": "hiril",
+        "mood": "şaşkın",
+        "text": "Buhar... gitti. İçim sıcak ama yakmıyor."
+      },
+      {
+        "speaker": "hiril",
+        "mood": "mutlu",
+        "text": "Kimse bana böyle cevap vermemişti."
+      }
+    ],
+    "s2c5_tipis": [
+      {
+        "speaker": "tipis_panda",
+        "mood": "dertli",
+        "text": "Hırıl... O gün sana 'Sus!' dememeliydim. Özür dilerim."
+      },
+      {
+        "speaker": "hiril",
+        "mood": "şaşkın",
+        "text": "Tıpış? Sen... tokmağımı da mı getirdin?"
+      },
+      {
+        "speaker": "tipis_panda",
+        "mood": "mutlu",
+        "text": "Kırık ama tamir ederiz. Birlikte çalarız, söz!"
+      }
+    ],
+    "s2c5_kor": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Al Kor! Beş Kor tamam! Kızıl Sis dağılıyor!"
+      },
+      {
+        "speaker": "miril",
+        "mood": "mutlu",
+        "text": "Gel, Hırıl! Fener'in yedinci rengi seni bekliyor."
+      }
+    ]
+  }
+}

@@ -31,6 +31,8 @@ static func build(kind: String) -> Node3D:
 			_squirrel_tailor(root)
 		"rooster":
 			_rooster(root)
+		"gumbur":
+			MobModels.goat(root, false, 1.0, true)
 		"goat_kid":
 			MobModels.goat(root, false, 0.62, false)
 			Toon.part(root, "ring", Vector3(0.5, 0.1, 0.5), "sky", Vector3(0, 0.98, 0.3), Vector3(70, 0, 0))

@@ -204,13 +204,28 @@ is a copy of the design system's tokens.
   warning), then rests (hittable). Calmed, he knows Hırıl's drumstick: memory
   (`_memory`, small calm Hırıl drumming, flag `s2c4_ani`), then Bakır Kor
   (`kor_bakir`); Çıngır sends you on to Kükreyen Dağ (`s2_bolum4_bitti`).
+- Bölüm 5 `s2_chapter5` (Kükreyen Dağ, the final; from the canyon's north
+  edge after `s2_bolum4_bitti`): Davulcu Gümbür (NPC kind "gumbur") asks for
+  the five words on the walls (boards read barks `s2c5_e<i>`, objective
+  `collect`/"hiril_soz") and Minnoş, who sits alone (`SittingFriend`: group
+  "dazed", Sakinleş beside him, event "breathe"/"minnos"). Bell `s2_can5`.
+  Boss `Hiril extends Firfir` (`HirilPlan`: lava balls, calls up earlier
+  Köpüklüler, tired = hittable). At 0 HP Faz 2: no fighting; word orbs float
+  round the summit, each goes back to him (`_play_echo`: his line, `Hud.ask`
+  with the replies in bark `s2c5_cevap`), `hear(n)` lowers the steam; the
+  fifth → `become_calm` (event "listen"/"hiril"), Tıpış says sorry (NPC unless
+  you are Tıpış), Al Kor (`kor_al`); talking to Mırıl sets `sezon2_bitti` →
+  `Season2End` (closing line per keeper in `ENDINGS`), save goes to s2_chapter0.
+- Kızıl Sis mobs keep their own colors: their builders use `_c(false, ...)`
+  (only the face and steam show the anger).
 - Checks: `--scene=s2_scene1 --demo=glide|jump|party`, `--scene=s2_scene2 --demo=redwind|breath|guide|angry`,
   `--scene=s2_scene3 --demo=path|jumponly|stairs`, `--scene=s2_scene4 --demo=win --auto`,
   `--scene=s2_scene5 --demo=flow --auto`, `--scene=s2_scene6 --demo=pick_<id> --auto`,
   `--scene=s2_chapter0 --demo=village|bell_locked|stairs [--keeper=tipis_panda]`,
   `--scene=s2_chapter1 --demo=forest|veil|boss`, `--scene=s2_chapter2 --demo=lake|water|pads`,
   `--scene=s2_chapter3 --demo=fair|stalls`,
-  `--scene=s2_chapter4 --demo=canyon|dodge|arena|echo`.
+  `--scene=s2_chapter4 --demo=canyon|dodge|arena|echo`,
+  `--scene=s2_chapter5 --demo=summit|faz2|arena|minnos|words|end`.
 
 ## Agent skills
 

@@ -1,0 +1,130 @@
+{
+  "npc": "gumbur",
+  "variants": [
+    {
+      "when": {
+        "quest": "hiril",
+        "state": "done"
+      },
+      "lines": [
+        {
+          "speaker": "gumbur",
+          "mood": "mutlu",
+          "text": "Bum-bum-tak! Hırıl'la birlikte çalacağız. Gel dinle!"
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "hiril",
+        "state": "active"
+      },
+      "lines": [
+        {
+          "speaker": "gumbur",
+          "mood": "kararlı",
+          "text": "Çanı çal, sonra zirveye çık. Hırıl orada kaynıyor."
+        },
+        {
+          "speaker": "gumbur",
+          "mood": "sakin",
+          "text": "Önce dinle. Sonra sözlerini ona geri götür."
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "soylenemeyen",
+        "state": "ready"
+      },
+      "lines": [
+        {
+          "speaker": "gumbur",
+          "mood": "mutlu",
+          "text": "Minnoş'u buldun! Kovalamadan, yanına oturarak. Aferin."
+        },
+        {
+          "speaker": "gumbur",
+          "mood": "sakin",
+          "text": "Bu sözler Hırıl'ın içinde kalmış. Kimse duymamış."
+        },
+        {
+          "speaker": "gumbur",
+          "mood": "kararlı",
+          "text": "Çanı çal. Zirvede sözleri ona tek tek geri götür."
+        },
+        {
+          "speaker": "gumbur",
+          "mood": "sakin",
+          "text": "Ona cevap ver. Kızma, susturma. Sadece dinle."
+        }
+      ],
+      "then": {
+        "complete_quest": "soylenemeyen",
+        "start_quest": "hiril",
+        "give_items": {
+          "nane_sekeri": 3,
+          "bal_surubu": 2
+        }
+      }
+    },
+    {
+      "when": {
+        "quest": "soylenemeyen",
+        "state": "active"
+      },
+      "lines": [
+        {
+          "speaker": "gumbur",
+          "mood": "sakin",
+          "text": "Parlayan yazıları bul. Minnoş da buralarda bir yerde."
+        },
+        {
+          "speaker": "gumbur",
+          "mood": "dertli",
+          "text": "Minnoş'u kovalama. Yanına git, Sakinleş'e basılı tut."
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "soylenemeyen",
+        "state": "none"
+      },
+      "lines": [
+        {
+          "speaker": "gumbur",
+          "mood": "sakin",
+          "text": "Bum. Ben de geldim. Hırıl'ın davulunu ben dinlerdim."
+        },
+        {
+          "speaker": "gumbur",
+          "mood": "dertli",
+          "text": "Bak, duvarlarda yazılar var. Hırıl'ın söyleyemedikleri."
+        },
+        {
+          "speaker": "gumbur",
+          "mood": "kararlı",
+          "text": "Beş sözü topla. Zirvede onları ona geri götüreceğiz."
+        },
+        {
+          "speaker": "gumbur",
+          "mood": "dertli",
+          "text": "Minnoş da buraya kaçtı. Bir köşede tek başına oturuyor."
+        }
+      ],
+      "then": {
+        "start_quest": "soylenemeyen"
+      }
+    },
+    {
+      "lines": [
+        {
+          "speaker": "gumbur",
+          "mood": "sakin",
+          "text": "Dağ kükrüyor ama içinde küçük bir ses var."
+        }
+      ]
+    }
+  ]
+}

@@ -6,6 +6,9 @@ msgstr ""
 msgid " (%s tuşu / düğmesi)"
 msgstr " (%s key / button)"
 
+msgid "\"Sus!\" Bulutu"
+msgstr "\"Hush!\" Cloud"
+
 msgid "%10 daha güçlü"
 msgstr "10% stronger"
 
@@ -95,6 +98,15 @@ msgstr "Accessory"
 
 msgid "Al"
 msgstr "Take"
+
+msgid "Al Kor"
+msgstr "Scarlet Ember"
+
+msgid "Al Kor! Beş Kor tamam! Kızıl Sis dağılıyor!"
+msgstr "The Scarlet Ember! All five Embers! The Crimson Mist is lifting!"
+
+msgid "Al Kor'u al"
+msgstr "Take the Scarlet Ember"
 
 msgid "Al bakalım bekçi. Kendi dikenimden bir rozet."
 msgstr "Here you go, keeper. A badge made from my own spike."
@@ -207,6 +219,9 @@ msgstr "Main menu"
 msgid "Anlat bakalım, dinliyorum."
 msgstr "Go on, tell me. I'm listening."
 
+msgid "Anlat, dinliyorum."
+msgstr "Tell me, I'm listening."
+
 msgid "Anı"
 msgstr "Memory"
 
@@ -252,6 +267,9 @@ msgstr "Open"
 msgid "Açık"
 msgstr "On"
 
+msgid "Ağabeyime söyle, onu özledim. Ben köye dönüyorum!"
+msgstr "Tell my big brother I missed him. I'm going back to the village!"
+
 msgid "Ağaçlar bana hep yanlış yolu söyledi!"
 msgstr "The trees kept telling me the wrong way!"
 
@@ -278,6 +296,9 @@ msgstr "Look what I found! This is your ball, isn't it?"
 
 msgid "Bak ne buldum! Senin uçurtman bu, değil mi?"
 msgstr "Look what I found! This is your kite, isn't it?"
+
+msgid "Bak, duvarlarda yazılar var. Hırıl'ın söyleyemedikleri."
+msgstr "Look, there's writing on the walls. What Grumble never got to say."
 
 msgid "Bak, şuradan başlıyor! Oh, ne güzel anlattım."
 msgstr "Look, it starts right here! Oh, that felt good to say."
@@ -332,6 +353,9 @@ msgstr "Dodge the bubbles. Hit Pinch when his claw gets stuck!"
 
 msgid "Balonlar çok eğlenceli ama annemi özledim."
 msgstr "The balloons are lots of fun, but I miss my mom."
+
+msgid "Bana da sıra gelsin. Hep en sona kaldım."
+msgstr "Let me have a turn too. I was always last."
 
 msgid "Bana mı? Gerçekten mi? Şey... Merhaba!"
 msgstr "Me? Really? Um... Hello!"
@@ -411,6 +435,12 @@ msgstr "I'm getting cross too... Let me take a deep breath."
 msgid "Ben de mi konuşabilirim? En küçük benim ama..."
 msgstr "Can I talk too? I'm the smallest, but..."
 
+msgid "Ben de oynamak istiyorum. Ama kimse çağırmadı."
+msgstr "I want to play too. But nobody called me."
+
+msgid "Ben de öyle hissederdim."
+msgstr "I'd have felt that way too."
+
 msgid "Ben dinliyorum! Neredesin?"
 msgstr "I'm listening! Where are you?"
 
@@ -465,6 +495,15 @@ msgstr "The White Spark is here too! That makes four, one to go."
 msgid "Bez bebeğim nerede? Rakunlar her şeyi kapıyor!"
 msgstr "Where's my rag doll? The raccoons grab everything!"
 
+msgid "Beş Kor bir oldu, Kızıl Sis dağıldı."
+msgstr "The five Embers became one, and the Crimson Mist lifted."
+
+msgid "Beş Kor bir oldu. Fener'e götürelim mi? Birlikte?"
+msgstr "The five Embers are one. Shall we take it to the Lantern? Together?"
+
+msgid "Beş Kor tamam! Kızıl Sis dağılıyor"
+msgstr "All five Embers! The Crimson Mist is lifting"
+
 msgid "Beş Kor, beş öfkeli bekçi ve yeni dost Tıpış"
 msgstr "Five Embers, five cross guardians and a new friend, Pitter"
 
@@ -479,6 +518,9 @@ msgstr "Five pieces... five hearts... I'll just... take a nap..."
 
 msgid "Beş parçayı bul... Ben biraz daha uyuyayım..."
 msgstr "Find the five pieces... I'll sleep a little longer..."
+
+msgid "Beş sözü topla. Zirvede onları ona geri götüreceğiz."
+msgstr "Gather five words. We'll take them back to him at the top."
 
 msgid "Bilge Kuzey"
 msgstr "Sage North"
@@ -558,6 +600,9 @@ msgstr "One more light ball"
 msgid "Biraz daha hızlı"
 msgstr "A little faster"
 
+msgid "Birlikte! Pırıltı Diyarı'nda şenlik var, davul da lazım!"
+msgstr "Together! There's a festival in Glimmerland, and it needs a drum!"
+
 msgid "Boş yuva"
 msgstr "Empty slot"
 
@@ -578,6 +623,9 @@ msgstr "Brrr... The Gloom told me nobody liked me."
 
 msgid "Bu Pus değil. Bu başka bir şey."
 msgstr "This isn't the Gloom. It's something else."
+
+msgid "Bu benim davulum. Gürültü değil, şarkı çalıyordum."
+msgstr "That's my drum. I wasn't making noise, I was playing a song."
 
 msgid "Bu benim fenerim! Mavi olan!"
 msgstr "That's my lantern! The blue one!"
@@ -642,6 +690,12 @@ msgstr "What was that sound? The owl is gone, but the Gloom stays."
 msgid "Bu sis çok uykulu... Yakındaki ateşi yak!"
 msgstr "This mist is so sleepy... Light the fire nearby!"
 
+msgid "Bu söz Hırıl'ın... Kimse duymamış, duvarda kalmış."
+msgstr "These are Grumble's words... Nobody heard them, so they stayed here."
+
+msgid "Bu sözler Hırıl'ın içinde kalmış. Kimse duymamış."
+msgstr "These words stayed inside Grumble. Nobody heard them."
+
 msgid "Bu yankı birine alay ediyor... Toplayınca sustu."
 msgstr "This echo teases someone... It went quiet when I took it."
 
@@ -666,6 +720,9 @@ msgstr "Every day feels like my birthday! Thank you, keeper."
 msgid "Buhar çizgilerinden kaç. Kapak kalkınca vur!"
 msgstr "Dodge the steam lines. Hit when the lid pops up!"
 
+msgid "Buhar... gitti. İçim sıcak ama yakmıyor."
+msgstr "The steam... is gone. I feel warm, but it doesn't burn."
+
 msgid "Buhardan kaç, kapak kalkınca vur!"
 msgstr "Dodge the steam, hit when the lid pops!"
 
@@ -674,6 +731,9 @@ msgstr "Steamy Springs Village"
 
 msgid "Buharlı Kaplıca Köyü ↓"
 msgstr "Steamy Springs Village ↓"
+
+msgid "Buharı bitti! Şimdi vur!"
+msgstr "Out of steam! Hit now!"
 
 msgid "Bulut Limanı"
 msgstr "Cloud Harbor"
@@ -695,6 +755,12 @@ msgstr "Boom boom boom, ugh!"
 
 msgid "Bum, bum, sus! Daire bir vuruş sonra iner. Nefeslenince vur!"
 msgstr "Boom, boom, hush! A circle lands one beat later. Hit when he rests!"
+
+msgid "Bum-bum-tak! Hırıl'la birlikte çalacağız. Gel dinle!"
+msgstr "Boom-boom-tap! Grumble and I will play together. Come listen!"
+
+msgid "Bum. Ben de geldim. Hırıl'ın davulunu ben dinlerdim."
+msgstr "Boom. I came too. I used to listen to Grumble's drum."
 
 msgid "Bum... bum... Yoruldum. Neden kimse dinlemiyor?"
 msgstr "Boom... boom... I'm tired. Why does nobody listen?"
@@ -837,6 +903,9 @@ msgstr "No touching the cake until the invitations are out!"
 msgid "Davul mu o, tencere mi?"
 msgstr "Is that a drum or a pot?"
 
+msgid "Davulcu Gümbür'e dön"
+msgstr "Go back to Rumble the Drummer"
+
 msgid "Davulcu Keçi Gümbür"
 msgstr "Rumble the Drummer Goat"
 
@@ -864,8 +933,17 @@ msgstr "Reach the mountain pass"
 msgid "Dağ geçidine yürü"
 msgstr "Walk to the mountain pass"
 
+msgid "Dağ kükrüyor ama içinde küçük bir ses var."
+msgstr "The mountain roars, but there's a small voice inside."
+
 msgid "Dağların ardında Kor Vadisi ve Kızıl Sis"
 msgstr "Beyond the mountains: Ember Valley and the Crimson Mist"
+
+msgid "Dağın Ses Çanı'nı çal"
+msgstr "Ring the mountain's Echo Bell"
+
+msgid "Dağın çanını çal"
+msgstr "Ring the mountain's bell"
 
 msgid "Dağın ötesinde Kızıl Yaprak Ormanı var. Orada da biri kızgın."
 msgstr "Past the mountain is Redleaf Forest. Someone's cross there too."
@@ -918,6 +996,9 @@ msgstr "My wish is ready. One... two... three!"
 msgid "Dinle beni!"
 msgstr "Listen to me!"
 
+msgid "Dinle beni. Bir kere olsun, sözümü bitireyim."
+msgstr "Listen to me. Just once, let me finish what I'm saying."
+
 msgid "Dinledim. Artık soğuyabilirsin."
 msgstr "I listened. You can cool down now."
 
@@ -969,6 +1050,9 @@ msgstr "Wait, wait! You're not the Gloom... You're a keeper!"
 msgid "Dur, dur! Önce Dede Vırak konuşsun, sıra onun!"
 msgstr "Wait, wait! Grandpa Croak speaks first, it's his turn!"
 
+msgid "Duvarlardaki söylenemeyen sözleri topla"
+msgstr "Gather the unspoken words on the walls"
+
 msgid "Duydum. Sen bir 'Sus!' sözünden doğmuşsun, değil mi?"
 msgstr "I did. You were born from a 'Shush!', weren't you?"
 
@@ -983,6 +1067,9 @@ msgstr "Press Spin: calm them all at once!"
 
 msgid "Dört komşumu teker teker dinler misin?"
 msgstr "Will you listen to my four neighbours, one by one?"
+
+msgid "Dövüşmek yok artık. Sözlerini sana geri getireceğim."
+msgstr "No more fighting. I'll bring your words back to you."
 
 msgid "Dükkân"
 msgstr "Shop"
@@ -1073,6 +1160,9 @@ msgstr "The lantern is lit! The mole village is bright now."
 
 msgid "Fener yandı! Pus biraz geri çekildi."
 msgstr "The lantern is lit! The Gloom pulled back a little."
+
+msgid "Fener yedinci rengini aldı: kırmızı. Gökkuşağı tamam!"
+msgstr "The Lantern got its seventh color: red. The rainbow is whole!"
 
 msgid "Fener'in Seçimi"
 msgstr "The Lantern Chooses"
@@ -1185,6 +1275,9 @@ msgstr "Peanut"
 msgid "Fıstık o kırmızı sisi izliyor. Yeni macera yakında!"
 msgstr "Peanut is watching that red mist. A new adventure is coming!"
 
+msgid "Fıstık sana kendi kalkanını verdi: artık çırak değil, şövalyesin!"
+msgstr "Peanut gave you his own shield: you're a knight now, not an apprentice!"
+
 msgid "Fıstık ışıkla uyudu"
 msgstr "Peanut sleeps with the light"
 
@@ -1223,6 +1316,15 @@ msgstr "The Whispering Woods are green again"
 
 msgid "Fısıltıları doğru oku, ormanın kalbine ulaş"
 msgstr "Read the whispers right and reach the forest's heart"
+
+msgid "Gel, Hırıl! Fener'in yedinci rengi seni bekliyor."
+msgstr "Come, Grumble! The Lantern's seventh color is waiting for you."
+
+msgid "Geldin! Onu dinledin. Ben de hep bunu istedim."
+msgstr "You came! You listened to him. That's all I ever wanted."
+
+msgid "Gelme! Ağabeyim hep kızıyor. Kimse beni dinlemiyor."
+msgstr "Don't come! My brother is always cross. Nobody listens to me."
 
 msgid "Gemi hazır! Rüzgâr esince bir kayanın dibine saklan."
 msgstr "The ship is ready! When the wind blows, hide behind a rock."
@@ -1353,6 +1455,9 @@ msgstr "Rumble Canyon echoes with songs now"
 msgid "Gümbür Kanyonu ↑"
 msgstr "Rumble Canyon ↑"
 
+msgid "Gümbür Kanyonu ↓"
+msgstr "Rumble Canyon ↓"
+
 msgid "Gümbür Kanyonu! Her ses bin kez yankılanıyor!"
 msgstr "Rumble Canyon! Every sound echoes a thousand times!"
 
@@ -1361,6 +1466,9 @@ msgstr "He went toward Rumble Canyon. We must tell Bado!"
 
 msgid "Gümbür Kanyonu, çok uzun zaman önce"
 msgstr "Rumble Canyon, a long, long time ago"
+
+msgid "Gümbür de gelmiş! Önce onunla konuşayım."
+msgstr "Rumble came too! I'll talk to him first."
 
 msgid "Gümbür her akşam davul çalıyor. Ben de dans ediyorum!"
 msgstr "Rumble drums every evening. And I dance!"
@@ -1421,6 +1529,9 @@ msgstr "Go, Peanut, to the tower!"
 
 msgid "Hadi canım eski dostum, yine yarışırız!"
 msgstr "Come on, my old friend, let's race again!"
+
+msgid "Hadi eve dönelim! Fener'in kırmızı rengi bizde."
+msgstr "Let's go home! We have the Lantern's red color."
 
 msgid "Hadi kuleye! Yıldızlar seni bekliyor."
 msgstr "To the tower! The stars are waiting for you."
@@ -1650,14 +1761,23 @@ msgstr "Hmph... Hrrm... How long was I asleep?"
 msgid "Hıh? Sis beni başa döndürdü."
 msgstr "Huh? The mist sent me back to the start."
 
+msgid "Hırr... Yoruldum. Ama içim hâlâ kaynıyor..."
+msgstr "Grrr... I'm tired. But I'm still boiling inside..."
+
 msgid "Hırrr! Kimsin sen? Git buradan!"
 msgstr "Grrr! Who are you? Go away!"
 
 msgid "Hırıl"
 msgstr "Grumble"
 
+msgid "Hırıl ile kırık davulu birlikte tamir ettiniz."
+msgstr "You and Grumble fixed the broken drum together."
+
 msgid "Hırıl küçükken burada davul çalardı. Ben dinlerdim."
 msgstr "When Grumble was little, he drummed here. I listened."
+
+msgid "Hırıl'ı yalnız bırakmadım. Onu dinler misin?"
+msgstr "I didn't leave Grumble alone. Will you listen to him?"
 
 msgid "Hırıl'ı yalnız bırakmamak için."
 msgstr "So that Grumble wouldn't be alone."
@@ -1665,8 +1785,17 @@ msgstr "So that Grumble wouldn't be alone."
 msgid "Hırıl'ın Davulu"
 msgstr "Grumble's Drum"
 
+msgid "Hırıl'ın buharı bitti! Şimdi vur!"
+msgstr "Grumble is out of steam! Hit now!"
+
 msgid "Hırıl'ın öfkesi orada başlamış... Ona ulaşmalıyız."
 msgstr "That's where Grumble's anger began... We must reach him."
+
+msgid "Hırıl, dur! O seni dinlemeye geldi!"
+msgstr "Grumble, stop! They came to listen to you!"
+
+msgid "Hırıl... O gün sana 'Sus!' dememeliydim. Özür dilerim."
+msgstr "Grumble... I shouldn't have said 'Hush!' that day. I'm sorry."
 
 msgid "Hız"
 msgstr "Speed"
@@ -1980,6 +2109,9 @@ msgstr "Who's there? My forest is locked! Nobody comes in!"
 msgid "Kim o? Uyuyamıyorum zaten, bir de sen mi geldin?"
 msgstr "Who's there? I can't sleep anyway, and now you're here?"
 
+msgid "Kimse bana böyle cevap vermemişti."
+msgstr "Nobody ever answered me like that."
+
 msgid "Kimse başını kaldırıp bakmadı. Herkes çok meşguldü."
 msgstr "Nobody looked up. Everyone was too busy."
 
@@ -1991,6 +2123,9 @@ msgstr "Who said nobody listens? I can hear you!"
 
 msgid "Kimse beni görmedi. Şimdi ben de kimseyi görmeyeceğim!"
 msgstr "Nobody saw me. Now I won't see anybody either!"
+
+msgid "Kimse dinlemez! HIRRR! Kor benim, kimseye vermem!"
+msgstr "Nobody listens! GRRR! The Ember is mine, I won't give it!"
 
 msgid "Kimse girmeyecek. Anlat."
 msgstr "Nobody will cut in. Go on."
@@ -2028,6 +2163,9 @@ msgstr "Dodge the copies and echoes. Get close when he's tired!"
 msgid "Kor"
 msgstr "Ember"
 
+msgid "Kor Vadisi · Kıvılcım Bekçileri 2"
+msgstr "Ember Valley · Spark Keepers 2"
+
 msgid "Kor Vadisi'nden kaçan bir çocuk. Hırıl'ı küçükken tanıyordu."
 msgstr "A kid who ran from Ember Valley. Knew Grumble when they were little."
 
@@ -2045,6 +2183,9 @@ msgstr "Pirate Gull"
 
 msgid "Korsan Martı %d Pırıl kaptı!"
 msgstr "A Pirate Gull grabbed %d Glim!"
+
+msgid "Kovalamayayım. Yanına oturup birlikte nefes alayım."
+msgstr "I won't chase him. I'll sit beside him and breathe together."
 
 msgid "Kral esniyor! Şimdi vur!"
 msgstr "The King is yawning! Hit now!"
@@ -2145,6 +2286,15 @@ msgstr "The village's big kettle is like that. The Crimson Mist boiled it."
 msgid "Köyün büyük kazanını sakinleştir"
 msgstr "Calm the village's big kettle"
 
+msgid "Kükreyen Dağ"
+msgstr "Roaring Mountain"
+
+msgid "Kükreyen Dağ ↑"
+msgstr "Roaring Mountain ↑"
+
+msgid "Kükreyen Dağ! Yer bile sıcacık, buhar her yerde."
+msgstr "Roaring Mountain! Even the ground is warm, steam everywhere."
+
 msgid "Kütük Kral"
 msgstr "King Stump"
 
@@ -2180,6 +2330,9 @@ msgstr "Red Horizon"
 
 msgid "Kırık Davul Tokmağı"
 msgstr "Broken Drumstick"
+
+msgid "Kırık ama tamir ederiz. Birlikte çalarız, söz!"
+msgstr "It's broken, but we'll fix it. We'll play together, promise!"
 
 msgid "Kırık bir davul tokmağı! Çok eski görünüyor."
 msgstr "A broken drumstick! It looks very old."
@@ -2250,6 +2403,9 @@ msgstr "Steamed up!"
 msgid "Kızgınsın! Güçlü vurursun ama zor yürürsün. Sakinleş'e bas."
 msgstr "You're steamed up! Strong hits, wobbly steps. Press Breathe."
 
+msgid "Kızmadın mı? Sadece... oturdun mu yanımda?"
+msgstr "You're not cross? You just... sat beside me?"
+
 msgid "Kızıl Sis geldi geleli kimse kimseyi dinlemiyor."
 msgstr "Since the Crimson Mist came, nobody listens to anybody."
 
@@ -2294,6 +2450,15 @@ msgstr "L: Star Lullaby! Everyone sits down at once."
 
 msgid "Laf Kesen Ördek"
 msgstr "Interrupting Duck"
+
+msgid "Lav Damlacığı"
+msgstr "Lava Droplet"
+
+msgid "Lav toplarından kaç. Buharı bitince vur!"
+msgstr "Dodge the lava balls. Hit when he's out of steam!"
+
+msgid "Lavdan kaç, buharı bitince vur!"
+msgstr "Dodge the lava, hit when out of steam!"
 
 msgid "Liman"
 msgstr "Harbor"
@@ -2406,11 +2571,26 @@ msgstr "Tiny's Rag Doll"
 msgid "Minnoş"
 msgstr "Cubby"
 
+msgid "Minnoş da buraya kaçtı. Bir köşede tek başına oturuyor."
+msgstr "Cubby ran up here too. He's sitting alone in a corner."
+
 msgid "Minnoş da geliyor... değil mi?"
 msgstr "Cubby's coming too... right?"
 
 msgid "Minnoş dağa doğru koştu. Kükreyen Dağ'a! Acele et!"
 msgstr "Cubby ran toward the mountain. Roaring Mountain! Hurry!"
+
+msgid "Minnoş ilk kez söyledi: \"Beni dinlediğin için teşekkürler, ağabey.\""
+msgstr "For the first time Cubby said: \"Thanks for listening to me, big brother.\""
+
+msgid "Minnoş'u buldun! Kovalamadan, yanına oturarak. Aferin."
+msgstr "You found Cubby! Not by chasing, by sitting beside him. Well done."
+
+msgid "Minnoş'u kovalama. Yanına git, Sakinleş'e basılı tut."
+msgstr "Don't chase Cubby. Go to him and hold Breathe."
+
+msgid "Minnoş'un yanına otur, birlikte nefes al"
+msgstr "Sit beside Cubby and breathe together"
 
 msgid "Minnoş, dur! Bado seni arıyor!"
 msgstr "Cubby, wait! Bado is looking for you!"
@@ -2442,11 +2622,20 @@ msgstr "One day Mumble came close to the village. Everyone at the festival was l
 msgid "Mırıl bir kale yaptı. İçine bütün anılarını sakladı."
 msgstr "Mumble built a castle. He kept all his memories inside."
 
+msgid "Mırıl hiç gitmedi. Bağırdım ama yanımda oturdu."
+msgstr "Mumble never left. I shouted, but he sat by me."
+
+msgid "Mırıl ile konuş"
+msgstr "Talk to Mumble"
+
 msgid "Mırıl kendi isteğiyle gitti"
 msgstr "Mumble chose to go"
 
 msgid "Mırıl orada bekliyor. Kalbini açık tut, bekçi."
 msgstr "Mumble is waiting there. Keep your heart open, keeper."
+
+msgid "Mırıl ve Hırıl birlikte Pırıltı Diyarı'na dönüyor."
+msgstr "Mumble and Grumble head back to Glimmerland together."
 
 msgid "Mırıl yoruldu. Yaklaş!"
 msgstr "Mumble is tired. Go closer!"
@@ -2469,6 +2658,9 @@ msgstr "Mumble's First Birthday"
 msgid "Mırıl'ın ışık izini takip edin. Kulaklarınız açık olsun!"
 msgstr "Follow Mumble's trail of light. Keep your ears open!"
 
+msgid "Mırıl, Hırıl ve sen: artık üç arkadaşsınız."
+msgstr "Mumble, Grumble and you: three friends now."
+
 msgid "Mırıl, artık en yakın arkadaşımsın."
 msgstr "Mumble, you're my best friend now."
 
@@ -2489,6 +2681,9 @@ msgstr "Dodge the corn rings and her dash. Hit when she sits!"
 
 msgid "Nane Şekeri"
 msgstr "Mint Drop"
+
+msgid "Ne dersin?"
+msgstr "What do you say?"
 
 msgid "Ne gürültü! Sus artık!"
 msgstr "What a racket! Stop it!"
@@ -2571,6 +2766,9 @@ msgstr "Arrows show which way the wind blows. Hide behind a rock!"
 msgid "Oku"
 msgstr "Read"
 
+msgid "Ona cevap ver. Kızma, susturma. Sadece dinle."
+msgstr "Answer him. Don't get cross, don't hush him. Just listen."
+
 msgid "Ona gidip özür diledim. 'Seninle çalmak isterim' dedim."
 msgstr "I went and said sorry. I said 'I'd love to play with you.'"
 
@@ -2648,6 +2846,15 @@ msgstr "Chamomile Tea"
 
 msgid "Parlak Salon'un kristallerini yak"
 msgstr "Light the crystals in the Shiny Hall"
+
+msgid "Parlayan sözlere git. Her biri onu bir adım sakinleştirir."
+msgstr "Go to the glowing words. Each one calms him a little more."
+
+msgid "Parlayan sözlere git. Her birini Hırıl'a geri götür."
+msgstr "Go to the glowing words. Take each one back to Grumble."
+
+msgid "Parlayan yazıları bul. Minnoş da buralarda bir yerde."
+msgstr "Find the glowing writing. Cubby is around here somewhere too."
 
 msgid "Pasta mı? Ben ilk gelirim! Sonra ikinci kez gelirim!"
 msgstr "Cake? I'll come first! Then I'll come again!"
@@ -2910,6 +3117,9 @@ msgstr "Hold Breathe!"
 msgid "Sakinleş'e basılı tutacağım. Nefes al... nefes ver..."
 msgstr "I'll hold Breathe. Breathe in... breathe out..."
 
+msgid "Saklayayım. Zirvede ona geri götüreceğim."
+msgstr "I'll keep it. I'll take it back to him at the top."
+
 msgid "Saldır'a bas: dikenlerinle vur!"
 msgstr "Press Attack: hit with your spikes!"
 
@@ -2976,6 +3186,9 @@ msgstr "The Gloom sent you too, didn't it? My pincers are ready!"
 msgid "Seni dinliyorum. Sorsalardı ne derdin?"
 msgstr "I'm listening. What would you have said if they asked?"
 
+msgid "Seni duyuyorum."
+msgstr "I hear you."
+
 msgid "Seninle konuşunca içim serinledi."
 msgstr "Talking to you cooled me right down."
 
@@ -3000,6 +3213,9 @@ msgstr "Level %d!"
 msgid "Sezon 1 tamamlandı!"
 msgstr "Season 1 complete!"
 
+msgid "Sezon 2 tamamlandı!"
+msgstr "Season 2 complete!"
+
 msgid "Sezon 2 · Bölüm 0"
 msgstr "Season 2 · Chapter 0"
 
@@ -3014,6 +3230,9 @@ msgstr "Season 2 · Chapter 3"
 
 msgid "Sezon 2 · Bölüm 4"
 msgstr "Season 2 · Chapter 4"
+
+msgid "Sezon 2 · Bölüm 5"
+msgstr "Season 2 · Chapter 5"
 
 msgid "Sezon 2 · Prolog · Sahne 1"
 msgstr "Season 2 · Prologue · Scene 1"
@@ -3104,6 +3323,12 @@ msgstr "Lv %d"
 
 msgid "Sönmedi. Sadece çok yalnızdı."
 msgstr "It didn't. It was just very lonely."
+
+msgid "Söylenemeyen Sözler"
+msgstr "Unspoken Words"
+
+msgid "Sözlere git, Hırıl'a götür"
+msgstr "Go to the words, take them to Grumble"
 
 msgid "Sütunun dibine saklan!"
 msgstr "Hide behind a pillar!"
@@ -3285,6 +3510,9 @@ msgstr "Pitter"
 msgid "Tıpış'a mavi fenerini ver"
 msgstr "Give Pitter his blue lantern"
 
+msgid "Tıpış? Sen... tokmağımı da mı getirdin?"
+msgstr "Pitter? You... brought my drumstick too?"
+
 msgid "Unutma: gri ağaç tersini söyler. Hu-hu!"
 msgstr "Remember: a grey tree says the opposite. Hoo-hoo!"
 
@@ -3432,6 +3660,9 @@ msgstr "Nearby Fizzlers sit down, dizzy"
 msgid "Yakındaki Pus'lu yaratıkların üstüne yıldızlar yağar"
 msgstr "Stars fall on gloomy creatures nearby"
 
+msgid "Yalnız kalmak istemiyorum. Kızgınken bile."
+msgstr "I don't want to be alone. Even when I'm cross."
+
 msgid "Yani Mırıl kötü değil... Sadece yalnız mı?"
 msgstr "So Mumble isn't bad... Just lonely?"
 
@@ -3552,6 +3783,9 @@ msgstr "Green is right, grey is opposite. Got it!"
 msgid "Yeşil fenerim kayboldu... Çiçek tarlasında düşürdüm galiba."
 msgstr "I lost my green lantern... I think I dropped it in the flower field."
 
+msgid "Yine mi geldiniz? Herkes 'Sus!' der, sen de diyeceksin!"
+msgstr "You again? Everyone says 'Hush!', and you will too!"
+
 msgid "Yok"
 msgstr "None"
 
@@ -3636,6 +3870,9 @@ msgstr "Long ago, a little star fell from the sky."
 msgid "Zirvede Bilge Kuzey'i dinle"
 msgstr "Listen to Sage North at the summit"
 
+msgid "Zirvede Hırıl'ı dinle"
+msgstr "Listen to Grumble at the summit"
+
 msgid "Zirveye tırman, Bilge Kuzey'i bul"
 msgstr "Climb to the top, find Sage North"
 
@@ -3684,6 +3921,12 @@ msgstr "The bell rang! The mist over the fair square is lifting!"
 msgid "Çan çaldı! Sis perdesi açılıyor!"
 msgstr "The bell rang! The mist veil is opening!"
 
+msgid "Çan çaldı! Zirvenin yolu açılıyor!"
+msgstr "The bell rang! The way to the summit is opening!"
+
+msgid "Çan çalmıyor... Önce Gümbür'ün dediklerini yapayım."
+msgstr "The bell won't ring... I'll do what Rumble asked first."
+
 msgid "Çan çalmıyor... Önce kazanı sakinleştirmeliyim."
 msgstr "The bell won't ring... I need to calm the kettle first."
 
@@ -3704,6 +3947,12 @@ msgstr "When the bell rings, the veil opens. Whirly is deep in the forest."
 
 msgid "Çanlar, balonlar, yavrular. Hadi uçalım!"
 msgstr "Bells, balloons, chicks. Let's fly!"
+
+msgid "Çanı çal, sonra zirveye çık. Hırıl orada kaynıyor."
+msgstr "Ring the bell, then climb to the summit. Grumble is boiling up there."
+
+msgid "Çanı çal. Zirvede sözleri ona tek tek geri götür."
+msgstr "Ring the bell. At the top, take the words back to him one by one."
 
 msgid "Çanımız çaldı, köyümüz serinledi. Aferin sana, yavrum."
 msgstr "Our bell rang and the village cooled. Well done, dear."
@@ -3756,6 +4005,9 @@ msgstr "So many! I'll sing my lullaby: L key or Lullaby!"
 msgid "Çok soğuğum diye kimse sarılmazmış. Özür dilerim."
 msgstr "Nobody hugs me because I'm too cold. I'm sorry."
 
+msgid "Çünkü ben de bir zamanlar kimsenin görmediği bir yıldızdım."
+msgstr "Because I was once a star nobody saw."
+
 msgid "Çünkü sana bir şey göstermek istiyorum."
 msgstr "Because I want to show you something."
 
@@ -3786,11 +4038,17 @@ msgstr "Cools your Steam Meter, gives 10 HP"
 msgid "Öfke bir çaydanlık gibidir, yavrum. Kapağını kapatırsan patlar."
 msgstr "Anger is like a kettle, dear. Shut the lid and it bursts."
 
+msgid "Önce Davulcu Gümbür'le konuş"
+msgstr "Talk to Rumble the Drummer first"
+
 msgid "Önce Dağ Feneri'ni yakayım. Biraz ısınırım."
 msgstr "I'll light the Mountain Lantern first. I'll warm up a little."
 
 msgid "Önce Fıstık'a bir merhaba de. Heykeli kulenin dibinde."
 msgstr "First, say hello to Peanut. His statue is at the foot of the tower."
+
+msgid "Önce Gümbür'le konuş"
+msgstr "Talk to Rumble first"
 
 msgid "Önce Keçi Yavrusu Çıngır'la konuş"
 msgstr "Talk to Jingle the kid goat first"
@@ -3812,6 +4070,9 @@ msgstr "Me first? For years nobody let me finish!"
 
 msgid "Önce benim dikenlerimi geçmen lazım, tüy yumağı!"
 msgstr "First you have to get past my spines, fluffball!"
+
+msgid "Önce dinle. Sonra sözlerini ona geri götür."
+msgstr "Listen first. Then take his words back to him."
 
 msgid "Önce en yaşlı, sonra ortanca, en son en küçük."
 msgstr "Oldest first, then the middle one, the smallest last."
@@ -3887,6 +4148,9 @@ msgstr "All three bells rang! Pinwheel Isle is calm now."
 
 msgid "İki baloncuk daha"
 msgstr "Two more bubbles"
+
+msgid "İki diyarı tek haritada birleştirdin ve araya bir dağ yolu çizdin."
+msgstr "You joined both lands on one map and drew a mountain path between them."
 
 msgid "İki oyunu da kazandın! Ü-ürü-üü!"
 msgstr "You won both games! Cock-a-doodle-doo!"

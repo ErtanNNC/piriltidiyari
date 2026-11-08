@@ -1,0 +1,25 @@
+{
+  "id": "soylenemeyen",
+  "title": "Söylenemeyen Sözler",
+  "giver": "gumbur",
+  "objectives": [
+    {
+      "id": "sozler",
+      "text": "Duvarlardaki söylenemeyen sözleri topla",
+      "type": "collect",
+      "target": "hiril_soz",
+      "count": 5
+    },
+    {
+      "id": "minnos",
+      "text": "Minnoş'un yanına otur, birlikte nefes al",
+      "type": "breathe",
+      "target": "minnos"
+    }
+  ],
+  "turn_in": "Davulcu Gümbür'e dön",
+  "rewards": {
+    "piril": 150,
+    "xp": 1400
+  }
+}

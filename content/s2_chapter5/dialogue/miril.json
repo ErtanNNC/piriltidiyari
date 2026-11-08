@@ -1,0 +1,64 @@
+{
+  "npc": "miril",
+  "variants": [
+    {
+      "when": {
+        "quest": "hiril",
+        "state": "done"
+      },
+      "lines": [
+        {
+          "speaker": "miril",
+          "mood": "mutlu",
+          "text": "Hadi eve dönelim! Fener'in kırmızı rengi bizde."
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "hiril",
+        "state": "ready"
+      },
+      "lines": [
+        {
+          "speaker": "miril",
+          "mood": "mutlu",
+          "text": "Geldin! Onu dinledin. Ben de hep bunu istedim."
+        },
+        {
+          "speaker": "hiril",
+          "mood": "dertli",
+          "text": "Mırıl hiç gitmedi. Bağırdım ama yanımda oturdu."
+        },
+        {
+          "speaker": "miril",
+          "mood": "sakin",
+          "text": "Çünkü ben de bir zamanlar kimsenin görmediği bir yıldızdım."
+        },
+        {
+          "speaker": "hiril",
+          "mood": "mutlu",
+          "text": "Beş Kor bir oldu. Fener'e götürelim mi? Birlikte?"
+        },
+        {
+          "speaker": "miril",
+          "mood": "mutlu",
+          "text": "Birlikte! Pırıltı Diyarı'nda şenlik var, davul da lazım!"
+        }
+      ],
+      "then": {
+        "complete_quest": "hiril",
+        "set_flag": "sezon2_bitti"
+      }
+    },
+    {
+      "lines": [
+        {
+          "speaker": "miril",
+          "mood": "sakin",
+          "text": "Hırıl'ı yalnız bırakmadım. Onu dinler misin?"
+        }
+      ]
+    }
+  ]
+}

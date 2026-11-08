@@ -35,6 +35,10 @@ const KINDS := {
 	# and a goat that stamps a ring round itself
 	"yanki_yarasasi": {"name": "Yankı Yarasası", "hp": 48, "speed": 3.6, "damage": 10, "attack": "swoop", "range": 6.0, "aggro": 11.0, "xp": 14, "piril": 5, "breath": true, "flies": true},
 	"tepinen_keci": {"name": "Tepinen Keçi", "hp": 70, "speed": 2.6, "damage": 11, "attack": "burst", "range": 3.0, "aggro": 9.0, "xp": 15, "piril": 5, "breath": true},
+	# Kükreyen Dağ: a lava drop that bursts warm around itself and a hush
+	# cloud that flies over and throws a "Sus!"
+	"lav_damlacigi": {"name": "Lav Damlacığı", "hp": 80, "speed": 2.4, "damage": 12, "attack": "burst", "range": 2.8, "aggro": 9.0, "xp": 18, "piril": 6, "breath": true},
+	"sus_bulutu": {"name": "\"Sus!\" Bulutu", "hp": 64, "speed": 3.0, "damage": 12, "attack": "throw", "range": 7.5, "aggro": 11.0, "xp": 18, "piril": 6, "breath": true},
 	"dev_mantar": {"name": "Dev Somurtkan Mantar", "hp": 160, "speed": 1.4, "damage": 15, "attack": "burst", "range": 3.4, "aggro": 10.0, "xp": 20, "piril": 15},
 }
 
@@ -44,7 +48,7 @@ const MAX_ATTACKERS := 1
 
 ## Each kind's level: it belongs to its region's level range
 ## (Köy 1–5, Orman 5–10, Mağara 10–15, Liman 15–20, Dağ 20–25, Kale 25–30).
-const LEVELS := {"kopuklu_tavuk": 1, "gurultucu_kurbaga": 2, "kapici_rakun": 6, "somurtkan_sincap": 7, "balon_balik": 11, "laf_kesen_ordek": 12, "patlayan_misir": 16, "kiskanc_civciv": 17, "yanki_yarasasi": 21, "tepinen_keci": 22, "sumuklu": 1, "mantar": 2, "dev_mantar": 4, "kirpi_topu": 6, "karga": 7,
+const LEVELS := {"kopuklu_tavuk": 1, "gurultucu_kurbaga": 2, "kapici_rakun": 6, "somurtkan_sincap": 7, "balon_balik": 11, "laf_kesen_ordek": 12, "patlayan_misir": 16, "kiskanc_civciv": 17, "yanki_yarasasi": 21, "tepinen_keci": 22, "lav_damlacigi": 26, "sus_bulutu": 27, "sumuklu": 1, "mantar": 2, "dev_mantar": 4, "kirpi_topu": 6, "karga": 7,
 	"kristal_bocek": 11, "yarasa": 12, "firtina_yumagi": 16, "korsan_marti": 17,
 	"kar_tavsani": 21, "buz_dikeni": 22, "golge_kopya": 26}
 

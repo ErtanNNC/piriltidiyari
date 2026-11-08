@@ -14,7 +14,7 @@ const DAZE_TIME := 9.0
 
 static var attackers := 0
 
-@export_enum("kopuklu_tavuk", "gurultucu_kurbaga", "kapici_rakun", "somurtkan_sincap", "balon_balik", "laf_kesen_ordek", "patlayan_misir", "kiskanc_civciv", "yanki_yarasasi", "tepinen_keci", "sumuklu", "mantar", "dev_mantar", "kirpi_topu", "karga", "kristal_bocek", "yarasa", "firtina_yumagi", "korsan_marti", "kar_tavsani", "buz_dikeni", "golge_kopya") var kind := "sumuklu"
+@export_enum("kopuklu_tavuk", "gurultucu_kurbaga", "kapici_rakun", "somurtkan_sincap", "balon_balik", "laf_kesen_ordek", "patlayan_misir", "kiskanc_civciv", "yanki_yarasasi", "tepinen_keci", "lav_damlacigi", "sus_bulutu", "sumuklu", "mantar", "dev_mantar", "kirpi_topu", "karga", "kristal_bocek", "yarasa", "firtina_yumagi", "korsan_marti", "kar_tavsani", "buz_dikeni", "golge_kopya") var kind := "sumuklu"
 @export var gravity := 22.0
 ## 0 = the kind's own level (MobStats.LEVELS, a little variety by place)
 @export var level := 0

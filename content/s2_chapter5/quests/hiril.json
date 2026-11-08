@@ -1,0 +1,31 @@
+{
+  "id": "hiril",
+  "title": "Hırıl",
+  "giver": "gumbur",
+  "ordered": true,
+  "objectives": [
+    {
+      "id": "can",
+      "text": "Dağın Ses Çanı'nı çal",
+      "type": "ring",
+      "target": "ses_cani"
+    },
+    {
+      "id": "hiril",
+      "text": "Zirvede Hırıl'ı dinle",
+      "type": "listen",
+      "target": "hiril"
+    },
+    {
+      "id": "kor",
+      "text": "Al Kor'u al",
+      "type": "reach",
+      "target": "al_kor"
+    }
+  ],
+  "turn_in": "Mırıl ile konuş",
+  "rewards": {
+    "piril": 300,
+    "xp": 2500
+  }
+}

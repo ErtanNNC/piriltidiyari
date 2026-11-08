@@ -66,6 +66,10 @@ static func build(kind: String, pus: bool) -> Node3D:
 			_echo_bat(root, pus)
 		"tepinen_keci":
 			goat(root, pus, 0.85, false)
+		"lav_damlacigi":
+			_lava_drop(root, pus)
+		"sus_bulutu":
+			_hush_cloud(root, pus)
 	Toon.default_pus = 1.0
 	if kind != "golge_kopya":
 		if pus and MobStats.breathes(kind):
@@ -276,15 +280,39 @@ static func _echo_bat(root: Node3D, pus: bool) -> void:
 		if m.position.y > 0.95 and m.position.y < 1.2:
 			m.scale = m.scale * 1.35  # bigger ears
 	for side: float in [-1.0, 1.0]:
-		Toon.part(root, "ring", Vector3(0.5, 0.04, 0.5), _c(pus, "honey", true), Vector3(0.5 * side, 1.15, 0), Vector3(0, 0, 90), 0.4, 0.0)
+		Toon.part(root, "ring", Vector3(0.5, 0.04, 0.5), _c(false, "honey", true), Vector3(0.5 * side, 1.15, 0), Vector3(0, 0, 90), 0.4, 0.0)
+
+
+## Lav Damlacığı: a warm orange drop with a glowing core and a cooled crust.
+static func _lava_drop(root: Node3D, pus: bool) -> void:
+	var lava: Variant = _c(false, Color("#ff7a3a"))
+	Toon.part(root, "sphere", Vector3(0.95, 0.85, 0.9), lava, Vector3(0, 0.45, 0), Vector3.ZERO, 0.6, 0.03)
+	Toon.part(root, "cone", Vector3(0.55, 0.7, 0.55), lava, Vector3(0, 1.05, -0.05), Vector3(-10, 0, 0), 0.6, 0.03)
+	Toon.part(root, "sphere", Vector3(0.5, 0.18, 0.5), _c(false, Color("#6a3a30")), Vector3(0.15, 0.82, -0.1), Vector3(0, 0, 12))
+	Toon.part(root, "sphere", Vector3(0.3, 0.3, 0.3), Color("#ffe08a"), Vector3(-0.2, 0.35, 0.3), Vector3.ZERO, 1.4, 0.0)
+	_face(root, Vector3(0, 0.55, 0.44), 0.85, pus)
+
+
+## "Sus!" Bulutu: a grumpy grey-red cloud with a zipped-up mouth (the words
+## nobody let Hırıl say).
+static func _hush_cloud(root: Node3D, pus: bool) -> void:
+	var cloud: Variant = _c(false, Color("#c9a8b4"), true)
+	Toon.part(root, "sphere", Vector3(1.2, 1.0, 1.1), cloud, Vector3(0, 0.75, 0))
+	for i in 5:
+		var a := TAU * i / 5.0
+		Toon.part(root, "sphere", Vector3(0.6, 0.55, 0.6), cloud, Vector3(sin(a) * 0.5, 0.9 + (i % 2) * 0.2, cos(a) * 0.45))
+	Toon.part(root, "box", Vector3(0.5, 0.08, 0.04), "outline", Vector3(0, 0.55, 0.56), Vector3.ZERO, 0.0, 0.0)
+	for k in 4:
+		Toon.part(root, "box", Vector3(0.03, 0.14, 0.04), "outline", Vector3(-0.18 + k * 0.12, 0.55, 0.57), Vector3.ZERO, 0.0, 0.0)
+	_face(root, Vector3(0, 0.85, 0.55), 0.9, pus)
 
 
 ## A goat (Tepinen Keçi mob, the kid NPC and Davulcu Keçi Gümbür): round
 ## cream body, brown legs, curled horns, a little beard. `drum` hangs a drum.
 static func goat(root: Node3D, pus: bool, s: float, drum: bool) -> void:
-	var wool: Variant = _c(pus, Color("#f1e6d2"), true)
-	var brown: Variant = _c(pus, Color("#8a5a3c"))
-	var horn: Variant = _c(pus, Color("#c9a77a"), true)
+	var wool: Variant = _c(false, Color("#f1e6d2"), true)
+	var brown: Variant = _c(false, Color("#8a5a3c"))
+	var horn: Variant = _c(false, Color("#c9a77a"), true)
 	var body := Toon.part(root, "ellipsoid", Vector3(1.1, 1.0, 1.35) * s, wool, Vector3(0, 0.95, 0) * s)
 	body.name = "Body"
 	for side: float in [-1.0, 1.0]:
@@ -298,7 +326,7 @@ static func goat(root: Node3D, pus: bool, s: float, drum: bool) -> void:
 	head.position = Vector3(0, 1.65, 0.6) * s
 	root.add_child(head)
 	Toon.part(head, "ellipsoid", Vector3(0.7, 0.72, 0.8) * s, wool, Vector3.ZERO)
-	Toon.part(head, "ellipsoid", Vector3(0.42, 0.34, 0.4) * s, _c(pus, Color("#e8c9b0"), true), Vector3(0, -0.16, 0.34) * s)
+	Toon.part(head, "ellipsoid", Vector3(0.42, 0.34, 0.4) * s, _c(false, Color("#e8c9b0"), true), Vector3(0, -0.16, 0.34) * s)
 	Toon.part(head, "cone", Vector3(0.14, 0.3, 0.12) * s, brown, Vector3(0, -0.46, 0.3) * s, Vector3(180, 0, 0))
 	for side: float in [-1.0, 1.0]:
 		Toon.part(head, "ring", Vector3(0.36, 0.1, 0.36) * s, horn, Vector3(0.24 * side, 0.36, -0.05) * s, Vector3(0, 90, 30 * side))
@@ -311,7 +339,7 @@ static func goat(root: Node3D, pus: bool, s: float, drum: bool) -> void:
 		d.name = "Drum"
 		d.position = Vector3(0, 0.9, 0.85) * s
 		root.add_child(d)
-		Toon.part(d, "cylinder", Vector3(0.95, 0.6, 0.95) * s, _c(pus, Color("#c87a4a")), Vector3.ZERO, Vector3(90, 0, 0))
+		Toon.part(d, "cylinder", Vector3(0.95, 0.6, 0.95) * s, _c(false, Color("#c87a4a")), Vector3.ZERO, Vector3(90, 0, 0))
 		Toon.part(d, "cylinder", Vector3(0.88, 0.62, 0.88) * s, Color("#fff4dc"), Vector3(0, 0, 0.01) * s, Vector3(90, 0, 0), 0.0, 0.0)
 		for k in 6:
 			var a := TAU * k / 6.0
