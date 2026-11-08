@@ -68,6 +68,16 @@ is a copy of the design system's tokens.
   version/code in export_presets.cfg for every APK you hand out.
 - Godot is downloaded by `tools/setup_godot.sh` into `.tools/` (gitignored).
 
+## Agent skills
+
+`.claude/skills/` holds a selection of gamedev skills from
+github.com/gamedev-skills/awesome-gamedev-agent-skills (Apache-2.0, see the
+LICENSE-/NOTICE- files there): `router` picks the right ones; Godot 4.7 engine
+skills plus game-feel, camera-systems, game-ui-ux, audio-design, save-systems,
+performance-optimization, level-design, rpg, create-game-assets and others.
+They are general advice; this file's rules win where they differ. Excluded
+from exports (`.claude/*` in export_presets.cfg).
+
 ## Rules
 
 - Colors, type, spacing, radii, strokes come from `Tokens` (design/tokens.json),
