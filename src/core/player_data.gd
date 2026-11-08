@@ -166,7 +166,7 @@ func switch_keeper(id: String, stats: Dictionary, look: Dictionary, display_name
 	recompute_stats(item_defs)
 	# shared skills (like Dikenli Dönüş) stay; other keepers' own skills don't
 	var others := []
-	for k: String in ["pati", "bado", "citir", "lumi", "fistik"]:
+	for k: String in ["pati", "bado", "citir", "lumi", "fistik", "tipis_panda"]:
 		if k != id:
 			others.append(Skills.for_character(k))
 	for s: String in old_skills:

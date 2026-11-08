@@ -11,6 +11,8 @@ const DEFS := {
 	"isik_patlamasi": {"name": "Işık Patlaması", "short": "Işık", "mp": 25, "owner": "lumi"},
 	# Season 2: Mırıl's lullaby, learned in Sahne 3 (Yankıların Peşinde)
 	"yildiz_ninnisi": {"name": "Yıldız Ninnisi", "short": "Ninni", "mp": 20, "owner": "miril"},
+	# Season 2's new keeper Tıpış: a well-timed breath turns a hit away
+	"derin_nefes": {"name": "Derin Nefes", "short": "Nefes", "mp": 10, "owner": "tipis_panda"},
 }
 
 

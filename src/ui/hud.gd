@@ -64,7 +64,7 @@ func _ready() -> void:
 	portrait.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 	portrait.add_theme_stylebox_override("panel", UiKit.box(Tokens.color("honey"), "radius-pill", 3.0))
 	row.add_child(portrait)
-	var info: Dictionary = Content.keepers.get(GameState.data.character_id, {})
+	var info: Dictionary = Content.keeper(GameState.data.character_id)
 	if not info.is_empty():
 		portrait.add_theme_stylebox_override("panel", UiKit.box(Tokens.color(Content.text_safe(info["color"])), "radius-pill", 3.0))
 	var letter := UiKit.label(TranslationServer.translate(GameState.data.character_name).left(1), "text-title", "on-color")

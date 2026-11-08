@@ -8,6 +8,9 @@ var npcs: Dictionary = {}       # npc id -> dialogue def
 var items: Dictionary = {}      # id -> item def
 var speakers: Dictionary = {}   # id -> {name, color}
 var keepers: Dictionary = {}    # id -> keeper candidate (content/keepers.json)
+## Season 2: new keepers (Tıpış), the select order and the keepers' lines
+## (content/keepers_s2.json).
+var keepers_s2: Dictionary = {}
 var shops: Dictionary = {}      # id -> {title, items: [{id, price, once?}]}
 var barks: Dictionary = {}      # id -> [lines]: short monologues and asides
 
@@ -16,6 +19,7 @@ func _init() -> void:
 	items = read_json("res://content/items.json").get("items", {})
 	speakers = read_json("res://content/speakers.json").get("speakers", {})
 	keepers = read_json("res://content/keepers.json").get("keepers", {})
+	keepers_s2 = read_json("res://content/keepers_s2.json")
 	load_chapter("prologue")
 
 
@@ -32,6 +36,13 @@ func load_chapter(chapter_id: String) -> void:
 	for n: String in chapter.get("dialogue", []):
 		var def := read_json("%s/dialogue/%s.json" % [root, n])
 		npcs[def["npc"]] = def
+
+
+## Any keeper (Season 1's four or Season 2's new ones).
+func keeper(id: String) -> Dictionary:
+	if keepers.has(id):
+		return keepers[id]
+	return keepers_s2.get("keepers", {}).get(id, {})
 
 
 func npc(npc_id: String) -> Dictionary:

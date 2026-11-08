@@ -167,6 +167,10 @@
     "hiril": {
       "name": "Hırıl",
       "color": "hp"
+    },
+    "tipis_panda": {
+      "name": "Tıpış",
+      "color": "hp"
     }
   }
 }

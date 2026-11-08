@@ -16,6 +16,9 @@ const INFO := {
 		"variants": [Color("#d9773a"), Color("#b6aaa0"), Color("#8a4b2e")]},
 	"lumi": {"name": "Lumi", "species": "Ateşböceği", "color": "xp", "line": "Işık bizi çağırıyor.",
 		"variants": [Color("#9b6bff"), Color("#4cc3ff"), Color("#ff6b8a")]},
+	# Season 2 (real model: assets/models/tipis_panda.glb)
+	"tipis_panda": {"name": "Tıpış", "species": "Kızıl panda", "color": "hp", "line": "Yolu biliyorum.",
+		"variants": [Color("#d9652b"), Color("#b0603e"), Color("#e8a05c")]},
 }
 const ACCESSORIES := ["yok", "sapka", "atki", "gozluk"]
 const ACCESSORY_NAMES := {"yok": "Yok", "sapka": "Şapka", "atki": "Atkı", "gozluk": "Gözlük"}

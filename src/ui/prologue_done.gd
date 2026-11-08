@@ -1,0 +1,65 @@
+class_name PrologueDone
+extends Control
+## End of Season 2's prologue: the keeper is chosen and Mırıl's light trail
+## points over the mountains. What comes next (Bölüm 0, Buharlı Kaplıca Köyü)
+## and two buttons: walk around the village, or the menu.
+
+signal chosen(id: String)
+
+const NEXT := [
+	["spark", "hp", "Bölüm 0: Buharlı Kaplıca Köyü"],
+	["heart", "honey", "Kaplıca Ninesi ve hiç susmayan köylüler"],
+	["star", "spark-purple", "Beş Kor, beş öfkeli bekçi"],
+	["quest", "sky", "Tıpış ile Hırıl'ın sırrı"],
+]
+
+
+func _ready() -> void:
+	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	mouse_filter = Control.MOUSE_FILTER_STOP
+	var bg := ColorRect.new()
+	bg.color = Tokens.color("scrim")
+	bg.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	add_child(bg)
+	var panel := PanelContainer.new()
+	panel.add_theme_stylebox_override("panel", UiKit.panel_style())
+	panel.set_anchors_and_offsets_preset(Control.PRESET_CENTER)
+	panel.grow_horizontal = Control.GROW_DIRECTION_BOTH
+	panel.grow_vertical = Control.GROW_DIRECTION_BOTH
+	panel.custom_minimum_size = Vector2(700, 0)
+	add_child(panel)
+	var v := VBoxContainer.new()
+	v.add_theme_constant_override("separation", int(Tokens.px("space-3")))
+	panel.add_child(v)
+	var title := UiKit.label("Prolog tamamlandı!", "text-title", "ink")
+	title.add_theme_font_size_override("font_size", 40)
+	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	v.add_child(title)
+	var sub := UiKit.label("Sezon 2: Kor Vadisi", "text-label", "ink-muted")
+	sub.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	v.add_child(sub)
+	v.add_child(HSeparator.new())
+	v.add_child(UiKit.label("Çok yakında", "text-heading", "ink"))
+	for n: Array in NEXT:
+		var row := HBoxContainer.new()
+		row.add_theme_constant_override("separation", int(Tokens.px("space-2")))
+		var ic := GameIcon.new()
+		ic.kind = n[0]
+		ic.fill = Tokens.color(n[1])
+		ic.custom_minimum_size = Vector2(26, 26)
+		ic.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+		row.add_child(ic)
+		row.add_child(UiKit.label(n[2], "text-body", "ink"))
+		v.add_child(row)
+	var buttons := HBoxContainer.new()
+	buttons.alignment = BoxContainer.ALIGNMENT_CENTER
+	buttons.add_theme_constant_override("separation", int(Tokens.px("space-3")))
+	v.add_child(buttons)
+	var stay := UiKit.button("Köyde dolaş")
+	stay.custom_minimum_size = Vector2(220, 60)
+	stay.pressed.connect(func() -> void: chosen.emit("chapter0"))
+	buttons.add_child(stay)
+	var menu := UiKit.button("Ana menü", false)
+	menu.custom_minimum_size = Vector2(180, 60)
+	menu.pressed.connect(func() -> void: chosen.emit("title"))
+	buttons.add_child(menu)

@@ -151,7 +151,19 @@ is a copy of the design system's tokens.
 - Öfke barı (`BreathCalm.anger`, HUD `StatBar` "anger"): scenes set
   `player.calm.heat` inside thick mist; full = kızgın (×1.5 hits, wobbly walk, no
   Sakinleş for others); hold Sakinleş alone or Nane Şekeri (`buff` "serin") cools it.
-- Checks: `--scene=s2_scene1 --demo=glide|jump|party`, `--scene=s2_scene2 --demo=redwind|breath|angry`.
+- Prologue scenes 3–6: `s2_scene3` Yankıların Peşinde (steam springs warned like
+  attacks, chasm only a float crosses, first level-up, Mırıl's skill Yıldız
+  Ninnisi → `Mob.lull`, event "lull"), `s2_scene4` Gürledek boss (`GurledekPlan`
+  in core, `Gurledek` actor: hittable only while low; at 0 HP it cries in group
+  "dazed" with meta `calm_reach`, Sakinleş ends the fight), `s2_scene5` cutscene
+  Mırıl'ın Seçimi (`HirilModel`), `s2_scene6` Kulak Bekçileri: Tıpış
+  (`tipis_panda`, real model, skill Derin Nefes = `Player._guard_until`) and the
+  5-keeper select (`KeeperSelect.order/lines` from `content/keepers_s2.json`,
+  `Content.keeper(id)` finds S1 and S2 keepers; S1 tests iterate only
+  `Content.keepers`). Choosing resets powers, level 1, then `PrologueDone`.
+- Checks: `--scene=s2_scene1 --demo=glide|jump|party`, `--scene=s2_scene2 --demo=redwind|breath|guide|angry`,
+  `--scene=s2_scene3 --demo=path|jumponly|stairs`, `--scene=s2_scene4 --demo=win --auto`,
+  `--scene=s2_scene5 --demo=flow --auto`, `--scene=s2_scene6 --demo=pick_<id> --auto`.
 
 ## Agent skills
 

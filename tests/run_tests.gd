@@ -639,7 +639,24 @@ func test_season2() -> void:
 		check(GurledekPlan.cycle(p).back() == "low", "Gürledek her turun sonunda alçalır (faz %d)" % p)
 		check(GurledekPlan.rest(p) >= 1.0, "Gürledek saldırıları arası en az 1 sn (faz %d)" % p)
 	var c := ContentScript.new()
+	var s2: Dictionary = c.keepers_s2
+	check((s2["order"] as Array).size() == 5 and "tipis_panda" in s2["order"], "Sezon 2 seçiminde 5 bekçi (Tıpış dahil)")
+	for k: String in s2["order"]:
+		check(not c.keeper(k).is_empty(), "Sezon 2 bekçisi tanımlı: %s" % k)
+		check(String(s2["lines"].get(k, "")).length() in range(1, 71), "Sezon 2 repliği kısa: %s" % k)
+		check(Skills.for_character(k) != "", "Sezon 2 bekçisinin yeteneği var: %s" % k)
+		check(KeeperModels.INFO.has(k), "Sezon 2 bekçisinin renkleri var: %s" % k)
+	check(Skills.for_character("tipis_panda") == "derin_nefes", "Tıpış: Derin Nefes")
+	var tp := PlayerData.new()
+	tp.choose_keeper("tipis_panda", c.keeper("tipis_panda")["stats"], {}, "Tıpış")
+	check(tp.level == 1 and tp.active_skill() == "derin_nefes", "Tıpış seçilince seviye 1 ve Derin Nefes")
 	c.load_chapter("s2_prologue")
+	var dir := DirAccess.open("res://content/s2_prologue/cutscenes")
+	for fname in dir.get_files():
+		if fname.ends_with(".json"):
+			for step: Dictionary in ContentScript.read_json("res://content/s2_prologue/cutscenes/" + fname)["steps"]:
+				if step.has("say"):
+					check(c.barks.has(step["say"]), "s2 ara sahne %s: konuşma %s var" % [fname, step["say"]])
 	check(c.quests.has("davetiyeler") and c.quests.has("kirmizi_ruzgar"), "Sezon 2 prolog görevleri")
 	var f := PlayerData.new()
 	f.start_quest(c.quests["kirmizi_ruzgar"])

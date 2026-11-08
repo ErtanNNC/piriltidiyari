@@ -292,6 +292,7 @@ func use_skill() -> void:
 		"findik_firlatma": _findik_firlatma()
 		"isik_patlamasi": _isik_patlamasi()
 		"yildiz_ninnisi": _yildiz_ninnisi()
+		"derin_nefes": _derin_nefes()
 
 
 ## Kept for older callers (tests, demos).
@@ -393,6 +394,21 @@ func _isik_patlamasi() -> void:
 	_hit_around(4.0, attack_power() + 6, 6.0)
 	GameState.data.heal(Skills.LIGHT_HEAL)
 	FloatText.spawn(get_parent(), global_position + Vector3.UP * 2.0, TranslationServer.translate("+%d") % Skills.LIGHT_HEAL, Tokens.color("leaf"))
+
+
+## Tıpış (Season 2): a deep breath. For a moment hits slide off; a creature
+## that hits during it calms down (a Köpüklü sits dazed).
+const BREATH_GUARD := 0.9
+var _guard_until := 0.0
+
+
+func _derin_nefes() -> void:
+	_attack_cd = 0.4
+	_guard_until = Time.get_ticks_msec() / 1000.0 + BREATH_GUARD
+	Effects.ring(get_parent(), global_position + Vector3.UP * 0.9, 1.4, Tokens.color("leaf"), BREATH_GUARD)
+	var tw := create_tween()
+	tw.tween_property(model, "scale", Vector3(1.12, 1.12, 1.12), 0.25).set_trans(Tween.TRANS_SINE)
+	tw.tween_property(model, "scale", Vector3.ONE, 0.35)
 
 
 ## Mırıl (Season 2): a soft star lullaby. Hot-tempered Köpüklüler nearby
@@ -505,6 +521,18 @@ func push(v: Vector3) -> void:
 ## Called by mobs and hazards. Returns false while invulnerable.
 func hurt(amount: int, from: Vector3) -> bool:
 	if _invulnerable > 0.0 or rolling or asleep:
+		return false
+	if Time.get_ticks_msec() / 1000.0 < _guard_until:
+		# Derin Nefes: the hit slides off and whoever threw it calms a little
+		_guard_until = 0.0
+		Effects.ring(get_parent(), global_position + Vector3.UP * 0.5, 2.4, Tokens.color("leaf"), 0.4)
+		FloatText.spawn(get_parent(), global_position + Vector3.UP * 2.2, TranslationServer.translate("Derin nefes!"), Tokens.color("leaf"))
+		for m in get_tree().get_nodes_in_group("hittable"):
+			if (m as Node3D).global_position.distance_to(from) < 1.5 or (m as Node3D).global_position.distance_to(global_position) < 2.5:
+				if m.has_method("lull"):
+					m.call("lull")
+				else:
+					m.call("hit", attack_power(), global_position, 6.0)
 		return false
 	if _shield > 0.0:
 		Effects.ring(get_parent(), global_position + Vector3.UP * 0.9, 1.6, Tokens.color("spark-green"), 0.2)

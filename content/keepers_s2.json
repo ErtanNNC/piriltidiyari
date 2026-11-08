@@ -1,0 +1,33 @@
+{
+  "keepers": {
+    "tipis_panda": {
+      "name": "Tıpış",
+      "species": "Kızıl panda",
+      "color": "hp",
+      "line": "Yolu biliyorum. Ama... biraz çekiniyorum.",
+      "stats": {
+        "can": 3,
+        "guc": 3,
+        "hiz": 4
+      },
+      "special": "Derin Nefes: doğru anda basılırsa hasar almaz",
+      "world": "Sıcak taşlarda yürüme",
+      "story": "Kor Vadisi'nden kaçan bir çocuk. Hırıl'ı küçükken tanıyordu.",
+      "signature": "Kırık Davul Tokmağı"
+    }
+  },
+  "order": [
+    "pati",
+    "bado",
+    "citir",
+    "lumi",
+    "tipis_panda"
+  ],
+  "lines": {
+    "pati": "Bu sefer ben öndeyim!",
+    "bado": "Minnoş da geliyor... değil mi?",
+    "citir": "Yeni harita, yeni kağıt!",
+    "lumi": "Mırıl, geliyoruz.",
+    "tipis_panda": "Yolu biliyorum. Ama... biraz çekiniyorum."
+  }
+}

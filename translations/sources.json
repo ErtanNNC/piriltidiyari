@@ -442,6 +442,19 @@
   "Sakin ve düşünceli. Pus'un kötü olmadığını sezen ilk kişi.",
   "İlk Yıldız Feneri"
  ],
+ "content/keepers_s2.json": [
+  "Tıpış",
+  "Kızıl panda",
+  "Yolu biliyorum. Ama... biraz çekiniyorum.",
+  "Derin Nefes: doğru anda basılırsa hasar almaz",
+  "Sıcak taşlarda yürüme",
+  "Kor Vadisi'nden kaçan bir çocuk. Hırıl'ı küçükken tanıyordu.",
+  "Kırık Davul Tokmağı",
+  "Bu sefer ben öndeyim!",
+  "Minnoş da geliyor... değil mi?",
+  "Yeni harita, yeni kağıt!",
+  "Mırıl, geliyoruz."
+ ],
  "content/prologue/barks.json": [
   "Çocuklar güvende. Şimdi sıra kulede!",
   "Hıh. Bu yol eskiden daha kısaydı.",
@@ -582,7 +595,17 @@
   "Ben seni duyuyorum.",
   "...Ne? Sen beni... duyuyor musun?",
   "O zaman benimle kal! Hep kal! Bırakmam seni!",
-  "Kalacağım. Ama arkadaşlarım merak etmesin."
+  "Kalacağım. Ama arkadaşlarım merak etmesin.",
+  "Fener'in altıncı rengi söndü. Mırıl'ın rengi...",
+  "Ama dağın üstünde bir ışık izi var. Mırıl yol göstermiş.",
+  "Bu sefer ışık yetmez. Bu sefer kulak lazım.",
+  "Kıvılcımlarınız köyü korumak için Fener'de kalacak.",
+  "Yani yola güçsüz çıkıyorsunuz. Hıh, en güzeli de bu!",
+  "Yardım edin! Kızıl Sis'ten kaçtım, dağın ardından!",
+  "Ben Tıpış. Kor Vadisi'ni bilirim, yolu bilirim.",
+  "O küçük, kızgın çocuk... Hırıl. Onu tanıyorum.",
+  "Hıh. O zaman bir bekçi daha var. Kim önden gidiyor?",
+  "Mırıl'ın ışık izini takip edin. Kulaklarınız açık olsun!"
  ],
  "content/s2_prologue/chapter.json": [
   "Kırmızı Ufuk",
@@ -672,7 +695,6 @@
   "Fıstık",
   "Tospik Nine",
   "Pıtı",
-  "Tıpış",
   "Zıpzıp",
   "Fıstık'ın heykeli",
   "Baykuş Öğretmen Hu",
@@ -730,6 +752,7 @@
   "Alçaldı! Şimdi vur!"
  ],
  "src/actors/keeper_models.gd": [
+  "Yolu biliyorum.",
   "Yok",
   "Şapka",
   "Atkı",
@@ -875,7 +898,9 @@
   "Işık Patlaması",
   "Işık",
   "Yıldız Ninnisi",
-  "Ninni"
+  "Ninni",
+  "Derin Nefes",
+  "Nefes"
  ],
  "src/ui/choice_panel.gd": [
   "Vazgeç"
@@ -942,6 +967,16 @@
   "YENİ · %s",
   "Kademe %d → %d"
  ],
+ "src/ui/prologue_done.gd": [
+  "Bölüm 0: Buharlı Kaplıca Köyü",
+  "Kaplıca Ninesi ve hiç susmayan köylüler",
+  "Beş Kor, beş öfkeli bekçi",
+  "Tıpış ile Hırıl'ın sırrı",
+  "Prolog tamamlandı!",
+  "Sezon 2: Kor Vadisi",
+  "Çok yakında",
+  "Köyde dolaş"
+ ],
  "src/ui/save_slots_panel.gd": [
   "Yeni macera: bir yuva seç",
   "Kayıtlar",
@@ -971,10 +1006,8 @@
   "Hikâye Taşları %d/%d",
   "Seviye %d",
   "%d Pırıl",
-  "Sezon 2: Kor Vadisi",
   "Oynadığın için teşekkürler! · Just A Game Studios",
-  "Sezon 2'ye başla",
-  "Köyde dolaş"
+  "Sezon 2'ye başla"
  ],
  "src/ui/shop_panel.gd": [
   "Dükkân",
@@ -1016,7 +1049,6 @@
   "Bekçi Evi",
   "Özel yeteneğin: %s (L)",
   "Çayıra git: köyün güneyi",
-  "Prolog tamamlandı!",
   "Sıradaki: Fısıltı Ormanı",
   "Kuzeye, ormanın sönmüş fenerine"
  ],

@@ -246,6 +246,62 @@
         "mood": "kararlı",
         "text": "Kalacağım. Ama arkadaşlarım merak etmesin."
       }
+    ],
+    "s6b_1": [
+      {
+        "speaker": "fistik",
+        "mood": "dertli",
+        "text": "Fener'in altıncı rengi söndü. Mırıl'ın rengi..."
+      },
+      {
+        "speaker": "fistik",
+        "mood": "kararlı",
+        "text": "Ama dağın üstünde bir ışık izi var. Mırıl yol göstermiş."
+      },
+      {
+        "speaker": "fistik",
+        "mood": "kararlı",
+        "text": "Bu sefer ışık yetmez. Bu sefer kulak lazım."
+      },
+      {
+        "speaker": "fistik",
+        "mood": "huysuz",
+        "text": "Kıvılcımlarınız köyü korumak için Fener'de kalacak."
+      },
+      {
+        "speaker": "fistik",
+        "mood": "mutlu",
+        "text": "Yani yola güçsüz çıkıyorsunuz. Hıh, en güzeli de bu!"
+      }
+    ],
+    "s6b_2": [
+      {
+        "speaker": "tipis_panda",
+        "mood": "dertli",
+        "text": "Yardım edin! Kızıl Sis'ten kaçtım, dağın ardından!"
+      },
+      {
+        "speaker": "tipis_panda",
+        "mood": "kararlı",
+        "text": "Ben Tıpış. Kor Vadisi'ni bilirim, yolu bilirim."
+      },
+      {
+        "speaker": "tipis_panda",
+        "mood": "dertli",
+        "text": "O küçük, kızgın çocuk... Hırıl. Onu tanıyorum."
+      },
+      {
+        "speaker": "fistik",
+        "mood": "huysuz",
+        "text": "Hıh. O zaman bir bekçi daha var. Kim önden gidiyor?"
+      }
+    ],
+    "s6b_son": [
+      {
+        "speaker": "fistik",
+        "mood": "mutlu",
+        "text": "Mırıl'ın ışık izini takip edin. Kulaklarınız açık olsun!"
+      }
     ]
   }
 }

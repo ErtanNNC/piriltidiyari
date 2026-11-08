@@ -34,7 +34,7 @@ def wanted(s):
 
 TURKISH_SINGLE = {"Aksesuar", "Alet", "Aletler", "Bak", "Baloncuk", "Buton", "Can", "Dolap", "Gir", "Kalkan",
                   "Kaydedilemedi", "Kedi", "Liman", "Renk", "Sincap", "Uykuya", "Yok", "Yolculukta", "Yuvarlan","Vur", "Yak", "Geri", "Evet", "Sil", "Kaydet", "Devam", "At", "Kombo", "Mola", "Kapat",
-                  "Pati", "Davetiye", "Ninni", "Seviye", "Hediye", "Konuş", "Al", "Aç", "Oku", "Bin", "Git", "Tamam", "Ses", "Müzik"}
+                  "Pati", "Davetiye", "Ninni", "Nefes", "Seviye", "Hediye", "Konuş", "Al", "Aç", "Oku", "Bin", "Git", "Tamam", "Ses", "Müzik"}
 
 
 def from_content(found):
@@ -42,10 +42,11 @@ def from_content(found):
         def walk(o, k=None):
             if isinstance(o, dict):
                 for kk, v in o.items():
-                    walk(v, kk)
+                    # keepers_s2.json "lines": {keeper id: line}
+                    walk(v, "line" if k == "lines" else kk)
             elif isinstance(o, list):
                 for v in o:
-                    walk(v, k)
+                    walk(v, None if isinstance(v, dict) else k)
             elif isinstance(o, str) and k in KEYS and wanted(o):
                 found.setdefault(o, os.path.relpath(f, ROOT))
         walk(json.load(open(f, encoding="utf-8")))

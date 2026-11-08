@@ -4,8 +4,8 @@ extends Node3D
 ##   --demo=ref --model=pati: one character, front view on a plain background
 ##   (the reference image for image-to-3D tools)
 
-const KEEPERS := ["pati", "bado", "citir", "lumi", "fistik"]
-const MOBS := ["sumuklu", "mantar", "dev_mantar", "kirpi_topu", "karga", "kristal_bocek", "yarasa", "firtina_yumagi", "korsan_marti", "kar_tavsani", "buz_dikeni"]
+const KEEPERS := ["pati", "bado", "citir", "lumi", "fistik", "tipis_panda"]
+const MOBS := ["kopuklu_tavuk", "sumuklu", "mantar", "dev_mantar", "kirpi_topu", "karga", "kristal_bocek", "yarasa", "firtina_yumagi", "korsan_marti", "kar_tavsani", "buz_dikeni"]
 const BOSSES := ["pus_baykusu", "kutuk_kral", "kiskac", "ruzgar", "dondurma", "miril"]
 const NPCS := ["turtle", "bunny", "duckling", "owl_teacher", "spider", "mole", "gull_captain", "snowman", "frog", "star_child"]
 

@@ -16,7 +16,7 @@ func _init(keeper_id: String) -> void:
 
 
 func _ready() -> void:
-	var info: Dictionary = Content.keepers[id]
+	var info: Dictionary = Content.keeper(id)
 	var v := VBoxContainer.new()
 	v.add_theme_constant_override("separation", 4)
 	add_child(v)

@@ -10,6 +10,11 @@ signal chosen(id: String, look: Dictionary, display_name: String)
 
 const ORDER := ["pati", "bado", "citir", "lumi"]
 
+## Which keepers are offered (Season 2 adds Tıpış) and, optionally, the
+## line each says when highlighted (Season 2 has new ones). Set before adding.
+var order: Array = ORDER
+var lines: Dictionary = {}
+
 var current := ""
 var look := {"variant": 0, "accessory": "yok"}
 var _cards: Dictionary = {}
@@ -60,8 +65,10 @@ func _ready() -> void:
 	_cards_row.alignment = BoxContainer.ALIGNMENT_CENTER
 	_cards_row.add_theme_constant_override("separation", int(Tokens.px("space-3")))
 	bottom.add_child(_cards_row)
-	for id in ORDER:
+	for id in order:
 		var card := KeeperCard.new(id)
+		if order.size() > 4:
+			card.custom_minimum_size.x = 226
 		card.pressed.connect(func() -> void: select(id))
 		_cards_row.add_child(card)
 		_cards[id] = card
@@ -79,8 +86,8 @@ func select(id: String) -> void:
 	look = {"variant": 0, "accessory": "yok"}
 	for k: String in _cards:
 		(_cards[k] as KeeperCard).set_selected(k == id)
-	var info: Dictionary = Content.keepers[id]
-	_line.text = TranslationServer.translate("%s: “%s”") % [TranslationServer.translate(info["name"]), TranslationServer.translate(info["line"])]
+	var info: Dictionary = Content.keeper(id)
+	_line.text = TranslationServer.translate("%s: “%s”") % [TranslationServer.translate(info["name"]), TranslationServer.translate(lines.get(id, info["line"]))]
 	_line_pill.visible = true
 	_pick.disabled = false
 	_pick.text = TranslationServer.translate("Seç: %s") % TranslationServer.translate(info["name"])
@@ -146,7 +153,7 @@ func _build_custom() -> void:
 	go.pressed.connect(func() -> void:
 		var n := _name_edit.text.strip_edges()
 		if n == "":
-			n = Content.keepers[current]["name"]
+			n = Content.keeper(current)["name"]
 		chosen.emit(current, look.duplicate(), n))
 	row.add_child(go)
 
@@ -157,7 +164,7 @@ func _open_custom() -> void:
 	_cards_row.visible = false
 	_pick.visible = false
 	_custom.visible = true
-	_name_edit.text = Content.keepers[current]["name"]
+	_name_edit.text = Content.keeper(current)["name"]
 	for c in _swatches.get_children():
 		c.queue_free()
 	var variants: Array = KeeperModels.INFO[current]["variants"]

@@ -135,6 +135,9 @@ msgstr "But there's a problem: three kids lost their lanterns."
 msgid "Ama bir köşe hâlâ boş... Uzaktaki dağın ardı."
 msgstr "But one corner is still empty... Past the far mountain."
 
+msgid "Ama dağın üstünde bir ışık izi var. Mırıl yol göstermiş."
+msgstr "But there's a trail of light over the mountain. Mumble showed the way."
+
 msgid "Ama dört Kıvılcım avucumda parlıyor. Hadi!"
 msgstr "But four Sparks shine in my hands. Let's go!"
 
@@ -282,6 +285,9 @@ msgstr "Maybe that light could bring its own light back too..."
 msgid "Ben Kıvılcım'ı Pus'tan saklıyordum. Seni de Pus sandım."
 msgstr "I was hiding the Spark from the Gloom. I thought you were the Gloom."
 
+msgid "Ben Tıpış. Kor Vadisi'ni bilirim, yolu bilirim."
+msgstr "I'm Pitter. I know Ember Valley, I know the way."
+
 msgid "Ben de bir zamanlar kimsenin görmediği bir yıldızdım."
 msgstr "I was once a star nobody could see, too."
 
@@ -332,6 +338,9 @@ msgstr "White Spark"
 
 msgid "Beyaz Kıvılcım da geldi! Dört oldu, bir kaldı."
 msgstr "The White Spark is here too! That makes four, one to go."
+
+msgid "Beş Kor, beş öfkeli bekçi"
+msgstr "Five Embers, five cross guardians"
 
 msgid "Beş Kor, beş öfkeli bekçi ve yeni dost Tıpış"
 msgstr "Five Embers, five cross guardians and a new friend, Pitter"
@@ -456,8 +465,14 @@ msgstr "This wind is hot... and red. This isn't the Gloom!"
 msgid "Bu sarı ışık benim! Fırtınam seni uçuracak!"
 msgstr "This yellow light is mine! My storm will blow you away!"
 
+msgid "Bu sefer ben öndeyim!"
+msgstr "I'm leading this time!"
+
 msgid "Bu sefer üflemeyi unutma. Bir dilek tut!"
 msgstr "Don't forget to blow this time. Make a wish!"
+
+msgid "Bu sefer ışık yetmez. Bu sefer kulak lazım."
+msgstr "This time light isn't enough. This time we need ears."
 
 msgid "Bu senin davetiyen. Haritana pastayı da çiz!"
 msgstr "This is your invitation. Draw the cake on your map!"
@@ -515,6 +530,9 @@ msgstr "Wake up Scoop the Ice Golem"
 
 msgid "Bölüm 0"
 msgstr "Chapter 0"
+
+msgid "Bölüm 0: Buharlı Kaplıca Köyü"
+msgstr "Chapter 0: Steamy Springs Village"
 
 msgid "Bölüm 1"
 msgstr "Chapter 1"
@@ -623,6 +641,12 @@ msgstr "Beyond the mountains: Ember Valley and the Crimson Mist"
 
 msgid "Demek Pus'un adı Mırıl... Yalnız bir yıldız."
 msgstr "So the Gloom's name is Mumble... A lonely star."
+
+msgid "Derin Nefes"
+msgstr "Deep Breath"
+
+msgid "Derin Nefes: doğru anda basılırsa hasar almaz"
+msgstr "Deep Breath: press it just in time and the hit slides off"
 
 msgid "Derin nefes!"
 msgstr "Deep breath!"
@@ -791,6 +815,9 @@ msgstr "The Lantern Chooses"
 
 msgid "Fener'in Son Gecesi"
 msgstr "The Lantern's Last Night"
+
+msgid "Fener'in altıncı rengi söndü. Mırıl'ın rengi..."
+msgstr "The Lantern's sixth color went out. Mumble's color..."
 
 msgid "Fener'in son kıvılcımı yeni bekçisini kendi seçecek."
 msgstr "The Lantern's last spark will choose its new keeper."
@@ -1185,6 +1212,9 @@ msgstr "Hmph. Me every year. Of course me."
 msgid "Hıh. Mumları ben diktim. Beş tane, sayarsın."
 msgstr "Hmph. I put the candles in myself. Five of them, count them."
 
+msgid "Hıh. O zaman bir bekçi daha var. Kim önden gidiyor?"
+msgstr "Hmph. Then we have one more keeper. Who's leading?"
+
 msgid "Hıh... Hrrm... Ne kadar uyumuşum?"
 msgstr "Hmph... Hrrm... How long was I asleep?"
 
@@ -1313,6 +1343,9 @@ msgstr "Ending"
 
 msgid "Kapat"
 msgstr "Close"
+
+msgid "Kaplıca Ninesi ve hiç susmayan köylüler"
+msgstr "Granny Cloud and villagers who never stop talking"
 
 msgid "Kaptan Martı Pırpır"
 msgstr "Captain Flutter the Gull"
@@ -1470,6 +1503,9 @@ msgstr "Press Talk"
 msgid "Kopyalardan ve yankılardan kaç. Yorulunca yaklaş!"
 msgstr "Dodge the copies and echoes. Get close when he's tired!"
 
+msgid "Kor Vadisi'nden kaçan bir çocuk. Hırıl'ı küçükken tanıyordu."
+msgstr "A kid who ran from Ember Valley. Knew Grumble when they were little."
+
 msgid "Korkma! Yuva şu tarafta, peşimden gel."
 msgstr "It's okay! The nest is this way, follow me."
 
@@ -1596,6 +1632,9 @@ msgstr "The Red Wind"
 msgid "Kırmızı Ufuk"
 msgstr "Red Horizon"
 
+msgid "Kırık Davul Tokmağı"
+msgstr "Broken Drumstick"
+
 msgid "Kıskacı saplandı! Şimdi vur!"
 msgstr "His claw is stuck! Hit now!"
 
@@ -1641,6 +1680,9 @@ msgstr "Sparks %d/5"
 msgid "Kıvılcımlarını Mırıl'a uzat"
 msgstr "Hold out your Sparks to Mumble"
 
+msgid "Kıvılcımlarınız köyü korumak için Fener'de kalacak."
+msgstr "Your Sparks stay in the Lantern to keep the village safe."
+
 msgid "Kıvılcımı göster"
 msgstr "Show the Spark"
 
@@ -1655,6 +1697,9 @@ msgstr "Steamed up!"
 
 msgid "Kızgınsın! Güçlü vurursun ama zor yürürsün. Sakinleş'e bas."
 msgstr "You're steamed up! Strong hits, wobbly steps. Press Breathe."
+
+msgid "Kızıl panda"
+msgstr "Red panda"
 
 msgid "Kızıl rüzgâr seni de kızdırırsa bir tane ye."
 msgstr "If the red wind makes you cross too, eat one."
@@ -1746,6 +1791,9 @@ msgstr "Tiny Helmet"
 msgid "Minik Uykucu"
 msgstr "Tiny Sleepyhead"
 
+msgid "Minnoş da geliyor... değil mi?"
+msgstr "Cubby's coming too... right?"
+
 msgid "Mola"
 msgstr "Pause"
 
@@ -1797,6 +1845,9 @@ msgstr "Find Mumble's memories"
 msgid "Mırıl'ın İlk Doğum Günü"
 msgstr "Mumble's First Birthday"
 
+msgid "Mırıl'ın ışık izini takip edin. Kulaklarınız açık olsun!"
+msgstr "Follow Mumble's trail of light. Keep your ears open!"
+
 msgid "Mırıl, artık en yakın arkadaşımsın."
 msgstr "Mumble, you're my best friend now."
 
@@ -1806,6 +1857,9 @@ msgstr "Mumble, this cake is for you. Make a wish and blow!"
 msgid "Mırıl, bu ses... Rüzgârın içinde biri ağlıyor sanki."
 msgstr "Mumble, that sound... It's like someone is crying in the wind."
 
+msgid "Mırıl, geliyoruz."
+msgstr "Mumble, we're coming."
+
 msgid "Mırıl, gördün mü? Kızgın kalpler bile nefesle yumuşar."
 msgstr "See, Mumble? Even cross hearts soften with a breath."
 
@@ -1814,6 +1868,9 @@ msgstr "Mint Drop"
 
 msgid "Neden hâlâ buradasın? Neden gitmiyorsun?"
 msgstr "Why are you still here? Why don't you leave?"
+
+msgid "Nefes"
+msgstr "Breathe"
 
 msgid "Nefes al..."
 msgstr "Breathe in..."
@@ -1841,6 +1898,9 @@ msgstr "That grey sadness became the Gloom. The star's name was Mumble."
 
 msgid "O küçük biri kim? Onu da bulacağım."
 msgstr "Who is that little one? I'll find them too."
+
+msgid "O küçük, kızgın çocuk... Hırıl. Onu tanıyorum."
+msgstr "That little cross kid... Grumble. I know them."
 
 msgid "O kırmızı sis... Gözümü ondan ayırmıyorum."
 msgstr "That red mist... I'm keeping my eye on it."
@@ -2241,6 +2301,9 @@ msgstr "Hide behind a pillar!"
 msgid "Süzülüyorum! Yıldız olmanın en güzel yanı bu."
 msgstr "I'm floating! That's the best part of being a star."
 
+msgid "Sıcak taşlarda yürüme"
+msgstr "Ember Walk"
+
 msgid "Sırada Bulut Limanı var. Tabelası meydanda!"
 msgstr "Cloud Harbor is next. Its sign is in the square!"
 
@@ -2306,6 +2369,9 @@ msgstr "Dodge the feathers. Hit after the dive!"
 
 msgid "Tıpış"
 msgstr "Pitter"
+
+msgid "Tıpış ile Hırıl'ın sırrı"
+msgstr "The secret of Pitter and Grumble"
 
 msgid "Tıpış'a mavi fenerini ver"
 msgstr "Give Pitter his blue lantern"
@@ -2421,6 +2487,9 @@ msgstr "Stars fall on gloomy creatures nearby"
 msgid "Yani Mırıl kötü değil... Sadece yalnız mı?"
 msgstr "So Mumble isn't bad... Just lonely?"
 
+msgid "Yani yola güçsüz çıkıyorsunuz. Hıh, en güzeli de bu!"
+msgstr "So you set out without your powers. Hmph, that's the best part!"
+
 msgid "Yankı buradan geliyordu. Kimse var mı?"
 msgstr "The echo came from here. Is anyone there?"
 
@@ -2445,6 +2514,9 @@ msgstr "Go close, hold Breathe. Listen to it."
 msgid "Yarasa Fısıltısı"
 msgstr "Whisper Bat"
 
+msgid "Yardım edin! Kızıl Sis'ten kaçtım, dağın ardından!"
+msgstr "Help! I ran from the Crimson Mist, from behind the mountain!"
+
 msgid "Yağmurum da var! Gürrr!"
 msgstr "I've got rain too! Rumble!"
 
@@ -2459,6 +2531,9 @@ msgstr "Want to try something new? I sewed it all with eight legs!"
 
 msgid "Yeni görev: %s"
 msgstr "New quest: %s"
+
+msgid "Yeni harita, yeni kağıt!"
+msgstr "New map, fresh paper!"
 
 msgid "Yeni macera: bir yuva seç"
 msgstr "New adventure: pick a slot"
@@ -2510,6 +2585,12 @@ msgstr "On a journey"
 
 msgid "Yoldaki Köpüklülere nefes aldır"
 msgstr "Help the Fizzlers on the path breathe"
+
+msgid "Yolu biliyorum."
+msgstr "I know the way."
+
+msgid "Yolu biliyorum. Ama... biraz çekiniyorum."
+msgstr "I know the way. But... I'm a little shy about it."
 
 msgid "Yoruldu, alçaldı! Şimdi vur!"
 msgstr "It's tired and low! Hit now!"
@@ -2648,6 +2729,9 @@ msgstr "So many! I'll sing my lullaby: L key or Lullaby!"
 
 msgid "Çok soğuğum diye kimse sarılmazmış. Özür dilerim."
 msgstr "Nobody hugs me because I'm too cold. I'm sorry."
+
+msgid "Çok yakında"
+msgstr "Coming soon"
 
 msgid "Çünkü sana bir şey göstermek istiyorum."
 msgstr "Because I want to show you something."
