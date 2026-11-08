@@ -9,6 +9,7 @@ var _hp: StatBar
 var _mp: StatBar
 var _xp: StatBar
 var _anger: StatBar
+var _kors: KorTracker
 var _level: Label
 var _piril: Label
 var _pause_btn: Button
@@ -106,6 +107,11 @@ func _ready() -> void:
 	_sparks.alignment = BoxContainer.ALIGNMENT_CENTER
 	_sparks.visible = GameState.data.season < 2  # Season 2 has its own Kor
 	top_center.add_child(_sparks)
+	_kors = KorTracker.new()
+	_kors.alignment = BoxContainer.ALIGNMENT_CENTER
+	# the Kor slots show once Season 2's keeper is on the road
+	_kors.visible = GameState.data.has_flag("s2_prolog_bitti")
+	top_center.add_child(_kors)
 	_boss = VBoxContainer.new()
 	_boss.visible = false
 	_boss.add_theme_constant_override("separation", 2)
@@ -473,6 +479,7 @@ func clear_hint() -> void:
 ## Boss fights put the boss's name and HP bar where the spark tracker sits.
 func show_boss(boss_name: String, hp: int, max_hp: int) -> void:
 	_sparks.visible = false
+	_kors.visible = false
 	_quest_panel.visible = false
 	_boss.visible = true
 	Audio.boss(true)
@@ -488,6 +495,7 @@ func hide_boss() -> void:
 	Audio.boss(false)
 	_boss.visible = false
 	_sparks.visible = GameState.data.season < 2
+	_kors.visible = GameState.data.has_flag("s2_prolog_bitti")
 	_refresh_quest()
 
 
