@@ -61,6 +61,8 @@ is a copy of the design system's tokens.
   footprint; colliders, lights, particles and `keep` nodes stay; roof hue via
   json "fur"). Used by Prop (house, tree, well, lantern_post, bush, tower),
   ForestKit.face_tree, chapter4 pines, SmallLantern (lantern, campfire).
+- Sound credits: some sfx come from Oculus Audio Pack (CC BY 4.0), listed in
+  `assets/audio/CREDITS.md`; keep that list current.
 - Music: generated tracks become loops with `tools/music_loop.py`; sounds in
   `tools/make_audio.py` REAL come from `tools/sfx_prep.py` (not re-synthesized).
   Store assets and the Play guide: `docs/yayin-rehberi.md`, `docs/play/`,
@@ -162,8 +164,13 @@ from exports (`.claude/*` in export_presets.cfg).
   (`objective_done: <quest>/fener`), so "light the lantern first" can show.
 - Game rules stay in `src/core/` (RefCounted, no nodes) so tests can run them.
 - On-screen buttons must send an `InputEventAction` (`TouchControls._send`), not
-  only `Input.action_press`: attack/roll/skill react to events. Check with
-  `-- --scene=scene2 --demo=touchtest --touch` (headless).
+  only `Input.action_press`: attack/roll/skill react to events. Touch layout:
+  floating stick on the left, round Vur button bottom right with Zıpla,
+  Yuvarlan, skill, both powers and At on an arc (`TouchControls.power_buttons`
+  replace the HUD's left power bar), drag the right side to turn/tilt the
+  camera (`FollowCamera.drag`; no Çevir button on touch). Every pause
+  (level-up, Mola) calls `Hud._release_touch()` so nothing stays held. Check
+  with `-- --scene=scene2 --demo=touchtest --touch` (headless).
 - Use `set_anchors_and_offsets_preset`, not `set_anchors_preset` (the latter
   leaves size 0 for code-built Controls).
 - Identifiers in English; player-facing strings and docs in Turkish.

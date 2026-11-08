@@ -96,6 +96,12 @@ Renkleri geri getir! Sevimli bekçilerle fenerleri yak, Pus'u dağıt.
 >
 > 5–10 yaş çocuklar için, dokunmatik kontrollerle kolayca oynanır.
 
+## Ses lisansı (unutma)
+
+Bazı ses efektleri Oculus Audio Pack'ten (CC BY 4.0). Mağaza açıklamasının
+sonuna şu satırı ekle: "Bazı ses efektleri: Oculus Audio Pack (Meta), CC BY 4.0."
+Ayrıntı: `assets/audio/CREDITS.md`.
+
 ## Sürüm notu örneği
 
 > Yeni: gerçek 3B karakterler ve bosslar, yeni müzikler ve sesler, rüzgârda

@@ -108,6 +108,7 @@ func _actions(box: VBoxContainer, s: int, empty: bool) -> void:
 			b.pressed.connect(func() -> void: chosen.emit(s))
 		else:
 			b.pressed.connect(func() -> void: _confirm(box, s, "Eski kayıt silinsin mi?", func() -> void: chosen.emit(s)))
+			box.add_child(_delete_button(box, s))
 		return
 	if empty:
 		return
@@ -116,12 +117,18 @@ func _actions(box: VBoxContainer, s: int, empty: bool) -> void:
 	load.custom_minimum_size = Vector2(0, 56)
 	load.pressed.connect(func() -> void: chosen.emit(s))
 	box.add_child(load)
+	box.add_child(_delete_button(box, s))
+
+
+## "Sil": empties the slot (after an "Emin misin?").
+func _delete_button(box: VBoxContainer, s: int) -> Button:
 	var del := UiKit.button("Sil", false)
+	del.name = "Delete"
 	del.custom_minimum_size = Vector2(0, 48)
 	del.pressed.connect(func() -> void: _confirm(box, s, "Bu kayıt silinsin mi?", func() -> void:
 		SaveGame.clear(s)
 		_fill()))
-	box.add_child(del)
+	return del
 
 
 ## Swap a card's buttons for "Emin misin?" Evet / Vazgeç.

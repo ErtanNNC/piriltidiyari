@@ -23,9 +23,17 @@ def main():
     ap.add_argument("dst")
     ap.add_argument("--max", type=float, default=1.2)
     ap.add_argument("--peak", type=float, default=0.8)
+    ap.add_argument("--start", type=float, default=0.0, help="skip this many seconds")
+    ap.add_argument("--lowpass", type=float, default=0.0, help="soften highs above this Hz")
+    ap.add_argument("--fadein", type=float, default=0.0)
     a = ap.parse_args()
-    raw = subprocess.run(["ffmpeg", "-v", "error", "-i", a.src, "-ar", str(SR), "-ac", "1", "-f", "f32le", "-"],
-                         check=True, capture_output=True).stdout
+    filt = ["atrim=start=%g" % a.start] if a.start > 0 else []
+    if a.lowpass > 0:
+        filt.append("lowpass=f=%g" % a.lowpass)
+    cmd = ["ffmpeg", "-v", "error", "-i", a.src]
+    if filt:
+        cmd += ["-af", ",".join(filt)]
+    raw = subprocess.run(cmd + ["-ar", str(SR), "-ac", "1", "-f", "f32le", "-"], check=True, capture_output=True).stdout
     x = np.frombuffer(raw, np.float32).copy()
     peak = np.abs(x).max() + 1e-9
     on = np.where(np.abs(x) > peak * 0.05)[0]
@@ -34,7 +42,10 @@ def main():
         end = on[-1] + int(0.05 * SR)
         x = x[start:end]
     x = x[: int(a.max * SR)]
-    fade = min(len(x), int(0.06 * SR))
+    if a.fadein > 0:
+        fi = min(len(x), int(a.fadein * SR))
+        x[:fi] *= np.linspace(0.0, 1.0, fi)
+    fade = min(len(x), int(0.06 * SR if a.fadein <= 0 else a.fadein * SR))
     x[-fade:] *= np.linspace(1.0, 0.0, fade)
     x *= a.peak / (np.abs(x).max() + 1e-9)
     with wave.open(a.dst, "wb") as w:

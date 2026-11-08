@@ -15,6 +15,7 @@ var _name_label: Label
 var _power_bar: VBoxContainer
 var _power_buttons: Array[Button] = []
 var _level_panel: LevelUpPanel
+var _touch_controls: TouchControls
 var _pause_panel: Control
 var _quest_panel: PanelContainer
 var _quest_title: Label
@@ -241,6 +242,9 @@ func _ready() -> void:
 	var tcs := TouchControls.new()
 	_root.add_child(tcs)
 	touch = tcs.visible
+	_touch_controls = tcs
+	# on phones: drag the screen to turn the camera, powers sit on the arc
+	turn_btn.visible = not touch
 
 	# level-up powers: buttons on the left edge (O / P keys)
 	_power_bar = VBoxContainer.new()
@@ -260,6 +264,9 @@ func _ready() -> void:
 		b.visible = false
 		_power_bar.add_child(b)
 		_power_buttons.append(b)
+	if touch:
+		_power_bar.visible = false
+		_power_buttons.assign(tcs.power_buttons)
 	_potion_bar = HBoxContainer.new()
 	_potion_bar.set_anchors_and_offsets_preset(Control.PRESET_CENTER_BOTTOM)
 	_potion_bar.grow_horizontal = Control.GROW_DIRECTION_BOTH
@@ -562,10 +569,12 @@ func toggle_pause() -> void:
 	if _pause_panel:
 		_pause_panel.queue_free()
 		_pause_panel = null
+		_release_touch()
 		get_tree().paused = false
 		return
 	if _cinematic or _dialog.is_open() or SceneFlow.busy:
 		return
+	_release_touch()
 	get_tree().paused = true
 	var p := Control.new()
 	p.process_mode = Node.PROCESS_MODE_ALWAYS
@@ -649,6 +658,17 @@ func toggle_pause() -> void:
 
 # --- level-up powers ------------------------------------------------------------
 
+## Nothing stays held across a pause: the stick, held buttons, and keys
+## whose release may have been missed.
+func _release_touch() -> void:
+	if _touch_controls:
+		_touch_controls.release_all()
+	for a in ["move_left", "move_right", "move_forward", "move_back", "jump", "attack", "roll", "skill"]:
+		Input.action_release(a)
+	if _player and is_instance_valid(_player):
+		_player._move = Vector3.ZERO
+
+
 func _refresh_powers() -> void:
 	var list := Powers.actives(GameState.data.powers)
 	var keys := ["O", "P"]
@@ -689,6 +709,7 @@ func _maybe_level_up() -> void:
 		# automated checks keep running: take the first card
 		Powers.pick(d, choices[0]["id"])
 		return
+	_release_touch()
 	get_tree().paused = true
 	_level_panel = LevelUpPanel.new(choices)
 	_root.add_child(_level_panel)
@@ -696,6 +717,7 @@ func _maybe_level_up() -> void:
 		Powers.pick(d, id)
 		_level_panel.queue_free()
 		_level_panel = null
+		_release_touch()
 		get_tree().paused = false
 		_refresh_powers()
 		_refresh_stats()

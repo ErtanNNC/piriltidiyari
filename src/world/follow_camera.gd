@@ -29,6 +29,13 @@ func turn(dir: int) -> void:
 	_yaw_target += dir * PI * 0.5
 
 
+## Touch drag: turn around the keeper freely and tilt the view a little.
+func drag(d_yaw: float, d_pitch: float) -> void:
+	_yaw_target -= d_yaw
+	yaw = _yaw_target
+	pitch_degrees = clampf(pitch_degrees + d_pitch, 32.0, 72.0)
+
+
 ## Add screen shake (hits add up; it fades by itself).
 func shake(amount: float) -> void:
 	trauma = clampf(trauma + amount, 0.0, 1.0)

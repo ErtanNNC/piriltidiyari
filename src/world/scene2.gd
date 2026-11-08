@@ -107,7 +107,7 @@ func _run_demo(which: String) -> void:
 			# press the on-screen buttons the way a finger does
 			var tc: TouchControls = _hud.find_children("*", "TouchControls", true, false)[0]
 			var results := {}
-			for label in ["Saldır", "Yuvarlan", "Zıpla"]:
+			for label in ["Vur", "Yuvarlan", "Zıpla"]:
 				player.global_position = Vector3(0, 0, 4)
 				player._attack_cd = 0.0
 				await get_tree().create_timer(0.8).timeout
@@ -121,11 +121,32 @@ func _run_demo(which: String) -> void:
 				await get_tree().physics_frame
 				var acted := false
 				match label:
-					"Saldır": acted = player._attack_cd > 0.0
+					"Vur": acted = player._attack_cd > 0.0
 					"Yuvarlan": acted = player.rolling
 					"Zıpla": acted = player.velocity.y > 0.0 or player.global_position.y > y0
 				b.button_up.emit()
 				results[label] = acted
+			# a thumb on the stick when the level-up cards pause the game:
+			# after the pause nothing may stay pushed
+			tc._stick_touch = 3
+			tc._set_stick(Vector2(1, 0))
+			var pushed := Input.is_action_pressed("move_right")
+			_hud._release_touch()
+			results["stick_released"] = pushed and not Input.is_action_pressed("move_right")
+			# dragging the right side turns the camera
+			var cam := get_viewport().get_camera_3d() as FollowCamera
+			var yaw0 := cam.yaw
+			var vp := get_viewport().get_visible_rect().size
+			var t := InputEventScreenTouch.new()
+			t.index = 5
+			t.position = Vector2(vp.x * 0.6, vp.y * 0.4)
+			t.pressed = true
+			tc._input(t)
+			var dr := InputEventScreenDrag.new()
+			dr.index = 5
+			dr.position = t.position + Vector2(120, 0)
+			tc._input(dr)
+			results["camera_drag"] = absf(cam.yaw - yaw0) > 0.3
 			print("TOUCHTEST ", results)
 			get_tree().quit()
 		"beamtest":

@@ -20,7 +20,7 @@ import numpy as np
 SR = 32000
 # sounds now made with tools/sfx_prep.py from generated audio: keep them
 REAL = {"jump", "jump2", "land", "swish", "hit", "hurt", "roll", "fall", "splash", "wind", "whoosh", "door",
-        "chest", "boing", "crystal", "lantern"}
+        "chest", "boing", "crystal", "lantern", "skill", "levelup"}
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
 SFX_DIR = os.path.join(ROOT, "assets", "audio", "sfx")
 MUSIC_DIR = os.path.join(ROOT, "assets", "audio", "music")
