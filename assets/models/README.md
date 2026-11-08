@@ -58,3 +58,13 @@ Oyunun kendi Pati'sinin referans görselinden (`--scene=preview --demo=ref
   çizimi olmalı.
 - Dışarıdan gelen bekçi modeli dükkân kıyafetlerini, aletleri ve renk
   seçeneklerini göstermez (bunlar parça parça kurulan modele takılıyor).
+
+## Pati (oyunda, Kasım 2026)
+
+`pati.glb`: Higgsfield'da GPT Image 2.6 ile çizilen karakter görselinden
+Tripo H3.1 ile üretildi (çizim 0,25 + model 9 kredi, 19,5 bin üçgen).
+`pati.json`: yön (-90), renk düzeltmesi, ince dış çizgi ve kıyafet/alet
+çapaları (`anchors`: Head, head_r, hat_scale, Body, HandL, HandR; metre
+cinsinden, model yerde ve +Z'ye bakarken). Kontrol:
+`--scene=preview --demo=looks --model=pati`.
+Kürk rengi seçenekleri (beyaz/gri) dokulu modelde uygulanmaz.

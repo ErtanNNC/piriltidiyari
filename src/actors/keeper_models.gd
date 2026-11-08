@@ -87,6 +87,8 @@ static func _anchors(model: Node3D, id: String) -> Dictionary:
 		p[k] = n
 	var r: Array = def["head_r"]
 	p["head_r"] = Vector3(float(r[0]), float(r[1]), float(r[2]))
+	# hats and crowns are sized for the procedural head (half width ~0.48)
+	p["hat_scale"] = float(def.get("hat_scale", 1.0))
 	return p
 
 
@@ -279,6 +281,7 @@ static func _outfit(p: Dictionary, outfit: String) -> void:
 		_cape(p["Body"] as Node3D)
 	else:
 		var piece := outfit_piece(outfit)
+		piece.scale = Vector3.ONE * float(p.get("hat_scale", 1.0))
 		piece.position = Vector3(0, r.y - 0.04, -0.02)
 		piece.rotation_degrees.x = -6
 		head.add_child(piece)
