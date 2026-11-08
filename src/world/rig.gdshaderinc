@@ -83,8 +83,10 @@ vec3 rig_deform(vec3 v, float time) {
 		} else {
 			// walk swing opposite to the legs; the right arm (-x) strikes
 			float swing = sgn * s * 0.8 * walk;
-			float strike = rig_motion.z * (sgn < 0.0 ? -1.9 : -0.35);
-			r = rig_rx(r, (swing + strike) * wa);
+			// the right arm (-x) raises out and chops forward; the left follows a bit
+			float st = rig_motion.z * (sgn < 0.0 ? 1.0 : 0.3);
+			r = rig_rx(r, (swing - st * 1.6) * wa);
+			r = rig_rz(r, -sgn * max(st, 0.0) * 0.9 * wa);
 			r = rig_rz(r, sgn * rig_motion.w * 1.2 * wa);
 		}
 		vec2 extra = sgn > 0.0 ? rig_arms.xy : rig_arms.zw;

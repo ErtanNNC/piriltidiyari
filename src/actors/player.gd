@@ -47,6 +47,10 @@ var _attack_cd := 0.0
 var _invulnerable := 0.0
 var _roll_left := 0.0
 var _roll_dir := Vector3.FORWARD
+var _roll_yaw := 0.0
+var _roll_angle := 0.0
+var _roll_center := 0.9
+var _roll_fx := 0.0
 var _knock := Vector3.ZERO
 var _move := Vector3.ZERO   ## walking velocity, without knockback
 var _power_until := 0.0     ## Cesaret Şekeri: stronger until this time (s)
@@ -219,9 +223,14 @@ func spin_attack() -> void:
 		_rig.attack()
 	if _spin_tween and _spin_tween.is_running():
 		_spin_tween.kill()
+	# a swing, not a spin: wind up a little, then turn into the strike so the
+	# arm (CharacterRig.attack) can be seen; a swoosh arc shows the reach
 	_spin_tween = create_tween()
 	var start := model.rotation.y
-	_spin_tween.tween_property(model, "rotation:y", start + TAU, 0.3).set_trans(Tween.TRANS_QUAD)
+	_spin_tween.tween_property(model, "rotation:y", start + 0.45, 0.07).set_trans(Tween.TRANS_SINE)
+	_spin_tween.tween_property(model, "rotation:y", start - 0.35, 0.12).set_trans(Tween.TRANS_QUAD)
+	_spin_tween.tween_property(model, "rotation:y", start, 0.16).set_trans(Tween.TRANS_BACK)
+	Effects.ring(get_parent(), global_position + Vector3.UP * 0.7 + _facing() * 0.5, ATTACK_RADIUS * 0.8, Color(1, 1, 1, 0.8), 0.2)
 	var tool: String = GameState.data.equipped.get("weapon", "")
 	if not GameState.data.has_flag("owned_" + tool):
 		tool = ""
@@ -377,8 +386,14 @@ func start_roll() -> void:
 	_col.shape = _ball_shape
 	_col.position.y = 0.45
 	collision_mask = LAYER_WORLD
-	var tw := create_tween()
-	tw.tween_property(model, "scale", Vector3(0.8, 0.6, 0.8), 0.08)
+	# curl into a ball around the body's middle (not around the feet)
+	_roll_yaw = atan2(_roll_dir.x, _roll_dir.z)
+	_roll_angle = 0.0
+	_roll_fx = 0.0
+	var box := ModelImport._bounds(model, Transform3D.IDENTITY)
+	_roll_center = box.get_center().y / maxf(model.scale.y, 0.01) if box.size.y > 0.1 else 0.9
+	if _rig:
+		_rig.set_process(false)  # the ball holds still; no steps or breathing
 
 
 func _process_roll(delta: float) -> void:
@@ -387,7 +402,18 @@ func _process_roll(delta: float) -> void:
 	velocity.z = _roll_dir.z * ROLL_SPEED
 	velocity.y -= gravity * delta
 	move_and_slide()
-	model.rotate_object_local(Vector3.RIGHT, delta * 22.0)
+	# a tight little ball that rolls forward, a dusty, sparkly trail behind
+	var k := clampf(1.0 - _roll_left / ROLL_TIME, 0.0, 1.0)
+	var size := lerpf(1.0, 0.5, minf(k * 6.0, 1.0))
+	_roll_angle += delta * 17.0
+	var b := Basis(Vector3.UP, _roll_yaw) * Basis(Vector3.RIGHT, _roll_angle) * Basis.from_scale(Vector3.ONE * size)
+	model.transform = Transform3D(b, Vector3(0, 0.45, 0)) * Transform3D(Basis(), Vector3(0, -_roll_center, 0))
+	_roll_fx -= delta
+	if _roll_fx <= 0.0 and is_on_floor():
+		_roll_fx = 0.07
+		Effects.dust(get_parent(), global_position + Vector3.UP * 0.1, Color("#e8dcc8"), 2, 0.45)
+		if randf() < 0.5:
+			Effects.sparkle(get_parent(), global_position + Vector3.UP * 0.5, Tokens.color("honey").lightened(0.3), 2)
 	for m in get_tree().get_nodes_in_group("hittable"):
 		var n := m as Node3D
 		if n and n.global_position.distance_to(global_position) < 1.1 + n.get_meta("hit_radius", 0.5) and n.has_method("bump"):
@@ -397,10 +423,13 @@ func _process_roll(delta: float) -> void:
 		_col.shape = _stand_shape
 		_col.position.y = 0.75
 		collision_mask = LAYER_WORLD | LAYER_LOW_BARRIER
-		model.rotation.x = 0.0
-		model.rotation.z = 0.0
+		# pop back up with a little bounce
+		model.transform = Transform3D(Basis(Vector3.UP, _roll_yaw).scaled(Vector3(1.15, 0.75, 1.15)), Vector3.ZERO)
 		var tw := create_tween()
-		tw.tween_property(model, "scale", Vector3.ONE, 0.12).set_trans(Tween.TRANS_BACK)
+		tw.tween_property(model, "scale", Vector3.ONE, 0.22).set_trans(Tween.TRANS_BACK)
+		if _rig:
+			_rig.set_process(true)
+			_rig.land()
 
 
 ## Keep rolling while still under a beam, so we never stand up inside it.

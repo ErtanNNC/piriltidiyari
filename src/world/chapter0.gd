@@ -108,6 +108,15 @@ func _on_flags() -> void:
 func _run_demo(which: String) -> void:
 	var player: Player = _hud.player()
 	match which:
+		"roll", "strike":
+			# screenshots: --demo=roll|strike --at=... (roll/strike starts at 6 s)
+			await get_tree().create_timer(6.0).timeout
+			player._roll_dir = Vector3(1, 0, 0)
+			if which == "roll":
+				player.start_roll()
+			else:
+				player._attack_cd = 0.0
+				player.spin_attack()
 		"powers":
 			# every active level-up power hits nearby Pus creatures
 			var d := GameState.data

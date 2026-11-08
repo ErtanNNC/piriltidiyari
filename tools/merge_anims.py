@@ -3,7 +3,7 @@
 auto-rigged once per clip) into one .glb, retargeting every clip onto the
 first file's skeleton.
 
-  python3 tools/merge_anims.py out.glb idle=a.glb walk=b.glb run=c.glb ...
+  python3 tools/merge_anims.py out.glb [--face=90] idle=a.glb walk=b.glb run=c.glb ...
 
 An auto-rigger builds a slightly different skeleton each time (bone lengths
 and rest directions change), so channels can't simply be copied. Each clip
@@ -157,6 +157,9 @@ def sample(times, values, t):
     return values[k] + f * (values[k + 1] - values[k])
 
 
+FACE_Q = np.array([0.0, 0.0, 0.0, 1.0])
+
+
 def retarget(src, anim, dst):
     """Returns {dst joint: (times, quats)} and hips (times, positions)."""
     rot = {}
@@ -203,6 +206,9 @@ def retarget(src, anim, dst):
                 continue
             # the same turn away from the bind pose, on the other skeleton
             turn = qmul(g_src(j), qinv(src.bind_q[j]))
+            # the clips walk along +Z; the model may face another way (Tripo
+            # models face +X): turn the motion so the steps go where it looks
+            turn = qmul(qmul(FACE_Q, turn), qinv(FACE_Q))
             if name in ("Hips", "Spine02", "Spine01", "Spine", "neck", "Head"):
                 # the game turns the character itself: drop the clip's turn
                 # around the vertical axis (idles look around, attacks twist)
@@ -230,8 +236,17 @@ def retarget(src, anim, dst):
 
 
 def main():
+    global FACE_Q
     out = sys.argv[1]
-    pairs = [a.split("=", 1) for a in sys.argv[2:]]
+    args = sys.argv[2:]
+    for a in list(args):
+        if a.startswith("--face="):
+            # degrees around Y from the clips' forward (+Z) to the model's
+            # forward, e.g. --face=90 for a model that faces +X
+            ang = np.radians(float(a.split("=", 1)[1]))
+            FACE_Q = np.array([0.0, np.sin(ang / 2), 0.0, np.cos(ang / 2)])
+            args.remove(a)
+    pairs = [a.split("=", 1) for a in args]
     base_doc, base_bin = read_glb(pairs[0][1])
     dst = Rig(base_doc, base_bin)
     new_anims = []

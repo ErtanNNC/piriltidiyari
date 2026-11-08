@@ -125,6 +125,41 @@ func _ready() -> void:
 		add_child(cf)
 		cf.look_at(Vector3(0, 0.6, -2.6))
 		return
+	if which == "play":
+		# the real player from the side: --act=walk|attack|roll (starts at 1 s)
+		var act := "walk"
+		for arg in OS.get_cmdline_user_args():
+			if arg.begins_with("--act="):
+				act = arg.get_slice("=", 1)
+		var kp := "pati"
+		for arg in OS.get_cmdline_user_args():
+			if arg.begins_with("--keeper="):
+				kp = arg.get_slice("=", 1)
+		GameState.data.character_id = kp
+		GameState.data.character_look = {}
+		var pl := Player.new()
+		add_child(pl)
+		pl.position = Vector3(-3 if act != "attack" else 0, 0.1, 0)
+		pl.input_enabled = false
+		var cp := Camera3D.new()
+		cp.fov = 40.0
+		cp.position = Vector3(5.5, 2.0, 5.5) if act == "attack" else Vector3(0, 2.2, 8.0)
+		add_child(cp)
+		cp.look_at(Vector3(0, 0.9, 0))
+		await get_tree().create_timer(2.0).timeout
+		pl._roll_dir = Vector3.RIGHT
+		pl.model.rotation.y = PI * 0.5
+		match act:
+			"walk":
+				while true:
+					pl._move = Vector3(pl.speed * 0.8, 0, 0)
+					await get_tree().physics_frame
+			"attack":
+				pl._attack_cd = 0.0
+				pl.spin_attack()
+			"roll":
+				pl.start_roll()
+		return
 	if which == "anim":
 		# shape rig check: --pose=walk|attack|happy|blink|idle (all keepers + a few)
 		var pose_name := "walk"

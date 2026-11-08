@@ -42,6 +42,11 @@ var _look_to := 0.0
 var _look_in := 1.5
 ## Previews: >= 0 holds the eyes at this much closed.
 var hold_blink := -1.0
+var _skel: Skeleton3D
+var _arm_r := -1
+var _arm_l := -1
+var _fwd := Vector3(0, 0, 1)
+var _swing: ArmSwing
 
 
 ## Wraps the root's children in a "Pose" node and adds the rig to `root`.
@@ -88,6 +93,22 @@ func _ready() -> void:
 			if _clips.has(key):
 				_anim.get_animation(_clips[key]).loop_mode = Animation.LOOP_LINEAR
 		_play("idle")
+		var sk := pose.find_children("*", "Skeleton3D", true, false)
+		if not sk.is_empty():
+			_skel = sk[0]
+			_arm_r = _skel.find_bone("RightArm")
+			_arm_l = _skel.find_bone("LeftArm")
+			# which way the model looks inside its skeleton (Tripo: +X)
+			var fit := pose.get_node_or_null("Fit")
+			var model: Node3D = fit.get_child(0) if fit and fit.get_child_count() > 0 else null
+			if model:
+				_fwd = Basis(Vector3.UP, -model.rotation.y) * Vector3(0, 0, 1)
+			if _arm_r >= 0:
+				_swing = ArmSwing.new()
+				_swing.arm_r = _arm_r
+				_swing.arm_l = _arm_l
+				_swing.fwd = _fwd
+				_skel.add_child(_swing)
 
 
 func _play(key: String, oneshot := false) -> bool:
@@ -126,6 +147,7 @@ func land() -> void:
 func attack() -> void:
 	if _anim:
 		_play("attack", true)
+		_strike = 1.0
 	if not materials.is_empty():
 		_strike = 1.0
 		return
@@ -161,6 +183,8 @@ func _process(delta: float) -> void:
 		_oneshot -= delta
 		if _oneshot <= 0.0:
 			_play("idle" if speed < 0.1 else ("run" if speed > 0.7 else "walk"))
+		# the clip first, then our own arm swing on top of it
+		_swing_arm(delta)
 		if not materials.is_empty():
 			# bones do the moving; the toon shader still draws the blinks
 			var blink := _blink_amount(delta)
@@ -213,6 +237,22 @@ func _animate_parts() -> void:
 		var tt: Transform3D = _rest["Tail"]
 		tail.transform = tt.rotated(Vector3.UP, sin(_t * (3.0 + _walk * 6.0) + _phase) * (0.18 + 0.12 * _walk))
 		tail.position = tt.origin
+
+
+## Rigged models: a strike swings the right arm forward and up, then down,
+## on top of whatever clip plays (auto-rigged attack clips barely move it).
+func _swing_arm(delta: float) -> void:
+	if _swing == null:
+		return
+	_strike = move_toward(_strike, 0.0, delta / 0.5)
+	var k := 1.0 - _strike
+	if _strike <= 0.0:
+		_swing.lift = 0.0
+		_swing.chop = 0.0
+		return
+	# lift the arm up and out (wind-up), then chop it forward and down
+	_swing.lift = sin(minf(k / 0.55, 1.0) * PI * 0.5) * (1.0 - smoothstep(0.55, 1.0, k))
+	_swing.chop = -0.6 * sin(k / 0.3 * PI) if k < 0.3 else sin((k - 0.3) / 0.7 * PI) * 2.2
 
 
 ## Drives the shape rig of an imported model (see rig.gdshaderinc).
