@@ -113,9 +113,11 @@ func _place(b: Button, deg: float, dist: float) -> void:
 
 
 func _layout_one(b: Button) -> void:
-	var m := Tokens.px("space-6")
-	var vp := get_viewport_rect().size if is_inside_tree() else Vector2(1280, 720)
-	var center := Vector2(vp.x - m - MAIN_R, vp.y - m - MAIN_R)
+	# inside this control's own rect (the HUD already keeps it within the
+	# phone's safe area), with extra room for rounded screen corners
+	var m := Tokens.px("space-6") + 14.0
+	var area := size if size.x > 10.0 else (get_viewport_rect().size if is_inside_tree() else Vector2(1280, 720))
+	var center := Vector2(area.x - m - MAIN_R, area.y - m - MAIN_R)
 	var a := deg_to_rad(float(b.get_meta("deg")))
 	var c := center + Vector2(cos(a), sin(a)) * float(b.get_meta("dist"))
 	var r: float = b.get_meta("radius")
@@ -148,7 +150,7 @@ func release_all() -> void:
 
 func _on_round_button(p: Vector2) -> bool:
 	for b in _round:
-		if b.visible and p.distance_to(b.position + b.size * 0.5) <= float(b.get_meta("radius")) + 6.0:
+		if b.visible and p.distance_to(b.global_position + b.size * 0.5) <= float(b.get_meta("radius")) + 6.0:
 			return true
 	return false
 

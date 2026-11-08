@@ -398,6 +398,8 @@ static func _tool(p: Dictionary, tool: String, id: String) -> void:
 	var piece := tool_piece(tool)
 	piece.position = Vector3(0, -0.02, 0.06)
 	piece.rotation_degrees = Vector3(35, 0, 0)
+	piece.name = "HeldTool"
+	piece.add_to_group("held_tool")
 	hand.add_child(piece)
 
 

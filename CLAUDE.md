@@ -51,6 +51,8 @@ is a copy of the design system's tokens.
   vertices by body region (head rigid, tail/wings on the hips) and retargets
   the clips (torso bends softened, `CALM`); their json has "facing": 0. Hats
   and tools ride the head/hand bones (`KeeperModels._follow_bones`).
+  Shop tools (group "held_tool") tuck away while running and pop back when
+  standing or striking (`CharacterRig._held_tools`).
   CharacterRig plays the clips (`CLIP_SPEED`); blink still via the toon
   shader; `ArmSwing` adds a strike only when a model has no attack clip.
   Checks: `--scene=preview --demo=rigtest --model=<id>`, from the side:
@@ -168,7 +170,8 @@ from exports (`.claude/*` in export_presets.cfg).
   floating stick on the left, round Vur button bottom right with Zıpla,
   Yuvarlan, skill, both powers and At on an arc (`TouchControls.power_buttons`
   replace the HUD's left power bar), drag the right side to turn/tilt the
-  camera (`FollowCamera.drag`; no Çevir button on touch). Every pause
+  camera (`FollowCamera.drag`; no Çevir button on touch). The arc is laid out
+  in the control's own (safe-area) rect, never the viewport's. Every pause
   (level-up, Mola) calls `Hud._release_touch()` so nothing stays held. Check
   with `-- --scene=scene2 --demo=touchtest --touch` (headless).
 - Use `set_anchors_and_offsets_preset`, not `set_anchors_preset` (the latter

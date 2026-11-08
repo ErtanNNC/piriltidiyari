@@ -137,6 +137,11 @@ func _ready() -> void:
 				kp = arg.get_slice("=", 1)
 		GameState.data.character_id = kp
 		GameState.data.character_look = {}
+		for arg in OS.get_cmdline_user_args():
+			if arg.begins_with("--weapon="):
+				var wpn := arg.get_slice("=", 1)
+				GameState.data.set_flag("owned_" + wpn)
+				GameState.data.equipped["weapon"] = wpn
 		var pl := Player.new()
 		add_child(pl)
 		pl.position = Vector3(-3 if act != "attack" else 0, 0.1, 0)

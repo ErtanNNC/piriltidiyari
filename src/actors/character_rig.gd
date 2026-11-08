@@ -47,6 +47,12 @@ var _arm_r := -1
 var _arm_l := -1
 var _fwd := Vector3(0, 0, 1)
 var _swing: ArmSwing
+## Tools held in a paw (group "held_tool" under this model): tucked away
+## while running so they don't flail, out again when standing or striking.
+var _tools: Array = []
+var _tool_scan := 0.0
+var _tool_show := 1.0
+var _tool_hold := 0.0
 
 
 ## Wraps the root's children in a "Pose" node and adds the rig to `root`.
@@ -144,7 +150,33 @@ func land() -> void:
 	_squash_v = 0.0
 
 
+func _held_tools(delta: float) -> void:
+	_tool_scan -= delta
+	if _tool_scan <= 0.0:
+		# outfits and tools change in the shop: look again now and then
+		_tool_scan = 1.0
+		_tools = []
+		for n in pose.find_children("HeldTool*", "Node3D", true, false):
+			if n.is_in_group("held_tool"):
+				_tools.append(n)
+	if _tools.is_empty():
+		return
+	_tool_hold = maxf(_tool_hold - delta, 0.0)
+	var want := 1.0 if (speed < 0.25 or _tool_hold > 0.0) else 0.0
+	# pops out fast (with a little overshoot), tucks away a bit slower
+	_tool_show = move_toward(_tool_show, want, delta * (7.0 if want > _tool_show else 4.0))
+	var k := _tool_show
+	var s := k * (1.0 + 0.25 * sin(k * PI)) if want > 0.5 else k
+	for n: Node3D in _tools:
+		if not is_instance_valid(n):
+			continue
+		n.visible = k > 0.02
+		n.scale = Vector3.ONE * maxf(s, 0.001)
+
+
 func attack() -> void:
+	_tool_hold = 0.6
+	_tool_show = maxf(_tool_show, 0.6)
 	if _anim:
 		_play("attack", true)
 		_strike = 1.0
@@ -163,6 +195,7 @@ func _process(delta: float) -> void:
 	if pose == null or not is_instance_valid(pose):
 		return
 	_t += delta
+	_held_tools(delta)
 	_walk = move_toward(_walk, clampf(speed, 0.0, 1.0), delta * 6.0)
 	if _walk > 0.05:
 		_step += delta * 11.0 * (0.6 + 0.4 * _walk)
