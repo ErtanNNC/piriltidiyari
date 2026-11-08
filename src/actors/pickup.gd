@@ -57,11 +57,11 @@ func _on_body_entered(body: Node3D) -> void:
 	_taken = true
 	if item_id == "":
 		GameState.data.add_piril(amount)
-		FloatText.spawn(get_parent(), global_position + Vector3.UP * 1.2, "+%d" % amount, Tokens.color("piril"))
+		FloatText.spawn(get_parent(), global_position + Vector3.UP * 1.2, TranslationServer.translate("+%d") % amount, Tokens.color("piril"))
 	else:
 		GameState.data.add_item(item_id, amount)
 		Audio.play("coin")
-		GameState.toast.emit("%s bulundu!" % Content.item_name(item_id), "lantern")
+		GameState.toast.emit(TranslationServer.translate("%s bulundu!") % Content.item_name(item_id), "lantern")
 	var tw := create_tween()
 	tw.tween_property(_visual, "scale", Vector3.ZERO, 0.18).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
 	tw.tween_callback(queue_free)

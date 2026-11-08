@@ -34,5 +34,5 @@ func use(_by: Node) -> void:
 	tw.tween_property(_lid, "rotation_degrees:x", -70.0, 0.3).set_trans(Tween.TRANS_BACK)
 	Effects.sparkle(get_parent(), global_position + Vector3.UP, Tokens.color("piril"), 14)
 	GameState.data.add_piril(piril)
-	FloatText.spawn(get_parent(), global_position + Vector3.UP * 1.6, "+%d" % piril, Tokens.color("piril"))
+	FloatText.spawn(get_parent(), global_position + Vector3.UP * 1.6, TranslationServer.translate("+%d") % piril, Tokens.color("piril"))
 	done()

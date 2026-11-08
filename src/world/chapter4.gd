@@ -113,7 +113,7 @@ func _build() -> void:
 	var fog_at := [Vector3(6, 3, -2.5), Vector3(-6, 6, -26.5), Vector3(0, 9, -57)]
 	for i in 3:
 		var cf := SmallLantern.new()
-		cf.name = "KampAtesi%d" % i
+		cf.name = TranslationServer.translate("KampAtesi%d") % i
 		cf.style = "campfire"
 		cf.accent = "honey"
 		cf.lantern_id = "kamp_atesi"
@@ -308,7 +308,7 @@ func _side_content(lv: Node3D) -> void:
 		if d.has_flag("uykulu_yavru%d" % (i + 1)):
 			continue
 		var n := npc(lv, "uykulu_yavru%d" % (i + 1), "bunny_sleepy", kids[i], 0)
-		n.name = "Uykucu%d" % (i + 1)
+		n.name = TranslationServer.translate("Uykucu%d") % (i + 1)
 	for spec in [[7, Vector3(-9, 3, 7)], [8, Vector3(9, 9, -56)]]:
 		var st := StoryStone.new()
 		st.stone = spec[0]

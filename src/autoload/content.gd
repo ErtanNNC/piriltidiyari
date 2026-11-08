@@ -44,7 +44,7 @@ static func text_safe(token: String) -> String:
 
 
 func item_name(item_id: String) -> String:
-	return items.get(item_id, {}).get("name", item_id)
+	return TranslationServer.translate(String(items.get(item_id, {}).get("name", item_id)))
 
 
 func speaker(speaker_id: String) -> Dictionary:

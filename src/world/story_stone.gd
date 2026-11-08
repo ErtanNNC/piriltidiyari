@@ -26,4 +26,4 @@ func use(_by: Node) -> void:
 			get_node("Beacon").queue_free()
 		GameState.data.set_flag("tas_%d" % stone)
 		GameState.data.add_item("hikaye_tasi")
-		GameState.toast.emit("Hikâye Taşı %d/%d" % [GameState.data.item_count("hikaye_tasi"), TOTAL], "star")
+		GameState.toast.emit(TranslationServer.translate("Hikâye Taşı %d/%d") % [GameState.data.item_count("hikaye_tasi"), TOTAL], "star")

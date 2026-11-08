@@ -95,9 +95,17 @@ func _build_menu() -> void:
 		b.custom_minimum_size = Vector2(170, 52)
 		row.add_child(b)
 	var refresh := func() -> void:
-		mus.text = "Müzik: " + ("Açık" if Audio.music_on else "Kapalı")
-		sfx.text = "Sesler: " + ("Açık" if Audio.sfx_on else "Kapalı")
+		mus.text = TranslationServer.translate("Müzik: %s") % TranslationServer.translate("Açık" if Audio.music_on else "Kapalı")
+		sfx.text = TranslationServer.translate("Sesler: %s") % TranslationServer.translate("Açık" if Audio.sfx_on else "Kapalı")
 	refresh.call()
+	var lang := UiKit.button("Language: English" if Audio.language == "en" else "Dil: Türkçe", false)
+	lang.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
+	lang.custom_minimum_size = Vector2(220, 52)
+	row.add_child(lang)
+	lang.pressed.connect(func() -> void:
+		Audio.set_language("tr" if Audio.language == "en" else "en")
+		_menu.queue_free()
+		_build_menu())
 	mus.pressed.connect(func() -> void:
 		Audio.set_music_on(not Audio.music_on)
 		refresh.call())

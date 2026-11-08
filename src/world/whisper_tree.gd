@@ -15,7 +15,7 @@ var _player: Node3D
 func _ready() -> void:
 	ForestKit.face_tree(self, Vector3.ZERO, 1.0, grey)
 	_bubble = Label3D.new()
-	_bubble.text = "“%s”" % says
+	_bubble.text = TranslationServer.translate("“%s”") % TranslationServer.translate(says)
 	_bubble.font = Tokens.font_for("text-heading")
 	_bubble.font_size = 64
 	_bubble.pixel_size = 0.006

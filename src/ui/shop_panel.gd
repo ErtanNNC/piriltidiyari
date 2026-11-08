@@ -118,7 +118,7 @@ func _row(entry: Dictionary) -> Control:
 		var r := Shop.buy(GameState.data, def, id, price, once)
 		match r:
 			"ok":
-				GameState.toast.emit("%s aldın" % def.get("name", id), "piril")
+				GameState.toast.emit(TranslationServer.translate("%s aldın") % TranslationServer.translate(String(def.get("name", id))), "piril")
 			"piril":
 				GameState.toast.emit("Pırıl yetmiyor", "piril")
 		_refresh())

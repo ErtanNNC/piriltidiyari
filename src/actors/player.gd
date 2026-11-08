@@ -367,7 +367,7 @@ func _isik_patlamasi() -> void:
 	Effects.sparkle(get_parent(), global_position + Vector3.UP, Tokens.color("spark-yellow"), 16)
 	_hit_around(4.0, attack_power() + 6, 6.0)
 	GameState.data.heal(Skills.LIGHT_HEAL)
-	FloatText.spawn(get_parent(), global_position + Vector3.UP * 2.0, "+%d" % Skills.LIGHT_HEAL, Tokens.color("leaf"))
+	FloatText.spawn(get_parent(), global_position + Vector3.UP * 2.0, TranslationServer.translate("+%d") % Skills.LIGHT_HEAL, Tokens.color("leaf"))
 
 
 func _hit_around(radius: float, damage: int, push: float) -> void:
@@ -487,16 +487,16 @@ func drink_potion(slot: int) -> void:
 			GameState.toast.emit("Canın zaten dolu", "heart")
 			return
 		d.heal(int(def["heal"]))
-		FloatText.spawn(get_parent(), global_position + Vector3.UP * 2.0, "+%d" % int(def["heal"]), Tokens.color("leaf"))
+		FloatText.spawn(get_parent(), global_position + Vector3.UP * 2.0, TranslationServer.translate("+%d") % int(def["heal"]), Tokens.color("leaf"))
 	elif def.has("mp"):
 		d.restore_mp(int(def["mp"]))
-		FloatText.spawn(get_parent(), global_position + Vector3.UP * 2.0, "+%d" % int(def["mp"]), Tokens.color("mp"))
+		FloatText.spawn(get_parent(), global_position + Vector3.UP * 2.0, TranslationServer.translate("+%d") % int(def["mp"]), Tokens.color("mp"))
 	elif def.get("buff", "") == "guc":
 		_power_until = Time.get_ticks_msec() / 1000.0 + float(def["seconds"])
-		GameState.toast.emit("%d saniye gücün arttı!" % int(def["seconds"]), "star")
+		GameState.toast.emit(TranslationServer.translate("%d saniye gücün arttı!") % int(def["seconds"]), "star")
 	elif def.get("buff", "") == "kovucu":
 		GameState.repel_until = Time.get_ticks_msec() / 1000.0 + float(def["seconds"])
-		GameState.toast.emit("%d saniye moblar seni zor fark eder" % int(def["seconds"]), "drop")
+		GameState.toast.emit(TranslationServer.translate("%d saniye moblar seni zor fark eder") % int(def["seconds"]), "drop")
 	d.remove_item(id)
 	Audio.play("heal")
 	Effects.ring(get_parent(), global_position + Vector3.UP * 0.2, 1.4, Tokens.color(def.get("color", "honey")), 0.3)

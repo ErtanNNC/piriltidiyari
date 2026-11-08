@@ -73,7 +73,7 @@ func _ready() -> void:
 	if d.quest_state(QUEST) == "none":
 		var sk := d.active_skill()
 		if sk != "":
-			GameState.toast.emit("Özel yeteneğin: %s (L)" % Skills.DEFS[sk]["name"], "star")
+			GameState.toast.emit(TranslationServer.translate("Özel yeteneğin: %s (L)") % TranslationServer.translate(Skills.DEFS[sk]["name"]), "star")
 		_hud.show_hint("Tospik Nine ile konuş", "Tospik Nine ile konuş")
 	if DevTools.demo != "":
 		_run_demo(DevTools.demo)

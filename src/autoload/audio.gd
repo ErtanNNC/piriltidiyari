@@ -50,6 +50,7 @@ var _quiet_until := 0.0
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	_apply_language()
 	_music_bus = _bus("Music")
 	_sfx_bus = _bus("Sfx")
 	_lowpass = AudioEffectLowPassFilter.new()
@@ -226,6 +227,31 @@ func set_sfx_on(on: bool) -> void:
 	_save_settings()
 
 
+## Game language: "tr" (the source text) or "en" (translations/en.po).
+## First run follows the phone's language: Turkish phones get Turkish,
+## everyone else English.
+var language := ""
+
+
+func set_language(code: String) -> void:
+	language = code
+	_apply_language()
+	_save_settings()
+
+
+func _apply_language() -> void:
+	if language == "":
+		var c := ConfigFile.new()
+		if c.load(SETTINGS) == OK:
+			language = String(c.get_value("genel", "dil", ""))
+	if language == "":
+		language = "tr" if OS.get_locale_language() == "tr" else "en"
+	for arg in OS.get_cmdline_user_args():
+		if arg.begins_with("--lang="):
+			language = arg.get_slice("=", 1)
+	TranslationServer.set_locale(language)
+
+
 func _load_settings() -> void:
 	var c := ConfigFile.new()
 	if c.load(SETTINGS) == OK:
@@ -241,6 +267,7 @@ func _save_settings() -> void:
 	c.set_value("ses", "efekt", sfx_on)
 	c.set_value("ses", "muzik_seviye", music_volume)
 	c.set_value("ses", "efekt_seviye", sfx_volume)
+	c.set_value("genel", "dil", language)
 	c.save(SETTINGS)
 
 

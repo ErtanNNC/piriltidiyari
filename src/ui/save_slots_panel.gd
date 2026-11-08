@@ -56,13 +56,13 @@ func _fill() -> void:
 func _card(s: int) -> Control:
 	var info := SaveGame.summary(s)
 	var card := PanelContainer.new()
-	card.name = "Slot%d" % s
+	card.name = TranslationServer.translate("Slot%d") % s
 	card.custom_minimum_size = Vector2(300, 300)
 	card.add_theme_stylebox_override("panel", UiKit.panel_style())
 	var v := VBoxContainer.new()
 	v.add_theme_constant_override("separation", int(Tokens.px("space-2")))
 	card.add_child(v)
-	var head := UiKit.label("Kayıt %d" % s, "text-heading", "ink")
+	var head := UiKit.label(TranslationServer.translate("Kayıt %d") % s, "text-heading", "ink")
 	head.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	v.add_child(head)
 	if info.is_empty():
@@ -73,10 +73,10 @@ func _card(s: int) -> Control:
 		v.add_child(e)
 	else:
 		var name: String = info["name"] if String(info["name"]) != "" else "Bekçi"
-		v.add_child(_line("%s · Seviye %d" % [name, info["level"]], "text-body", "ink"))
+		v.add_child(_line(TranslationServer.translate("%s · Seviye %d") % [name, info["level"]], "text-body", "ink"))
 		var place: Array = SceneFlow.CARDS.get(info["scene_id"], ["", "Yolculukta"])
 		v.add_child(_line(place[1], "text-body", "ink"))
-		v.add_child(_line("Kıvılcım %d/5 · %d Pırıl" % [info["sparks"], info["piril"]], "text-caption", "ink-muted"))
+		v.add_child(_line(TranslationServer.translate("Kıvılcım %d/5 · %d Pırıl") % [info["sparks"], info["piril"]], "text-caption", "ink-muted"))
 		v.add_child(_line(_when(float(info["saved_at"])), "text-caption", "ink-muted"))
 		var gap := Control.new()
 		gap.size_flags_vertical = Control.SIZE_EXPAND_FILL
@@ -156,4 +156,4 @@ static func _when(t: float) -> String:
 		return ""
 	var bias := int(Time.get_time_zone_from_system().get("bias", 0)) * 60
 	var d := Time.get_datetime_dict_from_unix_time(int(t) + bias)
-	return "%02d.%02d.%d  %02d:%02d" % [d["day"], d["month"], d["year"], d["hour"], d["minute"]]
+	return TranslationServer.translate("%02d.%02d.%d  %02d:%02d") % [d["day"], d["month"], d["year"], d["hour"], d["minute"]]

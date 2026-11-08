@@ -279,7 +279,7 @@ func travel_to(id: String) -> void:
 	_player.velocity = Vector3.ZERO
 	_player.respawn_point = land
 	_player.input_enabled = true
-	GameState.toast.emit("Pırpır: %s! Tutun sıkı!" % ISLANDS[id]["name"], "quest")
+	GameState.toast.emit(TranslationServer.translate("Pırpır: %s! Tutun sıkı!") % TranslationServer.translate(ISLANDS[id]["name"]), "quest")
 
 
 func _on_lantern(l: SmallLantern) -> void:

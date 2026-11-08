@@ -50,3 +50,7 @@ cloud_shadow={
 "type": "float",
 "value": 0.0
 }
+
+[internationalization]
+
+locale/translations=PackedStringArray("res://translations/en.po")

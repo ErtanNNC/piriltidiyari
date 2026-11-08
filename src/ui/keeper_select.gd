@@ -80,10 +80,10 @@ func select(id: String) -> void:
 	for k: String in _cards:
 		(_cards[k] as KeeperCard).set_selected(k == id)
 	var info: Dictionary = Content.keepers[id]
-	_line.text = "%s: “%s”" % [info["name"], info["line"]]
+	_line.text = TranslationServer.translate("%s: “%s”") % [TranslationServer.translate(info["name"]), TranslationServer.translate(info["line"])]
 	_line_pill.visible = true
 	_pick.disabled = false
-	_pick.text = "Seç: %s" % info["name"]
+	_pick.text = TranslationServer.translate("Seç: %s") % TranslationServer.translate(info["name"])
 	highlighted.emit(id)
 
 

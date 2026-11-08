@@ -318,9 +318,9 @@ func _refresh_stats() -> void:
 	_hp.set_values(d.hp, d.max_hp)
 	_mp.set_values(d.mp, d.max_mp)
 	var nxt := Progression.xp_to_next(d.level)
-	_xp.set_values(d.xp, nxt, ("%d / %d XP" % [d.xp, nxt]) if nxt > 0 else "En yüksek seviye")
+	_xp.set_values(d.xp, nxt, (TranslationServer.translate("%d / %d XP") % [d.xp, nxt]) if nxt > 0 else "En yüksek seviye")
 	_level.text = str(d.level)
-	_name_label.text = "%s · Seviye %d" % [d.character_name, d.level]
+	_name_label.text = TranslationServer.translate("%s · Seviye %d") % [d.character_name, d.level]
 
 
 func _on_piril(total: int, delta: int) -> void:
@@ -339,7 +339,7 @@ func _refresh_quest() -> void:
 		return
 	var def: Dictionary = Content.quests[id]
 	var p := GameState.data.objective_progress(id)
-	_quest_title.text = "%s  %d/%d" % [def["title"], p.x, p.y]
+	_quest_title.text = TranslationServer.translate("%s  %d/%d") % [TranslationServer.translate(def["title"]), p.x, p.y]
 	for c in _quest_lines.get_children():
 		c.queue_free()
 	if GameState.data.quest_state(id) == "ready":
@@ -620,16 +620,25 @@ func toggle_pause() -> void:
 				Audio.play("coin"))
 		row.add_child(sl)
 		v.add_child(row)
-	var save := UiKit.button("Kaydet (Kayıt %d)" % SaveGame.slot, false)
+	var save := UiKit.button(TranslationServer.translate("Kaydet (Kayıt %d)") % SaveGame.slot, false)
 	save.name = "SaveButton"
 	var stuck := UiKit.button("Takıldım: son fenere dön", false)
 	var menu := UiKit.button("Ana menü", false)
-	for b: Button in [cont, save, mus, sfx, stuck, menu]:
+	var lang := UiKit.button("Language: English" if Audio.language == "en" else "Dil: Türkçe", false)
+	lang.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
+	lang.pressed.connect(func() -> void:
+		Audio.set_language("tr" if Audio.language == "en" else "en")
+		# rebuild the menu (and the HUD texts) in the new language
+		toggle_pause()
+		_refresh_powers()
+		_refresh_stats()
+		toggle_pause())
+	for b: Button in [cont, save, mus, sfx, lang, stuck, menu]:
 		b.custom_minimum_size = Vector2(280, 56)
 		v.add_child(b)
 	var refresh := func() -> void:
-		mus.text = "Müzik: " + ("Açık" if Audio.music_on else "Kapalı")
-		sfx.text = "Sesler: " + ("Açık" if Audio.sfx_on else "Kapalı")
+		mus.text = TranslationServer.translate("Müzik: %s") % TranslationServer.translate("Açık" if Audio.music_on else "Kapalı")
+		sfx.text = TranslationServer.translate("Sesler: %s") % TranslationServer.translate("Açık" if Audio.sfx_on else "Kapalı")
 	refresh.call()
 	cont.pressed.connect(toggle_pause)
 	mus.pressed.connect(func() -> void:
@@ -649,7 +658,7 @@ func toggle_pause() -> void:
 	menu.pressed.connect(func() -> void:
 		toggle_pause()
 		SceneFlow.go_to("title", false))
-	var note := UiKit.label("Bölüm başlarında kendiliğinden de kaydedilir. · %d FPS" % Engine.get_frames_per_second(), "text-caption", "ink-muted")
+	var note := UiKit.label(TranslationServer.translate("Bölüm başlarında kendiliğinden de kaydedilir. · %d FPS") % Engine.get_frames_per_second(), "text-caption", "ink-muted")
 	note.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	v.add_child(note)
 	_root.add_child(p)
@@ -678,7 +687,7 @@ func _refresh_powers() -> void:
 		if i < list.size():
 			var def: Dictionary = Powers.DEFS[list[i]]
 			b.set_meta("power", list[i])
-			b.text = "%s (%s)" % [def["short"], keys[i]] if not touch else String(def["short"])
+			b.text = TranslationServer.translate("%s (%s)") % [TranslationServer.translate(def["short"]), keys[i]] if not touch else TranslationServer.translate(String(def["short"]))
 
 
 func _process(_delta: float) -> void:
@@ -723,8 +732,8 @@ func _maybe_level_up() -> void:
 		_refresh_stats()
 		if id != Powers.FALLBACK:
 			var def: Dictionary = Powers.DEFS[id]
-			var how := " (%s tuşu / düğmesi)" % ["O", "P"][Powers.actives(d.powers).find(id)] if def["kind"] == "active" else ""
-			show_toast("%s: kademe %d%s" % [def["name"], Powers.rank(d.powers, id), how], "star"))
+			var how: String = TranslationServer.translate(" (%s tuşu / düğmesi)") % ["O", "P"][Powers.actives(d.powers).find(id)] if def["kind"] == "active" else ""
+			show_toast(TranslationServer.translate("%s: kademe %d%s") % [TranslationServer.translate(def["name"]), Powers.rank(d.powers, id), how], "star"))
 
 
 ## Keep the HUD out of notches and rounded corners (Android/iOS report a real

@@ -143,7 +143,7 @@ func _physics_process(delta: float) -> void:
 						var n := mini(int(stats["steals"]), GameState.data.piril)
 						if n > 0 and GameState.data.spend_piril(n):
 							_stolen += n
-							GameState.toast.emit("Korsan Martı %d Pırıl kaptı!" % n, "piril")
+							GameState.toast.emit(TranslationServer.translate("Korsan Martı %d Pırıl kaptı!") % n, "piril")
 			elif stats["attack"] == "lunge":
 				move = _attack_dir * 10.0
 				if not _hit_this_attack and dist < 1.2 and _player.hurt(stats["damage"], global_position):
@@ -321,7 +321,7 @@ func _calm() -> void:
 		var p := Pickup.new()
 		get_parent().add_child(p)
 		p.global_position = global_position + Vector3(randf_range(-1.2, 1.2), 0, randf_range(-1.2, 1.2))
-	FloatText.spawn(get_parent(), global_position + Vector3.UP * 2.2, "+%d XP" % int(stats["xp"]), Tokens.color("xp"))
+	FloatText.spawn(get_parent(), global_position + Vector3.UP * 2.2, TranslationServer.translate("+%d XP") % int(stats["xp"]), Tokens.color("xp"))
 	if _tag:
 		_tag.queue_free()
 	GameState.data.add_xp(stats["xp"])
@@ -371,7 +371,7 @@ func _separation() -> Vector3:
 ## "Sv 7" over its head: honey = your level, leaf = easier, berry = tougher.
 func _level_tag() -> void:
 	_tag = Label3D.new()
-	_tag.text = "Sv %d" % level
+	_tag.text = TranslationServer.translate("Sv %d") % level
 	_tag.font = Tokens.font_for("text-heading")
 	_tag.font_size = 56
 	_tag.pixel_size = 0.006

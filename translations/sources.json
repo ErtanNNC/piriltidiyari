@@ -1,0 +1,1036 @@
+{
+ "content/chapter0/barks.json": [
+  "Prolog bitti! Macera daha yeni başlıyor."
+ ],
+ "content/chapter0/chapter.json": [
+  "Gökkuşağı Köyü ve Çayır",
+  "Gökkuşağı Köyü"
+ ],
+ "content/chapter0/dialogue/dikis.json": [
+  "Yeni bir şey denemek ister misin? Hepsini sekiz bacakla diktim!",
+  "Hoş geldin! Renkler dönünce köye dükkân açtım.",
+  "Taç, şapka, pelerin... Aldığını hemen giyersin.",
+  "Bekçi Evi'ndeki dolaptan istediğin zaman değiştirebilirsin."
+ ],
+ "content/chapter0/dialogue/fistik.json": [
+  "Hıh! Rozetini kaybetme, bekçi.",
+  "O kırmızı sis... Gözümü ondan ayırmıyorum."
+ ],
+ "content/chapter0/dialogue/fistik_heykeli.json": [
+  "Hrrr... Hıh... Bekçi sen misin? Dikenlerin nerede?",
+  "Beş parçayı bul... Ben biraz daha uyuyayım...",
+  "Hrrr... Bal Şurubu... Hrrr..."
+ ],
+ "content/chapter0/dialogue/miril.json": [
+  "Bugün her gün doğum günüm gibi! Teşekkürler bekçi."
+ ],
+ "content/chapter0/dialogue/tikir.json": [
+  "Vırak! Aletlerim parıl parıl, bak bakalım.",
+  "Vırak! Ben Usta Tıkır. Işıkla çalışan aletler yaparım.",
+  "Değnek, asa, kılıç: vuruşların daha parlak olur.",
+  "Sapanla Işık Tohumu atarsın. Uzaktaki Pus'u dağıtır!",
+  "Enerjin azalınca Yıldız Tozu iç. Bende de var!"
+ ],
+ "content/chapter0/dialogue/tospik_nine.json": [
+  "Fener altı renkle yanıyor! Mırıl da artık bizden biri.",
+  "Fıstık o kırmızı sisi izliyor. Yeni macera yakında!",
+  "Beyaz Kıvılcım da geldi! Dört oldu, bir kaldı.",
+  "Demek Pus'un adı Mırıl... Yalnız bir yıldız.",
+  "Pus Kalesi'nin tabelası meydanda. Hazır olunca git!",
+  "Sarı Kıvılcım! Gökyüzü yeniden masmavi.",
+  "Pırpır bir gölge görmüş... İki parlak gözlü.",
+  "Uyku Dağı'ndaki Bilge Kuzey belki bilir. Tabelası meydanda!",
+  "Mavi Kıvılcım da geldi! Kazma bana mektup yazdı.",
+  "Sırada Bulut Limanı var. Tabelası meydanda!",
+  "Yeşil Kıvılcım! Aferin sana, cesur bekçi!",
+  "Şekerleme Mağaraları'nın feneri de sönmüş. Tabelaya bak!",
+  "Ama önce biraz dinlen. Bal Şurubu ister misin?",
+  "Mağaralara giden tabela meydanda. Kazma seni bekliyor!",
+  "Günaydın, yeni bekçi! Kıvılcım sana çok yakışmış.",
+  "Önce Fıstık'a bir merhaba de. Heykeli kulenin dibinde.",
+  "Sonra çayıra bak. Koca bir mantar yolu tıkamış.",
+  "Çayır köyün güneyinde. Dikkatli ol, cesur bekçi!",
+  "Mantar uyandı ve çayır yeniden pırıl pırıl!",
+  "Ama Fısıltı Ormanı'nın feneri söndü.",
+  "Yeşil Kıvılcım orada bir yerde. Önce o feneri yak.",
+  "Fısıltı Ormanı seni bekliyor!"
+ ],
+ "content/chapter0/quests/ilk_adim.json": [
+  "Bekçinin İlk Adımı",
+  "Fıstık'ın heykelini ziyaret et",
+  "Çayırdaki Dev Somurtkan Mantar'ı sakinleştir",
+  "Tospik Nine'ye dön"
+ ],
+ "content/chapter0/shop.json": [
+  "Terzi Dikiş'in Kıyafetleri",
+  "Usta Tıkır'ın Aletleri ve İksirleri"
+ ],
+ "content/chapter1/barks.json": [
+  "Burası Fısıltı Ormanı... Ağaçlar konuşuyor mu?",
+  "Önce sönen feneri yakayım.",
+  "Fener yandı! Pus biraz geri çekildi.",
+  "Hıh? Sis beni başa döndürdü.",
+  "Gri ağaç beni kandırdı! Tersini yapmalıydım.",
+  "Üç fener yandı! Kalbe giden perde kalktı.",
+  "Kim o? Uyuyamıyorum zaten, bir de sen mi geldin?",
+  "Bu yeşil ışık benim! Kimse almasın!",
+  "Ah... Çok uzun zamandır uyumamıştım.",
+  "Pus bana sürekli yalnız olduğumu fısıldadı.",
+  "Özür dilerim küçük bekçi. Al, bu ışık senin.",
+  "Yeşil Kıvılcım! Birini bulduk, dört kaldı.",
+  "Hu-hu! Pus herkesin küçük üzüntüsünü büyütüyor demek.",
+  "Köye dön, Tospik Nine'ye müjdeyi ver.",
+  "Bir gece gökten küçük bir yıldız düştü.",
+  "Çayırın ortasına kondu ve parıldayarak bekledi.",
+  "Kimse başını kaldırıp bakmadı. Herkes çok meşguldü.",
+  "Küçük yıldız üşüdü. Işığı yavaş yavaş griye döndü.",
+  "Hu-hu! Üç yavru da yuvasında. Sen gerçek bir bekçisin!"
+ ],
+ "content/chapter1/chapter.json": [
+  "Fısıltı Ormanı",
+  "Sağa git...",
+  "Sola git..."
+ ],
+ "content/chapter1/dialogue/dikis.json": [
+  "Sekiz bacakla dikiyorum, yakında dükkân açık!",
+  "Merhaba! Ben Terzi Dikiş. Pelerin, şapka, ne istersen.",
+  "Ama Pus bütün iplerimi griye boyadı. Önce renkler dönsün."
+ ],
+ "content/chapter1/dialogue/hu.json": [
+  "Hu-hu! Hoş geldin yeni bekçi. Ben Öğretmen Hu.",
+  "Bu ormanda ağaçlar yolu fısıldar.",
+  "Ama Pus'a bulanmış gri ağaçlar hep tersini söyler!",
+  "Yeşil ağaç ne derse onu yap. Gri ağaç ne derse tersini.",
+  "Bir de üç küçük feneri yak. Kalbe giden perde ancak öyle kalkar.",
+  "Yeşil doğru, gri ters. Tamamdır!",
+  "Unutma: gri ağaç tersini söyler. Hu-hu!",
+  "Orman yeniden yeşil! Kütük Kral bile gülümsüyor.",
+  "Hu-hu! Önce Orman Feneri'ni yak, bekçi."
+ ],
+ "content/chapter1/dialogue/yavru1.json": [
+  "Hıçk... Sis yüzünden yuvamı bulamıyorum.",
+  "Korkma! Yuva şu tarafta, peşimden gel.",
+  "Teşekkürler bekçi! Yaşasın!",
+  "Yuvamın yolunu artık biliyorum!"
+ ],
+ "content/chapter1/dialogue/yavru2.json": [
+  "Ağaçlar bana hep yanlış yolu söyledi!"
+ ],
+ "content/chapter1/dialogue/yavru3.json": [
+  "Karga beni korkuttu... yani biraz şaşırttı!"
+ ],
+ "content/chapter1/quests/fisilti_ormani.json": [
+  "Orman Feneri'ni yak",
+  "Baykuş Öğretmen Hu ile konuş",
+  "Küçük fenerleri yak",
+  "Fısıltıları doğru oku, ormanın kalbine ulaş",
+  "Kütük Kral'ı uyandır"
+ ],
+ "content/chapter1/quests/kayip_yavrular.json": [
+  "Kayıp Yavrular",
+  "Ormanda kaybolan yavruları bul"
+ ],
+ "content/chapter2/barks.json": [
+  "Vay! Şeker gibi kristaller... ama hepsi gri.",
+  "Önce feneri yakayım, karanlıkta yolumu bulamam.",
+  "Fener yandı! Köstebek köyü aydınlandı.",
+  "Bütün kristaller parlıyor! Kapı açıldı.",
+  "Bu şurup çok yapışkan! Platformlara zıplasam iyi olur.",
+  "Dur orada! Bu ışığa kimse dokunamaz!",
+  "Seni de Pus gönderdi, değil mi? Kıskaçlarım hazır!",
+  "Dur, dur! Sen Pus değilsin... Sen bir bekçisin!",
+  "Ben Kıvılcım'ı Pus'tan saklıyordum. Seni de Pus sandım.",
+  "Özür dilerim, minik bekçi. Mavi Kıvılcım artık sende.",
+  "Mavi Kıvılcım! İki tane oldu, üç kaldı.",
+  "Mağara pırıl pırıl! Dükkânımızı açtık, bekleriz!",
+  "Ben de kapıda nöbet tutarım. Artık dostuz!",
+  "Üç yavrum da evde! Sana ne kadar teşekkür etsem az.",
+  "Küçük yıldız soğukta bekledikçe üzüntüsü büyüdü.",
+  "Üzüntü gri bir sis oldu ve yıldızı sardı.",
+  "Sis yıldızı herkesten sakladı. Yıldız da saklandığını unuttu.",
+  "Sisin içinden iki parlak göz bakıyordu. Hâlâ bir arkadaş arıyordu."
+ ],
+ "content/chapter2/chapter.json": [
+  "Şekerleme Mağaraları"
+ ],
+ "content/chapter2/dialogue/kazma.json": [
+  "Hoş geldin bekçi! Dükkânımız açık, bak bakalım.",
+  "Aman, bir bekçi! Ben Madenci Kazma.",
+  "Pus kristallerimizi griye boyadı, mağara karardı.",
+  "Gri kristale vurursan yeniden parlar!",
+  "Bir salonun bütün kristalleri yanınca kristal kapı açılır.",
+  "Bir de çocuklarım karanlıkta kayboldu. Görürsen eve yolla.",
+  "Kristallere vur, çocukları bul. Anlaştık!",
+  "Gri kristale vur, parlasın! Kıskaç'ın gölü en dipte.",
+  "Önce Mağara Feneri'ni yak, ışık lazım bize!"
+ ],
+ "content/chapter2/dialogue/kazma_cocuk1.json": [
+  "Hıçk... Karanlıkta annemi bulamıyorum.",
+  "Baban seni arıyor! Köy şu tarafta.",
+  "Yaşasın! Eve koşuyorum!",
+  "Eve giden yolu biliyorum artık!"
+ ],
+ "content/chapter2/dialogue/kazma_cocuk2.json": [
+  "Şurup ayağıma yapıştı, sonra kayboldum!"
+ ],
+ "content/chapter2/dialogue/kazma_cocuk3.json": [
+  "Burası çok karanlık. Sen parlıyorsun ama!"
+ ],
+ "content/chapter2/quests/kazma_cocuklari.json": [
+  "Kazma'nın Çocukları",
+  "Karanlıkta kaybolan minik köstebekleri bul"
+ ],
+ "content/chapter2/quests/sekerleme_magaralari.json": [
+  "Mağara Feneri'ni yak",
+  "Madenci Kazma ile konuş",
+  "Parlak Salon'un kristallerini yak",
+  "Karanlık Tünel'in kristallerini yak",
+  "Kristal Yengeç Kıskaç'la yüzleş"
+ ],
+ "content/chapter2/shop.json": [
+  "Kazma Ailesi Dükkânı"
+ ],
+ "content/chapter3/barks.json": [
+  "Vay, bulutların üstündeyiz! Ama gök çok bulanık.",
+  "Önce Liman Feneri'ni yakayım.",
+  "Fener yandı! Bir martı bana el sallıyor.",
+  "Oklar rüzgârın yönünü gösterir. Bir kayanın dibine saklan!",
+  "Üç çan da çaldı! Rüzgâr Gülü Adası sakinleşti.",
+  "Hop! Balonlar beni havaya fırlatıyor!",
+  "Tepeden Rüzgâr'ın yuvası görünüyor... Fırtına Adası!",
+  "Fırtına dindi, tepe görüldü. Fırtına Adası'na uçabiliriz!",
+  "Tuttum seni! Bulutlar yumuşak ama dikkat et.",
+  "Kim geldi yuvama? Pırpır mı yolladı seni?",
+  "Bu sarı ışık benim! Fırtınam seni uçuracak!",
+  "Ah... Pus kulağıma hep Pırpır'ın benden iyi olduğunu fısıldadı.",
+  "Kıskandım ve fırtına oldum. Özür dilerim.",
+  "Hadi canım eski dostum, yine yarışırız!",
+  "Sarı Kıvılcım! Üç oldu, iki kaldı.",
+  "Şu da ne? Sisin içinde biri var!",
+  "İki parlak göz! Küçücük bir gölge...",
+  "Kaçtı. Ama sanki... çok yalnız görünüyordu.",
+  "Pazarım açıldı! Gemiye uğra, nadir şeylerim var.",
+  "Üç yavrum da yuvada! Sen göklerin en iyi bekçisisin!",
+  "Sis büyüdükçe küçük yıldız gizlenmeyi öğrendi.",
+  "Kimse onu görmezse, kimse onu üzemezdi.",
+  "Ama her gece gökteki yıldızlara baktı ve özledi.",
+  "Eskiden onlardan biriydi. Hâlâ biraz parlıyordu."
+ ],
+ "content/chapter3/chapter.json": [
+  "Bulut Limanı"
+ ],
+ "content/chapter3/dialogue/marti_yavru1.json": [
+  "Cik cik! Rüzgâr beni buraya savurdu!",
+  "Pırpır seni arıyor! Gemiye uç bakalım.",
+  "Cik! Teşekkürler bekçi!",
+  "Cik cik! Artık uçmayı biliyorum!"
+ ],
+ "content/chapter3/dialogue/marti_yavru2.json": [
+  "Balonlar çok eğlenceli ama annemi özledim."
+ ],
+ "content/chapter3/dialogue/marti_yavru3.json": [
+  "Rüzgâr Gülü dönüp duruyor, başım döndü!"
+ ],
+ "content/chapter3/dialogue/pirpir.json": [
+  "Ahoy! Göklerin en nadir pazarına hoş geldin!",
+  "Ahoy minik bekçi! Ben Kaptan Pırpır, göklerin en hızlısı!",
+  "Pus limanı fırtınaya boğdu. Eski rakibim Rüzgâr çıldırdı!",
+  "Sarı Kıvılcım'ı yuttu, yuvasında fırtına koparıyor.",
+  "Rüzgâr Gülü Adası'ndaki üç çanı çal, fırtına dinsin.",
+  "Balon Adası'nın tepesinden de Rüzgâr'ın yuvası görünür.",
+  "Gemime bin, seni adalara uçurayım! Bir de yavrularım kayıp...",
+  "Çanlar, balonlar, yavrular. Hadi uçalım!",
+  "Gemi hazır! Rüzgâr esince bir kayanın dibine saklan.",
+  "Rüzgâr'la yine yarışacağız. Bu sefer fırtınasız!",
+  "Ahoy! Önce Liman Feneri'ni yak, yolumuz aydınlansın."
+ ],
+ "content/chapter3/quests/bulut_limani.json": [
+  "Liman Feneri'ni yak",
+  "Kaptan Martı Pırpır ile konuş",
+  "Rüzgâr Gülü Adası'nda fırtına çanlarını çal",
+  "Balon Adası'nın tepesine çık",
+  "Fırtına Martısı Rüzgâr'ı yatıştır"
+ ],
+ "content/chapter3/quests/marti_yavrulari.json": [
+  "Martı Yavruları",
+  "Fırtınada savrulan martı yavrularını bul"
+ ],
+ "content/chapter3/shop.json": [
+  "Pırpır'ın Nadir Pazarı"
+ ],
+ "content/chapter4/barks.json": [
+  "Brrr... Burası çok sessiz. Neden bu kadar uykum geldi?",
+  "Önce Dağ Feneri'ni yakayım. Biraz ısınırım.",
+  "Fener yandı! Ama yukarıdaki sis çok uykulu görünüyor.",
+  "Ateş yandı! Uykulu sis eriyip gitti.",
+  "Hıııı... Bu sis insanın gözünü kapatıyor...",
+  "Kim geldi? Herkes gibi sen de beni soğuk mu buluyorsun?",
+  "Bu beyaz ışık benimle kalacak! Donsun her şey!",
+  "Brrr... Pus bana kimsenin beni sevmediğini söyledi.",
+  "Çok soğuğum diye kimse sarılmazmış. Özür dilerim.",
+  "Ama sen dondurmasın! Herkes dondurma sever!",
+  "Gerçekten mi? O zaman... Al, bu ışık senin olsun.",
+  "Dağ eriyor! Pus Kalesi'nin yolu açıldı.",
+  "Mırıl orada bekliyor. Kalbini açık tut, bekçi.",
+  "Üç uykucu da uyandı! Dağa bahar geldi sanki.",
+  "Mırıl bir gün köye yaklaştı. Şenlikte herkes gülüyordu.",
+  "Kapının önünde durdu ama içeri giremedi. Kimse çağırmadı.",
+  "O gece Mırıl bir şey fark etti: Kıvılcım'ın ışığı sıcaktı.",
+  "Belki o ışık kendisininkini de geri getirirdi..."
+ ],
+ "content/chapter4/chapter.json": [
+  "Uyku Dağı"
+ ],
+ "content/chapter4/dialogue/kuzey.json": [
+  "Hoş geldin bekçi. Buraya kadar çok yol geldin.",
+  "Sana bir hikâye anlatayım. Pus'un hikâyesini.",
+  "Yıllar önce gökten küçük bir yıldız düştü.",
+  "Kimse onu fark etmedi. Herkes kendi işindeydi.",
+  "Soğukta bekledi, bekledi. Üzüntüsü griye döndü.",
+  "O gri üzüntü Pus oldu. Yıldızın adı Mırıl'dı.",
+  "Yani Mırıl kötü değil... Sadece yalnız mı?",
+  "Evet. Pus kötülük değil, yalnızlıktır. Bunu unutma.",
+  "Şimdi göle git. Dondurma Beyaz Kıvılcım'ı dondurdu.",
+  "Topladığın Hikâye Taşları'nı bir okuyayım...",
+  "Göl kuzeyde. Dondurma'yı uyandır, Kıvılcım'ı kurtar.",
+  "Hrrm... Önce dağın fenerini yak, bekçi. Çok üşüdüm."
+ ],
+ "content/chapter4/dialogue/uykulu_yavru1.json": [
+  "Zzz... Beş dakika daha...",
+  "Günaydın uykucu! Yuvan seni bekliyor.",
+  "Uyandım! Zıp zıp eve!",
+  "Bir daha karda uyumayacağım. Galiba."
+ ],
+ "content/chapter4/dialogue/uykulu_yavru2.json": [
+  "Hrrr... Havuç rüyası görüyordum..."
+ ],
+ "content/chapter4/dialogue/uykulu_yavru3.json": [
+  "Ha? Sabah mı oldu? Esnemekten çenem ağrıdı!"
+ ],
+ "content/chapter4/quests/uyku_dagi.json": [
+  "Dağ Feneri'ni yak",
+  "Kamp ateşlerini yak, uykulu sisi erit",
+  "Zirvede Bilge Kuzey'i dinle",
+  "Buz Golem Dondurma'yı uyandır"
+ ],
+ "content/chapter4/quests/uykulu_yavrular.json": [
+  "Uykucu Yavrular",
+  "Karda uyuyakalan tavşan yavrularını uyandır"
+ ],
+ "content/chapter5/barks.json": [
+  "Pus Kalesi... Burası çok gri ve çok sessiz.",
+  "Ama dört Kıvılcım avucumda parlıyor. Hadi!",
+  "Kale Feneri yandı! Kıvılcımlarım daha da parladı.",
+  "Kıvılcım'ı gösterdim, Pus kenara çekildi!",
+  "Eski bir oyuncak ayı... Çok sevilmiş ama yalnız kalmış.",
+  "Bir doğum günü şapkası. Masada hiç tabak yok...",
+  "Bir yıldız haritası. Bir yıldızın yanına kalp çizilmiş.",
+  "Küçük bir fener. Işığı sönmüş ama hâlâ sıcak.",
+  "Gitsin! Herkes gitsin! Bu ışık benim!",
+  "Kimse beni görmedi. Şimdi ben de kimseyi görmeyeceğim!",
+  "Ben seni görüyorum, Mırıl. Ve buradayım.",
+  "Neden hâlâ buradasın? Neden gitmiyorsun?",
+  "Çünkü sana bir şey göstermek istiyorum.",
+  "Bu oyuncak ayı... Kimse benimle oynamamıştı.",
+  "Ben oynarım! Hem de her gün.",
+  "Doğum günüm vardı... ama kimse gelmedi.",
+  "Bu yıl herkes gelecek. Söz!",
+  "Gökteki evimi unuttum. Yıldızlar beni hatırlar mı?",
+  "Hatırlar! Bak, hepsi sana parlıyor.",
+  "Işığım söndü sanıyordum...",
+  "Sönmedi. Sadece çok yalnızdı.",
+  "Beni... gerçekten görüyor musun?",
+  "Görüyorum. Artık yalnız değilsin, Mırıl.",
+  "O zaman... bu mor ışık hepimizin olsun.",
+  "Taşlarımın hepsini okumuşsun! Benim hikâyemi bilen biri var...",
+  "Beş Kıvılcım bir araya geldi! Hadi, Fener'e!",
+  "Hıh... Hrrm... Ne kadar uyumuşum?",
+  "Epey uzun, ihtiyar şövalye! Bak, yeni bekçimiz var.",
+  "Hıh. Dikenlerim ışıl ışıl. Demek iyi iş çıkardın.",
+  "Al bakalım bekçi. Kendi dikenimden bir rozet.",
+  "Fener artık altı renkle yanıyor. Altıncısı Mırıl'ın!",
+  "Mırıl, bu pasta senin. Bir dilek tut ve üfle!",
+  "Hiç pasta görmemiştim... Fuuuu!",
+  "Pati, yarından itibaren benim çırağımsın. Hıh!",
+  "Ben hazırım! Hem de çok hazırım!",
+  "Kardeşim! Seni Pus'tan sonra buldum sonunda!",
+  "Ben... başardım. Gerçekten başardım.",
+  "Diyar haritam tamam! Her köşesini çizdim.",
+  "Ama bir köşe hâlâ boş... Uzaktaki dağın ardı.",
+  "Mırıl, artık en yakın arkadaşımsın.",
+  "Arkadaş... Ne güzel bir kelime.",
+  "Şuraya bakın! Dağın ardında kırmızı bir sis...",
+  "Bu Pus değil. Bu başka bir şey.",
+  "Mırıl bir kale yaptı. İçine bütün anılarını sakladı.",
+  "Oyuncakları, şapkası, haritası... Ama kale hep sessizdi.",
+  "Bir gece Fener'in ışığını gördü ve çok özledi.",
+  "Işığı yutmak istemedi aslında. Sadece ısınmak istedi."
+ ],
+ "content/chapter5/chapter.json": [
+  "Pus Kalesi"
+ ],
+ "content/chapter5/quests/pus_kalesi.json": [
+  "Kale Feneri'ni yak",
+  "Kıvılcım kapılarını aç",
+  "Mırıl'ın anılarını bul",
+  "Kalenin tepesinde Mırıl'a ulaş",
+  "Mor Kıvılcım'ı al"
+ ],
+ "content/items.json": [
+  "Pembe Fener",
+  "Mavi Fener",
+  "Yeşil Fener",
+  "Bal Şurubu",
+  "Canını 40 doldurur",
+  "Yıldız Tozu",
+  "Enerjini 30 doldurur",
+  "Kristal Tılsım",
+  "Canın kalıcı olarak 15 artar",
+  "Cesaret Şekeri",
+  "60 saniye gücün artar",
+  "Pus Kovucu",
+  "90 saniye moblar seni zor fark eder",
+  "Rüzgâr Tılsımı",
+  "Kalıcı olarak biraz daha hızlı koşarsın",
+  "Çiçek Tacı",
+  "Çiçekler seni iyileştirir: 2 sn'de +1 can",
+  "Kâşif Şapkası",
+  "Daha hızlı yürürsün, Pırıl uzaktan gelir",
+  "Yıldız Pelerini",
+  "Enerjin hızla dolar: saniyede +2",
+  "Minik Miğfer",
+  "Pus'un vuruşları %30 daha az acıtır",
+  "Işık Değneği",
+  "Her vuruşta önüne bir ışık yıldızı fırlar (+3)",
+  "Yıldız Asası",
+  "Vuruşun geniş bir yıldız halkası olur (+6)",
+  "Kıvılcım Kılıcı",
+  "Her vuruş ileri bir kıvılcım dalgası yollar (+10)",
+  "Işık Sapanı",
+  "Işık Tohumu fırlatır: I tuşu / At",
+  "Işık Tohumu (10)",
+  "Sapanla uzağa atılır, Pus'u dağıtır"
+ ],
+ "content/keepers.json": [
+  "Kedi",
+  "Ben hazırım!",
+  "Pençe Kombosu: üçlü hızlı vuruş",
+  "Çift zıplama",
+  "Meraklı ve atak. Fıstık'ın çırağı olmak istiyordu.",
+  "Fıstık'ın Eski Eldiveni",
+  "Ayı yavrusu",
+  "Ben... deneyebilirim.",
+  "Kucaklama Kalkanı: hasarı emer, dostları korur",
+  "Kaya ve kütük itme",
+  "Utangaç ama yumuşak kalpli. Kardeşini arıyor.",
+  "Kardeşinin Atkısı",
+  "Çıtır",
+  "Sincap",
+  "Haritamı aldım, gidelim!",
+  "Fındık Fırlatma: seken, çok hedefli atış",
+  "Halat atma",
+  "Şakacı ve konuşkan. Diyarın haritasını çizmek istiyor.",
+  "Diyar Haritası",
+  "Ateşböceği",
+  "Işık bizi çağırıyor.",
+  "Işık Patlaması: alan hasarı ve iyileştirme",
+  "Aydınlatma",
+  "Sakin ve düşünceli. Pus'un kötü olmadığını sezen ilk kişi.",
+  "İlk Yıldız Feneri"
+ ],
+ "content/prologue/barks.json": [
+  "Çocuklar güvende. Şimdi sıra kulede!",
+  "Hıh. Bu yol eskiden daha kısaydı.",
+  "Dikenlerim ışıl ışıl! Yeni bir hareket öğrendim.",
+  "Büyük Kıvılcım'ın ışığı titriyor. Acele et, Fıstık!",
+  "Büyük Kıvılcım! Dayan, geliyorum!",
+  "Hu-huuu! Bu parlak ışık artık benim!",
+  "Önce benim dikenlerimi geçmen lazım, tüy yumağı!",
+  "Hu-hu! Daha hızlı uçarım!",
+  "Huuu... Bırak beni, ışığa yaklaşmak istiyorum!",
+  "Beni... kimse... görmüyor...",
+  "Bu ses de neydi? Baykuş dağıldı ama Pus duruyor.",
+  "Pus geri çekilmiyor... Kuleye tırmanıyor!",
+  "Işık tek bir yerde durursa, Pus onu yutar.",
+  "Ama her yere dağılırsa... Pus hepsini yakalayamaz!",
+  "Dikenlerim, son bir kez parlayın!",
+  "Beş parça... beş yürek... Biraz... kestireceğim...",
+  "Gençler, toplanın. Fıstık ışığı beş parçaya böldü.",
+  "Tek bir bekçi yerine beş yürek taşısın diye.",
+  "Fener'in son kıvılcımı yeni bekçisini kendi seçecek.",
+  "Bakın! Kıvılcım birini arıyor..."
+ ],
+ "content/prologue/chapter.json": [
+  "Fener'in Son Gecesi",
+  "Yıldız Şenliği",
+  "Gri Rüzgâr",
+  "Kule'ye Koşu",
+  "Pus Baykuşu",
+  "Fıstık'ın Seçimi",
+  "Fener'in Seçimi"
+ ],
+ "content/prologue/cutscenes/fistigin_secimi.json": [
+  "Fıstık ışıkla uyudu",
+  "Bir gün yeniden uyanacak."
+ ],
+ "content/prologue/dialogue/piti.json": [
+  "Hıçk... Sis yüzünden yıldızları göremiyorum.",
+  "Fenerim parlıyor! Teşekkürler Fıstık!",
+  "Bu benim fenerim! Pembe olan!",
+  "Al bakalım. Bir daha düşürme.",
+  "Pembe fenerim kayboldu... Kuyunun oralarda düşürdüm galiba.",
+  "Şenlik başlıyor! Zıp zıp!"
+ ],
+ "content/prologue/dialogue/tipis.json": [
+  "Vak! Tospik Nine'nin yanından ayrılmıyorum!",
+  "Vak vak! En güzel fener benimki!",
+  "Bu benim fenerim! Mavi olan!",
+  "Mavi fenerim kayboldu... Büyük ağacın altında düşürdüm galiba.",
+  "Vak! Bu gece yıldız sayacağım!"
+ ],
+ "content/prologue/dialogue/tospik_nine.json": [
+  "Fıstık! Çok şükür buradasın.",
+  "Bu gri sis hayvanları huysuz yapıyor.",
+  "Al, köy arılarının balı. Bal Şurubu canını doldurur.",
+  "Bal! En sevdiğim.",
+  "Kulenin yolunu aç. Ben çocuklara göz kulak olurum.",
+  "Kulenin yolundaki huysuzları sakinleştir!",
+  "Fıstık, dikkat et! Sis yaklaşıyor.",
+  "Yol açıldı! Çocukları kabuğuma saklarım.",
+  "Sen kuleye koş. Büyük Kıvılcım'ı koru!",
+  "Dizlerim, dayanın bakalım. Geliyorum!",
+  "Hadi Fıstık, kuleye!",
+  "Fıstık! Bu gece Yıldız Şenliği var.",
+  "Büyük Kıvılcım'ı her yıl olduğu gibi sen yakacaksın.",
+  "Hıh. Her yıl ben. Tabii ki ben.",
+  "Ama bir dert var: üç çocuk fenerini kaybetmiş.",
+  "Fenerleri bul, sahiplerine ver. Hadi bakalım!",
+  "Çocuklara sor, nerede düşürdüklerini bilirler.",
+  "Üç fener de yerinde! Köy pırıl pırıl oldu.",
+  "Dizlerim ağrıdı ama değdi.",
+  "Al bakalım, bu da senin payın.",
+  "Aaa... Yıldızlar neden sönüyor?",
+  "Hadi kuleye! Yıldızlar seni bekliyor."
+ ],
+ "content/prologue/dialogue/zipzip.json": [
+  "Vırak! Sen yaparsın Fıstık!",
+  "Vırak! Şimdi her yeri görüyorum!",
+  "Bu benim fenerim! Yeşil olan!",
+  "Yeşil fenerim kayboldu... Çiçek tarlasında düşürdüm galiba.",
+  "Vırak! Kovalamaca oynayalım mı?"
+ ],
+ "content/prologue/quests/gri_ruzgar.json": [
+  "Puslu Sümüklüleri sakinleştir",
+  "Kirişin altından Tospik Nine'ye ulaş",
+  "Tospik Nine ile konuş",
+  "Kuleye giden yolu aç"
+ ],
+ "content/prologue/quests/kayip_fenerler.json": [
+  "Kayıp Fenerler",
+  "Pıtı'ya pembe fenerini ver",
+  "Tıpış'a mavi fenerini ver",
+  "Zıpzıp'a yeşil fenerini ver"
+ ],
+ "content/prologue/quests/kuleye_kosu.json": [
+  "Düşen kirişlere dikkat, kuleye koş",
+  "Sarmaşıktan tırman",
+  "Sallanan fenerlerden geç",
+  "Kulenin çatısına çık"
+ ],
+ "content/speakers.json": [
+  "Fıstık",
+  "Tospik Nine",
+  "Pıtı",
+  "Tıpış",
+  "Zıpzıp",
+  "Fıstık'ın heykeli",
+  "Baykuş Öğretmen Hu",
+  "Fısıldayan Ağaç",
+  "Gri Ağaç",
+  "Kütük Kral",
+  "Terzi Örümcek Dikiş",
+  "Kayıp Yavru",
+  "Kayıp Tavşan Yavrusu",
+  "Kayıp Ördek Yavrusu",
+  "Kayıp Kurbağa Yavrusu",
+  "Hikâye Taşı",
+  "Madenci Kazma",
+  "Kristal Yengeç Kıskaç",
+  "Minik Kazma",
+  "Minicik Kazma",
+  "En Minik Kazma",
+  "Kaptan Martı Pırpır",
+  "Fırtına Martısı Rüzgâr",
+  "Martı Yavrusu",
+  "Minik Martı",
+  "Minicik Martı",
+  "Bilge Kuzey",
+  "Buz Golem Dondurma",
+  "Uykucu Tavşan",
+  "Uykucu Yavru",
+  "Minik Uykucu",
+  "Mırıl",
+  "Gölge Prens Mırıl",
+  "Usta Tıkır"
+ ],
+ "src/actors/dondurma.gd": [
+  "panel@light",
+  "Brrr! Biraz donakaldın",
+  "Halka geliyor: zıpla!",
+  "Halka: zıpla!",
+  "Yumrukları buza saplandı! Şimdi vur!",
+  "Yumrukları saplandı! Vur!"
+ ],
+ "src/actors/keeper_models.gd": [
+  "Yok",
+  "Şapka",
+  "Atkı",
+  "Gözlük"
+ ],
+ "src/actors/kiskac.gd": [
+  "Kıskacı saplandı! Şimdi vur!",
+  "Başı döndü! Şimdi vur!"
+ ],
+ "src/actors/kutuk_kral.gd": [
+  "z z Z",
+  "Halka geliyor: üstünden zıpla!",
+  "Kral esniyor! Şimdi vur!"
+ ],
+ "src/actors/miril.gd": [
+  "Mırıl yoruldu. Şimdi yaklaş!",
+  "Mırıl yoruldu. Yaklaş!"
+ ],
+ "src/actors/mob.gd": [
+  "Korsan Martı %d Pırıl kaptı!",
+  "+%d XP",
+  "Sv %d"
+ ],
+ "src/actors/mob_models.gd": [
+  "Wing%s"
+ ],
+ "src/actors/owl.gd": [
+  "Sersemledi! Şimdi vur!"
+ ],
+ "src/actors/pickup.gd": [
+  "+%d",
+  "%s bulundu!"
+ ],
+ "src/actors/player.gd": [
+  "Enerjin az. Yıldız Tozu iç!",
+  "Canın zaten dolu",
+  "%d saniye gücün arttı!",
+  "%d saniye moblar seni zor fark eder",
+  "Uykuya daldın",
+  "Fener'in yanında uyanıyorsun...",
+  "%s|%s",
+  "Işık Tohumun kalmadı. Usta Tıkır'dan alabilirsin",
+  "%s kaldırıldı",
+  "%s elinde"
+ ],
+ "src/actors/ruzgar.gd": [
+  "Rüzgâr esiyor! Bir sütunun dibine saklan",
+  "Sütunun dibine saklan!"
+ ],
+ "src/autoload/audio.gd": [
+  "--lang="
+ ],
+ "src/autoload/game_state.gd": [
+  "%s ×%d aldın",
+  "Hikâye Taşları: %d/%d",
+  "Yeni görev: %s",
+  "Görev tamam!",
+  "%s teslim edildi"
+ ],
+ "src/autoload/scene_flow.gd": [
+  "Prolog · Sahne 1",
+  "Prolog · Sahne 2",
+  "Prolog · Sahne 3",
+  "Prolog · Sahne 4",
+  "Prolog · Sahne 5",
+  "Prolog · Sahne 6",
+  "Bölüm 0",
+  "Bölüm 1",
+  "Bölüm 2",
+  "Bölüm 3",
+  "Bölüm 4",
+  "Bölüm 5",
+  "Kapanış",
+  "Altı Renkli Fener"
+ ],
+ "src/autoload/tokens.gd": [
+  "fontSize",
+  "fontWeight"
+ ],
+ "src/core/mob_stats.gd": [
+  "Puslu Sümüklü",
+  "Somurtkan Mantar",
+  "Huysuz Kirpi Topu",
+  "Gıcık Karga",
+  "Gri Kristal Böceği",
+  "Yarasa Fısıltısı",
+  "Fırtına Yumağı",
+  "Korsan Martı",
+  "Kar Topu Tavşanı",
+  "Buz Dikeni",
+  "Gölge Kopya",
+  "Dev Somurtkan Mantar"
+ ],
+ "src/core/player_data.gd": [
+  "Devam et"
+ ],
+ "src/core/powers.gd": [
+  "Yıldız Yağmuru",
+  "Yıldız",
+  "Yakındaki Pus'lu yaratıkların üstüne yıldızlar yağar",
+  "Bir yıldız daha, daha parlak",
+  "Gökkuşağı Dalgası",
+  "Gökkuşağı",
+  "Önüne yelpaze gibi açılan bir gökkuşağı yollar",
+  "Dalga daha uzağa, daha güçlü gider",
+  "Baloncuk Patlaması",
+  "Baloncuk",
+  "Her yöne ışıklı baloncuklar fırlatır",
+  "İki baloncuk daha",
+  "Işık Dönencesi",
+  "Dönence",
+  "Etrafında 6 saniye dönen ışık topları dokunduğunu parlatır",
+  "Bir ışık topu daha",
+  "Güçlü Vuruş",
+  "Bütün vuruşların %10 güçlenir",
+  "%10 daha güçlü",
+  "Kocaman Yürek",
+  "Canın 15 artar",
+  "Canın 15 daha artar",
+  "Çevik Patiler",
+  "Daha hızlı koşarsın",
+  "Biraz daha hızlı"
+ ],
+ "src/core/skills.gd": [
+  "Dikenli Dönüş",
+  "Dönüş",
+  "Pençe Kombosu",
+  "Kombo",
+  "Kucaklama Kalkanı",
+  "Kalkan",
+  "Fındık Fırlatma",
+  "Fındık",
+  "Işık Patlaması",
+  "Işık"
+ ],
+ "src/ui/choice_panel.gd": [
+  "Vazgeç"
+ ],
+ "src/ui/hud.gd": [
+  "Çevir",
+  "Konuş",
+  "%d / %d XP",
+  "En yüksek seviye",
+  "%s · Seviye %d",
+  "%s  %d/%d",
+  "Görevi teslim et",
+  "Kıvılcım",
+  "uyandı!",
+  "Uykuya",
+  "Seviye",
+  "Mola",
+  "Müzik sesi",
+  "Efekt sesi",
+  "Kaydet (Kayıt %d)",
+  "Takıldım: son fenere dön",
+  "Ana menü",
+  "Language: English",
+  "Dil: Türkçe",
+  "Müzik: %s",
+  "Açık",
+  "Kapalı",
+  "Sesler: %s",
+  "Kaydedildi!",
+  "Kaydedilemedi",
+  "Bölüm başlarında kendiliğinden de kaydedilir. · %d FPS",
+  "%s (%s)",
+  "Oyun kaydedilemedi. Telefonda yer var mı?",
+  " (%s tuşu / düğmesi)",
+  "%s: kademe %d%s"
+ ],
+ "src/ui/keeper_card.gd": [
+  "Can",
+  "Güç",
+  "Hız"
+ ],
+ "src/ui/keeper_select.gd": [
+  "Bekçini seç",
+  "Seç",
+  "%s: “%s”",
+  "Seç: %s",
+  "Görünüşün",
+  "Renk",
+  "Aksesuar",
+  "Adın",
+  "Geri",
+  "Başla"
+ ],
+ "src/ui/level_up_panel.gd": [
+  "Seviye %d!",
+  "Bir güç seç: yeni bir güç öğren ya da bildiğini yükselt",
+  "Pırıl Kesesi",
+  "%d Pırıl kazanırsın",
+  "Hediye",
+  "Buton",
+  "Her zaman açık",
+  "YENİ · %s",
+  "Kademe %d → %d"
+ ],
+ "src/ui/save_slots_panel.gd": [
+  "Yeni macera: bir yuva seç",
+  "Kayıtlar",
+  "Slot%d",
+  "Kayıt %d",
+  "Boş yuva",
+  "Bekçi",
+  "Yolculukta",
+  "Kıvılcım %d/5 · %d Pırıl",
+  "Burada başla",
+  "Üstüne yaz",
+  "Eski kayıt silinsin mi?",
+  "Sil",
+  "Bu kayıt silinsin mi?",
+  "Evet",
+  "%02d.%02d.%d  %02d:%02d"
+ ],
+ "src/ui/season_end.gd": [
+  "Kırmızı sis: diyarın ötesinde yeni bir gizem",
+  "10 yeni Hikâye Taşı ve Düşen Yıldız Tarlası",
+  "Fıstık ve Mırıl oynanabilir oluyor (Yeni Oyun+)",
+  "Işık Arenası: dalga dalga gelen eski dostlar",
+  "Bekçilerin imza eşyası görevlerinin devamı",
+  "Sezon 1 tamamlandı!",
+  "Pırıltı Diyarı · Kıvılcım Bekçileri",
+  "Kıvılcımlar %d/5",
+  "Hikâye Taşları %d/%d",
+  "Seviye %d",
+  "%d Pırıl",
+  "Sezon 2'de seni neler bekliyor?",
+  "Oynadığın için teşekkürler! · Just A Game Studios",
+  "Köyde dolaş"
+ ],
+ "src/ui/shop_panel.gd": [
+  "Dükkân",
+  "Kapat",
+  "Alındı",
+  "Satın al",
+  "%s aldın",
+  "Pırıl yetmiyor"
+ ],
+ "src/ui/title_screen.gd": [
+  "Just A Game Studios",
+  "Pırıltı Diyarı",
+  "Kıvılcım Bekçileri",
+  "Yeni oyun"
+ ],
+ "src/ui/touch_controls.gd": [
+  "Vur",
+  "Zıpla",
+  "Yuvarlan",
+  "At",
+  "At\n%d"
+ ],
+ "src/ui/wardrobe_panel.gd": [
+  "Kıyafet",
+  "Alet",
+  "Dolap",
+  "Henüz yok. Köydeki dükkândan alabilirsin."
+ ],
+ "src/world/ability_spot.gd": [
+  "Kayayı it",
+  "Halat at",
+  "Aydınlat",
+  "Bu kaya çok ağır. %s itebilirdi!",
+  "Karşıya halat lazım. %s atabilirdi!",
+  "Burası çok karanlık. %s aydınlatabilirdi!"
+ ],
+ "src/world/chapter0.gd": [
+  "Bekçi Evi",
+  "Özel yeteneğin: %s (L)",
+  "Çayıra git: köyün güneyi",
+  "Prolog tamamlandı!",
+  "Sıradaki: Fısıltı Ormanı",
+  "Kuzeye, ormanın sönmüş fenerine"
+ ],
+ "src/world/chapter1.gd": [
+  "Orman Feneri'ne git ve yak",
+  "Orman Feneri'ne git, Yak'a bas",
+  "Köye dön",
+  "KucukFener%d",
+  "Yavru_",
+  "Köklerin dairelerinden kaç. Halkanın üstünden zıpla!",
+  "Dairelerden kaç, halkada zıpla!",
+  "Kütük Kral uyandı!",
+  "Sonunda güzel bir uyku çekecek",
+  "Kıvılcım bulundu!",
+  "Yeşil Kıvılcım",
+  "Fısıltı Ormanı yeniden yeşil",
+  "Köye dönmek için girişteki tabelaya git"
+ ],
+ "src/world/chapter2.gd": [
+  "Gri kristallere vur, parlasınlar!",
+  "Gri kristallere vur!",
+  "Salonun bütün kristallerini yak",
+  "Tünelin bütün kristallerini yak",
+  "Baloncuklardan kaç. Kıskacı saplanınca vur!",
+  "Kıskacı saplanınca vur!",
+  "Kıskaç dost oldu!",
+  "Meğer Kıvılcım'ı koruyormuş",
+  "Mavi Kıvılcım",
+  "Mağaralar yeniden pırıl pırıl",
+  "Kazma'nın dükkânı açıldı! Köye dönebilirsin",
+  "Cocuk_"
+ ],
+ "src/world/chapter3.gd": [
+  "Liman",
+  "Rüzgâr Gülü Adası",
+  "Balon Adası",
+  "Fırtına Adası",
+  "Kaptan Pırpır ile konuş",
+  "Gemiye bin: çanlar ve balonlar seni bekliyor",
+  "Gemiye bin!",
+  "Gemiyle Fırtına Adası'na uç",
+  "Fırtına Adası'na uç!",
+  "Dock_",
+  "Önce Pırpır ile konuş",
+  "Önce çanları çal ve Balon Tepesi'ne çık",
+  "Nereye uçalım?",
+  "Pırpır: %s! Tutun sıkı!",
+  "Yıldırım dairelerinden kaç, pikeden sonra vur!",
+  "Pikeden sonra vur!",
+  "Rüzgâr sakinleşti!",
+  "Fırtına dindi",
+  "Sarı Kıvılcım",
+  "Gökyüzü yeniden masmavi",
+  "Pırpır'ın pazarı açıldı! Gemiyle limana dön"
+ ],
+ "src/world/chapter4.gd": [
+  "Kamp ateşini yak, uykulu sisi erit",
+  "Kamp ateşini yak",
+  "Zirveye tırman, Bilge Kuzey'i bul",
+  "Donmuş göle git: Dondurma orada",
+  "Donmuş göle git",
+  "KampAtesi%d",
+  "Bu sis çok uykulu... Yakındaki ateşi yak!",
+  "Nefesinden kaç, halkada zıpla, yumruklar saplanınca vur!",
+  "Yumruklar saplanınca vur!",
+  "Dondurma uyandı!",
+  "Meğer sadece bir sarılma istiyormuş",
+  "Beyaz Kıvılcım",
+  "Uyku Dağı uyandı",
+  "Köye dön: Pus Kalesi'nin yolu açıldı",
+  "Uykucu%d"
+ ],
+ "src/world/chapter5.gd": [
+  "Kapıya Kıvılcımını göster",
+  "Kalenin tepesine çık",
+  "Kopyalardan ve yankılardan kaç. Yorulunca yaklaş!",
+  "Yorulunca yaklaş!",
+  "Kıvılcım uzat",
+  "Kıvılcımlarını Mırıl'a uzat",
+  "Mor Kıvılcım",
+  "Pus dağıldı. Mırıl artık yalnız değil"
+ ],
+ "src/world/chest.gd": [
+  "Aç"
+ ],
+ "src/world/cutscene_player.gd": [
+  "{keeper}"
+ ],
+ "src/world/decor.gd": [
+  "mesh|cx|cz",
+  "%s|%d|%d"
+ ],
+ "src/world/effects.gd": [
+  "%s|%s|%s"
+ ],
+ "src/world/follow_camera.gd": [
+  "--turn="
+ ],
+ "src/world/house_door.gd": [
+  "Gir"
+ ],
+ "src/world/house_interior.gd": [
+  "Kapıdan çıkınca köye dönersin",
+  "Kıyafetler",
+  "Aletler",
+  "Bekçini değiştir",
+  "Sihirli Ayna",
+  "Artık %s ile oynuyorsun!"
+ ],
+ "src/world/interactable.gd": [
+  "Bak"
+ ],
+ "src/world/memory_item.gd": [
+  "Al"
+ ],
+ "src/world/pus_gate.gd": [
+  "Fener henüz yanmadı"
+ ],
+ "src/world/scene2.gd": [
+  "J: Dikenlerinle vur!",
+  "Saldır'a bas: dikenlerinle vur!",
+  "Tospik Nine: Fıstık, buraya!",
+  "K: Top ol, kirişin altından geç!",
+  "Yuvarlan: kirişin altından geç!",
+  "E: Tospik Nine ile konuş",
+  "Konuş'a bas",
+  "1: Bal Şurubu iç, canın dolsun!",
+  "Kalbe dokun: Bal Şurubu iç!"
+ ],
+ "src/world/scene3.gd": [
+  "Boşluk: zıpla · W: sarmaşıkta tırman",
+  "Zıpla · joystick yukarı: tırman",
+  "Sarmaşığa yürü, yukarı tırman!",
+  "Sarmaşığa yürü, joystick yukarı!",
+  "Sallanan fenerlere zıpla!",
+  "Bir sarmaşık daha! Çatıya tırman",
+  "Yeni yetenek!",
+  "Etrafındaki herkese birden vurur",
+  "L: Dikenli Dönüş! Hepsini birden sakinleştir",
+  "Dönüş'e bas: hepsini birden sakinleştir!",
+  "Fener yandı!"
+ ],
+ "src/world/scene4.gd": [
+  "Tüylerden kaç ya da yuvarlan. Dalıştan sonra vur!",
+  "Tüylerden kaç. Dalıştan sonra vur!",
+  "Pus Baykuşu dağıldı",
+  "Ama arkasında bir fısıltı kaldı..."
+ ],
+ "src/world/scene6.gd": [
+  "Işıltı",
+  "Yeni bekçi",
+  "Kıvılcım avucunda. Macera başlıyor!"
+ ],
+ "src/world/ship_dock.gd": [
+  "Uç"
+ ],
+ "src/world/small_lantern.gd": [
+  "Yak"
+ ],
+ "src/world/spark_door.gd": [
+  "Kıvılcımı göster",
+  "Bu kapı bir Kıvılcım daha istiyor"
+ ],
+ "src/world/storm_bell.gd": [
+  "Çal"
+ ],
+ "src/world/story_stone.gd": [
+  "Oku",
+  "Hikâye Taşı %d/%d"
+ ],
+ "src/world/toon.gd": [
+  "%s|%s|%s|%s"
+ ],
+ "src/world/travel_sign.gd": [
+  "Git",
+  "Köye dönüş tabelası çıktı"
+ ],
+ "src/world/whisper_tree.gd": [
+  "“%s”"
+ ]
+}

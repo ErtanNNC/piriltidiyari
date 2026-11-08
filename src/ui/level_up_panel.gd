@@ -28,7 +28,7 @@ func _ready() -> void:
 	v.add_theme_constant_override("separation", int(Tokens.px("space-4")))
 	add_child(v)
 	var d := GameState.data
-	var title := UiKit.outlined(UiKit.label("Seviye %d!" % d.level, "text-hero", "panel@light"), 12)
+	var title := UiKit.outlined(UiKit.label(TranslationServer.translate("Seviye %d!") % d.level, "text-hero", "panel@light"), 12)
 	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	v.add_child(title)
 	var sub := UiKit.outlined(UiKit.label("Bir güç seç: yeni bir güç öğren ya da bildiğini yükselt", "text-body", "panel@light"), 8)
@@ -53,7 +53,7 @@ func _card(c: Dictionary) -> Control:
 	v.add_theme_constant_override("separation", int(Tokens.px("space-2")))
 	card.add_child(v)
 	var name := "Pırıl Kesesi"
-	var desc := "%d Pırıl kazanırsın" % Powers.FALLBACK_PIRIL
+	var desc := TranslationServer.translate("%d Pırıl kazanırsın") % Powers.FALLBACK_PIRIL
 	var color := "piril"
 	var tag := "Hediye"
 	if id != Powers.FALLBACK:
@@ -62,7 +62,7 @@ func _card(c: Dictionary) -> Control:
 		color = def["color"]
 		desc = def["desc"] if c["new"] else def["up"]
 		var kind := "Buton" if def["kind"] == "active" else "Her zaman açık"
-		tag = ("YENİ · " + kind) if c["new"] else "Kademe %d → %d" % [int(c["rank"]) - 1, c["rank"]]
+		tag = (TranslationServer.translate("YENİ · %s") % TranslationServer.translate(kind)) if c["new"] else TranslationServer.translate("Kademe %d → %d") % [int(c["rank"]) - 1, c["rank"]]
 	var pill := PanelContainer.new()
 	var ps := UiKit.box(Tokens.color(Content.text_safe(color)), "radius-pill", 0.0)
 	ps.content_margin_left = 10

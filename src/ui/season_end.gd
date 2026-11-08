@@ -43,9 +43,9 @@ func _ready() -> void:
 	chips.alignment = BoxContainer.ALIGNMENT_CENTER
 	chips.add_theme_constant_override("separation", int(Tokens.px("space-2")))
 	v.add_child(chips)
-	for c in [["spark", "honey", "Kıvılcımlar %d/5" % d.sparks.size()],
-			["star", "spark-purple", "Hikâye Taşları %d/%d" % [d.item_count("hikaye_tasi"), PlayerData.STORY_STONES]],
-			["star", "xp", "Seviye %d" % d.level], ["piril", "piril", "%d Pırıl" % d.piril]]:
+	for c in [["spark", "honey", TranslationServer.translate("Kıvılcımlar %d/5") % d.sparks.size()],
+			["star", "spark-purple", TranslationServer.translate("Hikâye Taşları %d/%d") % [d.item_count("hikaye_tasi"), PlayerData.STORY_STONES]],
+			["star", "xp", TranslationServer.translate("Seviye %d") % d.level], ["piril", "piril", TranslationServer.translate("%d Pırıl") % d.piril]]:
 		chips.add_child(_chip(c[0], c[1], c[2]))
 	v.add_child(HSeparator.new())
 	v.add_child(UiKit.label("Sezon 2'de seni neler bekliyor?", "text-heading", "ink"))

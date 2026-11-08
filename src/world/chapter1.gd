@@ -105,7 +105,7 @@ func _build() -> void:
 	var spots := [Vector3(-10, 0, 14), Vector3(10.5, 0, -14), Vector3(-10.5, 0, -42)]
 	for i in spots.size():
 		var l := SmallLantern.new()
-		l.name = "KucukFener%d" % i
+		l.name = TranslationServer.translate("KucukFener%d") % i
 		l.lantern_id = "kucuk_fener"
 		l.position = spots[i]
 		lv.add_child(l)

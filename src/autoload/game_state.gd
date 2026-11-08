@@ -61,10 +61,10 @@ func apply_dialogue_effects(then: Dictionary) -> void:
 	for e in events:
 		if e.begins_with("item:"):
 			var id := e.substr(5)
-			toast.emit("%s ×%d aldın" % [Content.item_name(id), int(then["give_items"][id])], "piril")
+			toast.emit(TranslationServer.translate("%s ×%d aldın") % [Content.item_name(id), int(then["give_items"][id])], "piril")
 			continue
 		if e == "stones":
-			toast.emit("Hikâye Taşları: %d/%d" % [data.item_count("hikaye_tasi"), PlayerData.STORY_STONES], "star")
+			toast.emit(TranslationServer.translate("Hikâye Taşları: %d/%d") % [data.item_count("hikaye_tasi"), PlayerData.STORY_STONES], "star")
 			continue
 		if e.begins_with("shop:"):
 			shop_requested.emit(e.substr(5))
@@ -74,11 +74,11 @@ func apply_dialogue_effects(then: Dictionary) -> void:
 			continue
 		match e:
 			"quest_started":
-				toast.emit("Yeni görev: %s" % Content.quests[then["start_quest"]]["title"], "quest")
+				toast.emit(TranslationServer.translate("Yeni görev: %s") % TranslationServer.translate(Content.quests[then["start_quest"]]["title"]), "quest")
 			"quest_completed":
 				toast.emit("Görev tamam!", "star")
 			"delivered":
-				toast.emit("%s teslim edildi" % Content.item_name(then["deliver"]["item"]), "lantern")
+				toast.emit(TranslationServer.translate("%s teslim edildi") % Content.item_name(then["deliver"]["item"]), "lantern")
 
 
 ## The quest the HUD tracker shows: the first active/ready one.

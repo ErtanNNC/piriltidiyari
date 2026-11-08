@@ -58,7 +58,7 @@ func _ready() -> void:
 	var refresh_shot := func() -> void:
 		var d := GameState.data
 		shoot.visible = d.has_flag("owned_isik_sapani")
-		shoot.text = "At\n%d" % d.item_count("isik_tohumu")
+		shoot.text = TranslationServer.translate("At\n%d") % d.item_count("isik_tohumu")
 	refresh_shot.call()
 	GameState.data.items_changed.connect(refresh_shot)
 	GameState.data.flags_changed.connect(refresh_shot)

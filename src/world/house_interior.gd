@@ -226,7 +226,7 @@ func _open_mirror() -> void:
 		SaveGame.write(d)
 		finish.call()
 		Audio.play("levelup")
-		GameState.toast.emit("Artık %s ile oynuyorsun!" % display_name, "star"))
+		GameState.toast.emit(TranslationServer.translate("Artık %s ile oynuyorsun!") % TranslationServer.translate(display_name), "star"))
 
 
 func _open_wardrobe() -> void:

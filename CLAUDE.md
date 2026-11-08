@@ -177,3 +177,12 @@ from exports (`.claude/*` in export_presets.cfg).
 - Use `set_anchors_and_offsets_preset`, not `set_anchors_preset` (the latter
   leaves size 0 for code-built Controls).
 - Identifiers in English; player-facing strings and docs in Turkish.
+- English: Turkish text is the source; `translations/en.po` (built from
+  `translations/strings.json` by `tools/i18n_build.py`) translates it. Labels,
+  buttons and Label3D translate by themselves; a formatted string must go
+  through `TranslationServer.translate("…%s…") % [TranslationServer.translate(def["name"]), …]`
+  (content values inside too). After adding text: `python3 tools/i18n_extract.py`,
+  fill the empty English values, `python3 tools/i18n_build.py`; `tools/test.sh`
+  fails on any untranslated string. Language: `Audio.language` ("tr"/"en",
+  first run follows the phone), Dil/Language button on the title and in Mola,
+  `--lang=en` for screenshots.
