@@ -1,0 +1,22 @@
+{
+  "id": "s2_chapter1",
+  "title": "Kızıl Yaprak Ormanı",
+  "region": "Kızıl Yaprak Ormanı",
+  "theme": "light",
+  "levels": [
+    5,
+    10
+  ],
+  "spark": null,
+  "quests": [
+    "once_sor",
+    "firfir"
+  ],
+  "dialogue": [
+    "kozalak",
+    "pofu",
+    "paytak",
+    "minik"
+  ],
+  "barks": "barks"
+}

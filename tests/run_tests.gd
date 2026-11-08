@@ -298,7 +298,7 @@ func test_owl_plan() -> void:
 
 
 func test_content_is_valid() -> void:
-	for chapter in ["prologue", "chapter0", "chapter1", "chapter2", "chapter3", "chapter4", "chapter5", "s2_prologue", "s2_chapter0"]:
+	for chapter in ["prologue", "chapter0", "chapter1", "chapter2", "chapter3", "chapter4", "chapter5", "s2_prologue", "s2_chapter0", "s2_chapter1"]:
 		_validate_chapter(chapter)
 	test_chapter0_flow()
 	test_chapter1_flow()
@@ -662,6 +662,19 @@ func test_season2() -> void:
 	v.notify("ring", "ses_cani", c.quests)
 	check(v.quest_state("homurdanan_caydanlik") == "ready", "Kazan + çan: görev hazır")
 	check(c.shops.has("bulut"), "Bulut Nine'nin dükkânı var")
+	check(FirfirPlan.phase(FirfirPlan.MAX_HP) == 1 and FirfirPlan.phase(FirfirPlan.MAX_HP / 2) == 2 and FirfirPlan.phase(5) == 3, "Fırfır üç faz")
+	for p in [1, 2, 3]:
+		check(FirfirPlan.cycle(p).back() == "tired", "Fırfır her turun sonunda oturur (faz %d)" % p)
+	for k in ["kapici_rakun", "somurtkan_sincap"]:
+		check(MobStats.breathes(k) and int(MobStats.LEVELS[k]) in range(5, 11), "%s: nefesle sakinleşir, orman seviyesi" % k)
+	c.load_chapter("s2_chapter1")
+	var o := PlayerData.new()
+	o.start_quest(c.quests["once_sor"])
+	for it: String in ["oyuncak_top", "oyuncak_ucurtma", "oyuncak_bebek"]:
+		check(c.items.has(it), "oyuncak eşyası: %s" % it)
+	o.start_quest(c.quests["firfir"])
+	o.notify("breathe", "firfir", c.quests)
+	check(not o.objective_done("firfir", "firfir"), "Fırfır'ı dinlemek çandan önce sayılmaz")
 	var tp := PlayerData.new()
 	tp.choose_keeper("tipis_panda", c.keeper("tipis_panda")["stats"], {}, "Tıpış")
 	check(tp.level == 1 and tp.active_skill() == "derin_nefes", "Tıpış seçilince seviye 1 ve Derin Nefes")

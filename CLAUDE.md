@@ -168,10 +168,20 @@ is a copy of the design system's tokens.
   jets/splash warned, hittable while the lid is up, Sakinleş at the end), and
   the first Ses Çanı (`EchoBell`, `needs` = "quest/objective", flag `s2_can0`,
   event "ring"/"ses_cani") that lifts the Kızıl Sis. `PrologueDone` leads here.
+- Bölüm 1 `s2_chapter1` (Kızıl Yaprak Ormanı, pack `content/s2_chapter1/`,
+  entered from Bölüm 0's north exit once `s2_can0` rang): Kapıcı Rakunlar carry
+  the cubs' toys (`Mob` meta "carry" drops a Pickup when calmed; quest
+  `once_sor` delivers them), Somurtkan Sincap throws acorns, the forest bell
+  (`EchoBell.needs` = a whole quest) opens the Sis Perdesi, boss Tilki Fırfır
+  (`FirfirPlan` + `Firfir`: leaf circles, a dash, sits tired = hittable,
+  Sakinleş ends it) gives the Turuncu Kor (flag `kor_turuncu`). New primitive
+  creatures/NPCs (raccoon, squirrel, fox, hippo, smith turtle, squirrel tailor)
+  are placeholders: an `assets/models/<id>.glb` replaces them.
 - Checks: `--scene=s2_scene1 --demo=glide|jump|party`, `--scene=s2_scene2 --demo=redwind|breath|guide|angry`,
   `--scene=s2_scene3 --demo=path|jumponly|stairs`, `--scene=s2_scene4 --demo=win --auto`,
   `--scene=s2_scene5 --demo=flow --auto`, `--scene=s2_scene6 --demo=pick_<id> --auto`,
-  `--scene=s2_chapter0 --demo=village|bell_locked|stairs [--keeper=tipis_panda]`.
+  `--scene=s2_chapter0 --demo=village|bell_locked|stairs [--keeper=tipis_panda]`,
+  `--scene=s2_chapter1 --demo=forest|veil|boss`.
 
 ## Agent skills
 

@@ -1,0 +1,31 @@
+{
+  "id": "firfir",
+  "title": "Tilki Fırfır",
+  "giver": "kozalak",
+  "ordered": true,
+  "objectives": [
+    {
+      "id": "can",
+      "text": "Ormanın Ses Çanı'nı çal",
+      "type": "ring",
+      "target": "ses_cani"
+    },
+    {
+      "id": "firfir",
+      "text": "Tilki Fırfır'ı dinle",
+      "type": "breathe",
+      "target": "firfir"
+    },
+    {
+      "id": "kor",
+      "text": "Turuncu Kor'u al",
+      "type": "reach",
+      "target": "turuncu_kor"
+    }
+  ],
+  "turn_in": "Terzi Kozalak'a dön",
+  "rewards": {
+    "piril": 60,
+    "xp": 150
+  }
+}

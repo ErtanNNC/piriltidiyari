@@ -377,6 +377,9 @@
   "Mor Kıvılcım'ı al"
  ],
  "content/items.json": [
+  "Pofu'nun Topu",
+  "Paytak'ın Uçurtması",
+  "Minik'in Bez Bebeği",
   "Davetiye",
   "Pembe Fener",
   "Mavi Fener",
@@ -633,6 +636,72 @@
  "content/s2_chapter0/shop.json": [
   "Bulut Nine'nin Kaplıca Tezgâhı"
  ],
+ "content/s2_chapter1/barks.json": [
+  "Kızıl Yaprak Ormanı! Yapraklar hep sonbaharda kalmış.",
+  "Şu terzi sincaba bir soralım, neler oluyor?",
+  "Rakun sakinleşince bir oyuncak bıraktı!",
+  "Kızıl bir sis perdesi... Önce ormanın çanını çalmalıyım.",
+  "Çan çalmıyor... Önce yavruların oyuncaklarını vereyim.",
+  "Çan çaldı! Sis perdesi açılıyor!",
+  "Kim o? Ormanım kilitli! Kimse giremez!",
+  "Rüzgârgülümü aldılar! Sormadan! Herkes gitsin!",
+  "Hah... hah... Yoruldum. Kimse sormadı bile...",
+  "Rüzgârgülüm en sevdiğim şeydi...",
+  "Seni dinliyorum. Sorsalardı ne derdin?",
+  "Sadece sorsalardı, verirdim. Birlikte oynardık.",
+  "Al, Turuncu Kor. Kalbimi ısıtan buydu.",
+  "Turuncu Kor! Sıcacık, ama yakmıyor."
+ ],
+ "content/s2_chapter1/chapter.json": [
+  "Kızıl Yaprak Ormanı"
+ ],
+ "content/s2_chapter1/dialogue/kozalak.json": [
+  "Turuncu Kor seninle. Orman yine çıtır çıtır yapraklı!",
+  "Fırfır sakinleşti mi? Kilit açıldı, yapraklar dans ediyor!",
+  "Rüzgârgülü sorulmadan alınınca kalbi kırılmış.",
+  "Paylaşmak güzel. Ama önce sormak gerek, değil mi?",
+  "Kor'u iyi sakla. Fokurdayan Göl seni bekliyor.",
+  "Çan çalınca sis perdesi açılır. Fırfır ormanın en derininde.",
+  "Oyuncaklar sahiplerine döndü! Yavrular gülüyor.",
+  "Ama ormanın bekçisi Tilki Fırfır hâlâ kilitli bir öfkede.",
+  "Ormanın çanını çal. Sis perdesi açılınca onu dinle.",
+  "Rakunlar oyuncakları kapmış. Sakinleşince bırakırlar.",
+  "Hoş geldin! Ben Terzi Kozalak. Sonbahar pelerinleri dikerim.",
+  "Kızıl Sis gelince herkes birbirinin eşyasını kapmaya başladı.",
+  "Yavruların oyuncaklarını Kapıcı Rakunlar aldı. Sormadan!",
+  "Rakunları sakinleştir, oyuncakları sahiplerine ver.",
+  "Yapraklar hep turuncu burada. Güzel, değil mi?"
+ ],
+ "content/s2_chapter1/dialogue/minik.json": [
+  "Bebeğime sarıldım. Bir daha kimse sormadan almasın.",
+  "Bak ne buldum! Senin bez bebeğin bu, değil mi?",
+  "Benim! Teşekkürler! Rakun sormadan almıştı.",
+  "Sorsaydı, birlikte oynardık aslında...",
+  "Bez bebeğim nerede? Rakunlar her şeyi kapıyor!"
+ ],
+ "content/s2_chapter1/dialogue/paytak.json": [
+  "Uçurtmam yine uçuyor! Vak vak!",
+  "Bak ne buldum! Senin uçurtman bu, değil mi?",
+  "Vak... Uçurtmam gitti. Rakun alıp kaçtı."
+ ],
+ "content/s2_chapter1/dialogue/pofu.json": [
+  "Top oynamak ister misin? Önce sorarım tabii!",
+  "Bak ne buldum! Senin topun bu, değil mi?",
+  "Topumu bir rakun kaptı! Sormadan, hop diye!"
+ ],
+ "content/s2_chapter1/quests/firfir.json": [
+  "Tilki Fırfır",
+  "Ormanın Ses Çanı'nı çal",
+  "Tilki Fırfır'ı dinle",
+  "Turuncu Kor'u al",
+  "Terzi Kozalak'a dön"
+ ],
+ "content/s2_chapter1/quests/once_sor.json": [
+  "Önce Sor",
+  "Pofu'ya topunu geri ver",
+  "Paytak'a uçurtmasını geri ver",
+  "Minik'e bez bebeğini geri ver"
+ ],
  "content/s2_prologue/barks.json": [
   "Bugün benim doğum günüm! Köyde ilk doğum günüm.",
   "Süzülüyorum! Yıldız olmanın en güzel yanı bu.",
@@ -810,7 +879,11 @@
   "Pıtpıt",
   "Pamuk",
   "Toprak",
-  "Bıdık"
+  "Bıdık",
+  "Terzi Kozalak",
+  "Pofu",
+  "Paytak",
+  "Minik"
  ],
  "src/actors/breath_calm.gd": [
   "panel@light",
@@ -831,6 +904,10 @@
   "Halka: zıpla!",
   "Yumrukları buza saplandı! Şimdi vur!",
   "Yumrukları saplandı! Vur!"
+ ],
+ "src/actors/firfir.gd": [
+  "Fırfır oturdu, soluk soluğa! Şimdi vur!",
+  "Oturdu! Şimdi vur!"
  ],
  "src/actors/gurledek.gd": [
   "Yoruldu, alçaldı! Şimdi vur!",
@@ -924,7 +1001,8 @@
   "Sezon 2 · Prolog · Sahne 4",
   "Sezon 2 · Prolog · Sahne 5",
   "Sezon 2 · Prolog · Sahne 6",
-  "Sezon 2 · Bölüm 0"
+  "Sezon 2 · Bölüm 0",
+  "Sezon 2 · Bölüm 1"
  ],
  "src/autoload/tokens.gd": [
   "fontSize",
@@ -944,6 +1022,8 @@
   "Gölge Kopya",
   "Köpüklü Tavuk",
   "Gürültücü Kurbağa",
+  "Kapıcı Rakun",
+  "Somurtkan Sincap",
   "Dev Somurtkan Mantar"
  ],
  "src/core/player_data.gd": [
@@ -1275,7 +1355,17 @@
   "Buhardan kaç, kapak kalkınca vur!",
   "Kazan soğuyor. Yanına git, Sakinleş'e basılı tut!",
   "Yanına git, Sakinleş'e basılı tut!",
-  "Kızıl Yaprak Ormanı ↑ (yakında)"
+  "Kızıl Yaprak Ormanı ↑"
+ ],
+ "src/world/s2_chapter1.gd": [
+  "Ormanın çanını çal",
+  "Yaprak halkalarından ve atılmasından kaç. Oturunca vur!",
+  "Halkalardan kaç, oturunca vur!",
+  "Yanına git, Sakinleş'e basılı tut. Onu dinle.",
+  "Kor",
+  "Turuncu Kor",
+  "Kızıl Yaprak Ormanı ısındı",
+  "Buharlı Kaplıca Köyü ↓"
  ],
  "src/world/s2_scene1.gd": [
   "Boşluk: zıpla, havada basılı tut: süzül!",
@@ -1311,7 +1401,6 @@
  "src/world/s2_scene4.gd": [
   "Halkalardan kaç. Bulut alçalınca vur!",
   "Halkalardan kaç, alçalınca vur!",
-  "Yanına git, Sakinleş'e basılı tut. Onu dinle.",
   "Gürledek dağıldı",
   "Ardında kırmızı bir yankı kaldı..."
  ],

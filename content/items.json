@@ -1,5 +1,20 @@
 {
   "items": {
+    "oyuncak_top": {
+      "name": "Pofu'nun Topu",
+      "color": "berry",
+      "kind": "quest"
+    },
+    "oyuncak_ucurtma": {
+      "name": "Paytak'ın Uçurtması",
+      "color": "spark-yellow",
+      "kind": "quest"
+    },
+    "oyuncak_bebek": {
+      "name": "Minik'in Bez Bebeği",
+      "color": "sky",
+      "kind": "quest"
+    },
     "davetiye": {
       "name": "Davetiye",
       "color": "spark-purple",

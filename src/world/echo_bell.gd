@@ -7,8 +7,13 @@ extends Interactable
 signal rung(bell: EchoBell)
 
 @export var bell_id := "s2_can0"
-## The bell rings only when this objective is done ("quest/objective"; "" = always).
+## The bell rings only when this is done: "quest/objective", or a whole
+## "quest" (ready or done); "" = always.
 @export var needs := ""
+## What the keeper says when it can't ring yet.
+@export var locked_bark := "s2c0_kilit"
+## The quest event it sends (the region's own bell objective).
+@export var ring_target := "ses_cani"
 var _bell: Node3D
 
 
@@ -37,6 +42,12 @@ func _build() -> void:
 		(func() -> void: done()).call_deferred()
 
 
+func _allowed(d: PlayerData) -> bool:
+	if needs.contains("/"):
+		return d.objective_done(needs.get_slice("/", 0), needs.get_slice("/", 1))
+	return d.quest_state(needs) in ["ready", "done"]
+
+
 func _lit() -> void:
 	_bell.get_child(0).material_override = Toon.material("spark-yellow", 0.035, 0.8, 0.0)
 
@@ -45,8 +56,8 @@ func use(_by: Node) -> void:
 	var d := GameState.data
 	if d.has_flag(bell_id):
 		return
-	if needs != "" and not d.objective_done(needs.get_slice("/", 0), needs.get_slice("/", 1)):
-		GameState.bark("s2c0_kilit")
+	if needs != "" and not _allowed(d):
+		GameState.bark(locked_bark)
 		return
 	d.set_flag(bell_id)
 	Audio.play("bell")
@@ -59,6 +70,6 @@ func use(_by: Node) -> void:
 	for i in 3:
 		Effects.ring(get_parent(), global_position + Vector3.UP * 2.5, 6.0 + i * 4.0, Tokens.color("spark-yellow"), 0.7 + i * 0.2)
 	Effects.sparkle(get_parent(), global_position + Vector3.UP * 2.8, Tokens.color("spark-yellow"), 16)
-	GameState.notify("ring", "ses_cani")
+	GameState.notify("ring", ring_target)
 	done()
 	rung.emit(self)

@@ -1,0 +1,57 @@
+{
+  "npc": "paytak",
+  "variants": [
+    {
+      "when": {
+        "objective_done": "once_sor/ucurtma"
+      },
+      "lines": [
+        {
+          "speaker": "paytak",
+          "mood": "mutlu",
+          "text": "Uçurtmam yine uçuyor! Vak vak!"
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "once_sor",
+        "state": "active",
+        "has_item": "oyuncak_ucurtma"
+      },
+      "lines": [
+        {
+          "speaker": "oyuncu",
+          "mood": "mutlu",
+          "text": "Bak ne buldum! Senin uçurtman bu, değil mi?"
+        },
+        {
+          "speaker": "paytak",
+          "mood": "mutlu",
+          "text": "Benim! Teşekkürler! Rakun sormadan almıştı."
+        },
+        {
+          "speaker": "paytak",
+          "mood": "dertli",
+          "text": "Sorsaydı, birlikte oynardık aslında..."
+        }
+      ],
+      "then": {
+        "deliver": {
+          "quest": "once_sor",
+          "objective": "ucurtma",
+          "item": "oyuncak_ucurtma"
+        }
+      }
+    },
+    {
+      "lines": [
+        {
+          "speaker": "paytak",
+          "mood": "üzgün",
+          "text": "Vak... Uçurtmam gitti. Rakun alıp kaçtı."
+        }
+      ]
+    }
+  ]
+}

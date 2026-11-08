@@ -27,6 +27,8 @@ static func build(kind: String) -> Node3D:
 			_hippo(root)
 		"smith_turtle":
 			_smith_turtle(root)
+		"squirrel_tailor":
+			_squirrel_tailor(root)
 		"spider":
 			_spider(root)
 		"mole":
@@ -155,6 +157,32 @@ static func _smith_turtle(root: Node3D) -> void:
 	Toon.part(root, "cylinder", Vector3(0.08, 0.7, 0.08), Color("#a86b45"), Vector3(-0.78, 0.8, 0.5), Vector3(0, 0, 20))
 	Toon.part(root, "box", Vector3(0.36, 0.2, 0.2), Color("#6e7380"), Vector3(-0.9, 1.15, 0.5), Vector3(0, 0, 20))
 	Face.add(root, Vector3(0, 1.1, 0.82), Vector3(0.36, 0.34, 0.36), "smile", false, 0.4, 0.23, 0.85)
+
+
+## Terzi Kozalak (Season 2): a russet squirrel tailor with a measuring tape
+## round the neck, a pincushion hat and a fluffy curled tail.
+static func _squirrel_tailor(root: Node3D) -> void:
+	var fur := Color("#d0703c")
+	Toon.part(root, "ellipsoid", Vector3(0.95, 1.0, 0.9), fur, Vector3(0, 0.55, 0))
+	Toon.part(root, "ellipsoid", Vector3(0.55, 0.65, 0.3), Color("#f6dcb6"), Vector3(0, 0.5, 0.32), Vector3.ZERO, 0.0, 0.0)
+	var head := Node3D.new()
+	head.name = "Head"
+	head.position = Vector3(0, 1.3, 0.05)
+	root.add_child(head)
+	Toon.part(head, "ellipsoid", Vector3(0.85, 0.78, 0.78), fur, Vector3.ZERO)
+	Face.add(head, Vector3(0, 0, 0.05), Vector3(0.425, 0.39, 0.39), "smile", false, 0.36, 0.1)
+	for side: float in [-1.0, 1.0]:
+		Toon.part(head, "cone", Vector3(0.22, 0.32, 0.12), fur, Vector3(0.26 * side, 0.45, -0.02), Vector3(0, 0, -12 * side))
+		var hand := Node3D.new()
+		hand.name = "HandL" if side > 0 else "HandR"
+		hand.position = Vector3(0.48 * side, 0.6, 0.15)
+		root.add_child(hand)
+		Toon.part(hand, "ellipsoid", Vector3(0.2, 0.26, 0.2), fur, Vector3.ZERO)
+	Toon.part(root, "ring", Vector3(0.8, 0.06, 0.8), "spark-yellow", Vector3(0, 0.98, 0.02))
+	Toon.part(head, "cylinder", Vector3(0.36, 0.22, 0.36), "berry", Vector3(0.05, 0.42, 0.0))
+	for i in 5:
+		var a := i * 0.55
+		Toon.part(root, "sphere", Vector3(0.55, 0.55, 0.55) * (1.0 - i * 0.08), fur.lightened(0.04 * i), Vector3(0, 0.5 + sin(a) * 0.8, -0.5 - cos(a) * 0.4 + i * 0.02))
 
 
 ## Tospik Nine: wise old turtle, leaf shell, honey shawl.

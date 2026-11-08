@@ -5,7 +5,7 @@ extends Node3D
 ## while it has something new for you (a quest to give or take).
 
 @export var npc_id := "tospik_nine"
-@export_enum("turtle", "bunny", "duckling", "frog", "statue", "owl_teacher", "spider", "mole", "mole_kid", "crab_friend", "gull_captain", "gull_chick", "snowman", "bunny_sleepy", "fistik", "star_child", "pati", "bado", "citir", "lumi", "hippo", "smith_turtle") var kind := "turtle"
+@export_enum("turtle", "bunny", "duckling", "frog", "statue", "owl_teacher", "spider", "mole", "mole_kid", "crab_friend", "gull_captain", "gull_chick", "snowman", "bunny_sleepy", "fistik", "star_child", "pati", "bado", "citir", "lumi", "hippo", "smith_turtle", "squirrel_tailor") var kind := "turtle"
 @export var face_angle_deg := 0.0
 
 var _marker: Label3D

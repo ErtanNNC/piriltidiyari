@@ -1,0 +1,57 @@
+{
+  "npc": "pofu",
+  "variants": [
+    {
+      "when": {
+        "objective_done": "once_sor/top"
+      },
+      "lines": [
+        {
+          "speaker": "pofu",
+          "mood": "mutlu",
+          "text": "Top oynamak ister misin? Önce sorarım tabii!"
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "once_sor",
+        "state": "active",
+        "has_item": "oyuncak_top"
+      },
+      "lines": [
+        {
+          "speaker": "oyuncu",
+          "mood": "mutlu",
+          "text": "Bak ne buldum! Senin topun bu, değil mi?"
+        },
+        {
+          "speaker": "pofu",
+          "mood": "mutlu",
+          "text": "Benim! Teşekkürler! Rakun sormadan almıştı."
+        },
+        {
+          "speaker": "pofu",
+          "mood": "dertli",
+          "text": "Sorsaydı, birlikte oynardık aslında..."
+        }
+      ],
+      "then": {
+        "deliver": {
+          "quest": "once_sor",
+          "objective": "top",
+          "item": "oyuncak_top"
+        }
+      }
+    },
+    {
+      "lines": [
+        {
+          "speaker": "pofu",
+          "mood": "üzgün",
+          "text": "Topumu bir rakun kaptı! Sormadan, hop diye!"
+        }
+      ]
+    }
+  ]
+}

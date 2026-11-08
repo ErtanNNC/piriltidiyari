@@ -1,0 +1,30 @@
+{
+  "id": "once_sor",
+  "title": "Önce Sor",
+  "giver": "kozalak",
+  "objectives": [
+    {
+      "id": "top",
+      "text": "Pofu'ya topunu geri ver",
+      "item": "oyuncak_top",
+      "to": "pofu"
+    },
+    {
+      "id": "ucurtma",
+      "text": "Paytak'a uçurtmasını geri ver",
+      "item": "oyuncak_ucurtma",
+      "to": "paytak"
+    },
+    {
+      "id": "bebek",
+      "text": "Minik'e bez bebeğini geri ver",
+      "item": "oyuncak_bebek",
+      "to": "minik"
+    }
+  ],
+  "turn_in": "Terzi Kozalak'a dön",
+  "rewards": {
+    "piril": 40,
+    "xp": 80
+  }
+}

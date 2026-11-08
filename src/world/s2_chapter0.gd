@@ -210,8 +210,19 @@ func _build() -> void:
 	lv.add_child(bell)
 	bell.position = BELL_AT
 	bell.rung.connect(_on_bell_rung)
-	TravelSign.board(lv, "Kızıl Yaprak Ormanı ↑ (yakında)", Vector3(-3.0, 1.3, -24.0), 3.0)
+	TravelSign.board(lv, "Kızıl Yaprak Ormanı ↑", Vector3(-3.0, 1.3, -24.0), 2.8)
 	Toon.part(lv, "box", Vector3(0.16, 1.2, 0.16), Color("#a86b45"), Vector3(-3.0, 0.6, -24.05))
+	# the way on: open once the village's bell has rung
+	var exit := TriggerArea.new()
+	exit.radius = 2.2
+	exit.once = false
+	lv.add_child(exit)
+	exit.position = Vector3(0, 0, -25.5)
+	exit.reached.connect(func() -> void:
+		if GameState.data.has_flag("s2_can0"):
+			SceneFlow.go_to("s2_chapter1")
+		elif not GameState.in_dialogue:
+			GameState.bark("s2c0_kilit"))
 	for n in 4:
 		var wall := StaticBody3D.new()
 		var c := CollisionShape3D.new()

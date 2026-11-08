@@ -1,0 +1,146 @@
+{
+  "npc": "kozalak",
+  "variants": [
+    {
+      "when": {
+        "quest": "firfir",
+        "state": "done"
+      },
+      "lines": [
+        {
+          "speaker": "kozalak",
+          "mood": "mutlu",
+          "text": "Turuncu Kor seninle. Orman yine çıtır çıtır yapraklı!"
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "firfir",
+        "state": "ready"
+      },
+      "lines": [
+        {
+          "speaker": "kozalak",
+          "mood": "mutlu",
+          "text": "Fırfır sakinleşti mi? Kilit açıldı, yapraklar dans ediyor!"
+        },
+        {
+          "speaker": "kozalak",
+          "mood": "sakin",
+          "text": "Rüzgârgülü sorulmadan alınınca kalbi kırılmış."
+        },
+        {
+          "speaker": "kozalak",
+          "mood": "mutlu",
+          "text": "Paylaşmak güzel. Ama önce sormak gerek, değil mi?"
+        },
+        {
+          "speaker": "kozalak",
+          "mood": "kararlı",
+          "text": "Kor'u iyi sakla. Fokurdayan Göl seni bekliyor."
+        }
+      ],
+      "then": {
+        "complete_quest": "firfir",
+        "set_flag": "s2_bolum1_bitti"
+      }
+    },
+    {
+      "when": {
+        "quest": "firfir",
+        "state": "active"
+      },
+      "lines": [
+        {
+          "speaker": "kozalak",
+          "mood": "dertli",
+          "text": "Çan çalınca sis perdesi açılır. Fırfır ormanın en derininde."
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "once_sor",
+        "state": "ready"
+      },
+      "lines": [
+        {
+          "speaker": "kozalak",
+          "mood": "mutlu",
+          "text": "Oyuncaklar sahiplerine döndü! Yavrular gülüyor."
+        },
+        {
+          "speaker": "kozalak",
+          "mood": "dertli",
+          "text": "Ama ormanın bekçisi Tilki Fırfır hâlâ kilitli bir öfkede."
+        },
+        {
+          "speaker": "kozalak",
+          "mood": "kararlı",
+          "text": "Ormanın çanını çal. Sis perdesi açılınca onu dinle."
+        }
+      ],
+      "then": {
+        "complete_quest": "once_sor",
+        "start_quest": "firfir"
+      }
+    },
+    {
+      "when": {
+        "quest": "once_sor",
+        "state": "active"
+      },
+      "lines": [
+        {
+          "speaker": "kozalak",
+          "mood": "sakin",
+          "text": "Rakunlar oyuncakları kapmış. Sakinleşince bırakırlar."
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "once_sor",
+        "state": "none"
+      },
+      "lines": [
+        {
+          "speaker": "kozalak",
+          "mood": "mutlu",
+          "text": "Hoş geldin! Ben Terzi Kozalak. Sonbahar pelerinleri dikerim."
+        },
+        {
+          "speaker": "kozalak",
+          "mood": "dertli",
+          "text": "Kızıl Sis gelince herkes birbirinin eşyasını kapmaya başladı."
+        },
+        {
+          "speaker": "kozalak",
+          "mood": "dertli",
+          "text": "Yavruların oyuncaklarını Kapıcı Rakunlar aldı. Sormadan!"
+        },
+        {
+          "speaker": "kozalak",
+          "mood": "kararlı",
+          "text": "Rakunları sakinleştir, oyuncakları sahiplerine ver."
+        }
+      ],
+      "then": {
+        "start_quest": "once_sor",
+        "give_items": {
+          "nane_sekeri": 2
+        }
+      }
+    },
+    {
+      "lines": [
+        {
+          "speaker": "kozalak",
+          "mood": "sakin",
+          "text": "Yapraklar hep turuncu burada. Güzel, değil mi?"
+        }
+      ]
+    }
+  ]
+}

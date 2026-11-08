@@ -1,0 +1,92 @@
+{
+  "barks": {
+    "s2c1_basla": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Kızıl Yaprak Ormanı! Yapraklar hep sonbaharda kalmış."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "kararlı",
+        "text": "Şu terzi sincaba bir soralım, neler oluyor?"
+      }
+    ],
+    "s2c1_oyuncak": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Rakun sakinleşince bir oyuncak bıraktı!"
+      }
+    ],
+    "s2c1_perde": [
+      {
+        "speaker": "oyuncu",
+        "mood": "dertli",
+        "text": "Kızıl bir sis perdesi... Önce ormanın çanını çalmalıyım."
+      }
+    ],
+    "s2c1_kilit": [
+      {
+        "speaker": "oyuncu",
+        "mood": "dertli",
+        "text": "Çan çalmıyor... Önce yavruların oyuncaklarını vereyim."
+      }
+    ],
+    "s2c1_can": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Çan çaldı! Sis perdesi açılıyor!"
+      }
+    ],
+    "s2c1_firfir": [
+      {
+        "speaker": "firfir",
+        "mood": "huysuz",
+        "text": "Kim o? Ormanım kilitli! Kimse giremez!"
+      },
+      {
+        "speaker": "firfir",
+        "mood": "huysuz",
+        "text": "Rüzgârgülümü aldılar! Sormadan! Herkes gitsin!"
+      }
+    ],
+    "s2c1_firfir_yorgun": [
+      {
+        "speaker": "firfir",
+        "mood": "üzgün",
+        "text": "Hah... hah... Yoruldum. Kimse sormadı bile..."
+      }
+    ],
+    "s2c1_firfir_son": [
+      {
+        "speaker": "firfir",
+        "mood": "üzgün",
+        "text": "Rüzgârgülüm en sevdiğim şeydi..."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "sakin",
+        "text": "Seni dinliyorum. Sorsalardı ne derdin?"
+      },
+      {
+        "speaker": "firfir",
+        "mood": "mutlu",
+        "text": "Sadece sorsalardı, verirdim. Birlikte oynardık."
+      },
+      {
+        "speaker": "firfir",
+        "mood": "mutlu",
+        "text": "Al, Turuncu Kor. Kalbimi ısıtan buydu."
+      }
+    ],
+    "s2c1_kor": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Turuncu Kor! Sıcacık, ama yakmıyor."
+      }
+    ]
+  }
+}

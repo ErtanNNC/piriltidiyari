@@ -14,7 +14,7 @@ const DAZE_TIME := 9.0
 
 static var attackers := 0
 
-@export_enum("kopuklu_tavuk", "gurultucu_kurbaga", "sumuklu", "mantar", "dev_mantar", "kirpi_topu", "karga", "kristal_bocek", "yarasa", "firtina_yumagi", "korsan_marti", "kar_tavsani", "buz_dikeni", "golge_kopya") var kind := "sumuklu"
+@export_enum("kopuklu_tavuk", "gurultucu_kurbaga", "kapici_rakun", "somurtkan_sincap", "sumuklu", "mantar", "dev_mantar", "kirpi_topu", "karga", "kristal_bocek", "yarasa", "firtina_yumagi", "korsan_marti", "kar_tavsani", "buz_dikeni", "golge_kopya") var kind := "sumuklu"
 @export var gravity := 22.0
 ## 0 = the kind's own level (MobStats.LEVELS, a little variety by place)
 @export var level := 0
@@ -384,6 +384,13 @@ func _calm() -> void:
 	tw.tween_interval(1.2)
 	tw.tween_property(_bright, "scale", Vector3.ZERO, 0.3)
 	tw.tween_callback(queue_free)
+	if has_meta("carry"):
+		# a grabbed thing (a cub's toy) is let go
+		var toy := Pickup.new()
+		toy.item_id = String(get_meta("carry"))
+		get_parent().add_child(toy)
+		toy.global_position = global_position + Vector3(0, 0, 0.8)
+		GameState.notify("drop", String(get_meta("carry")))
 	var drops: int = int(stats["piril"]) * (2 if _breathed else 1) + _stolen
 	if _breathed:
 		FloatText.spawn(get_parent(), global_position + Vector3.UP * 2.7, TranslationServer.translate("Derin nefes!"), Tokens.color("leaf"))
@@ -402,7 +409,10 @@ func _calm() -> void:
 
 ## A snowball in a little arc onto the warned spot.
 func _throw_snowball(spot: Vector3) -> void:
-	var ball := Toon.part(get_parent(), "sphere", Vector3(0.5, 0.5, 0.5), MountainKit.SNOW, global_position + Vector3.UP * 1.0)
+	# a snowball, or an acorn from the sulky squirrel
+	var acorn := kind == "somurtkan_sincap"
+	var ball := Toon.part(get_parent(), "sphere", Vector3(0.36, 0.42, 0.36) if acorn else Vector3(0.5, 0.5, 0.5),
+		Color("#8a5a3c") if acorn else MountainKit.SNOW, global_position + Vector3.UP * 1.0)
 	var from := ball.global_position
 	var tw := ball.create_tween()
 	tw.tween_method(func(k: float) -> void:

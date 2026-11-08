@@ -1,0 +1,57 @@
+{
+  "npc": "minik",
+  "variants": [
+    {
+      "when": {
+        "objective_done": "once_sor/bebek"
+      },
+      "lines": [
+        {
+          "speaker": "minik",
+          "mood": "mutlu",
+          "text": "Bebeğime sarıldım. Bir daha kimse sormadan almasın."
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "once_sor",
+        "state": "active",
+        "has_item": "oyuncak_bebek"
+      },
+      "lines": [
+        {
+          "speaker": "oyuncu",
+          "mood": "mutlu",
+          "text": "Bak ne buldum! Senin bez bebeğin bu, değil mi?"
+        },
+        {
+          "speaker": "minik",
+          "mood": "mutlu",
+          "text": "Benim! Teşekkürler! Rakun sormadan almıştı."
+        },
+        {
+          "speaker": "minik",
+          "mood": "dertli",
+          "text": "Sorsaydı, birlikte oynardık aslında..."
+        }
+      ],
+      "then": {
+        "deliver": {
+          "quest": "once_sor",
+          "objective": "bebek",
+          "item": "oyuncak_bebek"
+        }
+      }
+    },
+    {
+      "lines": [
+        {
+          "speaker": "minik",
+          "mood": "üzgün",
+          "text": "Bez bebeğim nerede? Rakunlar her şeyi kapıyor!"
+        }
+      ]
+    }
+  ]
+}

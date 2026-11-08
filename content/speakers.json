@@ -199,6 +199,26 @@
     "caydanlik": {
       "name": "Homurdanan Çaydanlık",
       "color": "hp"
+    },
+    "kozalak": {
+      "name": "Terzi Kozalak",
+      "color": "honey"
+    },
+    "pofu": {
+      "name": "Pofu",
+      "color": "berry"
+    },
+    "paytak": {
+      "name": "Paytak",
+      "color": "spark-yellow"
+    },
+    "minik": {
+      "name": "Minik",
+      "color": "sky"
+    },
+    "firfir": {
+      "name": "Tilki Fırfır",
+      "color": "hp"
     }
   }
 }

@@ -50,9 +50,16 @@ static func build(kind: String, pus: bool) -> Node3D:
 			_pirate_gull(root, pus)
 		"yarasa":
 			_bat(root, pus)
+		"kapici_rakun":
+			_raccoon(root, pus)
+		"somurtkan_sincap":
+			_sulky_squirrel(root, pus)
 	Toon.default_pus = 1.0
 	if kind != "golge_kopya":
-		if pus:
+		if pus and MobStats.breathes(kind):
+			# Kızıl Sis creatures keep their colors and puff steam instead
+			_pus_wisps(root, 1.5, Color(1, 1, 1), 8, 0.9)
+		elif pus:
 			var top := 1.4
 			for mi in root.find_children("*", "MeshInstance3D", true, false):
 				top = maxf(top, (mi as MeshInstance3D).position.y + 0.3)
@@ -150,6 +157,42 @@ static func _pus_wisps(root: Node3D, height: float, col := Color(0.55, 0.52, 0.6
 	p.mesh = q
 	p.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	root.add_child(p)
+
+
+## Kapıcı Rakun (Season 2): a round grey raccoon with a black mask, a
+## striped tail and a little sack of grabbed things on its back.
+static func _raccoon(root: Node3D, pus: bool) -> void:
+	var fur := Color("#8d8a99")
+	var dark := Color("#3c3a48")
+	Toon.part(root, "ellipsoid", Vector3(0.95, 0.85, 0.9), fur, Vector3(0, 0.48, 0))
+	Toon.part(root, "ellipsoid", Vector3(0.6, 0.55, 0.3), Color("#d9d6e2"), Vector3(0, 0.42, 0.32), Vector3.ZERO, 0.0, 0.0)
+	Toon.part(root, "ellipsoid", Vector3(0.8, 0.68, 0.72), fur, Vector3(0, 1.08, 0.08))
+	Toon.part(root, "ellipsoid", Vector3(0.72, 0.22, 0.2), dark, Vector3(0, 1.12, 0.38), Vector3.ZERO, 0.0, 0.0)
+	Toon.part(root, "ellipsoid", Vector3(0.3, 0.2, 0.22), Color("#e8e4ee"), Vector3(0, 0.98, 0.42), Vector3.ZERO, 0.0, 0.0)
+	Toon.part(root, "sphere", Vector3(0.1, 0.08, 0.08), "outline", Vector3(0, 1.0, 0.54), Vector3.ZERO, 0.0, 0.0)
+	for side: float in [-1.0, 1.0]:
+		Toon.part(root, "cone", Vector3(0.24, 0.26, 0.14), fur, Vector3(0.26 * side, 1.46, 0.02), Vector3(0, 0, -18 * side))
+	for i in 4:
+		Toon.part(root, "sphere", Vector3(0.3, 0.3, 0.3) * (1.0 - i * 0.1), dark if i % 2 == 0 else fur, Vector3(0, 0.3 + i * 0.12, -0.45 - i * 0.22))
+	Toon.part(root, "sphere", Vector3(0.45, 0.42, 0.42), Color("#c9a06a"), Vector3(0.25, 0.85, -0.38))
+	_face(root, Vector3(0, 1.12, 0.42), 0.85, pus)
+
+
+## Somurtkan Sincap (Season 2): a russet squirrel with a big curled tail and
+## an acorn to throw.
+static func _sulky_squirrel(root: Node3D, pus: bool) -> void:
+	var fur := Color("#c66a3a")
+	Toon.part(root, "ellipsoid", Vector3(0.8, 0.85, 0.75), fur, Vector3(0, 0.45, 0))
+	Toon.part(root, "ellipsoid", Vector3(0.48, 0.55, 0.28), Color("#f1d2a8"), Vector3(0, 0.42, 0.26), Vector3.ZERO, 0.0, 0.0)
+	Toon.part(root, "ellipsoid", Vector3(0.72, 0.66, 0.66), fur, Vector3(0, 1.02, 0.05))
+	for side: float in [-1.0, 1.0]:
+		Toon.part(root, "cone", Vector3(0.2, 0.3, 0.12), fur, Vector3(0.22 * side, 1.42, 0.0), Vector3(0, 0, -10 * side))
+	for i in 5:
+		var a := i * 0.5
+		Toon.part(root, "sphere", Vector3(0.5, 0.5, 0.5) * (1.0 - i * 0.08), fur.lightened(0.05 * i), Vector3(0, 0.45 + sin(a) * 0.7, -0.45 - cos(a) * 0.35 + i * 0.02))
+	Toon.part(root, "ellipsoid", Vector3(0.22, 0.26, 0.22), Color("#8a5a3c"), Vector3(0.3, 0.6, 0.35))
+	Toon.part(root, "ellipsoid", Vector3(0.24, 0.12, 0.24), Color("#5a3a28"), Vector3(0.3, 0.74, 0.35))
+	_face(root, Vector3(0, 1.05, 0.36), 0.8, pus)
 
 
 ## Puslu Sümüklü: a round slug with two eye stalks.
