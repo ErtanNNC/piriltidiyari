@@ -28,7 +28,7 @@ var _phase := 0.0
 ## Imported models: their own AnimationPlayer clips (idle/walk/run/jump/attack).
 var _anim: AnimationPlayer
 var _clips: Dictionary = {}
-const CLIP_SPEED := {"attack": 2.6, "jump": 1.6, "run": 1.0, "walk": 1.2}
+const CLIP_SPEED := {"attack": 2.2, "jump": 1.6, "run": 1.0, "walk": 1.2}
 var _oneshot := 0.0
 ## Imported models without a skeleton: their toon materials take the shape
 ## rig (rig.gdshaderinc); set by ModelImport.
@@ -103,7 +103,7 @@ func _ready() -> void:
 			var model: Node3D = fit.get_child(0) if fit and fit.get_child_count() > 0 else null
 			if model:
 				_fwd = Basis(Vector3.UP, -model.rotation.y) * Vector3(0, 0, 1)
-			if _arm_r >= 0:
+			if _arm_r >= 0 and not _clips.has("attack"):
 				_swing = ArmSwing.new()
 				_swing.arm_r = _arm_r
 				_swing.arm_l = _arm_l

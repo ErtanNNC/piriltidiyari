@@ -119,7 +119,41 @@ static func _anchors(model: Node3D, id: String) -> Dictionary:
 	p["head_r"] = Vector3(float(r[0]), float(r[1]), float(r[2]))
 	# hats and crowns are sized for the procedural head (half width ~0.48)
 	p["hat_scale"] = float(def.get("hat_scale", 1.0))
+	_follow_bones(pose, p)
 	return p
+
+
+## A rigged model: hats ride the head bone and tools the hand bones, so they
+## move with the animation. The anchor keeps its place (the bind pose).
+static func _follow_bones(pose: Node3D, p: Dictionary) -> void:
+	var found := pose.find_children("*", "Skeleton3D", true, false)
+	if found.is_empty():
+		return
+	var sk: Skeleton3D = found[0]
+	for pair: Array in [["Head", "Head"], ["HandL", "LeftHand"], ["HandR", "RightHand"], ["Body", "Spine"]]:
+		var bone := sk.find_bone(pair[1])
+		var anchor: Node3D = p.get(pair[0])
+		if bone < 0 or anchor == null:
+			continue
+		var att := BoneAttachment3D.new()
+		att.bone_name = pair[1]
+		sk.add_child(att)
+		# where the anchor sits relative to the bone in the rest pose
+		var bone_rest := pose.global_transform.affine_inverse() * sk.global_transform * sk.get_bone_global_rest(bone) if pose.is_inside_tree() else _rest_in(pose, sk, bone)
+		var local := bone_rest.affine_inverse() * anchor.transform
+		anchor.get_parent().remove_child(anchor)
+		att.add_child(anchor)
+		anchor.transform = local
+
+
+static func _rest_in(pose: Node3D, sk: Skeleton3D, bone: int) -> Transform3D:
+	var t := Transform3D.IDENTITY
+	var n: Node = sk
+	while n != null and n != pose:
+		if n is Node3D:
+			t = (n as Node3D).transform * t
+		n = n.get_parent()
+	return t * sk.get_bone_global_rest(bone)
 
 
 static func _node(parent: Node3D, n: String, pos: Vector3) -> Node3D:

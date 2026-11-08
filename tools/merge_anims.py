@@ -228,9 +228,16 @@ def retarget(src, anim, dst):
         dh = dst.names["Hips"]
         ps, pd = src.bind_p[sh], dst.bind_p[dh]
         k = pd[1] / ps[1] if abs(ps[1]) > 1e-6 else 1.0
+        # node translations are in the parent's units (often an armature
+        # scaled 0.01): measure each side's unit against its bind height
+        ts = np.array(src.doc["nodes"][sh].get("translation", [0, ps[1], 0]), float)
+        td = np.array(dst.doc["nodes"][dh].get("translation", [0, pd[1], 0]), float)
+        us = ps[1] / ts[1] if abs(ts[1]) > 1e-9 else 1.0
+        ud = pd[1] / td[1] if abs(td[1]) > 1e-9 else 1.0
         vals = []
         for v in hips_tr[1]:
-            vals.append([pd[0], pd[1] + (v[1] - ps[1]) * k, pd[2]])
+            up = (v[1] * us - ps[1]) * k / ud
+            vals.append([td[0], td[1] + up, td[2]])
         hips = (hips_tr[0], np.array(vals, np.float32))
     return res, hips
 

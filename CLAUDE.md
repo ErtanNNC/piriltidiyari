@@ -44,14 +44,18 @@ is a copy of the design system's tokens.
   (blink/breath); Pus mobs keep a faint tint of their own color (`MobModels._c`).
 - Ground decor is automatic: `Decor.auto(scene, style)` in each scene's `_ready`
   scatters non-colliding MultiMesh props on upright floors; thin meshes are paths.
-- Rigged models: the Meshy auto-rig gave the keepers bad skin weights (legs
-  and shoulders drive the tail and body), so all keepers use the shader rig.
-  `tools/merge_anims.py` (retarget clips onto one skeleton, `--face=90` for
-  Tripo models) and `ArmSwing` (SkeletonModifier3D strike on top of a clip)
-  stay for future well-rigged models; check `--scene=preview --demo=rigtest`.
-  Player checks from the side: `--scene=preview --demo=play --act=walk|attack|roll`.
-  Attack is a short wind-up twist plus an arm chop (no full spin); roll curls
-  the model into a ball around its middle with a dust/sparkle trail.
+- Rigged keepers: Pati, Bado, Çıtır and Lumi play real bone clips (idle,
+  walk, run, jump, attack). The Meshy auto-rig placed bones badly (it took the
+  +X-facing Tripo mesh for +Z), so `tools/rebuild_rig.py --turn=-90 idle=..`
+  turns the mesh to +Z, builds a clean skeleton from the mesh shape, binds
+  vertices by body region (head rigid, tail/wings on the hips) and retargets
+  the clips (torso bends softened, `CALM`); their json has "facing": 0. Hats
+  and tools ride the head/hand bones (`KeeperModels._follow_bones`).
+  CharacterRig plays the clips (`CLIP_SPEED`); blink still via the toon
+  shader; `ArmSwing` adds a strike only when a model has no attack clip.
+  Checks: `--scene=preview --demo=rigtest --model=<id>`, from the side:
+  `--demo=play --act=walk|attack|roll`. Attack is a short wind-up twist (no
+  full spin); roll curls the model into a ball with a dust/sparkle trail.
 - World props: `PropModel.swap(node, "prop_<kind>", keep, roof)` replaces a
   prop's primitive meshes with `assets/models/prop_*.glb` (same height and
   footprint; colliders, lights, particles and `keep` nodes stay; roof hue via
