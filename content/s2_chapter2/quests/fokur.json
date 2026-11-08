@@ -1,0 +1,31 @@
+{
+  "id": "fokur",
+  "title": "Kaynar Kurbağa Fokur",
+  "giver": "demlik",
+  "ordered": true,
+  "objectives": [
+    {
+      "id": "can",
+      "text": "Gölün Ses Çanı'nı çal",
+      "type": "ring",
+      "target": "ses_cani"
+    },
+    {
+      "id": "fokur",
+      "text": "Nilüferlerden adaya geç, Fokur'u dinle",
+      "type": "breathe",
+      "target": "fokur"
+    },
+    {
+      "id": "kor",
+      "text": "Mercan Kor'u al",
+      "type": "reach",
+      "target": "mercan_kor"
+    }
+  ],
+  "turn_in": "Çay Ustası Demlik'e dön",
+  "rewards": {
+    "piril": 80,
+    "xp": 400
+  }
+}

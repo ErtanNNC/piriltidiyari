@@ -28,6 +28,7 @@ const SCENES := {
 	"s2_scene6": "res://scenes/season2/s2_scene6_kulak_bekcileri.tscn",
 	"s2_chapter0": "res://scenes/season2/s2_chapter0_kaplica_koyu.tscn",
 	"s2_chapter1": "res://scenes/season2/s2_chapter1_kizil_yaprak.tscn",
+	"s2_chapter2": "res://scenes/season2/s2_chapter2_fokurdayan_gol.tscn",
 	# inside a village house (which one: SceneFlow.house_id)
 	"house": "res://scenes/chapter0/ev.tscn",
 	# dev only: all characters side by side (tools/screenshot.sh --scene=preview)
@@ -38,7 +39,7 @@ const SCENES := {
 const SCENE_CHAPTER := {"chapter0": "chapter0", "chapter1": "chapter1", "chapter2": "chapter2", "chapter3": "chapter3", "chapter4": "chapter4", "chapter5": "chapter5", "final": "chapter5", "house": "chapter0",
 	"s2_scene1": "s2_prologue", "s2_scene2": "s2_prologue", "s2_scene3": "s2_prologue",
 	"s2_scene4": "s2_prologue", "s2_scene5": "s2_prologue", "s2_scene6": "s2_prologue",
-	"s2_chapter0": "s2_chapter0", "s2_chapter1": "s2_chapter1"}
+	"s2_chapter0": "s2_chapter0", "s2_chapter1": "s2_chapter1", "s2_chapter2": "s2_chapter2"}
 
 ## [small line, big title] shown when a scene starts.
 const CARDS := {
@@ -63,6 +64,7 @@ const CARDS := {
 	"s2_scene6": ["Sezon 2 · Prolog · Sahne 6", "Kulak Bekçileri"],
 	"s2_chapter0": ["Sezon 2 · Bölüm 0", "Buharlı Kaplıca Köyü"],
 	"s2_chapter1": ["Sezon 2 · Bölüm 1", "Kızıl Yaprak Ormanı"],
+	"s2_chapter2": ["Sezon 2 · Bölüm 2", "Fokurdayan Göl"],
 }
 
 var current := ""

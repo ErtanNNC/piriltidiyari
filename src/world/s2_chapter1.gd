@@ -289,6 +289,16 @@ func _build() -> void:
 		t.reached.connect(func() -> void:
 			if _veil and not GameState.in_dialogue:
 				GameState.bark("s2c1_perde"))
+	TravelSign.board(lv, "Fokurdayan Göl ↑", Vector3(-3.0, 1.3, -44.0), 2.6)
+	Toon.part(lv, "box", Vector3(0.16, 1.2, 0.16), Color("#a86b45"), Vector3(-3.0, 0.6, -44.05))
+	var on := TriggerArea.new()
+	on.radius = 2.2
+	on.once = false
+	lv.add_child(on)
+	on.position = Vector3(0, 0, -46.5)
+	on.reached.connect(func() -> void:
+		if GameState.data.has_flag("s2_bolum1_bitti"):
+			SceneFlow.go_to("s2_chapter2"))
 	TravelSign.board(lv, "Buharlı Kaplıca Köyü ↓", Vector3(2.4, 1.3, 22.0), 2.8)
 	Toon.part(lv, "box", Vector3(0.16, 1.2, 0.16), Color("#a86b45"), Vector3(2.4, 0.6, 21.95))
 	var home := TriggerArea.new()

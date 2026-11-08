@@ -388,6 +388,8 @@
   "Canını 40 doldurur",
   "Nane Şekeri",
   "Öfke barını soğutur, canını 10 doldurur",
+  "Papatya Çayı",
+  "60 saniye Sakinleş daha hızlı",
   "Yıldız Tozu",
   "Enerjini 30 doldurur",
   "Kristal Tılsım",
@@ -702,6 +704,82 @@
   "Paytak'a uçurtmasını geri ver",
   "Minik'e bez bebeğini geri ver"
  ],
+ "content/s2_chapter2/barks.json": [
+  "Fokurdayan Göl! Su kaynıyor, nilüferler buhar içinde.",
+  "Şu çaydanlık şapkalı kurbağaya soralım.",
+  "Of, sıcak su! Kıyıya döndüm. Nilüferlerden gideyim.",
+  "Çan çalmıyor... Önce kurbağaları sırayla dinlemeliyim.",
+  "Çan çaldı! Göldeki sis kalkıyor, ada görünüyor!",
+  "Fokur fokur! Kim geldi yine? Şarkımı mı keseceksin?",
+  "Herkes keser! Ben de kaynarım! FOKUR!",
+  "Fokur... fokur... Şarkım hep yarım kaldı...",
+  "Şarkını söyle, Fokur. Sonuna kadar dinleyeceğim.",
+  "Sonuna kadar mı? Kimse kesmeyecek mi?",
+  "Vrak la la, nilüfer, vrak la la, göl serin...",
+  "...ve son! Bitti! İlk defa sonuna kadar söyledim!",
+  "Al, Mercan Kor. Şarkımın en güzel notası bu.",
+  "Mercan Kor! Pembe pembe parlıyor."
+ ],
+ "content/s2_chapter2/chapter.json": [
+  "Fokurdayan Göl"
+ ],
+ "content/s2_chapter2/dialogue/dede_virak.json": [
+  "Sıra beklemek kurbağalığın şanındandır, vrak!",
+  "Dede Vırak, önce siz anlatın. Dinliyorum.",
+  "Önce ben mi? Yıllardır kimse sözümü bitirtmedi!",
+  "Bu gölün kurbağaları eskiden sırayla şarkı söylerdi.",
+  "Şimdi sıra Vrakvrak'ta. Ona da kulak ver.",
+  "Vrak! Herkes aynı anda vraklıyor! Kimse bitiremiyor!"
+ ],
+ "content/s2_chapter2/dialogue/demlik.json": [
+  "Göl fokurdamıyor artık, sadece mırıldanıyor. Çay ister misin?",
+  "Fokur'un şarkısını sonuna kadar dinledin, değil mi?",
+  "Hep yarıda kesildiği için kaynamış. Bitince serinlemiş.",
+  "Sıra beklemek kolay değil. Ama herkesin sırası gelir.",
+  "Mercan Kor seninle. Patpat Tarlaları'na yol açık!",
+  "Fokur gölün ortasındaki adada. Nilüferlerden zıplaya zıplaya git.",
+  "Sırayla konuştular! Kırk yıldır ilk kez!",
+  "Ama Kaynar Kurbağa Fokur hâlâ kaynıyor. Şarkısı hep kesildi.",
+  "Gölün çanını çal, sonra adaya geç. Onu sonuna kadar dinle.",
+  "Önce en yaşlı, sonra ortanca, en son en küçük.",
+  "Hoş geldin! Ben Çay Ustası Demlik. Papatya çayım meşhurdur.",
+  "Kızıl Sis geldi, kurbağalarımız birbirinin sözünü kesiyor.",
+  "Herkes aynı anda vraklıyor, kimse sözünü bitiremiyor.",
+  "Onları sırayla dinle: önce en yaşlı, en son en küçük.",
+  "Bir yudum papatya çayı, bir derin nefes. Fıss..."
+ ],
+ "content/s2_chapter2/dialogue/vik.json": [
+  "Vık vık! Sırayla konuşunca herkesi duydum!",
+  "Ben de mi konuşabilirim? En küçük benim ama...",
+  "Sıra sende, Vık. Seni bekledik.",
+  "Vık! Bir şarkı biliyorum, ama hep yarıda kesildi.",
+  "Fokur Amca'nın şarkısı. Onu da sonuna kadar dinler misin?",
+  "Vık... Sıra bana gelmedi daha. Büyükler önce."
+ ],
+ "content/s2_chapter2/dialogue/vrakvrak.json": [
+  "Kırk iki nilüfer! Sona kadar saydım, vrak!",
+  "Sıra bende mi? Gerçekten mi? Kimse araya girmeyecek mi?",
+  "Kimse girmeyecek. Anlat.",
+  "Nilüfer yapraklarını saymak istiyordum. Kırk iki tane!",
+  "Şimdi küçük Vık'ın sırası. O hep en sona kalır.",
+  "Dur, dur! Önce Dede Vırak konuşsun, sıra onun!"
+ ],
+ "content/s2_chapter2/quests/fokur.json": [
+  "Kaynar Kurbağa Fokur",
+  "Gölün Ses Çanı'nı çal",
+  "Nilüferlerden adaya geç, Fokur'u dinle",
+  "Mercan Kor'u al",
+  "Çay Ustası Demlik'e dön"
+ ],
+ "content/s2_chapter2/quests/sira_bekle.json": [
+  "Sıra Bekle",
+  "Önce en yaşlıyı dinle: Dede Vırak",
+  "Sonra Vrakvrak'ı dinle",
+  "En son küçük Vık'ı dinle"
+ ],
+ "content/s2_chapter2/shop.json": [
+  "Demlik'in Çay Tezgâhı"
+ ],
  "content/s2_prologue/barks.json": [
   "Bugün benim doğum günüm! Köyde ilk doğum günüm.",
   "Süzülüyorum! Yıldız olmanın en güzel yanı bu.",
@@ -883,7 +961,11 @@
   "Terzi Kozalak",
   "Pofu",
   "Paytak",
-  "Minik"
+  "Minik",
+  "Çay Ustası Demlik",
+  "Dede Vırak",
+  "Vrakvrak",
+  "Vık"
  ],
  "src/actors/breath_calm.gd": [
   "panel@light",
@@ -908,6 +990,10 @@
  "src/actors/firfir.gd": [
   "Fırfır oturdu, soluk soluğa! Şimdi vur!",
   "Oturdu! Şimdi vur!"
+ ],
+ "src/actors/fokur.gd": [
+  "Fokur yoruldu, soluk soluğa! Şimdi vur!",
+  "Yoruldu! Şimdi vur!"
  ],
  "src/actors/gurledek.gd": [
   "Yoruldu, alçaldı! Şimdi vur!",
@@ -958,6 +1044,7 @@
   "Oh, serinledin!",
   "Canın zaten dolu",
   "%d saniye gücün arttı!",
+  "%d saniye nefesin daha hızlı",
   "%d saniye moblar seni zor fark eder",
   "Uykuya daldın",
   "Fener'in yanında uyanıyorsun...",
@@ -1002,7 +1089,8 @@
   "Sezon 2 · Prolog · Sahne 5",
   "Sezon 2 · Prolog · Sahne 6",
   "Sezon 2 · Bölüm 0",
-  "Sezon 2 · Bölüm 1"
+  "Sezon 2 · Bölüm 1",
+  "Sezon 2 · Bölüm 2"
  ],
  "src/autoload/tokens.gd": [
   "fontSize",
@@ -1024,6 +1112,8 @@
   "Gürültücü Kurbağa",
   "Kapıcı Rakun",
   "Somurtkan Sincap",
+  "Kaynar Balon Balık",
+  "Laf Kesen Ördek",
   "Dev Somurtkan Mantar"
  ],
  "src/core/player_data.gd": [
@@ -1365,7 +1455,17 @@
   "Kor",
   "Turuncu Kor",
   "Kızıl Yaprak Ormanı ısındı",
+  "Fokurdayan Göl ↑",
   "Buharlı Kaplıca Köyü ↓"
+ ],
+ "src/world/s2_chapter2.gd": [
+  "Gölün çanını çal",
+  "Kabarcıklardan kaç, vıraklayınca uzaklaş. Zıplayınca vur!",
+  "Kaç, zıpladıktan sonra vur!",
+  "Yanına git, Sakinleş'e basılı tut. Şarkısını dinle.",
+  "Mercan Kor",
+  "Fokurdayan Göl serinledi",
+  "Kızıl Yaprak Ormanı ↓"
  ],
  "src/world/s2_scene1.gd": [
   "Boşluk: zıpla, havada basılı tut: süzül!",

@@ -1,0 +1,57 @@
+{
+  "npc": "dede_virak",
+  "variants": [
+    {
+      "when": {
+        "objective_done": "sira_bekle/dede"
+      },
+      "lines": [
+        {
+          "speaker": "dede_virak",
+          "mood": "mutlu",
+          "text": "Sıra beklemek kurbağalığın şanındandır, vrak!"
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "sira_bekle",
+        "state": "active"
+      },
+      "lines": [
+        {
+          "speaker": "oyuncu",
+          "mood": "sakin",
+          "text": "Dede Vırak, önce siz anlatın. Dinliyorum."
+        },
+        {
+          "speaker": "dede_virak",
+          "mood": "şaşkın",
+          "text": "Önce ben mi? Yıllardır kimse sözümü bitirtmedi!"
+        },
+        {
+          "speaker": "dede_virak",
+          "mood": "mutlu",
+          "text": "Bu gölün kurbağaları eskiden sırayla şarkı söylerdi."
+        },
+        {
+          "speaker": "dede_virak",
+          "mood": "mutlu",
+          "text": "Şimdi sıra Vrakvrak'ta. Ona da kulak ver."
+        }
+      ],
+      "then": {
+        "advance": "sira_bekle/dede"
+      }
+    },
+    {
+      "lines": [
+        {
+          "speaker": "dede_virak",
+          "mood": "huysuz",
+          "text": "Vrak! Herkes aynı anda vraklıyor! Kimse bitiremiyor!"
+        }
+      ]
+    }
+  ]
+}

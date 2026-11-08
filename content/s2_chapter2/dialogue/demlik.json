@@ -1,0 +1,153 @@
+{
+  "npc": "demlik",
+  "variants": [
+    {
+      "when": {
+        "quest": "fokur",
+        "state": "done"
+      },
+      "lines": [
+        {
+          "speaker": "demlik",
+          "mood": "mutlu",
+          "text": "Göl fokurdamıyor artık, sadece mırıldanıyor. Çay ister misin?"
+        }
+      ],
+      "then": {
+        "open_shop": "demlik"
+      }
+    },
+    {
+      "when": {
+        "quest": "fokur",
+        "state": "ready"
+      },
+      "lines": [
+        {
+          "speaker": "demlik",
+          "mood": "mutlu",
+          "text": "Fokur'un şarkısını sonuna kadar dinledin, değil mi?"
+        },
+        {
+          "speaker": "demlik",
+          "mood": "sakin",
+          "text": "Hep yarıda kesildiği için kaynamış. Bitince serinlemiş."
+        },
+        {
+          "speaker": "demlik",
+          "mood": "mutlu",
+          "text": "Sıra beklemek kolay değil. Ama herkesin sırası gelir."
+        },
+        {
+          "speaker": "demlik",
+          "mood": "kararlı",
+          "text": "Mercan Kor seninle. Patpat Tarlaları'na yol açık!"
+        }
+      ],
+      "then": {
+        "complete_quest": "fokur",
+        "set_flag": "s2_bolum2_bitti",
+        "open_shop": "demlik"
+      }
+    },
+    {
+      "when": {
+        "quest": "fokur",
+        "state": "active"
+      },
+      "lines": [
+        {
+          "speaker": "demlik",
+          "mood": "dertli",
+          "text": "Fokur gölün ortasındaki adada. Nilüferlerden zıplaya zıplaya git."
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "sira_bekle",
+        "state": "ready"
+      },
+      "lines": [
+        {
+          "speaker": "demlik",
+          "mood": "mutlu",
+          "text": "Sırayla konuştular! Kırk yıldır ilk kez!"
+        },
+        {
+          "speaker": "demlik",
+          "mood": "dertli",
+          "text": "Ama Kaynar Kurbağa Fokur hâlâ kaynıyor. Şarkısı hep kesildi."
+        },
+        {
+          "speaker": "demlik",
+          "mood": "kararlı",
+          "text": "Gölün çanını çal, sonra adaya geç. Onu sonuna kadar dinle."
+        }
+      ],
+      "then": {
+        "complete_quest": "sira_bekle",
+        "start_quest": "fokur",
+        "give_items": {
+          "papatya_cayi": 1
+        }
+      }
+    },
+    {
+      "when": {
+        "quest": "sira_bekle",
+        "state": "active"
+      },
+      "lines": [
+        {
+          "speaker": "demlik",
+          "mood": "sakin",
+          "text": "Önce en yaşlı, sonra ortanca, en son en küçük."
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "sira_bekle",
+        "state": "none"
+      },
+      "lines": [
+        {
+          "speaker": "demlik",
+          "mood": "mutlu",
+          "text": "Hoş geldin! Ben Çay Ustası Demlik. Papatya çayım meşhurdur."
+        },
+        {
+          "speaker": "demlik",
+          "mood": "dertli",
+          "text": "Kızıl Sis geldi, kurbağalarımız birbirinin sözünü kesiyor."
+        },
+        {
+          "speaker": "demlik",
+          "mood": "dertli",
+          "text": "Herkes aynı anda vraklıyor, kimse sözünü bitiremiyor."
+        },
+        {
+          "speaker": "demlik",
+          "mood": "kararlı",
+          "text": "Onları sırayla dinle: önce en yaşlı, en son en küçük."
+        }
+      ],
+      "then": {
+        "start_quest": "sira_bekle",
+        "give_items": {
+          "nane_sekeri": 2
+        }
+      }
+    },
+    {
+      "lines": [
+        {
+          "speaker": "demlik",
+          "mood": "sakin",
+          "text": "Bir yudum papatya çayı, bir derin nefes. Fıss..."
+        }
+      ]
+    }
+  ]
+}

@@ -34,7 +34,7 @@ def wanted(s):
 
 TURKISH_SINGLE = {"Aksesuar", "Alet", "Aletler", "Bak", "Baloncuk", "Buton", "Can", "Dolap", "Gir", "Kalkan",
                   "Kaydedilemedi", "Kedi", "Liman", "Renk", "Sincap", "Uykuya", "Yok", "Yolculukta", "Yuvarlan","Vur", "Yak", "Geri", "Evet", "Sil", "Kaydet", "Devam", "At", "Kombo", "Mola", "Kapat",
-                  "Pati", "Davetiye", "Ninni", "Nefes", "Pamuk", "Toprak", "Pofu", "Paytak", "Minik", "Kor", "Seviye", "Hediye", "Konuş", "Al", "Aç", "Oku", "Bin", "Git", "Tamam", "Ses", "Müzik"}
+                  "Pati", "Davetiye", "Ninni", "Nefes", "Pamuk", "Toprak", "Pofu", "Paytak", "Minik", "Kor", "Vrakvrak", "Seviye", "Hediye", "Konuş", "Al", "Aç", "Oku", "Bin", "Git", "Tamam", "Ses", "Müzik"}
 
 
 def from_content(found):

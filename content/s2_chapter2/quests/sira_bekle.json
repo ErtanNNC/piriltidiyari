@@ -1,0 +1,31 @@
+{
+  "id": "sira_bekle",
+  "title": "Sıra Bekle",
+  "giver": "demlik",
+  "ordered": true,
+  "objectives": [
+    {
+      "id": "dede",
+      "text": "Önce en yaşlıyı dinle: Dede Vırak",
+      "type": "talk",
+      "target": "dede_virak"
+    },
+    {
+      "id": "orta",
+      "text": "Sonra Vrakvrak'ı dinle",
+      "type": "talk",
+      "target": "vrakvrak"
+    },
+    {
+      "id": "kucuk",
+      "text": "En son küçük Vık'ı dinle",
+      "type": "talk",
+      "target": "vik"
+    }
+  ],
+  "turn_in": "Çay Ustası Demlik'e dön",
+  "rewards": {
+    "piril": 60,
+    "xp": 250
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "npc": "vik",
+  "variants": [
+    {
+      "when": {
+        "objective_done": "sira_bekle/kucuk"
+      },
+      "lines": [
+        {
+          "speaker": "vik",
+          "mood": "mutlu",
+          "text": "Vık vık! Sırayla konuşunca herkesi duydum!"
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "sira_bekle",
+        "state": "active",
+        "objective_done": "sira_bekle/orta"
+      },
+      "lines": [
+        {
+          "speaker": "vik",
+          "mood": "şaşkın",
+          "text": "Ben de mi konuşabilirim? En küçük benim ama..."
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "mutlu",
+          "text": "Sıra sende, Vık. Seni bekledik."
+        },
+        {
+          "speaker": "vik",
+          "mood": "mutlu",
+          "text": "Vık! Bir şarkı biliyorum, ama hep yarıda kesildi."
+        },
+        {
+          "speaker": "vik",
+          "mood": "mutlu",
+          "text": "Fokur Amca'nın şarkısı. Onu da sonuna kadar dinler misin?"
+        }
+      ],
+      "then": {
+        "advance": "sira_bekle/kucuk"
+      }
+    },
+    {
+      "when": {
+        "quest": "sira_bekle",
+        "state": "active"
+      },
+      "lines": [
+        {
+          "speaker": "vik",
+          "mood": "dertli",
+          "text": "Vık... Sıra bana gelmedi daha. Büyükler önce."
+        }
+      ]
+    },
+    {
+      "lines": [
+        {
+          "speaker": "vik",
+          "mood": "huysuz",
+          "text": "Vrak! Herkes aynı anda vraklıyor! Kimse bitiremiyor!"
+        }
+      ]
+    }
+  ]
+}

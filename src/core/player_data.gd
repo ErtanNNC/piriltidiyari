@@ -14,7 +14,7 @@ signal skills_changed
 const POTION_SLOTS := 4
 ## Hikâye Taşları in Season 1 (the design's 20 arrive over two seasons).
 const STORY_STONES := 10
-const POTIONS := ["bal_surubu", "yildiz_tozu", "cesaret_sekeri", "pus_kovucu", "nane_sekeri"]
+const POTIONS := ["bal_surubu", "yildiz_tozu", "cesaret_sekeri", "pus_kovucu", "nane_sekeri", "papatya_cayi"]
 
 var character_id := "fistik"
 var character_name := "Fıstık"

@@ -1,0 +1,90 @@
+{
+  "barks": {
+    "s2c2_basla": [
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Fokurdayan Göl! Su kaynıyor, nilüferler buhar içinde."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "kararlı",
+        "text": "Şu çaydanlık şapkalı kurbağaya soralım."
+      }
+    ],
+    "s2c2_su": [
+      {
+        "speaker": "oyuncu",
+        "mood": "dertli",
+        "text": "Of, sıcak su! Kıyıya döndüm. Nilüferlerden gideyim."
+      }
+    ],
+    "s2c2_kilit": [
+      {
+        "speaker": "oyuncu",
+        "mood": "dertli",
+        "text": "Çan çalmıyor... Önce kurbağaları sırayla dinlemeliyim."
+      }
+    ],
+    "s2c2_can": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Çan çaldı! Göldeki sis kalkıyor, ada görünüyor!"
+      }
+    ],
+    "s2c2_fokur": [
+      {
+        "speaker": "fokur",
+        "mood": "huysuz",
+        "text": "Fokur fokur! Kim geldi yine? Şarkımı mı keseceksin?"
+      },
+      {
+        "speaker": "fokur",
+        "mood": "huysuz",
+        "text": "Herkes keser! Ben de kaynarım! FOKUR!"
+      }
+    ],
+    "s2c2_fokur_yorgun": [
+      {
+        "speaker": "fokur",
+        "mood": "üzgün",
+        "text": "Fokur... fokur... Şarkım hep yarım kaldı..."
+      }
+    ],
+    "s2c2_fokur_son": [
+      {
+        "speaker": "oyuncu",
+        "mood": "sakin",
+        "text": "Şarkını söyle, Fokur. Sonuna kadar dinleyeceğim."
+      },
+      {
+        "speaker": "fokur",
+        "mood": "şaşkın",
+        "text": "Sonuna kadar mı? Kimse kesmeyecek mi?"
+      },
+      {
+        "speaker": "fokur",
+        "mood": "mutlu",
+        "text": "Vrak la la, nilüfer, vrak la la, göl serin..."
+      },
+      {
+        "speaker": "fokur",
+        "mood": "mutlu",
+        "text": "...ve son! Bitti! İlk defa sonuna kadar söyledim!"
+      },
+      {
+        "speaker": "fokur",
+        "mood": "mutlu",
+        "text": "Al, Mercan Kor. Şarkımın en güzel notası bu."
+      }
+    ],
+    "s2c2_kor": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Mercan Kor! Pembe pembe parlıyor."
+      }
+    ]
+  }
+}

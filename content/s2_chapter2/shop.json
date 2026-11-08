@@ -1,0 +1,25 @@
+{
+  "shops": {
+    "demlik": {
+      "title": "Demlik'in Çay Tezgâhı",
+      "items": [
+        {
+          "id": "papatya_cayi",
+          "price": 25
+        },
+        {
+          "id": "nane_sekeri",
+          "price": 15
+        },
+        {
+          "id": "bal_surubu",
+          "price": 15
+        },
+        {
+          "id": "yildiz_tozu",
+          "price": 20
+        }
+      ]
+    }
+  }
+}

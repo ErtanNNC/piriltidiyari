@@ -23,6 +23,10 @@ const KINDS := {
 	# cub's toy), a sulky squirrel who throws acorns
 	"kapici_rakun": {"name": "Kapıcı Rakun", "hp": 40, "speed": 3.0, "damage": 8, "attack": "lunge", "range": 2.6, "aggro": 9.0, "xp": 6, "piril": 3, "breath": true, "steals": 2},
 	"somurtkan_sincap": {"name": "Somurtkan Sincap", "hp": 34, "speed": 2.6, "damage": 7, "attack": "throw", "range": 7.5, "aggro": 11.0, "xp": 6, "piril": 3, "breath": true},
+	# Fokurdayan Göl: a boiling pufferfish that puffs up (burst) and a duck
+	# who cuts in (a quick lunge)
+	"balon_balik": {"name": "Kaynar Balon Balık", "hp": 52, "speed": 2.0, "damage": 9, "attack": "burst", "range": 2.8, "aggro": 8.0, "xp": 9, "piril": 4, "breath": true},
+	"laf_kesen_ordek": {"name": "Laf Kesen Ördek", "hp": 44, "speed": 3.6, "damage": 8, "attack": "lunge", "range": 3.0, "aggro": 12.0, "xp": 9, "piril": 4, "breath": true},
 	"dev_mantar": {"name": "Dev Somurtkan Mantar", "hp": 160, "speed": 1.4, "damage": 15, "attack": "burst", "range": 3.4, "aggro": 10.0, "xp": 20, "piril": 15},
 }
 
@@ -32,7 +36,7 @@ const MAX_ATTACKERS := 1
 
 ## Each kind's level: it belongs to its region's level range
 ## (Köy 1–5, Orman 5–10, Mağara 10–15, Liman 15–20, Dağ 20–25, Kale 25–30).
-const LEVELS := {"kopuklu_tavuk": 1, "gurultucu_kurbaga": 2, "kapici_rakun": 6, "somurtkan_sincap": 7, "sumuklu": 1, "mantar": 2, "dev_mantar": 4, "kirpi_topu": 6, "karga": 7,
+const LEVELS := {"kopuklu_tavuk": 1, "gurultucu_kurbaga": 2, "kapici_rakun": 6, "somurtkan_sincap": 7, "balon_balik": 11, "laf_kesen_ordek": 12, "sumuklu": 1, "mantar": 2, "dev_mantar": 4, "kirpi_topu": 6, "karga": 7,
 	"kristal_bocek": 11, "yarasa": 12, "firtina_yumagi": 16, "korsan_marti": 17,
 	"kar_tavsani": 21, "buz_dikeni": 22, "golge_kopya": 26}
 

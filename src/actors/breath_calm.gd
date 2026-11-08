@@ -28,6 +28,8 @@ var anger := 0.0
 var angry := 0.0
 ## Kızıl Sis strength around the keeper (bar fill per second), set by scenes.
 var heat := 0.0
+## Papatya Çayı: breaths go faster until this time (seconds).
+var fast_until := 0.0
 
 var _ring: MeshInstance3D
 var _label: Label3D
@@ -79,7 +81,8 @@ func _physics_process(delta: float) -> void:
 	_update_anger(delta, held)
 	target = _nearest_dazed() if not is_angry() else null
 	if held and target:
-		breath += delta / (BREATH_IN + BREATH_OUT)
+		var fast := 1.6 if Time.get_ticks_msec() / 1000.0 < fast_until else 1.0
+		breath += delta * fast / (BREATH_IN + BREATH_OUT)
 		if breath >= 1.0:
 			var m := target
 			breath = 0.0

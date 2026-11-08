@@ -219,6 +219,26 @@
     "firfir": {
       "name": "Tilki Fırfır",
       "color": "hp"
+    },
+    "demlik": {
+      "name": "Çay Ustası Demlik",
+      "color": "spark-green"
+    },
+    "dede_virak": {
+      "name": "Dede Vırak",
+      "color": "spark-green"
+    },
+    "vrakvrak": {
+      "name": "Vrakvrak",
+      "color": "sky"
+    },
+    "vik": {
+      "name": "Vık",
+      "color": "spark-yellow"
+    },
+    "fokur": {
+      "name": "Kaynar Kurbağa Fokur",
+      "color": "hp"
     }
   }
 }

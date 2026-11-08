@@ -1,0 +1,23 @@
+{
+  "id": "s2_chapter2",
+  "title": "Fokurdayan Göl",
+  "region": "Fokurdayan Göl",
+  "theme": "light",
+  "levels": [
+    10,
+    15
+  ],
+  "spark": null,
+  "quests": [
+    "sira_bekle",
+    "fokur"
+  ],
+  "dialogue": [
+    "demlik",
+    "dede_virak",
+    "vrakvrak",
+    "vik"
+  ],
+  "barks": "barks",
+  "shop": "shop"
+}

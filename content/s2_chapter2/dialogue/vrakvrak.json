@@ -1,0 +1,71 @@
+{
+  "npc": "vrakvrak",
+  "variants": [
+    {
+      "when": {
+        "objective_done": "sira_bekle/orta"
+      },
+      "lines": [
+        {
+          "speaker": "vrakvrak",
+          "mood": "mutlu",
+          "text": "Kırk iki nilüfer! Sona kadar saydım, vrak!"
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "sira_bekle",
+        "state": "active",
+        "objective_done": "sira_bekle/dede"
+      },
+      "lines": [
+        {
+          "speaker": "vrakvrak",
+          "mood": "şaşkın",
+          "text": "Sıra bende mi? Gerçekten mi? Kimse araya girmeyecek mi?"
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "sakin",
+          "text": "Kimse girmeyecek. Anlat."
+        },
+        {
+          "speaker": "vrakvrak",
+          "mood": "mutlu",
+          "text": "Nilüfer yapraklarını saymak istiyordum. Kırk iki tane!"
+        },
+        {
+          "speaker": "vrakvrak",
+          "mood": "mutlu",
+          "text": "Şimdi küçük Vık'ın sırası. O hep en sona kalır."
+        }
+      ],
+      "then": {
+        "advance": "sira_bekle/orta"
+      }
+    },
+    {
+      "when": {
+        "quest": "sira_bekle",
+        "state": "active"
+      },
+      "lines": [
+        {
+          "speaker": "vrakvrak",
+          "mood": "huysuz",
+          "text": "Dur, dur! Önce Dede Vırak konuşsun, sıra onun!"
+        }
+      ]
+    },
+    {
+      "lines": [
+        {
+          "speaker": "vrakvrak",
+          "mood": "huysuz",
+          "text": "Vrak! Herkes aynı anda vraklıyor! Kimse bitiremiyor!"
+        }
+      ]
+    }
+  ]
+}

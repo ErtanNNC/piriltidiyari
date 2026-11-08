@@ -54,6 +54,16 @@
       "icon": "heart",
       "desc": "Öfke barını soğutur, canını 10 doldurur"
     },
+    "papatya_cayi": {
+      "name": "Papatya Çayı",
+      "color": "spark-yellow",
+      "kind": "potion",
+      "buff": "papatya",
+      "seconds": 60,
+      "price": 25,
+      "icon": "drop",
+      "desc": "60 saniye Sakinleş daha hızlı"
+    },
     "yildiz_tozu": {
       "name": "Yıldız Tozu",
       "color": "mp",

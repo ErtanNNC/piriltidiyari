@@ -298,7 +298,7 @@ func test_owl_plan() -> void:
 
 
 func test_content_is_valid() -> void:
-	for chapter in ["prologue", "chapter0", "chapter1", "chapter2", "chapter3", "chapter4", "chapter5", "s2_prologue", "s2_chapter0", "s2_chapter1"]:
+	for chapter in ["prologue", "chapter0", "chapter1", "chapter2", "chapter3", "chapter4", "chapter5", "s2_prologue", "s2_chapter0", "s2_chapter1", "s2_chapter2"]:
 		_validate_chapter(chapter)
 	test_chapter0_flow()
 	test_chapter1_flow()
@@ -675,6 +675,21 @@ func test_season2() -> void:
 	o.start_quest(c.quests["firfir"])
 	o.notify("breathe", "firfir", c.quests)
 	check(not o.objective_done("firfir", "firfir"), "Fırfır'ı dinlemek çandan önce sayılmaz")
+	check(FokurPlan.phase(FokurPlan.MAX_HP) == 1 and FokurPlan.phase(10) == 3, "Fokur üç faz")
+	for p in [1, 2, 3]:
+		check(FokurPlan.cycle(p).back() == "hop", "Fokur her turu zıplayıp yorularak bitirir (faz %d)" % p)
+	for k in ["balon_balik", "laf_kesen_ordek"]:
+		check(MobStats.breathes(k) and int(MobStats.LEVELS[k]) in range(10, 16), "%s: nefesle sakinleşir, göl seviyesi" % k)
+	c.load_chapter("s2_chapter2")
+	var sb := PlayerData.new()
+	sb.start_quest(c.quests["sira_bekle"])
+	sb.advance_objective("sira_bekle", "kucuk")
+	check(not sb.objective_done("sira_bekle", "kucuk"), "Sıra bekle: en küçük önce konuşamaz")
+	sb.advance_objective("sira_bekle", "dede")
+	sb.advance_objective("sira_bekle", "orta")
+	sb.advance_objective("sira_bekle", "kucuk")
+	check(sb.quest_state("sira_bekle") == "ready", "Sıra bekle: sırayla dinleyince tamam")
+	check(c.items.has("papatya_cayi") and PlayerData.POTIONS.has("papatya_cayi"), "Papatya Çayı iksir")
 	var tp := PlayerData.new()
 	tp.choose_keeper("tipis_panda", c.keeper("tipis_panda")["stats"], {}, "Tıpış")
 	check(tp.level == 1 and tp.active_skill() == "derin_nefes", "Tıpış seçilince seviye 1 ve Derin Nefes")

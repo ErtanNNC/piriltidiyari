@@ -177,11 +177,19 @@ is a copy of the design system's tokens.
   Sakinleş ends it) gives the Turuncu Kor (flag `kor_turuncu`). New primitive
   creatures/NPCs (raccoon, squirrel, fox, hippo, smith turtle, squirrel tailor)
   are placeholders: an `assets/models/<id>.glb` replaces them.
+- Bölüm 2 `s2_chapter2` (Fokurdayan Göl, from Bölüm 1's north exit after
+  `s2_bolum1_bitti`): frogs heard in turn (ordered quest `sira_bekle`, dialogue
+  variants need the previous objective), Demlik's shop with Papatya Çayı (buff
+  "papatya" → `BreathCalm.fast_until`), a boiling lake (hot-water Area puts you
+  back at `respawn_point`), lily pads to the island, boss Kaynar Kurbağa Fokur
+  (`FokurPlan` + `Fokur`: bubbles, croak ring, hop → tired = hittable), Mercan
+  Kor (flag `kor_mercan`). Exits back are TriggerAreas at the map edges (keep
+  spawn points away from them).
 - Checks: `--scene=s2_scene1 --demo=glide|jump|party`, `--scene=s2_scene2 --demo=redwind|breath|guide|angry`,
   `--scene=s2_scene3 --demo=path|jumponly|stairs`, `--scene=s2_scene4 --demo=win --auto`,
   `--scene=s2_scene5 --demo=flow --auto`, `--scene=s2_scene6 --demo=pick_<id> --auto`,
   `--scene=s2_chapter0 --demo=village|bell_locked|stairs [--keeper=tipis_panda]`,
-  `--scene=s2_chapter1 --demo=forest|veil|boss`.
+  `--scene=s2_chapter1 --demo=forest|veil|boss`, `--scene=s2_chapter2 --demo=lake|water|pads`.
 
 ## Agent skills
 

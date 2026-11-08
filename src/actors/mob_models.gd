@@ -54,6 +54,10 @@ static func build(kind: String, pus: bool) -> Node3D:
 			_raccoon(root, pus)
 		"somurtkan_sincap":
 			_sulky_squirrel(root, pus)
+		"balon_balik":
+			_pufferfish(root, pus)
+		"laf_kesen_ordek":
+			_cutting_duck(root, pus)
 	Toon.default_pus = 1.0
 	if kind != "golge_kopya":
 		if pus and MobStats.breathes(kind):
@@ -193,6 +197,40 @@ static func _sulky_squirrel(root: Node3D, pus: bool) -> void:
 	Toon.part(root, "ellipsoid", Vector3(0.22, 0.26, 0.22), Color("#8a5a3c"), Vector3(0.3, 0.6, 0.35))
 	Toon.part(root, "ellipsoid", Vector3(0.24, 0.12, 0.24), Color("#5a3a28"), Vector3(0.3, 0.74, 0.35))
 	_face(root, Vector3(0, 1.05, 0.36), 0.8, pus)
+
+
+## Kaynar Balon Balık (Season 2): a round coral pufferfish hopping on its fins,
+## soft spikes all round.
+static func _pufferfish(root: Node3D, pus: bool) -> void:
+	var skin := Color("#ff8c6a")
+	Toon.part(root, "sphere", Vector3(1.1, 1.0, 1.05), skin, Vector3(0, 0.6, 0))
+	Toon.part(root, "ellipsoid", Vector3(0.75, 0.55, 0.4), Color("#ffe0c8"), Vector3(0, 0.45, 0.36), Vector3.ZERO, 0.0, 0.0)
+	for i in 10:
+		var a := TAU * i / 10.0
+		var p := Vector3(sin(a) * 0.55, 0.6 + cos(a * 2.0) * 0.15, cos(a) * 0.5)
+		var c := Toon.part(root, "cone", Vector3(0.14, 0.24, 0.14), Color("#f2b33d"), p)
+		c.look_at_from_position(p, p * 2.0 - Vector3(0, 0.6, 0), Vector3.UP)
+		c.rotate_object_local(Vector3.RIGHT, -PI / 2)
+	for side: float in [-1.0, 1.0]:
+		Toon.part(root, "ellipsoid", Vector3(0.12, 0.35, 0.3), Color("#f27a5a"), Vector3(0.55 * side, 0.45, 0.0), Vector3(0, 0, 30 * side))
+	Toon.part(root, "cone", Vector3(0.4, 0.4, 0.15), Color("#f27a5a"), Vector3(0, 0.65, -0.62), Vector3(-90, 0, 0))
+	Toon.part(root, "ellipsoid", Vector3(0.18, 0.12, 0.1), Color("#c9452f"), Vector3(0, 0.45, 0.55), Vector3.ZERO, 0.0, 0.0)
+	_face(root, Vector3(0, 0.75, 0.5), 0.85, pus)
+
+
+## Laf Kesen Ördek (Season 2): a quick white duck with an orange bill, who
+## always cuts in.
+static func _cutting_duck(root: Node3D, pus: bool) -> void:
+	var white := Color("#f4f1ea")
+	Toon.part(root, "ellipsoid", Vector3(0.95, 0.8, 1.15), white, Vector3(0, 0.5, -0.05))
+	Toon.part(root, "ellipsoid", Vector3(0.7, 0.7, 0.68), white, Vector3(0, 1.15, 0.2))
+	Toon.part(root, "ellipsoid", Vector3(0.45, 0.16, 0.42), Color("#ff9a3c"), Vector3(0, 1.02, 0.55))
+	Toon.part(root, "cone", Vector3(0.35, 0.3, 0.2), white, Vector3(0, 0.6, -0.65), Vector3(-70, 0, 0))
+	for side: float in [-1.0, 1.0]:
+		Toon.part(root, "ellipsoid", Vector3(0.15, 0.42, 0.62), Color("#dcd6c8"), Vector3(0.48 * side, 0.55, -0.05), Vector3(0, 0, 15 * side))
+		Toon.part(root, "ellipsoid", Vector3(0.24, 0.08, 0.32), Color("#ff9a3c"), Vector3(0.2 * side, 0.04, 0.12))
+	Toon.part(root, "torus", Vector3(0.55, 0.12, 0.55), "sky", Vector3(0, 0.88, 0.15))
+	_face(root, Vector3(0, 1.22, 0.5), 0.8, pus)
 
 
 ## Puslu Sümüklü: a round slug with two eye stalks.

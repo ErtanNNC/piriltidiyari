@@ -576,6 +576,10 @@ func drink_potion(slot: int) -> void:
 	elif def.get("buff", "") == "guc":
 		_power_until = Time.get_ticks_msec() / 1000.0 + float(def["seconds"])
 		GameState.toast.emit(TranslationServer.translate("%d saniye gücün arttı!") % int(def["seconds"]), "star")
+	elif def.get("buff", "") == "papatya":
+		if calm:
+			calm.fast_until = Time.get_ticks_msec() / 1000.0 + float(def["seconds"])
+		GameState.toast.emit(TranslationServer.translate("%d saniye nefesin daha hızlı") % int(def["seconds"]), "heart")
 	elif def.get("buff", "") == "kovucu":
 		GameState.repel_until = Time.get_ticks_msec() / 1000.0 + float(def["seconds"])
 		GameState.toast.emit(TranslationServer.translate("%d saniye moblar seni zor fark eder") % int(def["seconds"]), "drop")
