@@ -1,0 +1,139 @@
+{
+  "barks": {
+    "s2c4_basla": [
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Gümbür Kanyonu! Her ses bin kez yankılanıyor!"
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "kararlı",
+        "text": "Şuradaki keçi yavrusu bir şey biliyor olmalı."
+      }
+    ],
+    "s2c4_yanki": [
+      {
+        "speaker": "oyuncu",
+        "mood": "dertli",
+        "text": "Bu yankı birine alay ediyor... Toplayınca sustu."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "kararlı",
+        "text": "Kalanları da bulayım. Parlayanlar onlar."
+      }
+    ],
+    "s2c4_tokmak": [
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Kırık bir davul tokmağı! Çok eski görünüyor."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "kararlı",
+        "text": "Bunu saklayayım. Belki sahibini buluruz."
+      }
+    ],
+    "s2c4_kilit": [
+      {
+        "speaker": "oyuncu",
+        "mood": "dertli",
+        "text": "Çan çalmıyor... Önce Çıngır'ın işini bitirmeliyim."
+      }
+    ],
+    "s2c4_can": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Çan çaldı! Arenanın sisi kalkıyor!"
+      }
+    ],
+    "s2c4_gumbur": [
+      {
+        "speaker": "gumbur",
+        "mood": "huysuz",
+        "text": "BUM! Kim o? Yine mi davuluma gülmeye geldin?"
+      },
+      {
+        "speaker": "gumbur",
+        "mood": "huysuz",
+        "text": "Herkes güldü! Şimdi kanyon onlara bağırsın! BUM BUM!"
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "kararlı",
+        "text": "Davulun ritmine dikkat! Daire, bir vuruş sonra iner."
+      }
+    ],
+    "s2c4_gumbur_yorgun": [
+      {
+        "speaker": "gumbur",
+        "mood": "dertli",
+        "text": "Bum... bum... Yoruldum. Neden kimse dinlemiyor?"
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "sakin",
+        "text": "Yanına gidip birlikte nefes alayım. Dinliyorum."
+      }
+    ],
+    "s2c4_gumbur_son": [
+      {
+        "speaker": "gumbur",
+        "mood": "dertli",
+        "text": "Sen gülmedin... Davulumu gerçekten dinledin."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "sakin",
+        "text": "Davulun güzel, Gümbür. Kızgınken bile ritmi vardı."
+      },
+      {
+        "speaker": "gumbur",
+        "mood": "şaşkın",
+        "text": "O tokmak... Onu nereden buldun? Bu Hırıl'ın tokmağı!"
+      }
+    ],
+    "s2c4_ani": [
+      {
+        "speaker": "gumbur",
+        "mood": "sakin",
+        "text": "Hırıl küçükken burada davul çalardı. Ben dinlerdim."
+      },
+      {
+        "speaker": "gumbur",
+        "mood": "dertli",
+        "text": "Bir gün herkes güldü. 'Ne gürültü!' dediler."
+      },
+      {
+        "speaker": "hiril",
+        "mood": "dertli",
+        "text": "Bir daha çalmayacağım. Kimse duymasın beni."
+      },
+      {
+        "speaker": "gumbur",
+        "mood": "dertli",
+        "text": "Tokmağını kırıp gitti. Bir daha hiç çalmadı."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "kararlı",
+        "text": "Hırıl'ın öfkesi orada başlamış... Ona ulaşmalıyız."
+      }
+    ],
+    "s2c4_kor": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Bakır Kor! Dördüncü Kor da bizde!"
+      },
+      {
+        "speaker": "gumbur",
+        "mood": "mutlu",
+        "text": "Al bakalım! Şimdi kanyon sadece şarkı yankılasın."
+      }
+    ]
+  }
+}

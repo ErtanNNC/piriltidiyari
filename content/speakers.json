@@ -251,6 +251,14 @@
     "minnos": {
       "name": "Minnoş",
       "color": "spark-green"
+    },
+    "cingir": {
+      "name": "Çıngır",
+      "color": "sky"
+    },
+    "gumbur": {
+      "name": "Davulcu Keçi Gümbür",
+      "color": "honey"
     }
   }
 }

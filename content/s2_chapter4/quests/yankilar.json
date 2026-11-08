@@ -1,0 +1,25 @@
+{
+  "id": "yankilar",
+  "title": "Alay Yankıları",
+  "giver": "cingir",
+  "objectives": [
+    {
+      "id": "yanki",
+      "text": "Kanyondaki alay yankılarını topla",
+      "type": "collect",
+      "target": "yanki",
+      "count": 5
+    },
+    {
+      "id": "tokmak",
+      "text": "Kanyonda kaybolan şeyi bul",
+      "type": "collect",
+      "target": "tokmak"
+    }
+  ],
+  "turn_in": "Keçi Yavrusu Çıngır'a dön",
+  "rewards": {
+    "piril": 100,
+    "xp": 900
+  }
+}

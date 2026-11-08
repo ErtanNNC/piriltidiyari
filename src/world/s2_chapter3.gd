@@ -406,6 +406,16 @@ func _build() -> void:
 		wall.material_override = m
 		wall.position.y = 1.5
 		_veil.add_child(wall)
+	TravelSign.board(lv, "Gümbür Kanyonu ↑", Vector3(-3.0, 1.3, -36.0), 2.6)
+	Toon.part(lv, "box", Vector3(0.16, 1.2, 0.16), Color("#a86b45"), Vector3(-3.0, 0.6, -36.05))
+	var on := TriggerArea.new()
+	on.radius = 1.5
+	on.once = false
+	lv.add_child(on)
+	on.position = Vector3(0, 0, -38.5)
+	on.reached.connect(func() -> void:
+		if GameState.data.has_flag("s2_bolum3_bitti"):
+			SceneFlow.go_to("s2_chapter4"))
 	TravelSign.board(lv, "Fokurdayan Göl ↓", Vector3(-3.0, 1.3, 26.0), 2.6)
 	Toon.part(lv, "box", Vector3(0.16, 1.2, 0.16), Color("#a86b45"), Vector3(-3.0, 0.6, 25.95))
 	var back := TriggerArea.new()

@@ -193,12 +193,24 @@ is a copy of the design system's tokens.
   (`_make_model`, `attack_color`, `tired_hint`, `calm_event`), Kehribar Kor
   (`kor_kehribar`), then Minnoş runs off (`s2_minnos_kacti`). HUD shows the five
   Kor (`KorTracker`, flags `kor_<id>`) once `s2_prolog_bitti`.
+- Bölüm 4 `s2_chapter4` (Gümbür Kanyonu, from Patpat Tarlaları' north edge
+  after `s2_bolum3_bitti`): Keçi Yavrusu Çıngır (`goat_kid`, `MobModels.goat`)
+  asks for the five teasing echoes (shouting Label3D orbs, flags
+  `s2c4_yanki<i>`, objective `collect`/"yanki" count 5) and the old drumstick
+  (`collect`/"tokmak"); mobs Yankı Yarasası and Tepinen Keçi; the canyon bell
+  `s2_can4` opens the Ritim Arenası. Boss Davulcu Keçi Gümbür = `Gumbur extends
+  Firfir` with `GumburPlan` bars ("x" hit at the keeper, "o" ring round him,
+  "-" quiet; one beat = `Mob.TELEGRAPH`, so every hit lands one beat after its
+  warning), then rests (hittable). Calmed, he knows Hırıl's drumstick: memory
+  (`_memory`, small calm Hırıl drumming, flag `s2c4_ani`), then Bakır Kor
+  (`kor_bakir`); Çıngır sends you on to Kükreyen Dağ (`s2_bolum4_bitti`).
 - Checks: `--scene=s2_scene1 --demo=glide|jump|party`, `--scene=s2_scene2 --demo=redwind|breath|guide|angry`,
   `--scene=s2_scene3 --demo=path|jumponly|stairs`, `--scene=s2_scene4 --demo=win --auto`,
   `--scene=s2_scene5 --demo=flow --auto`, `--scene=s2_scene6 --demo=pick_<id> --auto`,
   `--scene=s2_chapter0 --demo=village|bell_locked|stairs [--keeper=tipis_panda]`,
   `--scene=s2_chapter1 --demo=forest|veil|boss`, `--scene=s2_chapter2 --demo=lake|water|pads`,
-  `--scene=s2_chapter3 --demo=fair|stalls`.
+  `--scene=s2_chapter3 --demo=fair|stalls`,
+  `--scene=s2_chapter4 --demo=canyon|dodge|arena|echo`.
 
 ## Agent skills
 

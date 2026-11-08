@@ -62,6 +62,10 @@ static func build(kind: String, pus: bool) -> Node3D:
 			_popcorn(root, pus)
 		"kiskanc_civciv":
 			_jealous_chick(root, pus)
+		"yanki_yarasasi":
+			_echo_bat(root, pus)
+		"tepinen_keci":
+			goat(root, pus, 0.85, false)
 	Toon.default_pus = 1.0
 	if kind != "golge_kopya":
 		if pus and MobStats.breathes(kind):
@@ -261,6 +265,64 @@ static func _jealous_chick(root: Node3D, pus: bool) -> void:
 		Toon.part(root, "ellipsoid", Vector3(0.12, 0.3, 0.4), Color("#f2c53d"), Vector3(0.44 * side, 0.5, 0.0), Vector3(0, 0, 25 * side))
 		Toon.part(root, "ellipsoid", Vector3(0.16, 0.06, 0.22), Color("#ff9a3c"), Vector3(0.16 * side, 0.03, 0.1))
 	_face(root, Vector3(0, 1.05, 0.38), 0.75, pus)
+
+
+## Yankı Yarasası: a copper-brown bat with big ears that repeats every
+## word it hears (sound rings round its ears).
+static func _echo_bat(root: Node3D, pus: bool) -> void:
+	_bat(root, false)
+	for mi in root.find_children("*", "MeshInstance3D", true, false):
+		var m := mi as MeshInstance3D
+		if m.position.y > 0.95 and m.position.y < 1.2:
+			m.scale = m.scale * 1.35  # bigger ears
+	for side: float in [-1.0, 1.0]:
+		Toon.part(root, "ring", Vector3(0.5, 0.04, 0.5), _c(pus, "honey", true), Vector3(0.5 * side, 1.15, 0), Vector3(0, 0, 90), 0.4, 0.0)
+
+
+## A goat (Tepinen Keçi mob, the kid NPC and Davulcu Keçi Gümbür): round
+## cream body, brown legs, curled horns, a little beard. `drum` hangs a drum.
+static func goat(root: Node3D, pus: bool, s: float, drum: bool) -> void:
+	var wool: Variant = _c(pus, Color("#f1e6d2"), true)
+	var brown: Variant = _c(pus, Color("#8a5a3c"))
+	var horn: Variant = _c(pus, Color("#c9a77a"), true)
+	var body := Toon.part(root, "ellipsoid", Vector3(1.1, 1.0, 1.35) * s, wool, Vector3(0, 0.95, 0) * s)
+	body.name = "Body"
+	for side: float in [-1.0, 1.0]:
+		for fz: float in [-0.4, 0.4]:
+			var leg := Toon.part(root, "cylinder", Vector3(0.18, 0.55, 0.18) * s, brown, Vector3(0.3 * side, 0.3, fz) * s)
+			if fz > 0:
+				leg.name = "FootL" if side < 0 else "FootR"
+			Toon.part(root, "cylinder", Vector3(0.22, 0.12, 0.22) * s, Color("#3d2a22"), Vector3(0.3 * side, 0.06, fz) * s, Vector3.ZERO, 0.0, 0.0)
+	var head := Node3D.new()
+	head.name = "Head"
+	head.position = Vector3(0, 1.65, 0.6) * s
+	root.add_child(head)
+	Toon.part(head, "ellipsoid", Vector3(0.7, 0.72, 0.8) * s, wool, Vector3.ZERO)
+	Toon.part(head, "ellipsoid", Vector3(0.42, 0.34, 0.4) * s, _c(pus, Color("#e8c9b0"), true), Vector3(0, -0.16, 0.34) * s)
+	Toon.part(head, "cone", Vector3(0.14, 0.3, 0.12) * s, brown, Vector3(0, -0.46, 0.3) * s, Vector3(180, 0, 0))
+	for side: float in [-1.0, 1.0]:
+		Toon.part(head, "ring", Vector3(0.36, 0.1, 0.36) * s, horn, Vector3(0.24 * side, 0.36, -0.05) * s, Vector3(0, 90, 30 * side))
+		Toon.part(head, "ellipsoid", Vector3(0.36, 0.14, 0.2) * s, wool, Vector3(0.42 * side, 0.08, 0) * s, Vector3(0, 0, -25 * side))
+	_face(head, Vector3(0, 0.08, 0.38) * s, 0.9 * s, pus)
+	var tail := Toon.part(root, "ellipsoid", Vector3(0.2, 0.3, 0.18) * s, wool, Vector3(0, 1.25, -0.7) * s, Vector3(-30, 0, 0))
+	tail.name = "Tail"
+	if drum:
+		var d := Node3D.new()
+		d.name = "Drum"
+		d.position = Vector3(0, 0.9, 0.85) * s
+		root.add_child(d)
+		Toon.part(d, "cylinder", Vector3(0.95, 0.6, 0.95) * s, _c(pus, Color("#c87a4a")), Vector3.ZERO, Vector3(90, 0, 0))
+		Toon.part(d, "cylinder", Vector3(0.88, 0.62, 0.88) * s, Color("#fff4dc"), Vector3(0, 0, 0.01) * s, Vector3(90, 0, 0), 0.0, 0.0)
+		for k in 6:
+			var a := TAU * k / 6.0
+			Toon.part(d, "box", Vector3(0.05, 0.05, 0.6) * s, "honey", Vector3(cos(a) * 0.47, sin(a) * 0.47, 0) * s, Vector3.ZERO, 0.0, 0.0)
+		for side: float in [-1.0, 1.0]:
+			var hand := Node3D.new()
+			hand.name = "HandL" if side < 0 else "HandR"
+			hand.position = Vector3(0.42 * side, 1.25, 0.75) * s
+			root.add_child(hand)
+			Toon.part(hand, "cylinder", Vector3(0.08, 0.7, 0.08) * s, Color("#a86b45"), Vector3(0, 0.1, 0.1) * s, Vector3(40, 0, 0))
+			Toon.part(hand, "sphere", Vector3(0.2, 0.2, 0.2) * s, "berry", Vector3(0, 0.36, 0.34) * s)
 
 
 ## Puslu Sümüklü: a round slug with two eye stalks.

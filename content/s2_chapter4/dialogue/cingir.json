@@ -1,0 +1,156 @@
+{
+  "npc": "cingir",
+  "variants": [
+    {
+      "when": {
+        "quest": "gumbur",
+        "state": "done"
+      },
+      "lines": [
+        {
+          "speaker": "cingir",
+          "mood": "mutlu",
+          "text": "Gümbür her akşam davul çalıyor. Ben de dans ediyorum!"
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "gumbur",
+        "state": "ready"
+      },
+      "lines": [
+        {
+          "speaker": "cingir",
+          "mood": "mutlu",
+          "text": "Gümbür'ün davulu yine çalıyor! Ama bu sefer neşeyle!"
+        },
+        {
+          "speaker": "cingir",
+          "mood": "dertli",
+          "text": "Ona gidip özür diledim. 'Seninle çalmak isterim' dedim."
+        },
+        {
+          "speaker": "cingir",
+          "mood": "sakin",
+          "text": "Alay etmek komik gelir ama birinin içini kırar."
+        },
+        {
+          "speaker": "cingir",
+          "mood": "kararlı",
+          "text": "Minnoş dağa doğru koştu. Kükreyen Dağ'a! Acele et!"
+        }
+      ],
+      "then": {
+        "complete_quest": "gumbur",
+        "set_flag": "s2_bolum4_bitti"
+      }
+    },
+    {
+      "when": {
+        "quest": "gumbur",
+        "state": "active"
+      },
+      "lines": [
+        {
+          "speaker": "cingir",
+          "mood": "dertli",
+          "text": "Önce kanyonun çanını çal. Sonra Gümbür'ü dinle."
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "yankilar",
+        "state": "ready"
+      },
+      "lines": [
+        {
+          "speaker": "cingir",
+          "mood": "dertli",
+          "text": "Bu yankılar... Hepsini biz söylemiştik. Gümbür'e."
+        },
+        {
+          "speaker": "cingir",
+          "mood": "dertli",
+          "text": "'Davul mu o, tencere mi?' dedik. Güldük. O da kızdı."
+        },
+        {
+          "speaker": "cingir",
+          "mood": "sakin",
+          "text": "O tokmak da ne? Üstünde bir kıvılcım izi var."
+        },
+        {
+          "speaker": "cingir",
+          "mood": "kararlı",
+          "text": "Kanyonun çanını çal. Gümbür sisin ardında, arenada."
+        }
+      ],
+      "then": {
+        "complete_quest": "yankilar",
+        "start_quest": "gumbur",
+        "give_items": {
+          "nane_sekeri": 2
+        }
+      }
+    },
+    {
+      "when": {
+        "quest": "yankilar",
+        "state": "active"
+      },
+      "lines": [
+        {
+          "speaker": "cingir",
+          "mood": "sakin",
+          "text": "Yankılar parlıyor, yanlarına gidince susuyorlar."
+        },
+        {
+          "speaker": "cingir",
+          "mood": "dertli",
+          "text": "Kenarlardaki taşlara da bak. Biri yukarıda olabilir."
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "yankilar",
+        "state": "none"
+      },
+      "lines": [
+        {
+          "speaker": "cingir",
+          "mood": "dertli",
+          "text": "Ben Keçi Yavrusu Çıngır. Kanyon hiç susmuyor!"
+        },
+        {
+          "speaker": "cingir",
+          "mood": "dertli",
+          "text": "Her söz bin kez yankılanıyor. Hem de kırıcı sözler."
+        },
+        {
+          "speaker": "cingir",
+          "mood": "dertli",
+          "text": "Gümbür'ün davulu kızınca yankılar büyüdü, büyüdü..."
+        },
+        {
+          "speaker": "cingir",
+          "mood": "kararlı",
+          "text": "Beş alay yankısını toplar mısın? Bir şey de kayıp."
+        }
+      ],
+      "then": {
+        "start_quest": "yankilar"
+      }
+    },
+    {
+      "lines": [
+        {
+          "speaker": "cingir",
+          "mood": "mutlu",
+          "text": "Me-ee! Kanyonda sesler dans ediyor!"
+        }
+      ]
+    }
+  ]
+}

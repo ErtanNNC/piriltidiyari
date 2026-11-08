@@ -298,7 +298,7 @@ func test_owl_plan() -> void:
 
 
 func test_content_is_valid() -> void:
-	for chapter in ["prologue", "chapter0", "chapter1", "chapter2", "chapter3", "chapter4", "chapter5", "s2_prologue", "s2_chapter0", "s2_chapter1", "s2_chapter2", "s2_chapter3"]:
+	for chapter in ["prologue", "chapter0", "chapter1", "chapter2", "chapter3", "chapter4", "chapter5", "s2_prologue", "s2_chapter0", "s2_chapter1", "s2_chapter2", "s2_chapter3", "s2_chapter4"]:
 		_validate_chapter(chapter)
 	test_chapter0_flow()
 	test_chapter1_flow()
@@ -699,6 +699,26 @@ func test_season2() -> void:
 	check(pn.quest_state("panayir") == "active", "Panayır: tek oyun yetmez")
 	pn.notify("win", "kosu", c.quests)
 	check(pn.quest_state("panayir") == "ready", "Panayır: iki oyun kazanılınca tamam")
+	# Bölüm 4: Gümbür's drum fight and the echo hunt
+	for p in [1, 2, 3]:
+		for bar: String in GumburPlan.bars(p):
+			check(GumburPlan.valid_bar(bar), "Gümbür ölçüsü '%s' 4 vuruş, sessiz başlar (faz %d)" % [bar, p])
+		check(GumburPlan.bars(p).size() == p + 1, "Gümbür faz %d: %d ölçü" % [p, p + 1])
+	check(is_equal_approx(GumburPlan.BEAT, Mob.TELEGRAPH), "Gümbür: bir vuruş = uyarı süresi (ritim)")
+	check(GumburPlan.phase(GumburPlan.MAX_HP) == 1 and GumburPlan.phase(0) == 3, "Gümbür fazları")
+	check(GumburPlan.RING_RADIUS < 6.0, "Gümbür halkası, kenarda durunca kaçılabilir")
+	for k in ["yanki_yarasasi", "tepinen_keci"]:
+		check(MobStats.breathes(k) and int(MobStats.LEVELS[k]) in range(20, 26), "%s: nefesle sakinleşir, kanyon seviyesi" % k)
+	c.load_chapter("s2_chapter4")
+	var yk := PlayerData.new()
+	yk.start_quest(c.quests["yankilar"])
+	for i in 4:
+		yk.notify("collect", "yanki", c.quests)
+	yk.notify("collect", "tokmak", c.quests)
+	check(yk.quest_state("yankilar") == "active", "Yankılar: dört yankı yetmez")
+	yk.notify("collect", "yanki", c.quests)
+	check(yk.quest_state("yankilar") == "ready", "Yankılar: beş yankı ve tokmak bulununca tamam")
+	check(c.quests["gumbur"].get("ordered", false), "Gümbür görevi sıralı (önce çan)")
 	var tp := PlayerData.new()
 	tp.choose_keeper("tipis_panda", c.keeper("tipis_panda")["stats"], {}, "Tıpış")
 	check(tp.level == 1 and tp.active_skill() == "derin_nefes", "Tıpış seçilince seviye 1 ve Derin Nefes")

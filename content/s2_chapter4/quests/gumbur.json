@@ -1,0 +1,31 @@
+{
+  "id": "gumbur",
+  "title": "Davulcu Keçi Gümbür",
+  "giver": "cingir",
+  "ordered": true,
+  "objectives": [
+    {
+      "id": "can",
+      "text": "Kanyonun Ses Çanı'nı çal",
+      "type": "ring",
+      "target": "ses_cani"
+    },
+    {
+      "id": "gumbur",
+      "text": "Davulcu Keçi Gümbür'ü dinle",
+      "type": "breathe",
+      "target": "gumbur"
+    },
+    {
+      "id": "kor",
+      "text": "Bakır Kor'u al",
+      "type": "reach",
+      "target": "bakir_kor"
+    }
+  ],
+  "turn_in": "Keçi Yavrusu Çıngır'a dön",
+  "rewards": {
+    "piril": 120,
+    "xp": 1000
+  }
+}

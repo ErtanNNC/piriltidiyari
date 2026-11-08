@@ -834,6 +834,65 @@
   "Tavuk Patpat'ı dinle",
   "Kehribar Kor'u al"
  ],
+ "content/s2_chapter4/barks.json": [
+  "Gümbür Kanyonu! Her ses bin kez yankılanıyor!",
+  "Şuradaki keçi yavrusu bir şey biliyor olmalı.",
+  "Bu yankı birine alay ediyor... Toplayınca sustu.",
+  "Kalanları da bulayım. Parlayanlar onlar.",
+  "Kırık bir davul tokmağı! Çok eski görünüyor.",
+  "Bunu saklayayım. Belki sahibini buluruz.",
+  "Çan çalmıyor... Önce Çıngır'ın işini bitirmeliyim.",
+  "Çan çaldı! Arenanın sisi kalkıyor!",
+  "BUM! Kim o? Yine mi davuluma gülmeye geldin?",
+  "Herkes güldü! Şimdi kanyon onlara bağırsın! BUM BUM!",
+  "Davulun ritmine dikkat! Daire, bir vuruş sonra iner.",
+  "Bum... bum... Yoruldum. Neden kimse dinlemiyor?",
+  "Yanına gidip birlikte nefes alayım. Dinliyorum.",
+  "Sen gülmedin... Davulumu gerçekten dinledin.",
+  "Davulun güzel, Gümbür. Kızgınken bile ritmi vardı.",
+  "O tokmak... Onu nereden buldun? Bu Hırıl'ın tokmağı!",
+  "Hırıl küçükken burada davul çalardı. Ben dinlerdim.",
+  "Bir gün herkes güldü. 'Ne gürültü!' dediler.",
+  "Bir daha çalmayacağım. Kimse duymasın beni.",
+  "Tokmağını kırıp gitti. Bir daha hiç çalmadı.",
+  "Hırıl'ın öfkesi orada başlamış... Ona ulaşmalıyız.",
+  "Bakır Kor! Dördüncü Kor da bizde!",
+  "Al bakalım! Şimdi kanyon sadece şarkı yankılasın."
+ ],
+ "content/s2_chapter4/chapter.json": [
+  "Gümbür Kanyonu"
+ ],
+ "content/s2_chapter4/dialogue/cingir.json": [
+  "Gümbür her akşam davul çalıyor. Ben de dans ediyorum!",
+  "Gümbür'ün davulu yine çalıyor! Ama bu sefer neşeyle!",
+  "Ona gidip özür diledim. 'Seninle çalmak isterim' dedim.",
+  "Alay etmek komik gelir ama birinin içini kırar.",
+  "Minnoş dağa doğru koştu. Kükreyen Dağ'a! Acele et!",
+  "Önce kanyonun çanını çal. Sonra Gümbür'ü dinle.",
+  "Bu yankılar... Hepsini biz söylemiştik. Gümbür'e.",
+  "'Davul mu o, tencere mi?' dedik. Güldük. O da kızdı.",
+  "O tokmak da ne? Üstünde bir kıvılcım izi var.",
+  "Kanyonun çanını çal. Gümbür sisin ardında, arenada.",
+  "Yankılar parlıyor, yanlarına gidince susuyorlar.",
+  "Kenarlardaki taşlara da bak. Biri yukarıda olabilir.",
+  "Ben Keçi Yavrusu Çıngır. Kanyon hiç susmuyor!",
+  "Her söz bin kez yankılanıyor. Hem de kırıcı sözler.",
+  "Gümbür'ün davulu kızınca yankılar büyüdü, büyüdü...",
+  "Beş alay yankısını toplar mısın? Bir şey de kayıp.",
+  "Me-ee! Kanyonda sesler dans ediyor!"
+ ],
+ "content/s2_chapter4/quests/gumbur.json": [
+  "Davulcu Keçi Gümbür",
+  "Kanyonun Ses Çanı'nı çal",
+  "Davulcu Keçi Gümbür'ü dinle",
+  "Bakır Kor'u al",
+  "Keçi Yavrusu Çıngır'a dön"
+ ],
+ "content/s2_chapter4/quests/yankilar.json": [
+  "Alay Yankıları",
+  "Kanyondaki alay yankılarını topla",
+  "Kanyonda kaybolan şeyi bul"
+ ],
  "content/s2_prologue/barks.json": [
   "Bugün benim doğum günüm! Köyde ilk doğum günüm.",
   "Süzülüyorum! Yıldız olmanın en güzel yanı bu.",
@@ -1021,7 +1080,8 @@
   "Vrakvrak",
   "Vık",
   "Horoz Kukuri",
-  "Minnoş"
+  "Minnoş",
+  "Çıngır"
  ],
  "src/actors/breath_calm.gd": [
   "panel@light",
@@ -1050,6 +1110,10 @@
  "src/actors/fokur.gd": [
   "Fokur yoruldu, soluk soluğa! Şimdi vur!",
   "Yoruldu! Şimdi vur!"
+ ],
+ "src/actors/gumbur.gd": [
+  "Gümbür nefesleniyor! Şimdi vur!",
+  "Nefesleniyor! Şimdi vur!"
  ],
  "src/actors/gurledek.gd": [
   "Yoruldu, alçaldı! Şimdi vur!",
@@ -1150,7 +1214,8 @@
   "Sezon 2 · Bölüm 0",
   "Sezon 2 · Bölüm 1",
   "Sezon 2 · Bölüm 2",
-  "Sezon 2 · Bölüm 3"
+  "Sezon 2 · Bölüm 3",
+  "Sezon 2 · Bölüm 4"
  ],
  "src/autoload/tokens.gd": [
   "fontSize",
@@ -1176,6 +1241,8 @@
   "Laf Kesen Ördek",
   "Patlayan Mısır Tanesi",
   "Kıskanç Civciv",
+  "Yankı Yarasası",
+  "Tepinen Keçi",
   "Dev Somurtkan Mantar"
  ],
  "src/core/player_data.gd": [
@@ -1545,7 +1612,28 @@
   "Patpat Tarlaları'nda panayır yeniden açıldı",
   "Bayrak Koşusu",
   "Flag%d",
+  "Gümbür Kanyonu ↑",
   "Fokurdayan Göl ↓"
+ ],
+ "src/world/s2_chapter4.gd": [
+  "Davul mu o, tencere mi?",
+  "Ne gürültü! Sus artık!",
+  "Bum bum bum, of!",
+  "Kulaklarım ağrıdı!",
+  "Kim dinler bu davulu?",
+  "Önce Keçi Yavrusu Çıngır'la konuş",
+  "Önce Çıngır'la konuş",
+  "Kanyonun çanını çal",
+  "Bum, bum, sus! Daire bir vuruş sonra iner. Nefeslenince vur!",
+  "Ritmi dinle, nefeslenince vur!",
+  "Yanına git, Sakinleş'e basılı tut. Davulunu dinle.",
+  "Anı",
+  "Hırıl'ın Davulu",
+  "Gümbür Kanyonu, çok uzun zaman önce",
+  "Bakır Kor",
+  "Gümbür Kanyonu artık şarkı yankılıyor",
+  "Echo%d",
+  "Patpat Tarlaları ↓"
  ],
  "src/world/s2_scene1.gd": [
   "Boşluk: zıpla, havada basılı tut: süzül!",

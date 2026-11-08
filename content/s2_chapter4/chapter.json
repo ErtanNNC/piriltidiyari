@@ -1,0 +1,19 @@
+{
+  "id": "s2_chapter4",
+  "title": "Gümbür Kanyonu",
+  "region": "Gümbür Kanyonu",
+  "theme": "light",
+  "levels": [
+    20,
+    25
+  ],
+  "spark": null,
+  "quests": [
+    "yankilar",
+    "gumbur"
+  ],
+  "dialogue": [
+    "cingir"
+  ],
+  "barks": "barks"
+}
