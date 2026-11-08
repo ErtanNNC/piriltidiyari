@@ -106,6 +106,8 @@ static func _preset_story(data: PlayerData, scene: String) -> void:
 			for arg in OS.get_cmdline_user_args():
 				if arg.begins_with("--keeper="):
 					k = arg.get_slice("=", 1)
+			if not content.keepers.has(k):
+				k = "pati"  # a Season 2 keeper (Tıpış) joins only in Season 2
 			data.choose_keeper(k, content.keepers[k]["stats"], {}, content.keepers[k]["name"])
 		data.set_flag("prolog_bitti")
 	if idx >= 7:
