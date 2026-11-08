@@ -186,3 +186,6 @@ from exports (`.claude/*` in export_presets.cfg).
   fails on any untranslated string. Language: `Audio.language` ("tr"/"en",
   first run follows the phone), Dil/Language button on the title and in Mola,
   `--lang=en` for screenshots.
+  English names follow the story doc's "İngilizce İsimler" tab: Glimmerland
+  (app name via `config/name_localized`), the Gloom (Pus), Glim (Pırıl), Peanut,
+  Paws, Crunch, Mumble, Granny Shelly, Teacher Hoo, King Stump, Pinch, Gale.

@@ -26,7 +26,7 @@ func _ready() -> void:
 	var dot := Panel.new()
 	dot.custom_minimum_size = Vector2(36, 36)
 	dot.add_theme_stylebox_override("panel", UiKit.box(Tokens.color(Content.text_safe(info["color"])), "radius-pill"))
-	var letter := UiKit.label(String(info["name"]).left(1), "text-label", "on-color")
+	var letter := UiKit.label(TranslationServer.translate(String(info["name"])).left(1), "text-label", "on-color")
 	letter.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	letter.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	letter.vertical_alignment = VERTICAL_ALIGNMENT_CENTER

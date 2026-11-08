@@ -73,7 +73,7 @@ func _card(s: int) -> Control:
 		v.add_child(e)
 	else:
 		var name: String = info["name"] if String(info["name"]) != "" else "Bekçi"
-		v.add_child(_line(TranslationServer.translate("%s · Seviye %d") % [name, info["level"]], "text-body", "ink"))
+		v.add_child(_line(TranslationServer.translate("%s · Seviye %d") % [TranslationServer.translate(name), info["level"]], "text-body", "ink"))
 		var place: Array = SceneFlow.CARDS.get(info["scene_id"], ["", "Yolculukta"])
 		v.add_child(_line(place[1], "text-body", "ink"))
 		v.add_child(_line(TranslationServer.translate("Kıvılcım %d/5 · %d Pırıl") % [info["sparks"], info["piril"]], "text-caption", "ink-muted"))

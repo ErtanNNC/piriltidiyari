@@ -66,7 +66,7 @@ func _ready() -> void:
 	var info: Dictionary = Content.keepers.get(GameState.data.character_id, {})
 	if not info.is_empty():
 		portrait.add_theme_stylebox_override("panel", UiKit.box(Tokens.color(Content.text_safe(info["color"])), "radius-pill", 3.0))
-	var letter := UiKit.label(GameState.data.character_name.left(1), "text-title", "on-color")
+	var letter := UiKit.label(TranslationServer.translate(GameState.data.character_name).left(1), "text-title", "on-color")
 	letter.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	letter.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	letter.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
@@ -320,7 +320,7 @@ func _refresh_stats() -> void:
 	var nxt := Progression.xp_to_next(d.level)
 	_xp.set_values(d.xp, nxt, (TranslationServer.translate("%d / %d XP") % [d.xp, nxt]) if nxt > 0 else "En yüksek seviye")
 	_level.text = str(d.level)
-	_name_label.text = TranslationServer.translate("%s · Seviye %d") % [d.character_name, d.level]
+	_name_label.text = TranslationServer.translate("%s · Seviye %d") % [TranslationServer.translate(d.character_name), d.level]
 
 
 func _on_piril(total: int, delta: int) -> void:

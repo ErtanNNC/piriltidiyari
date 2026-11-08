@@ -10,10 +10,10 @@ msgid "%10 daha güçlü"
 msgstr "10% stronger"
 
 msgid "%d Pırıl"
-msgstr "%d Glimmers"
+msgstr "%d Glim"
 
 msgid "%d Pırıl kazanırsın"
-msgstr "You get %d Glimmers"
+msgstr "You get %d Glim"
 
 msgid "%d saniye gücün arttı!"
 msgstr "More power for %d seconds!"
@@ -46,7 +46,7 @@ msgid "%s: kademe %d%s"
 msgstr "%s: rank %d%s"
 
 msgid "10 yeni Hikâye Taşı ve Düşen Yıldız Tarlası"
-msgstr "10 new Story Stones and the Falling Star Field"
+msgstr "10 new Story Stones and the Fallen Star Field"
 
 msgid "1: Bal Şurubu iç, canın dolsun!"
 msgstr "1: Drink Honey Syrup to fill your health!"
@@ -64,13 +64,13 @@ msgid "Adın"
 msgstr "Your name"
 
 msgid "Ah... Pus kulağıma hep Pırpır'ın benden iyi olduğunu fısıldadı."
-msgstr "Ah... The Mist kept whispering that Pırpır was better than me."
+msgstr "Ah... The Gloom kept whispering that Flutter was better than me."
 
 msgid "Ah... Çok uzun zamandır uyumamıştım."
 msgstr "Ah... I haven't slept in such a long time."
 
 msgid "Ahoy minik bekçi! Ben Kaptan Pırpır, göklerin en hızlısı!"
-msgstr "Ahoy, tiny keeper! I'm Captain Pırpır, fastest in the skies!"
+msgstr "Ahoy, tiny keeper! I'm Captain Flutter, fastest in the skies!"
 
 msgid "Ahoy! Göklerin en nadir pazarına hoş geldin!"
 msgstr "Ahoy! Welcome to the rarest market in the skies!"
@@ -109,13 +109,13 @@ msgid "Alındı"
 msgstr "Bought"
 
 msgid "Ama Fısıltı Ormanı'nın feneri söndü."
-msgstr "But the Whispering Forest's lantern went out."
+msgstr "But the Whispering Woods' lantern went out."
 
 msgid "Ama Pus bütün iplerimi griye boyadı. Önce renkler dönsün."
-msgstr "But the Mist turned all my thread grey. The colors must come back first."
+msgstr "But the Gloom turned all my thread grey. The colors must come back first."
 
 msgid "Ama Pus'a bulanmış gri ağaçlar hep tersini söyler!"
-msgstr "But grey trees covered in Mist always say the opposite!"
+msgstr "But grey trees covered in Gloom always say the opposite!"
 
 msgid "Ama arkasında bir fısıltı kaldı..."
 msgstr "But a whisper stayed behind..."
@@ -133,7 +133,7 @@ msgid "Ama her gece gökteki yıldızlara baktı ve özledi."
 msgstr "But every night it looked at the stars in the sky and missed them."
 
 msgid "Ama her yere dağılırsa... Pus hepsini yakalayamaz!"
-msgstr "But if it spreads everywhere... the Mist can't catch it all!"
+msgstr "But if it spreads everywhere... the Gloom can't catch it all!"
 
 msgid "Ama sen dondurmasın! Herkes dondurma sever!"
 msgstr "But you're ice cream! Everybody loves ice cream!"
@@ -142,7 +142,7 @@ msgid "Ama önce biraz dinlen. Bal Şurubu ister misin?"
 msgstr "But rest a little first. Would you like some Honey Syrup?"
 
 msgid "Aman, bir bekçi! Ben Madenci Kazma."
-msgstr "Oh my, a keeper! I'm Miner Kazma."
+msgstr "Oh my, a keeper! I'm Digby the Mole."
 
 msgid "Ana menü"
 msgstr "Main menu"
@@ -205,7 +205,7 @@ msgid "Balon Adası"
 msgstr "Balloon Isle"
 
 msgid "Balon Adası'nın tepesinden de Rüzgâr'ın yuvası görünür."
-msgstr "You can see Gust's nest from the top of Balloon Isle, too."
+msgstr "You can see Gale's nest from the top of Balloon Isle, too."
 
 msgid "Balon Adası'nın tepesine çık"
 msgstr "Climb to the top of Balloon Isle"
@@ -217,16 +217,16 @@ msgid "Baloncuk Patlaması"
 msgstr "Bubble Burst"
 
 msgid "Baloncuklardan kaç. Kıskacı saplanınca vur!"
-msgstr "Dodge the bubbles. Hit Pincer when his claw gets stuck!"
+msgstr "Dodge the bubbles. Hit Pinch when his claw gets stuck!"
 
 msgid "Balonlar çok eğlenceli ama annemi özledim."
 msgstr "The balloons are lots of fun, but I miss my mom."
 
 msgid "Baykuş Öğretmen Hu"
-msgstr "Owl Teacher Hu"
+msgstr "Teacher Hoo"
 
 msgid "Baykuş Öğretmen Hu ile konuş"
-msgstr "Talk to Owl Teacher Hu"
+msgstr "Talk to Teacher Hoo"
 
 msgid "Başla"
 msgstr "Start"
@@ -259,7 +259,7 @@ msgid "Belki o ışık kendisininkini de geri getirirdi..."
 msgstr "Maybe that light could bring its own light back too..."
 
 msgid "Ben Kıvılcım'ı Pus'tan saklıyordum. Seni de Pus sandım."
-msgstr "I was hiding the Spark from the Mist. I thought you were the Mist."
+msgstr "I was hiding the Spark from the Gloom. I thought you were the Gloom."
 
 msgid "Ben de kapıda nöbet tutarım. Artık dostuz!"
 msgstr "I'll guard the door too. We're friends now!"
@@ -274,7 +274,7 @@ msgid "Ben oynarım! Hem de her gün."
 msgstr "I'll play with you! Every single day."
 
 msgid "Ben seni görüyorum, Mırıl. Ve buradayım."
-msgstr "I see you, Mırıl. And I'm here."
+msgstr "I see you, Mumble. And I'm here."
 
 msgid "Ben... başardım. Gerçekten başardım."
 msgstr "I... did it. I really did it."
@@ -304,7 +304,7 @@ msgid "Beş parçayı bul... Ben biraz daha uyuyayım..."
 msgstr "Find the five pieces... I'll sleep a little longer..."
 
 msgid "Bilge Kuzey"
-msgstr "Wise Kuzey"
+msgstr "Sage North"
 
 msgid "Bir daha karda uyumayacağım. Galiba."
 msgstr "I won't sleep in the snow again. Probably."
@@ -361,10 +361,10 @@ msgid "Brrr... Burası çok sessiz. Neden bu kadar uykum geldi?"
 msgstr "Brrr... It's so quiet here. Why am I so sleepy?"
 
 msgid "Brrr... Pus bana kimsenin beni sevmediğini söyledi."
-msgstr "Brrr... The Mist told me nobody liked me."
+msgstr "Brrr... The Gloom told me nobody liked me."
 
 msgid "Bu Pus değil. Bu başka bir şey."
-msgstr "This isn't the Mist. It's something else."
+msgstr "This isn't the Gloom. It's something else."
 
 msgid "Bu benim fenerim! Mavi olan!"
 msgstr "That's my lantern! The blue one!"
@@ -400,7 +400,7 @@ msgid "Bu sarı ışık benim! Fırtınam seni uçuracak!"
 msgstr "This yellow light is mine! My storm will blow you away!"
 
 msgid "Bu ses de neydi? Baykuş dağıldı ama Pus duruyor."
-msgstr "What was that sound? The owl is gone, but the Mist stays."
+msgstr "What was that sound? The owl is gone, but the Gloom stays."
 
 msgid "Bu sis çok uykulu... Yakındaki ateşi yak!"
 msgstr "This mist is so sleepy... Light the fire nearby!"
@@ -424,7 +424,7 @@ msgid "Burada başla"
 msgstr "Start here"
 
 msgid "Burası Fısıltı Ormanı... Ağaçlar konuşuyor mu?"
-msgstr "This is the Whispering Forest... Are the trees talking?"
+msgstr "This is the Whispering Woods... Are the trees talking?"
 
 msgid "Burası çok karanlık. %s aydınlatabilirdi!"
 msgstr "It's too dark here. %s could light it up!"
@@ -436,7 +436,7 @@ msgid "Buton"
 msgstr "Button"
 
 msgid "Buz Dikeni"
-msgstr "Ice Spike"
+msgstr "Icicle Prickle"
 
 msgid "Buz Golem Dondurma"
 msgstr "Ice Golem Scoop"
@@ -478,7 +478,7 @@ msgid "Büyük Kıvılcım'ı her yıl olduğu gibi sen yakacaksın."
 msgstr "You'll light the Great Spark, just like every year."
 
 msgid "Büyük Kıvılcım'ın ışığı titriyor. Acele et, Fıstık!"
-msgstr "The Great Spark's light is flickering. Hurry, Fıstık!"
+msgstr "The Great Spark's light is flickering. Hurry, Peanut!"
 
 msgid "Can"
 msgstr "Health"
@@ -514,7 +514,7 @@ msgid "Daha hızlı koşarsın"
 msgstr "You run faster"
 
 msgid "Daha hızlı yürürsün, Pırıl uzaktan gelir"
-msgstr "You walk faster, Glimmers come from afar"
+msgstr "You walk faster, Glim come from afar"
 
 msgid "Dairelerden kaç, halkada zıpla!"
 msgstr "Dodge circles, jump the ring!"
@@ -526,13 +526,13 @@ msgid "Dağ Feneri'ni yak"
 msgstr "Light the Mountain Lantern"
 
 msgid "Dağ eriyor! Pus Kalesi'nin yolu açıldı."
-msgstr "The mountain is melting! The way to Mist Castle is open."
+msgstr "The mountain is melting! The way to Gloom Castle is open."
 
 msgid "Demek Pus'un adı Mırıl... Yalnız bir yıldız."
-msgstr "So the Mist's name is Mırıl... A lonely star."
+msgstr "So the Gloom's name is Mumble... A lonely star."
 
 msgid "Dev Somurtkan Mantar"
-msgstr "Giant Grumpy Mushroom"
+msgstr "Giant Sulky Shroom"
 
 msgid "Devam et"
 msgstr "Continue"
@@ -550,7 +550,7 @@ msgid "Dikenli Dönüş"
 msgstr "Spiky Spin"
 
 msgid "Diyar Haritası"
-msgstr "Map of the Land"
+msgstr "Map of Glimmerland"
 
 msgid "Diyar haritam tamam! Her köşesini çizdim."
 msgstr "My map of the land is done! I drew every corner."
@@ -580,7 +580,7 @@ msgid "Dur orada! Bu ışığa kimse dokunamaz!"
 msgstr "Stop right there! Nobody touches this light!"
 
 msgid "Dur, dur! Sen Pus değilsin... Sen bir bekçisin!"
-msgstr "Wait, wait! You're not the Mist... You're a keeper!"
+msgstr "Wait, wait! You're not the Gloom... You're a keeper!"
 
 msgid "Dönence"
 msgstr "Orbit"
@@ -598,13 +598,13 @@ msgid "Düşen kirişlere dikkat, kuleye koş"
 msgstr "Watch for falling beams, run to the tower"
 
 msgid "E: Tospik Nine ile konuş"
-msgstr "E: Talk to Granny Tospik"
+msgstr "E: Talk to Granny Shelly"
 
 msgid "Efekt sesi"
 msgstr "Effects volume"
 
 msgid "En Minik Kazma"
-msgstr "Tiniest Kazma"
+msgstr "Tiniest Digby"
 
 msgid "En yüksek seviye"
 msgstr "Top level"
@@ -646,13 +646,13 @@ msgid "Evet"
 msgstr "Yes"
 
 msgid "Evet. Pus kötülük değil, yalnızlıktır. Bunu unutma."
-msgstr "Yes. The Mist isn't meanness, it's loneliness. Remember that."
+msgstr "Yes. The Gloom isn't meanness, it's loneliness. Remember that."
 
 msgid "Fener altı renkle yanıyor! Mırıl da artık bizden biri."
-msgstr "The lantern shines with six colors! Mırıl is one of us now."
+msgstr "The lantern shines with six colors! Mumble is one of us now."
 
 msgid "Fener artık altı renkle yanıyor. Altıncısı Mırıl'ın!"
-msgstr "The lantern now shines with six colors. The sixth is Mırıl's!"
+msgstr "The lantern now shines with six colors. The sixth is Mumble's!"
 
 msgid "Fener henüz yanmadı"
 msgstr "The lantern isn't lit yet"
@@ -670,10 +670,10 @@ msgid "Fener yandı! Köstebek köyü aydınlandı."
 msgstr "The lantern is lit! The mole village is bright now."
 
 msgid "Fener yandı! Pus biraz geri çekildi."
-msgstr "The lantern is lit! The Mist pulled back a little."
+msgstr "The lantern is lit! The Gloom pulled back a little."
 
 msgid "Fener'in Seçimi"
-msgstr "The Lantern's Choice"
+msgstr "The Lantern Chooses"
 
 msgid "Fener'in Son Gecesi"
 msgstr "The Lantern's Last Night"
@@ -685,7 +685,7 @@ msgid "Fener'in yanında uyanıyorsun..."
 msgstr "You wake up by the Lantern..."
 
 msgid "Fenerim parlıyor! Teşekkürler Fıstık!"
-msgstr "My lantern is glowing! Thank you, Fıstık!"
+msgstr "My lantern is glowing! Thank you, Peanut!"
 
 msgid "Fenerleri bul, sahiplerine ver. Hadi bakalım!"
 msgstr "Find the lanterns and give them back. Off you go!"
@@ -694,10 +694,10 @@ msgid "Fındık"
 msgstr "Nut"
 
 msgid "Fındık Fırlatma"
-msgstr "Nut Toss"
+msgstr "Hazelnut Toss"
 
 msgid "Fındık Fırlatma: seken, çok hedefli atış"
-msgstr "Nut Toss: bouncy shot that hits many"
+msgstr "Hazelnut Toss: bouncy shot that hits many"
 
 msgid "Fırtına Adası"
 msgstr "Storm Isle"
@@ -706,10 +706,10 @@ msgid "Fırtına Adası'na uç!"
 msgstr "Fly to Storm Isle!"
 
 msgid "Fırtına Martısı Rüzgâr"
-msgstr "Storm Gull Gust"
+msgstr "Gale the Storm Gull"
 
 msgid "Fırtına Martısı Rüzgâr'ı yatıştır"
-msgstr "Calm Gust the Storm Gull"
+msgstr "Calm Gale the Storm Gull"
 
 msgid "Fırtına Yumağı"
 msgstr "Storm Puff"
@@ -723,47 +723,50 @@ msgstr "The storm stopped, the hill is clear. We can fly to Storm Isle!"
 msgid "Fırtınada savrulan martı yavrularını bul"
 msgstr "Find the gull chicks blown away by the storm"
 
+msgid "Fıstık"
+msgstr "Peanut"
+
 msgid "Fıstık o kırmızı sisi izliyor. Yeni macera yakında!"
-msgstr "Fıstık is watching that red mist. A new adventure is coming!"
+msgstr "Peanut is watching that red mist. A new adventure is coming!"
 
 msgid "Fıstık ve Mırıl oynanabilir oluyor (Yeni Oyun+)"
-msgstr "Fıstık and Mırıl become playable (New Game+)"
+msgstr "Peanut and Mumble become playable (New Game+)"
 
 msgid "Fıstık ışıkla uyudu"
-msgstr "Fıstık sleeps with the light"
+msgstr "Peanut sleeps with the light"
 
 msgid "Fıstık! Bu gece Yıldız Şenliği var."
-msgstr "Fıstık! The Star Festival is tonight."
+msgstr "Peanut! The Star Festival is tonight."
 
 msgid "Fıstık! Çok şükür buradasın."
-msgstr "Fıstık! Thank goodness you're here."
+msgstr "Peanut! Thank goodness you're here."
 
 msgid "Fıstık'ın Eski Eldiveni"
-msgstr "Fıstık's Old Glove"
+msgstr "Peanut's Old Gauntlet"
 
 msgid "Fıstık'ın Seçimi"
-msgstr "Fıstık's Choice"
+msgstr "Peanut's Choice"
 
 msgid "Fıstık'ın heykeli"
-msgstr "Fıstık's statue"
+msgstr "Peanut's statue"
 
 msgid "Fıstık'ın heykelini ziyaret et"
-msgstr "Visit Fıstık's statue"
+msgstr "Visit Peanut's statue"
 
 msgid "Fıstık, dikkat et! Sis yaklaşıyor."
-msgstr "Fıstık, careful! The fog is coming."
+msgstr "Peanut, careful! The fog is coming."
 
 msgid "Fısıldayan Ağaç"
 msgstr "Whispering Tree"
 
 msgid "Fısıltı Ormanı"
-msgstr "Whispering Forest"
+msgstr "Whispering Woods"
 
 msgid "Fısıltı Ormanı seni bekliyor!"
-msgstr "The Whispering Forest is waiting for you!"
+msgstr "The Whispering Woods are waiting for you!"
 
 msgid "Fısıltı Ormanı yeniden yeşil"
-msgstr "Whispering Forest is green again"
+msgstr "The Whispering Woods are green again"
 
 msgid "Fısıltıları doğru oku, ormanın kalbine ulaş"
 msgstr "Read the whispers right and reach the forest's heart"
@@ -784,7 +787,7 @@ msgid "Gemiyle Fırtına Adası'na uç"
 msgstr "Fly the ship to Storm Isle"
 
 msgid "Gençler, toplanın. Fıstık ışığı beş parçaya böldü."
-msgstr "Gather round, young ones. Fıstık split the light in five."
+msgstr "Gather round, young ones. Peanut split the light in five."
 
 msgid "Geri"
 msgstr "Back"
@@ -814,7 +817,7 @@ msgid "Gri ağaç beni kandırdı! Tersini yapmalıydım."
 msgstr "The grey tree tricked me! I should have done the opposite."
 
 msgid "Gri kristale vur, parlasın! Kıskaç'ın gölü en dipte."
-msgstr "Hit a grey crystal so it shines! Pincer's lake is at the very bottom."
+msgstr "Hit a grey crystal so it shines! Pinch's lake is at the very bottom."
 
 msgid "Gri kristale vurursan yeniden parlar!"
 msgstr "Hit a grey crystal and it will shine again!"
@@ -850,7 +853,7 @@ msgid "Gölge Kopya"
 msgstr "Shadow Copy"
 
 msgid "Gölge Prens Mırıl"
-msgstr "Shadow Prince Mırıl"
+msgstr "Shadow Prince Mumble"
 
 msgid "Görev tamam!"
 msgstr "Quest done!"
@@ -862,7 +865,7 @@ msgid "Görünüşün"
 msgstr "Your look"
 
 msgid "Görüyorum. Artık yalnız değilsin, Mırıl."
-msgstr "I do. You're not alone anymore, Mırıl."
+msgstr "I do. You're not alone anymore, Mumble."
 
 msgid "Gözlük"
 msgstr "Glasses"
@@ -880,13 +883,13 @@ msgid "Güçlü Vuruş"
 msgstr "Strong Hit"
 
 msgid "Gıcık Karga"
-msgstr "Pesky Crow"
+msgstr "Cranky Crow"
 
 msgid "Ha? Sabah mı oldu? Esnemekten çenem ağrıdı!"
 msgstr "Huh? Is it morning? I yawned so much my jaw hurts!"
 
 msgid "Hadi Fıstık, kuleye!"
-msgstr "Go, Fıstık, to the tower!"
+msgstr "Go, Peanut, to the tower!"
 
 msgid "Hadi canım eski dostum, yine yarışırız!"
 msgstr "Come on, my old friend, let's race again!"
@@ -976,10 +979,10 @@ msgid "Hu-hu! Daha hızlı uçarım!"
 msgstr "Hoo-hoo! I can fly faster!"
 
 msgid "Hu-hu! Hoş geldin yeni bekçi. Ben Öğretmen Hu."
-msgstr "Hoo-hoo! Welcome, new keeper. I'm Teacher Hu."
+msgstr "Hoo-hoo! Welcome, new keeper. I'm Teacher Hoo."
 
 msgid "Hu-hu! Pus herkesin küçük üzüntüsünü büyütüyor demek."
-msgstr "Hoo-hoo! So the Mist makes everyone's little sadness bigger."
+msgstr "Hoo-hoo! So the Gloom makes everyone's little sadness bigger."
 
 msgid "Hu-hu! Önce Orman Feneri'ni yak, bekçi."
 msgstr "Hoo-hoo! Light the Forest Lantern first, keeper."
@@ -994,7 +997,7 @@ msgid "Huuu... Bırak beni, ışığa yaklaşmak istiyorum!"
 msgstr "Hooo... Let me go, I want to be near the light!"
 
 msgid "Huysuz Kirpi Topu"
-msgstr "Cranky Hedgehog Ball"
+msgstr "Grumpy Hedgeball"
 
 msgid "Hıh! Rozetini kaybetme, bekçi."
 msgstr "Hmph! Don't lose your badge, keeper."
@@ -1057,13 +1060,16 @@ msgid "Işık Tohumu fırlatır: I tuşu / At"
 msgstr "Shoots Light Seeds: I key / Throw"
 
 msgid "Işık Tohumun kalmadı. Usta Tıkır'dan alabilirsin"
-msgstr "No Light Seeds left. Master Tıkır has more"
+msgstr "No Light Seeds left. Master Tinker has more"
 
 msgid "Işık bizi çağırıyor."
 msgstr "The light is calling us."
 
 msgid "Işık tek bir yerde durursa, Pus onu yutar."
-msgstr "If the light stays in one place, the Mist swallows it."
+msgstr "If the light stays in one place, the Gloom swallows it."
+
+msgid "Işıltı"
+msgstr "Twinkle"
 
 msgid "Işığı yutmak istemedi aslında. Sadece ısınmak istedi."
 msgstr "He didn't really want to swallow the light. He just wanted to be warm."
@@ -1090,7 +1096,7 @@ msgid "Kale Feneri'ni yak"
 msgstr "Light the Castle Lantern"
 
 msgid "Kalenin tepesinde Mırıl'a ulaş"
-msgstr "Reach Mırıl at the top of the castle"
+msgstr "Reach Mumble at the top of the castle"
 
 msgid "Kalenin tepesine çık"
 msgstr "Climb to the top of the castle"
@@ -1120,13 +1126,13 @@ msgid "Kapat"
 msgstr "Close"
 
 msgid "Kaptan Martı Pırpır"
-msgstr "Captain Gull Pırpır"
+msgstr "Captain Flutter the Gull"
 
 msgid "Kaptan Martı Pırpır ile konuş"
-msgstr "Talk to Captain Gull Pırpır"
+msgstr "Talk to Captain Flutter"
 
 msgid "Kaptan Pırpır ile konuş"
-msgstr "Talk to Captain Pırpır"
+msgstr "Talk to Captain Flutter"
 
 msgid "Kapıdan çıkınca köye dönersin"
 msgstr "Go out the door to get back to the village"
@@ -1150,10 +1156,10 @@ msgid "Karda uyuyakalan tavşan yavrularını uyandır"
 msgstr "Wake the bunnies who fell asleep in the snow"
 
 msgid "Kardeşim! Seni Pus'tan sonra buldum sonunda!"
-msgstr "My brother! I found you at last, after the Mist!"
+msgstr "My brother! I found you at last, after the Gloom!"
 
 msgid "Kardeşinin Atkısı"
-msgstr "Brother's Scarf"
+msgstr "Little Sibling's Scarf"
 
 msgid "Karga beni korkuttu... yani biraz şaşırttı!"
 msgstr "The crow startled me... well, it surprised me a little!"
@@ -1201,13 +1207,13 @@ msgid "Kayıtlar"
 msgstr "Saves"
 
 msgid "Kazma Ailesi Dükkânı"
-msgstr "The Kazma Family Shop"
+msgstr "The Digby Family Shop"
 
 msgid "Kazma'nın dükkânı açıldı! Köye dönebilirsin"
-msgstr "Kazma's shop is open! You can go back to the village"
+msgstr "Digby's shop is open! You can go back to the village"
 
 msgid "Kazma'nın Çocukları"
-msgstr "Kazma's Kids"
+msgstr "Digby's Kids"
 
 msgid "Kaçtı. Ama sanki... çok yalnız görünüyordu."
 msgstr "It ran off. But it looked... so lonely."
@@ -1216,7 +1222,7 @@ msgid "Kedi"
 msgstr "Cat"
 
 msgid "Kim geldi yuvama? Pırpır mı yolladı seni?"
-msgstr "Who's at my nest? Did Pırpır send you?"
+msgstr "Who's at my nest? Did Flutter send you?"
 
 msgid "Kim geldi? Herkes gibi sen de beni soğuk mu buluyorsun?"
 msgstr "Who's there? Do you think I'm cold too, like everyone else?"
@@ -1237,7 +1243,7 @@ msgid "Kimse onu görmezse, kimse onu üzemezdi."
 msgstr "If nobody saw it, nobody could make it sad."
 
 msgid "Kirişin altından Tospik Nine'ye ulaş"
-msgstr "Reach Granny Tospik under the beam"
+msgstr "Reach Granny Shelly under the beam"
 
 msgid "Kocaman Yürek"
 msgstr "Big Heart"
@@ -1261,7 +1267,7 @@ msgid "Korsan Martı"
 msgstr "Pirate Gull"
 
 msgid "Korsan Martı %d Pırıl kaptı!"
-msgstr "A Pirate Gull grabbed %d Glimmers!"
+msgstr "A Pirate Gull grabbed %d Glim!"
 
 msgid "Kral esniyor! Şimdi vur!"
 msgstr "The King is yawning! Hit now!"
@@ -1270,10 +1276,10 @@ msgid "Kristal Tılsım"
 msgstr "Crystal Charm"
 
 msgid "Kristal Yengeç Kıskaç"
-msgstr "Crystal Crab Pincer"
+msgstr "Pinch the Crystal Crab"
 
 msgid "Kristal Yengeç Kıskaç'la yüzleş"
-msgstr "Face Pincer the Crystal Crab"
+msgstr "Face Pinch the Crystal Crab"
 
 msgid "Kristallere vur, çocukları bul. Anlaştık!"
 msgstr "Hit the crystals, find the kids. Deal!"
@@ -1315,10 +1321,10 @@ msgid "Köye dön"
 msgstr "Back to the village"
 
 msgid "Köye dön, Tospik Nine'ye müjdeyi ver."
-msgstr "Go back to the village and tell Granny Tospik the good news."
+msgstr "Go back to the village and tell Granny Shelly the good news."
 
 msgid "Köye dön: Pus Kalesi'nin yolu açıldı"
-msgstr "Back to the village: the way to Mist Castle is open"
+msgstr "Back to the village: the way to Gloom Castle is open"
 
 msgid "Köye dönmek için girişteki tabelaya git"
 msgstr "Go to the sign by the entrance to go back to the village"
@@ -1327,13 +1333,13 @@ msgid "Köye dönüş tabelası çıktı"
 msgstr "A sign home has appeared"
 
 msgid "Kütük Kral"
-msgstr "Stump King"
+msgstr "King Stump"
 
 msgid "Kütük Kral uyandı!"
-msgstr "Stump King woke up!"
+msgstr "King Stump woke up!"
 
 msgid "Kütük Kral'ı uyandır"
-msgstr "Wake up the Stump King"
+msgstr "Wake up King Stump"
 
 msgid "Küçük bir fener. Işığı sönmüş ama hâlâ sıcak."
 msgstr "A little lantern. Its light is out, but it's still warm."
@@ -1360,13 +1366,13 @@ msgid "Kıskandım ve fırtına oldum. Özür dilerim."
 msgstr "I got jealous and became a storm. I'm sorry."
 
 msgid "Kıskaç dost oldu!"
-msgstr "Pincer is a friend now!"
+msgstr "Pinch is a friend now!"
 
 msgid "Kıvılcım"
 msgstr "Spark"
 
 msgid "Kıvılcım %d/5 · %d Pırıl"
-msgstr "Spark %d/5 · %d Glimmers"
+msgstr "Spark %d/5 · %d Glim"
 
 msgid "Kıvılcım Bekçileri"
 msgstr "Spark Keepers"
@@ -1387,13 +1393,13 @@ msgid "Kıvılcım uzat"
 msgstr "Hold out Spark"
 
 msgid "Kıvılcım'ı gösterdim, Pus kenara çekildi!"
-msgstr "I showed the Spark, and the Mist moved aside!"
+msgstr "I showed the Spark, and the Gloom moved aside!"
 
 msgid "Kıvılcımlar %d/5"
 msgstr "Sparks %d/5"
 
 msgid "Kıvılcımlarını Mırıl'a uzat"
-msgstr "Hold out your Sparks to Mırıl"
+msgstr "Hold out your Sparks to Mumble"
 
 msgid "Kıvılcımı göster"
 msgstr "Show the Spark"
@@ -1414,10 +1420,10 @@ msgid "Liman Feneri'ni yak"
 msgstr "Light the Harbor Lantern"
 
 msgid "Madenci Kazma"
-msgstr "Miner Kazma"
+msgstr "Digby the Mole"
 
 msgid "Madenci Kazma ile konuş"
-msgstr "Talk to Miner Kazma"
+msgstr "Talk to Digby the Mole"
 
 msgid "Mantar uyandı ve çayır yeniden pırıl pırıl!"
 msgstr "The mushroom woke up, and the meadow sparkles again!"
@@ -1435,7 +1441,7 @@ msgid "Mavi Kıvılcım"
 msgstr "Blue Spark"
 
 msgid "Mavi Kıvılcım da geldi! Kazma bana mektup yazdı."
-msgstr "The Blue Spark is here too! Kazma wrote me a letter."
+msgstr "The Blue Spark is here too! Digby wrote me a letter."
 
 msgid "Mavi Kıvılcım! İki tane oldu, üç kaldı."
 msgstr "The Blue Spark! That makes two, three to go."
@@ -1453,13 +1459,13 @@ msgid "Mağaralar yeniden pırıl pırıl"
 msgstr "The caves sparkle again"
 
 msgid "Mağaralara giden tabela meydanda. Kazma seni bekliyor!"
-msgstr "The sign to the caves is in the square. Kazma is waiting for you!"
+msgstr "The sign to the caves is in the square. Digby is waiting for you!"
 
 msgid "Meraklı ve atak. Fıstık'ın çırağı olmak istiyordu."
-msgstr "Curious and bold. Wanted to be Fıstık's helper."
+msgstr "Curious and bold. Wanted to be Peanut's helper."
 
 msgid "Merhaba! Ben Terzi Dikiş. Pelerin, şapka, ne istersen."
-msgstr "Hello! I'm Tailor Dikiş. Capes, hats, whatever you like."
+msgstr "Hello! I'm Stitch the Tailor. Capes, hats, whatever you like."
 
 msgid "Meğer Kıvılcım'ı koruyormuş"
 msgstr "He was guarding the Spark all along"
@@ -1468,13 +1474,13 @@ msgid "Meğer sadece bir sarılma istiyormuş"
 msgstr "All he wanted was a hug"
 
 msgid "Minicik Kazma"
-msgstr "Tiny Kazma"
+msgstr "Tiny Digby"
 
 msgid "Minicik Martı"
 msgstr "Tiny Gull"
 
 msgid "Minik Kazma"
-msgstr "Little Kazma"
+msgstr "Little Digby"
 
 msgid "Minik Martı"
 msgstr "Little Gull"
@@ -1500,29 +1506,32 @@ msgstr "Music volume"
 msgid "Müzik: %s"
 msgstr "Music: %s"
 
+msgid "Mırıl"
+msgstr "Mumble"
+
 msgid "Mırıl bir gün köye yaklaştı. Şenlikte herkes gülüyordu."
-msgstr "One day Mırıl came close to the village. Everyone at the festival was laughing."
+msgstr "One day Mumble came close to the village. Everyone at the festival was laughing."
 
 msgid "Mırıl bir kale yaptı. İçine bütün anılarını sakladı."
-msgstr "Mırıl built a castle. He kept all his memories inside."
+msgstr "Mumble built a castle. He kept all his memories inside."
 
 msgid "Mırıl orada bekliyor. Kalbini açık tut, bekçi."
-msgstr "Mırıl is waiting there. Keep your heart open, keeper."
+msgstr "Mumble is waiting there. Keep your heart open, keeper."
 
 msgid "Mırıl yoruldu. Yaklaş!"
-msgstr "Mırıl is tired. Go closer!"
+msgstr "Mumble is tired. Go closer!"
 
 msgid "Mırıl yoruldu. Şimdi yaklaş!"
-msgstr "Mırıl is tired. Go closer now!"
+msgstr "Mumble is tired. Go closer now!"
 
 msgid "Mırıl'ın anılarını bul"
-msgstr "Find Mırıl's memories"
+msgstr "Find Mumble's memories"
 
 msgid "Mırıl, artık en yakın arkadaşımsın."
-msgstr "Mırıl, you're my best friend now."
+msgstr "Mumble, you're my best friend now."
 
 msgid "Mırıl, bu pasta senin. Bir dilek tut ve üfle!"
-msgstr "Mırıl, this cake is for you. Make a wish and blow!"
+msgstr "Mumble, this cake is for you. Make a wish and blow!"
 
 msgid "Neden hâlâ buradasın? Neden gitmiyorsun?"
 msgstr "Why are you still here? Why don't you leave?"
@@ -1534,10 +1543,10 @@ msgid "Nereye uçalım?"
 msgstr "Where shall we fly?"
 
 msgid "O gece Mırıl bir şey fark etti: Kıvılcım'ın ışığı sıcaktı."
-msgstr "That night Mırıl noticed something: the Spark's light was warm."
+msgstr "That night Mumble noticed something: the Spark's light was warm."
 
 msgid "O gri üzüntü Pus oldu. Yıldızın adı Mırıl'dı."
-msgstr "That grey sadness became the Mist. The star's name was Mırıl."
+msgstr "That grey sadness became the Gloom. The star's name was Mumble."
 
 msgid "O kırmızı sis... Gözümü ondan ayırmıyorum."
 msgstr "That red mist... I'm keeping my eye on it."
@@ -1561,7 +1570,7 @@ msgid "Orman Feneri'ni yak"
 msgstr "Light the Forest Lantern"
 
 msgid "Orman yeniden yeşil! Kütük Kral bile gülümsüyor."
-msgstr "The forest is green again! Even the Stump King is smiling."
+msgstr "The forest is green again! Even King Stump is smiling."
 
 msgid "Ormanda kaybolan yavruları bul"
 msgstr "Find the chicks lost in the forest"
@@ -1578,8 +1587,11 @@ msgstr "His toys, his hat, his map... But the castle was always quiet."
 msgid "Parlak Salon'un kristallerini yak"
 msgstr "Light the crystals in the Shiny Hall"
 
+msgid "Pati"
+msgstr "Paws"
+
 msgid "Pati, yarından itibaren benim çırağımsın. Hıh!"
-msgstr "Pati, from tomorrow you're my helper. Hmph!"
+msgstr "Paws, from tomorrow you're my helper. Hmph!"
 
 msgid "Pazarım açıldı! Gemiye uğra, nadir şeylerim var."
 msgstr "My market is open! Stop by the ship, I have rare things."
@@ -1591,7 +1603,7 @@ msgid "Pembe fenerim kayboldu... Kuyunun oralarda düşürdüm galiba."
 msgstr "I lost my pink lantern... I think I dropped it by the well."
 
 msgid "Pençe Kombosu"
-msgstr "Claw Combo"
+msgstr "Paw Combo"
 
 msgid "Pençe Kombosu: üçlü hızlı vuruş"
 msgstr "Paw Combo: three quick hits"
@@ -1624,73 +1636,79 @@ msgid "Prolog · Sahne 6"
 msgstr "Prologue · Scene 6"
 
 msgid "Pus Baykuşu"
-msgstr "Mist Owl"
+msgstr "Gloom Owl"
 
 msgid "Pus Baykuşu dağıldı"
-msgstr "The Mist Owl faded away"
+msgstr "The Gloom Owl faded away"
 
 msgid "Pus Kalesi"
-msgstr "Mist Castle"
+msgstr "Gloom Castle"
 
 msgid "Pus Kalesi'nin tabelası meydanda. Hazır olunca git!"
-msgstr "The sign to Mist Castle is in the square. Go when you're ready!"
+msgstr "The sign to Gloom Castle is in the square. Go when you're ready!"
 
 msgid "Pus Kalesi... Burası çok gri ve çok sessiz."
-msgstr "Mist Castle... It's so grey and so quiet here."
+msgstr "Gloom Castle... It's so grey and so quiet here."
 
 msgid "Pus Kovucu"
-msgstr "Mist Chaser"
+msgstr "Gloom-Away"
 
 msgid "Pus bana sürekli yalnız olduğumu fısıldadı."
-msgstr "The Mist kept whispering that I was all alone."
+msgstr "The Gloom kept whispering that I was all alone."
 
 msgid "Pus dağıldı. Mırıl artık yalnız değil"
-msgstr "The Mist is gone. Mırıl isn't alone anymore"
+msgstr "The Gloom is gone. Mumble isn't alone anymore"
 
 msgid "Pus geri çekilmiyor... Kuleye tırmanıyor!"
-msgstr "The Mist isn't going back... It's climbing the tower!"
+msgstr "The Gloom isn't going back... It's climbing the tower!"
 
 msgid "Pus kristallerimizi griye boyadı, mağara karardı."
-msgstr "The Mist turned our crystals grey, and the cave went dark."
+msgstr "The Gloom turned our crystals grey, and the cave went dark."
 
 msgid "Pus limanı fırtınaya boğdu. Eski rakibim Rüzgâr çıldırdı!"
-msgstr "The Mist filled the harbor with storms. My old rival Gust went wild!"
+msgstr "The Gloom filled the harbor with storms. My old rival Gale went wild!"
 
 msgid "Pus'un vuruşları %30 daha az acıtır"
-msgstr "The Mist's hits hurt 30% less"
+msgstr "The Gloom's hits hurt 30% less"
 
 msgid "Puslu Sümüklü"
-msgstr "Misty Slimy"
+msgstr "Gloomy Slug"
 
 msgid "Puslu Sümüklüleri sakinleştir"
-msgstr "Calm the Misty Slimies"
+msgstr "Calm the Gloomy Slugs"
 
 msgid "Pırpır bir gölge görmüş... İki parlak gözlü."
-msgstr "Pırpır saw a shadow... with two shiny eyes."
+msgstr "Flutter saw a shadow... with two shiny eyes."
 
 msgid "Pırpır seni arıyor! Gemiye uç bakalım."
-msgstr "Pırpır is looking for you! Fly to the ship."
+msgstr "Flutter is looking for you! Fly to the ship."
 
 msgid "Pırpır'ın Nadir Pazarı"
-msgstr "Pırpır's Rare Market"
+msgstr "Flutter's Rare Market"
 
 msgid "Pırpır'ın pazarı açıldı! Gemiyle limana dön"
-msgstr "Pırpır's market is open! Fly back to the harbor"
+msgstr "Flutter's market is open! Fly back to the harbor"
 
 msgid "Pırpır: %s! Tutun sıkı!"
-msgstr "Pırpır: %s! Hold on tight!"
+msgstr "Flutter: %s! Hold on tight!"
 
 msgid "Pırıl Kesesi"
-msgstr "Glimmer Pouch"
+msgstr "Glim Pouch"
 
 msgid "Pırıl yetmiyor"
-msgstr "Not enough Glimmers"
+msgstr "Not enough Glim"
+
+msgid "Pırıltı Diyarı"
+msgstr "Glimmerland"
 
 msgid "Pırıltı Diyarı · Kıvılcım Bekçileri"
-msgstr "Pırıltı Diyarı · Spark Keepers"
+msgstr "Glimmerland · Spark Keepers"
+
+msgid "Pıtı"
+msgstr "Pippy"
 
 msgid "Pıtı'ya pembe fenerini ver"
-msgstr "Give Pıtı her pink lantern"
+msgstr "Give Pippy her pink lantern"
 
 msgid "Renk"
 msgstr "Color"
@@ -1714,13 +1732,13 @@ msgid "Rüzgâr esiyor! Bir sütunun dibine saklan"
 msgstr "The wind is blowing! Hide behind a pillar"
 
 msgid "Rüzgâr sakinleşti!"
-msgstr "Gust calmed down!"
+msgstr "Gale calmed down!"
 
 msgid "Rüzgâr'la yine yarışacağız. Bu sefer fırtınasız!"
-msgstr "Gust and I will race again. This time with no storm!"
+msgstr "Gale and I will race again. This time with no storm!"
 
 msgid "Sakin ve düşünceli. Pus'un kötü olmadığını sezen ilk kişi."
-msgstr "Calm and thoughtful. First to sense the Mist isn't bad."
+msgstr "Calm and thoughtful. First to sense the Gloom isn't bad."
 
 msgid "Saldır'a bas: dikenlerinle vur!"
 msgstr "Press Attack: hit with your spikes!"
@@ -1735,13 +1753,13 @@ msgid "Salonun bütün kristallerini yak"
 msgstr "Light all the crystals in the hall"
 
 msgid "Sana bir hikâye anlatayım. Pus'un hikâyesini."
-msgstr "Let me tell you a story. The story of the Mist."
+msgstr "Let me tell you a story. The story of the Gloom."
 
 msgid "Sapanla Işık Tohumu atarsın. Uzaktaki Pus'u dağıtır!"
-msgstr "A slingshot throws Light Seeds. They clear faraway Mist!"
+msgstr "A slingshot throws Light Seeds. They clear faraway Gloom!"
 
 msgid "Sapanla uzağa atılır, Pus'u dağıtır"
-msgstr "Thrown far with the slingshot, clears the Mist"
+msgstr "Thrown far with the slingshot, clears the Gloom"
 
 msgid "Sarmaşıktan tırman"
 msgstr "Climb the vines"
@@ -1777,7 +1795,7 @@ msgid "Sen kuleye koş. Büyük Kıvılcım'ı koru!"
 msgstr "You run to the tower. Protect the Great Spark!"
 
 msgid "Seni de Pus gönderdi, değil mi? Kıskaçlarım hazır!"
-msgstr "The Mist sent you too, didn't it? My pincers are ready!"
+msgstr "The Gloom sent you too, didn't it? My pincers are ready!"
 
 msgid "Sersemledi! Şimdi vur!"
 msgstr "He's dazed! Hit now!"
@@ -1828,7 +1846,7 @@ msgid "Sola git..."
 msgstr "Go left..."
 
 msgid "Somurtkan Mantar"
-msgstr "Grumpy Mushroom"
+msgstr "Sulky Shroom"
 
 msgid "Sonra çayıra bak. Koca bir mantar yolu tıkamış."
 msgstr "Then check the meadow. A huge mushroom is blocking the path."
@@ -1852,7 +1870,7 @@ msgid "Sırada Bulut Limanı var. Tabelası meydanda!"
 msgstr "Cloud Harbor is next. Its sign is in the square!"
 
 msgid "Sıradaki: Fısıltı Ormanı"
-msgstr "Next: Whispering Forest"
+msgstr "Next: Whispering Woods"
 
 msgid "Takıldım: son fenere dön"
 msgstr "I'm stuck: back to last lantern"
@@ -1867,13 +1885,13 @@ msgid "Tek bir bekçi yerine beş yürek taşısın diye."
 msgstr "So five hearts carry it instead of one keeper."
 
 msgid "Tepeden Rüzgâr'ın yuvası görünüyor... Fırtına Adası!"
-msgstr "I can see Gust's nest from the hilltop... Storm Isle!"
+msgstr "I can see Gale's nest from the hilltop... Storm Isle!"
 
 msgid "Terzi Dikiş'in Kıyafetleri"
-msgstr "Tailor Dikiş's Outfits"
+msgstr "Stitch's Outfits"
 
 msgid "Terzi Örümcek Dikiş"
-msgstr "Tailor Spider Dikiş"
+msgstr "Stitch the Spider Tailor"
 
 msgid "Teşekkürler bekçi! Yaşasın!"
 msgstr "Thank you, keeper! Hooray!"
@@ -1882,16 +1900,16 @@ msgid "Topladığın Hikâye Taşları'nı bir okuyayım..."
 msgstr "Let me read the Story Stones you've gathered..."
 
 msgid "Tospik Nine"
-msgstr "Granny Tospik"
+msgstr "Granny Shelly"
 
 msgid "Tospik Nine ile konuş"
-msgstr "Talk to Granny Tospik"
+msgstr "Talk to Granny Shelly"
 
 msgid "Tospik Nine'ye dön"
-msgstr "Go back to Granny Tospik"
+msgstr "Go back to Granny Shelly"
 
 msgid "Tospik Nine: Fıstık, buraya!"
-msgstr "Granny Tospik: Fıstık, over here!"
+msgstr "Granny Shelly: Peanut, over here!"
 
 msgid "Tuttum seni! Bulutlar yumuşak ama dikkat et."
 msgstr "Got you! Clouds are soft, but be careful."
@@ -1905,17 +1923,20 @@ msgstr "Dodge the feathers or roll. Hit after the dive!"
 msgid "Tüylerden kaç. Dalıştan sonra vur!"
 msgstr "Dodge the feathers. Hit after the dive!"
 
+msgid "Tıpış"
+msgstr "Pitter"
+
 msgid "Tıpış'a mavi fenerini ver"
-msgstr "Give Tıpış his blue lantern"
+msgstr "Give Pitter his blue lantern"
 
 msgid "Unutma: gri ağaç tersini söyler. Hu-hu!"
 msgstr "Remember: a grey tree says the opposite. Hoo-hoo!"
 
 msgid "Usta Tıkır"
-msgstr "Master Tıkır"
+msgstr "Master Tinker"
 
 msgid "Usta Tıkır'ın Aletleri ve İksirleri"
-msgstr "Master Tıkır's Tools and Potions"
+msgstr "Master Tinker's Tools and Potions"
 
 msgid "Utangaç ama yumuşak kalpli. Kardeşini arıyor."
 msgstr "Shy but soft-hearted. Looking for his brother."
@@ -1930,7 +1951,7 @@ msgid "Uyku Dağı uyandı"
 msgstr "Sleepy Mountain woke up"
 
 msgid "Uyku Dağı'ndaki Bilge Kuzey belki bilir. Tabelası meydanda!"
-msgstr "Wise Kuzey on Sleepy Mountain may know. His sign is in the square!"
+msgstr "Sage North on Sleepy Mountain may know. His sign is in the square!"
 
 msgid "Uykucu Tavşan"
 msgstr "Sleepy Bunny"
@@ -1957,7 +1978,7 @@ msgid "Vak! Bu gece yıldız sayacağım!"
 msgstr "Quack! I'm going to count stars tonight!"
 
 msgid "Vak! Tospik Nine'nin yanından ayrılmıyorum!"
-msgstr "Quack! I'm staying right by Granny Tospik!"
+msgstr "Quack! I'm staying right by Granny Shelly!"
 
 msgid "Vay! Şeker gibi kristaller... ama hepsi gri."
 msgstr "Wow! Crystals like candy... but they're all grey."
@@ -1978,13 +1999,13 @@ msgid "Vırak! Aletlerim parıl parıl, bak bakalım."
 msgstr "Ribbit! My tools are shiny and sparkly, take a look."
 
 msgid "Vırak! Ben Usta Tıkır. Işıkla çalışan aletler yaparım."
-msgstr "Ribbit! I'm Master Tıkır. I make tools that run on light."
+msgstr "Ribbit! I'm Master Tinker. I make tools that run on light."
 
 msgid "Vırak! Kovalamaca oynayalım mı?"
 msgstr "Ribbit! Want to play tag?"
 
 msgid "Vırak! Sen yaparsın Fıstık!"
-msgstr "Ribbit! You can do it, Fıstık!"
+msgstr "Ribbit! You can do it, Peanut!"
 
 msgid "Vırak! Şimdi her yeri görüyorum!"
 msgstr "Ribbit! Now I can see everything!"
@@ -1996,13 +2017,13 @@ msgid "Yak"
 msgstr "Light"
 
 msgid "Yakındaki Pus'lu yaratıkların üstüne yıldızlar yağar"
-msgstr "Stars fall on misty creatures nearby"
+msgstr "Stars fall on gloomy creatures nearby"
 
 msgid "Yani Mırıl kötü değil... Sadece yalnız mı?"
-msgstr "So Mırıl isn't bad... Just lonely?"
+msgstr "So Mumble isn't bad... Just lonely?"
 
 msgid "Yarasa Fısıltısı"
-msgstr "Whispering Bat"
+msgstr "Whisper Bat"
 
 msgid "Yaşasın! Eve koşuyorum!"
 msgstr "Hooray! I'm running home!"
@@ -2104,10 +2125,10 @@ msgid "Yıllar önce gökten küçük bir yıldız düştü."
 msgstr "Long ago, a little star fell from the sky."
 
 msgid "Zirvede Bilge Kuzey'i dinle"
-msgstr "Listen to Wise Kuzey at the summit"
+msgstr "Listen to Sage North at the summit"
 
 msgid "Zirveye tırman, Bilge Kuzey'i bul"
-msgstr "Climb to the top, find Wise Kuzey"
+msgstr "Climb to the top, find Sage North"
 
 msgid "Zzz... Beş dakika daha..."
 msgstr "Zzz... Five more minutes..."
@@ -2118,8 +2139,11 @@ msgstr "Jump"
 msgid "Zıpla · joystick yukarı: tırman"
 msgstr "Jump · stick up: climb"
 
+msgid "Zıpzıp"
+msgstr "Hoppy"
+
 msgid "Zıpzıp'a yeşil fenerini ver"
-msgstr "Give Zıpzıp his green lantern"
+msgstr "Give Hoppy his green lantern"
 
 msgid "uyandı!"
 msgstr "woke up!"
@@ -2137,7 +2161,7 @@ msgid "Çayıra git: köyün güneyi"
 msgstr "Go to the meadow: south of the village"
 
 msgid "Çayırdaki Dev Somurtkan Mantar'ı sakinleştir"
-msgstr "Calm the Giant Grumpy Mushroom in the meadow"
+msgstr "Calm the Giant Sulky Shroom in the meadow"
 
 msgid "Çayırın ortasına kondu ve parıldayarak bekledi."
 msgstr "It landed in the middle of the meadow and waited, twinkling."
@@ -2169,11 +2193,14 @@ msgstr "Nobody hugs me because I'm too cold. I'm sorry."
 msgid "Çünkü sana bir şey göstermek istiyorum."
 msgstr "Because I want to show you something."
 
+msgid "Çıtır"
+msgstr "Crunch"
+
 msgid "Önce Dağ Feneri'ni yakayım. Biraz ısınırım."
 msgstr "I'll light the Mountain Lantern first. I'll warm up a little."
 
 msgid "Önce Fıstık'a bir merhaba de. Heykeli kulenin dibinde."
-msgstr "First, say hello to Fıstık. His statue is at the foot of the tower."
+msgstr "First, say hello to Peanut. His statue is at the foot of the tower."
 
 msgid "Önce Liman Feneri'ni yakayım."
 msgstr "I'll light the Harbor Lantern first."
@@ -2182,7 +2209,7 @@ msgid "Önce Mağara Feneri'ni yak, ışık lazım bize!"
 msgstr "Light the Cave Lantern first, we need light!"
 
 msgid "Önce Pırpır ile konuş"
-msgstr "Talk to Pırpır first"
+msgstr "Talk to Flutter first"
 
 msgid "Önce benim dikenlerimi geçmen lazım, tüy yumağı!"
 msgstr "First you have to get past my spines, fluffball!"

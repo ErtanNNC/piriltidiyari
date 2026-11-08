@@ -78,6 +78,7 @@ bağlantısını Play Console'a girmen gerekir.
 ## Mağaza metinleri
 
 **Uygulama adı (30 karakter):** Pırıltı Diyarı
+**İngilizce mağaza kaydı:** ad "Spark Keepers: Glimmerland" (telefonda İngilizce dilde uygulama adı "Glimmerland" görünür).
 
 **Kısa açıklama (80 karakter):**
 Renkleri geri getir! Sevimli bekçilerle fenerleri yak, Pus'u dağıt.

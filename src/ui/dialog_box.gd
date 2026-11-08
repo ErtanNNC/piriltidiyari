@@ -123,7 +123,7 @@ func _show_line() -> void:
 	pill.content_margin_bottom = 2
 	_name_pill.add_theme_stylebox_override("panel", pill)
 	_portrait.add_theme_stylebox_override("panel", UiKit.box(c, "radius-pill", 4.0))
-	_portrait_letter.text = String(sp["name"]).left(1)
+	_portrait_letter.text = TranslationServer.translate(String(sp["name"])).left(1)
 	_body.text = line.get("text", "")
 	_body.visible_ratio = 0.0
 	_next.visible = false
