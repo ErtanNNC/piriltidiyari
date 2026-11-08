@@ -28,11 +28,21 @@ is a copy of the design system's tokens.
   (Head/head_r/hat_scale/Body/HandL/HandR) so outfits and tools still attach.
   Imported mobs drain to Pus grey via the toon `desat` uniform. New model:
   `tools/shrink_glb.py` (1024 px textures) then `tools/model_textures.sh`
-  (lossy WebP imports). Fur variants don't apply to textured keepers. Thin rings: use shape
+  (lossy WebP imports). Imported models have no skeleton: `src/world/rig.gdshaderinc`
+  bends them by body region (feet step, arms swing/strike/cheer or wings flap,
+  head looks/nods, tail wags; json "rig" tunes the regions), driven by
+  `CharacterRig._animate_shape`; eyes blink with a lid drawn in the toon shader
+  ("eyes" [x,y,r,z] fractions of the height + "lid" color, found by
+  `--demo=eyes` + `tools/find_eyes.py`, run twice). Fur variants on textured
+  keepers: json "fur" hue is shifted to the variant color (`fur_shift`).
+  Checks: `--scene=preview --demo=anim --pose=walk|attack|blink|happy`, `--demo=fur`. Thin rings: use shape
   `"ring"` (size.y = tube thickness); `"torus"` reads size.y as the inner radius. Mobs get the same rig
   (blink/breath); Pus mobs keep a faint tint of their own color (`MobModels._c`).
 - Ground decor is automatic: `Decor.auto(scene, style)` in each scene's `_ready`
   scatters non-colliding MultiMesh props on upright floors; thin meshes are paths.
+- Life: grass bends in rolling gusts (decor.gdshader), tree crowns rock via
+  `Sway.crown(tree, from_y, pivot_y)` (one Sway node per scene), `AmbientLife`
+  adds drifting 3D clouds and butterflies (when Pus < 0.45).
 - Atmosphere comes with `WorldLook.add(parent, mood)`: sky shader (SKIES table),
   ground cloud shadows (global `cloud_shadow`), `Weather` particles + Pus wisps
   that follow Pus.amount, `Backdrop` scenery ring. Flat water/syrup/ice:

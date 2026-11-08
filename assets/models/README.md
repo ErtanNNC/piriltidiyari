@@ -37,6 +37,12 @@ Oyun modeli kendisi hazırlar (`src/actors/model_import.gd`):
   attack seç. Yoksa Mixamo’da otomatik iskelet + animasyon alınabilir
   (FBX gelir, Blender’da GLB’ye çevrilir).
 - Yüz önden (+Z) bakmalı, ayaklar en altta olmalı.
+- İskeletsiz modeller de oynar: gölgelendirici modeli bölgelerine göre büker
+  (ayaklar adım atar, kollar sallanır/vurur, kanatlar çırpar, baş bakınır,
+  kuyruk sallanır). Bölgeler `<id>.json` içindeki `"rig"` ile ayarlanır.
+- Göz kırpma için gözlerin yeri bir kez bulunur (iki kez çalıştır):
+  `--scene=preview --demo=eyes --out=DIR` → `python3 tools/find_eyes.py DIR --write`.
+- Bekçilerde `"fur"` kendi kürk rengidir; dolaptaki renk seçimi bu tonu kaydırır.
 
 Kontrol: `tools/screenshot.sh out.png --scene=preview` (bekçiler yan yana),
 `--demo=npcs` (köylüler). Aktarma zincirinin testi:

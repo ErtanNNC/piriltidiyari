@@ -70,8 +70,112 @@ static func from_scene(model: Node3D, id: String) -> Node3D:
 	var rig := CharacterRig.new()
 	rig.name = "Rig"
 	rig.pose = pose
+	rig.materials = _rig_setup(model, pose, id, opts)
 	root.add_child(rig)
 	return root
+
+
+## Body-region shapes (fractions of the height, see rig.gdshaderinc).
+## "rig" in the json overrides: legs, arm_x, arm_y [low, high], neck,
+## tail (z behind, negative; 0 = none), wings (0..1), stride.
+const RIG_DEFAULT := {"legs": 0.14, "arm_x": 0.17, "arm_y": [0.14, 0.42], "neck": 0.46, "tail": 0.0, "wings": 0.0, "stride": 1.0}
+static var _eye_cache: Dictionary = {}
+
+
+## Gives every material of the model the shape rig (and eyes to blink);
+## returns the materials so CharacterRig can drive them.
+static func _rig_setup(model: Node3D, pose: Node3D, id: String, opts: Dictionary) -> Array:
+	var r: Dictionary = RIG_DEFAULT.duplicate()
+	var over: Variant = opts.get("rig")
+	if over is Dictionary:
+		r.merge(over, true)
+	var h := float(opts.get("height", HEIGHTS.get(id, 2.0)))
+	var ay: Array = r["arm_y"]
+	var shape := Vector4(float(r["legs"]), float(r["arm_x"]), float(ay[0]), float(ay[1]))
+	var shape2 := Vector4(float(r["neck"]), float(r["tail"]), float(r["wings"]), float(r["stride"]))
+	var eyes := _eyes(model, pose, id, opts, h)
+	var lid_hex: Variant = opts.get("lid")
+	if lid_hex == null and opts.has("model"):
+		lid_hex = _options(String(opts["model"])).get("lid")
+	var lid := Color(String(lid_hex)) if lid_hex != null else Color.BLACK
+	var mats: Array = []
+	for mi: MeshInstance3D in model.find_children("*", "MeshInstance3D", true, false):
+		if mi.mesh == null:
+			continue
+		var xf := _rel(mi, pose)
+		for i in mi.mesh.get_surface_count():
+			var m := mi.get_surface_override_material(i) as ShaderMaterial
+			if m == null:
+				continue
+			var pair: Array = [m]
+			if m.next_pass is ShaderMaterial:
+				m.next_pass = m.next_pass.duplicate()
+				pair.append(m.next_pass)
+			for sm: ShaderMaterial in pair:
+				sm.set_shader_parameter("rig_on", 1.0)
+				sm.set_shader_parameter("rig_to", Projection(xf))
+				sm.set_shader_parameter("rig_from", Projection(xf.affine_inverse()))
+				sm.set_shader_parameter("rig_h", h)
+				sm.set_shader_parameter("rig_shape", shape)
+				sm.set_shader_parameter("rig_shape2", shape2)
+				mats.append(sm)
+			if eyes.size() == 2:
+				m.set_shader_parameter("rig_eye_l", eyes[0])
+				m.set_shader_parameter("rig_eye_r", eyes[1])
+				m.set_shader_parameter("rig_lid", lid)
+	return mats
+
+
+## `node`'s transform relative to `top` (one of its ancestors).
+static func _rel(node: Node3D, top: Node3D) -> Transform3D:
+	var t := Transform3D.IDENTITY
+	var n: Node = node
+	while n != null and n != top:
+		if n is Node3D:
+			t = (n as Node3D).transform * t
+		n = n.get_parent()
+	return t
+
+
+## Eye centers (character space, w = radius) from "eyes" [[x, y, r, z], ...]
+## (fractions of the height, found by tools/find_eyes.py on the model's own
+## file); without z the depth is the front-most surface there. Cached per id.
+static func _eyes(model: Node3D, pose: Node3D, id: String, opts: Dictionary, h: float) -> Array:
+	if _eye_cache.has(id):
+		return _eye_cache[id]
+	var src: Variant = opts.get("eyes")
+	if src == null:
+		var other := String(opts.get("model", ""))
+		if other != "":
+			var o2 := _options(other)
+			src = o2.get("eyes")
+	var out: Array = []
+	if src is Array and (src as Array).size() == 2:
+		var meshes := model.find_children("*", "MeshInstance3D", true, false)
+		for e: Array in src:
+			var c := Vector3(float(e[0]), float(e[1]), 0.0) * h
+			var rad := float(e[2]) * h
+			if e.size() >= 4:
+				# depth stored by --demo=eyes (no mesh read-back on phones)
+				out.append(Vector4(c.x, c.y, float(e[3]) * h, rad))
+				continue
+			var front := -INF
+			for mi: MeshInstance3D in meshes:
+				if mi.mesh == null:
+					continue
+				var xf := _rel(mi, pose)
+				for si in mi.mesh.get_surface_count():
+					var verts: PackedVector3Array = mi.mesh.surface_get_arrays(si)[Mesh.ARRAY_VERTEX]
+					for v in verts:
+						var p := xf * v
+						if absf(p.x - c.x) < rad * 0.5 and absf(p.y - c.y) < rad * 0.5 and p.z > front:
+							front = p.z
+			if front > -INF:
+				out.append(Vector4(c.x, c.y, front - rad * 0.15, rad))
+	if out.size() != 2:
+		out = []
+	_eye_cache[id] = out
+	return out
 
 
 static func _options(id: String) -> Dictionary:

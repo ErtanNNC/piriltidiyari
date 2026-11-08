@@ -14,6 +14,9 @@ func _ready() -> void:
 	if DevTools.demo == "ref":
 		_reference()
 		return
+	if DevTools.demo == "eyes":
+		_eye_shots()
+		return
 	var mood := "sabah"
 	for arg in OS.get_cmdline_user_args():
 		if arg.begins_with("--mood="):
@@ -67,6 +70,52 @@ func _ready() -> void:
 		c3.position = Vector3(0, 2.4, 8.5)
 		add_child(c3)
 		c3.look_at(Vector3(0, 1.0, 0))
+		return
+	if which == "fur":
+		# every keeper in its three fur colors
+		for row in 3:
+			for i in 4:
+				var fm := KeeperModels.build(KEEPERS[i], {"variant": row})
+				fm.position = Vector3((i - 1.5) * 2.6 + (row - 1) * 0.0, 0, -row * 2.6)
+				add_child(fm)
+		var cf := Camera3D.new()
+		cf.fov = 45.0
+		cf.position = Vector3(0, 5.0, 10.5)
+		add_child(cf)
+		cf.look_at(Vector3(0, 0.6, -2.6))
+		return
+	if which == "anim":
+		# shape rig check: --pose=walk|attack|happy|blink|idle (all keepers + a few)
+		var pose_name := "walk"
+		for arg in OS.get_cmdline_user_args():
+			if arg.begins_with("--pose="):
+				pose_name = arg.get_slice("=", 1)
+		var ids := ["pati", "bado", "citir", "lumi", "fistik", "frog", "gull_captain"]
+		var rigs: Array = []
+		for i in ids.size():
+			var id: String = ids[i]
+			var am: Node3D = FistikModel.build() if id == "fistik" else (KeeperModels.build(id, {}) if id in KEEPERS else NpcModels.build(id))
+			am.position = Vector3((i - (ids.size() - 1) * 0.5) * 2.0, 0, 0)
+			am.rotation_degrees.y = 30.0 if pose_name in ["walk", "attack"] else 0.0
+			add_child(am)
+			rigs.append(CharacterRig.of(am))
+		var ca := Camera3D.new()
+		ca.fov = 40.0
+		ca.position = Vector3(0, 2.4, 11.0)
+		add_child(ca)
+		ca.look_at(Vector3(0, 1.0, 0))
+		for r: CharacterRig in rigs:
+			if r == null:
+				continue
+			match pose_name:
+				"walk": r.speed = 1.0
+				"blink": r.hold_blink = 1.0
+				"happy": r.happy()
+		if pose_name == "attack":
+			await get_tree().create_timer(1.83).timeout
+			for r: CharacterRig in rigs:
+				if r:
+					r.attack()
 		return
 	if which == "heights":
 		# prints each character's height (for assets/models/<id>.json) and quits
@@ -248,15 +297,69 @@ func _no_outline(n: Node) -> void:
 
 static func _flat(src: Material) -> Material:
 	var col := Color.WHITE
+	var tex: Texture2D = null
 	if src is ShaderMaterial:
 		var v: Variant = (src as ShaderMaterial).get_shader_parameter("albedo")
 		if v is Color:
 			col = v
+		tex = (src as ShaderMaterial).get_shader_parameter("albedo_tex") as Texture2D
 	elif src is BaseMaterial3D:
 		col = (src as BaseMaterial3D).albedo_color
 	var m := StandardMaterial3D.new()
 	m.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 	m.albedo_color = col
+	m.albedo_texture = tex
 	if col.a < 0.99:
 		m.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 	return m
+
+
+## --demo=eyes --out=DIR: every imported character front-on, flat and
+## orthographic, one PNG each (DIR/<id>.png) plus a line "EYESHOT id height
+## size" so tools/find_eyes.py can map pixels back to meters.
+func _eye_shots() -> void:
+	var out := "user://eyes"
+	for arg in OS.get_cmdline_user_args():
+		if arg.begins_with("--out="):
+			out = arg.get_slice("=", 1)
+	DirAccess.make_dir_recursive_absolute(out)
+	var env := WorldEnvironment.new()
+	env.environment = Environment.new()
+	env.environment.background_mode = Environment.BG_COLOR
+	env.environment.background_color = Color(1, 1, 1)
+	add_child(env)
+	var cam := Camera3D.new()
+	cam.projection = Camera3D.PROJECTION_ORTHOGONAL
+	add_child(cam)
+	for i in 10:
+		await get_tree().process_frame
+	for id: String in ["pati"] + KEEPERS + NPCS + ["gull_chick"] + MOBS:
+		if ModelImport.path_for(id) == "" or ModelImport._options(id).has("model"):
+			continue
+		var m: Node3D
+		if id in MOBS:
+			m = MobModels.build(id, false)
+		elif id in KEEPERS:
+			m = FistikModel.build() if id == "fistik" else KeeperModels.build(id, {})
+		else:
+			m = NpcModels.build(id)
+		var rig := CharacterRig.of(m)
+		if rig:
+			rig.free()
+		add_child(m)
+		_no_outline(m)
+		var h := float(ModelImport._options(id).get("height", ModelImport.HEIGHTS.get(id, 2.0)))
+		var size := h * 1.15
+		cam.size = size
+		cam.position = Vector3(0, h * 0.5, 10)
+		for i in 4:
+			await get_tree().process_frame
+		await RenderingServer.frame_post_draw
+		get_viewport().get_texture().get_image().save_png(out.path_join(id + ".png"))
+		print("EYESHOT %s %.4f %.4f" % [id, h, size])
+		# depths of eyes already found (tools/find_eyes.py --write stores them)
+		var ez: Array = ModelImport._eyes(m.get_node("Pose/Fit").get_child(0), m.get_node("Pose"), id + "#z", ModelImport._options(id), h)
+		if ez.size() == 2:
+			print("EYEZ %s %.4f %.4f" % [id, ez[0].z / h, ez[1].z / h])
+		m.free()
+	get_tree().quit()

@@ -144,8 +144,12 @@ static func add(parent: Node, mood: String) -> Environment:
 	we.environment = env
 	parent.add_child(we)
 	parent.add_child(sun)
+	var sway := Sway.new()
+	sway.name = "Sway"
+	parent.add_child(sway)
 	if parent is Node3D:
 		Weather.add(parent as Node3D, mood, env)
+		AmbientLife.add(parent as Node3D, mood)
 		Backdrop.add(parent as Node3D, mood)
 	return env
 

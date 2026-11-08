@@ -71,17 +71,25 @@ static func _hill(h: Node3D, at: Vector3, rng: RandomNumberGenerator, haze: Colo
 	_p(h, "ellipsoid", Vector3(w, rng.randf_range(7, 12), w * 0.8), green.lerp(haze, mix), at + Vector3(0, -2.0, 0))
 	for t in rng.randi_range(1, 3):
 		var p := at + Vector3(rng.randf_range(-w * 0.3, w * 0.3), rng.randf_range(1.5, 3.0), rng.randf_range(-w * 0.2, w * 0.2))
-		_p(h, "cylinder", Vector3(0.6, 2.2, 0.6), Color("#8a5a3c").lerp(haze, mix), p + Vector3(0, 1.1, 0))
-		_p(h, "ellipsoid", Vector3(2.8, 2.6, 2.8), Color("#3fae5c").lerp(haze, mix), p + Vector3(0, 3.0, 0))
+		var tree := Node3D.new()
+		tree.position = p
+		h.add_child(tree)
+		_p(tree, "cylinder", Vector3(0.6, 2.2, 0.6), Color("#8a5a3c").lerp(haze, mix), Vector3(0, 1.1, 0))
+		_p(tree, "ellipsoid", Vector3(2.8, 2.6, 2.8), Color("#3fae5c").lerp(haze, mix), Vector3(0, 3.0, 0))
+		Sway.crown(tree, 2.5, 2.0, 0.05)
 
 
 static func _forest(h: Node3D, at: Vector3, rng: RandomNumberGenerator, haze: Color, mix: float) -> void:
 	for t in 4:
 		var p := at + Vector3(rng.randf_range(-6, 6), 0, rng.randf_range(-4, 4))
 		var s := rng.randf_range(1.2, 2.0)
-		_p(h, "cylinder", Vector3(1.0, 5.0, 1.0) * s, ForestKit.BARK.lerp(haze, mix), p + Vector3(0, 2.5 * s, 0))
-		_p(h, "ellipsoid", Vector3(5.0, 4.4, 5.0) * s, Color("#3f8f55").lerp(haze, mix), p + Vector3(0, 6.2 * s, 0))
-		_p(h, "ellipsoid", Vector3(3.4, 3.0, 3.4) * s, Color("#58b86a").lerp(haze, mix), p + Vector3(0.8, 7.6 * s, 0.4))
+		var tree := Node3D.new()
+		tree.position = p
+		h.add_child(tree)
+		_p(tree, "cylinder", Vector3(1.0, 5.0, 1.0) * s, ForestKit.BARK.lerp(haze, mix), Vector3(0, 2.5 * s, 0))
+		_p(tree, "ellipsoid", Vector3(5.0, 4.4, 5.0) * s, Color("#3f8f55").lerp(haze, mix), Vector3(0, 6.2 * s, 0))
+		_p(tree, "ellipsoid", Vector3(3.4, 3.0, 3.4) * s, Color("#58b86a").lerp(haze, mix), Vector3(0.8, 7.6 * s, 0.4))
+		Sway.crown(tree, 5.5 * s, 4.8 * s, 0.03)
 
 
 static func _island(h: Node3D, at: Vector3, rng: RandomNumberGenerator, haze: Color, mix: float) -> void:

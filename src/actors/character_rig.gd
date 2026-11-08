@@ -29,6 +29,15 @@ var _phase := 0.0
 var _anim: AnimationPlayer
 var _clips: Dictionary = {}
 var _oneshot := 0.0
+## Imported models without a skeleton: their toon materials take the shape
+## rig (rig.gdshaderinc); set by ModelImport.
+var materials: Array = []
+var _strike := 0.0
+var _look := 0.0
+var _look_to := 0.0
+var _look_in := 1.5
+## Previews: >= 0 holds the eyes at this much closed.
+var hold_blink := -1.0
 
 
 ## Wraps the root's children in a "Pose" node and adds the rig to `root`.
@@ -109,6 +118,9 @@ func land() -> void:
 func attack() -> void:
 	if _anim:
 		_play("attack", true)
+	if not materials.is_empty():
+		_strike = 1.0
+		return
 	_arms_up = 1.0
 
 
@@ -141,6 +153,9 @@ func _process(delta: float) -> void:
 		_oneshot -= delta
 		if _oneshot <= 0.0:
 			_play("idle" if speed < 0.1 else ("run" if speed > 0.7 else "walk"))
+		return
+	if not materials.is_empty():
+		_animate_shape(delta)
 		return
 	_animate_parts()
 	_animate_eyes(delta)
@@ -185,6 +200,53 @@ func _animate_parts() -> void:
 		var tt: Transform3D = _rest["Tail"]
 		tail.transform = tt.rotated(Vector3.UP, sin(_t * (3.0 + _walk * 6.0) + _phase) * (0.18 + 0.12 * _walk))
 		tail.position = tt.origin
+
+
+## Drives the shape rig of an imported model (see rig.gdshaderinc).
+func _animate_shape(delta: float) -> void:
+	_strike = move_toward(_strike, 0.0, delta / 0.34)
+	# wind up a little, then a quick swing that eases back
+	var strike := 0.0
+	if _strike > 0.0:
+		var k := 1.0 - _strike
+		strike = -0.3 * sin(k / 0.25 * PI) if k < 0.25 else sin((k - 0.25) / 0.75 * PI)
+	var up := maxf(_arms_up, 0.3 if airborne else 0.0)
+	# now and then look somewhere else
+	_look_in -= delta
+	if _look_in <= 0.0:
+		_look_in = randf_range(1.8, 4.5)
+		_look_to = randf_range(-0.4, 0.4) if randf() < 0.7 else 0.0
+	_look = lerpf(_look, _look_to * (1.0 - _walk), 1.0 - exp(-delta * 4.0))
+	var nod := sin(_t * 1.7 + _phase) * 0.03 * (1.0 - _walk) + sin(_step * 2.0) * 0.05 * _walk - _hop * 0.15
+	var tilt := sin(_t * 0.9 + _phase) * 0.06 * (1.0 - _walk) - pose.rotation.z * 0.5
+	var wag := sin(_t * (3.0 + 6.0 * _walk) + _phase) * (0.22 + 0.15 * _walk)
+	# the whole body turns into a strike and leans after it
+	pose.rotation.y = -strike * 0.4
+	pose.rotation.x = maxf(strike, 0.0) * 0.14
+	var motion := Vector4(_step, _walk, strike, up)
+	var head := Vector4(_look, nod, tilt, wag)
+	var blink := _blink_amount(delta)
+	for m: ShaderMaterial in materials:
+		m.set_shader_parameter("rig_motion", motion)
+		m.set_shader_parameter("rig_head", head)
+		m.set_shader_parameter("rig_blink", blink)
+
+
+## 0 open .. 1 closed, on the same timing as the primitive eyes.
+func _blink_amount(delta: float) -> float:
+	if hold_blink >= 0.0:
+		return hold_blink
+	_blink_in -= delta
+	if _blink_in <= 0.0:
+		_blink = 0.2
+		_blink_in = randf_range(2.0, 4.5)
+		if randf() < 0.2:
+			_blink_in = 0.3  # double blink now and then
+	if _blink <= 0.0:
+		return 0.0
+	_blink -= delta
+	var k := 1.0 - _blink / 0.2
+	return clampf(minf(k * 3.0, (1.0 - k) * 2.2), 0.0, 1.0)
 
 
 func _animate_eyes(delta: float) -> void:

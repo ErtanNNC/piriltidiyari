@@ -178,7 +178,7 @@ func _refresh_custom() -> void:
 	var variants: Array = KeeperModels.INFO[current]["variants"]
 	for sw: Button in _swatches.get_children():
 		var i: int = sw.get_meta("i")
-		var st := UiKit.box(variants[i], "radius-pill", 4.0 if i == look["variant"] else 0.0, 5.0 if i == look["variant"] else 3.0)
+		var st := UiKit.box(KeeperModels.swatch(current, i), "radius-pill", 4.0 if i == look["variant"] else 0.0, 5.0 if i == look["variant"] else 3.0)
 		if i == look["variant"]:
 			st.border_color = Tokens.color("honey-deep")
 		for k in ["normal", "hover", "pressed"]:

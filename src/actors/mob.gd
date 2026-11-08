@@ -180,6 +180,10 @@ func _physics_process(delta: float) -> void:
 		velocity = Vector3.ZERO
 		_knock = Vector3.ZERO
 		Effects.sparkle(get_parent(), global_position + Vector3.UP, Tokens.color("pus"), 6)
+	var rig := CharacterRig.of(_grey) if is_instance_valid(_grey) else null
+	if rig:
+		rig.speed = Vector2(move.x, move.z).length() / maxf(float(stats["speed"]), 0.1)
+		rig.airborne = state == "attack" and stats["attack"] in ["swoop", "lunge"]
 	var face := move if move.length() > 0.1 else (to_player if state == "windup" else Vector3.ZERO)
 	if face.length() > 0.1:
 		rotation.y = lerp_angle(rotation.y, atan2(face.x, face.z), 1.0 - exp(-10.0 * delta))
@@ -217,6 +221,9 @@ func _windup(to_player: Vector3) -> void:
 
 
 func _attack() -> void:
+	var rig := CharacterRig.of(_grey) if is_instance_valid(_grey) else null
+	if rig:
+		rig.attack()
 	state = "attack"
 	_hit_this_attack = false
 	if stats["attack"] == "charge":

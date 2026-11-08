@@ -17,6 +17,7 @@ varying vec3 tint;
 varying vec3 world_pos;
 varying float glow;
 varying float h;
+varying float gust;
 
 void vertex() {
 	vec3 base = mix(INSTANCE_CUSTOM.rgb * COLOR.rgb, COLOR.rgb, step(0.5, COLOR.a));
@@ -24,18 +25,25 @@ void vertex() {
 	glow = INSTANCE_CUSTOM.a;
 	h = UV.y;
 	world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
+	gust = 0.0;
 	if (sway > 0.0) {
-		vec3 wp = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
+		vec3 wp = world_pos;
 		float t = TIME * 1.6 + wp.x * 0.35 + wp.z * 0.27;
-		float w = sin(t) * 0.6 + sin(t * 2.3 + 1.7) * 0.25;
-		VERTEX.x += w * sway * UV.y * UV.y;
-		VERTEX.z += cos(t * 0.8) * sway * 0.5 * UV.y * UV.y;
+		// gusts roll across the meadow in waves: blades bow and catch the light
+		gust = smoothstep(0.35, 1.0, sin(dot(wp.xz, vec2(0.16, 0.09)) - TIME * 1.3) * 0.5 + 0.5);
+		float k = UV.y * UV.y * sway;
+		vec3 push = vec3(sin(t) * 0.5 + sin(t * 2.3 + 1.7) * 0.2 + gust * 1.3, 0.0,
+				cos(t * 0.8) * 0.4 + gust * 0.7) * k;
+		push.y = -length(push) * 0.35;
+		// world push -> the instance's own (randomly turned, scaled) space
+		VERTEX += (vec4(push, 0.0) * MODEL_MATRIX).xyz / dot(MODEL_MATRIX[0].xyz, MODEL_MATRIX[0].xyz);
 	}
 }
 
 void fragment() {
 	// grass: darker at the root, lighter at the tip
 	vec3 c = tint * mix(1.0 - tip_light * 0.32, 1.0 + tip_light * 0.22, h);
+	c *= 1.0 + gust * h * 0.14 * tip_light;
 	float grey = dot(c, vec3(0.299, 0.587, 0.114));
 	float p = clamp(pus_amount * (1.0 - glow * 0.6), 0.0, 1.0);
 	ALBEDO = mix(c, vec3(grey) * vec3(0.92, 0.91, 0.98), p);

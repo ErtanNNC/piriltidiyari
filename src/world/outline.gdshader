@@ -6,8 +6,10 @@ render_mode unshaded, cull_front, shadows_disabled;
 uniform vec4 outline_color : source_color = vec4(0.165, 0.129, 0.251, 1.0);
 uniform float thickness = 0.035;
 
+#include "res://src/world/rig.gdshaderinc"
+
 void vertex() {
-	VERTEX += NORMAL * thickness;
+	VERTEX = rig_deform(VERTEX, TIME) + NORMAL * thickness;
 }
 
 void fragment() {

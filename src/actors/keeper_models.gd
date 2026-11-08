@@ -36,6 +36,7 @@ static func build(id: String, look := {}) -> Node3D:
 		_accessory(ap, a2, id)
 		_outfit(ap, String(look.get("outfit", "")))
 		_tool(ap, String(look.get("weapon", "")), id)
+		_fur(imported, id, int(look.get("variant", 0)))
 		return imported
 	var root := Node3D.new()
 	var info: Dictionary = INFO.get(id, INFO["pati"])
@@ -57,6 +58,35 @@ static func build(id: String, look := {}) -> Node3D:
 	_tool(parts, String(look.get("weapon", "")), id)
 	CharacterRig.attach(root)
 	return root
+
+
+## The color shown on swatch `i` (variant 0 of a real model is its own fur).
+static func swatch(id: String, i: int) -> Color:
+	var info: Dictionary = INFO.get(id, INFO["pati"])
+	if i == 0 and ModelImport.path_for(id) != "":
+		var own := String(ModelImport._options(id).get("fur", ""))
+		if own != "":
+			return Color(own)
+	return info["variants"][clampi(i, 0, 2)]
+
+
+## Fur color on a textured model: its own fur ("fur" in the json) is shifted
+## to the variant's color in the toon shader (stripes and shading stay).
+static func _fur(model: Node3D, id: String, variant: int) -> void:
+	var own := String(ModelImport._options(id).get("fur", ""))
+	if variant <= 0 or own == "":
+		return
+	var info: Dictionary = INFO.get(id, INFO["pati"])
+	var to: Color = info["variants"][clampi(variant, 0, 2)]
+	for mi: MeshInstance3D in model.find_children("*", "MeshInstance3D", true, false):
+		if mi.mesh == null or not mi.get_parent() or mi.get_parent().name.begins_with("Anchor"):
+			continue
+		for i in mi.mesh.get_surface_count():
+			var m := mi.get_surface_override_material(i) as ShaderMaterial
+			if m and m.get_shader_parameter("rig_on") == 1.0:
+				m.set_shader_parameter("fur_on", 1.0)
+				m.set_shader_parameter("fur_from", Color(own))
+				m.set_shader_parameter("fur_to", to)
 
 
 ## Where the procedural keepers have their head/body/hands (meters, model

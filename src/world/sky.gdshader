@@ -68,7 +68,7 @@ void sky() {
 		}
 		// two-tone clouds on a dome, drifting
 		if (cloud_amount > 0.0 && h > 0.0) {
-			vec2 uv = d.xz / (h + 0.18) * 0.95 + TIME * vec2(0.01, 0.003);
+			vec2 uv = d.xz / (h + 0.18) * 0.95 + TIME * vec2(0.022, 0.006);
 			float n = vnoise(uv) * 0.55 + vnoise(uv * 2.3 + 4.0) * 0.3 + vnoise(uv * 5.1 + 9.0) * 0.15;
 			float lim = 1.0 - cloud_amount * 0.62;
 			float m = smoothstep(lim, lim + 0.04, n);

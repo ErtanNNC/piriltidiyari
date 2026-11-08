@@ -219,6 +219,7 @@ func _tree(s: float) -> void:
 		var a := rng.randf() * TAU
 		Toon.part(self, "sphere", Vector3(0.22, 0.22, 0.22) * s, ["berry", "spark-yellow", Color("#ff9a52")][rng.randi() % 3],
 			Vector3(cos(a) * 1.1, rng.randf_range(2.3, 3.4), sin(a) * 1.1) * s, Vector3.ZERO, 0.15, 0.02)
+	Sway.crown(self, 2.2 * s, 1.9 * s, 0.035)
 	_collider(0.45 * s, 2.0 * s)
 
 

@@ -173,10 +173,10 @@ static func _material(mesh_id: String) -> ShaderMaterial:
 	m.shader = DECOR_SHADER
 	match mesh_id:
 		"grass", "grass_short":
-			m.set_shader_parameter("sway", 0.06)
+			m.set_shader_parameter("sway", 0.11)
 			m.set_shader_parameter("tip_light", 1.0)
 		"flower", "tulip", "fern":
-			m.set_shader_parameter("sway", 0.04)
+			m.set_shader_parameter("sway", 0.07)
 			m.set_shader_parameter("tip_light", 0.3 if mesh_id == "fern" else 0.0)
 	if mesh_id in ["pebble", "rock", "mushroom", "crystal", "tuft"]:
 		var o := ShaderMaterial.new()
