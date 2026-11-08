@@ -1,6 +1,8 @@
 extends Node3D
 ## Dev scene: every character model in a row on a meadow, close camera.
 ##   tools/screenshot.sh out.png --scene=preview [--demo=keepers|npcs|mobs] [--at=2]
+##   --demo=ref --model=pati: one character, front view on a plain background
+##   (the reference image for image-to-3D tools)
 
 const KEEPERS := ["pati", "bado", "citir", "lumi", "fistik"]
 const NPCS := ["turtle", "bunny", "duckling", "owl_teacher", "spider", "mole", "gull_captain", "snowman", "frog", "star_child"]
@@ -8,6 +10,9 @@ const NPCS := ["turtle", "bunny", "duckling", "owl_teacher", "spider", "mole", "
 
 func _ready() -> void:
 	Pus.set_amount(0.0)
+	if DevTools.demo == "ref":
+		_reference()
+		return
 	var mood := "sabah"
 	for arg in OS.get_cmdline_user_args():
 		if arg.begins_with("--mood="):
@@ -154,3 +159,55 @@ func _row(items: Array, gap: float, cam_at: Vector3, look: Vector3) -> void:
 	c.position = cam_at
 	add_child(c)
 	c.look_at(look)
+
+
+## A clean front view for image-to-3D: soft even light, plain background.
+func _reference() -> void:
+	var id := "pati"
+	for arg in OS.get_cmdline_user_args():
+		if arg.begins_with("--model="):
+			id = arg.get_slice("=", 1)
+	var env := WorldEnvironment.new()
+	env.environment = Environment.new()
+	env.environment.background_mode = Environment.BG_COLOR
+	env.environment.background_color = Color(1, 1, 1)
+	env.environment.ambient_light_source = Environment.AMBIENT_SOURCE_COLOR
+	env.environment.ambient_light_color = Color(1, 1, 1)
+	env.environment.ambient_light_energy = 0.6
+	add_child(env)
+	var sun := DirectionalLight3D.new()
+	sun.rotation_degrees = Vector3(-30, 10, 0)
+	add_child(sun)
+	var m: Node3D
+	if id in KEEPERS:
+		m = FistikModel.build() if id == "fistik" else KeeperModels.build(id, {"variant": 0, "accessory": "yok"})
+	elif id in NPCS:
+		m = NpcModels.build(id)
+	else:
+		m = MobModels.build(id, false)
+	add_child(m)
+	_no_outline(m)
+	var cam := Camera3D.new()
+	cam.fov = 30.0
+	cam.position = Vector3(0, 1.05, 5.2)
+	add_child(cam)
+	cam.look_at(Vector3(0, 1.0, 0))
+
+
+## The game draws the outline itself, so the reference must not have one.
+func _no_outline(n: Node) -> void:
+	if n is GeometryInstance3D:
+		var g := n as GeometryInstance3D
+		if g.material_override:
+			g.material_override = g.material_override.duplicate()
+			g.material_override.next_pass = null
+		if n is MeshInstance3D:
+			var mi := n as MeshInstance3D
+			for i in mi.get_surface_override_material_count():
+				var mat := mi.get_active_material(i)
+				if mat and mat.next_pass:
+					mat = mat.duplicate()
+					mat.next_pass = null
+					mi.set_surface_override_material(i, mat)
+	for c in n.get_children():
+		_no_outline(c)

@@ -20,7 +20,8 @@ is a copy of the design system's tokens.
   WingL/R), faces via `Face.add`, then `CharacterRig.attach(root)` (blink, breath,
   steps). Use `"ellipsoid"` (honors size.z) for new parts. A `assets/models/<id>.glb`
   replaces any keeper/Fıstık/NPC placeholder through `ModelImport`. Preview:
-  `--scene=preview [--demo=npcs|import|props|mobs]`. Thin rings: use shape
+  `--scene=preview [--demo=npcs|import|props|mobs]`; `--demo=ref --model=<id>` renders one
+  character front-on, no outline, white background (reference for image-to-3D). Thin rings: use shape
   `"ring"` (size.y = tube thickness); `"torus"` reads size.y as the inner radius. Mobs get the same rig
   (blink/breath); Pus mobs keep a faint tint of their own color (`MobModels._c`).
 - Ground decor is automatic: `Decor.auto(scene, style)` in each scene's `_ready`
