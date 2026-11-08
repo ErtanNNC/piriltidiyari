@@ -45,6 +45,8 @@ func _ready() -> void:
 	_root.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	_root.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(_root)
+	_apply_safe_area()
+	get_viewport().size_changed.connect(_apply_safe_area)
 	var m := Tokens.px("space-6")
 
 	# top-left: portrait, level badge, bars
@@ -587,6 +589,28 @@ func toggle_pause() -> void:
 	var cont := UiKit.button("Devam et")
 	var mus := UiKit.button("", false)
 	var sfx := UiKit.button("", false)
+	for spec: Array in [["Müzik sesi", "music"], ["Efekt sesi", "sfx"]]:
+		var row := HBoxContainer.new()
+		row.add_theme_constant_override("separation", int(Tokens.px("space-2")))
+		var l := UiKit.label(spec[0], "text-label", "ink")
+		l.custom_minimum_size = Vector2(110, 0)
+		row.add_child(l)
+		var sl := HSlider.new()
+		sl.min_value = 0.0
+		sl.max_value = 1.0
+		sl.step = 0.05
+		sl.value = Audio.music_volume if spec[1] == "music" else Audio.sfx_volume
+		sl.custom_minimum_size = Vector2(170, 48)
+		sl.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		var kind: String = spec[1]
+		sl.value_changed.connect(func(val: float) -> void:
+			if kind == "music":
+				Audio.set_volumes(val, Audio.sfx_volume)
+			else:
+				Audio.set_volumes(Audio.music_volume, val)
+				Audio.play("coin"))
+		row.add_child(sl)
+		v.add_child(row)
 	var stuck := UiKit.button("Takıldım: son fenere dön", false)
 	var menu := UiKit.button("Ana menü", false)
 	for b: Button in [cont, mus, sfx, stuck, menu]:
@@ -610,7 +634,7 @@ func toggle_pause() -> void:
 	menu.pressed.connect(func() -> void:
 		toggle_pause()
 		SceneFlow.go_to("title", false))
-	var note := UiKit.label("Oyun her bölüm başında kaydedilir.", "text-caption", "ink-muted")
+	var note := UiKit.label("Oyun her bölüm başında kaydedilir. · %d FPS" % Engine.get_frames_per_second(), "text-caption", "ink-muted")
 	note.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	v.add_child(note)
 	_root.add_child(p)
@@ -632,6 +656,9 @@ func _refresh_powers() -> void:
 
 
 func _process(_delta: float) -> void:
+	if SaveGame.last_error != OK:
+		SaveGame.last_error = OK
+		show_toast("Oyun kaydedilemedi. Telefonda yer var mı?", "drop")
 	# power buttons: dim while cooling down or short of energy
 	if _player and is_instance_valid(_player):
 		for b in _power_buttons:
@@ -670,3 +697,20 @@ func _maybe_level_up() -> void:
 			var def: Dictionary = Powers.DEFS[id]
 			var how := " (%s tuşu / düğmesi)" % ["O", "P"][Powers.actives(d.powers).find(id)] if def["kind"] == "active" else ""
 			show_toast("%s: kademe %d%s" % [def["name"], Powers.rank(d.powers, id), how], "star"))
+
+
+## Keep the HUD out of notches and rounded corners (Android/iOS report a real
+## safe area; on desktop it's the whole window, so the inset is 0).
+func _apply_safe_area() -> void:
+	if not OS.has_feature("mobile"):
+		return
+	var safe := Rect2(DisplayServer.get_display_safe_area())
+	var win := Rect2(Vector2(DisplayServer.window_get_position()), Vector2(DisplayServer.window_get_size()))
+	var inner := safe.intersection(win)
+	if inner.size.x <= 0.0 or win.size.x <= 0.0:
+		return
+	var to_ui := get_viewport().get_visible_rect().size / win.size
+	_root.offset_left = (inner.position.x - win.position.x) * to_ui.x
+	_root.offset_top = (inner.position.y - win.position.y) * to_ui.y
+	_root.offset_right = -(win.end.x - inner.end.x) * to_ui.x
+	_root.offset_bottom = -(win.end.y - inner.end.y) * to_ui.y

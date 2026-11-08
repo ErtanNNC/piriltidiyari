@@ -27,6 +27,10 @@ const VOICES := 12
 
 var music_on := true
 var sfx_on := true
+## Slider volumes 0..1 (Mola menu), applied to the Music / Sfx buses.
+var music_volume := 0.8
+var sfx_volume := 0.9
+var _duck := 0.0
 
 var _music: Array[AudioStreamPlayer] = []
 var _active := 0
@@ -39,6 +43,7 @@ var _streams: Dictionary = {}
 var _last: Dictionary = {}
 var _lowpass: AudioEffectLowPassFilter
 var _music_bus := 0
+var _sfx_bus := 0
 var _data: PlayerData
 var _quiet_until := 0.0
 
@@ -46,7 +51,7 @@ var _quiet_until := 0.0
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	_music_bus = _bus("Music")
-	_bus("Sfx")
+	_sfx_bus = _bus("Sfx")
 	_lowpass = AudioEffectLowPassFilter.new()
 	_lowpass.cutoff_hz = 20000.0
 	AudioServer.add_bus_effect(_music_bus, _lowpass)
@@ -76,10 +81,14 @@ func _bus(n: String) -> int:
 	return idx
 
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	# the grey Pus muffles the music; lit lanterns open it up again
 	var target := 20000.0 * pow(0.08, clampf(Pus.amount, 0.0, 1.0))
 	_lowpass.cutoff_hz = lerpf(_lowpass.cutoff_hz, target, 0.05)
+	# ducking: music dips while someone is talking, so words come first
+	_duck = move_toward(_duck, 1.0 if GameState.in_dialogue else 0.0, delta * 3.0)
+	AudioServer.set_bus_volume_db(_music_bus, linear_to_db(maxf(music_volume, 0.0001)) - 7.0 * _duck)
+	AudioServer.set_bus_volume_db(_sfx_bus, linear_to_db(maxf(sfx_volume, 0.0001)))
 	if GameState.data != _data:
 		_watch(GameState.data)
 
@@ -122,7 +131,8 @@ func play(sound: String, db := 0.0) -> void:
 	var v := _voices[_next_voice]
 	_next_voice = (_next_voice + 1) % VOICES
 	v.stream = stream
-	v.volume_db = float(LEVEL.get(sound, 0.0)) + db
+	# a little loudness variety too, so repeats don't sound like a machine gun
+	v.volume_db = float(LEVEL.get(sound, 0.0)) + db + randf_range(-1.5, 0.5)
 	var pv: float = PITCH_VAR.get(sound, 0.02)
 	v.pitch_scale = randf_range(1.0 - pv, 1.0 + pv)
 	v.play()
@@ -221,10 +231,20 @@ func _load_settings() -> void:
 	if c.load(SETTINGS) == OK:
 		music_on = bool(c.get_value("ses", "muzik", true))
 		sfx_on = bool(c.get_value("ses", "efekt", true))
+		music_volume = float(c.get_value("ses", "muzik_seviye", 0.8))
+		sfx_volume = float(c.get_value("ses", "efekt_seviye", 0.9))
 
 
 func _save_settings() -> void:
 	var c := ConfigFile.new()
 	c.set_value("ses", "muzik", music_on)
 	c.set_value("ses", "efekt", sfx_on)
+	c.set_value("ses", "muzik_seviye", music_volume)
+	c.set_value("ses", "efekt_seviye", sfx_volume)
 	c.save(SETTINGS)
+
+
+func set_volumes(music_v: float, sfx_v: float) -> void:
+	music_volume = clampf(music_v, 0.0, 1.0)
+	sfx_volume = clampf(sfx_v, 0.0, 1.0)
+	_save_settings()

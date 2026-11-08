@@ -15,6 +15,7 @@ func _init() -> void:
 	test_quest_flow_scene1()
 	test_quest_flow_scene2()
 	test_save_roundtrip()
+	test_save_safety_and_stats()
 	test_owl_plan()
 	test_content_is_valid()
 	print("\n%d kontrol, %d hata" % [_checks, _failures])
@@ -169,6 +170,51 @@ func test_quest_flow_scene2() -> void:
 	check(d.has_flag("sahne2_bitti") and d.quest_state("gri_ruzgar") == "done", "sahne 2 bitti")
 	check(talk.call("piti")["lines"][0]["text"].contains("Sis"), "çocuklar Sahne 2'de sisten söz eder")
 	c.free()
+
+
+func test_save_safety_and_stats() -> void:
+	print("Kayıt güvenliği ve türetilmiş statlar")
+	var path := "user://test_kayit.json"
+	for p: String in [path, path + ".bak", path + ".tmp"]:
+		if FileAccess.file_exists(p):
+			DirAccess.remove_absolute(ProjectSettings.globalize_path(p))
+	var d := PlayerData.new()
+	d.add_piril(10)
+	check(SaveGame.write(d, path) == OK, "ilk kayıt yazılır")
+	d.add_piril(5)
+	check(SaveGame.write(d, path) == OK and FileAccess.file_exists(path + ".bak"), "ikinci kayıtta eskisi .bak olarak kalır")
+	var e := PlayerData.new()
+	check(SaveGame.read_into(e, path) and e.piril == 15, "en yeni kayıt okunur")
+	# a crash mid-write leaves a broken main file: the .bak saves the day
+	var f := FileAccess.open(path, FileAccess.WRITE)
+	f.store_string("{\"piril\": 1")
+	f.close()
+	var g := PlayerData.new()
+	check(SaveGame.read_into(g, path) and g.piril == 10, "bozuk kayıtta yedekten (.bak) yüklenir")
+	check(SaveGame.migrate({"version": 99}).is_empty(), "daha yeni oyunun kaydı reddedilir")
+	var old := SaveGame.migrate({"piril": 3, "level": 4, "max_hp": 150, "power": 20, "speed": 6.0})
+	check(int(old["version"]) == SaveGame.VERSION and old.has("equipped") and old.has("powers"), "sürüm 1 kaydı yeni alanlarla yükseltilir")
+	var h := PlayerData.new()
+	h.load_dict(old)
+	h.recompute_stats({})
+	check(h.max_hp == 150 and h.power == 20, "eski kayıtta statlar korunur (taban geriye doğru bulunur)")
+	for p: String in [path, path + ".bak", path + ".tmp"]:
+		if FileAccess.file_exists(p):
+			DirAccess.remove_absolute(ProjectSettings.globalize_path(p))
+	# derived stats equal the step-by-step ones and can't drift
+	var items: Dictionary = ContentScript.read_json("res://content/items.json")["items"]
+	var keepers: Dictionary = ContentScript.read_json("res://content/keepers.json")["keepers"]
+	var k := PlayerData.new()
+	k.choose_keeper("citir", keepers["citir"]["stats"], {}, "Çıtır")
+	k.add_piril(500)
+	k.add_xp(Progression.xp_to_next(1) + Progression.xp_to_next(2) + Progression.xp_to_next(3))
+	Shop.buy(k, items["kristal_tilsim"], "kristal_tilsim", 120, true)
+	k.power_picks = 1
+	Powers.pick(k, "kocaman_yurek")
+	var before := [k.max_hp, k.power, k.speed]
+	k.max_hp += 999  # drift
+	k.recompute_stats(items)
+	check([k.max_hp, k.power, k.speed] == before, "yeniden hesap adım adım toplamla aynı, sapma düzelir")
 
 
 func test_save_roundtrip() -> void:

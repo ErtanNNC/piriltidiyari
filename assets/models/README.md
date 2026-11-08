@@ -1,5 +1,7 @@
 # Gerçek 3B modeller
 
+Tarz, renkler, bütçe ve kalite adımları için önce **[docs/sanat-yonu.md](../../docs/sanat-yonu.md)**.
+
 Bu klasöre `.glb` dosyası koymak yeter; oyun ilkel şekillerle yapılmış yer
 tutucu yerine onu kullanır, kod değişmez.
 

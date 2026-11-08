@@ -39,6 +39,9 @@ var sparks: Array = []        # found spark colors, e.g. ["green"]
 var equipped: Dictionary = {"outfit": "", "weapon": ""}   # worn outfit / held tool (item ids)
 var powers: Dictionary = {}   # level-up powers: id -> rank (1..Powers.MAX_RANK)
 var power_picks := 0          # level-ups whose power choice is still waiting
+## The keeper's own starting numbers; max_hp/power/speed are derived from
+## these (recompute_stats). Empty in saves from before version 2.
+var base_stats: Dictionary = {"hp": 100, "power": 10, "speed": 6.0}
 
 
 # --- stats --------------------------------------------------------------
@@ -128,12 +131,14 @@ func choose_keeper(id: String, stats: Dictionary, look: Dictionary, display_name
 	character_name = display_name
 	level = 1
 	xp = 0
-	max_hp = 70 + int(stats.get("can", 3)) * 10
+	base_stats = {"hp": 70 + int(stats.get("can", 3)) * 10, "power": 6 + int(stats.get("guc", 3)) * 2,
+		"speed": 4.6 + float(stats.get("hiz", 3)) * 0.5}
+	max_hp = int(base_stats["hp"])
 	hp = max_hp
 	max_mp = 50
 	mp = max_mp
-	power = 6 + int(stats.get("guc", 3)) * 2
-	speed = 4.6 + float(stats.get("hiz", 3)) * 0.5
+	power = int(base_stats["power"])
+	speed = float(base_stats["speed"])
 	skills = []
 	var own := Skills.for_character(id)
 	if own != "":
@@ -151,17 +156,9 @@ func switch_keeper(id: String, stats: Dictionary, look: Dictionary, display_name
 	var x := xp
 	var old_skills := skills.duplicate()
 	choose_keeper(id, stats, look, display_name)
-	for l in range(2, lv + 1):
-		max_hp += Progression.hp_gain(l)
-		power += Progression.power_gain(l)
-	max_hp += Powers.bonus_hp(powers)
 	level = lv
 	xp = x
-	for item_id: String in item_defs:
-		var def: Dictionary = item_defs[item_id]
-		if def.get("kind", "") == "charm" and has_flag("owned_" + item_id):
-			max_hp += int(def.get("max_hp", 0))
-			speed += float(def.get("speed", 0.0))
+	recompute_stats(item_defs)
 	# shared skills (like Dikenli Dönüş) stay; other keepers' own skills don't
 	var others := []
 	for k: String in ["pati", "bado", "citir", "lumi", "fistik"]:
@@ -342,7 +339,7 @@ func has_flag(flag: String) -> bool:
 # --- save ---------------------------------------------------------------
 
 const SAVE_KEYS := ["character_id", "character_name", "character_look", "scene_id", "level", "xp",
-	"max_hp", "hp", "max_mp", "mp", "power", "speed", "piril", "items", "potions", "skills", "quests", "flags", "sparks", "equipped", "powers", "power_picks"]
+	"max_hp", "hp", "max_mp", "mp", "power", "speed", "piril", "items", "potions", "skills", "quests", "flags", "sparks", "equipped", "powers", "power_picks", "base_stats"]
 
 
 func to_dict() -> Dictionary:
@@ -385,3 +382,40 @@ func catch_up() -> void:
 	rng.seed = 3
 	while power_picks > 3:
 		Powers.pick(self, Powers.choices(powers, rng)[0]["id"])
+
+
+# --- derived stats --------------------------------------------------------------
+
+## The parts of max HP / power / speed that don't come from the keeper's base.
+func _gains(item_defs: Dictionary) -> Dictionary:
+	var g := {"hp": Powers.bonus_hp(powers), "power": 0, "speed": 0.0}
+	for l in range(2, level + 1):
+		g["hp"] += Progression.hp_gain(l)
+		g["power"] += Progression.power_gain(l)
+	for item_id: String in item_defs:
+		var def: Dictionary = item_defs[item_id]
+		if def.get("kind", "") == "charm" and has_flag("owned_" + item_id):
+			g["hp"] += int(def.get("max_hp", 0))
+			g["speed"] += float(def.get("speed", 0.0))
+	return g
+
+
+## Rebuild max HP, power and speed from base stats + level + charms + powers,
+## so they can never drift. Keeps current HP (capped at the new max).
+func recompute_stats(item_defs: Dictionary) -> void:
+	ensure_base(item_defs)
+	var g := _gains(item_defs)
+	max_hp = int(base_stats["hp"]) + int(g["hp"])
+	power = int(base_stats["power"]) + int(g["power"])
+	speed = float(base_stats["speed"]) + float(g["speed"])
+	hp = mini(hp, max_hp)
+	stats_changed.emit()
+
+
+## Saves from before version 2 have no base stats: work them out backwards
+## from the stored numbers (whatever they were, the keeper keeps them).
+func ensure_base(item_defs: Dictionary) -> void:
+	if base_stats.has("hp") and base_stats.has("power") and base_stats.has("speed"):
+		return
+	var g := _gains(item_defs)
+	base_stats = {"hp": max_hp - int(g["hp"]), "power": power - int(g["power"]), "speed": speed - float(g["speed"])}

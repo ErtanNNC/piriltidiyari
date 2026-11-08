@@ -85,6 +85,15 @@ Taşlarının üstünde duvarın, ağacın arkasından bile görünen küçük b
 menüsünde **"Takıldım: son fenere dön"** seni son fenere / kontrol noktasına götürür. Yaratıklar bir yerden
 düşerse kendi yerlerine geri döner; prologdaki kule çatısının korkuluğu düşmeyi engeller.
 
+**Güvenlik ve kalite:** Kayıt önce geçici dosyaya yazılır, eski kayıt yedek (.bak) olarak tutulur; yazarken
+telefon kapansa bile ilerleme kaybolmaz, eski sürüm kayıtlar otomatik dönüştürülür. Can, güç ve hız her
+zaman temel değerlerden yeniden hesaplanır. Çentikli telefonlarda HUD güvenli alanın içinde kalır. Kamera bir
+duvarın arkasında kalırsa bekçiye doğru yaklaşır; sarsıntı yumuşak "travma" yöntemiyle. Diyalogda müzik
+kısılır; Mola'da müzik ve efekt ses kaydırıcıları ve FPS göstergesi var. Efektler kaynakları yeniden
+kullanır. GitHub Actions her push'ta testleri çalıştırır ve web sürümünü derler (`tools/build_web.sh`);
+itch.io anahtarı eklenirse otomatik yükler (`tools/publish_itch.sh`). 3B modeller için sanat yönü:
+[docs/sanat-yonu.md](docs/sanat-yonu.md).
+
 **Kontroller:** WASD / oklar yürür · Boşluk zıplar · J saldırır (diken dönüşü) · E konuşur.
 Mobilde sol yarıda sanal joystick, sağda Zıpla / Saldır butonları çıkar.
 
@@ -221,6 +230,15 @@ yürüyüş yönü kameraya göre ayarlanır. Yakılacak kristallerin, fenerleri
 Taşlarının üstünde duvarın, ağacın arkasından bile görünen küçük bir yıldız parlar; yanınca kaybolur. Mola
 menüsünde **"Takıldım: son fenere dön"** seni son fenere / kontrol noktasına götürür. Yaratıklar bir yerden
 düşerse kendi yerlerine geri döner; prologdaki kule çatısının korkuluğu düşmeyi engeller.
+
+**Güvenlik ve kalite:** Kayıt önce geçici dosyaya yazılır, eski kayıt yedek (.bak) olarak tutulur; yazarken
+telefon kapansa bile ilerleme kaybolmaz, eski sürüm kayıtlar otomatik dönüştürülür. Can, güç ve hız her
+zaman temel değerlerden yeniden hesaplanır. Çentikli telefonlarda HUD güvenli alanın içinde kalır. Kamera bir
+duvarın arkasında kalırsa bekçiye doğru yaklaşır; sarsıntı yumuşak "travma" yöntemiyle. Diyalogda müzik
+kısılır; Mola'da müzik ve efekt ses kaydırıcıları ve FPS göstergesi var. Efektler kaynakları yeniden
+kullanır. GitHub Actions her push'ta testleri çalıştırır ve web sürümünü derler (`tools/build_web.sh`);
+itch.io anahtarı eklenirse otomatik yükler (`tools/publish_itch.sh`). 3B modeller için sanat yönü:
+[docs/sanat-yonu.md](docs/sanat-yonu.md).
 
 **Kontroller:** WASD / oklar · Boşluk zıpla · J saldır · K yuvarlan · L Dikenli Dönüş · I sapan · O / P güçler · Q / R kamera · E konuş · 1–4 iksir · Esc mola.
 Mobilde: sanal joystick, Zıpla / Saldır / Yuvarlan / Dönüş butonları, iksir yuvalarına dokunma.

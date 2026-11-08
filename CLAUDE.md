@@ -64,6 +64,14 @@ is a copy of the design system's tokens.
   tilted to the camera, text shrinks to fit).
 - New chapters extend `ChapterBase` (src/world/chapter_base.gd): npc(),
   boss_camera(), fly_spark(), and test helpers close_dialogs()/walk_to().
+- `tools/build_web.sh` → export/web (no threads; template pulled by range
+  requests with `tools/fetch_template.py`); `tools/publish_itch.sh` pushes it
+  with butler (BUTLER_API_KEY, ITCH_TARGET). `.github/workflows/ci.yml` runs
+  tests on every push/PR and builds web on main.
+- Saves: `SaveGame.write` is atomic (.tmp → rename, .bak kept), `load_dict`
+  falls back to .bak, `SaveGame.migrate` upgrades by VERSION. Stats are derived:
+  `PlayerData.recompute_stats(Content.items)` from `base_stats` + level + charms
+  + powers. Art direction for real models: docs/sanat-yonu.md.
 - `tools/build_android.sh` builds and signs export/PiriltiDiyari.apk; bump
   version/code in export_presets.cfg for every APK you hand out.
 - Godot is downloaded by `tools/setup_godot.sh` into `.tools/` (gitignored).

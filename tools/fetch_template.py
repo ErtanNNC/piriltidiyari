@@ -1,0 +1,56 @@
+#!/usr/bin/env python3
+"""Pull single files out of Godot's ~1.3 GB export-template archive (.tpz)
+with HTTP range requests, without downloading the whole archive.
+
+  tools/fetch_template.py 4.7.2-stable web_nothreads_release.zip [more names...]
+
+Files land in ~/.local/share/godot/export_templates/<version>/.
+"""
+import os
+import struct
+import sys
+import urllib.request
+import zlib
+
+ver = sys.argv[1]
+names = sys.argv[2:]
+url = "https://github.com/godotengine/godot/releases/download/%s/Godot_v%s_export_templates.tpz" % (ver, ver)
+dest = os.path.expanduser("~/.local/share/godot/export_templates/%s" % ver.replace("-", "."))
+os.makedirs(dest, exist_ok=True)
+
+
+def get(start, end):
+    req = urllib.request.Request(url, headers={"Range": "bytes=%d-%d" % (start, end)})
+    with urllib.request.urlopen(req) as r:
+        return r.read()
+
+
+# total size
+req = urllib.request.Request(url, method="HEAD")
+with urllib.request.urlopen(req) as r:
+    size = int(r.headers["Content-Length"])
+tail = get(max(0, size - 65536 - 22), size - 1)
+eocd = tail.rfind(b"PK\x05\x06")
+cd_size, cd_off = struct.unpack_from("<II", tail, eocd + 12)
+cd = get(cd_off, cd_off + cd_size - 1)
+pos = 0
+entries = {}
+while pos < len(cd):
+    (sig, _, _, _, method, _, _, crc, csize, usize, nlen, xlen, clen, _, _, _, off) = struct.unpack_from("<IHHHHHHIIIHHHHHII", cd, pos)
+    name = cd[pos + 46:pos + 46 + nlen].decode()
+    entries[name] = (method, csize, usize, off)
+    pos += 46 + nlen + xlen + clen
+for n in names + ["version.txt"]:
+    key = "templates/" + n
+    if key not in entries:
+        sys.exit("bulunamadı: " + key)
+    method, csize, usize, off = entries[key]
+    head = get(off, off + 29)
+    nlen, xlen = struct.unpack_from("<HH", head, 26)
+    start = off + 30 + nlen + xlen
+    data = get(start, start + csize - 1)
+    if method == 8:
+        data = zlib.decompress(data, -15)
+    with open(os.path.join(dest, n), "wb") as f:
+        f.write(data)
+    print("%s (%d KB)" % (n, len(data) // 1024))

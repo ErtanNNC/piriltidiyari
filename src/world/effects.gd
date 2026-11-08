@@ -3,50 +3,70 @@ extends RefCounted
 ## Small one-shot visual effects built from primitives.
 
 
-## A flat glowing ring that expands and fades (attack shock, potion, hit).
-static func ring(parent: Node, at: Vector3, radius: float, col: Color, seconds := 0.4) -> void:
-	var mi := MeshInstance3D.new()
-	var t := TorusMesh.new()
-	t.inner_radius = 0.85
-	t.outer_radius = 1.0
-	t.rings = 32
-	mi.mesh = t
+# Shared meshes and materials: effects fire on every hit, so they reuse one
+# mesh + one material per color and fade with the per-instance `transparency`
+# (no new resources per spark — fewer allocations, fewer stutters).
+static var _ring_mesh: TorusMesh
+static var _spark_mesh: SphereMesh
+static var _mats: Dictionary = {}
+
+
+static func _flat_mat(col: Color, glow := false) -> StandardMaterial3D:
+	var key := "%s|%s" % [col.to_html(), glow]
+	if _mats.has(key):
+		return _mats[key]
 	var m := StandardMaterial3D.new()
 	m.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 	m.albedo_color = col
-	m.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
-	mi.material_override = m
+	if glow:
+		m.emission_enabled = true
+		m.emission = col
+		m.emission_energy_multiplier = 2.0
+	_mats[key] = m
+	return m
+
+
+## A flat glowing ring that expands and fades (attack shock, potion, hit).
+static func ring(parent: Node, at: Vector3, radius: float, col: Color, seconds := 0.4) -> void:
+	if _ring_mesh == null:
+		_ring_mesh = TorusMesh.new()
+		_ring_mesh.inner_radius = 0.85
+		_ring_mesh.outer_radius = 1.0
+		_ring_mesh.rings = 32
+	var mi := MeshInstance3D.new()
+	mi.mesh = _ring_mesh
+	mi.material_override = _flat_mat(Color(col.r, col.g, col.b))
+	mi.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	mi.transparency = 1.0 - col.a
 	mi.scale = Vector3(0.3, 0.3, 0.3)
 	parent.add_child(mi)
 	mi.global_position = at
 	var tw := mi.create_tween().set_parallel()
 	tw.tween_property(mi, "scale", Vector3(radius, 1.0, radius), seconds).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
-	tw.tween_property(m, "albedo_color:a", 0.0, seconds).set_ease(Tween.EASE_IN)
+	tw.tween_property(mi, "transparency", 1.0, seconds).set_ease(Tween.EASE_IN)
 	tw.chain().tween_callback(mi.queue_free)
 
 
 ## A burst of little light sparks flying out (mob turning back into light).
 static func sparkle(parent: Node, at: Vector3, col: Color, count := 10) -> void:
+	if _spark_mesh == null:
+		_spark_mesh = SphereMesh.new()
+		_spark_mesh.radius = 0.09
+		_spark_mesh.height = 0.18
+		_spark_mesh.radial_segments = 8
+		_spark_mesh.rings = 4
+	var mat := _flat_mat(col, true)
 	for i in count:
 		var mi := MeshInstance3D.new()
-		var s := SphereMesh.new()
-		s.radius = 0.09
-		s.height = 0.18
-		mi.mesh = s
-		var m := StandardMaterial3D.new()
-		m.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-		m.albedo_color = col
-		m.emission_enabled = true
-		m.emission = col
-		m.emission_energy_multiplier = 2.0
-		m.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
-		mi.material_override = m
+		mi.mesh = _spark_mesh
+		mi.material_override = mat
+		mi.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 		parent.add_child(mi)
 		mi.global_position = at
 		var dir := Vector3(randf_range(-1, 1), randf_range(0.6, 1.6), randf_range(-1, 1)).normalized()
 		var tw := mi.create_tween().set_parallel()
 		tw.tween_property(mi, "global_position", at + dir * randf_range(1.0, 2.0), 0.6).set_ease(Tween.EASE_OUT)
-		tw.tween_property(m, "albedo_color:a", 0.0, 0.6).set_delay(0.2)
+		tw.tween_property(mi, "transparency", 1.0, 0.4).set_delay(0.2)
 		tw.chain().tween_callback(mi.queue_free)
 
 
@@ -84,7 +104,7 @@ static func hit(target: Node3D, strong := false) -> void:
 	var parent := target.get_parent()
 	var at := target.global_position + Vector3.UP * (1.2 if not strong else 2.0)
 	impact(parent, at, 1.4 if strong else 1.0)
-	shake(target.get_viewport(), 0.12 if not strong else 0.2)
+	shake(target.get_viewport(), 0.35 if not strong else 0.55)
 	hitstop(target.get_tree(), 0.045)
 
 
@@ -93,10 +113,9 @@ static func impact(parent: Node, at: Vector3, size := 1.0) -> void:
 	var mi := sprite(parent, at, "star", Color(1.0, 0.95, 0.7), 0.9 * size)
 	mi.scale = Vector3.ONE * 0.3
 	mi.rotation_degrees.z = randf_range(0, 72)
-	var m := mi.material_override as StandardMaterial3D
 	var tw := mi.create_tween().set_parallel()
 	tw.tween_property(mi, "scale", Vector3.ONE * 1.1, 0.12).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-	tw.tween_property(m, "albedo_color:a", 0.0, 0.16).set_delay(0.08)
+	tw.tween_property(mi, "transparency", 1.0, 0.16).set_delay(0.08)
 	tw.chain().tween_callback(mi.queue_free)
 
 
@@ -104,13 +123,13 @@ static func impact(parent: Node, at: Vector3, size := 1.0) -> void:
 static func dust(parent: Node, at: Vector3, col: Color, count := 2, size := 0.5) -> void:
 	for i in count:
 		var p := at + Vector3(randf_range(-0.2, 0.2), 0.15, randf_range(-0.2, 0.2))
-		var mi := sprite(parent, p, "soft", col, size * randf_range(0.7, 1.1))
-		var m := mi.material_override as StandardMaterial3D
+		var mi := sprite(parent, p, "soft", col, size)
+		mi.scale = Vector3.ONE * randf_range(0.7, 1.1)
 		var tw := mi.create_tween().set_parallel()
 		var drift := Vector3(randf_range(-0.4, 0.4), randf_range(0.2, 0.45), randf_range(-0.4, 0.4))
 		tw.tween_property(mi, "global_position", p + drift, 0.5).set_ease(Tween.EASE_OUT)
 		tw.tween_property(mi, "scale", Vector3.ONE * 1.6, 0.5)
-		tw.tween_property(m, "albedo_color:a", 0.0, 0.5)
+		tw.tween_property(mi, "transparency", 1.0, 0.5)
 		tw.chain().tween_callback(mi.queue_free)
 
 
@@ -137,20 +156,28 @@ static func footprint(parent: Node, at: Vector3, yaw: float, col: Color) -> void
 	tw.tween_callback(mi.queue_free)
 
 
-## A camera-facing textured quad (Weather's procedural sprites).
+## A camera-facing textured quad (Weather's procedural sprites). Shared quad
+## and material per (texture, color); fade it with `transparency`.
+static var _quads: Dictionary = {}
+
+
 static func sprite(parent: Node, at: Vector3, tex: String, col: Color, size: float) -> MeshInstance3D:
+	var key := "%s|%s|%s" % [tex, Color(col.r, col.g, col.b).to_html(), snappedf(size, 0.05)]
+	if not _quads.has(key):
+		var q := QuadMesh.new()
+		q.size = Vector2(size, size)
+		var m := StandardMaterial3D.new()
+		m.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+		m.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+		m.billboard_mode = BaseMaterial3D.BILLBOARD_ENABLED
+		m.albedo_texture = Weather.texture(tex)
+		m.albedo_color = Color(col.r, col.g, col.b)
+		m.no_depth_test = tex == "star"
+		q.material = m
+		_quads[key] = q
 	var mi := MeshInstance3D.new()
-	var q := QuadMesh.new()
-	q.size = Vector2(size, size)
-	mi.mesh = q
-	var m := StandardMaterial3D.new()
-	m.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-	m.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
-	m.billboard_mode = BaseMaterial3D.BILLBOARD_ENABLED
-	m.albedo_texture = Weather.texture(tex)
-	m.albedo_color = col
-	m.no_depth_test = tex == "star"
-	mi.material_override = m
+	mi.mesh = _quads[key]
+	mi.transparency = 1.0 - col.a
 	mi.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	parent.add_child(mi)
 	mi.global_position = at

@@ -1,0 +1,54 @@
+# Pırıltı Diyarı CI: every push and pull request runs the GDScript tests
+# headless; pushes to main also build the browser version and, if itch.io is
+# set up, publish it there.
+#
+# itch.io (optional): add the repository secret BUTLER_API_KEY (itch.io →
+# Settings → API keys) and the repository variable ITCH_TARGET, e.g.
+# "kullanici-adi/pirilti-diyari". Without them the web build is only kept as
+# a downloadable artifact.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Cache Godot
+        uses: actions/cache@v4
+        with:
+          path: .tools/godot-4.7.2-stable
+          key: godot-4.7.2-stable
+      - name: Tests
+        run: tools/test.sh   # exits non-zero when a check fails
+
+  web:
+    needs: test
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - name: Cache Godot
+        uses: actions/cache@v4
+        with:
+          path: .tools/godot-4.7.2-stable
+          key: godot-4.7.2-stable
+      - name: Build web version
+        run: tools/build_web.sh
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pirilti-diyari-web
+          path: export/web
+      - name: Publish to itch.io
+        env:
+          BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
+          ITCH_TARGET: ${{ vars.ITCH_TARGET }}
+        if: env.BUTLER_API_KEY != '' && env.ITCH_TARGET != ''
+        run: tools/publish_itch.sh

@@ -111,6 +111,7 @@ func _invisible_wall(parent: Node3D, center: Vector3, size: Vector3) -> void:
 	body.add_child(c)
 	parent.add_child(body)
 	body.position = center
+	body.set_meta("camera_ignore", true)
 
 
 func _spot(at: Vector3, label: String, cb: Callable) -> Spot:

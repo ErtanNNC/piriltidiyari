@@ -109,6 +109,7 @@ func _continue() -> void:
 	if not SaveGame.read_into(d):
 		_new_game()
 		return
+	d.recompute_stats(Content.items)  # derived stats, never drifting
 	d.catch_up()  # saves from before mob levels
 	GameState.data = d
 	SceneFlow.go_to(d.scene_id, false)

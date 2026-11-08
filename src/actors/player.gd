@@ -437,7 +437,7 @@ func hurt(amount: int, from: Vector3) -> bool:
 	amount = Shop.guarded(amount, _bonus)
 	_invulnerable = INVULNERABLE_TIME
 	Audio.play("hurt")
-	Effects.shake(get_viewport(), 0.22)
+	Effects.shake(get_viewport(), 0.6)
 	var away := (global_position - from)
 	away.y = 0.0
 	_knock = away.normalized() * 9.0

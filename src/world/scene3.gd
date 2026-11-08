@@ -287,6 +287,7 @@ func _roof_railing(lv: Node3D) -> void:
 		body.add_child(col)
 		lv.add_child(body)
 		body.position = c + Vector3.UP * 2.0
+		body.set_meta("camera_ignore", true)
 		# low wooden rail you can see
 		Toon.part(lv, "box", Vector3(maxf(sz.x, 0.14), 0.12, maxf(sz.z, 0.14)), wood, c + Vector3.UP * 0.75)
 		var n := int(maxf(sz.x, sz.z) / 1.2) + 1
