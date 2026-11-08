@@ -7,6 +7,17 @@ extends RefCounted
 static func build(kind: String, pus: bool) -> Node3D:
 	var root := Node3D.new()
 	Toon.default_pus = 0.0
+	var imported := ModelImport.load_model(kind)
+	if imported:
+		# a real model: the Pus look drains its colors to the grey-violet
+		# (a faint trace of its own color stays), calm shows its own colors
+		_no_pus(imported)
+		if pus:
+			_drain(imported, 0.78)
+			var box := ModelImport._bounds(imported, Transform3D.IDENTITY)
+			_pus_wisps(imported, maxf(1.4, box.end.y + 0.2))
+		Toon.default_pus = 1.0
+		return imported
 	match kind:
 		"sumuklu":
 			_slug(root, pus)
@@ -41,6 +52,26 @@ static func build(kind: String, pus: bool) -> Node3D:
 			_pus_wisps(root, top)
 		CharacterRig.attach(root)
 	return root
+
+
+## Mobs ignore the scene's Pus amount (their own look tells it).
+static func _no_pus(n: Node) -> void:
+	_each_material(n, func(m: ShaderMaterial) -> void: m.set_shader_parameter("pus_affect", 0.0))
+
+
+static func _drain(n: Node, amount: float) -> void:
+	_each_material(n, func(m: ShaderMaterial) -> void: m.set_shader_parameter("desat", amount))
+
+
+static func _each_material(n: Node, f: Callable) -> void:
+	if n is MeshInstance3D:
+		var mi := n as MeshInstance3D
+		for i in mi.get_surface_override_material_count():
+			var m := mi.get_surface_override_material(i)
+			if m is ShaderMaterial:
+				f.call(m)
+	for c in n.get_children():
+		_each_material(c, f)
 
 
 const GREY := Color("#77738a")

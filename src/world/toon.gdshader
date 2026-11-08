@@ -21,6 +21,8 @@ global uniform float pus_amount;
 global uniform float cloud_shadow;
 // Soft lighter/darker blotches in world space (ground surfaces, see Decor).
 uniform float patch_strength = 0.0;
+// 0..1: drains the color toward the Pus grey-violet (imported Pus mobs)
+uniform float desat : hint_range(0.0, 1.0) = 0.0;
 uniform vec4 patch_color : source_color = vec4(1.0);
 
 varying vec3 world_pos;
@@ -43,6 +45,9 @@ void fragment() {
 		base = mix(base, mix(base, patch_color.rgb, 0.5) * (1.0 + patch_strength * 0.5), lighter * 0.8);
 	}
 	float grey = dot(base, vec3(0.299, 0.587, 0.114));
+	if (desat > 0.0) {
+		base = mix(base, vec3(grey) * vec3(0.82, 0.8, 0.93), desat);
+	}
 	vec3 pus_tint = vec3(grey) * vec3(0.92, 0.91, 0.98);
 	float p = clamp(pus_amount * pus_affect, 0.0, 1.0);
 	ALBEDO = mix(base, pus_tint, p);

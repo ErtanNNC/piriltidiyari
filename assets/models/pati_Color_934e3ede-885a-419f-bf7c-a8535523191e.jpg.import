@@ -2,13 +2,13 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://un2lk57k5o6"
+uid="uid://b3yng8cfmxecg"
 path="res://.godot/imported/pati_Color_934e3ede-885a-419f-bf7c-a8535523191e.jpg-4978766dfba1248a8eb32c76bdd12e85.ctex"
 metadata={
 "vram_texture": false
 }
 generator_parameters={
-"md5": "1137e3adf1fc38a7da5d10243b26fc90"
+"md5": "95434d9658ba3d6e27361f9e14a8cd7c"
 }
 
 [deps]
@@ -18,9 +18,9 @@ dest_files=["res://.godot/imported/pati_Color_934e3ede-885a-419f-bf7c-a853552319
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/high_quality=false
-compress/lossy_quality=0.7
+compress/lossy_quality=0.8
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1

@@ -2,25 +2,25 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dnk2x0s6al73g"
-path="res://.godot/imported/pati_Color_f2406676-8ae8-4025-b0d5-44584c90a634.jpg-6786df9ced12fe06e708650073431a6b.ctex"
+uid="uid://bai4r86u0uriq"
+path="res://.godot/imported/snowman_Color_ee29c707-d520-4773-b4c1-bc565a327c41.jpg-d2b2761d75a892ff8be6ade9ee8bb853.ctex"
 metadata={
 "vram_texture": false
 }
 generator_parameters={
-"md5": "dd16414e417cc1b6124c050d684f77d4"
+"md5": "3909eb4859d9afe8b2d366439e9f7e6d"
 }
 
 [deps]
 
-source_file="res://assets/models/pati_Color_f2406676-8ae8-4025-b0d5-44584c90a634.jpg"
-dest_files=["res://.godot/imported/pati_Color_f2406676-8ae8-4025-b0d5-44584c90a634.jpg-6786df9ced12fe06e708650073431a6b.ctex"]
+source_file="res://assets/models/snowman_Color_ee29c707-d520-4773-b4c1-bc565a327c41.jpg"
+dest_files=["res://.godot/imported/snowman_Color_ee29c707-d520-4773-b4c1-bc565a327c41.jpg-d2b2761d75a892ff8be6ade9ee8bb853.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/high_quality=false
-compress/lossy_quality=0.7
+compress/lossy_quality=0.8
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1

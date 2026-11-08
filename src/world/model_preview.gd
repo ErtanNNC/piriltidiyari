@@ -5,6 +5,7 @@ extends Node3D
 ##   (the reference image for image-to-3D tools)
 
 const KEEPERS := ["pati", "bado", "citir", "lumi", "fistik"]
+const MOBS := ["sumuklu", "mantar", "dev_mantar", "kirpi_topu", "karga", "kristal_bocek", "yarasa", "firtina_yumagi", "korsan_marti", "kar_tavsani", "buz_dikeni"]
 const NPCS := ["turtle", "bunny", "duckling", "owl_teacher", "spider", "mole", "gull_captain", "snowman", "frog", "star_child"]
 
 
@@ -66,6 +67,20 @@ func _ready() -> void:
 		c3.position = Vector3(0, 2.4, 8.5)
 		add_child(c3)
 		c3.look_at(Vector3(0, 1.0, 0))
+		return
+	if which == "heights":
+		# prints each character's height (for assets/models/<id>.json) and quits
+		for kid: String in KEEPERS + NPCS + ["gull_chick", "mole_kid", "bunny_sleepy"] + MOBS:
+			var hm: Node3D
+			if kid in MOBS:
+				hm = MobModels.build(kid, false)
+			else:
+				hm = FistikModel.build() if kid == "fistik" else (KeeperModels.build(kid, {}) if kid in KEEPERS else NpcModels.build(kid))
+			add_child(hm)
+			var hb := ModelImport._bounds(hm, Transform3D.IDENTITY)
+			print("HEIGHT %s %.2f top=%.2f width=%.2f" % [kid, hb.size.y, hb.end.y, hb.size.x])
+			hm.queue_free()
+		get_tree().quit()
 		return
 	if which == "audio":
 		_audio_check()
@@ -200,7 +215,7 @@ func _reference() -> void:
 	var m: Node3D
 	if id in KEEPERS:
 		m = FistikModel.build() if id == "fistik" else KeeperModels.build(id, {"variant": 0, "accessory": "yok"})
-	elif id in NPCS:
+	elif id in NPCS or id in ["gull_chick", "mole_kid", "bunny_sleepy", "crab_friend"]:
 		m = NpcModels.build(id)
 	else:
 		m = MobModels.build(id, false)

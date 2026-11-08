@@ -9,6 +9,8 @@ extends RefCounted
 ##   - given the toon look: each material's color/texture goes into
 ##     toon.gdshader with the dark outline as next pass
 ## Optional `assets/models/<id>.json`: {"height": 2.0, "facing": 180, "outline": 0.03,
+## "model": "other_id" (reuse that model's file), "glow": 0.5 (shines a little),
+## "lift": 0.2 (floats above the ground, e.g. flying mobs),
 ## "tint": [r, g, b]} (tint multiplies the texture, e.g. to take out light that
 ## was baked into an AI-made texture)
 ## Animations named idle / walk / run / jump / attack (any case, any prefix)
@@ -23,6 +25,10 @@ static func path_for(id: String) -> String:
 		var p := DIR + id + ext
 		if ResourceLoader.exists(p):
 			return p
+	# "model": another id's file, e.g. mole_kid uses mole.glb at a smaller height
+	var other := String(_options(id).get("model", ""))
+	if other != "" and other != id:
+		return path_for(other)
 	return ""
 
 
@@ -55,12 +61,12 @@ static func from_scene(model: Node3D, id: String) -> Node3D:
 	var t: Variant = opts.get("tint")
 	if t is Array and (t as Array).size() >= 3:
 		tint = Color(float(t[0]), float(t[1]), float(t[2]))
-	toonify(model, float(opts.get("outline", 0.03)), tint)
+	toonify(model, float(opts.get("outline", 0.03)), tint, float(opts.get("glow", 0.0)))
 	var box := _bounds(model, Transform3D.IDENTITY)
 	if box.size.y > 0.001:
 		var s := float(opts.get("height", HEIGHTS.get(id, 2.0))) / box.size.y
 		fit.scale = Vector3.ONE * s
-		fit.position = Vector3(-(box.position.x + box.size.x * 0.5) * s, -box.position.y * s, -(box.position.z + box.size.z * 0.5) * s)
+		fit.position = Vector3(-(box.position.x + box.size.x * 0.5) * s, -box.position.y * s + float(opts.get("lift", 0.0)), -(box.position.z + box.size.z * 0.5) * s)
 	var rig := CharacterRig.new()
 	rig.name = "Rig"
 	rig.pose = pose
@@ -77,21 +83,21 @@ static func _options(id: String) -> Dictionary:
 
 
 ## Replaces every material under `node` with the toon shader (+ outline).
-static func toonify(node: Node, outline := 0.03, tint := Color.WHITE) -> void:
+static func toonify(node: Node, outline := 0.03, tint := Color.WHITE, glow := 0.0) -> void:
 	if node is MeshInstance3D:
 		var mi := node as MeshInstance3D
 		if mi.mesh:
 			for i in mi.mesh.get_surface_count():
 				var src := mi.get_active_material(i)
-				mi.set_surface_override_material(i, _toon_from(src, outline, tint))
+				mi.set_surface_override_material(i, _toon_from(src, outline, tint, glow))
 	for c in node.get_children():
-		toonify(c, outline, tint)
+		toonify(c, outline, tint, glow)
 
 
-static func _toon_from(src: Material, outline: float, tint := Color.WHITE) -> ShaderMaterial:
+static func _toon_from(src: Material, outline: float, tint := Color.WHITE, extra_glow := 0.0) -> ShaderMaterial:
 	var col := Color.WHITE
 	var tex: Texture2D = null
-	var glow := 0.0
+	var glow := extra_glow
 	if src is BaseMaterial3D:
 		var b := src as BaseMaterial3D
 		col = b.albedo_color
