@@ -808,6 +808,12 @@ func test_season2() -> void:
 		sw.add_xp(Progression.xp_to_next(sw.level) - sw.xp)
 	sw.switch_keeper("lumi", {"max_hp": 100, "max_mp": 50, "power": 10, "speed": 6.0}, {}, "Lumi", c.items)
 	check(sw.level == 6 and sw.active_skill() == "ninni_isigi" and not sw.skills.has("mirlama"), "Sezon 2'de bekçi değiştirince yeni bekçinin yeteneği gelir")
+	# ambience loops named in Audio exist
+	var au := FileAccess.get_file_as_string("res://src/autoload/audio.gd")
+	for loop_name: String in ["forest", "lake", "sea", "farm", "springs", "creek"]:
+		check(au.contains("\"%s\"" % loop_name) and ResourceLoader.exists("res://assets/audio/ambience/%s.ogg" % loop_name), "ortam sesi %s var" % loop_name)
+	for sfx: String in ["drum", "laugh", "page"]:
+		check(ResourceLoader.exists("res://assets/audio/sfx/%s.wav" % sfx), "ses %s var" % sfx)
 	var tp := PlayerData.new()
 	tp.choose_keeper("tipis_panda", c.keeper("tipis_panda")["stats"], {}, "Tıpış")
 	check(tp.level == 1 and tp.active_skill() == "derin_nefes", "Tıpış seçilince seviye 1 ve Derin Nefes")

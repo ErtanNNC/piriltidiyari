@@ -20,7 +20,7 @@ func _build() -> void:
 func use(_by: Node) -> void:
 	var first := not GameState.data.has_flag("tas_%d" % stone)
 	GameState.bark("tas_%d" % stone)
-	Audio.play("stone")
+	Audio.play("page")
 	if first:
 		if get_node_or_null("Beacon"):
 			get_node("Beacon").queue_free()

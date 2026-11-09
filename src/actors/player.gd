@@ -470,6 +470,7 @@ func _kocaman_sarilma() -> void:
 ## down; anything else is pushed back, giggling.
 func _komik_yuz() -> void:
 	_attack_cd = 0.6
+	Audio.play("laugh")
 	Effects.ring(get_parent(), global_position + Vector3.UP * 0.6, Skills.LAUGH_RADIUS, Tokens.color("spark-yellow"), 0.5)
 	for n in get_tree().get_nodes_in_group("hittable"):
 		var m := n as Node3D

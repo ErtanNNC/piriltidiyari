@@ -125,6 +125,12 @@ func _build_menu() -> void:
 	sfx.pressed.connect(func() -> void:
 		Audio.set_sfx_on(not Audio.sfx_on)
 		refresh.call())
+	# sound credit (CC BY 4.0)
+	var credit := UiKit.label("Seslerin çoğu: Meta Oculus Audio Pack (CC BY 4.0)", "text-caption", "panel@light")
+	credit.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	credit.add_theme_color_override("font_outline_color", Tokens.color("outline"))
+	credit.add_theme_constant_override("outline_size", 6)
+	root.add_child(credit)
 	root.modulate.a = 0.0
 	var tw := create_tween()
 	tw.tween_property(root, "modulate:a", 1.0, 0.6)

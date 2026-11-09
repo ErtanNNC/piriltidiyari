@@ -18,10 +18,22 @@ const SCENE_MUSIC := {
 	"s2_scene1": "festival", "s2_scene2": "pus", "s2_scene3": "mountain", "s2_scene4": "tower",
 	"s2_scene5": "tower", "s2_scene6": "village", "s2_chapter0": "village", "s2_chapter1": "forest", "s2_chapter2": "harbor", "s2_chapter3": "festival", "s2_chapter4": "mountain", "s2_chapter5": "castle", "s2_final": "festival",
 }
+## A quiet ambience loop under the music (Oculus Audio Pack recordings in
+## assets/audio/ambience): forest birds, the lake shore, the sea, a farm,
+## bubbling hot springs, a creek, night crickets. On the Sfx bus, so the
+## effects switch mutes it too.
+const AMBIENCE_DIR := "res://assets/audio/ambience/"
+const SCENE_AMBIENCE := {
+	"scene1": "creek", "chapter0": "creek", "chapter1": "forest", "chapter3": "sea",
+	"s2_scene1": "creek", "s2_chapter0": "springs", "s2_chapter1": "forest",
+	"s2_chapter2": "lake", "s2_chapter3": "farm", "s2_final": "creek", "final": "creek",
+}
+const AMBIENCE_DB := -17.0
 ## per-sound loudness in dB (0 = as generated) and how much the pitch may wander
 const LEVEL := {"blip": -9.0, "click": -6.0, "pop": -6.0, "warn": -9.0, "land": -8.0,
 	"jump": -5.0, "jump2": -5.0, "swish": -4.0, "roll": -5.0, "hit": -2.0, "coin": -5.0,
-	"wind": -6.0, "splash": -6.0, "card": -4.0}
+	"wind": -6.0, "splash": -6.0, "card": -4.0, "fanfare": -3.0, "boss_calm": -3.0,
+	"calm": -4.0, "memory": -4.0, "laugh": -5.0, "page": -4.0, "drum": -2.0, "shop": -5.0}
 const PITCH_VAR := {"blip": 0.08, "hit": 0.1, "coin": 0.04, "swish": 0.08, "jump": 0.05,
 	"land": 0.1, "click": 0.05, "pop": 0.08}
 const MUSIC_DB := -9.0
@@ -69,6 +81,10 @@ func _ready() -> void:
 		v.bus = "Sfx"
 		add_child(v)
 		_voices.append(v)
+	_amb = AudioStreamPlayer.new()
+	_amb.bus = "Sfx"
+	_amb.volume_db = -60.0
+	add_child(_amb)
 	_load_settings()
 	GameState.toast.connect(func(_t: String, _i: String) -> void: play("pop"))
 	GameState.shop_requested.connect(func(_id: String) -> void: play("shop"))
@@ -159,6 +175,28 @@ func scene_changed(scene_id: String) -> void:
 	_scene_track = SCENE_MUSIC.get(scene_id, _scene_track)
 	_in_boss = false
 	music(_scene_track)
+	ambience(SCENE_AMBIENCE.get(scene_id, ""))
+
+
+var _amb: AudioStreamPlayer
+var _amb_name := ""
+
+
+## Switch the ambience loop ("" = none), with a soft fade.
+func ambience(loop_name: String) -> void:
+	if loop_name == _amb_name:
+		return
+	_amb_name = loop_name
+	if loop_name == "" or not sfx_on:
+		_fade(_amb, -60.0, 0.8, true)
+		return
+	var s := _stream(AMBIENCE_DIR + loop_name + ".ogg")
+	if s == null:
+		return
+	_amb.stream = s
+	_amb.volume_db = -60.0
+	_amb.play()
+	_fade(_amb, AMBIENCE_DB, 1.5, false)
 
 
 func boss(on: bool) -> void:
@@ -226,6 +264,13 @@ func set_music_on(on: bool) -> void:
 
 func set_sfx_on(on: bool) -> void:
 	sfx_on = on
+	var a := _amb_name
+	_amb_name = ""
+	if on:
+		ambience(a)
+	else:
+		_fade(_amb, -60.0, 0.3, true)
+		_amb_name = a
 	_save_settings()
 
 

@@ -63,8 +63,12 @@ is a copy of the design system's tokens.
   footprint; colliders, lights, particles and `keep` nodes stay; roof hue via
   json "fur"). Used by Prop (house, tree, well, lantern_post, bush, tower),
   ForestKit.face_tree, chapter4 pines, SmallLantern (lantern, campfire).
-- Sound credits: some sfx come from Oculus Audio Pack (CC BY 4.0), listed in
-  `assets/audio/CREDITS.md`; keep that list current.
+- Sound credits: most sfx and the ambience loops come from Meta's Oculus Audio
+  Pack (CC BY 4.0, github.com/facebookincubator/Meta-open-sound,
+  corpora/oculus-audio-pack/ogg), listed in `assets/audio/CREDITS.md`; keep
+  that list current. New one: `tools/sfx_prep.py <file>.ogg assets/audio/sfx/<name>.wav`
+  and add the name to `tools/make_audio.py` REAL. Ambience: `Audio.SCENE_AMBIENCE`
+  (mono OGG in assets/audio/ambience, quiet, on the Sfx bus).
 - Music: generated tracks become loops with `tools/music_loop.py`; sounds in
   `tools/make_audio.py` REAL come from `tools/sfx_prep.py` (not re-synthesized).
   Store assets and the Play guide: `docs/yayin-rehberi.md`, `docs/play/`,

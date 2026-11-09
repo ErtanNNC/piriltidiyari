@@ -77,9 +77,9 @@ func _play_beat(mark: String, n: int) -> void:
 		tw.tween_property(_drum, "scale", Vector3(1.12, 1.12, 0.9), 0.06)
 		tw.tween_property(_drum, "scale", Vector3.ONE, 0.18)
 	if mark == "-":
-		Audio.play("land")
+		Audio.play("drum", -8.0)
 		return
-	Audio.play("stone")
+	Audio.play("drum")
 	var p := _player()
 	if not p:
 		return

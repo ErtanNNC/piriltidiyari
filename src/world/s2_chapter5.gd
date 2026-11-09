@@ -118,7 +118,7 @@ func _collect_word(i: int) -> void:
 		orb.queue_free()
 	if w.has_node("Beacon"):
 		w.get_node("Beacon").queue_free()
-	Audio.play("memory")
+	Audio.play("page")
 	GameState.notify("collect", "hiril_soz")
 	if not d.has_flag("s2c5_ilk_soz"):
 		d.set_flag("s2c5_ilk_soz")

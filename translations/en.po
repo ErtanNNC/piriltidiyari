@@ -3306,6 +3306,9 @@ msgstr "The voice comes from the mountain. 'Nobody listens to me,' it said."
 msgid "Sesler: %s"
 msgstr "Sounds: %s"
 
+msgid "Seslerin çoğu: Meta Oculus Audio Pack (CC BY 4.0)"
+msgstr "Most sounds: Meta Oculus Audio Pack (CC BY 4.0)"
+
 msgid "Seviye"
 msgstr "Level"
 
