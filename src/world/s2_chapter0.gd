@@ -192,6 +192,15 @@ func _build() -> void:
 		lv.add_child(h)
 		h.position = spots[i]
 		h.rotation.y = atan2(-spots[i].x, -spots[i].z)
+	# the first house is the Bekçi Evi: mirror (change keeper) and wardrobe
+	var door := HouseDoor.new()
+	door.name = "BekciDoor"
+	door.house_id = "bekci"
+	door.title = "Bekçi Evi"
+	lv.add_child(door)
+	var face: Vector3 = (-(spots[0] as Vector3)).normalized()
+	door.position = (spots[0] as Vector3) + face * 1.8
+	door.rotation.y = atan2(face.x, face.z)
 	for p: Vector3 in [Vector3(-20, 0, -14), Vector3(20, 0, -2), Vector3(-20, 0, 18), Vector3(19, 0, 20), Vector3(-4, 0, -25), Vector3(22, 0, -18)]:
 		var t := Prop.new()
 		t.kind = "tree"
@@ -261,6 +270,24 @@ func _run_demo(which: String) -> void:
 			await get_tree().create_timer(1.0).timeout
 			print("S2TRAVEL at=%s floor=%s near_bell=%s" % [_player.global_position.snapped(Vector3.ONE * 0.1), _player.is_on_floor(), _player.global_position.distance_to(BELL_AT) < 3.5])
 			get_tree().quit()
+		"bekci":
+			# into the Bekçi Evi and back out again (headless)
+			var d := GameState.data
+			if d.has_flag("dbg_bekci"):
+				while SceneFlow.busy:
+					await get_tree().process_frame
+				await get_tree().create_timer(0.5).timeout
+				var door := get_node("Level/BekciDoor") as Node3D
+				print("S2HOUSE back scene=%s near_door=%s floor=%s" % [SceneFlow.current, _player.global_position.distance_to(door.global_position) < 3.0, _player.is_on_floor()])
+				get_tree().quit()
+				return
+			d.set_flag("dbg_bekci")
+			while SceneFlow.busy:
+				await get_tree().process_frame
+			(get_node("Level/BekciDoor") as HouseDoor).use(_player)
+		"door":
+			var door := get_node("Level/BekciDoor") as Node3D
+			_player.global_position = door.global_position + door.global_transform.basis.z * 3.0 + Vector3.UP * 0.3
 		"shop":
 			# talk to Kazma: his anvil stall opens (screenshot)
 			DevTools.auto_dialogue = true

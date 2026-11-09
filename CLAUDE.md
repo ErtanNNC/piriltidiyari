@@ -240,6 +240,14 @@ is a copy of the design system's tokens.
   `--scene=s2_chapter4 --demo=travel`. Sis Kalkanı potion (buff "sis_kalkani"
   → `BreathCalm.shield_until`), Gümbür's drum stall in the canyon after he
   calms (shop "gumbur", Ritim Tılsımı: charm "power").
+- Kaplıca Köyü has a Bekçi Evi (`HouseDoor` "bekci" on the first house):
+  the house scene goes back to `SceneFlow.house_from` (the door's own scene),
+  in Season 2 the mirror and pedestals show all five keepers (Tıpış too) and
+  `switch_keeper` also brings the new keeper's calming skill. Check:
+  `--scene=s2_chapter0 --demo=bekci` (in and out, headless).
+- Mobs don't twitch: chase uses hysteresis (`_circling`) and the facing is
+  smoothed (`_face_dir`); a mob on the edge of its circling distance used to
+  flip direction every other frame.
 - Shops: a chapter's `chapter.json` needs `"shop": "shop"` or its shop.json is
   never loaded (a test checks every `open_shop` in the Season 2 packs). Stalls:
   Tospik (Kaplıca Köyü), Kazma (Kaplıca Köyü), Dikiş (forest, outfits), Demlik

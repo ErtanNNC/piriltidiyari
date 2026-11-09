@@ -39,6 +39,11 @@ var _swoop_from := Vector3.ZERO
 var _swoop_to := Vector3.ZERO
 var _stolen := 0
 var _strafe := 1.0
+## Circling the keeper while waiting for a turn: entered and left at
+## different distances, so a mob on the edge doesn't flip every frame.
+var _circling := false
+## Smoothed facing direction (no twitching when the move direction wobbles).
+var _face_dir := Vector3.ZERO
 ## Ninni Işığı: moves slowly until then (engine seconds).
 var _slow_until := 0.0
 
@@ -117,12 +122,14 @@ func _physics_process(delta: float) -> void:
 			elif stats["attack"] == "throw" and dist < 3.5:
 				# a thrower keeps its distance: hop back
 				move = -to_player.normalized() * stats["speed"]
-			elif dist <= stats["range"] + 1.8 and stats["attack"] != "throw":
+			elif stats["attack"] != "throw" and dist <= stats["range"] + (2.6 if _circling else 1.8):
+				_circling = true
 				# wait for a turn: circle around at a polite distance
 				var side := to_player.normalized().cross(Vector3.UP) * _strafe
 				var keep := -to_player.normalized() * (1.0 if dist < stats["range"] + 0.8 else -0.3)
 				move = (side + keep).normalized() * stats["speed"] * 0.6
 			else:
+				_circling = false
 				move = to_player.normalized() * stats["speed"]
 			move += _separation()
 		"windup":
@@ -196,7 +203,8 @@ func _physics_process(delta: float) -> void:
 		rig.airborne = state == "attack" and stats["attack"] in ["swoop", "lunge"]
 	var face := move if move.length() > 0.1 else (to_player if state == "windup" else Vector3.ZERO)
 	if face.length() > 0.1:
-		rotation.y = lerp_angle(rotation.y, atan2(face.x, face.z), 1.0 - exp(-10.0 * delta))
+		_face_dir = _face_dir.lerp(face.normalized(), 1.0 - exp(-5.0 * delta)) if _face_dir.length() > 0.1 else face.normalized()
+		rotation.y = lerp_angle(rotation.y, atan2(_face_dir.x, _face_dir.z), 1.0 - exp(-10.0 * delta))
 
 
 func _windup(to_player: Vector3) -> void:

@@ -55,7 +55,7 @@ func _leave() -> void:
 	if SceneFlow.busy:
 		return
 	Audio.play("door")
-	SceneFlow.go_to("chapter0", true, false)
+	SceneFlow.go_to(SceneFlow.house_from, true, false)
 
 
 # --- the room --------------------------------------------------------------
@@ -178,7 +178,7 @@ func _keeper_house() -> void:
 	_spot(Vector3(-W + 1.8, 0, -1.5), "Dolap", func(_by: Node) -> void: _open_wardrobe())
 	TravelSign.board(lv, "Dolap", Vector3(-W + 1.16, 2.65, -1.5), 1.2, 0.45).rotation_degrees.y = 90
 	# the four keepers on pedestals on the right, with their names
-	var ids := ["pati", "bado", "citir", "lumi"]
+	var ids: Array = _keeper_ids()
 	for i in ids.size():
 		var at := Vector3(2.4 + (i % 2) * 2.0, 0, -2.6 + int(i / 2) * 2.2)
 		WorldLook.block(lv, at + Vector3(0, 0.25, 0), Vector3(1.3, 0.5, 1.3), Color("#e8d8c0"))
@@ -187,7 +187,7 @@ func _keeper_house() -> void:
 		m.scale = Vector3.ONE * 0.7
 		lv.add_child(m)
 		var name_l := Label3D.new()
-		name_l.text = String(Content.keepers[ids[i]]["name"])
+		name_l.text = String(Content.keeper(ids[i])["name"])
 		name_l.font = Tokens.font_for("text-heading")
 		name_l.font_size = 64
 		name_l.pixel_size = 0.006
@@ -203,13 +203,23 @@ func _keeper_house() -> void:
 	Toon.part(lv, "ellipsoid", Vector3(0.6, 0.25, 0.9), Color.WHITE, Vector3(-W + 0.6, 0.98, 2.4))
 
 
+## Season 2's Bekçi Evi has Tıpış too.
+func _keeper_ids() -> Array:
+	if GameState.data.season == 2:
+		return Content.keepers_s2.get("order", KeeperSelect.ORDER)
+	return ["pati", "bado", "citir", "lumi"]
+
+
 func _open_mirror() -> void:
 	var sel := KeeperSelect.new()
+	if GameState.data.season == 2:
+		sel.order = _keeper_ids()
+		sel.lines = Content.keepers_s2.get("lines", {})
 	_hud.cinematic(true)
 	_player.input_enabled = false
 	GameState.in_dialogue = true
 	_hud.add_child(sel)
-	sel.select(GameState.data.character_id if GameState.data.character_id in KeeperSelect.ORDER else "pati")
+	sel.select(GameState.data.character_id if GameState.data.character_id in _keeper_ids() else "pati")
 	var back := UiKit.button("Vazgeç", false)
 	back.custom_minimum_size = Vector2(160, 56)
 	back.position = Vector2(Tokens.px("space-6"), Tokens.px("space-6"))
@@ -222,7 +232,7 @@ func _open_mirror() -> void:
 	back.pressed.connect(finish)
 	sel.chosen.connect(func(id: String, look: Dictionary, display_name: String) -> void:
 		var d := GameState.data
-		d.switch_keeper(id, Content.keepers[id]["stats"], look, display_name, Content.items)
+		d.switch_keeper(id, Content.keeper(id)["stats"], look, display_name, Content.items)
 		SaveGame.write(d)
 		finish.call()
 		Audio.play("levelup")
@@ -274,6 +284,14 @@ func _run_demo(which: String) -> void:
 				m.queue_free()
 			if DisplayServer.get_name() == "headless":
 				get_tree().quit()
+		"bekci":
+			# Season 2: switch to Lumi in the Bekçi Evi, then walk back out
+			var d := GameState.data
+			while d.level < 6:
+				d.add_xp(Progression.xp_to_next(d.level) - d.xp)
+			d.switch_keeper("lumi", Content.keeper("lumi")["stats"], {}, "Lumi", Content.items)
+			print("S2HOUSE keepers=%d id=%s skill=%s" % [_keeper_ids().size(), d.character_id, d.active_skill()])
+			_player.global_position = Vector3(0, 0.05, D + 1.3)
 		"switch":
 			var d := GameState.data
 			var lv := d.level

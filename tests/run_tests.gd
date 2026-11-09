@@ -797,6 +797,15 @@ func test_season2() -> void:
 				if shop_id != "":
 					check(c.shops.has(shop_id), "%s: %s dükkânı (%s) yüklü" % [ch, npc_id, shop_id])
 	check(c.items.size() > 0, "eşyalar yüklü")
+	# Bekçi Evi in Season 2: switching keeps the level and brings the new
+	# keeper's calming skill (not the old one's)
+	var sw := PlayerData.new()
+	sw.season = 2
+	sw.choose_keeper("pati", {"max_hp": 100, "max_mp": 50, "power": 10, "speed": 6.0}, {}, "Pati")
+	while sw.level < 6:
+		sw.add_xp(Progression.xp_to_next(sw.level) - sw.xp)
+	sw.switch_keeper("lumi", {"max_hp": 100, "max_mp": 50, "power": 10, "speed": 6.0}, {}, "Lumi", c.items)
+	check(sw.level == 6 and sw.active_skill() == "ninni_isigi" and not sw.skills.has("mirlama"), "Sezon 2'de bekçi değiştirince yeni bekçinin yeteneği gelir")
 	var tp := PlayerData.new()
 	tp.choose_keeper("tipis_panda", c.keeper("tipis_panda")["stats"], {}, "Tıpış")
 	check(tp.level == 1 and tp.active_skill() == "derin_nefes", "Tıpış seçilince seviye 1 ve Derin Nefes")

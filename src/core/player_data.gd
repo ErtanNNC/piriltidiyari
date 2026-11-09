@@ -170,9 +170,11 @@ func switch_keeper(id: String, stats: Dictionary, look: Dictionary, display_name
 	for k: String in ["pati", "bado", "citir", "lumi", "fistik", "tipis_panda"]:
 		if k != id:
 			others.append(Skills.for_character(k))
+			others.append(Skills.season2_for(k))
 	for s: String in old_skills:
 		if not others.has(s) and not skills.has(s):
 			skills.append(s)
+	learn_season_skill()  # Season 2: the new keeper's calming skill too
 	hp = max_hp
 	mp = max_mp
 	stats_changed.emit()

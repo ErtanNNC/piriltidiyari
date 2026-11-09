@@ -113,6 +113,8 @@ func _ready() -> void:
 ## keeper stands when they come back out (Vector3.INF = the scene's start).
 var house_id := "dukkan"
 var return_point := Vector3.INF
+## The scene a village house was entered from (walking out goes back there).
+var house_from := "chapter0"
 
 
 func go_to(scene_id: String, save := true, card := true) -> void:
