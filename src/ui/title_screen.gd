@@ -125,12 +125,23 @@ func _build_menu() -> void:
 	sfx.pressed.connect(func() -> void:
 		Audio.set_sfx_on(not Audio.sfx_on)
 		refresh.call())
-	# sound credit (CC BY 4.0)
-	var credit := UiKit.label("Seslerin çoğu: Meta Oculus Audio Pack (CC BY 4.0)", "text-caption", "panel@light")
-	credit.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	credit.add_theme_color_override("font_outline_color", Tokens.color("outline"))
-	credit.add_theme_constant_override("outline_size", 6)
-	root.add_child(credit)
+	# sound credit (CC BY 4.0): tiny and quiet in the bottom-right corner,
+	# there for those who look (smaller than text-caption on purpose)
+	var old := _ui.get_node_or_null("Credit")
+	if old:
+		old.queue_free()
+	var credit := UiKit.label("Sesler: Meta Oculus Audio Pack · CC BY 4.0", "text-caption", "panel@light")
+	credit.name = "Credit"
+	credit.add_theme_font_size_override("font_size", 11)
+	credit.modulate.a = 0.55
+	credit.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	credit.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_ui.add_child(credit)
+	credit.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_RIGHT)
+	credit.grow_horizontal = Control.GROW_DIRECTION_BEGIN
+	credit.grow_vertical = Control.GROW_DIRECTION_BEGIN
+	credit.offset_right = -Tokens.px("space-2")
+	credit.offset_bottom = -Tokens.px("space-1")
 	root.modulate.a = 0.0
 	var tw := create_tween()
 	tw.tween_property(root, "modulate:a", 1.0, 0.6)
