@@ -77,12 +77,19 @@ def model(model_id, image, v2=False, tris=8000, dest=None, keep_raw=False, shape
         hq = space != "trellis-community/TRELLIS"
         c = Client(space, httpx_kwargs={"timeout": 900})
         c.predict(api_name="/start_session")
-        img = c.predict(image=handle_file(cutout(image)), api_name="/preprocess_image")
+        img = c.predict(handle_file(cutout(image)), api_name="/preprocess_image_1" if hq else "/preprocess_image")
         steps = 30 if hq else 12
-        r = c.predict(image=handle_file(img), multiimages=[], seed=seed, ss_guidance_strength=7.5,
+        if hq:  # microsoft/TRELLIS copy: generate, then extract
+            c.predict(image=handle_file(img), multiimages=[], seed=seed, ss_guidance_strength=7.5,
                       ss_sampling_steps=steps, slat_guidance_strength=3.0, slat_sampling_steps=steps,
-                      multiimage_algo="stochastic", mesh_simplify=0.95 if hq else 0.95,
-                      texture_size=2048 if hq else 1024, api_name="/generate_and_extract_glb")
+                      multiimage_algo="stochastic", api_name="/image_to_3d")
+            r = c.predict(mesh_simplify=0.95, texture_size=2048, api_name="/extract_glb")
+            r = [None, None, r[1] if isinstance(r, (list, tuple)) else r]
+        else:
+            r = c.predict(image=handle_file(img), multiimages=[], seed=seed, ss_guidance_strength=7.5,
+                          ss_sampling_steps=steps, slat_guidance_strength=3.0, slat_sampling_steps=steps,
+                          multiimage_algo="stochastic", mesh_simplify=0.95, texture_size=1024,
+                          api_name="/generate_and_extract_glb")
         shutil.copy(r[2], raw)
     clean = os.path.join(WORK, model_id + "_clean.glb")
     clean_floor(raw, clean)
