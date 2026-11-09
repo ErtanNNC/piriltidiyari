@@ -22,6 +22,9 @@ var _soft: Node3D
 var _throat: Node3D
 var _t := 0.0
 var _busy := false
+## His song: hitting him now cuts it short (he gets cross).
+var singing := false
+var _interrupted := false
 
 
 func _ready() -> void:
@@ -107,8 +110,14 @@ func _loop() -> void:
 					await _bubbles()
 				"croak":
 					await _croak()
+				"tongue":
+					await _tongue()
+				"song":
+					await _song()
 				_:
 					await _hop()
+			if active and not tired and attack != "song":
+				await _shuffle()
 
 
 func _player() -> Player:
@@ -178,17 +187,107 @@ func _hop() -> void:
 	Effects.shake(get_viewport(), 0.5)
 	if p.global_position.distance_to(spot) < FokurPlan.HOP_RADIUS:
 		p.hurt(FokurPlan.HOP_DAMAGE, spot)
-	await _rest()
 	_busy = false
 
 
-func _rest() -> void:
+## A small hop to another spot on the island (he never stands still long).
+func _shuffle() -> void:
+	_busy = true
+	var to := home + Vector3(randf_range(-4.0, 4.0), 0, randf_range(-4.0, 3.0))
+	var from := global_position
+	var tw := create_tween()
+	tw.tween_method(func(k: float) -> void:
+		global_position = from.lerp(to, k) + Vector3.UP * sin(k * PI) * 1.4, 0.0, 1.0, 0.45)
+	await tw.finished
+	Effects.ring(get_parent(), global_position + Vector3.UP * 0.1, 1.2, Color("#ffb0a0"), 0.25)
+	Audio.play("splash")
+	_busy = false
+
+
+## His tongue shoots along a warned line toward the keeper.
+func _tongue() -> void:
+	_busy = true
+	var p := _player()
+	var from := Vector3(global_position.x, home.y, global_position.z)
+	var dir := Vector3(p.global_position.x, 0, p.global_position.z) - Vector3(from.x, 0, from.z)
+	dir = dir.normalized() if dir.length() > 0.1 else Vector3.BACK
+	_model.rotation.y = atan2(dir.x, dir.z)
+	var k := 0.0
+	while k < FokurPlan.TONGUE_LENGTH:
+		Effects.warning(get_parent(), from + dir * (1.2 + k), FokurPlan.TONGUE_WIDTH, Mob.TELEGRAPH)
+		k += 1.8
+	await get_tree().create_timer(Mob.TELEGRAPH).timeout
+	if not active:
+		_busy = false
+		return
+	var tongue := Toon.part(get_parent(), "box", Vector3(0.45, 0.25, 1.0), "berry", from + Vector3.UP * 0.9, Vector3.ZERO, 0.4, 0.03)
+	tongue.rotation.y = atan2(dir.x, dir.z)
+	var tw := tongue.create_tween()
+	tw.tween_method(func(sz: float) -> void:
+		tongue.scale.z = sz
+		tongue.global_position = from + Vector3.UP * 0.9 + dir * (0.9 + sz * 0.5), 0.5, FokurPlan.TONGUE_LENGTH, 0.22)
+	tw.tween_interval(0.12)
+	tw.tween_method(func(sz: float) -> void:
+		tongue.scale.z = sz
+		tongue.global_position = from + Vector3.UP * 0.9 + dir * (0.9 + sz * 0.5), FokurPlan.TONGUE_LENGTH, 0.3, 0.25)
+	tw.tween_callback(tongue.queue_free)
+	if FokurPlan.tongue_hits(Vector2(from.x, from.z), Vector2(dir.x, dir.z), Vector2(p.global_position.x, p.global_position.z)) \
+			and not GameState.in_dialogue:
+		p.hurt(FokurPlan.TONGUE_DAMAGE, from)
+	Audio.play("swish")
+	await tw.finished
+	_busy = false
+
+
+## His song. Wait for the end (sıra beklemek) and he sits puffing a long
+## while; hit him while he sings and he croaks back and skips the rest.
+func _song() -> void:
+	_busy = true
+	singing = true
+	_interrupted = false
+	add_to_group("hittable")  # so a hit can cut in (and be noticed)
+	get_tree().call_group("hud", "show_hint", "Şşş! Fokur şarkı söylüyor. Bitirmesini bekle, sonra vur!", "Şarkısını bitirmesini bekle!")
+	var notes := 0
+	var t := 0.0
+	while t < FokurPlan.SONG_TIME and active and not _interrupted:
+		if notes < int(t / 0.3):
+			notes += 1
+			_note()
+		await get_tree().process_frame
+		t += get_process_delta_time()
+	singing = false
+	remove_from_group("hittable")
+	if not active:
+		_busy = false
+		return
+	if _interrupted:
+		get_tree().call_group("hud", "show_hint", "Sözünü kestin! Fokur kızdı. Bir dahakine bekle.", "Sözünü kestin, kızdı!")
+		await _croak()
+		get_tree().call_group("hud", "clear_hint")
+		_busy = false
+		return
+	Audio.play("fanfare")
+	GameState.toast.emit("Sıranı bekledin! Fokur yoruldu.", "heart")
+	await _rest(FokurPlan.song_rest(false))
+	_busy = false
+
+
+func _note() -> void:
+	var note := Toon.part(get_parent(), "sphere", Vector3(0.55, 0.55, 0.55), ["berry", "sky", "spark-yellow", "spark-purple"][randi() % 4],
+		global_position + Vector3(randf_range(-0.8, 0.8), 2.4, randf_range(-0.4, 0.4)), Vector3.ZERO, 1.6, 0.02)
+	var tw := note.create_tween()
+	tw.tween_property(note, "global_position", note.global_position + Vector3(randf_range(-1.5, 1.5), 2.5, 0), 1.2).set_trans(Tween.TRANS_SINE)
+	tw.parallel().tween_property(note, "scale", Vector3.ZERO, 1.2)
+	tw.tween_callback(note.queue_free)
+
+
+func _rest(seconds := FokurPlan.TIRED_TIME) -> void:
 	tired = true
 	add_to_group("hittable")
 	var sit := create_tween()
 	sit.tween_property(_model, "scale", Vector3(1.1, 0.85, 1.1), 0.25)
 	get_tree().call_group("hud", "show_hint", "Fokur yoruldu, soluk soluğa! Şimdi vur!", "Yoruldu! Şimdi vur!")
-	await get_tree().create_timer(FokurPlan.TIRED_TIME).timeout
+	await get_tree().create_timer(seconds).timeout
 	if not active:
 		return
 	get_tree().call_group("hud", "clear_hint")
@@ -199,6 +298,10 @@ func _rest() -> void:
 
 
 func hit(damage: int, _from: Vector3, _push: float) -> void:
+	if singing:
+		_interrupted = true  # cut his song short
+		Effects.ring(get_parent(), global_position + Vector3.UP * 1.5, 2.0, Tokens.color("hp"), 0.3)
+		return
 	damage = Progression.boss_damage(damage, GameState.data.power)
 	Effects.hit(self, true)
 	if not tired or not active:

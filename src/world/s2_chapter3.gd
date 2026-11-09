@@ -58,6 +58,9 @@ func _ready() -> void:
 		_boss._soft.visible = true
 		if not d.objective_done(Q2, "kor"):
 			_drop_kor()
+	if d.objective_done(Q2, "kor"):
+		giver_comes("Pirpir", SQUARE + Vector3(3.5, 0, 5.0), false)
+	way_on("s2_bolum3_bitti", Vector3(0, 0, -38.5), "Gümbür Kanyonu")
 	d.quest_changed.connect(func(_id: String) -> void: _refresh())
 	_refresh()
 	_player.respawn_point = _player.global_position
@@ -251,6 +254,7 @@ func _drop_kor() -> void:
 ## Bado's little brother, caught by the Kızıl Sis, runs off north.
 func _minnos_runs() -> void:
 	if GameState.data.has_flag("s2_minnos_kacti"):
+		_giver_after_kor()
 		return
 	await GameState.dialogue_closed
 	var m := KeeperModels.build("bado")
@@ -269,6 +273,8 @@ func _minnos_runs() -> void:
 	tw.tween_property(m, "position", SQUARE + Vector3(4.0, 0, -18.0), 2.0)
 	tw.tween_callback(m.queue_free)
 	GameState.data.set_flag("s2_minnos_kacti")
+	await tw.finished
+	_giver_after_kor()
 
 
 func _open_veil() -> void:
@@ -511,3 +517,11 @@ func _run_demo(which: String) -> void:
 			get_tree().quit()
 		"stalls":
 			_player.global_position = Vector3(0, 0.3, 6.0)
+
+
+## After the Kor: Pirpir comes over to the arena for the last talk.
+func _giver_after_kor() -> void:
+	await GameState.wait_dialogue_closed()
+	await get_tree().create_timer(0.4).timeout
+	await GameState.wait_dialogue_closed()
+	giver_comes("Pirpir", SQUARE + Vector3(3.5, 0, 5.0))

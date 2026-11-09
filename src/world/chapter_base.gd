@@ -47,6 +47,50 @@ func send_home(prefix: String, flag_prefix: String, count: int) -> void:
 			tw.tween_callback(n.queue_free)
 
 
+## Season 2, after a boss: the one who gave the quest comes over to the
+## arena (pops up close by and walks up), so the last talk happens there
+## instead of a long walk back. `walk` = false just places them (a reload).
+func giver_comes(node_name: String, to: Vector3, walk := true) -> void:
+	var g := get_node_or_null(node_name) as Node3D
+	if g == null:
+		return
+	if not walk:
+		g.global_position = to
+		return
+	var from := to + Vector3(2.5, 0, 2.5)
+	g.global_position = from
+	Effects.sparkle(self, from + Vector3.UP, Tokens.color("spark-white"), 14)
+	Audio.play("blip")
+	var rig := g.find_child("Rig", true, false) as CharacterRig
+	if rig:
+		rig.speed = 1.0
+	var tw := g.create_tween()
+	tw.tween_property(g, "global_position", to, 1.4)
+	await tw.finished
+	if rig:
+		rig.speed = 0.0
+	if not g.has_node("Beacon"):
+		Beacon.attach(g, 2.8, Tokens.color("spark-white"))
+
+
+## Once `flag` is set (the chapter is done), the way on is marked: a star
+## over the exit to the next region and a hint.
+func way_on(flag: String, at: Vector3, region: String) -> void:
+	var d := GameState.data
+	var mark := func() -> void:
+		if not d.has_flag(flag) or has_node("WayOn"):
+			return
+		var n := Node3D.new()
+		n.name = "WayOn"
+		add_child(n)
+		n.global_position = at
+		Beacon.attach(n, 2.6, Tokens.color("spark-yellow"))
+		var r := TranslationServer.translate(region)
+		_hud.show_hint(TranslationServer.translate("Yol açık: %s. Yıldızlı yoldan geç!") % r, TranslationServer.translate("Yol açık: %s") % r)
+	mark.call()
+	d.flags_changed.connect(mark)
+
+
 ## Arriving by fast travel (or from a house): stand at SceneFlow.return_point.
 func take_return_point() -> void:
 	if SceneFlow.return_point != Vector3.INF:

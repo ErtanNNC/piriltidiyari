@@ -245,6 +245,16 @@ is a copy of the design system's tokens.
   in Season 2 the mirror and pedestals show all five keepers (Tıpış too) and
   `switch_keeper` also brings the new keeper's calming skill. Check:
   `--scene=s2_chapter0 --demo=bekci` (in and out, headless).
+- After a Season 2 boss the quest giver comes to the arena (`ChapterBase.
+  giver_comes`, also placed there on reload once the Kor is taken) so the last
+  talk happens there; `way_on(flag, exit, region)` then stars the exit to the
+  next region with a hint. Fokur's fight: tongue along a warned line, hops
+  between attacks (`_shuffle`), and every cycle ends with his song: wait it
+  out for a long rest (`SONG_REST`), hit him during it and he croaks back
+  (`--scene=s2_chapter2 --demo=song|tongue`).
+- Attack warnings (`Effects.warning`, every boss and mob in both seasons): a
+  bold red ring with a dark edge drawn over the ground decor, and a red fill
+  growing from the middle that lands when it reaches the ring.
 - Mobs don't twitch: chase uses hysteresis (`_circling`) and the facing is
   smoothed (`_face_dir`); a mob on the edge of its circling distance used to
   flip direction every other frame.

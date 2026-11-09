@@ -58,6 +58,9 @@ func _ready() -> void:
 		_boss._soft.visible = true
 		if not d.objective_done(Q2, "kor"):
 			_drop_kor()
+	if d.objective_done(Q2, "kor"):
+		giver_comes("Dikis", GLADE + Vector3(3.5, 0, 5.0), false)
+	way_on("s2_bolum1_bitti", Vector3(0, 0, -46.5), "Fokurdayan Göl")
 	d.quest_changed.connect(func(_id: String) -> void: _refresh())
 	_refresh()
 	_player.respawn_point = _player.global_position
@@ -171,7 +174,8 @@ func _drop_kor() -> void:
 		Audio.play("fanfare")
 		kor.queue_free()
 		_hud.show_scene_card("Kor", "Turuncu Kor", "Kızıl Yaprak Ormanı ısındı")
-		GameState.bark("s2c1_kor"))
+		GameState.bark("s2c1_kor")
+		_giver_after_kor())
 
 
 func _open_veil() -> void:
@@ -407,3 +411,11 @@ func _run_demo(which: String) -> void:
 		"boss":
 			GameState.data.set_flag("s2_can1")
 			_player.global_position = GLADE + Vector3(0, 0.3, 9.0)
+
+
+## After the Kor: Dikis comes over to the arena for the last talk.
+func _giver_after_kor() -> void:
+	await GameState.wait_dialogue_closed()
+	await get_tree().create_timer(0.4).timeout
+	await GameState.wait_dialogue_closed()
+	giver_comes("Dikis", GLADE + Vector3(3.5, 0, 5.0))

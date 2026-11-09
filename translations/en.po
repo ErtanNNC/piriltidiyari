@@ -3441,6 +3441,12 @@ msgstr "Unspoken Words"
 msgid "Sözlere git, Hırıl'a götür"
 msgstr "Go to the words, take them to Grumble"
 
+msgid "Sözünü kestin! Fokur kızdı. Bir dahakine bekle."
+msgstr "You cut in! Burble got cross. Wait next time."
+
+msgid "Sözünü kestin, kızdı!"
+msgstr "You cut in, he's cross!"
+
 msgid "Sütunun dibine saklan!"
 msgstr "Hide behind a pillar!"
 
@@ -3476,6 +3482,9 @@ msgstr "What's next?"
 
 msgid "Sıradaki: Fısıltı Ormanı"
 msgstr "Next: Whispering Woods"
+
+msgid "Sıranı bekledin! Fokur yoruldu."
+msgstr "You waited your turn! Burble is worn out."
 
 msgid "Sırayla konuştular! Kırk yıldır ilk kez!"
 msgstr "They spoke in turn! For the first time in forty years!"
@@ -3927,6 +3936,12 @@ msgstr "You again? Everyone says 'Hush!', and you will too!"
 msgid "Yok"
 msgstr "None"
 
+msgid "Yol açık: %s"
+msgstr "The way is open: %s"
+
+msgid "Yol açık: %s. Yıldızlı yoldan geç!"
+msgstr "The way is open: %s. Take the starred path!"
+
 msgid "Yol açıldı! Çocukları kabuğuma saklarım."
 msgstr "The way is open! I'll hide the kids in my shell."
 
@@ -4329,6 +4344,9 @@ msgstr "Don't laugh when I sing my song, okay?"
 msgid "Şarkını söyle, Fokur. Sonuna kadar dinleyeceğim."
 msgstr "Sing your song, Burble. I'll listen to the end."
 
+msgid "Şarkısını bitirmesini bekle!"
+msgstr "Let him finish his song!"
+
 msgid "Şekerleme Mağaraları"
 msgstr "Candy Caves"
 
@@ -4370,3 +4388,6 @@ msgstr "Syrup stuck to my foot, and then I got lost!"
 
 msgid "Şövalye Pati! Söz, önce dinleyeceğim, sonra koşacağım."
 msgstr "Sir Paws! I promise to listen first, then run."
+
+msgid "Şşş! Fokur şarkı söylüyor. Bitirmesini bekle, sonra vur!"
+msgstr "Shh! Burble is singing. Let him finish, then hit!"

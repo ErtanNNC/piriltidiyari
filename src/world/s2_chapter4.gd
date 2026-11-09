@@ -56,6 +56,9 @@ func _ready() -> void:
 		_boss_to_shop()
 		if not d.objective_done(Q2, "kor"):
 			_drop_kor()
+	if d.objective_done(Q2, "kor"):
+		giver_comes("Cingir", ARENA + Vector3(3.5, 0, 5.5), false)
+	way_on("s2_bolum4_bitti", Vector3(0, 0, -39.5), "Kükreyen Dağ")
 	d.quest_changed.connect(func(_id: String) -> void: _refresh())
 	_refresh()
 	_player.respawn_point = _player.global_position
@@ -258,7 +261,8 @@ func _drop_kor() -> void:
 		Audio.play("fanfare")
 		kor.queue_free()
 		_hud.show_scene_card("Kor", "Bakır Kor", "Gümbür Kanyonu artık şarkı yankılıyor")
-		GameState.bark("s2c4_kor"))
+		GameState.bark("s2c4_kor")
+		_giver_after_kor())
 
 
 func _open_veil() -> void:
@@ -491,7 +495,7 @@ func _run_demo(which: String) -> void:
 			await get_tree().create_timer(0.3).timeout
 			GameState.talk_to("cingir")
 			await close_dialogs()
-			print("S2C4_DONE q2=%s kor=%s ani=%s flag=%s level=%d" % [d.quest_state(Q2), d.has_flag("kor_bakir"), d.has_flag("s2c4_ani"), d.has_flag("s2_bolum4_bitti"), d.level])
+			print("S2C4_DONE q2=%s kor=%s ani=%s flag=%s level=%d cingir_at_arena=%s way_on=%s" % [d.quest_state(Q2), d.has_flag("kor_bakir"), d.has_flag("s2c4_ani"), d.has_flag("s2_bolum4_bitti"), d.level, (get_node("Cingir") as Node3D).global_position.distance_to(ARENA) < 9.0, has_node("WayOn")])
 			get_tree().quit()
 		"dodge":
 			# stand still in the arena through a whole cycle: count the hits
@@ -529,3 +533,11 @@ func d_arena() -> void:
 	d.set_flag("s2_can4")
 	_open_veil()
 	_player.global_position = ARENA + Vector3(0, 0.3, 7.0)
+
+
+## After the Kor: Cingir comes over to the arena for the last talk.
+func _giver_after_kor() -> void:
+	await GameState.wait_dialogue_closed()
+	await get_tree().create_timer(0.4).timeout
+	await GameState.wait_dialogue_closed()
+	giver_comes("Cingir", ARENA + Vector3(3.5, 0, 5.5))

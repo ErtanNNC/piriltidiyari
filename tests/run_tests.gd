@@ -677,7 +677,9 @@ func test_season2() -> void:
 	check(not o.objective_done("firfir", "firfir"), "Fırfır'ı dinlemek çandan önce sayılmaz")
 	check(FokurPlan.phase(FokurPlan.MAX_HP) == 1 and FokurPlan.phase(10) == 3, "Fokur üç faz")
 	for p in [1, 2, 3]:
-		check(FokurPlan.cycle(p).back() == "hop", "Fokur her turu zıplayıp yorularak bitirir (faz %d)" % p)
+		check(FokurPlan.cycle(p).back() == "song", "Fokur her turu şarkıyla bitirir (faz %d)" % p)
+	check(FokurPlan.song_rest(false) > FokurPlan.TIRED_TIME and FokurPlan.song_rest(true) == 0.0, "Fokur: şarkıyı bekleyen uzun vurma fırsatı kazanır, sözünü kesen kazanmaz")
+	check(FokurPlan.tongue_hits(Vector2.ZERO, Vector2(0, 1), Vector2(0.3, 4.0)) and not FokurPlan.tongue_hits(Vector2.ZERO, Vector2(0, 1), Vector2(2.5, 4.0)), "Fokur dili: hattın üstü değer, yanı değmez")
 	for k in ["balon_balik", "laf_kesen_ordek"]:
 		check(MobStats.breathes(k) and int(MobStats.LEVELS[k]) in range(10, 16), "%s: nefesle sakinleşir, göl seviyesi" % k)
 	c.load_chapter("s2_chapter2")

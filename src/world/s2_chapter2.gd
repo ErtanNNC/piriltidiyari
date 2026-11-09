@@ -61,6 +61,9 @@ func _ready() -> void:
 		_boss._soft.visible = true
 		if not d.objective_done(Q2, "kor"):
 			_drop_kor()
+	if d.objective_done(Q2, "kor"):
+		giver_comes("Demlik", ISLAND + Vector3(3.0, 0, 4.0), false)
+	way_on("s2_bolum2_bitti", ISLAND + Vector3(0, 0, -ISLAND_R + 0.8), "Patpat Tarlaları")
 	d.quest_changed.connect(func(_id: String) -> void: _refresh())
 	_refresh()
 	_player.respawn_point = _player.global_position
@@ -181,7 +184,8 @@ func _drop_kor() -> void:
 		Audio.play("fanfare")
 		kor.queue_free()
 		_hud.show_scene_card("Kor", "Mercan Kor", "Fokurdayan Göl serinledi")
-		GameState.bark("s2c2_kor"))
+		GameState.bark("s2c2_kor")
+		_giver_after_kor())
 
 
 func _open_veil() -> void:
@@ -358,6 +362,33 @@ func _build() -> void:
 
 func _run_demo(which: String) -> void:
 	match which:
+		"song":
+			# wait through one song (long rest), then cut the next one short
+			DevTools.auto_dialogue = true
+			var d := GameState.data
+			d.set_flag("s2_can2")
+			_player.global_position = ISLAND + Vector3(0, 0.3, 6.0)
+			_fight = true
+			_boss.start()
+			while not _boss.singing:
+				await get_tree().create_timer(0.1).timeout
+			while _boss.singing:
+				await get_tree().create_timer(0.1).timeout
+			await get_tree().create_timer(0.3).timeout
+			var waited := _boss.tired
+			while not _boss.singing:
+				await get_tree().create_timer(0.1).timeout
+			await get_tree().create_timer(0.5).timeout
+			_boss.hit(5, _player.global_position, 0.0)
+			await get_tree().create_timer(1.6).timeout
+			print("S2C2_SONG waited_rest=%s cut_short_rest=%s hp=%d" % [waited, _boss.tired, _boss.hp])
+			get_tree().quit()
+		"tongue":
+			GameState.data.set_flag("s2_can2")
+			_player.global_position = ISLAND + Vector3(0, 0.3, 6.0)
+			_fight = true
+			boss_camera(true, ISLAND, 0.4, 19.0)
+			_boss.start()
 		"lake":
 			# the whole chapter, scripted (headless check)
 			DevTools.auto_dialogue = true
@@ -452,3 +483,11 @@ func _hop_to(target: Vector3, seconds: float) -> void:
 		t += get_physics_process_delta_time()
 	for a in ["move_left", "move_right", "move_forward", "move_back", "jump"]:
 		Input.action_release(a)
+
+
+## After the Kor: Demlik comes over to the arena for the last talk.
+func _giver_after_kor() -> void:
+	await GameState.wait_dialogue_closed()
+	await get_tree().create_timer(0.4).timeout
+	await GameState.wait_dialogue_closed()
+	giver_comes("Demlik", ISLAND + Vector3(3.0, 0, 4.0))

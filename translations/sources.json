@@ -1225,6 +1225,11 @@
   "Oturdu! Şimdi vur!"
  ],
  "src/actors/fokur.gd": [
+  "Şşş! Fokur şarkı söylüyor. Bitirmesini bekle, sonra vur!",
+  "Şarkısını bitirmesini bekle!",
+  "Sözünü kestin! Fokur kızdı. Bir dahakine bekle.",
+  "Sözünü kestin, kızdı!",
+  "Sıranı bekledin! Fokur yoruldu.",
   "Fokur yoruldu, soluk soluğa! Şimdi vur!",
   "Yoruldu! Şimdi vur!"
  ],
@@ -1668,6 +1673,10 @@
   "Kıvılcımlarını Mırıl'a uzat",
   "Mor Kıvılcım",
   "Pus dağıldı. Mırıl artık yalnız değil"
+ ],
+ "src/world/chapter_base.gd": [
+  "Yol açık: %s. Yıldızlı yoldan geç!",
+  "Yol açık: %s"
  ],
  "src/world/chest.gd": [
   "Aç"

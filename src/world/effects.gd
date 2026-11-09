@@ -71,27 +71,60 @@ static func sparkle(parent: Node, at: Vector3, col: Color, count := 10) -> void:
 
 
 ## A ground warning that fills up over `seconds` — the 0.8 s attack tell.
-static func warning(parent: Node, at: Vector3, radius: float, seconds := 0.8) -> MeshInstance3D:
+static func warning(parent: Node, at: Vector3, radius: float, seconds := 0.8) -> Node3D:
 	Audio.play("warn")  # every attack is announced by sound too
-	var mi := MeshInstance3D.new()
+	# The whole danger area shows at once as a bold red ring with a dark edge
+	# (readable on yellow fields, sand and snow alike, drawn over the grass),
+	# and a red fill grows from the middle: when it reaches the ring, it lands.
+	var root := Node3D.new()
+	root.name = "Warning"
+	parent.add_child(root)
+	root.global_position = at + Vector3.UP * 0.06
+	root.scale = Vector3(radius, 1, radius)
+	var edge := _warn_ring(root, 1.0, 1.1, Tokens.color("outline"), 0.85, 2)
+	var ring := _warn_ring(root, 0.86, 1.01, Tokens.color("hp"), 1.0, 3)
+	var fill := MeshInstance3D.new()
 	var c := CylinderMesh.new()
 	c.top_radius = 1.0
 	c.bottom_radius = 1.0
-	c.height = 0.04
-	mi.mesh = c
+	c.height = 0.03
+	fill.mesh = c
 	var m := StandardMaterial3D.new()
 	m.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-	m.albedo_color = Tokens.color("honey")
-	m.albedo_color.a = 0.25
+	m.albedo_color = Color(Tokens.color("hp"), 0.3)
 	m.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	m.render_priority = 1
+	fill.material_override = m
+	fill.scale = Vector3(0.1, 1, 0.1)
+	root.add_child(fill)
+	var tw := root.create_tween().set_parallel()
+	tw.tween_property(fill, "scale", Vector3.ONE, seconds).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+	tw.tween_property(m, "albedo_color:a", 0.55, seconds)
+	# the ring breathes a little so it catches the eye
+	var pulse := ring.create_tween().set_loops(int(ceil(seconds / 0.3)))
+	pulse.tween_property(ring, "scale", Vector3(1.04, 1, 1.04), 0.15)
+	pulse.tween_property(ring, "scale", Vector3.ONE, 0.15)
+	tw.chain().tween_callback(root.queue_free)
+	edge.name = "Edge"
+	return root
+
+
+static func _warn_ring(parent: Node3D, inner: float, outer: float, col: Color, alpha: float, priority: int) -> MeshInstance3D:
+	var mi := MeshInstance3D.new()
+	var t := TorusMesh.new()
+	t.inner_radius = inner
+	t.outer_radius = outer
+	t.rings = 48
+	mi.mesh = t
+	mi.scale = Vector3(1, 0.3, 1)
+	var m := StandardMaterial3D.new()
+	m.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	m.albedo_color = Color(col, alpha)
+	m.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	m.no_depth_test = true
+	m.render_priority = priority
 	mi.material_override = m
 	parent.add_child(mi)
-	mi.global_position = at + Vector3.UP * 0.05
-	mi.scale = Vector3(radius * 0.2, 1, radius * 0.2)
-	var tw := mi.create_tween().set_parallel()
-	tw.tween_property(mi, "scale", Vector3(radius, 1, radius), seconds)
-	tw.tween_property(m, "albedo_color:a", 0.6, seconds)
-	tw.chain().tween_callback(mi.queue_free)
 	return mi
 
 
