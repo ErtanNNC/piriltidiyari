@@ -45,7 +45,7 @@ def drawings(model_id, what, seeds):
         print("çizim:", out)
 
 
-def model(model_id, image, v2=False, tris=8000, dest=None, keep_raw=False, shape_only=False):
+def model(model_id, image, v2=False, tris=8000, dest=None, keep_raw=False, shape_only=False, seed=1):
     from gradio_client import Client, handle_file
     os.makedirs(WORK, exist_ok=True)
     raw = os.path.join(WORK, model_id + "_raw.glb")
@@ -70,12 +70,19 @@ def model(model_id, image, v2=False, tris=8000, dest=None, keep_raw=False, shape
                         "--tris", str(tris)], check=True)
         raw = proj
     else:
-        c = Client("trellis-community/TRELLIS", httpx_kwargs={"timeout": 900})
+        # TRELLIS (v1) paints its own texture well. Our rented copy
+        # (TRELLIS_SPACE) runs more sampling steps and a 2048 px bake; the
+        # free one is "trellis-community/TRELLIS" (tiny daily quota)
+        space = os.environ.get("TRELLIS_SPACE", "Supertan83/TRELLIS")
+        hq = space != "trellis-community/TRELLIS"
+        c = Client(space, httpx_kwargs={"timeout": 900})
         c.predict(api_name="/start_session")
-        img = c.predict(image=handle_file(image), api_name="/preprocess_image")
-        r = c.predict(image=handle_file(img), multiimages=[], seed=1, ss_guidance_strength=7.5, ss_sampling_steps=12,
-                      slat_guidance_strength=3.0, slat_sampling_steps=12, multiimage_algo="stochastic",
-                      mesh_simplify=0.95, texture_size=1024, api_name="/generate_and_extract_glb")
+        img = c.predict(image=handle_file(cutout(image)), api_name="/preprocess_image")
+        steps = 30 if hq else 12
+        r = c.predict(image=handle_file(img), multiimages=[], seed=seed, ss_guidance_strength=7.5,
+                      ss_sampling_steps=steps, slat_guidance_strength=3.0, slat_sampling_steps=steps,
+                      multiimage_algo="stochastic", mesh_simplify=0.95 if hq else 0.95,
+                      texture_size=2048 if hq else 1024, api_name="/generate_and_extract_glb")
         shutil.copy(r[2], raw)
     clean = os.path.join(WORK, model_id + "_clean.glb")
     clean_floor(raw, clean)
@@ -168,6 +175,7 @@ if __name__ == "__main__":
     ap.add_argument("--v2", action="store_true", help="TRELLIS.2 on the rented Space (TRELLIS2_SPACE)")
     ap.add_argument("--tris", type=int, default=8000, help="triangle budget after TRELLIS.2")
     ap.add_argument("--dest", help="write the model here instead of assets/models/<id>.glb")
+    ap.add_argument("--seed", type=int, default=1, help="TRELLIS seed (another try of the same drawing)")
     ap.add_argument("--keep-raw", action="store_true", help="reuse work/free_model/<id>_raw.glb (no GPU)")
     ap.add_argument("--shape-only", action="store_true", help="only fetch the TRELLIS.2 shape (GPU part)")
     ap.add_argument("--roster", help="json {id: what}: drawings for every id (id 'all')")
@@ -179,6 +187,6 @@ if __name__ == "__main__":
     elif a.reclean:
         reclean(a.id)
     elif a.image:
-        model(a.id, a.image, a.v2, a.tris, a.dest, a.keep_raw, a.shape_only)
+        model(a.id, a.image, a.v2, a.tris, a.dest, a.keep_raw, a.shape_only, a.seed)
     else:
         drawings(a.id, a.what, [int(s) for s in a.seeds.split(",")])
