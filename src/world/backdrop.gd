@@ -14,28 +14,28 @@ const STYLE := {
 ## edge, pieces on the horizon, and a ground detail map. A missing file just
 ## falls back to the primitive look.
 const KITS := {
-	"kanyon": {"edge": ["kanyon_kaya_a", "kanyon_kaya_b"], "edge_h": [3.0, 6.0],
-		"far": ["kanyon_mesa", "kanyon_mesa", "kanyon_kaya_b"], "far_h": [9.0, 16.0], "ground": "kanyon_zemin"},
-	"koy": {"edge": ["koy_cali", "koy_kaya", "koy_cali"], "edge_h": [1.6, 3.0],
-		"far": ["koy_tepe"], "far_h": [6.0, 11.0], "ground": "zemin_cayir"},
-	"kaplica": {"edge": ["kaplica_kaya", "koy_cali", "koy_kaya"], "edge_h": [1.6, 3.0],
-		"far": ["koy_tepe"], "far_h": [6.0, 11.0], "ground": "zemin_cayir"},
-	"orman": {"edge": ["orman_kutuk", "orman_mantar", "koy_cali"], "edge_h": [2.0, 3.6],
-		"far": ["orman_agaclar"], "far_h": [9.0, 14.0], "ground": "zemin_orman"},
-	"kizil": {"edge": ["kizil_agac", "kizil_kutuk", "kizil_agac"], "edge_h": [2.4, 5.0],
-		"far": ["kizil_agac"], "far_h": [8.0, 13.0], "ground": "zemin_kizil"},
-	"gol": {"edge": ["gol_saz", "gol_kaya", "koy_cali"], "edge_h": [1.6, 3.0],
-		"far": ["koy_tepe"], "far_h": [6.0, 11.0], "ground": "zemin_cayir"},
-	"tarla": {"edge": ["tarla_saman", "tarla_cit", "koy_cali"], "edge_h": [1.4, 2.6],
-		"far": ["tarla_tepe"], "far_h": [6.0, 11.0], "ground": "zemin_tarla"},
-	"dag": {"edge": ["dag_kaya", "dag_cam", "dag_kaya"], "edge_h": [2.4, 5.0],
-		"far": ["dag_zirve"], "far_h": [12.0, 20.0], "ground": "zemin_kar"},
-	"kale": {"edge": ["kale_kristal", "kale_sutun"], "edge_h": [2.0, 4.0],
+	"kanyon": {"edge": ["kanyon_kaya_a", "kanyon_kaya_b"], "edge_h": [3.5, 6.5],
+		"far": ["kanyon_mesa", "kanyon_mesa", "kanyon_kaya_b"], "far_h": [10.0, 18.0], "ground": "kanyon_zemin"},
+	"koy": {"edge": ["koy_cali", "koy_kaya", "koy_cali"], "edge_h": [2.4, 4.0],
+		"far": ["koy_tepe"], "far_h": [12.0, 20.0], "ground": "zemin_cayir"},
+	"kaplica": {"edge": ["kaplica_kaya", "koy_cali", "koy_kaya"], "edge_h": [2.4, 4.0],
+		"far": ["koy_tepe"], "far_h": [12.0, 20.0], "ground": "zemin_cayir"},
+	"orman": {"edge": ["orman_kutuk", "orman_mantar", "koy_cali"], "edge_h": [2.6, 4.4],
+		"far": ["orman_agaclar"], "far_h": [12.0, 18.0], "ground": "zemin_orman"},
+	"kizil": {"edge": ["kizil_agac", "kizil_kutuk", "kizil_agac"], "edge_h": [3.0, 5.5],
+		"far": ["kizil_agac"], "far_h": [10.0, 15.0], "ground": "zemin_kizil"},
+	"gol": {"edge": ["gol_saz", "gol_kaya", "koy_cali"], "edge_h": [2.4, 4.0],
+		"far": ["koy_tepe"], "far_h": [12.0, 20.0], "ground": "zemin_cayir"},
+	"tarla": {"edge": ["tarla_saman", "tarla_cit", "koy_cali"], "edge_h": [2.2, 3.6],
+		"far": ["tarla_tepe"], "far_h": [12.0, 20.0], "ground": "zemin_tarla"},
+	"dag": {"edge": ["dag_kaya", "dag_cam", "dag_kaya"], "edge_h": [3.0, 5.5],
+		"far": ["dag_zirve"], "far_h": [14.0, 24.0], "ground": "zemin_kar"},
+	"kale": {"edge": ["kale_kristal", "kale_sutun"], "edge_h": [2.6, 4.6],
 		"far": ["kale_kule"], "far_h": [12.0, 20.0], "ground": "zemin_kale"},
-	"volkan": {"edge": ["volkan_kaya", "volkan_sutun", "volkan_kaya"], "edge_h": [2.4, 5.0],
-		"far": ["volkan_dag", "volkan_sutun"], "far_h": [10.0, 18.0], "ground": "zemin_volkan"},
-	"yol": {"edge": ["koy_kaya", "kanyon_kaya_b", "koy_cali"], "edge_h": [2.0, 4.0],
-		"far": ["dag_zirve", "koy_tepe"], "far_h": [9.0, 16.0], "ground": "zemin_cayir"},
+	"volkan": {"edge": ["volkan_kaya", "volkan_sutun", "volkan_kaya"], "edge_h": [3.0, 5.5],
+		"far": ["volkan_dag", "volkan_sutun"], "far_h": [12.0, 20.0], "ground": "zemin_volkan"},
+	"yol": {"edge": ["koy_kaya", "kanyon_kaya_b", "koy_cali"], "edge_h": [2.6, 4.6],
+		"far": ["dag_zirve", "koy_tepe"], "far_h": [12.0, 20.0], "ground": "zemin_cayir"},
 	"liman": {"ground": "zemin_kum"},
 	"magara": {"ground": "zemin_magara"},
 }
@@ -193,7 +193,7 @@ static func _far_model(h: Node3D, at: Vector3, rng: RandomNumberGenerator, haze:
 	if m == null:
 		return false
 	var hr: Array = kit.get("far_h", [8.0, 14.0])
-	m.scale = Vector3.ONE * rng.randf_range(hr[0], hr[1]) / ModelImport.static_height(id)
+	m.scale = Vector3.ONE * rng.randf_range(hr[0], hr[1]) / _size(id)
 	m.position = at + Vector3(0, -0.6, 0)
 	m.rotation.y = rng.randf() * TAU
 	_haze(m, haze, mix)
@@ -302,17 +302,24 @@ static func _border(scene: Node3D, holder: Node3D, floors: Array, mood: String) 
 				_p(holder, "sphere", Vector3(1.2, 0.8, 1.0), ground.darkened(0.3) if not snowy else Color("#c9d3e2"), top)
 
 
+## A model's largest side (flat pieces like a pond or river stones are
+## sized by their width, not their height).
+static func _size(id: String) -> float:
+	var b := ModelImport.static_bounds(id).size
+	return maxf(maxf(b.x, b.z), b.y)
+
+
 ## An edge piece from the region kit (false without one).
 static func _edge_model(holder: Node3D, at: Vector3, rng: RandomNumberGenerator, kit: Dictionary) -> bool:
 	var ids: Array = kit.get("edge", [])
 	if ids.is_empty():
 		return false
 	var id: String = ids[rng.randi() % ids.size()]
-	var m := ModelImport.load_static(id)
+	var m := ModelImport.prop_copy(id)
 	if m == null:
 		return false
 	var hr: Array = kit.get("edge_h", [2.0, 4.0])
-	m.scale = Vector3.ONE * rng.randf_range(hr[0], hr[1]) / ModelImport.static_height(id)
+	m.scale = Vector3.ONE * rng.randf_range(hr[0], hr[1]) / _size(id)
 	m.position = at + Vector3(0, -0.3, 0)
 	m.rotation.y = rng.randf() * TAU
 	holder.add_child(m)

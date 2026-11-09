@@ -74,6 +74,15 @@ is a copy of the design system's tokens.
   its mesh is hidden), `WorldLook.ground_detail(scene, tex, strength, scale)`
   lays a grey detail map (assets/textures/) over all floors via the toon
   shader's `ground_tex`. Before/after: `--scene=s2_chapter4 --auto --at=9 --zoom=45`.
+  Every region has a kit (`Backdrop.KITS`, picked by `SCENE_KIT[SceneFlow.current]`):
+  edge pieces, horizon pieces (sized by their largest side) and a ground map
+  (`tools/ground_tex.py` makes a seamless grey detail map from a FLUX
+  drawing). Wall boxes: `ModelImport.cover_block(body, id, grow)` /
+  `cover_row(body, ids, step)`; repeated scenery uses `ModelImport.prop_copy`
+  (one shared material per model). Leafy pieces (trees, bushes, reeds,
+  crystals) go through `tools/rebake.py --voxel 0.035` (one smooth skin,
+  ~2.5k triangles, colours baked from the original) since texture-aware
+  decimation can't merge thousands of leaf bits.
 - Ground decor is automatic: `Decor.auto(scene, style)` in each scene's `_ready`
   scatters non-colliding MultiMesh props on upright floors; thin meshes are paths.
 - Rigged keepers: Pati, Bado, Çıtır and Lumi play real bone clips (idle,

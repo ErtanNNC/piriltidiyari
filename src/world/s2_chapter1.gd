@@ -218,8 +218,15 @@ func _build() -> void:
 		lv.add_child(tree)
 		tree.position = p
 		var h := rng.randf_range(2.5, 4.0)
-		Toon.part(tree, "cylinder", Vector3(0.45, h, 0.45), Color("#7a4a32"), Vector3(0, h * 0.5, 0))
-		Toon.part(tree, "sphere", Vector3(2.8, 2.4, 2.8) * rng.randf_range(0.9, 1.3), LEAVES[rng.randi() % LEAVES.size()], Vector3(0, h + 0.8, 0))
+		var real := ModelImport.prop_copy("kizil_agac")
+		if real:
+			# a real autumn tree (one shared material for all of them)
+			real.scale = Vector3.ONE * (h + 2.4) * rng.randf_range(0.9, 1.15) / ModelImport.static_height("kizil_agac")
+			real.rotation.y = rng.randf() * TAU
+			tree.add_child(real)
+		else:
+			Toon.part(tree, "cylinder", Vector3(0.45, h, 0.45), Color("#7a4a32"), Vector3(0, h * 0.5, 0))
+			Toon.part(tree, "sphere", Vector3(2.8, 2.4, 2.8) * rng.randf_range(0.9, 1.3), LEAVES[rng.randi() % LEAVES.size()], Vector3(0, h + 0.8, 0))
 		var body := StaticBody3D.new()
 		var c := CollisionShape3D.new()
 		var cs := CylinderShape3D.new()

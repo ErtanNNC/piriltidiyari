@@ -83,6 +83,19 @@ static func load_static(id: String) -> Node3D:
 
 
 static var _static_bounds := {}
+static var _templates := {}
+
+
+## A copy of a prop model sharing one set of materials with every other copy
+## (scenery repeated dozens of times: one material per model, not per copy).
+static func prop_copy(id: String) -> Node3D:
+	var t: Node3D = _templates.get(id)
+	if t == null or not is_instance_valid(t):
+		t = load_static(id)
+		if t == null:
+			return null
+		_templates[id] = t
+	return t.duplicate() as Node3D
 
 
 ## Bounds of a prop model's file at scale 1 (to fit `load_static` copies).
@@ -151,7 +164,7 @@ static func cover_row(body: StaticBody3D, ids: Array, step := 6.0, grow := Vecto
 ## A prop model stretched over a box (center, size): the box keeps its
 ## collider and loses its look. Null without the file.
 static func fit_static(id: String, parent: Node3D, center: Vector3, size: Vector3, yaw := 0.0) -> Node3D:
-	var m := load_static(id)
+	var m := prop_copy(id)
 	if m == null:
 		return null
 	var b := static_bounds(id)
