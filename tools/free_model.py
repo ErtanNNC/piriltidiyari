@@ -33,9 +33,11 @@ STYLE = ("{what}, cute chibi game character, big head, big glossy dark eyes, sma
 
 def drawings(model_id, what, seeds):
     from gradio_client import Client
-    c = Client("black-forest-labs/FLUX.1-schnell", httpx_kwargs={"timeout": 300})
+    c = Client(os.environ.get("FLUX_SPACE", "black-forest-labs/FLUX.1-schnell"), httpx_kwargs={"timeout": 300})
     os.makedirs(WORK, exist_ok=True)
     for seed in seeds:
+        if os.path.exists(os.path.join(WORK, "%s_%d.webp" % (model_id, seed))):
+            continue
         r = c.predict(prompt=STYLE.format(what=what), seed=seed, randomize_seed=False, width=1024, height=1024,
                       num_inference_steps=4, api_name="/infer")
         out = os.path.join(WORK, "%s_%d.webp" % (model_id, seed))
