@@ -125,8 +125,10 @@ is a copy of the design system's tokens.
   falls back to .bak, `SaveGame.migrate` upgrades by VERSION. Stats are derived:
   `PlayerData.recompute_stats(Content.items)` from `base_stats` + level + charms
   + powers. Art direction for real models: docs/sanat-yonu.md.
-- `tools/build_android.sh` builds and signs export/PiriltiDiyari.apk; bump
-  version/code in export_presets.cfg for every APK you hand out.
+- `tools/build_android.sh` builds and signs export/PiriltiDiyari.apk plus a
+  copy named with the version (export/PiriltiDiyari-<version/name>.apk); bump
+  version/code in export_presets.cfg for every APK you hand out, and hand out
+  the versioned file.
 - Godot is downloaded by `tools/setup_godot.sh` into `.tools/` (gitignored).
 
 ## Season 2 (Kor Vadisi)

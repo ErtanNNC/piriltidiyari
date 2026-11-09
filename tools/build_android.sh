@@ -36,4 +36,8 @@ mkdir -p "$ROOT/export"
 python3 "$ROOT/tools/sign_apk.py" "$ROOT/export/PiriltiDiyari-unsigned.apk" "$ROOT/export/PiriltiDiyari.apk" \
   --key "$ROOT/.tools/debug-key.pem" --cert "$ROOT/.tools/debug-cert.der"
 rm -f "$ROOT/export/PiriltiDiyari-unsigned.apk"
-ls -la "$ROOT/export/PiriltiDiyari.apk"
+# a copy named with the version (export_presets.cfg version/name), the one to hand out
+VERSION="$(sed -n 's/^version\/name="\(.*\)"/\1/p' "$ROOT/export_presets.cfg" | head -1)"
+rm -f "$ROOT"/export/PiriltiDiyari-[0-9]*.apk
+cp "$ROOT/export/PiriltiDiyari.apk" "$ROOT/export/PiriltiDiyari-$VERSION.apk"
+ls -la "$ROOT/export/PiriltiDiyari.apk" "$ROOT/export/PiriltiDiyari-$VERSION.apk"
