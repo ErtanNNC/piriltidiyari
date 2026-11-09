@@ -20,15 +20,18 @@ var _bell: Node3D
 func _build() -> void:
 	action_label = "Çal"
 	var wood := Color("#8a5a3c")
-	Toon.part(self, "cylinder", Vector3(0.3, 3.4, 0.3), wood, Vector3(-1.1, 1.7, 0))
-	Toon.part(self, "cylinder", Vector3(0.3, 3.4, 0.3), wood, Vector3(1.1, 1.7, 0))
-	Toon.part(self, "box", Vector3(2.9, 0.34, 0.34), wood, Vector3(0, 3.4, 0))
-	Toon.part(self, "cone", Vector3(3.3, 0.8, 1.4), Color("#c9452f"), Vector3(0, 3.95, 0))
+	# the real frame model when there is one (the bell itself swings apart)
+	if ModelImport.fit_static("ses_cani_cerceve", self, Vector3(0, 2.15, 0), Vector3(3.2, 4.4, 1.5)) == null:
+		Toon.part(self, "cylinder", Vector3(0.3, 3.4, 0.3), wood, Vector3(-1.1, 1.7, 0))
+		Toon.part(self, "cylinder", Vector3(0.3, 3.4, 0.3), wood, Vector3(1.1, 1.7, 0))
+		Toon.part(self, "box", Vector3(2.9, 0.34, 0.34), wood, Vector3(0, 3.4, 0))
+		Toon.part(self, "cone", Vector3(3.3, 0.8, 1.4), Color("#c9452f"), Vector3(0, 3.95, 0))
 	_bell = Node3D.new()
 	_bell.position.y = 3.2
 	add_child(_bell)
-	Toon.part(_bell, "cone", Vector3(1.3, 1.3, 1.3), Color("#c98a3a"), Vector3(0, -0.55, 0))
-	Toon.part(_bell, "sphere", Vector3(0.3, 0.3, 0.3), "outline", Vector3(0, -1.2, 0), Vector3.ZERO, 0.0, 0.0)
+	if ModelImport.fit_static("ses_cani_zil", _bell, Vector3(0, -0.7, 0), Vector3(1.2, 1.4, 1.2)) == null:
+		Toon.part(_bell, "cone", Vector3(1.3, 1.3, 1.3), Color("#c98a3a"), Vector3(0, -0.55, 0))
+		Toon.part(_bell, "sphere", Vector3(0.3, 0.3, 0.3), "outline", Vector3(0, -1.2, 0), Vector3.ZERO, 0.0, 0.0)
 	var body := StaticBody3D.new()
 	var c := CollisionShape3D.new()
 	var b := BoxShape3D.new()

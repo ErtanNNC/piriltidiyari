@@ -14,12 +14,8 @@ func _build() -> void:
 	action_label = "Oyna"
 	reach = 1.6
 	var wood := Color("#a86b45")
-	for x: float in [-1.2, 1.2]:
-		Toon.part(self, "cylinder", Vector3(0.16, 2.4, 0.16), wood, Vector3(x, 1.2, -0.6))
-		Toon.part(self, "cylinder", Vector3(0.16, 2.4, 0.16), wood, Vector3(x, 1.2, 0.6))
-	for i in 5:
-		Toon.part(self, "box", Vector3(0.52, 0.12, 1.5), accent if i % 2 == 0 else "panel", Vector3(-1.04 + i * 0.52, 2.45, 0), Vector3(0, 0, 0))
-	Toon.part(self, "box", Vector3(2.6, 0.9, 0.5), Color("#f4e2c0"), Vector3(0, 0.45, 0.4))
+	if ModelImport.fit_static("panayir_tezgah", self, Vector3(0, 1.35, 0.1), Vector3(2.9, 2.7, 1.7)) == null:
+		_primitive_stall(wood)
 	TravelSign.board(self, title, Vector3(0, 1.55, 0.7), 2.2, 0.6)
 	var body := StaticBody3D.new()
 	var c := CollisionShape3D.new()
@@ -29,6 +25,15 @@ func _build() -> void:
 	c.position = Vector3(0, 0.5, 0.4)
 	body.add_child(c)
 	add_child(body)
+
+
+func _primitive_stall(wood: Color) -> void:
+	for x: float in [-1.2, 1.2]:
+		Toon.part(self, "cylinder", Vector3(0.16, 2.4, 0.16), wood, Vector3(x, 1.2, -0.6))
+		Toon.part(self, "cylinder", Vector3(0.16, 2.4, 0.16), wood, Vector3(x, 1.2, 0.6))
+	for i in 5:
+		Toon.part(self, "box", Vector3(0.52, 0.12, 1.5), accent if i % 2 == 0 else "panel", Vector3(-1.04 + i * 0.52, 2.45, 0), Vector3(0, 0, 0))
+	Toon.part(self, "box", Vector3(2.6, 0.9, 0.5), Color("#f4e2c0"), Vector3(0, 0.45, 0.4))
 
 
 func use(_by: Node) -> void:

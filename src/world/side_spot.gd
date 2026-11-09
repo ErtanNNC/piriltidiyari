@@ -130,8 +130,10 @@ func _build_drawing() -> void:
 			Toon.part(self, "sphere", Vector3(0.08, 0.04, 0.08), Color("#6b4a3a"), at + Vector3(-0.08 + t * 0.08, 0, -0.17), Vector3.ZERO, 0.0, 0.0)
 	var slate := Node3D.new()
 	slate.name = "Slate"
-	slate.rotation_degrees = Vector3(-18, 0, 0)
 	add_child(slate)
+	if ModelImport.fit_static("cizim_tahtasi", slate, Vector3(0, 0.8, 0), Vector3(1.2, 1.6, 0.9)):
+		return
+	slate.rotation_degrees = Vector3(-18, 0, 0)
 	Toon.part(slate, "box", Vector3(0.1, 0.9, 0.1), Color("#8a5a3a"), Vector3(0, 0.45, -0.05))
 	Toon.part(slate, "box", Vector3(1.1, 0.8, 0.08), Color("#3c4a44"), Vector3(0, 1.05, 0))
 	Toon.part(slate, "box", Vector3(1.2, 0.9, 0.06), Color("#b07a4a"), Vector3(0, 1.05, -0.02), Vector3.ZERO, 0.0, 0.0)
@@ -145,10 +147,18 @@ func _build_drum() -> void:
 	_drum = Node3D.new()
 	_drum.name = "Drum"
 	add_child(_drum)
+	if ModelImport.fit_static("kucuk_davul", _drum, Vector3(0, 0.42, 0), Vector3(0.95, 0.84, 0.95)):
+		_drum_cloth()
+		return
 	Toon.part(_drum, "cylinder", Vector3(0.9, 0.75, 0.9), Color("#c87a4a"), Vector3(0, 0.38, 0))
 	Toon.part(_drum, "cylinder", Vector3(0.84, 0.04, 0.84), Color("#fff4dc"), Vector3(0, 0.77, 0), Vector3.ZERO, 0.0, 0.0)
 	for k in 2:
 		Toon.part(_drum, "ring", Vector3(0.94, 0.06, 0.94), "honey", Vector3(0, 0.12 + k * 0.52, 0), Vector3.ZERO, 0.0, 0.0)
+	_drum_cloth()
+
+
+## The grey "SUS" cloth tied over a silenced drum.
+func _drum_cloth() -> void:
 	_cloth = Node3D.new()
 	_cloth.name = "Cloth"
 	add_child(_cloth)
@@ -169,16 +179,25 @@ func _build_drum() -> void:
 
 
 func _build_mailbox() -> void:
+	if ModelImport.fit_static("posta_kutusu", self, Vector3(0, 0.78, 0), Vector3(0.7, 1.56, 0.95)):
+		_mail_flag()
+		return
 	Toon.part(self, "box", Vector3(0.14, 1.0, 0.14), Color("#8a5a3a"), Vector3(0, 0.5, 0))
 	Toon.part(self, "box", Vector3(0.5, 0.42, 0.8), Color("#e8604a"), Vector3(0, 1.18, 0))
 	Toon.part(self, "cylinder", Vector3(0.5, 0.8, 0.5), Color("#e8604a"), Vector3(0, 1.39, 0), Vector3(90, 0, 0))
 	Toon.part(self, "box", Vector3(0.3, 0.05, 0.02), Color("#2a2433"), Vector3(0, 1.3, 0.41), Vector3.ZERO, 0.0, 0.0)
+	_mail_flag()
+
+
+## The flag that stands up while a letter waits.
+func _mail_flag() -> void:
 	_flag_arm = Node3D.new()
 	_flag_arm.name = "Flag"
 	_flag_arm.position = Vector3(0.27, 1.15, 0.1)
 	add_child(_flag_arm)
 	Toon.part(_flag_arm, "box", Vector3(0.04, 0.5, 0.04), Color("#fff4dc"), Vector3(0, 0.25, 0))
 	Toon.part(_flag_arm, "box", Vector3(0.04, 0.18, 0.24), Color("#ffd23a"), Vector3(0, 0.42, 0.1))
+
 
 
 func _free_drum(region_done: bool) -> void:
