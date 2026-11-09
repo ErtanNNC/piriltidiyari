@@ -15,6 +15,10 @@ const NEXT := [
 
 
 func _ready() -> void:
+	# a full-screen summary: works even while the game is paused, and the
+	# HUD holds the level-up cards until it is gone (they'd open behind it)
+	add_to_group("hud_overlay")
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	mouse_filter = Control.MOUSE_FILTER_STOP
 	var bg := ColorRect.new()

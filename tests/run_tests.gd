@@ -851,6 +851,12 @@ func test_season2() -> void:
 	rb.notify("ring", "ses_cani", c.quests)
 	check(rb.objective_done("gumbur", "can") and not rb.objective_done("gumbur", "gumbur"), "geç başlayan görevde çan sayılır, bir kez")
 	check(FileAccess.get_file_as_string("res://src/world/echo_bell.gd").contains("quest_changed.connect(_sync)"), "çalınmış çan görev değişince olayı yeniden gönderir")
+	# end-of-season summaries hold the level-up cards and work while paused
+	for f: String in ["season_end", "season2_end", "prologue_done"]:
+		var src := FileAccess.get_file_as_string("res://src/ui/%s.gd" % f)
+		check(src.contains("add_to_group(\"hud_overlay\")") and src.contains("PROCESS_MODE_ALWAYS"), "%s: seviye kartları arkasında açılmaz" % f)
+	check(FileAccess.get_file_as_string("res://src/ui/hud.gd").contains("get_nodes_in_group(\"hud_overlay\")"), "HUD seviye kartını özet ekranında bekletir")
+	check(FileAccess.get_file_as_string("res://src/autoload/scene_flow.gd").contains("get_tree().paused = false"), "sahne değişince duraklama kalkar")
 	# ambience loops named in Audio exist
 	var au := FileAccess.get_file_as_string("res://src/autoload/audio.gd")
 	for loop_name: String in ["forest", "lake", "sea", "farm", "springs", "creek"]:

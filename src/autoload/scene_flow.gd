@@ -157,6 +157,7 @@ func go_to(scene_id: String, save := true, card := true) -> void:
 	await tw.finished
 	Pus.set_amount(0.0)
 	Pus.set_color(Pus.GREY)
+	get_tree().paused = false  # a pause never carries over into the next scene
 	var chapter: String = SCENE_CHAPTER.get(scene_id, "prologue")
 	if Content.chapter.get("id", "") != chapter:
 		Content.load_chapter(chapter)

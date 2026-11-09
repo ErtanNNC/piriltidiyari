@@ -790,12 +790,13 @@ func _update_anger() -> void:
 func _maybe_level_up() -> void:
 	var d := GameState.data
 	if d.power_picks <= 0 or _level_panel or _pause_panel or _cinematic or _dialog.is_open() \
-			or GameState.in_dialogue or SceneFlow.busy or get_tree().paused:
+			or GameState.in_dialogue or SceneFlow.busy or get_tree().paused \
+			or not get_tree().get_nodes_in_group("hud_overlay").is_empty():
 		return
 	var rng := RandomNumberGenerator.new()
 	rng.seed = hash("%s%d%d" % [d.character_id, d.level, d.power_picks])
 	var choices := Powers.choices(d.powers, rng)
-	if DevTools.demo != "" and DevTools.demo != "levelup":
+	if DevTools.demo != "" and not DevTools.demo in ["levelup", "endclick"]:
 		# automated checks keep running: take the first card
 		Powers.pick(d, choices[0]["id"])
 		return

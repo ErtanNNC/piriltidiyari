@@ -235,3 +235,13 @@ func _take_shot() -> void:
 	print("SHOT ", _shot_path, " scene=", get_tree().current_scene.name if get_tree().current_scene else "-", " flow=", SceneFlow.current,
 		" player=", pl.global_position if pl else Vector3.ZERO, " mobs=", get_tree().get_nodes_in_group("mob").size())
 	get_tree().quit()
+
+
+## Test helper: prints when the next scene has started (survives the change).
+func report_next_scene(tag: String) -> void:
+	var t0 := Time.get_ticks_msec()
+	var id: String = await SceneFlow.scene_started
+	while SceneFlow.busy and Time.get_ticks_msec() - t0 < 15000:
+		await get_tree().process_frame
+	print("%s started=%s busy=%s ms=%d" % [tag, id, SceneFlow.busy, Time.get_ticks_msec() - t0])
+	get_tree().quit()

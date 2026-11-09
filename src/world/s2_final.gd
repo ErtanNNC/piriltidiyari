@@ -212,9 +212,51 @@ func season_end() -> void:
 	SaveGame.write(d)
 	var panel := Season2End.new()
 	_hud.add_child(panel)
-	if DevTools.demo != "" and DisplayServer.get_name() == "headless":
+	if DevTools.demo == "endclick":
+		_click_test(panel)
+	elif DevTools.demo != "" and DisplayServer.get_name() == "headless":
 		print("S2FINAL senlik=%s scene_id=%s keeper=%s" % [d.has_flag("sezon2_senlik"), d.scene_id, d.character_id])
 		get_tree().quit()
 		return
 	var to: String = await panel.chosen
 	SceneFlow.go_to(to, to != "title")
+
+
+## Test: press "Ana menü" on the summary with a real click (and a touch).
+func _click_test(panel: Control) -> void:
+	# a level-up waiting at the end of the season (Hırıl's reward) used to
+	# open its cards behind this summary and pause the game under it
+	GameState.data.power_picks += 1
+	await get_tree().create_timer(1.5).timeout
+	print("S2END paused=%s level_panel=%s" % [get_tree().paused, _hud._level_panel != null])
+	var target: Button = null
+	for b in panel.find_children("*", "Button", true, false):
+		if (b as Button).text == "Ana menü":
+			target = b
+	DevTools.report_next_scene("s2end_next")
+	if OS.get_cmdline_user_args().has("--emit"):
+		target.pressed.emit()
+		return
+	var at := target.get_global_rect().get_center()
+	var hit := get_viewport().gui_get_hovered_control()
+	print("S2END vp=%s panel=%s btn=%s" % [get_viewport().get_visible_rect().size, (panel.get_child(1) as Control).get_global_rect(), target.get_global_rect()])
+	var tops := []
+	for c in _hud.get_children():
+		if c is Control and (c as Control).visible and (c as Control).mouse_filter != Control.MOUSE_FILTER_IGNORE and (c as Control).get_global_rect().has_point(at):
+			tops.append(c.name)
+	print("S2END hud controls under point (later = on top): %s, last child=%s" % [tops, _hud.get_child(_hud.get_child_count() - 1).name])
+	var down := InputEventMouseButton.new()
+	down.button_index = MOUSE_BUTTON_LEFT
+	down.position = at
+	down.global_position = at
+	down.pressed = true
+	Input.parse_input_event(down)
+	var up := down.duplicate() as InputEventMouseButton
+	up.pressed = false
+	await get_tree().process_frame
+	Input.parse_input_event(up)
+	await get_tree().create_timer(0.3).timeout
+	print("S2END at=%s paused=%s hovered=%s scene=%s busy=%s" % [at, get_tree().paused, hit, SceneFlow.current, SceneFlow.busy])
+	await get_tree().create_timer(2.5).timeout
+	print("S2END_DONE scene=%s" % SceneFlow.current)
+	get_tree().quit()

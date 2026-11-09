@@ -292,6 +292,11 @@ is a copy of the design system's tokens.
 - A rung Ses Çanı re-sends its "ring" event whenever a quest changes
   (`EchoBell._sync`), so ringing before the quest asks for it never locks a
   region (`--scene=s2_chapter4 --demo=bellfirst`).
+- Full-screen summaries (SeasonEnd, Season2End, PrologueDone) are in group
+  "hud_overlay" and PROCESS_MODE_ALWAYS: the HUD keeps a pending level-up
+  until they are gone (its cards used to open behind the summary and pause
+  the game, so no button worked); `SceneFlow.go_to` always unpauses. Check:
+  `--scene=s2_final --demo=endclick --auto [--emit]`.
 - Lily pads: `LilyPad` (round notched leaf, lotus, ripple ring); the lake's
   first pad sits right off the shore (a jump reaches ~4 m).
 - Kızıl Sis mobs keep their own colors: their builders use `_c(false, ...)`
