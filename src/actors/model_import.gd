@@ -82,6 +82,21 @@ static func load_static(id: String) -> Node3D:
 	return root
 
 
+static var _static_heights := {}
+
+
+## Height of a prop model's file at scale 1 (to size `load_static` copies).
+static func static_height(id: String) -> float:
+	if not _static_heights.has(id):
+		var m := load_static(id)
+		var h := 1.0
+		if m:
+			h = maxf(_bounds(m, Transform3D.IDENTITY).size.y, 0.01)
+			m.free()
+		_static_heights[id] = h
+	return _static_heights[id]
+
+
 ## Wraps any loaded model (fit, toon look, rig). Also used by the import check.
 static func from_scene(model: Node3D, id: String) -> Node3D:
 	var opts := _options(id)

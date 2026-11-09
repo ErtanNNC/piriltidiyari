@@ -9,6 +9,7 @@
   python3 tools/free_model.py <id> "<what it is>" [--seeds 7,21] [--image art.png]
       -> work/free_model/<id>_<seed>.webp (drawings, pick one)
   python3 tools/free_model.py <id> --image work/free_model/<id>_21.webp
+  ("raw:<prompt>" as <what> skips the character style, for props/scenery)
       -> assets/models/<id>.glb (+ a starter <id>.json with facing 0)
 
 Needs: pip install gradio_client trimesh networkx scipy pillow, and a Hugging
@@ -38,7 +39,8 @@ def drawings(model_id, what, seeds):
     for seed in seeds:
         if os.path.exists(os.path.join(WORK, "%s_%d.webp" % (model_id, seed))):
             continue
-        r = c.predict(prompt=STYLE.format(what=what), seed=seed, randomize_seed=False, width=1024, height=1024,
+        prompt = what[len("raw:"):] if what.startswith("raw:") else STYLE.format(what=what)
+        r = c.predict(prompt=prompt, seed=seed, randomize_seed=False, width=1024, height=1024,
                       num_inference_steps=4, api_name="/infer")
         out = os.path.join(WORK, "%s_%d.webp" % (model_id, seed))
         shutil.copy(r[0] if isinstance(r, (list, tuple)) else r, out)

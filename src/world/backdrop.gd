@@ -8,7 +8,10 @@ extends RefCounted
 const STYLE := {
 	"sabah": "hills", "aksam": "hills", "pus": "hills", "kule": "hills",
 	"orman": "forest", "liman": "islands", "dag": "peaks", "kale": "spires",
+	"kanyon": "mesas",
 }
+## Real rock models (FLUX + TRELLIS) for the canyon's edge and horizon.
+const CANYON_ROCKS := ["kanyon_kaya_a", "kanyon_kaya_b", "kanyon_kaya_c"]
 
 
 static func add(scene: Node3D, mood: String) -> void:
@@ -58,6 +61,7 @@ static func add(scene: Node3D, mood: String) -> void:
 			"islands": _island(holder, at, rng, haze, mix)
 			"peaks": _peak(holder, at, rng, haze, mix)
 			"spires": _spire(holder, at, rng, haze, mix)
+			"mesas": _mesa(holder, at, rng, haze, mix, i)
 
 
 static func _p(parent: Node3D, shape: String, size: Vector3, col: Color, pos: Vector3, rot := Vector3.ZERO) -> MeshInstance3D:
@@ -134,6 +138,36 @@ static func _spire(h: Node3D, at: Vector3, rng: RandomNumberGenerator, haze: Col
 ## inside stay as they are), and a ring of low mounds with bushes, rocks or
 ## trees marks the edge. The edge comes from the scene's WorldBoundary walls
 ## (else the floors' extent); exits (TriggerAreas near the edge) get a gap.
+## A red sandstone mesa (real model) far out, hazed toward the horizon;
+## every third spot gets a rock pillar instead, for a broken skyline.
+static func _mesa(h: Node3D, at: Vector3, rng: RandomNumberGenerator, haze: Color, mix: float, i: int) -> void:
+	var id := "kanyon_mesa" if i % 3 != 2 else "kanyon_kaya_b"
+	var m := ModelImport.load_static(id)
+	if m == null:
+		_peak(h, at, rng, haze, mix)
+		return
+	var tall := rng.randf_range(9.0, 15.0) if id == "kanyon_mesa" else rng.randf_range(12.0, 18.0)
+	m.scale = Vector3.ONE * tall / ModelImport.static_height(id)
+	m.position = at + Vector3(0, -0.6, 0)
+	m.rotation.y = rng.randf() * TAU
+	_haze(m, haze, mix)
+	h.add_child(m)
+
+
+## Tint every toon material of a model toward the sky's haze color.
+static func _haze(node: Node, haze: Color, mix: float) -> void:
+	for mi in node.find_children("*", "MeshInstance3D", true, false):
+		var m := mi as MeshInstance3D
+		for s in m.get_surface_override_material_count():
+			var mat := m.get_surface_override_material(s)
+			if mat == null:
+				mat = m.mesh.surface_get_material(s)
+			if mat is ShaderMaterial:
+				var c := (mat as ShaderMaterial).duplicate() as ShaderMaterial
+				c.set_shader_parameter("albedo", Color.WHITE.lerp(haze, mix))
+				m.set_surface_override_material(s, c)
+
+
 static func _border(scene: Node3D, holder: Node3D, floors: Array, mood: String) -> void:
 	var style: String = STYLE.get(mood, "")
 	if floors.is_empty() or style in ["islands", "spires"]:
@@ -203,6 +237,8 @@ static func _border(scene: Node3D, holder: Node3D, floors: Array, mood: String) 
 					blocked = true
 			if blocked:
 				continue
+			if style == "mesas" and _rock(holder, at, rng):
+				continue
 			var w := rng.randf_range(4.0, 7.0)
 			var h := rng.randf_range(1.6, 3.4)
 			_p(holder, "ellipsoid", Vector3(w, h * 2.0, w * 0.8), mound.lerp(ground, rng.randf() * 0.4), at + Vector3(0, -h * 0.35, 0), Vector3(0, rng.randf() * 180.0, 0))
@@ -217,6 +253,20 @@ static func _border(scene: Node3D, holder: Node3D, floors: Array, mood: String) 
 				_p(holder, "cone" if style == "forest" else "ellipsoid", Vector3(1.9, 2.4, 1.9), Color("#3f9a52"), top + Vector3(0, 2.1, 0))
 			elif r < 0.85:
 				_p(holder, "sphere", Vector3(1.2, 0.8, 1.0), ground.darkened(0.3) if not snowy else Color("#c9d3e2"), top)
+
+
+## A canyon rock model on the edge (false without the files).
+static func _rock(holder: Node3D, at: Vector3, rng: RandomNumberGenerator) -> bool:
+	var id: String = CANYON_ROCKS[rng.randi() % CANYON_ROCKS.size()]
+	var m := ModelImport.load_static(id)
+	if m == null:
+		return false
+	var tall := rng.randf_range(3.0, 5.5) if id != "kanyon_kaya_b" else rng.randf_range(5.0, 7.5)
+	m.scale = Vector3.ONE * tall / ModelImport.static_height(id)
+	m.position = at + Vector3(0, -0.3, 0)
+	m.rotation.y = rng.randf() * TAU
+	holder.add_child(m)
+	return true
 
 
 ## The walkable rectangle [lo, hi] (x, z): the WorldBoundary walls where a

@@ -39,7 +39,14 @@ uniform float fur_on = 0.0;
 uniform vec4 fur_from : source_color = vec4(1.0);
 uniform vec4 fur_to : source_color = vec4(1.0);
 
+// Ground detail (a grey detail map, 0.5 = no change) projected from above in
+// world space, sampled at two scales/rotations so the tiling doesn't show.
+uniform sampler2D ground_tex : hint_default_white, filter_linear_mipmap, repeat_enable;
+uniform float ground_strength = 0.0;
+uniform float ground_scale = 0.18;
+
 varying vec3 world_pos;
+varying float world_up;
 
 #include "res://src/world/noise.gdshaderinc"
 #include "res://src/world/rig.gdshaderinc"
@@ -94,6 +101,7 @@ void vertex() {
 	rig_pos = rig_rest(VERTEX);
 	VERTEX = rig_deform(VERTEX, TIME);
 	world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
+	world_up = normalize((MODEL_MATRIX * vec4(NORMAL, 0.0)).xyz).y;
 }
 
 void fragment() {
@@ -103,6 +111,12 @@ void fragment() {
 	}
 	if (fur_on > 0.5) {
 		base = fur_shift(base);
+	}
+	if (ground_strength > 0.0) {
+		vec2 q = world_pos.xz * ground_scale;
+		vec2 r = mat2(vec2(0.8, 0.6), vec2(-0.6, 0.8)) * q * 0.41 + vec2(0.37, 0.71);
+		float d = texture(ground_tex, q).r + texture(ground_tex, r).r - 1.0;
+		base *= 1.0 + d * ground_strength * 2.0 * smoothstep(0.5, 0.9, world_up);
 	}
 	if (patch_strength > 0.0) {
 		vec2 q = world_pos.xz;

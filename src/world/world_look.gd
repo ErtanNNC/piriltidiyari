@@ -23,8 +23,34 @@ const SKIES := {
 	"orman": ["#3d6f62", "#b7d9b8", "#22362e", "#e2f0dc", "#9cbca8", 0.35, 0.0, "#fff6d8", 0.0014, 0.16],
 	"liman": ["#4f9ff0", "#e2f2ff", "#8fc4f2", "#ffffff", "#c6dcf4", 0.5, 0.0, "#fff4d0", 0.0016, 0.2],
 	"dag": ["#8494d4", "#f2e6f2", "#9fadd6", "#ffffff", "#c8cdec", 0.4, 0.1, "#fff0e0", 0.0013, 0.12],
+	"kanyon": ["#d9845e", "#ffe2bf", "#e8a27c", "#fff4e6", "#f2c1a0", 0.4, 0.05, "#fff0d8", 0.0012, 0.14],
 	"kale": ["#100d24", "#4a3f72", "#1e1b30", "#3e3666", "#2a2448", 0.4, 0.85, "#e8e0ff", 0.0009, 0.0],
 }
+
+
+## A ground detail map (assets/textures/<name>.png, grey around 0.5) on every
+## floor and path of the scene: sand grains, pebbles, cracks. Floors keep
+## their own colours; only the detail is added.
+static func ground_detail(scene: Node3D, name: String, strength := 0.5, scale := 0.18) -> void:
+	var tex := load("res://assets/textures/%s.png" % name) as Texture2D
+	if tex == null:
+		return
+	await scene.get_tree().process_frame
+	if not is_instance_valid(scene):
+		return
+	var floors: Array = []
+	var paths: Array = []
+	Decor._collect(scene, floors, paths)
+	for f: Dictionary in floors + paths:
+		var mi := f["mi"] as MeshInstance3D
+		var mat := mi.material_override as ShaderMaterial
+		if mat == null or mat.get_shader_parameter("albedo") == null:
+			continue
+		mat = mat.duplicate() as ShaderMaterial
+		mat.set_shader_parameter("ground_tex", tex)
+		mat.set_shader_parameter("ground_strength", strength)
+		mat.set_shader_parameter("ground_scale", scale)
+		mi.material_override = mat
 
 
 ## The mood of the scene being played (footprints, dust colors...).
@@ -109,6 +135,19 @@ static func add(parent: Node, mood: String) -> Environment:
 			sun.light_color = Color("#fff0e0")
 			sun.light_energy = 0.42
 			sun.rotation_degrees = Vector3(-40, 35, 0)
+		"kanyon":
+			# Gümbür Kanyonu: warm late afternoon over red sandstone
+			env.background_color = Color("#e8a27c")
+			env.ambient_light_color = Color("#ffd9bd")
+			env.ambient_light_energy = 0.3
+			env.glow_hdr_threshold = 1.4
+			env.fog_enabled = true
+			env.fog_light_color = Color("#f0c4a2")
+			env.fog_density = 0.004
+			env.fog_sky_affect = 0.0
+			sun.light_color = Color("#ffe6c8")
+			sun.light_energy = 0.58
+			sun.rotation_degrees = Vector3(-38, 40, 0)
 		"kale":
 			# Pus Kalesi: gloomy grey-purple, readable; sparks bring the color
 			env.background_color = Color("#1e1b30")

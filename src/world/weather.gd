@@ -50,6 +50,8 @@ func _ready() -> void:
 		"dag":
 			_snow(70, 0.06)
 			_storm.append(_snow(160, 0.1))
+		"kanyon":
+			_motes(40)
 		"kale":
 			_mist(14, Color(0.55, 0.42, 0.85, 0.22))
 			_motes(30, true)
