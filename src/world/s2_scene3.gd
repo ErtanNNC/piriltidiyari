@@ -172,7 +172,7 @@ func _build() -> void:
 	var rng := RandomNumberGenerator.new()
 	rng.seed = 5
 	for side: float in [-1.0, 1.0]:
-		WorldLook.block(lv, Vector3(7.2 * side, 3.5, -16), Vector3(2.4, 7, 72), ROCK_DARK)
+		ModelImport.cover_row(WorldLook.block(lv, Vector3(7.2 * side, 3.5, -16), Vector3(2.4, 7, 72), ROCK_DARK), ["kanyon_kaya_a", "koy_kaya"], 6.0)
 		for z in range(20, -52, -6):
 			Toon.part(lv, "cone", Vector3(2.6, 4.0 + float(absi(z)) * 0.05, 2.6), ROCK, Vector3(8.0 * side, 8.6, float(z)))
 			# autumn bushes along the rim of the path

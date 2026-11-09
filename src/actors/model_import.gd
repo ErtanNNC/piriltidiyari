@@ -106,6 +106,48 @@ static func static_height(id: String) -> float:
 	return maxf(static_bounds(id).size.y, 0.01)
 
 
+## Dress a WorldLook.block (StaticBody3D with a box shape) in a prop model:
+## the model is stretched over the box (`grow` widens x/z so neighbours
+## meet), the box keeps its collider and hides its own mesh. False without
+## the file (the box keeps its look).
+static func cover_block(body: StaticBody3D, id: String, grow := Vector3(1.0, 1.0, 1.0), yaw := 0.0) -> bool:
+	var shape: BoxShape3D = null
+	for c in body.get_children():
+		if c is CollisionShape3D and (c as CollisionShape3D).shape is BoxShape3D:
+			shape = (c as CollisionShape3D).shape
+	if shape == null or body.get_parent() == null:
+		return false
+	var m := fit_static(id, body.get_parent() as Node3D, body.position, shape.size * grow, yaw)
+	if m == null:
+		return false
+	for mi in body.find_children("*", "MeshInstance3D", true, false):
+		(mi as MeshInstance3D).visible = false
+	return true
+
+
+## Like cover_block for a long wall: a row of pieces (ids in turn) along
+## the box's longer side, each about `step` long, slightly overlapping.
+static func cover_row(body: StaticBody3D, ids: Array, step := 6.0, grow := Vector3(1.3, 1.08, 1.3)) -> bool:
+	var shape: BoxShape3D = null
+	for c in body.get_children():
+		if c is CollisionShape3D and (c as CollisionShape3D).shape is BoxShape3D:
+			shape = (c as CollisionShape3D).shape
+	if shape == null or body.get_parent() == null or path_for(String(ids[0])) == "":
+		return false
+	var along_x := shape.size.x >= shape.size.z
+	var length := shape.size.x if along_x else shape.size.z
+	var n := maxi(1, int(round(length / step)))
+	var seg := length / n
+	for i in n:
+		var off := -length * 0.5 + seg * (i + 0.5)
+		var at := body.position + (Vector3(off, 0, 0) if along_x else Vector3(0, 0, off))
+		var size := Vector3(seg, shape.size.y, shape.size.z) if along_x else Vector3(shape.size.x, shape.size.y, seg)
+		fit_static(String(ids[i % ids.size()]), body.get_parent() as Node3D, at, size * grow, PI * float(i % 2))
+	for mi in body.find_children("*", "MeshInstance3D", true, false):
+		(mi as MeshInstance3D).visible = false
+	return true
+
+
 ## A prop model stretched over a box (center, size): the box keeps its
 ## collider and loses its look. Null without the file.
 static func fit_static(id: String, parent: Node3D, center: Vector3, size: Vector3, yaw := 0.0) -> Node3D:

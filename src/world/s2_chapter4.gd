@@ -34,7 +34,6 @@ var _echoes: Array[Node3D] = []
 
 func _ready() -> void:
 	WorldLook.add(self, "kanyon")
-	WorldLook.ground_detail(self, "kanyon_zemin", 0.22, 0.09)
 	Pus.set_color(Pus.RED)
 	var d := GameState.data
 	Pus.set_amount(0.03 if d.has_flag("s2_can4") else 0.15)

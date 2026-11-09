@@ -359,7 +359,10 @@ func _build() -> void:
 			var z := 27.0 - k * 7.0
 			var h := rng.randf_range(8.0, 13.0)
 			var w := rng.randf_range(3.0, 4.5)
-			WorldLook.block(lv, Vector3(side * (13.5 + w * 0.5), h * 0.5, z), Vector3(w, h, 7.2), ROCK if k % 2 == 0 else ROCK_DARK, 0.03)
+			var wall := WorldLook.block(lv, Vector3(side * (13.5 + w * 0.5), h * 0.5, z), Vector3(w, h, 7.2), ROCK if k % 2 == 0 else ROCK_DARK, 0.03)
+			# real volcanic rock over the box (the boards on the walls stay clear)
+			if ModelImport.cover_block(wall, "volkan_sutun" if k % 2 == 0 else "volkan_kaya", Vector3(1.25, 1.06, 1.2), PI * float(k % 2)):
+				continue
 			if k % 3 == 1:
 				Toon.part(lv, "box", Vector3(0.12, h * 0.5, 0.2), Color("#e8603a"), Vector3(side * 13.45, h * 0.3, z + 1.0), Vector3(0, 0, 8 * side), 0.5, 0.0)
 	# the summit: a ring of dark rocks round the arena (open to the south)
@@ -368,7 +371,7 @@ func _build() -> void:
 		var p := ARENA + Vector3(cos(a) * 11.0, 0, sin(a) * 11.0)
 		if p.z > ARENA.z + 7.0:
 			continue
-		WorldLook.block(lv, p + Vector3.UP * 0.9, Vector3(1.6, 1.8, 1.6), ROCK_DARK, 0.03)
+		ModelImport.cover_block(WorldLook.block(lv, p + Vector3.UP * 0.9, Vector3(1.6, 1.8, 1.6), ROCK_DARK, 0.03), "volkan_kaya", Vector3(1.3, 1.1, 1.3), a)
 	# the words on the walls
 	for i in WORDS.size():
 		var w := Node3D.new()
@@ -394,7 +397,7 @@ func _build() -> void:
 		t.reached.connect(_collect_word.bind(i))
 	# Minnoş's quiet nook: two boulders by the east wall
 	for p: Vector3 in [MINNOS_AT + Vector3(1.6, 0, -1.6), MINNOS_AT + Vector3(1.4, 0, 1.8)]:
-		WorldLook.block(lv, p + Vector3.UP * 0.7, Vector3(1.6, 1.4, 1.4), ROCK_DARK, 0.03)
+		ModelImport.cover_block(WorldLook.block(lv, p + Vector3.UP * 0.7, Vector3(1.6, 1.4, 1.4), ROCK_DARK, 0.03), "volkan_kaya", Vector3(1.3, 1.1, 1.3), p.z)
 	# the mountain's bell
 	var bell := EchoBell.new()
 	bell.name = "Bell"

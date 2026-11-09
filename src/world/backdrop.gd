@@ -10,11 +10,54 @@ const STYLE := {
 	"orman": "forest", "liman": "islands", "dag": "peaks", "kale": "spires",
 	"kanyon": "mesas",
 }
-## Real rock models (FLUX + TRELLIS) for the canyon's edge and horizon.
-const CANYON_ROCKS := ["kanyon_kaya_a", "kanyon_kaya_b", "kanyon_kaya_a"]
+## Region kits of real models (FLUX drawings + TRELLIS): pieces along the map
+## edge, pieces on the horizon, and a ground detail map. A missing file just
+## falls back to the primitive look.
+const KITS := {
+	"kanyon": {"edge": ["kanyon_kaya_a", "kanyon_kaya_b"], "edge_h": [3.0, 6.0],
+		"far": ["kanyon_mesa", "kanyon_mesa", "kanyon_kaya_b"], "far_h": [9.0, 16.0], "ground": "kanyon_zemin"},
+	"koy": {"edge": ["koy_cali", "koy_kaya", "koy_cali"], "edge_h": [1.6, 3.0],
+		"far": ["koy_tepe"], "far_h": [6.0, 11.0], "ground": "zemin_cayir"},
+	"kaplica": {"edge": ["kaplica_kaya", "koy_cali", "koy_kaya"], "edge_h": [1.6, 3.0],
+		"far": ["koy_tepe"], "far_h": [6.0, 11.0], "ground": "zemin_cayir"},
+	"orman": {"edge": ["orman_kutuk", "orman_mantar", "koy_cali"], "edge_h": [2.0, 3.6],
+		"far": ["orman_agaclar"], "far_h": [9.0, 14.0], "ground": "zemin_orman"},
+	"kizil": {"edge": ["kizil_agac", "kizil_kutuk", "kizil_agac"], "edge_h": [2.4, 5.0],
+		"far": ["kizil_agac"], "far_h": [8.0, 13.0], "ground": "zemin_kizil"},
+	"gol": {"edge": ["gol_saz", "gol_kaya", "koy_cali"], "edge_h": [1.6, 3.0],
+		"far": ["koy_tepe"], "far_h": [6.0, 11.0], "ground": "zemin_cayir"},
+	"tarla": {"edge": ["tarla_saman", "tarla_cit", "koy_cali"], "edge_h": [1.4, 2.6],
+		"far": ["tarla_tepe"], "far_h": [6.0, 11.0], "ground": "zemin_tarla"},
+	"dag": {"edge": ["dag_kaya", "dag_cam", "dag_kaya"], "edge_h": [2.4, 5.0],
+		"far": ["dag_zirve"], "far_h": [12.0, 20.0], "ground": "zemin_kar"},
+	"kale": {"edge": ["kale_kristal", "kale_sutun"], "edge_h": [2.0, 4.0],
+		"far": ["kale_kule"], "far_h": [12.0, 20.0], "ground": "zemin_kale"},
+	"volkan": {"edge": ["volkan_kaya", "volkan_sutun", "volkan_kaya"], "edge_h": [2.4, 5.0],
+		"far": ["volkan_dag", "volkan_sutun"], "far_h": [10.0, 18.0], "ground": "zemin_volkan"},
+	"yol": {"edge": ["koy_kaya", "kanyon_kaya_b", "koy_cali"], "edge_h": [2.0, 4.0],
+		"far": ["dag_zirve", "koy_tepe"], "far_h": [9.0, 16.0], "ground": "zemin_cayir"},
+	"liman": {"ground": "zemin_kum"},
+	"magara": {"ground": "zemin_magara"},
+}
+## Which kit a scene uses (SceneFlow.current); else the mood's own.
+const SCENE_KIT := {
+	"scene1": "koy", "scene2": "koy", "scene3": "koy", "scene6": "koy", "chapter0": "koy", "final": "koy",
+	"chapter1": "orman", "chapter2": "magara", "chapter3": "liman", "chapter4": "dag", "chapter5": "kale",
+	"s2_scene1": "koy", "s2_scene2": "koy", "s2_scene3": "yol", "s2_scene4": "yol", "s2_scene5": "yol",
+	"s2_scene6": "koy", "s2_chapter0": "kaplica", "s2_chapter1": "kizil", "s2_chapter2": "gol",
+	"s2_chapter3": "tarla", "s2_chapter4": "kanyon", "s2_chapter5": "volkan", "s2_final": "koy",
+}
+
+
+static func kit_for(mood: String) -> Dictionary:
+	var id: String = SCENE_KIT.get(SceneFlow.current, mood)
+	return KITS.get(id, {})
 
 
 static func add(scene: Node3D, mood: String) -> void:
+	var kit := kit_for(mood)
+	if kit.has("ground"):
+		WorldLook.ground_detail(scene, kit["ground"], 0.22, 0.09)
 	if not STYLE.has(mood):
 		return
 	await scene.get_tree().process_frame
@@ -55,13 +98,15 @@ static func add(scene: Node3D, mood: String) -> void:
 		var at := Vector3(center.x + cos(a) * dist, floor_y, center.y + sin(a) * dist)
 		var far := clampf((dist - radius - 18.0) / 16.0, 0.0, 1.0)
 		var mix := 0.35 + far * 0.25
+		if _far_model(holder, at, rng, haze, mix, kit):
+			continue
 		match style:
 			"hills": _hill(holder, at, rng, haze, mix, mood)
 			"forest": _forest(holder, at, rng, haze, mix)
 			"islands": _island(holder, at, rng, haze, mix)
 			"peaks": _peak(holder, at, rng, haze, mix)
 			"spires": _spire(holder, at, rng, haze, mix)
-			"mesas": _mesa(holder, at, rng, haze, mix, i)
+			"mesas": _peak(holder, at, rng, haze, mix)
 
 
 static func _p(parent: Node3D, shape: String, size: Vector3, col: Color, pos: Vector3, rot := Vector3.ZERO) -> MeshInstance3D:
@@ -138,20 +183,22 @@ static func _spire(h: Node3D, at: Vector3, rng: RandomNumberGenerator, haze: Col
 ## inside stay as they are), and a ring of low mounds with bushes, rocks or
 ## trees marks the edge. The edge comes from the scene's WorldBoundary walls
 ## (else the floors' extent); exits (TriggerAreas near the edge) get a gap.
-## A red sandstone mesa (real model) far out, hazed toward the horizon;
-## every third spot gets a rock pillar instead, for a broken skyline.
-static func _mesa(h: Node3D, at: Vector3, rng: RandomNumberGenerator, haze: Color, mix: float, i: int) -> void:
-	var id := "kanyon_mesa" if i % 3 != 2 else "kanyon_kaya_b"
+## A horizon piece from the region kit, hazed toward the sky (false without one).
+static func _far_model(h: Node3D, at: Vector3, rng: RandomNumberGenerator, haze: Color, mix: float, kit: Dictionary) -> bool:
+	var ids: Array = kit.get("far", [])
+	if ids.is_empty():
+		return false
+	var id: String = ids[rng.randi() % ids.size()]
 	var m := ModelImport.load_static(id)
 	if m == null:
-		_peak(h, at, rng, haze, mix)
-		return
-	var tall := rng.randf_range(9.0, 15.0) if id == "kanyon_mesa" else rng.randf_range(12.0, 18.0)
-	m.scale = Vector3.ONE * tall / ModelImport.static_height(id)
+		return false
+	var hr: Array = kit.get("far_h", [8.0, 14.0])
+	m.scale = Vector3.ONE * rng.randf_range(hr[0], hr[1]) / ModelImport.static_height(id)
 	m.position = at + Vector3(0, -0.6, 0)
 	m.rotation.y = rng.randf() * TAU
 	_haze(m, haze, mix)
 	h.add_child(m)
+	return true
 
 
 ## Tint every toon material of a model toward the sky's haze color.
@@ -237,7 +284,7 @@ static func _border(scene: Node3D, holder: Node3D, floors: Array, mood: String) 
 					blocked = true
 			if blocked:
 				continue
-			if style == "mesas" and _rock(holder, at, rng):
+			if _edge_model(holder, at, rng, kit_for(mood)):
 				continue
 			var w := rng.randf_range(4.0, 7.0)
 			var h := rng.randf_range(1.6, 3.4)
@@ -255,14 +302,17 @@ static func _border(scene: Node3D, holder: Node3D, floors: Array, mood: String) 
 				_p(holder, "sphere", Vector3(1.2, 0.8, 1.0), ground.darkened(0.3) if not snowy else Color("#c9d3e2"), top)
 
 
-## A canyon rock model on the edge (false without the files).
-static func _rock(holder: Node3D, at: Vector3, rng: RandomNumberGenerator) -> bool:
-	var id: String = CANYON_ROCKS[rng.randi() % CANYON_ROCKS.size()]
+## An edge piece from the region kit (false without one).
+static func _edge_model(holder: Node3D, at: Vector3, rng: RandomNumberGenerator, kit: Dictionary) -> bool:
+	var ids: Array = kit.get("edge", [])
+	if ids.is_empty():
+		return false
+	var id: String = ids[rng.randi() % ids.size()]
 	var m := ModelImport.load_static(id)
 	if m == null:
 		return false
-	var tall := rng.randf_range(3.0, 5.5) if id != "kanyon_kaya_b" else rng.randf_range(5.0, 7.5)
-	m.scale = Vector3.ONE * tall / ModelImport.static_height(id)
+	var hr: Array = kit.get("edge_h", [2.0, 4.0])
+	m.scale = Vector3.ONE * rng.randf_range(hr[0], hr[1]) / ModelImport.static_height(id)
 	m.position = at + Vector3(0, -0.3, 0)
 	m.rotation.y = rng.randf() * TAU
 	holder.add_child(m)
