@@ -82,19 +82,46 @@ static func load_static(id: String) -> Node3D:
 	return root
 
 
-static var _static_heights := {}
+static var _static_bounds := {}
 
 
-## Height of a prop model's file at scale 1 (to size `load_static` copies).
+## Bounds of a prop model's file at scale 1 (to fit `load_static` copies).
+static func static_bounds(id: String) -> AABB:
+	if not _static_bounds.has(id):
+		# the raw file, not a toon copy (freeing one outside the tree spams
+		# "material is null" from its shader instance parameters)
+		var box := AABB(Vector3(-0.5, 0, -0.5), Vector3.ONE)
+		var path := path_for(id)
+		var scene := load(path) as PackedScene if path != "" else null
+		if scene:
+			var raw := scene.instantiate() as Node3D
+			var turn := Transform3D(Basis(Vector3.UP, deg_to_rad(float(_options(id).get("facing", 0.0)))), Vector3.ZERO)
+			box = _bounds(raw, turn)
+			raw.free()
+		_static_bounds[id] = box
+	return _static_bounds[id]
+
+
 static func static_height(id: String) -> float:
-	if not _static_heights.has(id):
-		var m := load_static(id)
-		var h := 1.0
-		if m:
-			h = maxf(_bounds(m, Transform3D.IDENTITY).size.y, 0.01)
-			m.free()
-		_static_heights[id] = h
-	return _static_heights[id]
+	return maxf(static_bounds(id).size.y, 0.01)
+
+
+## A prop model stretched over a box (center, size): the box keeps its
+## collider and loses its look. Null without the file.
+static func fit_static(id: String, parent: Node3D, center: Vector3, size: Vector3, yaw := 0.0) -> Node3D:
+	var m := load_static(id)
+	if m == null:
+		return null
+	var b := static_bounds(id)
+	var s := Vector3(size.x / maxf(b.size.x, 0.01), size.y / maxf(b.size.y, 0.01), size.z / maxf(b.size.z, 0.01))
+	var holder := Node3D.new()
+	parent.add_child(holder)
+	holder.position = center
+	holder.rotation.y = yaw
+	holder.add_child(m)
+	m.scale = s
+	m.position = -(b.position + b.size * 0.5) * s
+	return holder
 
 
 ## Wraps any loaded model (fit, toon look, rig). Also used by the import check.

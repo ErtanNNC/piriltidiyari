@@ -65,6 +65,15 @@ is a copy of the design system's tokens.
   up); Gürledek, Çaydanlık (its lid stays a separate popping part), Fırfır,
   Fokur, Hırıl (`HirilModel.build`) fall back to their primitives without
   a file.
+- Environment kits (canyon first): FLUX "raw:<prompt>" drawings → TRELLIS →
+  `free_model.py <id> --decimate N` (texture-aware, ~9k for scenery repeated
+  many times; thin outline 0.008 in the json). Mood "kanyon" (s2_chapter4):
+  warm sky, dust, Backdrop style "mesas" (mesa models on the horizon, rock
+  models on the edge), `ModelImport.fit_static(id, parent, center, size)`
+  stretches a rock model over a wall/boulder box (the box keeps its collider,
+  its mesh is hidden), `WorldLook.ground_detail(scene, tex, strength, scale)`
+  lays a grey detail map (assets/textures/) over all floors via the toon
+  shader's `ground_tex`. Before/after: `--scene=s2_chapter4 --auto --at=9 --zoom=45`.
 - Ground decor is automatic: `Decor.auto(scene, style)` in each scene's `_ready`
   scatters non-colliding MultiMesh props on upright floors; thin meshes are paths.
 - Rigged keepers: Pati, Bado, Çıtır and Lumi play real bone clips (idle,

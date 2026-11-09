@@ -11,7 +11,7 @@ const STYLE := {
 	"kanyon": "mesas",
 }
 ## Real rock models (FLUX + TRELLIS) for the canyon's edge and horizon.
-const CANYON_ROCKS := ["kanyon_kaya_a", "kanyon_kaya_b", "kanyon_kaya_c"]
+const CANYON_ROCKS := ["kanyon_kaya_a", "kanyon_kaya_b", "kanyon_kaya_a"]
 
 
 static func add(scene: Node3D, mood: String) -> void:

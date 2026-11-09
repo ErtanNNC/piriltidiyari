@@ -125,6 +125,36 @@ def cutout(image):
     return out
 
 
+def decimate(model_id, tris):
+    """Texture-aware decimation of assets/models/<id>.glb down to about
+    `tris` triangles (props and scenery repeated many times in a scene)."""
+    import numpy as np
+    import pymeshlab
+    import trimesh
+    dst = os.path.join(ROOT, "assets", "models", model_id + ".glb")
+    sc = trimesh.load(dst)
+    g0 = sc.dump(concatenate=True) if len(sc.geometry) > 1 else list(sc.geometry.values())[0]
+    tmp = os.path.join(WORK, "_dec_in.glb")  # PNG textures: pymeshlab can't read every format
+    trimesh.Scene(g0).export(tmp)
+    ms = pymeshlab.MeshSet()
+    ms.load_new_mesh(tmp)
+    before = ms.current_mesh().face_number()
+    ms.meshing_decimation_quadric_edge_collapse_with_texture(targetfacenum=tris, preserveboundary=False,
+                                                              optimalplacement=True, extratcoordw=1.0)
+    m = ms.current_mesh()
+    pos = m.vertex_matrix()[m.face_matrix()].reshape(-1, 3)
+    uv = m.wedge_tex_coord_matrix().reshape(-1, 2)
+    key = np.round(np.hstack([pos, uv]) / 1e-6).astype(np.int64)
+    _, first, inv = np.unique(key, axis=0, return_index=True, return_inverse=True)
+    out = trimesh.Trimesh(pos[first], inv.reshape(-1, 3), process=False,
+                          visual=trimesh.visual.TextureVisuals(uv=uv[first], material=g0.visual.material))
+    weld_normals(out)
+    out2 = os.path.join(WORK, model_id + "_dec.glb")
+    trimesh.Scene(out).export(out2)
+    subprocess.run([sys.executable, os.path.join(ROOT, "tools", "shrink_glb.py"), out2, dst], check=True)
+    print("üçgen:", before, "->", len(out.faces))
+
+
 def clean_floor(src, dst):
     """Drops thin, wide parts at the very bottom (the drawing's ground shadow)."""
     import numpy as np
@@ -188,12 +218,15 @@ if __name__ == "__main__":
     ap.add_argument("--seed", type=int, default=1, help="TRELLIS seed (another try of the same drawing)")
     ap.add_argument("--keep-raw", action="store_true", help="reuse work/free_model/<id>_raw.glb (no GPU)")
     ap.add_argument("--shape-only", action="store_true", help="only fetch the TRELLIS.2 shape (GPU part)")
+    ap.add_argument("--decimate", type=int, help="cut assets/models/<id>.glb down to N triangles")
     ap.add_argument("--roster", help="json {id: what}: drawings for every id (id 'all')")
     a = ap.parse_args()
     if a.roster:
         for mid, what in json.load(open(a.roster)).items():
             if a.id in ("all", mid):
                 drawings(mid, what, [int(s) for s in a.seeds.split(",")])
+    elif a.decimate:
+        decimate(a.id, a.decimate)
     elif a.reclean:
         reclean(a.id)
     elif a.image:

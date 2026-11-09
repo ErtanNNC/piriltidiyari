@@ -304,12 +304,22 @@ func _build() -> void:
 			var z := 26.0 - k * 7.0
 			var h := rng.randf_range(7.0, 11.0)
 			var w := rng.randf_range(3.0, 4.5)
-			WorldLook.block(lv, Vector3(side * (13.0 + w * 0.5), h * 0.5, z), Vector3(w, h, 7.2), ROCK if k % 2 == 0 else ROCK_DARK, 0.03)
-			# a lighter band across the rock
-			Toon.part(lv, "box", Vector3(w + 0.1, 0.5, 7.25), Color("#e0a072"), Vector3(side * (13.0 + w * 0.5), h * 0.55, z), Vector3.ZERO, 0.0, 0.0)
+			var at := Vector3(side * (13.0 + w * 0.5), h * 0.5, z)
+			var wall := WorldLook.block(lv, at, Vector3(w, h, 7.2), ROCK if k % 2 == 0 else ROCK_DARK, 0.03)
+			# a real sandstone cliff over the box (a bit wider so the pieces
+			# meet); without the model the box gets a lighter band
+			var id := "kanyon_kaya_a" if k % 3 != 1 else "kanyon_mesa"
+			if ModelImport.fit_static(id, lv, at, Vector3(w * 1.5, h * 1.08, 8.6), PI * float(rng.randi() % 2)):
+				for mi in wall.find_children("*", "MeshInstance3D", true, false):
+					(mi as MeshInstance3D).visible = false
+			else:
+				Toon.part(lv, "box", Vector3(w + 0.1, 0.5, 7.25), Color("#e0a072"), Vector3(side * (13.0 + w * 0.5), h * 0.55, z), Vector3.ZERO, 0.0, 0.0)
 	# boulders along the sides (never on the path)
 	for p: Vector3 in [Vector3(-10, 0, 20), Vector3(10.5, 0, -14), Vector3(-10.5, 0, -20), Vector3(10, 0, 22)]:
-		WorldLook.block(lv, p + Vector3.UP * 0.7, Vector3(1.8, 1.4, 1.6), ROCK_DARK, 0.03)
+		var boulder := WorldLook.block(lv, p + Vector3.UP * 0.7, Vector3(1.8, 1.4, 1.6), ROCK_DARK, 0.03)
+		if ModelImport.fit_static("kanyon_kaya_a", lv, p + Vector3.UP * 0.75, Vector3(2.3, 1.6, 2.1), p.x):
+			for mi in boulder.find_children("*", "MeshInstance3D", true, false):
+				(mi as MeshInstance3D).visible = false
 	# two low ledges (one hop) with an echo on each
 	for p: Vector3 in LEDGES:
 		WorldLook.block(lv, p, Vector3(3.0, 0.8, 3.0), ROCK, 0.03)
