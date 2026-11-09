@@ -350,10 +350,23 @@ func _reference() -> void:
 	else:
 		m = MobModels.build(id, false)
 	add_child(m)
-	_no_outline(m)
+	# --outline keeps the game's outline, --elev=50 looks down like the game
+	# camera, --yaw=30 turns round the model (checks for stray bits)
+	var elev := 0.0
+	var yaw := 0.0
+	var keep_outline := false
+	for arg in OS.get_cmdline_user_args():
+		if arg.begins_with("--elev="):
+			elev = float(arg.get_slice("=", 1))
+		elif arg.begins_with("--yaw="):
+			yaw = float(arg.get_slice("=", 1))
+		elif arg == "--outline":
+			keep_outline = true
+	if not keep_outline:
+		_no_outline(m)
 	var cam := Camera3D.new()
 	cam.fov = 30.0
-	cam.position = Vector3(0, 1.05, 5.2)
+	cam.position = Vector3(0, 1.0, 0) + Basis.from_euler(Vector3(deg_to_rad(-elev), deg_to_rad(yaw), 0)) * Vector3(0, 0.05, 5.2)
 	add_child(cam)
 	cam.look_at(Vector3(0, 1.0, 0))
 

@@ -48,7 +48,14 @@ is a copy of the design system's tokens.
   textured model with TRELLIS (MIT), strips the floor/shadow slab under the
   feet, shrinks textures → assets/models/<id>.glb + <id>.json ("facing": 0;
   TRELLIS faces +Z). Needs the HF token as a Network secret (huggingface.co,
-  *.hf.space). First one: Gümbür (also Çıngır via goat_kid.json).
+  *.hf.space). First one: Gümbür (also Çıngır via goat_kid.json). The
+  clean-up also welds normals across texture seams (`weld_normals`): split
+  normals cracked the outline shell into stray dark dashes by horn tips;
+  `--reclean <id>` redoes it without a GPU. Look from the game's angle:
+  `--scene=preview --demo=ref --model=<id> --elev=50 --yaw=40 --outline`.
+  Free ZeroGPU quota is a few minutes a day (≈2 models); TRELLIS.2
+  (microsoft/TRELLIS.2, MIT, ≥100k triangles → decimate locally) is the
+  next quality step.
 - Ground decor is automatic: `Decor.auto(scene, style)` in each scene's `_ready`
   scatters non-colliding MultiMesh props on upright floors; thin meshes are paths.
 - Rigged keepers: Pati, Bado, Çıtır and Lumi play real bone clips (idle,

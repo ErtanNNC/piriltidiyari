@@ -84,7 +84,34 @@ def clean_floor(src, dst):
                 print("zemin parçası silindi:", len(c), "üçgen")
         g.update_faces(keep)
         g.remove_unreferenced_vertices()
+        weld_normals(g)
     s.export(dst)
+
+
+def weld_normals(g):
+    """One normal per position: TRELLIS splits vertices along texture seams,
+    each copy got its own normal, and the game's outline (a shell pushed out
+    along the normals) cracked open there, leaving stray dark dashes by thin
+    parts (horn tips, ear edges)."""
+    import numpy as np
+    n = g.vertex_normals.copy()
+    key = np.round(g.vertices / 1e-5).astype(np.int64)
+    _, inv = np.unique(key, axis=0, return_inverse=True)
+    inv = inv.reshape(-1)
+    acc = np.zeros((inv.max() + 1, 3))
+    np.add.at(acc, inv, n)
+    acc /= np.maximum(np.linalg.norm(acc, axis=1, keepdims=True), 1e-9)
+    g.vertex_normals = acc[inv]
+
+
+def reclean(model_id):
+    """Re-run the clean-up on assets/models/<id>.glb (no GPU needed)."""
+    dst = os.path.join(ROOT, "assets", "models", model_id + ".glb")
+    tmp = os.path.join(WORK, model_id + "_reclean.glb")
+    os.makedirs(WORK, exist_ok=True)
+    clean_floor(dst, tmp)
+    shutil.copy(tmp, dst)
+    print("model:", dst)
 
 
 if __name__ == "__main__":
@@ -93,8 +120,11 @@ if __name__ == "__main__":
     ap.add_argument("what", nargs="?", default="")
     ap.add_argument("--seeds", default="7,21")
     ap.add_argument("--image")
+    ap.add_argument("--reclean", action="store_true", help="clean assets/models/<id>.glb again")
     a = ap.parse_args()
-    if a.image:
+    if a.reclean:
+        reclean(a.id)
+    elif a.image:
         model(a.id, a.image)
     else:
         drawings(a.id, a.what, [int(s) for s in a.seeds.split(",")])
