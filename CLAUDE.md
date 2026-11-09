@@ -163,8 +163,8 @@ is a copy of the design system's tokens.
   `Content.keepers`). Choosing resets powers, level 1, then `PrologueDone`.
 - Bölüm 0 `s2_chapter0` (Buharlı Kaplıca Köyü, pack `content/s2_chapter0/`):
   four neighbours talk over each other (Label3D shouts until heard; quest
-  `kopuk_koy`), Bulut Nine (`hippo` NPC, shop "bulut"), Demirci Kalay
-  (`smith_turtle`), mini boss Homurdanan Çaydanlık (`KettlePlan` + `Kettle`:
+  `kopuk_koy`), Tospik Nine (shop "tospik"), Madenci Kazma at the forge,
+  mini boss Homurdanan Çaydanlık (`KettlePlan` + `Kettle`:
   jets/splash warned, hittable while the lid is up, Sakinleş at the end), and
   the first Ses Çanı (`EchoBell`, `needs` = "quest/objective", flag `s2_can0`,
   event "ring"/"ses_cani") that lifts the Kızıl Sis. `PrologueDone` leads here.
@@ -174,8 +174,8 @@ is a copy of the design system's tokens.
   `once_sor` delivers them), Somurtkan Sincap throws acorns, the forest bell
   (`EchoBell.needs` = a whole quest) opens the Sis Perdesi, boss Tilki Fırfır
   (`FirfirPlan` + `Firfir`: leaf circles, a dash, sits tired = hittable,
-  Sakinleş ends it) gives the Turuncu Kor (flag `kor_turuncu`). New primitive
-  creatures/NPCs (raccoon, squirrel, fox, hippo, smith turtle, squirrel tailor)
+  Sakinleş ends it) gives the Turuncu Kor (flag `kor_turuncu`); Terzi Dikiş
+  runs the forest stall. New primitive creatures (raccoon, squirrel, fox...)
   are placeholders: an `assets/models/<id>.glb` replaces them.
 - Bölüm 2 `s2_chapter2` (Fokurdayan Göl, from Bölüm 1's north exit after
   `s2_bolum1_bitti`): frogs heard in turn (ordered quest `sira_bekle`, dialogue
@@ -216,6 +216,13 @@ is a copy of the design system's tokens.
   fifth → `become_calm` (event "listen"/"hiril"), Tıpış says sorry (NPC unless
   you are Tıpış), Al Kor (`kor_al`); talking to Mırıl sets `sezon2_bitti` →
   `Season2End` (closing line per keeper in `ENDINGS`), save goes to s2_chapter0.
+- Yol arkadaşları: Season 1 friends travel along (Sahne 6 `companions_arrive`,
+  bark `s6b_yol`) and fill Season 2's roles instead of new characters (saves
+  model credits, keeps the story together): Tospik Nine (Kaplıca Köyü guide
+  and stall), Madenci Kazma (smith), Terzi Dikiş (forest tailor), Kaptan
+  Pırpır (runs the Patpat fair). Çıngır reuses Gümbür's model
+  (`goat_kid.json` "model"). The Season 1 duckling is Vakvak (Tıpış is only
+  the red panda).
 - Kızıl Sis mobs keep their own colors: their builders use `_c(false, ...)`
   (only the face and steam show the anger).
 - Checks: `--scene=s2_scene1 --demo=glide|jump|party`, `--scene=s2_scene2 --demo=redwind|breath|guide|angry`,

@@ -1,7 +1,7 @@
 {
   "id": "kopuk_koy",
   "title": "Herkes Aynı Anda Konuşuyor",
-  "giver": "bulut",
+  "giver": "tospik_nine",
   "objectives": [
     {
       "id": "pitpit",
@@ -28,7 +28,7 @@
       "target": "bidik"
     }
   ],
-  "turn_in": "Bulut Nine'ye dön",
+  "turn_in": "Tospik Nine'ye dön",
   "rewards": {
     "piril": 25,
     "xp": 30

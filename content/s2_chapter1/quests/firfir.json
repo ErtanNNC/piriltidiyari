@@ -1,7 +1,7 @@
 {
   "id": "firfir",
   "title": "Tilki Fırfır",
-  "giver": "kozalak",
+  "giver": "dikis",
   "ordered": true,
   "objectives": [
     {
@@ -23,7 +23,7 @@
       "target": "turuncu_kor"
     }
   ],
-  "turn_in": "Terzi Kozalak'a dön",
+  "turn_in": "Terzi Dikiş'e dön",
   "rewards": {
     "piril": 60,
     "xp": 150

@@ -550,7 +550,7 @@
  "content/prologue/quests/kayip_fenerler.json": [
   "Kayıp Fenerler",
   "Pıtı'ya pembe fenerini ver",
-  "Tıpış'a mavi fenerini ver",
+  "Vakvak'a mavi fenerini ver",
   "Zıpzıp'a yeşil fenerini ver"
  ],
  "content/prologue/quests/kuleye_kosu.json": [
@@ -561,7 +561,7 @@
  ],
  "content/s2_chapter0/barks.json": [
   "İşte Buharlı Kaplıca Köyü! Her yerden buhar çıkıyor.",
-  "Önce kaplıcanın yanındaki Bulut Nine'yi bulayım.",
+  "Tospik Nine de gelmişti. Kaplıcanın yanında olmalı.",
   "FOKUR FOKUR! Kimse bana bakmaz, ben de kaynarım!",
   "Fokur... fokur... Sen beni dinledin mi?",
   "Dinledim. Artık soğuyabilirsin.",
@@ -580,25 +580,8 @@
   "Tek istediğim buydu. Bir merhaba demek.",
   "Herkes konuşuyor, kimse dinlemiyor! Hıh!"
  ],
- "content/s2_chapter0/dialogue/bulut.json": [
-  "Çanımız çaldı, köyümüz serinledi. Aferin sana, yavrum.",
-  "Çan çaldı! Duydun mu? Kızıl Sis köyümüzden çekildi.",
-  "Bundan sonra buradaki çan, yolculukta sana yuva olur.",
-  "Dağın ötesinde Kızıl Yaprak Ormanı var. Orada da biri kızgın.",
-  "Kazan homurdanıyor. Yorulunca kapağı kalkar, o zaman vur.",
-  "Herkesi dinledin. Bak, buharları geçti.",
-  "Öfke bir çaydanlık gibidir, yavrum. Kapağını kapatırsan patlar.",
-  "Köyün büyük kazanı da öyle. Kızıl Sis onu kaynattı.",
-  "Git, onu da dinle. Sonra tepedeki çanı çal.",
-  "Hepsi aynı anda konuşuyor. Teker teker dinle, yavrum.",
-  "Hoş geldin, bekçi! Ben Bulut, kaplıcanın ninesiyim.",
-  "Kızıl Sis geldi geleli kimse kimseyi dinlemiyor.",
-  "Herkes aynı anda konuşuyor. Buhar kulaklarından çıkıyor!",
-  "Dört komşumu teker teker dinler misin?",
-  "Kaplıcanın suyu ılık, yavrum. Bir nefes al."
- ],
- "content/s2_chapter0/dialogue/kalay.json": [
-  "Tak tak! Ben Demirci Kalay. Örsüm Kızıl Sis'te soğudu.",
+ "content/s2_chapter0/dialogue/kazma.json": [
+  "Aman, yine sen! Mağarada kazma, burada örs. Ama örsüm soğudu.",
   "Ateşimi yakınca aletlerini güçlendiririm. Yakında!"
  ],
  "content/s2_chapter0/dialogue/pamuk.json": [
@@ -622,11 +605,27 @@
   "Bir tünel kazdım, göstermek istedim. Kimse bakmadı.",
   "Bak, şuradan başlıyor! Oh, ne güzel anlattım."
  ],
+ "content/s2_chapter0/dialogue/tospik_nine.json": [
+  "Çan çaldı, köy serinledi. Aferin sana, yavrum.",
+  "Çan çaldı! Duydun mu? Kızıl Sis köyden çekildi.",
+  "Bundan sonra buradaki çan, yolculukta sana yuva olur.",
+  "Dağın ötesinde Kızıl Yaprak Ormanı var. Orada da biri kızgın.",
+  "Kazan homurdanıyor. Yorulunca kapağı kalkar, o zaman vur.",
+  "Herkesi dinledin. Bak, buharları geçti.",
+  "Öfke bir çaydanlık gibidir, yavrum. Kapağını kapatırsan patlar.",
+  "Köyün büyük kazanı da öyle. Kızıl Sis onu kaynattı.",
+  "Git, onu da dinle. Sonra tepedeki çanı çal.",
+  "Hepsi aynı anda konuşuyor. Teker teker dinle, yavrum.",
+  "Hoş geldin, yavrum! Kaplıcayı sevdim, tezgâhımı buraya kurdum.",
+  "Kızıl Sis geldi geleli kimse kimseyi dinlemiyor.",
+  "Herkes aynı anda konuşuyor. Buhar kulaklarından çıkıyor!",
+  "Dört komşumu teker teker dinler misin?",
+  "Kaplıcanın suyu ılık, yavrum. Bir nefes al."
+ ],
  "content/s2_chapter0/quests/homurdanan_caydanlik.json": [
   "Homurdanan Çaydanlık",
   "Köyün büyük kazanını sakinleştir",
-  "Tepedeki Ses Çanı'nı çal",
-  "Bulut Nine'ye dön"
+  "Tepedeki Ses Çanı'nı çal"
  ],
  "content/s2_chapter0/quests/kopuk_koy.json": [
   "Herkes Aynı Anda Konuşuyor",
@@ -636,7 +635,7 @@
   "Bıdık'ı dinle"
  ],
  "content/s2_chapter0/shop.json": [
-  "Bulut Nine'nin Kaplıca Tezgâhı"
+  "Tospik Nine'nin Kaplıca Tezgâhı"
  ],
  "content/s2_chapter1/barks.json": [
   "Kızıl Yaprak Ormanı! Yapraklar hep sonbaharda kalmış.",
@@ -657,7 +656,7 @@
  "content/s2_chapter1/chapter.json": [
   "Kızıl Yaprak Ormanı"
  ],
- "content/s2_chapter1/dialogue/kozalak.json": [
+ "content/s2_chapter1/dialogue/dikis.json": [
   "Turuncu Kor seninle. Orman yine çıtır çıtır yapraklı!",
   "Fırfır sakinleşti mi? Kilit açıldı, yapraklar dans ediyor!",
   "Rüzgârgülü sorulmadan alınınca kalbi kırılmış.",
@@ -668,7 +667,7 @@
   "Ama ormanın bekçisi Tilki Fırfır hâlâ kilitli bir öfkede.",
   "Ormanın çanını çal. Sis perdesi açılınca onu dinle.",
   "Rakunlar oyuncakları kapmış. Sakinleşince bırakırlar.",
-  "Hoş geldin! Ben Terzi Kozalak. Sonbahar pelerinleri dikerim.",
+  "Merhaba yine! Ormanda tezgâh açtım, sonbahar pelerini dikiyorum.",
   "Kızıl Sis gelince herkes birbirinin eşyasını kapmaya başladı.",
   "Yavruların oyuncaklarını Kapıcı Rakunlar aldı. Sormadan!",
   "Rakunları sakinleştir, oyuncakları sahiplerine ver.",
@@ -696,7 +695,7 @@
   "Ormanın Ses Çanı'nı çal",
   "Tilki Fırfır'ı dinle",
   "Turuncu Kor'u al",
-  "Terzi Kozalak'a dön"
+  "Terzi Dikiş'e dön"
  ],
  "content/s2_chapter1/quests/once_sor.json": [
   "Önce Sor",
@@ -782,7 +781,7 @@
  ],
  "content/s2_chapter3/barks.json": [
   "Patpat Tarlaları! Mısırlar sıcakta patlıyor!",
-  "Panayır şurada. Horoz Kukuri'yi bulayım.",
+  "Panayır şurada. Kaptan Pırpır'ı bulayım.",
   "Kazandım! Ama kaybetseydim de tekrar denerdim.",
   "Kaybettim... Olsun! Kaybetmek de oyunun parçası.",
   "Bir daha deneyeyim. 'Oyna' diyerek başlarım.",
@@ -804,29 +803,29 @@
  "content/s2_chapter3/chapter.json": [
   "Patpat Tarlaları"
  ],
- "content/s2_chapter3/dialogue/kukuri.json": [
+ "content/s2_chapter3/dialogue/pirpir.json": [
   "Panayır açık! Patpat da oynuyor, kaybedince bile gülüyor!",
-  "Patpat bir daha oynamak mı istedi? Ü-ürü-üü! Harika!",
+  "Patpat bir daha oynamak mı istedi? Ahoy! Harika!",
   "Kaybetmek de oyunun parçası. Önemli olan birlikte oynamak.",
   "Ama... Minnoş'u gördün mü? Kızıl Sis'in içine koştu.",
   "Gümbür Kanyonu'na doğru gitti. Bado'ya haber vermeli!",
   "Patpat panayır meydanında. Önce tarlaların çanını çal.",
-  "İki oyunu da kazandın! Ü-ürü-üü!",
+  "İki oyunu da kazandın! Ahoy!",
   "Ama Tavuk Patpat hiç kazanamadı. Kızdı, panayırı kapattı.",
   "Tarlaların çanını çal. Sonra meydanda Patpat'ı dinle.",
   "Tezgâhlara git, 'Oyna' de. Kaybedersen tekrar oynarsın.",
   "Kaybetmek ayıp değil. Bir daha denemek cesaret ister!",
-  "Ü-ürü-üü! Ben Horoz Kukuri, panayırın sahibi!",
+  "Ahoy! Gemim limanda kaldı ama pazarcılık bende. Panayır benim!",
   "Kızıl Sis geldi, herkes kaybedince küsüyor.",
   "Panayırım bomboş! Oyunlarımı kimse oynamıyor.",
   "Balon Patlat ve Bayrak Koşusu. İkisini de dener misin?",
-  "Ü-ürü-üü! Mısırlar patlıyor, panayır başlıyor!"
+  "Ahoy! Mısırlar patlıyor, panayır başlıyor!"
  ],
  "content/s2_chapter3/quests/panayir.json": [
   "Panayırı Aç",
   "Balon Patlat oyununu kazan",
   "Bayrak Koşusu'nu kazan",
-  "Horoz Kukuri'ye dön"
+  "Kaptan Pırpır'a dön"
  ],
  "content/s2_chapter3/quests/patpat.json": [
   "Tavuk Patpat",
@@ -1018,8 +1017,13 @@
   "Yardım edin! Kızıl Sis'ten kaçtım, dağın ardından!",
   "Ben Tıpış. Kor Vadisi'ni bilirim, yolu bilirim.",
   "O küçük, kızgın çocuk... Hırıl. Onu tanıyorum.",
-  "Hıh. O zaman bir bekçi daha var. Kim önden gidiyor?",
-  "Mırıl'ın ışık izini takip edin. Kulaklarınız açık olsun!"
+  "Mırıl'ın ışık izini takip edin. Kulaklarınız açık olsun!",
+  "Durun! Ben de geliyorum. Kabuğum sıcak suyu sever, yavrum.",
+  "Ben de! Dağ yolunu kazmamla açarım, örsümü de getirdim.",
+  "Kızıl Sis'te üşümeyin diye ipliklerimi topladım bile.",
+  "Ahoy! Gemim limanda kalsın. Pazarım yanımda, yola düşelim!",
+  "Hıh! Yol arkadaşınız çok. Ben de Fener'i beklerim.",
+  "Hıh. O zaman bir bekçi daha var. Kim önden gidiyor?"
  ],
  "content/s2_prologue/chapter.json": [
   "Kırmızı Ufuk",
@@ -1109,6 +1113,7 @@
   "Fıstık",
   "Tospik Nine",
   "Pıtı",
+  "Vakvak",
   "Zıpzıp",
   "Fıstık'ın heykeli",
   "Baykuş Öğretmen Hu",
@@ -1139,13 +1144,10 @@
   "Mırıl",
   "Gölge Prens Mırıl",
   "Usta Tıkır",
-  "Bulut Nine",
-  "Demirci Kalay",
   "Pıtpıt",
   "Pamuk",
   "Toprak",
   "Bıdık",
-  "Terzi Kozalak",
   "Pofu",
   "Paytak",
   "Minik",
@@ -1153,7 +1155,6 @@
   "Dede Vırak",
   "Vrakvrak",
   "Vık",
-  "Horoz Kukuri",
   "Minnoş",
   "Çıngır"
  ],
@@ -1439,7 +1440,7 @@
  ],
  "src/ui/prologue_done.gd": [
   "Bölüm 0: Buharlı Kaplıca Köyü",
-  "Bulut Nine ve hiç susmayan köylüler",
+  "Tospik Nine ve hiç susmayan köylüler",
   "Homurdanan Çaydanlık ve ilk Ses Çanı",
   "Sonra: beş Kor, beş öfkeli bekçi",
   "Prolog tamamlandı!",

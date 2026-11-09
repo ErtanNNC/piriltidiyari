@@ -87,8 +87,17 @@ msgstr "Ah... I haven't slept in such a long time."
 msgid "Ahoy minik bekçi! Ben Kaptan Pırpır, göklerin en hızlısı!"
 msgstr "Ahoy, tiny keeper! I'm Captain Flutter, fastest in the skies!"
 
+msgid "Ahoy! Gemim limanda kaldı ama pazarcılık bende. Panayır benim!"
+msgstr "Ahoy! My ship stayed in port, but I'm still a trader. This fair is mine!"
+
+msgid "Ahoy! Gemim limanda kalsın. Pazarım yanımda, yola düşelim!"
+msgstr "Ahoy! My ship can stay in port. My market comes along, let's go!"
+
 msgid "Ahoy! Göklerin en nadir pazarına hoş geldin!"
 msgstr "Ahoy! Welcome to the rarest market in the skies!"
+
+msgid "Ahoy! Mısırlar patlıyor, panayır başlıyor!"
+msgstr "Ahoy! The corn is popping, the fair is starting!"
 
 msgid "Ahoy! Önce Liman Feneri'ni yak, yolumuz aydınlansın."
 msgstr "Ahoy! Light the Harbor Lantern first, so our way is bright."
@@ -212,6 +221,9 @@ msgstr "But... did you see Cubby? He ran into the Crimson Mist."
 
 msgid "Aman, bir bekçi! Ben Madenci Kazma."
 msgstr "Oh my, a keeper! I'm Digby the Mole."
+
+msgid "Aman, yine sen! Mağarada kazma, burada örs. Ama örsüm soğudu."
+msgstr "Oh, it's you again! A pickaxe in the cave, an anvil here. But it's cold."
 
 msgid "Ana menü"
 msgstr "Main menu"
@@ -440,6 +452,9 @@ msgstr "I want to play too. But nobody called me."
 
 msgid "Ben de öyle hissederdim."
 msgstr "I'd have felt that way too."
+
+msgid "Ben de! Dağ yolunu kazmamla açarım, örsümü de getirdim."
+msgstr "Me too! I'll dig the mountain path open, and I brought my anvil."
 
 msgid "Ben dinliyorum! Neredesin?"
 msgstr "I'm listening! Where are you?"
@@ -738,18 +753,6 @@ msgstr "Out of steam! Hit now!"
 msgid "Bulut Limanı"
 msgstr "Cloud Harbor"
 
-msgid "Bulut Nine"
-msgstr "Granny Cloud"
-
-msgid "Bulut Nine ve hiç susmayan köylüler"
-msgstr "Granny Cloud and villagers who never stop talking"
-
-msgid "Bulut Nine'nin Kaplıca Tezgâhı"
-msgstr "Granny Cloud's Hot Spring Stall"
-
-msgid "Bulut Nine'ye dön"
-msgstr "Go back to Granny Cloud"
-
 msgid "Bum bum bum, of!"
 msgstr "Boom boom boom, ugh!"
 
@@ -957,9 +960,6 @@ msgstr "Grandpa Croak, you go first. I'm listening."
 msgid "Demek Pus'un adı Mırıl... Yalnız bir yıldız."
 msgstr "So the Gloom's name is Mumble... A lonely star."
 
-msgid "Demirci Kalay"
-msgstr "Tin the Smith"
-
 msgid "Demlik'in Çay Tezgâhı"
 msgstr "Teapot's Tea Stall"
 
@@ -1049,6 +1049,9 @@ msgstr "Wait, wait! You're not the Gloom... You're a keeper!"
 
 msgid "Dur, dur! Önce Dede Vırak konuşsun, sıra onun!"
 msgstr "Wait, wait! Grandpa Croak speaks first, it's his turn!"
+
+msgid "Durun! Ben de geliyorum. Kabuğum sıcak suyu sever, yavrum."
+msgstr "Wait! I'm coming too. My shell loves warm water, dear."
 
 msgid "Duvarlardaki söylenemeyen sözleri topla"
 msgstr "Gather the unspoken words on the walls"
@@ -1668,20 +1671,11 @@ msgstr "The Grumbling Kettle and the first Echo Bell"
 msgid "Hop! Balonlar beni havaya fırlatıyor!"
 msgstr "Whee! The balloons bounce me into the air!"
 
-msgid "Horoz Kukuri"
-msgstr "Doodle the Rooster"
-
-msgid "Horoz Kukuri'ye dön"
-msgstr "Go back to Doodle"
-
 msgid "Hoş geldin bekçi! Dükkânımız açık, bak bakalım."
 msgstr "Welcome, keeper! Our shop is open, take a look."
 
 msgid "Hoş geldin bekçi. Buraya kadar çok yol geldin."
 msgstr "Welcome, keeper. You've come a long way."
-
-msgid "Hoş geldin! Ben Terzi Kozalak. Sonbahar pelerinleri dikerim."
-msgstr "Welcome! I'm Pinecone the Tailor. I sew autumn capes."
 
 msgid "Hoş geldin! Ben Çay Ustası Demlik. Papatya çayım meşhurdur."
 msgstr "Welcome! I'm Teapot the Tea Master. My chamomile tea is famous."
@@ -1689,8 +1683,8 @@ msgstr "Welcome! I'm Teapot the Tea Master. My chamomile tea is famous."
 msgid "Hoş geldin! Renkler dönünce köye dükkân açtım."
 msgstr "Welcome! When the colors came back, I opened a shop in the village."
 
-msgid "Hoş geldin, bekçi! Ben Bulut, kaplıcanın ninesiyim."
-msgstr "Welcome, keeper! I'm Cloud, granny of the hot springs."
+msgid "Hoş geldin, yavrum! Kaplıcayı sevdim, tezgâhımı buraya kurdum."
+msgstr "Welcome, dear! I love the hot springs, so I set up my stall here."
 
 msgid "Hrrm... Önce dağın fenerini yak, bekçi. Çok üşüdüm."
 msgstr "Hrrm... Light the mountain's lantern first, keeper. I'm so cold."
@@ -1736,6 +1730,9 @@ msgstr "Hmph! This wind ruined my cake's frosting!"
 
 msgid "Hıh! Rozetini kaybetme, bekçi."
 msgstr "Hmph! Don't lose your badge, keeper."
+
+msgid "Hıh! Yol arkadaşınız çok. Ben de Fener'i beklerim."
+msgstr "Hmph! You have plenty of friends along. I'll watch the Lantern."
 
 msgid "Hıh, duygusallık sonra. Önce davetiyeleri dağıt!"
 msgstr "Hmph, feelings later. First, hand out the invitations!"
@@ -1949,6 +1946,9 @@ msgstr "Talk to Captain Flutter"
 
 msgid "Kaptan Pırpır ile konuş"
 msgstr "Talk to Captain Flutter"
+
+msgid "Kaptan Pırpır'a dön"
+msgstr "Go back to Captain Flutter"
 
 msgid "Kapıcı Rakun"
 msgstr "Grabby Raccoon"
@@ -2418,6 +2418,9 @@ msgstr "The Crimson Mist came, and our frogs keep cutting each other off."
 msgid "Kızıl Sis gelince herkes birbirinin eşyasını kapmaya başladı."
 msgstr "When the Crimson Mist came, everyone started grabbing each other's things."
 
+msgid "Kızıl Sis'te üşümeyin diye ipliklerimi topladım bile."
+msgstr "I've already packed my threads so you stay warm in the Crimson Mist."
+
 msgid "Kızıl Yaprak Ormanı"
 msgstr "Redleaf Forest"
 
@@ -2528,6 +2531,9 @@ msgstr "The Coral Ember! It glows so pink."
 
 msgid "Mercan Kor'u al"
 msgstr "Take the Coral Ember"
+
+msgid "Merhaba yine! Ormanda tezgâh açtım, sonbahar pelerini dikiyorum."
+msgstr "Hello again! I opened a stall in the forest. I sew autumn capes."
 
 msgid "Merhaba! Ben Terzi Dikiş. Pelerin, şapka, ne istersen."
 msgstr "Hello! I'm Stitch the Tailor. Capes, hats, whatever you like."
@@ -2832,8 +2838,8 @@ msgstr "The fair is open! Popper plays too, and laughs even when she loses!"
 msgid "Panayır kapalı! Kimse oynamasın! GIDAAK!"
 msgstr "The fair is closed! Nobody plays! CLUUUCK!"
 
-msgid "Panayır şurada. Horoz Kukuri'yi bulayım."
-msgstr "The fair is over there. Let me find Doodle the Rooster."
+msgid "Panayır şurada. Kaptan Pırpır'ı bulayım."
+msgstr "The fair is over there. Let me find Captain Flutter."
 
 msgid "Panayırı Aç"
 msgstr "Open the Fair"
@@ -2895,8 +2901,8 @@ msgstr "Pop-Pop Fields! The corn pops in the heat!"
 msgid "Patpat Tarlaları'nda panayır yeniden açıldı"
 msgstr "The fair at Pop-Pop Fields is open again"
 
-msgid "Patpat bir daha oynamak mı istedi? Ü-ürü-üü! Harika!"
-msgstr "Popper wants to play again? Cock-a-doodle-doo! Wonderful!"
+msgid "Patpat bir daha oynamak mı istedi? Ahoy! Harika!"
+msgstr "Popper wants to play again? Ahoy! Wonderful!"
 
 msgid "Patpat oturdu, soluk soluğa! Şimdi vur!"
 msgstr "Popper sat down, out of breath! Hit now!"
@@ -3372,9 +3378,6 @@ msgstr "They spoke in turn! For the first time in forty years!"
 msgid "Tabii! Kaybetmek de oyunun parçası. Eğlenmek önemli."
 msgstr "Of course! Losing is part of the game. Having fun matters."
 
-msgid "Tak tak! Ben Demirci Kalay. Örsüm Kızıl Sis'te soğudu."
-msgstr "Clink clink! I'm Tin the Smith. My anvil went cold in the mist."
-
 msgid "Takıldım: son fenere dön"
 msgstr "I'm stuck: back to last lantern"
 
@@ -3417,14 +3420,11 @@ msgstr "I can see Gale's nest from the hilltop... Storm Isle!"
 msgid "Tepinen Keçi"
 msgstr "Stomping Goat"
 
+msgid "Terzi Dikiş'e dön"
+msgstr "Go back to Stitch the tailor"
+
 msgid "Terzi Dikiş'in Kıyafetleri"
 msgstr "Stitch's Outfits"
-
-msgid "Terzi Kozalak"
-msgstr "Pinecone the Tailor"
-
-msgid "Terzi Kozalak'a dön"
-msgstr "Go back to Pinecone"
 
 msgid "Terzi Örümcek Dikiş"
 msgstr "Stitch the Spider Tailor"
@@ -3465,8 +3465,17 @@ msgstr "A raccoon grabbed my ball! Without asking, just like that!"
 msgid "Tospik Nine"
 msgstr "Granny Shelly"
 
+msgid "Tospik Nine de gelmişti. Kaplıcanın yanında olmalı."
+msgstr "Granny Shelly came along too. She must be by the hot springs."
+
 msgid "Tospik Nine ile konuş"
 msgstr "Talk to Granny Shelly"
+
+msgid "Tospik Nine ve hiç susmayan köylüler"
+msgstr "Granny Shelly and villagers who never stop talking"
+
+msgid "Tospik Nine'nin Kaplıca Tezgâhı"
+msgstr "Granny Shelly's Hot Spring Stall"
 
 msgid "Tospik Nine'ye dön"
 msgstr "Go back to Granny Shelly"
@@ -3506,9 +3515,6 @@ msgstr "Dodge the feathers. Hit after the dive!"
 
 msgid "Tıpış"
 msgstr "Pitter"
-
-msgid "Tıpış'a mavi fenerini ver"
-msgstr "Give Pitter his blue lantern"
 
 msgid "Tıpış? Sen... tokmağımı da mı getirdin?"
 msgstr "Pitter? You... brought my drumstick too?"
@@ -3581,6 +3587,12 @@ msgstr "Quack! I'm staying right by Granny Shelly!"
 
 msgid "Vak... Uçurtmam gitti. Rakun alıp kaçtı."
 msgstr "Quack... My kite's gone. A raccoon ran off with it."
+
+msgid "Vakvak"
+msgstr "Quackers"
+
+msgid "Vakvak'a mavi fenerini ver"
+msgstr "Give Quackers his blue lantern"
 
 msgid "Vay! Buraya kadar süzüldün mü? Harika!"
 msgstr "Wow! You floated all the way up here? Amazing!"
@@ -3906,8 +3918,8 @@ msgstr "Ring"
 msgid "Çan çaldı! Arenanın sisi kalkıyor!"
 msgstr "The bell rang! The arena's mist is lifting!"
 
-msgid "Çan çaldı! Duydun mu? Kızıl Sis köyümüzden çekildi."
-msgstr "The bell rang! Did you hear? The Crimson Mist left our village."
+msgid "Çan çaldı! Duydun mu? Kızıl Sis köyden çekildi."
+msgstr "The bell rang! Did you hear? The Crimson Mist left the village."
 
 msgid "Çan çaldı! Göldeki sis kalkıyor, ada görünüyor!"
 msgstr "The bell rang! The mist lifts off the lake, the island shows!"
@@ -3923,6 +3935,9 @@ msgstr "The bell rang! The mist veil is opening!"
 
 msgid "Çan çaldı! Zirvenin yolu açılıyor!"
 msgstr "The bell rang! The way to the summit is opening!"
+
+msgid "Çan çaldı, köy serinledi. Aferin sana, yavrum."
+msgstr "The bell rang and the village cooled down. Well done, dear."
 
 msgid "Çan çalmıyor... Önce Gümbür'ün dediklerini yapayım."
 msgstr "The bell won't ring... I'll do what Rumble asked first."
@@ -3953,9 +3968,6 @@ msgstr "Ring the bell, then climb to the summit. Grumble is boiling up there."
 
 msgid "Çanı çal. Zirvede sözleri ona tek tek geri götür."
 msgstr "Ring the bell. At the top, take the words back to him one by one."
-
-msgid "Çanımız çaldı, köyümüz serinledi. Aferin sana, yavrum."
-msgstr "Our bell rang and the village cooled. Well done, dear."
 
 msgid "Çay Ustası Demlik"
 msgstr "Teapot the Tea Master"
@@ -4089,9 +4101,6 @@ msgstr "First tap it gently. It'll sit down with stars spinning."
 msgid "Önce kanyonun çanını çal. Sonra Gümbür'ü dinle."
 msgstr "First ring the canyon's bell. Then listen to Rumble."
 
-msgid "Önce kaplıcanın yanındaki Bulut Nine'yi bulayım."
-msgstr "First I'll find Granny Cloud by the hot spring."
-
 msgid "Önce sen sakinleş..."
 msgstr "Calm yourself first..."
 
@@ -4115,12 +4124,6 @@ msgstr "I'm sorry, little keeper. Here, this light is yours."
 
 msgid "Özür dilerim, minik bekçi. Mavi Kıvılcım artık sende."
 msgstr "I'm sorry, tiny keeper. The Blue Spark is yours now."
-
-msgid "Ü-ürü-üü! Ben Horoz Kukuri, panayırın sahibi!"
-msgstr "Cock-a-doodle-doo! I'm Doodle the Rooster, owner of the fair!"
-
-msgid "Ü-ürü-üü! Mısırlar patlıyor, panayır başlıyor!"
-msgstr "Cock-a-doodle-doo! The corn pops, the fair begins!"
 
 msgid "Üstüne yaz"
 msgstr "Write over"
@@ -4152,8 +4155,8 @@ msgstr "Two more bubbles"
 msgid "İki diyarı tek haritada birleştirdin ve araya bir dağ yolu çizdin."
 msgstr "You joined both lands on one map and drew a mountain path between them."
 
-msgid "İki oyunu da kazandın! Ü-ürü-üü!"
-msgstr "You won both games! Cock-a-doodle-doo!"
+msgid "İki oyunu da kazandın! Ahoy!"
+msgstr "You won both games! Ahoy!"
 
 msgid "İki parlak göz! Küçücük bir gölge..."
 msgstr "Two shiny eyes! A tiny little shadow..."

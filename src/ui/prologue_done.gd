@@ -8,7 +8,7 @@ signal chosen(id: String)
 
 const NEXT := [
 	["spark", "hp", "Bölüm 0: Buharlı Kaplıca Köyü"],
-	["heart", "honey", "Bulut Nine ve hiç susmayan köylüler"],
+	["heart", "honey", "Tospik Nine ve hiç susmayan köylüler"],
 	["star", "spark-purple", "Homurdanan Çaydanlık ve ilk Ses Çanı"],
 	["quest", "sky", "Sonra: beş Kor, beş öfkeli bekçi"],
 ]

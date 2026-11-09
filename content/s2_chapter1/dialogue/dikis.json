@@ -1,5 +1,5 @@
 {
-  "npc": "kozalak",
+  "npc": "dikis",
   "variants": [
     {
       "when": {
@@ -8,7 +8,7 @@
       },
       "lines": [
         {
-          "speaker": "kozalak",
+          "speaker": "dikis",
           "mood": "mutlu",
           "text": "Turuncu Kor seninle. Orman yine çıtır çıtır yapraklı!"
         }
@@ -21,22 +21,22 @@
       },
       "lines": [
         {
-          "speaker": "kozalak",
+          "speaker": "dikis",
           "mood": "mutlu",
           "text": "Fırfır sakinleşti mi? Kilit açıldı, yapraklar dans ediyor!"
         },
         {
-          "speaker": "kozalak",
+          "speaker": "dikis",
           "mood": "sakin",
           "text": "Rüzgârgülü sorulmadan alınınca kalbi kırılmış."
         },
         {
-          "speaker": "kozalak",
+          "speaker": "dikis",
           "mood": "mutlu",
           "text": "Paylaşmak güzel. Ama önce sormak gerek, değil mi?"
         },
         {
-          "speaker": "kozalak",
+          "speaker": "dikis",
           "mood": "kararlı",
           "text": "Kor'u iyi sakla. Fokurdayan Göl seni bekliyor."
         }
@@ -53,7 +53,7 @@
       },
       "lines": [
         {
-          "speaker": "kozalak",
+          "speaker": "dikis",
           "mood": "dertli",
           "text": "Çan çalınca sis perdesi açılır. Fırfır ormanın en derininde."
         }
@@ -66,17 +66,17 @@
       },
       "lines": [
         {
-          "speaker": "kozalak",
+          "speaker": "dikis",
           "mood": "mutlu",
           "text": "Oyuncaklar sahiplerine döndü! Yavrular gülüyor."
         },
         {
-          "speaker": "kozalak",
+          "speaker": "dikis",
           "mood": "dertli",
           "text": "Ama ormanın bekçisi Tilki Fırfır hâlâ kilitli bir öfkede."
         },
         {
-          "speaker": "kozalak",
+          "speaker": "dikis",
           "mood": "kararlı",
           "text": "Ormanın çanını çal. Sis perdesi açılınca onu dinle."
         }
@@ -93,7 +93,7 @@
       },
       "lines": [
         {
-          "speaker": "kozalak",
+          "speaker": "dikis",
           "mood": "sakin",
           "text": "Rakunlar oyuncakları kapmış. Sakinleşince bırakırlar."
         }
@@ -106,22 +106,22 @@
       },
       "lines": [
         {
-          "speaker": "kozalak",
+          "speaker": "dikis",
           "mood": "mutlu",
-          "text": "Hoş geldin! Ben Terzi Kozalak. Sonbahar pelerinleri dikerim."
+          "text": "Merhaba yine! Ormanda tezgâh açtım, sonbahar pelerini dikiyorum."
         },
         {
-          "speaker": "kozalak",
+          "speaker": "dikis",
           "mood": "dertli",
           "text": "Kızıl Sis gelince herkes birbirinin eşyasını kapmaya başladı."
         },
         {
-          "speaker": "kozalak",
+          "speaker": "dikis",
           "mood": "dertli",
           "text": "Yavruların oyuncaklarını Kapıcı Rakunlar aldı. Sormadan!"
         },
         {
-          "speaker": "kozalak",
+          "speaker": "dikis",
           "mood": "kararlı",
           "text": "Rakunları sakinleştir, oyuncakları sahiplerine ver."
         }
@@ -136,7 +136,7 @@
     {
       "lines": [
         {
-          "speaker": "kozalak",
+          "speaker": "dikis",
           "mood": "sakin",
           "text": "Yapraklar hep turuncu burada. Güzel, değil mi?"
         }

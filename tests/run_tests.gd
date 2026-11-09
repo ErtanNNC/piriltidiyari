@@ -661,7 +661,7 @@ func test_season2() -> void:
 	v.notify("breathe", "caydanlik", c.quests)
 	v.notify("ring", "ses_cani", c.quests)
 	check(v.quest_state("homurdanan_caydanlik") == "ready", "Kazan + çan: görev hazır")
-	check(c.shops.has("bulut"), "Bulut Nine'nin dükkânı var")
+	check(c.shops.has("tospik"), "Tospik Nine'nin kaplıca tezgâhı var")
 	check(FirfirPlan.phase(FirfirPlan.MAX_HP) == 1 and FirfirPlan.phase(FirfirPlan.MAX_HP / 2) == 2 and FirfirPlan.phase(5) == 3, "Fırfır üç faz")
 	for p in [1, 2, 3]:
 		check(FirfirPlan.cycle(p).back() == "tired", "Fırfır her turun sonunda oturur (faz %d)" % p)

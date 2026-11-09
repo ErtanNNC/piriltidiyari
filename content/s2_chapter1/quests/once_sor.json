@@ -1,7 +1,7 @@
 {
   "id": "once_sor",
   "title": "Önce Sor",
-  "giver": "kozalak",
+  "giver": "dikis",
   "objectives": [
     {
       "id": "top",
@@ -22,7 +22,7 @@
       "to": "minik"
     }
   ],
-  "turn_in": "Terzi Kozalak'a dön",
+  "turn_in": "Terzi Dikiş'e dön",
   "rewards": {
     "piril": 40,
     "xp": 80

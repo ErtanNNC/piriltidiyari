@@ -1,7 +1,7 @@
 extends ChapterBase
 ## Sezon 2 · Bölüm 3 – Patpat Tarlaları, Kehribar Kor (levels 15–20). Corn
 ## fields where kernels pop in the heat, and a fair nobody plays at: since
-## the Kızıl Sis came everyone sulks when they lose. Horoz Kukuri's two fair
+## the Kızıl Sis came everyone sulks when they lose. Kaptan Pırpır's two fair
 ## games (Balon Patlat, Bayrak Koşusu) can be lost and played again (the
 ## lesson: losing is part of the game). The fields' Ses Çanı clears the fair
 ## square where Tavuk Patpat sulks (boss); "Bir daha oynayalım mı?" (Sakinleş)
@@ -38,7 +38,7 @@ func _ready() -> void:
 	Pus.set_amount(0.03 if d.has_flag("s2_can3") else 0.15)
 	_build()
 	Decor.auto(self, "koy")
-	npc(self, "kukuri", "rooster", Vector3(0.0, 0, 9.0), 0.0).name = "Kukuri"
+	npc(self, "pirpir", "gull_captain", Vector3(0.0, 0, 9.0), 0.0).name = "Pirpir"
 	for p: Vector3 in [Vector3(-12, 0, 18), Vector3(14, 0, 20), Vector3(-17, 0, -12)]:
 		Mob.spawn(self, "patlayan_misir", p)
 	for p: Vector3 in [Vector3(16, 0, -2), Vector3(-9, 0, -10)]:
@@ -91,7 +91,7 @@ func _on_play(game_id: String) -> void:
 	var d := GameState.data
 	if _game != "" or d.quest_state(Q1) != "active" or d.objective_done(Q1, game_id):
 		if d.quest_state(Q1) == "none":
-			GameState.talk_to("kukuri")
+			GameState.talk_to("pirpir")
 		return
 	_game = game_id
 	if game_id == "balon":
@@ -159,7 +159,7 @@ func _end_game(won: bool) -> void:
 
 func _refresh() -> void:
 	var d := GameState.data
-	var kuk := get_node("Kukuri") as Node3D
+	var kuk := get_node("Pirpir") as Node3D
 	var go := d.quest_state(Q1) in ["none", "ready"] or d.quest_state(Q2) == "ready"
 	if go and not kuk.has_node("Beacon"):
 		Beacon.attach(kuk, 2.8, Tokens.color("spark-white"))
@@ -441,9 +441,9 @@ func _run_demo(which: String) -> void:
 			# the whole chapter, scripted (headless check)
 			DevTools.auto_dialogue = true
 			var d := GameState.data
-			_player.global_position = get_node("Kukuri").global_position + Vector3(0, 0.3, 1.8)
+			_player.global_position = get_node("Pirpir").global_position + Vector3(0, 0.3, 1.8)
 			await get_tree().create_timer(0.3).timeout
-			GameState.talk_to("kukuri")
+			GameState.talk_to("pirpir")
 			await close_dialogs()
 			# lose the balloon game once (do nothing), then win it
 			_on_play("balon")
@@ -464,9 +464,9 @@ func _run_demo(which: String) -> void:
 				await get_tree().create_timer(0.4).timeout
 			await close_dialogs()
 			print("S2C3 games balon=%s kosu=%s" % [d.objective_done(Q1, "balon"), d.objective_done(Q1, "kosu")])
-			_player.global_position = get_node("Kukuri").global_position + Vector3(0, 0.3, 1.8)
+			_player.global_position = get_node("Pirpir").global_position + Vector3(0, 0.3, 1.8)
 			await get_tree().create_timer(0.3).timeout
-			GameState.talk_to("kukuri")
+			GameState.talk_to("pirpir")
 			await close_dialogs()
 			_player.global_position = BELL_AT + Vector3(0, 0.3, 1.6)
 			await get_tree().create_timer(0.4).timeout
@@ -502,9 +502,9 @@ func _run_demo(which: String) -> void:
 			for i in 12:
 				await get_tree().create_timer(0.5).timeout
 				await close_dialogs()
-			_player.global_position = get_node("Kukuri").global_position + Vector3(0, 0.3, 1.8)
+			_player.global_position = get_node("Pirpir").global_position + Vector3(0, 0.3, 1.8)
 			await get_tree().create_timer(0.3).timeout
-			GameState.talk_to("kukuri")
+			GameState.talk_to("pirpir")
 			await close_dialogs()
 			print("S2C3_DONE q2=%s kor=%s minnos=%s flag=%s level=%d" % [d.quest_state(Q2), d.has_flag("kor_kehribar"), d.has_flag("s2_minnos_kacti"), d.has_flag("s2_bolum3_bitti"), d.level])
 			get_tree().quit()

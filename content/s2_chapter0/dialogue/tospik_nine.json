@@ -1,5 +1,5 @@
 {
-  "npc": "bulut",
+  "npc": "tospik_nine",
   "variants": [
     {
       "when": {
@@ -8,13 +8,13 @@
       },
       "lines": [
         {
-          "speaker": "bulut",
+          "speaker": "tospik_nine",
           "mood": "mutlu",
-          "text": "Çanımız çaldı, köyümüz serinledi. Aferin sana, yavrum."
+          "text": "Çan çaldı, köy serinledi. Aferin sana, yavrum."
         }
       ],
       "then": {
-        "open_shop": "bulut"
+        "open_shop": "tospik"
       }
     },
     {
@@ -24,17 +24,17 @@
       },
       "lines": [
         {
-          "speaker": "bulut",
+          "speaker": "tospik_nine",
           "mood": "mutlu",
-          "text": "Çan çaldı! Duydun mu? Kızıl Sis köyümüzden çekildi."
+          "text": "Çan çaldı! Duydun mu? Kızıl Sis köyden çekildi."
         },
         {
-          "speaker": "bulut",
+          "speaker": "tospik_nine",
           "mood": "mutlu",
           "text": "Bundan sonra buradaki çan, yolculukta sana yuva olur."
         },
         {
-          "speaker": "bulut",
+          "speaker": "tospik_nine",
           "mood": "kararlı",
           "text": "Dağın ötesinde Kızıl Yaprak Ormanı var. Orada da biri kızgın."
         }
@@ -51,7 +51,7 @@
       },
       "lines": [
         {
-          "speaker": "bulut",
+          "speaker": "tospik_nine",
           "mood": "dertli",
           "text": "Kazan homurdanıyor. Yorulunca kapağı kalkar, o zaman vur."
         }
@@ -64,22 +64,22 @@
       },
       "lines": [
         {
-          "speaker": "bulut",
+          "speaker": "tospik_nine",
           "mood": "mutlu",
           "text": "Herkesi dinledin. Bak, buharları geçti."
         },
         {
-          "speaker": "bulut",
+          "speaker": "tospik_nine",
           "mood": "sakin",
           "text": "Öfke bir çaydanlık gibidir, yavrum. Kapağını kapatırsan patlar."
         },
         {
-          "speaker": "bulut",
+          "speaker": "tospik_nine",
           "mood": "dertli",
           "text": "Köyün büyük kazanı da öyle. Kızıl Sis onu kaynattı."
         },
         {
-          "speaker": "bulut",
+          "speaker": "tospik_nine",
           "mood": "kararlı",
           "text": "Git, onu da dinle. Sonra tepedeki çanı çal."
         }
@@ -96,7 +96,7 @@
       },
       "lines": [
         {
-          "speaker": "bulut",
+          "speaker": "tospik_nine",
           "mood": "sakin",
           "text": "Hepsi aynı anda konuşuyor. Teker teker dinle, yavrum."
         }
@@ -109,22 +109,22 @@
       },
       "lines": [
         {
-          "speaker": "bulut",
+          "speaker": "tospik_nine",
           "mood": "mutlu",
-          "text": "Hoş geldin, bekçi! Ben Bulut, kaplıcanın ninesiyim."
+          "text": "Hoş geldin, yavrum! Kaplıcayı sevdim, tezgâhımı buraya kurdum."
         },
         {
-          "speaker": "bulut",
+          "speaker": "tospik_nine",
           "mood": "dertli",
           "text": "Kızıl Sis geldi geleli kimse kimseyi dinlemiyor."
         },
         {
-          "speaker": "bulut",
+          "speaker": "tospik_nine",
           "mood": "sakin",
           "text": "Herkes aynı anda konuşuyor. Buhar kulaklarından çıkıyor!"
         },
         {
-          "speaker": "bulut",
+          "speaker": "tospik_nine",
           "mood": "kararlı",
           "text": "Dört komşumu teker teker dinler misin?"
         }
@@ -139,7 +139,7 @@
     {
       "lines": [
         {
-          "speaker": "bulut",
+          "speaker": "tospik_nine",
           "mood": "sakin",
           "text": "Kaplıcanın suyu ılık, yavrum. Bir nefes al."
         }

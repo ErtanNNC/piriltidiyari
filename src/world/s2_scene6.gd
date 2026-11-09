@@ -3,11 +3,14 @@ extends Node3D
 ## the Fener has lost its sixth color. Fıstık (awake now) gathers the
 ## keepers: their Sparks stay in the Fener, so they set out without their
 ## power (level 1). Tıpış, a little red panda, runs in from the mountain
-## road: they know the way. Then the five-keeper select (KeeperSelect with
+## road: they know the way. Four village friends join the trip
+## (`companions_arrive`). Then the five-keeper select (KeeperSelect with
 ## Season 2's order and lines) and the prologue is done.
 
 const KEEPER_X := [-4.4, -2.2, 0.0, 2.2, 4.4]
 const KEEPER_Z := -8.0
+## The friends who come along: Tospik Nine, Madenci Kazma, Terzi Dikiş, Pırpır.
+const COMPANIONS := ["turtle", "mole", "spider", "gull_captain"]
 
 var _keepers: Dictionary = {}   # id -> model node
 var _order: Array = []
@@ -77,6 +80,28 @@ func tipis_arrives() -> void:
 			rig.speed = 0.0
 		_tipis.rotation.y = 0.0
 		Effects.sparkle(self, to + Vector3.UP, Tokens.color("hp"), 10))
+
+
+## The village friends who travel along (Season 2's helpers in Kor Vadisi):
+## Tospik Nine, Madenci Kazma, Terzi Dikiş and Kaptan Pırpır walk up behind.
+func companions_arrive() -> void:
+	for i in COMPANIONS.size():
+		var kind: String = COMPANIONS[i]
+		var m := NpcModels.build(kind)
+		add_child(m)
+		var to := Vector3(-5.6 + i * 2.6, 0, -12.6)
+		m.position = to + Vector3(-7.0, 0, 3.0)
+		m.rotation.y = PI * 0.5
+		var rig := CharacterRig.of(m)
+		if rig:
+			rig.speed = 1.0
+		var tw := create_tween()
+		tw.tween_interval(i * 0.25)
+		tw.tween_property(m, "position", to, 1.6)
+		tw.tween_callback(func() -> void:
+			if rig:
+				rig.speed = 0.0
+			m.rotation.y = 0.0)
 
 
 func open_select() -> void:

@@ -34,7 +34,7 @@ func _ready() -> void:
 	Pus.set_amount(0.03 if d.has_flag("s2_can1") else 0.15)
 	_build()
 	Decor.auto(self, "orman")
-	npc(self, "kozalak", "squirrel_tailor", Vector3(2.0, 0, 18.0), -10.0).name = "Kozalak"
+	npc(self, "dikis", "spider", Vector3(2.0, 0, 18.0), -10.0).name = "Dikis"
 	for id: String in CUBS:
 		var c: Array = CUBS[id]
 		npc(self, id, c[0], c[1], c[2]).name = id.capitalize()
@@ -94,7 +94,7 @@ func _refresh() -> void:
 				Beacon.attach(n, 2.4, Tokens.color("spark-white"))
 			elif not on and n.has_node("Beacon"):
 				n.get_node("Beacon").queue_free()
-	var koz := get_node("Kozalak") as Node3D
+	var koz := get_node("Dikis") as Node3D
 	var go := d.quest_state(Q1) in ["none", "ready"] or d.quest_state(Q2) == "ready"
 	if go and not koz.has_node("Beacon"):
 		Beacon.attach(koz, 2.6, Tokens.color("spark-white"))
@@ -324,9 +324,9 @@ func _run_demo(which: String) -> void:
 			# the whole chapter, scripted (headless check)
 			DevTools.auto_dialogue = true
 			var d := GameState.data
-			_player.global_position = get_node("Kozalak").global_position + Vector3(0, 0.3, 1.8)
+			_player.global_position = get_node("Dikis").global_position + Vector3(0, 0.3, 1.8)
 			await get_tree().create_timer(0.3).timeout
-			GameState.talk_to("kozalak")
+			GameState.talk_to("dikis")
 			await close_dialogs()
 			# calm each toy raccoon (breath), pick the toy up
 			for i in 40:
@@ -348,7 +348,7 @@ func _run_demo(which: String) -> void:
 					await get_tree().create_timer(0.5).timeout
 			await get_tree().create_timer(0.5).timeout
 			print("S2C1 toys=%s" % [[d.has_item("oyuncak_top"), d.has_item("oyuncak_ucurtma"), d.has_item("oyuncak_bebek")]])
-			for id: String in ["pofu", "paytak", "minik", "kozalak"]:
+			for id: String in ["pofu", "paytak", "minik", "dikis"]:
 				_player.global_position = get_node(id.capitalize()).global_position + Vector3(0, 0.3, 1.8)
 				await get_tree().create_timer(0.3).timeout
 				GameState.talk_to(id)
@@ -389,9 +389,9 @@ func _run_demo(which: String) -> void:
 			_player.global_position = GLADE + Vector3(0, 0.3, 2.5)
 			await get_tree().create_timer(0.8).timeout
 			await close_dialogs()
-			_player.global_position = get_node("Kozalak").global_position + Vector3(0, 0.3, 1.8)
+			_player.global_position = get_node("Dikis").global_position + Vector3(0, 0.3, 1.8)
 			await get_tree().create_timer(0.3).timeout
-			GameState.talk_to("kozalak")
+			GameState.talk_to("dikis")
 			await close_dialogs()
 			print("S2C1_DONE q2=%s kor=%s flag=%s level=%d" % [d.quest_state(Q2), d.has_flag("kor_turuncu"), d.has_flag("s2_bolum1_bitti"), d.level])
 			get_tree().quit()

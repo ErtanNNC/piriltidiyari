@@ -1,7 +1,7 @@
 {
   "id": "panayir",
   "title": "Panayırı Aç",
-  "giver": "kukuri",
+  "giver": "pirpir",
   "objectives": [
     {
       "id": "balon",
@@ -16,7 +16,7 @@
       "target": "kosu"
     }
   ],
-  "turn_in": "Horoz Kukuri'ye dön",
+  "turn_in": "Kaptan Pırpır'a dön",
   "rewards": {
     "piril": 80,
     "xp": 500

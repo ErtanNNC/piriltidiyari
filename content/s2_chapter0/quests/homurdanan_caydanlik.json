@@ -1,7 +1,7 @@
 {
   "id": "homurdanan_caydanlik",
   "title": "Homurdanan Çaydanlık",
-  "giver": "bulut",
+  "giver": "tospik_nine",
   "ordered": true,
   "objectives": [
     {
@@ -17,7 +17,7 @@
       "target": "ses_cani"
     }
   ],
-  "turn_in": "Bulut Nine'ye dön",
+  "turn_in": "Tospik Nine'ye dön",
   "rewards": {
     "piril": 40,
     "xp": 60

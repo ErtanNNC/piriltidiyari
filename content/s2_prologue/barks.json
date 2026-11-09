@@ -289,11 +289,6 @@
         "speaker": "tipis_panda",
         "mood": "dertli",
         "text": "O küçük, kızgın çocuk... Hırıl. Onu tanıyorum."
-      },
-      {
-        "speaker": "fistik",
-        "mood": "huysuz",
-        "text": "Hıh. O zaman bir bekçi daha var. Kim önden gidiyor?"
       }
     ],
     "s6b_son": [
@@ -301,6 +296,38 @@
         "speaker": "fistik",
         "mood": "mutlu",
         "text": "Mırıl'ın ışık izini takip edin. Kulaklarınız açık olsun!"
+      }
+    ],
+    "s6b_yol": [
+      {
+        "speaker": "tospik_nine",
+        "mood": "kararlı",
+        "text": "Durun! Ben de geliyorum. Kabuğum sıcak suyu sever, yavrum."
+      },
+      {
+        "speaker": "kazma",
+        "mood": "mutlu",
+        "text": "Ben de! Dağ yolunu kazmamla açarım, örsümü de getirdim."
+      },
+      {
+        "speaker": "dikis",
+        "mood": "mutlu",
+        "text": "Kızıl Sis'te üşümeyin diye ipliklerimi topladım bile."
+      },
+      {
+        "speaker": "pirpir",
+        "mood": "mutlu",
+        "text": "Ahoy! Gemim limanda kalsın. Pazarım yanımda, yola düşelim!"
+      },
+      {
+        "speaker": "fistik",
+        "mood": "mutlu",
+        "text": "Hıh! Yol arkadaşınız çok. Ben de Fener'i beklerim."
+      },
+      {
+        "speaker": "fistik",
+        "mood": "huysuz",
+        "text": "Hıh. O zaman bir bekçi daha var. Kim önden gidiyor?"
       }
     ]
   }

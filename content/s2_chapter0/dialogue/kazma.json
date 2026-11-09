@@ -1,15 +1,15 @@
 {
-  "npc": "kalay",
+  "npc": "kazma",
   "variants": [
     {
       "lines": [
         {
-          "speaker": "kalay",
+          "speaker": "kazma",
           "mood": "huysuz",
-          "text": "Tak tak! Ben Demirci Kalay. Örsüm Kızıl Sis'te soğudu."
+          "text": "Aman, yine sen! Mağarada kazma, burada örs. Ama örsüm soğudu."
         },
         {
-          "speaker": "kalay",
+          "speaker": "kazma",
           "mood": "mutlu",
           "text": "Ateşimi yakınca aletlerini güçlendiririm. Yakında!"
         }

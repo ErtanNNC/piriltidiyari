@@ -23,14 +23,6 @@ static func build(kind: String) -> Node3D:
 			Toon.part(root, "sphere", Vector3(0.3, 0.12, 0.3), Color("#ff9a3c"), Vector3(0, 1.0, 0.36))
 		"owl_teacher":
 			_owl_teacher(root)
-		"hippo":
-			_hippo(root)
-		"smith_turtle":
-			_smith_turtle(root)
-		"squirrel_tailor":
-			_squirrel_tailor(root)
-		"rooster":
-			_rooster(root)
 		"gumbur":
 			MobModels.goat(root, false, 1.0, true)
 		"goat_kid":
@@ -110,114 +102,6 @@ static func _critter(root: Node3D, body: Variant, scarf: Variant, scale_f: float
 		hand.position = Vector3(0.42 * s, 0.55, 0.1)
 		r.add_child(hand)
 		Toon.part(hand, "ellipsoid", Vector3(0.2, 0.22, 0.2), body, Vector3.ZERO)
-
-
-## Bulut Nine (Season 2): a round, calm hippo granny of the hot springs,
-## lavender-grey with a pink snout, a sky headscarf and a towel on her arm.
-static func _hippo(root: Node3D) -> void:
-	var skin := Color("#b7a9cf")
-	var snout := Color("#f2b8c8")
-	Toon.part(root, "ellipsoid", Vector3(1.7, 1.5, 1.5), skin, Vector3(0, 0.85, 0))
-	Toon.part(root, "ellipsoid", Vector3(1.2, 1.0, 0.5), Color("#d8cfe6"), Vector3(0, 0.75, 0.55), Vector3.ZERO, 0.0, 0.0)
-	var head := Node3D.new()
-	head.name = "Head"
-	head.position = Vector3(0, 1.85, 0.2)
-	root.add_child(head)
-	Toon.part(head, "ellipsoid", Vector3(1.1, 0.85, 0.95), skin, Vector3.ZERO)
-	Toon.part(head, "ellipsoid", Vector3(0.95, 0.55, 0.6), snout, Vector3(0, -0.2, 0.45))
-	for s: float in [-1.0, 1.0]:
-		Toon.part(head, "ellipsoid", Vector3(0.1, 0.13, 0.05), "outline", Vector3(0.17 * s, -0.12, 0.76), Vector3.ZERO, 0.0, 0.0)
-		_eye(Toon.part(head, "ellipsoid", Vector3(0.13, 0.17, 0.07), "outline", Vector3(0.24 * s, 0.18, 0.44), Vector3.ZERO, 0.0, 0.0))
-		Toon.part(head, "ellipsoid", Vector3(0.18, 0.22, 0.1), skin, Vector3(0.42 * s, 0.42, -0.05), Vector3(0, 0, -20 * s))
-		var hand := Node3D.new()
-		hand.name = "HandL" if s > 0 else "HandR"
-		hand.position = Vector3(0.82 * s, 0.85, 0.2)
-		root.add_child(hand)
-		Toon.part(hand, "ellipsoid", Vector3(0.32, 0.42, 0.32), skin, Vector3.ZERO)
-		var foot := Node3D.new()
-		foot.name = "FootL" if s > 0 else "FootR"
-		foot.position = Vector3(0.4 * s, 0.1, 0.2)
-		root.add_child(foot)
-		Toon.part(foot, "ellipsoid", Vector3(0.42, 0.22, 0.48), skin, Vector3.ZERO)
-	# headscarf and a little white towel over one arm
-	Toon.part(head, "ellipsoid", Vector3(1.15, 0.45, 1.0), "sky", Vector3(0, 0.3, -0.06))
-	Toon.part(head, "cone", Vector3(0.3, 0.3, 0.2), "sky", Vector3(0.0, 0.1, -0.5), Vector3(-90, 0, 0))
-	Toon.part(root, "box", Vector3(0.22, 0.6, 0.35), Color("#ffffff"), Vector3(0.85, 0.75, 0.25), Vector3(0, 0, 10))
-	Toon.part(head, "ellipsoid", Vector3(0.16, 0.08, 0.04), "berry", Vector3(0.38, -0.05, 0.5), Vector3.ZERO, 0.0, 0.0)
-	Toon.part(head, "ellipsoid", Vector3(0.16, 0.08, 0.04), "berry", Vector3(-0.38, -0.05, 0.5), Vector3.ZERO, 0.0, 0.0)
-
-
-## Demirci Kalay (Season 2): a sturdy turtle smith with a slate shell, a
-## leather apron and a little hammer.
-static func _smith_turtle(root: Node3D) -> void:
-	var skin := Color("#b8c9a0")
-	Toon.part(root, "sphere", Vector3(1.7, 1.35, 1.6), Color("#7f8a9c"), Vector3(0, 0.75, -0.15))
-	Toon.part(root, "cylinder", Vector3(1.8, 0.2, 1.8), Color("#c9b88a"), Vector3(0, 0.25, -0.15))
-	for i in 5:
-		var a := deg_to_rad(i * 72.0 + 36.0)
-		Toon.part(root, "sphere", Vector3(0.42, 0.2, 0.42), Color("#97a3b5"), Vector3(sin(a) * 0.48, 1.3, -0.15 + cos(a) * 0.48), Vector3(-25 * cos(a), 0, 25 * sin(a)), 0.0, 0.0)
-	Toon.part(root, "sphere", Vector3(0.72, 0.68, 0.7), skin, Vector3(0, 1.1, 0.82))
-	Toon.part(root, "box", Vector3(0.9, 0.8, 0.12), Color("#8a5a3c"), Vector3(0, 0.62, 0.72), Vector3(-10, 0, 0))
-	for s: float in [-1.0, 1.0]:
-		Toon.part(root, "sphere", Vector3(0.36, 0.28, 0.4), skin, Vector3(0.58 * s, 0.15, 0.5))
-	# the hammer in the right hand
-	Toon.part(root, "cylinder", Vector3(0.08, 0.7, 0.08), Color("#a86b45"), Vector3(-0.78, 0.8, 0.5), Vector3(0, 0, 20))
-	Toon.part(root, "box", Vector3(0.36, 0.2, 0.2), Color("#6e7380"), Vector3(-0.9, 1.15, 0.5), Vector3(0, 0, 20))
-	Face.add(root, Vector3(0, 1.1, 0.82), Vector3(0.36, 0.34, 0.36), "smile", false, 0.4, 0.23, 0.85)
-
-
-## Terzi Kozalak (Season 2): a russet squirrel tailor with a measuring tape
-## round the neck, a pincushion hat and a fluffy curled tail.
-static func _squirrel_tailor(root: Node3D) -> void:
-	var fur := Color("#d0703c")
-	Toon.part(root, "ellipsoid", Vector3(0.95, 1.0, 0.9), fur, Vector3(0, 0.55, 0))
-	Toon.part(root, "ellipsoid", Vector3(0.55, 0.65, 0.3), Color("#f6dcb6"), Vector3(0, 0.5, 0.32), Vector3.ZERO, 0.0, 0.0)
-	var head := Node3D.new()
-	head.name = "Head"
-	head.position = Vector3(0, 1.3, 0.05)
-	root.add_child(head)
-	Toon.part(head, "ellipsoid", Vector3(0.85, 0.78, 0.78), fur, Vector3.ZERO)
-	Face.add(head, Vector3(0, 0, 0.05), Vector3(0.425, 0.39, 0.39), "smile", false, 0.36, 0.1)
-	for side: float in [-1.0, 1.0]:
-		Toon.part(head, "cone", Vector3(0.22, 0.32, 0.12), fur, Vector3(0.26 * side, 0.45, -0.02), Vector3(0, 0, -12 * side))
-		var hand := Node3D.new()
-		hand.name = "HandL" if side > 0 else "HandR"
-		hand.position = Vector3(0.48 * side, 0.6, 0.15)
-		root.add_child(hand)
-		Toon.part(hand, "ellipsoid", Vector3(0.2, 0.26, 0.2), fur, Vector3.ZERO)
-	Toon.part(root, "ring", Vector3(0.8, 0.06, 0.8), "spark-yellow", Vector3(0, 0.98, 0.02))
-	Toon.part(head, "cylinder", Vector3(0.36, 0.22, 0.36), "berry", Vector3(0.05, 0.42, 0.0))
-	for i in 5:
-		var a := i * 0.55
-		Toon.part(root, "sphere", Vector3(0.55, 0.55, 0.55) * (1.0 - i * 0.08), fur.lightened(0.04 * i), Vector3(0, 0.5 + sin(a) * 0.8, -0.5 - cos(a) * 0.4 + i * 0.02))
-
-
-## Horoz Kukuri (Season 2): the fair's proud rooster in a little striped vest.
-static func _rooster(root: Node3D) -> void:
-	var white := Color("#fbf6ee")
-	Toon.part(root, "ellipsoid", Vector3(1.0, 1.15, 1.0), white, Vector3(0, 0.75, 0))
-	Toon.part(root, "ellipsoid", Vector3(1.05, 0.7, 1.05), "berry", Vector3(0, 0.75, 0.02))
-	for i in 3:
-		Toon.part(root, "box", Vector3(0.08, 0.6, 0.02), "honey", Vector3(-0.25 + i * 0.25, 0.75, 0.52), Vector3.ZERO, 0.0, 0.0)
-	var head := Node3D.new()
-	head.name = "Head"
-	head.position = Vector3(0, 1.6, 0.15)
-	root.add_child(head)
-	Toon.part(head, "ellipsoid", Vector3(0.7, 0.7, 0.68), white, Vector3.ZERO)
-	for i in 3:
-		Toon.part(head, "sphere", Vector3(0.24, 0.3, 0.16), "hp", Vector3(-0.15 + i * 0.15, 0.42 + (0.06 if i == 1 else 0.0), 0.0))
-	Toon.part(head, "cone", Vector3(0.22, 0.25, 0.16), "honey", Vector3(0, -0.02, 0.42), Vector3(90, 0, 0))
-	Toon.part(head, "ellipsoid", Vector3(0.12, 0.22, 0.1), "hp", Vector3(0, -0.2, 0.32))
-	for side: float in [-1.0, 1.0]:
-		_eye(Toon.part(head, "ellipsoid", Vector3(0.1, 0.13, 0.05), "outline", Vector3(0.16 * side, 0.08, 0.31), Vector3.ZERO, 0.0, 0.0))
-		var hand := Node3D.new()
-		hand.name = "HandL" if side > 0 else "HandR"
-		hand.position = Vector3(0.52 * side, 0.85, 0.0)
-		root.add_child(hand)
-		Toon.part(hand, "ellipsoid", Vector3(0.18, 0.5, 0.55), white, Vector3.ZERO, Vector3(0, 0, 20 * side))
-		Toon.part(root, "cylinder", Vector3(0.06, 0.3, 0.06), "honey", Vector3(0.18 * side, 0.15, 0.05))
-	for i in 3:
-		Toon.part(root, "ellipsoid", Vector3(0.18, 0.7, 0.3), ["leaf", "sky", "hp"][i], Vector3(-0.15 + i * 0.15, 1.2, -0.55), Vector3(-30, 0, -15 + i * 15))
 
 
 ## Tospik Nine: wise old turtle, leaf shell, honey shawl.

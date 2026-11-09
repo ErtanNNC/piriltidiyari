@@ -1,5 +1,5 @@
 {
-  "npc": "kukuri",
+  "npc": "pirpir",
   "variants": [
     {
       "when": {
@@ -8,7 +8,7 @@
       },
       "lines": [
         {
-          "speaker": "kukuri",
+          "speaker": "pirpir",
           "mood": "mutlu",
           "text": "Panayır açık! Patpat da oynuyor, kaybedince bile gülüyor!"
         }
@@ -21,22 +21,22 @@
       },
       "lines": [
         {
-          "speaker": "kukuri",
+          "speaker": "pirpir",
           "mood": "mutlu",
-          "text": "Patpat bir daha oynamak mı istedi? Ü-ürü-üü! Harika!"
+          "text": "Patpat bir daha oynamak mı istedi? Ahoy! Harika!"
         },
         {
-          "speaker": "kukuri",
+          "speaker": "pirpir",
           "mood": "sakin",
           "text": "Kaybetmek de oyunun parçası. Önemli olan birlikte oynamak."
         },
         {
-          "speaker": "kukuri",
+          "speaker": "pirpir",
           "mood": "dertli",
           "text": "Ama... Minnoş'u gördün mü? Kızıl Sis'in içine koştu."
         },
         {
-          "speaker": "kukuri",
+          "speaker": "pirpir",
           "mood": "kararlı",
           "text": "Gümbür Kanyonu'na doğru gitti. Bado'ya haber vermeli!"
         }
@@ -53,7 +53,7 @@
       },
       "lines": [
         {
-          "speaker": "kukuri",
+          "speaker": "pirpir",
           "mood": "dertli",
           "text": "Patpat panayır meydanında. Önce tarlaların çanını çal."
         }
@@ -66,17 +66,17 @@
       },
       "lines": [
         {
-          "speaker": "kukuri",
+          "speaker": "pirpir",
           "mood": "mutlu",
-          "text": "İki oyunu da kazandın! Ü-ürü-üü!"
+          "text": "İki oyunu da kazandın! Ahoy!"
         },
         {
-          "speaker": "kukuri",
+          "speaker": "pirpir",
           "mood": "dertli",
           "text": "Ama Tavuk Patpat hiç kazanamadı. Kızdı, panayırı kapattı."
         },
         {
-          "speaker": "kukuri",
+          "speaker": "pirpir",
           "mood": "kararlı",
           "text": "Tarlaların çanını çal. Sonra meydanda Patpat'ı dinle."
         }
@@ -96,12 +96,12 @@
       },
       "lines": [
         {
-          "speaker": "kukuri",
+          "speaker": "pirpir",
           "mood": "sakin",
           "text": "Tezgâhlara git, 'Oyna' de. Kaybedersen tekrar oynarsın."
         },
         {
-          "speaker": "kukuri",
+          "speaker": "pirpir",
           "mood": "mutlu",
           "text": "Kaybetmek ayıp değil. Bir daha denemek cesaret ister!"
         }
@@ -114,22 +114,22 @@
       },
       "lines": [
         {
-          "speaker": "kukuri",
+          "speaker": "pirpir",
           "mood": "mutlu",
-          "text": "Ü-ürü-üü! Ben Horoz Kukuri, panayırın sahibi!"
+          "text": "Ahoy! Gemim limanda kaldı ama pazarcılık bende. Panayır benim!"
         },
         {
-          "speaker": "kukuri",
+          "speaker": "pirpir",
           "mood": "dertli",
           "text": "Kızıl Sis geldi, herkes kaybedince küsüyor."
         },
         {
-          "speaker": "kukuri",
+          "speaker": "pirpir",
           "mood": "dertli",
           "text": "Panayırım bomboş! Oyunlarımı kimse oynamıyor."
         },
         {
-          "speaker": "kukuri",
+          "speaker": "pirpir",
           "mood": "kararlı",
           "text": "Balon Patlat ve Bayrak Koşusu. İkisini de dener misin?"
         }
@@ -141,9 +141,9 @@
     {
       "lines": [
         {
-          "speaker": "kukuri",
+          "speaker": "pirpir",
           "mood": "mutlu",
-          "text": "Ü-ürü-üü! Mısırlar patlıyor, panayır başlıyor!"
+          "text": "Ahoy! Mısırlar patlıyor, panayır başlıyor!"
         }
       ]
     }

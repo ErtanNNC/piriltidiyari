@@ -2,9 +2,9 @@ extends ChapterBase
 ## Sezon 2 · Bölüm 0 – Buharlı Kaplıca Köyü (levels 1–5, the hub). A village
 ## round hot springs at the foot of the mountain path. The Kızıl Sis has made
 ## everyone talk at once: four neighbours each want to be heard (talk to
-## them, they calm down). Bulut Nine sends the keeper to the village's big
+## them, they calm down). Tospik Nine (who came along with the keepers) sends the keeper to the village's big
 ## kettle (Homurdanan Çaydanlık, mini boss, Sakinleş at the end), then the
-## first Ses Çanı on the hill lifts the red mist. Bulut Nine runs a little
+## first Ses Çanı on the hill lifts the red mist. Tospik Nine runs a little
 ## shop afterwards.
 
 const Q1 := "kopuk_koy"
@@ -35,8 +35,8 @@ func _ready() -> void:
 	Pus.set_amount(0.03 if d.has_flag("s2_can0") else 0.18)
 	_build()
 	Decor.auto(self, "koy")
-	npc(self, "bulut", "hippo", Vector3(-3.6, 0, 0.6), 30.0).name = "Bulut"
-	npc(self, "kalay", "smith_turtle", Vector3(12.0, 0, 2.5), -60.0).name = "Kalay"
+	npc(self, "tospik_nine", "turtle", Vector3(-3.6, 0, 0.6), 30.0).name = "Tospik Nine"
+	npc(self, "kazma", "mole", Vector3(12.0, 0, 2.5), -60.0).name = "Kazma"
 	for id: String in VILLAGERS:
 		var v: Array = VILLAGERS[id]
 		var n := npc(self, id, v[0], v[1], v[2])
@@ -90,7 +90,7 @@ func _refresh() -> void:
 				Beacon.attach(n, 2.6, Tokens.color("spark-white"))
 			elif not on and n.has_node("Beacon"):
 				n.get_node("Beacon").queue_free()
-	var bulut := get_node("Bulut") as Node3D
+	var bulut := get_node("Tospik Nine") as Node3D
 	var go_bulut := d.quest_state(Q1) in ["none", "ready"] or d.quest_state(Q2) == "ready"
 	if go_bulut and not bulut.has_node("Beacon"):
 		Beacon.attach(bulut, 3.2, Tokens.color("spark-white"))
@@ -196,7 +196,7 @@ func _build() -> void:
 		t.kind = "tree"
 		lv.add_child(t)
 		t.position = p
-	# Kalay's forge: a cold anvil
+	# Kazma's forge: a cold anvil
 	Toon.part(lv, "box", Vector3(1.0, 0.6, 0.6), Color("#5a5f6a"), Vector3(13.6, 0.3, 4.2))
 	Toon.part(lv, "box", Vector3(1.3, 0.25, 0.5), Color("#6e7380"), Vector3(13.6, 0.72, 4.2))
 	# the bell hill
@@ -259,7 +259,7 @@ func _run_demo(which: String) -> void:
 			# the whole chapter, scripted (headless check)
 			DevTools.auto_dialogue = true
 			var d := GameState.data
-			for id: String in ["bulut", "pitpit", "pamuk", "toprak", "bidik", "bulut"]:
+			for id: String in ["tospik_nine", "pitpit", "pamuk", "toprak", "bidik", "tospik_nine"]:
 				var n := get_node(id.capitalize()) as Node3D
 				_player.global_position = n.global_position + Vector3(0, 0.3, 1.8)
 				await get_tree().create_timer(0.3).timeout
@@ -288,10 +288,10 @@ func _run_demo(which: String) -> void:
 			await get_tree().create_timer(0.4).timeout
 			(get_node("Level/Bell") as EchoBell).use(_player)
 			await close_dialogs()
-			var b := get_node("Bulut") as Node3D
+			var b := get_node("Tospik Nine") as Node3D
 			_player.global_position = b.global_position + Vector3(0, 0.3, 1.8)
 			await get_tree().create_timer(0.3).timeout
-			GameState.talk_to("bulut")
+			GameState.talk_to("tospik_nine")
 			await close_dialogs()
 			print("S2C0_DONE q2=%s flag=%s bell=%s level=%d" % [d.quest_state(Q2), d.has_flag("s2_bolum0_bitti"), d.has_flag("s2_can0"), d.level])
 			get_tree().quit()
