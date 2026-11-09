@@ -924,7 +924,29 @@
   "Tıpış? Sen... tokmağımı da mı getirdin?",
   "Kırık ama tamir ederiz. Birlikte çalarız, söz!",
   "Al Kor! Beş Kor tamam! Kızıl Sis dağılıyor!",
-  "Gel, Hırıl! Fener'in yedinci rengi seni bekliyor."
+  "Gel, Hırıl! Fener'in yedinci rengi seni bekliyor.",
+  "Döndünüz! Hepiniz! Kızıl Sis dağıldı, hıh!",
+  "Beş Kor bizde, Fıstık. Hepsi bir oldu!",
+  "Yedi renk! Kırmızı da geldi. Gökkuşağı tamam!",
+  "Öfke de artık diyarın bir parçası. Ama sıcaklık olarak.",
+  "Ben de davul çalmak isterdim ama... Gürültü olur mu?",
+  "Çal bakalım. Ama önce mumları üflemeyi Mırıl'dan öğren.",
+  "Kolay! Derin bir nefes al, sonra yavaşça üfle.",
+  "Bum-tak! Bum-tak! Kimse 'Sus!' demiyor!",
+  "Bütün köy dans ediyor! Hırıl, harika çalıyorsun!",
+  "Pati, al bu kalkanı. Artık çırak değil, şövalyesin!",
+  "Şövalye Pati! Söz, önce dinleyeceğim, sonra koşacağım.",
+  "Ağabey... Beni dinlediğin için teşekkürler.",
+  "Hep dinleyeceğim, Minnoş. Kızsam bile, önce dinlerim.",
+  "İki diyar tek haritada! Araya bir dağ yolu çizdim.",
+  "Hıh! Artık kimse yolunu kaybetmez.",
+  "Mırıl, Hırıl ve ben... Artık üç arkadaşız!",
+  "Üç ışık: bir yıldız, bir kor, bir ateşböceği.",
+  "Kırık davulu birlikte tamir ettik! Bak, sesi geldi.",
+  "Tak-tum! Şimdi iki tokmakla çalıyoruz.",
+  "Davulum... kendi kendine çok hızlı çalıyor!",
+  "Denizin üstünde mavi bir sis... Titriyor.",
+  "Bu da ne? Sanki... ürkmüş gibi."
  ],
  "content/s2_chapter5/chapter.json": [
   "Kükreyen Dağ"
@@ -1295,7 +1317,9 @@
   "Sezon 2 · Bölüm 2",
   "Sezon 2 · Bölüm 3",
   "Sezon 2 · Bölüm 4",
-  "Sezon 2 · Bölüm 5"
+  "Sezon 2 · Bölüm 5",
+  "Sezon 2 · Kapanış",
+  "Gökkuşağı Şenliği"
  ],
  "src/autoload/tokens.gd": [
   "fontSize",

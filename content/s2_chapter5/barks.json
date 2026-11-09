@@ -193,6 +193,136 @@
         "mood": "mutlu",
         "text": "Gel, Hırıl! Fener'in yedinci rengi seni bekliyor."
       }
+    ],
+    "s2f_1": [
+      {
+        "speaker": "fistik",
+        "mood": "mutlu",
+        "text": "Döndünüz! Hepiniz! Kızıl Sis dağıldı, hıh!"
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Beş Kor bizde, Fıstık. Hepsi bir oldu!"
+      }
+    ],
+    "s2f_fener": [
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Yedi renk! Kırmızı da geldi. Gökkuşağı tamam!"
+      },
+      {
+        "speaker": "miril",
+        "mood": "mutlu",
+        "text": "Öfke de artık diyarın bir parçası. Ama sıcaklık olarak."
+      }
+    ],
+    "s2f_hiril": [
+      {
+        "speaker": "hiril",
+        "mood": "dertli",
+        "text": "Ben de davul çalmak isterdim ama... Gürültü olur mu?"
+      },
+      {
+        "speaker": "fistik",
+        "mood": "mutlu",
+        "text": "Çal bakalım. Ama önce mumları üflemeyi Mırıl'dan öğren."
+      },
+      {
+        "speaker": "miril",
+        "mood": "mutlu",
+        "text": "Kolay! Derin bir nefes al, sonra yavaşça üfle."
+      }
+    ],
+    "s2f_dans": [
+      {
+        "speaker": "hiril",
+        "mood": "mutlu",
+        "text": "Bum-tak! Bum-tak! Kimse 'Sus!' demiyor!"
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Bütün köy dans ediyor! Hırıl, harika çalıyorsun!"
+      }
+    ],
+    "s2f_pati": [
+      {
+        "speaker": "fistik",
+        "mood": "mutlu",
+        "text": "Pati, al bu kalkanı. Artık çırak değil, şövalyesin!"
+      },
+      {
+        "speaker": "pati",
+        "mood": "mutlu",
+        "text": "Şövalye Pati! Söz, önce dinleyeceğim, sonra koşacağım."
+      }
+    ],
+    "s2f_bado": [
+      {
+        "speaker": "minnos",
+        "mood": "mutlu",
+        "text": "Ağabey... Beni dinlediğin için teşekkürler."
+      },
+      {
+        "speaker": "bado",
+        "mood": "mutlu",
+        "text": "Hep dinleyeceğim, Minnoş. Kızsam bile, önce dinlerim."
+      }
+    ],
+    "s2f_citir": [
+      {
+        "speaker": "citir",
+        "mood": "mutlu",
+        "text": "İki diyar tek haritada! Araya bir dağ yolu çizdim."
+      },
+      {
+        "speaker": "fistik",
+        "mood": "mutlu",
+        "text": "Hıh! Artık kimse yolunu kaybetmez."
+      }
+    ],
+    "s2f_lumi": [
+      {
+        "speaker": "lumi",
+        "mood": "mutlu",
+        "text": "Mırıl, Hırıl ve ben... Artık üç arkadaşız!"
+      },
+      {
+        "speaker": "miril",
+        "mood": "mutlu",
+        "text": "Üç ışık: bir yıldız, bir kor, bir ateşböceği."
+      }
+    ],
+    "s2f_tipis_panda": [
+      {
+        "speaker": "tipis_panda",
+        "mood": "mutlu",
+        "text": "Kırık davulu birlikte tamir ettik! Bak, sesi geldi."
+      },
+      {
+        "speaker": "hiril",
+        "mood": "mutlu",
+        "text": "Tak-tum! Şimdi iki tokmakla çalıyoruz."
+      }
+    ],
+    "s2f_mavi": [
+      {
+        "speaker": "hiril",
+        "mood": "şaşkın",
+        "text": "Davulum... kendi kendine çok hızlı çalıyor!"
+      },
+      {
+        "speaker": "fistik",
+        "mood": "şaşkın",
+        "text": "Denizin üstünde mavi bir sis... Titriyor."
+      },
+      {
+        "speaker": "fistik",
+        "mood": "dertli",
+        "text": "Bu da ne? Sanki... ürkmüş gibi."
+      }
     ]
   }
 }

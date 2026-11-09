@@ -32,6 +32,7 @@ const SCENES := {
 	"s2_chapter3": "res://scenes/season2/s2_chapter3_patpat_tarlalari.tscn",
 	"s2_chapter4": "res://scenes/season2/s2_chapter4_gumbur_kanyonu.tscn",
 	"s2_chapter5": "res://scenes/season2/s2_chapter5_kukreyen_dag.tscn",
+	"s2_final": "res://scenes/season2/s2_final.tscn",
 	# inside a village house (which one: SceneFlow.house_id)
 	"house": "res://scenes/chapter0/ev.tscn",
 	# dev only: all characters side by side (tools/screenshot.sh --scene=preview)
@@ -42,7 +43,7 @@ const SCENES := {
 const SCENE_CHAPTER := {"chapter0": "chapter0", "chapter1": "chapter1", "chapter2": "chapter2", "chapter3": "chapter3", "chapter4": "chapter4", "chapter5": "chapter5", "final": "chapter5", "house": "chapter0",
 	"s2_scene1": "s2_prologue", "s2_scene2": "s2_prologue", "s2_scene3": "s2_prologue",
 	"s2_scene4": "s2_prologue", "s2_scene5": "s2_prologue", "s2_scene6": "s2_prologue",
-	"s2_chapter0": "s2_chapter0", "s2_chapter1": "s2_chapter1", "s2_chapter2": "s2_chapter2", "s2_chapter3": "s2_chapter3", "s2_chapter4": "s2_chapter4", "s2_chapter5": "s2_chapter5"}
+	"s2_chapter0": "s2_chapter0", "s2_chapter1": "s2_chapter1", "s2_chapter2": "s2_chapter2", "s2_chapter3": "s2_chapter3", "s2_chapter4": "s2_chapter4", "s2_chapter5": "s2_chapter5", "s2_final": "s2_chapter5"}
 
 ## [small line, big title] shown when a scene starts.
 const CARDS := {
@@ -71,6 +72,7 @@ const CARDS := {
 	"s2_chapter3": ["Sezon 2 · Bölüm 3", "Patpat Tarlaları"],
 	"s2_chapter4": ["Sezon 2 · Bölüm 4", "Gümbür Kanyonu"],
 	"s2_chapter5": ["Sezon 2 · Bölüm 5", "Kükreyen Dağ"],
+	"s2_final": ["Sezon 2 · Kapanış", "Gökkuşağı Şenliği"],
 }
 
 var current := ""
@@ -128,7 +130,7 @@ func go_to(scene_id: String, save := true, card := true) -> void:
 		Content.load_chapter(chapter)
 	# Gece (dark) theme for the caves and other night chapters
 	# the ending is a sunny morning in the village, whatever chapter it belongs to
-	Tokens.set_theme("light" if scene_id in ["title", "final", "preview"] else String(Content.chapter.get("theme", "light")))
+	Tokens.set_theme("light" if scene_id in ["title", "final", "s2_final", "preview"] else String(Content.chapter.get("theme", "light")))
 	get_tree().change_scene_to_file(SCENES[scene_id])
 	current = scene_id
 	if save and scene_id != "title":

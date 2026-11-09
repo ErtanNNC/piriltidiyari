@@ -746,6 +746,15 @@ func test_season2() -> void:
 	check(not fin.objective_done("hiril", "hiril"), "Hırıl'ı dinlemek çandan önce sayılmaz (sıralı)")
 	for k: String in ["pati", "bado", "citir", "lumi", "tipis_panda"]:
 		check(Season2End.ENDINGS.has(k), "Sezon 2 kapanış cümlesi: %s" % k)
+	# Gökkuşağı Şenliği: every Season 2 keeper has a closing beat
+	for k: String in ["pati", "bado", "citir", "lumi", "tipis_panda"]:
+		check(c.barks.has("s2f_" + k), "Şenlik: %s için kapanış konuşması" % k)
+	var cs: Dictionary = ContentScript.read_json("res://content/s2_chapter5/cutscenes/senlik.json")
+	for step: Dictionary in cs["steps"]:
+		if step.has("say"):
+			check(c.barks.has(step["say"]), "Şenlik ara sahnesi: konuşma %s var" % step["say"])
+	var sf := FileAccess.get_file_as_string("res://src/autoload/scene_flow.gd")
+	check(sf.contains("\"s2_final\": \"res://scenes/season2/s2_final.tscn\"") and sf.contains("\"s2_final\": \"s2_chapter5\""), "Şenlik sahnesi kayıtlı")
 	var tp := PlayerData.new()
 	tp.choose_keeper("tipis_panda", c.keeper("tipis_panda")["stats"], {}, "Tıpış")
 	check(tp.level == 1 and tp.active_skill() == "derin_nefes", "Tıpış seçilince seviye 1 ve Derin Nefes")

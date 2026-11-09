@@ -1,0 +1,128 @@
+{
+  "steps": [
+    {
+      "cam": {
+        "pos": [
+          0,
+          9,
+          8
+        ],
+        "look": [
+          0,
+          6,
+          -14
+        ],
+        "time": 0
+      }
+    },
+    {
+      "pus": 0.0,
+      "time": 0.1
+    },
+    {
+      "wait": 1.0
+    },
+    {
+      "say": "s2f_1"
+    },
+    {
+      "do": "kors_to_tower"
+    },
+    {
+      "wait": 2.8
+    },
+    {
+      "flash": 1.2
+    },
+    {
+      "do": "tower_rainbow"
+    },
+    {
+      "wait": 1.0
+    },
+    {
+      "say": "s2f_fener"
+    },
+    {
+      "cam": {
+        "pos": [
+          0.6,
+          2.6,
+          -2.2
+        ],
+        "look": [
+          0,
+          1.1,
+          -7.4
+        ],
+        "time": 2.0
+      }
+    },
+    {
+      "say": "s2f_hiril"
+    },
+    {
+      "do": "drum_offer"
+    },
+    {
+      "wait": 1.0
+    },
+    {
+      "do": "dance"
+    },
+    {
+      "cam": {
+        "pos": [
+          0,
+          4.6,
+          1.5
+        ],
+        "look": [
+          0,
+          1.2,
+          -7
+        ],
+        "time": 2.0
+      }
+    },
+    {
+      "say": "s2f_dans"
+    },
+    {
+      "do": "keeper_line"
+    },
+    {
+      "wait": 0.6
+    },
+    {
+      "cam": {
+        "pos": [
+          0,
+          8,
+          4
+        ],
+        "look": [
+          -40,
+          4,
+          -50
+        ],
+        "time": 3.0
+      }
+    },
+    {
+      "do": "blue_tremble"
+    },
+    {
+      "wait": 1.6
+    },
+    {
+      "say": "s2f_mavi"
+    },
+    {
+      "wait": 0.6
+    },
+    {
+      "do": "season_end"
+    }
+  ]
+}

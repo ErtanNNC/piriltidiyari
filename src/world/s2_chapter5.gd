@@ -7,7 +7,7 @@ extends ChapterBase
 ## Faz 1: Hırıl fights (`Hiril`, `HirilPlan`). Faz 2: no fighting; the keeper
 ## carries each word back to him and answers it (`Hud.ask`). The last word
 ## lets his steam go: a small warm kor child is left. Tıpış says sorry, the
-## Al Kor, and Mırıl takes everyone home (Season 2 ends: `Season2End`).
+## Al Kor, and Mırıl takes everyone home: the Gökkuşağı Şenliği (`s2_final`).
 
 const Q1 := "soylenemeyen"
 const Q2 := "hiril"
@@ -294,16 +294,12 @@ func _drop_kor() -> void:
 
 func _season_end() -> void:
 	var d := GameState.data
-	d.scene_id = "s2_chapter0"
-	SaveGame.write(d)
-	var panel := Season2End.new()
-	_hud.add_child(panel)
 	if DevTools.demo != "" and DisplayServer.get_name() == "headless":
-		print("S2C5_END kor=%d sezon2=%s scene_id=%s" % [KorTracker.found(d), d.has_flag("sezon2_bitti"), d.scene_id])
+		print("S2C5_END kor=%d sezon2=%s" % [KorTracker.found(d), d.has_flag("sezon2_bitti")])
 		get_tree().quit()
 		return
-	var to: String = await panel.chosen
-	SceneFlow.go_to(to, to != "title")
+	# everyone goes home: the Gökkuşağı Şenliği in the village
+	SceneFlow.go_to("s2_final")
 
 
 func _open_veil() -> void:
@@ -547,10 +543,6 @@ func _run_demo(which: String) -> void:
 			_boss.active = true
 			_boss.tired = true
 			_boss.hit(99999, _player.global_position, 0.0)
-		"end":
-			for k: String in KorTracker.ORDER:
-				GameState.data.set_flag("kor_" + k)
-			GameState.data.set_flag("sezon2_bitti")
 		"arena":
 			GameState.data.set_flag("s2_can5")
 			_open_veil()

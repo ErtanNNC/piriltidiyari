@@ -3,7 +3,7 @@
 Kullanıcı onaylamadan başlanmaz. Her adım: test → commit → push → sürüm → APK.
 
 1. **Oyun notları:** APK elle oynanınca bulunan hatalar ve beğenilmeyen yerler.
-2. **Gökkuşağı Şenliği (gerçek final):**
+2. **Gökkuşağı Şenliği (gerçek final):** ✅ yapıldı (1.29.0)
    - Pırıltı Diyarı köyünde Fener yedinci rengi (kırmızı) alır.
    - Hırıl çekinir, Fıstık ona davulu uzatır; Hırıl çalar, Mırıl ışık saçar, köy dans eder.
    - Bekçiye özel kapanışlar:

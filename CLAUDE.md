@@ -215,7 +215,11 @@ is a copy of the design system's tokens.
   with the replies in bark `s2c5_cevap`), `hear(n)` lowers the steam; the
   fifth → `become_calm` (event "listen"/"hiril"), Tıpış says sorry (NPC unless
   you are Tıpış), Al Kor (`kor_al`); talking to Mırıl sets `sezon2_bitti` →
-  `Season2End` (closing line per keeper in `ENDINGS`), save goes to s2_chapter0.
+  `s2_final` (Gökkuşağı Şenliği, cutscene `s2_chapter5/cutscenes/senlik.json`:
+  the five Kor fly to the Fener, seven colors + rainbow arc, Fıstık hands Hırıl
+  a drum, everyone dances, keeper beat `s2f_<id>`, a blue trembling mist over
+  the sea = next season's seed) → `Season2End` (line per keeper in `ENDINGS`),
+  save goes to s2_chapter0.
 - Yol arkadaşları: Season 1 friends travel along (Sahne 6 `companions_arrive`,
   bark `s6b_yol`) and fill Season 2's roles instead of new characters (saves
   model credits, keeps the story together): Tospik Nine (Kaplıca Köyü guide
@@ -232,7 +236,8 @@ is a copy of the design system's tokens.
   `--scene=s2_chapter1 --demo=forest|veil|boss`, `--scene=s2_chapter2 --demo=lake|water|pads`,
   `--scene=s2_chapter3 --demo=fair|stalls`,
   `--scene=s2_chapter4 --demo=canyon|dodge|arena|echo`,
-  `--scene=s2_chapter5 --demo=summit|faz2|arena|minnos|words|end`.
+  `--scene=s2_chapter5 --demo=summit|faz2|arena|minnos|words`,
+  `--scene=s2_final --demo=run --auto` (prints S2FINAL and quits).
 
 ## Agent skills
 
