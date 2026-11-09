@@ -8,6 +8,9 @@ extends RefCounted
 
 
 static func build(calm := false) -> Node3D:
+	var real := ModelImport.boss("hiril", [])
+	if real:
+		return real
 	var root := Node3D.new()
 	Toon.default_pus = 0.0
 	var rock := Color("#8a4a3a")

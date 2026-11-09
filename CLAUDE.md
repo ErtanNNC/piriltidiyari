@@ -43,19 +43,28 @@ is a copy of the design system's tokens.
   `"ring"` (size.y = tube thickness); `"torus"` reads size.y as the inner radius. Mobs get the same rig
   (blink/breath); Pus mobs keep a faint tint of their own color (`MobModels._c`).
 - Free model pipeline (no credits): `tools/free_model.py <id> "<what>"` makes
-  drawings with FLUX.1 schnell (Apache-2.0) on Hugging Face into
-  work/free_model/ (gitignored), then `--image <pick>` turns one into a
-  textured model with TRELLIS (MIT), strips the floor/shadow slab under the
-  feet, shrinks textures → assets/models/<id>.glb + <id>.json ("facing": 0;
-  TRELLIS faces +Z). Needs the HF token as a Network secret (huggingface.co,
-  *.hf.space). First one: Gümbür (also Çıngır via goat_kid.json). The
-  clean-up also welds normals across texture seams (`weld_normals`): split
-  normals cracked the outline shell into stray dark dashes by horn tips;
-  `--reclean <id>` redoes it without a GPU. Look from the game's angle:
-  `--scene=preview --demo=ref --model=<id> --elev=50 --yaw=40 --outline`.
-  Free ZeroGPU quota is a few minutes a day (≈2 models); TRELLIS.2
-  (microsoft/TRELLIS.2, MIT, ≥100k triangles → decimate locally) is the
-  next quality step.
+  drawings with FLUX.1 schnell (Apache-2.0) into work/free_model/
+  (gitignored; `--roster <json>` for many, `FLUX_SPACE` = a rented copy),
+  then `--image <pick>` turns one into a textured model with TRELLIS (MIT):
+  the drawing's background is cut locally (`cutout`), the rented copy
+  (`TRELLIS_SPACE`, default Supertan83/TRELLIS: a copy of microsoft/TRELLIS
+  on A10G, Python 3.10, fastapi/starlette/jinja2 pinned, no example caching)
+  runs 30 steps and a 2048 px bake; then the floor/shadow slab is stripped,
+  normals welded (`weld_normals`, split normals cracked the outline into
+  dark dashes), textures shrunk → assets/models/<id>.glb + <id>.json
+  ("facing": 0; TRELLIS faces +Z). `--seed N` tries again, `--reclean <id>`
+  redoes the clean-up without a GPU. Needs the HF token as a Network secret
+  (huggingface.co, *.hf.space); a Write token lets the agent pause/restart
+  the rented Spaces itself (`HfApi().pause_space`); they sleep after 5 min.
+  TRELLIS.2 (`--v2` + `tools/project_texture.py`) was tried: good shapes but
+  its texture stage came out dark red on the rented GPU, and painting the
+  drawing on by projection looked worse; not used. Look from the game's
+  angle: `--scene=preview --demo=ref --model=<id> --elev=50 --yaw=40 --outline`.
+  Season 2 bosses take a real model through `ModelImport.boss(id, names)`
+  (imported mesh + empty nodes named like the parts the fight code looks
+  up); Gürledek, Çaydanlık (its lid stays a separate popping part), Fırfır,
+  Fokur, Hırıl (`HirilModel.build`) fall back to their primitives without
+  a file.
 - Ground decor is automatic: `Decor.auto(scene, style)` in each scene's `_ready`
   scatters non-colliding MultiMesh props on upright floors; thin meshes are paths.
 - Rigged keepers: Pati, Bado, Çıtır and Lumi play real bone clips (idle,

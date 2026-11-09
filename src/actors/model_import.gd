@@ -44,6 +44,22 @@ static func load_model(id: String) -> Node3D:
 	return from_scene(scene.instantiate() as Node3D, id)
 
 
+## A boss drawn from a real model: the imported mesh plus empty nodes named
+## like the parts the boss code looks up (faces it shows or hides, a tail it
+## turns), so the same fight code runs on either look. Null without a file.
+static func boss(id: String, names: Array) -> Node3D:
+	var m := load_model(id)
+	if m == null:
+		return null
+	var root := Node3D.new()
+	root.add_child(m)
+	for n: String in names:
+		var e := Node3D.new()
+		e.name = n
+		root.add_child(e)
+	return root
+
+
 ## A model for a prop: toon look and facing, no fit and no rig.
 static func load_static(id: String) -> Node3D:
 	var path := path_for(id)

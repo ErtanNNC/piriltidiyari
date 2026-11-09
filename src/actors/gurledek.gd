@@ -41,6 +41,9 @@ func _ready() -> void:
 
 ## A puffy red-violet cloud with a grumpy face (and a sad one for later).
 static func build_model() -> Node3D:
+	var real := ModelImport.boss("gurledek", ["AngryFace", "SadFace"])
+	if real:
+		return real
 	var root := Node3D.new()
 	Toon.default_pus = 0.0
 	var cols := [Color("#c9566a"), Color("#b0475e"), Color("#d97384"), Color("#a43f56")]

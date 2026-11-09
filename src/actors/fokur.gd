@@ -39,6 +39,9 @@ func _ready() -> void:
 
 
 static func build_model() -> Node3D:
+	var real := ModelImport.boss("fokur", ["CrossFace", "SoftFace", "Throat"])
+	if real:
+		return real
 	var root := Node3D.new()
 	Toon.default_pus = 0.0
 	var skin := Color("#e8604a")

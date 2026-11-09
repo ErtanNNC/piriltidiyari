@@ -110,7 +110,8 @@ def cutout(image):
     from PIL import Image
     from scipy import ndimage
     rgb = np.asarray(Image.open(image).convert("RGB")).astype(np.int16)
-    light = (rgb.min(axis=2) > 200) & (np.ptp(rgb, axis=2) < 30)
+    # paper white plus the soft grey ground shadow (light, low saturation)
+    light = (rgb.min(axis=2) > 165) & (np.ptp(rgb, axis=2) < 28)
     lab, _ = ndimage.label(light)
     edge = np.unique(np.concatenate([lab[0], lab[-1], lab[:, 0], lab[:, -1]]))
     bg = np.isin(lab, edge[edge > 0])

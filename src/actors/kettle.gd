@@ -43,6 +43,18 @@ func _ready() -> void:
 
 
 static func build_model() -> Node3D:
+	var real := ModelImport.boss("caydanlik", ["CrossFace", "CalmFace"])
+	if real:
+		# the drawn lid stays a separate part: it pops up when he can be hit
+		Toon.default_pus = 0.0
+		var lid_real := Node3D.new()
+		lid_real.name = "Lid"
+		lid_real.position = Vector3(0, 2.25, 0)
+		real.add_child(lid_real)
+		Toon.part(lid_real, "cylinder", Vector3(1.2, 0.18, 1.2), Color("#a9553a"), Vector3.ZERO, Vector3.ZERO, 0.0, 0.03)
+		Toon.part(lid_real, "sphere", Vector3(0.3, 0.26, 0.3), "honey", Vector3(0, 0.2, 0), Vector3.ZERO, 0.6, 0.02)
+		Toon.default_pus = 1.0
+		return real
 	var root := Node3D.new()
 	Toon.default_pus = 0.0
 	var copper := Color("#d9784a")
