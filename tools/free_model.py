@@ -121,8 +121,13 @@ if __name__ == "__main__":
     ap.add_argument("--seeds", default="7,21")
     ap.add_argument("--image")
     ap.add_argument("--reclean", action="store_true", help="clean assets/models/<id>.glb again")
+    ap.add_argument("--roster", help="json {id: what}: drawings for every id (id 'all')")
     a = ap.parse_args()
-    if a.reclean:
+    if a.roster:
+        for mid, what in json.load(open(a.roster)).items():
+            if a.id in ("all", mid):
+                drawings(mid, what, [int(s) for s in a.seeds.split(",")])
+    elif a.reclean:
         reclean(a.id)
     elif a.image:
         model(a.id, a.image)
