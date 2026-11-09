@@ -29,6 +29,8 @@ func _ready() -> void:
 			auto_dialogue = true
 		elif arg.begins_with("--scene="):
 			scene = arg.get_slice("=", 1)
+		elif arg == "--probe":  # prints an ASCII height map (tools/probe_map.gd)
+			add_child(load("res://tools/probe_map.gd").new())
 	if scene != "":
 		_jump.call_deferred(scene)
 	if _shot_path != "":

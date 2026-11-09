@@ -3,6 +3,64 @@
   "variants": [
     {
       "when": {
+        "quest": "konusma_cemberi",
+        "state": "active",
+        "objective_not_done": "konusma_cemberi/tas_pitpit"
+      },
+      "lines": [
+        {
+          "speaker": "pitpit",
+          "mood": "mutlu",
+          "text": "Vak! Taş bende! Şimdi ben konuşuyorum, herkes dinliyor."
+        },
+        {
+          "speaker": "pitpit",
+          "mood": "dertli",
+          "text": "Dün Pamuk'un havucunu yedim. Özür dilerim, Pamuk."
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "sakin",
+          "text": "Güzel söyledin. Taşı şimdi Pamuk'a götüreyim."
+        }
+      ],
+      "then": {
+        "advance": "konusma_cemberi/tas_pitpit"
+      }
+    },
+    {
+      "when": {
+        "quest": "konusma_cemberi",
+        "state": "active",
+        "objective_not_done": "konusma_cemberi/tas_pitpit"
+      },
+      "lines": [
+        {
+          "speaker": "pitpit",
+          "mood": "sakin",
+          "text": "Vak! Taş gelince konuşacağım. Şimdi dinliyorum."
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "konusma_cemberi",
+        "state": [
+          "active",
+          "ready",
+          "done"
+        ]
+      },
+      "lines": [
+        {
+          "speaker": "pitpit",
+          "mood": "mutlu",
+          "text": "Ben konuştum. Şimdi dinleme sırası bende."
+        }
+      ]
+    },
+    {
+      "when": {
         "objective_done": "kopuk_koy/pitpit"
       },
       "lines": [

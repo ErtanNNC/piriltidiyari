@@ -3,6 +3,65 @@
   "variants": [
     {
       "when": {
+        "quest": "konusma_cemberi",
+        "state": "active",
+        "objective_not_done": "konusma_cemberi/tas_pamuk",
+        "objective_done": "konusma_cemberi/tas_pitpit"
+      },
+      "lines": [
+        {
+          "speaker": "pamuk",
+          "mood": "mutlu",
+          "text": "Özrünü duydum, Pıtpıt. Sorun değil!"
+        },
+        {
+          "speaker": "pamuk",
+          "mood": "sakin",
+          "text": "Benim söyleyeceğim şu: Toprak'ın tüneli çok güzel."
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "sakin",
+          "text": "Sıra Toprak'ta. Taşı ona götürüyorum."
+        }
+      ],
+      "then": {
+        "advance": "konusma_cemberi/tas_pamuk"
+      }
+    },
+    {
+      "when": {
+        "quest": "konusma_cemberi",
+        "state": "active",
+        "objective_not_done": "konusma_cemberi/tas_pamuk"
+      },
+      "lines": [
+        {
+          "speaker": "pamuk",
+          "mood": "sakin",
+          "text": "Konuşma Taşı bende değil. Sıramı bekliyorum."
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "konusma_cemberi",
+        "state": [
+          "active",
+          "ready",
+          "done"
+        ]
+      },
+      "lines": [
+        {
+          "speaker": "pamuk",
+          "mood": "mutlu",
+          "text": "Ben söyledim, şimdi kulaklarım açık."
+        }
+      ]
+    },
+    {
+      "when": {
         "objective_done": "kopuk_koy/pamuk"
       },
       "lines": [

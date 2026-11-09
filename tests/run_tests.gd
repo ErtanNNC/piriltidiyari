@@ -808,6 +808,49 @@ func test_season2() -> void:
 		sw.add_xp(Progression.xp_to_next(sw.level) - sw.xp)
 	sw.switch_keeper("lumi", {"max_hp": 100, "max_mp": 50, "power": 10, "speed": 6.0}, {}, "Lumi", c.items)
 	check(sw.level == 6 and sw.active_skill() == "ninni_isigi" and not sw.skills.has("mirlama"), "Sezon 2'de bekçi değiştirince yeni bekçinin yeteneği gelir")
+	# Season 2 side collections: every spot counts once, sets complete,
+	# letters wait for their region's bell
+	var sq := PlayerData.new()
+	sq.choose_keeper("pati", {"max_hp": 100, "max_mp": 50, "power": 10, "speed": 6.0}, {}, "Pati")
+	var side := c.side
+	check(SideQuests.total(side, "minnos") == 12 and SideQuests.total(side, "davul") == 18 and SideQuests.total(side, "mektup") == 6, "yan görev sayıları 12/18/6")
+	var m0: Array = SideQuests.spots(side, "s2_chapter0", "mektup")[0]
+	check(SideQuests.take(sq, side, "s2_chapter0", m0[0]).is_empty(), "mektup çan çalmadan alınmaz")
+	var drums: Array = SideQuests.spots(side, "s2_chapter0", "davul")
+	var p0 := sq.piril
+	var ev1 := SideQuests.take(sq, side, "s2_chapter0", drums[0][0])
+	check("first" in ev1 and not "region" in ev1, "ilk davul: first")
+	check(SideQuests.take(sq, side, "s2_chapter0", drums[0][0]).is_empty(), "aynı davul iki kez sayılmaz")
+	SideQuests.take(sq, side, "s2_chapter0", drums[1][0])
+	var ev3 := SideQuests.take(sq, side, "s2_chapter0", drums[2][0])
+	check("region" in ev3 and sq.piril > p0, "bölgenin 3 davulu: bölge ödülü")
+	for sc: String in side["spots"]:
+		sq.set_flag("s2_can" + sc.substr(10))
+		for pair: Array in SideQuests.spots(side, sc, "mektup"):
+			SideQuests.take(sq, side, sc, pair[0])
+	check(sq.has_flag("yan_mektup_bitti") and SideQuests.found(sq, side, "mektup") == 6, "6 mektup: set tamam")
+	for sc: String in side["spots"]:
+		for sp: Dictionary in side["spots"][sc]:
+			for l: Dictionary in sp.get("lines", []):
+				check(String(l["text"]).length() <= 70, "yan görev satırı ≤ 70: %s" % l["text"])
+	# Konuşma Çemberi: in order only
+	c.load_chapter("s2_chapter0")
+	check(c.quests.has("konusma_cemberi") and c.quests["konusma_cemberi"].get("ordered", false), "Konuşma Çemberi sıralı görev")
+	var kc := PlayerData.new()
+	kc.start_quest(c.quests["konusma_cemberi"])
+	var pv: Dictionary = DialogueRules.pick_variant(c.npcs["pamuk"], kc)
+	check(not pv.get("then", {}).has("advance"), "Pamuk sırası gelmeden konuşmaz")
+	var tv: Dictionary = DialogueRules.pick_variant(c.npcs["pitpit"], kc)
+	check(tv.get("then", {}).get("advance", "") == "konusma_cemberi/tas_pitpit", "taş önce Pıtpıt'a")
+	# a bell rung before its quest started still counts (EchoBell re-sends
+	# "ring"): the event is safe to send again
+	var rb := PlayerData.new()
+	c.load_chapter("s2_chapter4")
+	rb.start_quest(c.quests["gumbur"])
+	rb.notify("ring", "ses_cani", c.quests)
+	rb.notify("ring", "ses_cani", c.quests)
+	check(rb.objective_done("gumbur", "can") and not rb.objective_done("gumbur", "gumbur"), "geç başlayan görevde çan sayılır, bir kez")
+	check(FileAccess.get_file_as_string("res://src/world/echo_bell.gd").contains("quest_changed.connect(_sync)"), "çalınmış çan görev değişince olayı yeniden gönderir")
 	# ambience loops named in Audio exist
 	var au := FileAccess.get_file_as_string("res://src/autoload/audio.gd")
 	for loop_name: String in ["forest", "lake", "sea", "farm", "springs", "creek"]:

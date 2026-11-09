@@ -15,7 +15,7 @@ const ISLAND := Vector3(0, 0, -30.0)
 const ISLAND_R := 9.0
 const BELL_AT := Vector3(15.0, 0, 16.0)
 const VEIL_Z := 4.5
-const PADS := [Vector3(0.0, 0, 2.0), Vector3(1.6, 0, -1.2), Vector3(0.0, 0, -4.4), Vector3(-1.7, 0, -7.6), Vector3(0.0, 0, -10.8),
+const PADS := [Vector3(-0.4, 0, 5.4), Vector3(0.0, 0, 2.0), Vector3(1.6, 0, -1.2), Vector3(0.0, 0, -4.4), Vector3(-1.7, 0, -7.6), Vector3(0.0, 0, -10.8),
 	Vector3(1.8, 0, -14.0), Vector3(0.2, 0, -17.2), Vector3(-1.4, 0, -20.2)]
 const FROGS := {
 	"dede_virak": [Vector3(-6.0, 0, 13.0), 25.0, 1.25],
@@ -260,9 +260,13 @@ func _build() -> void:
 		lv.add_child(steam)
 		MobModels._pus_wisps(steam, 0.2, Color(1, 1, 1), 3, 0.4)
 	# lily pads to hop across
-	for p: Vector3 in PADS:
-		var pad := WorldLook.block(lv, p + Vector3.DOWN * 0.15, Vector3(2.2, 0.3, 2.2), Color("#5fa84a"), 0.03)
-		Toon.part(pad, "cylinder", Vector3(0.3, 0.32, 0.3), Color("#ff9ac0"), Vector3(0.6, 0.05, 0.4), Vector3.ZERO, 0.6, 0.0)
+	for i in PADS.size():
+		var pad := LilyPad.new()
+		pad.name = "Pad%d" % i
+		pad.flower = i % 3 != 1
+		pad.turn = i * 1.7
+		pad.position = PADS[i]
+		lv.add_child(pad)
 	# the island
 	var island := StaticBody3D.new()
 	var ic := CollisionShape3D.new()
@@ -409,7 +413,7 @@ func _run_demo(which: String) -> void:
 			await close_dialogs()
 			await get_tree().create_timer(1.6).timeout
 			# hop the lily pads
-			_player.global_position = Vector3(0, 0.3, 6.5)
+			_player.global_position = Vector3(0, 0.3, 8.0)
 			_player.respawn_point = _player.global_position
 			await get_tree().create_timer(0.4).timeout
 			for p: Vector3 in PADS:
@@ -456,7 +460,8 @@ func _run_demo(which: String) -> void:
 			get_tree().quit()
 		"pads":
 			GameState.data.set_flag("s2_can2")
-			_player.global_position = Vector3(0, 0.3, 6.5)
+			_player.global_position = Vector3(0, 0.4, 9.5) if OS.get_cmdline_user_args().has("--shore") else PADS[0] + Vector3(0, 0.4, 0)
+			_player.respawn_point = _player.global_position
 
 
 ## Test helper: walk toward `target`, jumping once on the way (pad hops).

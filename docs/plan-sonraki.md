@@ -18,7 +18,7 @@ Kullanıcı onaylamadan başlanmaz. Her adım: test → commit → push → sür
    - Sis Kalkanı iksiri.
    - Gümbür dükkânı (ritim yetenekleri).
    - Bekçilerin yeni sakinleştirme yetenekleri (Mırlama, Kocaman Sarılma, Komik Yüz, Ninni Işığı); önce oyunda olup olmadıkları kontrol edilecek.
-4. **Yan görevler:**
+4. **Yan görevler:** ✅ yapıldı (1.36.0; davullar müziğe çalgı eklemek yerine yakınında çalıyor, müzik katmanı Sezon 2 müzikleriyle gelecek)
    - Minnoş izleri.
    - Susturulmuş Davullar (bölge başına 3).
    - Köyün Konuşma Çemberi.

@@ -3,6 +3,65 @@
   "variants": [
     {
       "when": {
+        "quest": "konusma_cemberi",
+        "state": "active",
+        "objective_not_done": "konusma_cemberi/tas_toprak",
+        "objective_done": "konusma_cemberi/tas_pamuk"
+      },
+      "lines": [
+        {
+          "speaker": "toprak",
+          "mood": "şaşkın",
+          "text": "Sağ ol, Pamuk. Bunu kimse söylememişti."
+        },
+        {
+          "speaker": "toprak",
+          "mood": "mutlu",
+          "text": "Yarın hepinizi tünelimde gezdireceğim. Söz!"
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "sakin",
+          "text": "Son sıra Bıdık'ın. Taşı ona götüreyim."
+        }
+      ],
+      "then": {
+        "advance": "konusma_cemberi/tas_toprak"
+      }
+    },
+    {
+      "when": {
+        "quest": "konusma_cemberi",
+        "state": "active",
+        "objective_not_done": "konusma_cemberi/tas_toprak"
+      },
+      "lines": [
+        {
+          "speaker": "toprak",
+          "mood": "sakin",
+          "text": "Taş gelince anlatırım. Şimdi kulağım sende."
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "konusma_cemberi",
+        "state": [
+          "active",
+          "ready",
+          "done"
+        ]
+      },
+      "lines": [
+        {
+          "speaker": "toprak",
+          "mood": "mutlu",
+          "text": "Sıram geçti. Şimdi ben dinliyorum."
+        }
+      ]
+    },
+    {
+      "when": {
         "objective_done": "kopuk_koy/toprak"
       },
       "lines": [

@@ -1,0 +1,629 @@
+{
+  "sets": {
+    "minnos": {
+      "title": "Minnoş'un İzleri",
+      "desc": "Minnoş'un yol boyunca bıraktığı resimler",
+      "action": "Bak",
+      "reward": {
+        "piril": 200,
+        "xp": 400
+      },
+      "first": [
+        {
+          "speaker": "oyuncu",
+          "mood": "sakin",
+          "text": "Minik pati izleri! Bir de tebeşirle çizilmiş bir resim."
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "kararlı",
+          "text": "Minnoş'un resimleri bunlar. Hepsini bulalım!"
+        }
+      ],
+      "done": [
+        {
+          "speaker": "oyuncu",
+          "mood": "mutlu",
+          "text": "Minnoş'un bütün resimlerini buldum!"
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "sakin",
+          "text": "Artık biliyorum: Minnoş sadece dinlenmek istemiş."
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "mutlu",
+          "text": "Resimlere onunla birlikte bakacağız."
+        }
+      ]
+    },
+    "davul": {
+      "title": "Susturulmuş Davullar",
+      "desc": "Üstüne 'SUS' bezi bağlanmış davullar: bezlerini çöz",
+      "action": "Çöz",
+      "region_reward": {
+        "piril": 60,
+        "xp": 120
+      },
+      "reward": {
+        "piril": 250,
+        "xp": 500
+      },
+      "first": [
+        {
+          "speaker": "oyuncu",
+          "mood": "şaşkın",
+          "text": "Bir davulun üstüne bez bağlamışlar: 'SUS' yazıyor."
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "kararlı",
+          "text": "Bezini çözelim. Davullar da konuşmak ister!"
+        }
+      ],
+      "region": [
+        {
+          "speaker": "oyuncu",
+          "mood": "mutlu",
+          "text": "Bu bölgenin üç davulu da uyandı! Dinle, birlikte çalıyorlar."
+        }
+      ],
+      "done": [
+        {
+          "speaker": "oyuncu",
+          "mood": "mutlu",
+          "text": "Bütün davullar özgür! Hırıl bunu duysa çok sevinir."
+        }
+      ]
+    },
+    "mektup": {
+      "title": "Fıstık'ın Mektupları",
+      "desc": "Her çan çalınca posta kutusuna Fıstık'tan bir mektup gelir",
+      "action": "Oku",
+      "reward": {
+        "piril": 150,
+        "xp": 300
+      },
+      "first": [],
+      "done": [
+        {
+          "speaker": "oyuncu",
+          "mood": "mutlu",
+          "text": "Fıstık'ın bütün mektuplarını okudum."
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "mutlu",
+          "text": "Eve dönünce ben de ona bir mektup yazacağım!"
+        }
+      ]
+    }
+  },
+  "regions": {
+    "s2_chapter0": "Buharlı Kaplıca Köyü",
+    "s2_chapter1": "Kızıl Yaprak Ormanı",
+    "s2_chapter2": "Fokurdayan Göl",
+    "s2_chapter3": "Patpat Tarlaları",
+    "s2_chapter4": "Gümbür Kanyonu",
+    "s2_chapter5": "Kükreyen Dağ"
+  },
+  "spots": {
+    "s2_chapter0": [
+      {
+        "set": "minnos",
+        "at": [
+          -17,
+          -18
+        ],
+        "lines": [
+          {
+            "speaker": "oyuncu",
+            "mood": "sakin",
+            "text": "Taşa tebeşirle bir resim çizilmiş: kocaman bir kulak."
+          },
+          {
+            "speaker": "oyuncu",
+            "mood": "şaşkın",
+            "text": "Yanında minik pati izleri. Minnoş buradan geçmiş!"
+          }
+        ]
+      },
+      {
+        "set": "minnos",
+        "at": [
+          24,
+          16
+        ],
+        "lines": [
+          {
+            "speaker": "oyuncu",
+            "mood": "sakin",
+            "text": "Bir resim: herkes konuşuyor, köşede bir yavru susmuş."
+          },
+          {
+            "speaker": "oyuncu",
+            "mood": "dertli",
+            "text": "Minnoş da böyle mi hissediyordu?"
+          }
+        ]
+      },
+      {
+        "set": "davul",
+        "at": [
+          -22,
+          4
+        ]
+      },
+      {
+        "set": "davul",
+        "at": [
+          20,
+          -8
+        ]
+      },
+      {
+        "set": "davul",
+        "at": [
+          -1,
+          -22
+        ]
+      },
+      {
+        "set": "mektup",
+        "at": [
+          4,
+          19
+        ],
+        "needs": "s2_can0",
+        "lines": [
+          {
+            "speaker": "fistik",
+            "mood": "mutlu",
+            "text": "Merhaba! Ben Fıstık. Pırıltı Diyarı'ndan yazıyorum."
+          },
+          {
+            "speaker": "fistik",
+            "mood": "sakin",
+            "text": "Fener'in yanında oturdum, seni düşündüm."
+          },
+          {
+            "speaker": "fistik",
+            "mood": "mutlu",
+            "text": "Sen oradasın diye içim rahat. Kendine iyi bak!"
+          }
+        ]
+      }
+    ],
+    "s2_chapter1": [
+      {
+        "set": "minnos",
+        "at": [
+          -20,
+          8
+        ],
+        "lines": [
+          {
+            "speaker": "oyuncu",
+            "mood": "sakin",
+            "text": "Yaprakların arasında bir çizim: Minnoş elini kaldırmış."
+          },
+          {
+            "speaker": "oyuncu",
+            "mood": "dertli",
+            "text": "Ama kimse ona söz vermemiş."
+          }
+        ]
+      },
+      {
+        "set": "minnos",
+        "at": [
+          16,
+          -10
+        ],
+        "lines": [
+          {
+            "speaker": "oyuncu",
+            "mood": "sakin",
+            "text": "Ağaç kabuğuna yazılmış: 'BEN DE!'"
+          },
+          {
+            "speaker": "oyuncu",
+            "mood": "dertli",
+            "text": "Minnoş da bir şey söylemek istemiş."
+          }
+        ]
+      },
+      {
+        "set": "davul",
+        "at": [
+          -18,
+          -14
+        ]
+      },
+      {
+        "set": "davul",
+        "at": [
+          20,
+          10
+        ]
+      },
+      {
+        "set": "davul",
+        "at": [
+          6,
+          -32
+        ]
+      },
+      {
+        "set": "mektup",
+        "at": [
+          -6,
+          20
+        ],
+        "needs": "s2_can1",
+        "lines": [
+          {
+            "speaker": "fistik",
+            "mood": "mutlu",
+            "text": "Bugün köyün yavruları senin resmini yaptı."
+          },
+          {
+            "speaker": "fistik",
+            "mood": "mutlu",
+            "text": "Resimde sen bir çanı çalıyorsun. Çok güzel olmuş!"
+          },
+          {
+            "speaker": "fistik",
+            "mood": "sakin",
+            "text": "Ormanda yapraklar kızıl mı? Burada hepsi sarı."
+          }
+        ]
+      }
+    ],
+    "s2_chapter2": [
+      {
+        "set": "minnos",
+        "at": [
+          -28,
+          -10
+        ],
+        "lines": [
+          {
+            "speaker": "oyuncu",
+            "mood": "sakin",
+            "text": "Kumda bir resim: Bado ile Minnoş el ele."
+          },
+          {
+            "speaker": "oyuncu",
+            "mood": "mutlu",
+            "text": "Yanına küçük bir kalp çizmiş."
+          }
+        ]
+      },
+      {
+        "set": "minnos",
+        "at": [
+          5,
+          -33
+        ],
+        "lines": [
+          {
+            "speaker": "oyuncu",
+            "mood": "sakin",
+            "text": "Bir resim: kurbağalar şarkı söylüyor, Minnoş da."
+          },
+          {
+            "speaker": "oyuncu",
+            "mood": "dertli",
+            "text": "Ama Minnoş'un ağzını minicik çizmiş."
+          }
+        ]
+      },
+      {
+        "set": "davul",
+        "at": [
+          28,
+          -20
+        ]
+      },
+      {
+        "set": "davul",
+        "at": [
+          -22,
+          24
+        ]
+      },
+      {
+        "set": "davul",
+        "at": [
+          0,
+          -46
+        ]
+      },
+      {
+        "set": "mektup",
+        "at": [
+          10,
+          17
+        ],
+        "needs": "s2_can2",
+        "lines": [
+          {
+            "speaker": "fistik",
+            "mood": "mutlu",
+            "text": "Göle mi vardın? Kurbağaların şarkısını merak ettim."
+          },
+          {
+            "speaker": "fistik",
+            "mood": "sakin",
+            "text": "Hu Öğretmen dedi ki: 'Dinlemek de bir şarkıdır.'"
+          },
+          {
+            "speaker": "fistik",
+            "mood": "sakin",
+            "text": "Ben de bugün sustum ve rüzgârı dinledim."
+          }
+        ]
+      }
+    ],
+    "s2_chapter3": [
+      {
+        "set": "minnos",
+        "at": [
+          -20,
+          0
+        ],
+        "lines": [
+          {
+            "speaker": "oyuncu",
+            "mood": "sakin",
+            "text": "Bir resim: panayırda balonlar. Biri elinden kaçmış."
+          },
+          {
+            "speaker": "oyuncu",
+            "mood": "dertli",
+            "text": "Kimse fark etmemiş. Minnoş üzülmüş."
+          }
+        ]
+      },
+      {
+        "set": "minnos",
+        "at": [
+          20,
+          16
+        ],
+        "lines": [
+          {
+            "speaker": "oyuncu",
+            "mood": "sakin",
+            "text": "Çitin dibinde bir resim: Minnoş tek başına koşuyor."
+          },
+          {
+            "speaker": "oyuncu",
+            "mood": "dertli",
+            "text": "Arkasında kırmızı bir bulut var."
+          }
+        ]
+      },
+      {
+        "set": "davul",
+        "at": [
+          -22,
+          24
+        ]
+      },
+      {
+        "set": "davul",
+        "at": [
+          22,
+          -6
+        ]
+      },
+      {
+        "set": "davul",
+        "at": [
+          -10,
+          -30
+        ]
+      },
+      {
+        "set": "mektup",
+        "at": [
+          6,
+          24
+        ],
+        "needs": "s2_can3",
+        "lines": [
+          {
+            "speaker": "fistik",
+            "mood": "mutlu",
+            "text": "Panayır nasıl? Pırpır mutlaka balon satıyordur!"
+          },
+          {
+            "speaker": "fistik",
+            "mood": "dertli",
+            "text": "Bazen ben de kızıyorum, biliyor musun?"
+          },
+          {
+            "speaker": "fistik",
+            "mood": "sakin",
+            "text": "O zaman derin bir nefes alıyorum. İşe yarıyor!"
+          }
+        ]
+      }
+    ],
+    "s2_chapter4": [
+      {
+        "set": "minnos",
+        "at": [
+          -9,
+          12
+        ],
+        "lines": [
+          {
+            "speaker": "oyuncu",
+            "mood": "sakin",
+            "text": "Kayada bir resim: Minnoş bağırıyor, sesi yankı oluyor."
+          },
+          {
+            "speaker": "oyuncu",
+            "mood": "dertli",
+            "text": "Yankılar ona geri dönmüş. Kimse cevap vermemiş."
+          }
+        ]
+      },
+      {
+        "set": "minnos",
+        "at": [
+          9,
+          -22
+        ],
+        "lines": [
+          {
+            "speaker": "oyuncu",
+            "mood": "sakin",
+            "text": "Bir resim: bir kulak, yanında soru işareti."
+          },
+          {
+            "speaker": "oyuncu",
+            "mood": "dertli",
+            "text": "'Beni duyan var mı?' diyor gibi."
+          }
+        ]
+      },
+      {
+        "set": "davul",
+        "at": [
+          9,
+          26
+        ]
+      },
+      {
+        "set": "davul",
+        "at": [
+          -9,
+          -8
+        ]
+      },
+      {
+        "set": "davul",
+        "at": [
+          5,
+          -36
+        ]
+      },
+      {
+        "set": "mektup",
+        "at": [
+          -5,
+          24
+        ],
+        "needs": "s2_can4",
+        "lines": [
+          {
+            "speaker": "fistik",
+            "mood": "mutlu",
+            "text": "Kanyondan davul sesi gelirmiş, öyle duydum."
+          },
+          {
+            "speaker": "fistik",
+            "mood": "sakin",
+            "text": "Bir davulum olsa ben de çalmak isterdim."
+          },
+          {
+            "speaker": "fistik",
+            "mood": "mutlu",
+            "text": "Sen dönünce birlikte ritim tutalım mı?"
+          }
+        ]
+      }
+    ],
+    "s2_chapter5": [
+      {
+        "set": "minnos",
+        "at": [
+          -9,
+          4
+        ],
+        "lines": [
+          {
+            "speaker": "oyuncu",
+            "mood": "sakin",
+            "text": "Bir resim: Minnoş ve Hırıl sırt sırta oturuyor."
+          },
+          {
+            "speaker": "oyuncu",
+            "mood": "dertli",
+            "text": "İkisi de üzgün ama birlikteler."
+          }
+        ]
+      },
+      {
+        "set": "minnos",
+        "at": [
+          9,
+          -11
+        ],
+        "lines": [
+          {
+            "speaker": "oyuncu",
+            "mood": "sakin",
+            "text": "Son resim: herkes oturmuş, Minnoş konuşuyor."
+          },
+          {
+            "speaker": "oyuncu",
+            "mood": "mutlu",
+            "text": "Herkes onu dinliyor. Minnoş'un hayali buymuş."
+          }
+        ]
+      },
+      {
+        "set": "davul",
+        "at": [
+          9,
+          26
+        ]
+      },
+      {
+        "set": "davul",
+        "at": [
+          -9,
+          -14
+        ]
+      },
+      {
+        "set": "davul",
+        "at": [
+          -6,
+          -30
+        ]
+      },
+      {
+        "set": "mektup",
+        "at": [
+          5,
+          26
+        ],
+        "needs": "s2_can5",
+        "lines": [
+          {
+            "speaker": "fistik",
+            "mood": "sakin",
+            "text": "Son mektubum! Dağın tepesinde Hırıl var, değil mi?"
+          },
+          {
+            "speaker": "fistik",
+            "mood": "sakin",
+            "text": "Ona kızma. Belki o da dinlenmek istiyordur."
+          },
+          {
+            "speaker": "fistik",
+            "mood": "mutlu",
+            "text": "Seni bekliyorum. Fener'in yanına yer ayırdım!"
+          }
+        ]
+      }
+    ]
+  }
+}

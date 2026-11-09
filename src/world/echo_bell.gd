@@ -42,6 +42,22 @@ func _build() -> void:
 		action_label = "Seyahat"  # a rung bell is a travel point
 
 
+func _ready() -> void:
+	super._ready()
+	# A bell rung before the quest that asks for it had started (say, before
+	# going back to the quest giver) still counts: whenever a quest changes,
+	# a rung bell sends its event again (does nothing once the objective is
+	# done). Old saves stuck this way come loose on load too.
+	var d := GameState.data
+	d.quest_changed.connect(_sync)
+	_sync.call_deferred()
+
+
+func _sync(_quest_id := "") -> void:
+	if GameState.data.has_flag(bell_id):
+		GameState.notify("ring", ring_target)
+
+
 func _allowed(d: PlayerData) -> bool:
 	if needs.contains("/"):
 		return d.objective_done(needs.get_slice("/", 0), needs.get_slice("/", 1))

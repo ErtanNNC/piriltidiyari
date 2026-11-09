@@ -577,6 +577,10 @@
   "Buharlı Kaplıca Köyü"
  ],
  "content/s2_chapter0/dialogue/bidik.json": [
+  "Vrak! Taş bende! Sıramı bekledim, herkesi dinledim.",
+  "Beklemek zormuş ama güzelmiş. Hepinizi seviyorum!",
+  "Vrak! Sıramı bekliyorum. Hıh... zor ama bekliyorum!",
+  "Vrak! Ne güzel bir çember oldu.",
   "Vrak! Merhaba! Bir daha merhaba!",
   "VRAK! Ben de konuşmak istiyorum, sıra hiç gelmiyor!",
   "Sıra sende. Buyur.",
@@ -589,6 +593,11 @@
   "Değnek, asa, kılıç, sapan... Pırıl'ın varsa bak bakalım."
  ],
  "content/s2_chapter0/dialogue/pamuk.json": [
+  "Özrünü duydum, Pıtpıt. Sorun değil!",
+  "Benim söyleyeceğim şu: Toprak'ın tüneli çok güzel.",
+  "Sıra Toprak'ta. Taşı ona götürüyorum.",
+  "Konuşma Taşı bende değil. Sıramı bekliyorum.",
+  "Ben söyledim, şimdi kulaklarım açık.",
   "Bu gece mışıl mışıl uyuyacağım.",
   "Kulaklarım dikildi! Gürültüden uyuyamıyorum!",
   "Anlat bakalım, dinliyorum.",
@@ -596,6 +605,11 @@
   "Seninle konuşunca içim serinledi."
  ],
  "content/s2_chapter0/dialogue/pitpit.json": [
+  "Vak! Taş bende! Şimdi ben konuşuyorum, herkes dinliyor.",
+  "Dün Pamuk'un havucunu yedim. Özür dilerim, Pamuk.",
+  "Güzel söyledin. Taşı şimdi Pamuk'a götüreyim.",
+  "Vak! Taş gelince konuşacağım. Şimdi dinliyorum.",
+  "Ben konuştum. Şimdi dinleme sırası bende.",
   "Vak vak! Şarkımı akşam herkese söyleyeceğim.",
   "Vak! Herkes bağırıyor, kendi sesimi duyamıyorum!",
   "Ben seni dinliyorum. Ne oldu?",
@@ -603,6 +617,11 @@
   "Dinledin mi gerçekten? Oh, buharım geçti!"
  ],
  "content/s2_chapter0/dialogue/toprak.json": [
+  "Sağ ol, Pamuk. Bunu kimse söylememişti.",
+  "Yarın hepinizi tünelimde gezdireceğim. Söz!",
+  "Son sıra Bıdık'ın. Taşı ona götüreyim.",
+  "Taş gelince anlatırım. Şimdi kulağım sende.",
+  "Sıram geçti. Şimdi ben dinliyorum.",
   "Tünelimi gördün! Artık kızgın değilim.",
   "Herkes bana 'Sonra!' diyor. Sonra ne zaman?",
   "Şimdi. Şimdi dinliyorum.",
@@ -610,6 +629,12 @@
   "Bak, şuradan başlıyor! Oh, ne güzel anlattım."
  ],
  "content/s2_chapter0/dialogue/tospik_nine.json": [
+  "Herkes konuştu, herkes dinlendi. İşte çember budur.",
+  "Bundan sonra her akşam çember kuracağız. Sağ ol, yavrum!",
+  "Taşı sırayla götür: Pıtpıt, Pamuk, Toprak, Bıdık.",
+  "Yavrum, bu akşam bir Konuşma Çemberi kuralım mı?",
+  "Taşı kim tutarsa o konuşur, diğerleri dinler.",
+  "Taşı sırayla Pıtpıt, Pamuk, Toprak ve Bıdık'a götür.",
   "Çan çaldı, köy serinledi. Aferin sana, yavrum.",
   "Çan çaldı! Duydun mu? Kızıl Sis köyden çekildi.",
   "Bundan sonra buradaki çan, yolculukta sana yuva olur.",
@@ -630,6 +655,13 @@
   "Homurdanan Çaydanlık",
   "Köyün büyük kazanını sakinleştir",
   "Tepedeki Ses Çanı'nı çal"
+ ],
+ "content/s2_chapter0/quests/konusma_cemberi.json": [
+  "Konuşma Çemberi",
+  "Konuşma Taşı'nı Pıtpıt'a ver",
+  "Konuşma Taşı'nı Pamuk'a ver",
+  "Konuşma Taşı'nı Toprak'a ver",
+  "Konuşma Taşı'nı Bıdık'a ver"
  ],
  "content/s2_chapter0/quests/kopuk_koy.json": [
   "Herkes Aynı Anda Konuşuyor",
@@ -1151,6 +1183,67 @@
   "Yıldız Ninnisi ile Köpüklüleri uyut",
   "Dağ geçidine ulaş"
  ],
+ "content/s2_side.json": [
+  "Minnoş'un İzleri",
+  "Minnoş'un yol boyunca bıraktığı resimler",
+  "Minik pati izleri! Bir de tebeşirle çizilmiş bir resim.",
+  "Minnoş'un resimleri bunlar. Hepsini bulalım!",
+  "Minnoş'un bütün resimlerini buldum!",
+  "Artık biliyorum: Minnoş sadece dinlenmek istemiş.",
+  "Resimlere onunla birlikte bakacağız.",
+  "Susturulmuş Davullar",
+  "Üstüne 'SUS' bezi bağlanmış davullar: bezlerini çöz",
+  "Bir davulun üstüne bez bağlamışlar: 'SUS' yazıyor.",
+  "Bezini çözelim. Davullar da konuşmak ister!",
+  "Bu bölgenin üç davulu da uyandı! Dinle, birlikte çalıyorlar.",
+  "Bütün davullar özgür! Hırıl bunu duysa çok sevinir.",
+  "Fıstık'ın Mektupları",
+  "Her çan çalınca posta kutusuna Fıstık'tan bir mektup gelir",
+  "Fıstık'ın bütün mektuplarını okudum.",
+  "Eve dönünce ben de ona bir mektup yazacağım!",
+  "Taşa tebeşirle bir resim çizilmiş: kocaman bir kulak.",
+  "Yanında minik pati izleri. Minnoş buradan geçmiş!",
+  "Bir resim: herkes konuşuyor, köşede bir yavru susmuş.",
+  "Minnoş da böyle mi hissediyordu?",
+  "Merhaba! Ben Fıstık. Pırıltı Diyarı'ndan yazıyorum.",
+  "Fener'in yanında oturdum, seni düşündüm.",
+  "Sen oradasın diye içim rahat. Kendine iyi bak!",
+  "Yaprakların arasında bir çizim: Minnoş elini kaldırmış.",
+  "Ama kimse ona söz vermemiş.",
+  "Ağaç kabuğuna yazılmış: 'BEN DE!'",
+  "Minnoş da bir şey söylemek istemiş.",
+  "Bugün köyün yavruları senin resmini yaptı.",
+  "Resimde sen bir çanı çalıyorsun. Çok güzel olmuş!",
+  "Ormanda yapraklar kızıl mı? Burada hepsi sarı.",
+  "Kumda bir resim: Bado ile Minnoş el ele.",
+  "Yanına küçük bir kalp çizmiş.",
+  "Bir resim: kurbağalar şarkı söylüyor, Minnoş da.",
+  "Ama Minnoş'un ağzını minicik çizmiş.",
+  "Göle mi vardın? Kurbağaların şarkısını merak ettim.",
+  "Hu Öğretmen dedi ki: 'Dinlemek de bir şarkıdır.'",
+  "Ben de bugün sustum ve rüzgârı dinledim.",
+  "Bir resim: panayırda balonlar. Biri elinden kaçmış.",
+  "Kimse fark etmemiş. Minnoş üzülmüş.",
+  "Çitin dibinde bir resim: Minnoş tek başına koşuyor.",
+  "Arkasında kırmızı bir bulut var.",
+  "Panayır nasıl? Pırpır mutlaka balon satıyordur!",
+  "Bazen ben de kızıyorum, biliyor musun?",
+  "O zaman derin bir nefes alıyorum. İşe yarıyor!",
+  "Kayada bir resim: Minnoş bağırıyor, sesi yankı oluyor.",
+  "Yankılar ona geri dönmüş. Kimse cevap vermemiş.",
+  "Bir resim: bir kulak, yanında soru işareti.",
+  "'Beni duyan var mı?' diyor gibi.",
+  "Kanyondan davul sesi gelirmiş, öyle duydum.",
+  "Bir davulum olsa ben de çalmak isterdim.",
+  "Sen dönünce birlikte ritim tutalım mı?",
+  "Bir resim: Minnoş ve Hırıl sırt sırta oturuyor.",
+  "İkisi de üzgün ama birlikteler.",
+  "Son resim: herkes oturmuş, Minnoş konuşuyor.",
+  "Herkes onu dinliyor. Minnoş'un hayali buymuş.",
+  "Son mektubum! Dağın tepesinde Hırıl var, değil mi?",
+  "Ona kızma. Belki o da dinlenmek istiyordur.",
+  "Seni bekliyorum. Fener'in yanına yer ayırdım!"
+ ],
  "content/speakers.json": [
   "Fıstık",
   "Tospik Nine",
@@ -1457,6 +1550,7 @@
   "Ana menü",
   "Language: English",
   "Dil: Türkçe",
+  "Yan görevler",
   "Müzik: %s",
   "Açık",
   "Kapalı",
@@ -1464,6 +1558,12 @@
   "Kaydedildi!",
   "Kaydedilemedi",
   "Bölüm başlarında kendiliğinden de kaydedilir. · %d FPS",
+  "Hepsi tamam!",
+  "burada %d/%d",
+  "Tamam!",
+  "Kaplıca Köyü'nde Tospik Nine'ye sor (çan çalınca)",
+  "Kaplıca Köyü'nde: taşı sırayla götür",
+  "Geri",
   "%s (%s)",
   "Oyun kaydedilemedi. Telefonda yer var mı?",
   "Kızgın!",
@@ -1486,7 +1586,6 @@
   "Renk",
   "Aksesuar",
   "Adın",
-  "Geri",
   "Başla"
  ],
  "src/ui/level_up_panel.gd": [
@@ -1679,6 +1778,8 @@
   "Pus dağıldı. Mırıl artık yalnız değil"
  ],
  "src/world/chapter_base.gd": [
+  "Side_%s_%d",
+  "%s=%d/%d",
   "Yol açık: %s. Yıldızlı yoldan geç!",
   "Yol açık: %s"
  ],
@@ -1762,6 +1863,7 @@
   "Yanına git, Sakinleş'e basılı tut. Şarkısını dinle.",
   "Mercan Kor",
   "Fokurdayan Göl serinledi",
+  "Pad%d",
   "Patpat Tarlaları ↑",
   "Kızıl Yaprak Ormanı ↓"
  ],
@@ -1888,6 +1990,11 @@
  ],
  "src/world/ship_dock.gd": [
   "Uç"
+ ],
+ "src/world/side_spot.gd": [
+  "Posta kutusu boş. Çan çalınca mektup gelir.",
+  "%s: %d/%d",
+  "SUS"
  ],
  "src/world/small_lantern.gd": [
   "Yak"

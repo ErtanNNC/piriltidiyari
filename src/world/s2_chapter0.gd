@@ -9,6 +9,10 @@ extends ChapterBase
 
 const Q1 := "kopuk_koy"
 const Q2 := "homurdanan_caydanlik"
+## Side quest: the evening talking circle (one holds the stone and talks)
+const Q3 := "konusma_cemberi"
+const CIRCLE := Vector3(-13, 0, 17)
+const CIRCLE_ORDER := ["pitpit", "pamuk", "toprak", "bidik"]
 const GRASS := Color("#79b257")
 const PATH := Color("#d9b98a")
 const STONE := Color("#c9b9a6")
@@ -26,6 +30,7 @@ const SHOUTS := ["Benim sıram!", "Dinle beni!", "Hayır, ben!", "Bir dakika!", 
 var _kettle: Kettle
 var _bubbles := {}   # npc id -> Label3D
 var _fight := false
+var _stone: Node3D
 
 
 func _ready() -> void:
@@ -91,8 +96,10 @@ func _refresh() -> void:
 				Beacon.attach(n, 2.6, Tokens.color("spark-white"))
 			elif not on and n.has_node("Beacon"):
 				n.get_node("Beacon").queue_free()
+	_refresh_circle()
 	var bulut := get_node("Tospik Nine") as Node3D
-	var go_bulut := d.quest_state(Q1) in ["none", "ready"] or d.quest_state(Q2) == "ready"
+	var go_bulut := d.quest_state(Q1) in ["none", "ready"] or d.quest_state(Q2) == "ready" \
+			or d.quest_state(Q3) == "ready" or (d.quest_state(Q3) == "none" and d.has_flag("s2_bolum0_bitti"))
 	if go_bulut and not bulut.has_node("Beacon"):
 		Beacon.attach(bulut, 3.2, Tokens.color("spark-white"))
 	elif not go_bulut and bulut.has_node("Beacon"):
@@ -104,6 +111,58 @@ func _refresh() -> void:
 		var bell := get_node_or_null("Level/Bell") as Node3D
 		if bell and not bell.has_node("Beacon"):
 			Beacon.attach(bell, 4.4, Tokens.color("spark-yellow"))
+
+
+## Konuşma Çemberi: once it starts the four neighbours sit round the
+## stumps; the glowing Konuşma Taşı floats over whoever talks next.
+func _refresh_circle() -> void:
+	var d := GameState.data
+	var state := d.quest_state(Q3)
+	if state == "none":
+		return
+	var next := ""
+	if state == "active":
+		for id: String in CIRCLE_ORDER:
+			if not d.objective_done(Q3, "tas_" + id):
+				next = id
+				break
+	for i in CIRCLE_ORDER.size():
+		var id: String = CIRCLE_ORDER[i]
+		var n := get_node_or_null(id.capitalize()) as Node3D
+		if n == null:
+			continue
+		var a := i * TAU / CIRCLE_ORDER.size() + PI * 0.25
+		var seat := CIRCLE + Vector3(cos(a), 0, sin(a)) * 2.6
+		if n.global_position.distance_to(seat) > 0.3:
+			n.global_position = seat
+			n.look_at(Vector3(CIRCLE.x, n.global_position.y, CIRCLE.z), Vector3.UP, true)
+		var want := id == next
+		if want and not n.has_node("Beacon"):
+			Beacon.attach(n, 2.6, Tokens.color("spark-purple"))
+		elif not want and n.has_node("Beacon"):
+			n.get_node("Beacon").queue_free()
+	var to := CIRCLE + Vector3(0, 1.1, 0)
+	if next != "":
+		to = (get_node(next.capitalize()) as Node3D).global_position + Vector3(0, 2.0, 0)
+	if _stone == null:
+		_stone = Node3D.new()
+		_stone.name = "KonusmaTasi"
+		add_child(_stone)
+		Toon.part(_stone, "ellipsoid", Vector3(0.5, 0.36, 0.42), "spark-purple", Vector3.ZERO, Vector3.ZERO, 1.2, 0.03)
+		Toon.part(_stone, "sphere", Vector3(0.14, 0.14, 0.14), "spark-white", Vector3(0.1, 0.1, 0.16), Vector3.ZERO, 1.4, 0.0)
+		var bob := _stone.get_child(0).create_tween().set_loops()
+		bob.tween_property(_stone.get_child(0), "position:y", 0.15, 0.8).set_trans(Tween.TRANS_SINE)
+		bob.tween_property(_stone.get_child(0), "position:y", 0.0, 0.8).set_trans(Tween.TRANS_SINE)
+		_stone.global_position = to
+	elif _stone.global_position.distance_to(to) > 0.1:
+		# the stone hops over to the next speaker
+		var tw := _stone.create_tween()
+		var mid := (_stone.global_position + to) * 0.5 + Vector3.UP * 1.6
+		tw.tween_property(_stone, "global_position", mid, 0.35).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+		tw.tween_property(_stone, "global_position", to, 0.35).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+		tw.tween_callback(func() -> void:
+			Effects.sparkle(self, to, Tokens.color("spark-purple"), 10)
+			Audio.play("blip"))
 
 
 func _start_fight() -> void:
@@ -153,6 +212,12 @@ func _build() -> void:
 	lv.name = "Level"
 	add_child(lv)
 	WorldLook.block(lv, Vector3(0, -0.5, 0), Vector3(80, 1, 80), GRASS, 0.0)
+	# the talking circle: a ring of stumps round a flat stone
+	Toon.part(lv, "cylinder", Vector3(7.4, 0.04, 7.4), PATH, CIRCLE + Vector3.UP * 0.02, Vector3.ZERO, 0.0, 0.0)
+	Toon.part(lv, "cylinder", Vector3(1.1, 0.3, 1.1), STONE, CIRCLE + Vector3.UP * 0.15)
+	for i in 8:
+		var a := i * TAU / 8.0 + PI * 0.125
+		Toon.part(lv, "cylinder", Vector3(0.7, 0.4, 0.7), Color("#a0704a"), CIRCLE + Vector3(cos(a), 0.2, sin(a)) * Vector3(3.4, 1, 3.4))
 	Toon.part(lv, "box", Vector3(3, 0.06, 32), PATH, Vector3(0, 0.0, 8.0), Vector3.ZERO, 0.0, 0.0)
 	Toon.part(lv, "cylinder", Vector3(9, 0.06, 9), PATH, Vector3(0, 0.02, KETTLE_AT.z), Vector3.ZERO, 0.0, 0.0)
 	# hot spring pools, steaming, with a stone rim
@@ -265,6 +330,33 @@ func _bubble(n: Node3D) -> Label3D:
 
 func _run_demo(which: String) -> void:
 	match which:
+		"circle":
+			# Konuşma Çemberi: out of turn waits, in turn the stone moves on
+			DevTools.auto_dialogue = true
+			var d := GameState.data
+			for q: String in [Q1, Q2]:
+				d.start_quest(Content.quests[q])
+				d.complete_quest(Content.quests[q])
+			d.set_flag("s2_can0")
+			d.set_flag("s2_bolum0_bitti")
+			GameState.talk_to("tospik_nine")
+			await close_dialogs()
+			print("S2CIRCLE started=%s" % d.quest_state(Q3))
+			await get_tree().create_timer(0.4).timeout
+			GameState.talk_to("pamuk")
+			await close_dialogs()
+			print("S2CIRCLE out_of_turn pamuk=%s" % d.objective_done(Q3, "tas_pamuk"))
+			for id: String in CIRCLE_ORDER:
+				GameState.talk_to(id)
+				await close_dialogs()
+				await get_tree().create_timer(0.8).timeout
+				var st := _stone.global_position
+				print("S2CIRCLE %s done=%s stone=%s" % [id, d.objective_done(Q3, "tas_" + id), st.snapped(Vector3.ONE * 0.1)])
+			GameState.talk_to("tospik_nine")
+			await close_dialogs()
+			var seated: bool = (get_node("Pitpit") as Node3D).global_position.distance_to(CIRCLE) < 3.0
+			print("S2CIRCLE_DONE q3=%s seated=%s" % [d.quest_state(Q3), seated])
+			get_tree().quit()
 		"travel":
 			# arrived by fast travel: standing by the bell, on solid ground
 			await get_tree().create_timer(1.0).timeout

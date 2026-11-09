@@ -13,6 +13,8 @@ var keepers: Dictionary = {}    # id -> keeper candidate (content/keepers.json)
 var keepers_s2: Dictionary = {}
 var shops: Dictionary = {}      # id -> {title, items: [{id, price, once?}]}
 var barks: Dictionary = {}      # id -> [lines]: short monologues and asides
+## Season 2 side collections (content/s2_side.json, see SideQuests).
+var side: Dictionary = {}
 
 
 func _init() -> void:
@@ -20,6 +22,7 @@ func _init() -> void:
 	speakers = read_json("res://content/speakers.json").get("speakers", {})
 	keepers = read_json("res://content/keepers.json").get("keepers", {})
 	keepers_s2 = read_json("res://content/keepers_s2.json")
+	side = read_json("res://content/s2_side.json")
 	load_chapter("prologue")
 
 

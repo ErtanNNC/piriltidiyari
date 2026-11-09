@@ -1,0 +1,37 @@
+{
+  "id": "konusma_cemberi",
+  "title": "Konuşma Çemberi",
+  "giver": "tospik_nine",
+  "ordered": true,
+  "objectives": [
+    {
+      "id": "tas_pitpit",
+      "text": "Konuşma Taşı'nı Pıtpıt'a ver",
+      "type": "talk",
+      "target": "pitpit"
+    },
+    {
+      "id": "tas_pamuk",
+      "text": "Konuşma Taşı'nı Pamuk'a ver",
+      "type": "talk",
+      "target": "pamuk"
+    },
+    {
+      "id": "tas_toprak",
+      "text": "Konuşma Taşı'nı Toprak'a ver",
+      "type": "talk",
+      "target": "toprak"
+    },
+    {
+      "id": "tas_bidik",
+      "text": "Konuşma Taşı'nı Bıdık'a ver",
+      "type": "talk",
+      "target": "bidik"
+    }
+  ],
+  "turn_in": "Tospik Nine'ye dön",
+  "rewards": {
+    "piril": 80,
+    "xp": 120
+  }
+}

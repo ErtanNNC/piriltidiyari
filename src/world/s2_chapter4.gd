@@ -432,6 +432,27 @@ func _build() -> void:
 
 func _run_demo(which: String) -> void:
 	match which:
+		"bellfirst":
+			# ring the bell before going back to Çıngır: the fight must
+			# still start (it used to stay locked, the bell only offered travel)
+			DevTools.auto_dialogue = true
+			var d := GameState.data
+			d.start_quest(Content.quests[Q1])
+			for o: String in ["yanki", "tokmak"]:
+				d.complete_objective(Q1, o)
+			_player.global_position = (get_node("Level/Bell") as Node3D).global_position + Vector3(0, 0.3, 1.6)
+			await get_tree().create_timer(0.4).timeout
+			(get_node("Level/Bell") as EchoBell).use(_player)
+			await close_dialogs()
+			print("S2BELL rung=%s q2=%s" % [d.has_flag("s2_can4"), d.quest_state(Q2)])
+			GameState.talk_to("cingir")
+			await close_dialogs()
+			await get_tree().create_timer(0.3).timeout
+			print("S2BELL q1=%s q2=%s can=%s" % [d.quest_state(Q1), d.quest_state(Q2), d.objective_done(Q2, "can")])
+			_player.global_position = ARENA + Vector3(0, 0.3, 6.0)
+			await get_tree().create_timer(1.5).timeout
+			print("S2BELL_DONE fight=%s" % _fight)
+			get_tree().quit()
 		"canyon":
 			# the whole chapter, scripted (headless check)
 			DevTools.auto_dialogue = true

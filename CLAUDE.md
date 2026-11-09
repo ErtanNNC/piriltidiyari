@@ -278,6 +278,22 @@ is a copy of the design system's tokens.
   (lake), Pırpır (fair), Gümbür (canyon).
 - Never a dead end: `s2_scene3` respawns Köpüklüler when too few are left to
   lull or to breathe with (check `--scene=s2_scene3 --demo=hitfirst`).
+- Side collections (Season 2): `content/s2_side.json` (sets + per-scene spots
+  [x, z]; letters "needs" the region bell) → `SideQuests` (core: flags
+  `yan_<set>_<scene>_<i>`, region/set rewards, `yan_<set>_bitti`) →
+  `SideSpot` nodes placed by `ChapterBase._place_side_spots` (minnos drawing
+  "Bak", davul "SUS" cloth "Çöz" → freed drums beat softly nearby, mektup
+  mailbox "Oku"). Mola → "Yan görevler" shows progress. Konuşma Çemberi is an
+  ordered quest in s2_chapter0 (`konusma_cemberi`, the stone over the next
+  speaker). Check: `--scene=s2_chapterN --demo=side` (every spot: floor,
+  focus, found, not hidden behind a tree/roof from the camera; suggests a
+  clear spot), `--scene=s2_chapter0 --demo=circle`, `--demo=sidepanel`.
+  `--probe` prints an ASCII height map of a scene (tools/probe_map.gd).
+- A rung Ses Çanı re-sends its "ring" event whenever a quest changes
+  (`EchoBell._sync`), so ringing before the quest asks for it never locks a
+  region (`--scene=s2_chapter4 --demo=bellfirst`).
+- Lily pads: `LilyPad` (round notched leaf, lotus, ripple ring); the lake's
+  first pad sits right off the shore (a jump reaches ~4 m).
 - Kızıl Sis mobs keep their own colors: their builders use `_c(false, ...)`
   (only the face and steam show the anger).
 - Checks: `--scene=s2_scene1 --demo=glide|jump|party`, `--scene=s2_scene2 --demo=redwind|breath|guide|angry`,

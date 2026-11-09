@@ -44,6 +44,10 @@ func _ready() -> void:
 	add_to_group("hud")
 	if DevTools.demo == "pause":
 		get_tree().create_timer(3.5).timeout.connect(toggle_pause)
+	elif DevTools.demo == "sidepanel":
+		get_tree().create_timer(3.5).timeout.connect(func() -> void:
+			toggle_pause()
+			(_pause_panel.find_child("SideButton", true, false) as Button).pressed.emit())
 	_root = Control.new()
 	_root.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	_root.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -647,7 +651,14 @@ func toggle_pause() -> void:
 		_refresh_powers()
 		_refresh_stats()
 		toggle_pause())
-	for b: Button in [cont, save, mus, sfx, lang, stuck, menu]:
+	var side := UiKit.button("Yan görevler", false)
+	side.name = "SideButton"
+	side.visible = GameState.data.season == 2
+	side.pressed.connect(func() -> void:
+		panel.visible = false
+		var sp := _side_panel(func() -> void: panel.visible = true)
+		p.add_child(sp))
+	for b: Button in [cont, side, save, mus, sfx, lang, stuck, menu]:
 		b.custom_minimum_size = Vector2(280, 56)
 		v.add_child(b)
 	var refresh := func() -> void:
@@ -677,6 +688,54 @@ func toggle_pause() -> void:
 	v.add_child(note)
 	_root.add_child(p)
 	_pause_panel = p
+
+
+## Mola → Yan görevler: how far each Season 2 side collection is, with this
+## region's share, and the Konuşma Çemberi.
+func _side_panel(on_back: Callable) -> Control:
+	var d := GameState.data
+	var panel := PanelContainer.new()
+	panel.name = "SidePanel"
+	panel.add_theme_stylebox_override("panel", UiKit.panel_style())
+	panel.set_anchors_and_offsets_preset(Control.PRESET_CENTER)
+	panel.grow_horizontal = Control.GROW_DIRECTION_BOTH
+	panel.grow_vertical = Control.GROW_DIRECTION_BOTH
+	var v := VBoxContainer.new()
+	v.add_theme_constant_override("separation", int(Tokens.px("space-2")))
+	panel.add_child(v)
+	var title := UiKit.label("Yan görevler", "text-title", "ink")
+	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	v.add_child(title)
+	var scene := SceneFlow.current
+	var region := String(Content.side.get("regions", {}).get(scene, ""))
+	for id: String in Content.side.get("sets", {}):
+		var def: Dictionary = Content.side["sets"][id]
+		var n := SideQuests.found(d, Content.side, id)
+		var total := SideQuests.total(Content.side, id)
+		var head := UiKit.label("%s  %d/%d" % [TranslationServer.translate(String(def["title"])), n, total], "text-heading", "ink")
+		v.add_child(head)
+		var line := TranslationServer.translate(String(def["desc"]))
+		if n == total:
+			line = TranslationServer.translate("Hepsi tamam!")
+		elif region != "":
+			line += " · " + TranslationServer.translate("burada %d/%d") % [SideQuests.found(d, Content.side, id, scene), SideQuests.spots(Content.side, scene, id).size()]
+		var sub := UiKit.label(line, "text-body", "ink-muted")
+		sub.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		sub.custom_minimum_size = Vector2(420, 0)
+		v.add_child(sub)
+	var circle := d.quest_state("konusma_cemberi")
+	v.add_child(UiKit.label(TranslationServer.translate("Konuşma Çemberi"), "text-heading", "ink"))
+	var cl := UiKit.label({"done": "Tamam!", "none": "Kaplıca Köyü'nde Tospik Nine'ye sor (çan çalınca)"}.get(circle, "Kaplıca Köyü'nde: taşı sırayla götür"), "text-body", "ink-muted")
+	cl.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	cl.custom_minimum_size = Vector2(420, 0)
+	v.add_child(cl)
+	var back := UiKit.button("Geri", false)
+	back.custom_minimum_size = Vector2(280, 56)
+	back.pressed.connect(func() -> void:
+		panel.queue_free()
+		on_back.call())
+	v.add_child(back)
+	return panel
 
 
 # --- level-up powers ------------------------------------------------------------

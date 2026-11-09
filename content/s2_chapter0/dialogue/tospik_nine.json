@@ -3,6 +3,70 @@
   "variants": [
     {
       "when": {
+        "quest": "konusma_cemberi",
+        "state": "ready"
+      },
+      "lines": [
+        {
+          "speaker": "tospik_nine",
+          "mood": "mutlu",
+          "text": "Herkes konuştu, herkes dinlendi. İşte çember budur."
+        },
+        {
+          "speaker": "tospik_nine",
+          "mood": "sakin",
+          "text": "Bundan sonra her akşam çember kuracağız. Sağ ol, yavrum!"
+        }
+      ],
+      "then": {
+        "complete_quest": "konusma_cemberi"
+      }
+    },
+    {
+      "when": {
+        "quest": "konusma_cemberi",
+        "state": "active"
+      },
+      "lines": [
+        {
+          "speaker": "tospik_nine",
+          "mood": "sakin",
+          "text": "Taşı sırayla götür: Pıtpıt, Pamuk, Toprak, Bıdık."
+        }
+      ],
+      "then": {
+        "open_shop": "tospik"
+      }
+    },
+    {
+      "when": {
+        "quest": "konusma_cemberi",
+        "state": "none",
+        "flag": "s2_bolum0_bitti"
+      },
+      "lines": [
+        {
+          "speaker": "tospik_nine",
+          "mood": "mutlu",
+          "text": "Yavrum, bu akşam bir Konuşma Çemberi kuralım mı?"
+        },
+        {
+          "speaker": "tospik_nine",
+          "mood": "sakin",
+          "text": "Taşı kim tutarsa o konuşur, diğerleri dinler."
+        },
+        {
+          "speaker": "tospik_nine",
+          "mood": "kararlı",
+          "text": "Taşı sırayla Pıtpıt, Pamuk, Toprak ve Bıdık'a götür."
+        }
+      ],
+      "then": {
+        "start_quest": "konusma_cemberi"
+      }
+    },
+    {
+      "when": {
         "quest": "homurdanan_caydanlik",
         "state": "done"
       },

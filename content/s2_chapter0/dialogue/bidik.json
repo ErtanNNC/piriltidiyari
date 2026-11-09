@@ -3,6 +3,60 @@
   "variants": [
     {
       "when": {
+        "quest": "konusma_cemberi",
+        "state": "active",
+        "objective_not_done": "konusma_cemberi/tas_bidik",
+        "objective_done": "konusma_cemberi/tas_toprak"
+      },
+      "lines": [
+        {
+          "speaker": "bidik",
+          "mood": "mutlu",
+          "text": "Vrak! Taş bende! Sıramı bekledim, herkesi dinledim."
+        },
+        {
+          "speaker": "bidik",
+          "mood": "mutlu",
+          "text": "Beklemek zormuş ama güzelmiş. Hepinizi seviyorum!"
+        }
+      ],
+      "then": {
+        "advance": "konusma_cemberi/tas_bidik"
+      }
+    },
+    {
+      "when": {
+        "quest": "konusma_cemberi",
+        "state": "active",
+        "objective_not_done": "konusma_cemberi/tas_bidik"
+      },
+      "lines": [
+        {
+          "speaker": "bidik",
+          "mood": "sakin",
+          "text": "Vrak! Sıramı bekliyorum. Hıh... zor ama bekliyorum!"
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "konusma_cemberi",
+        "state": [
+          "active",
+          "ready",
+          "done"
+        ]
+      },
+      "lines": [
+        {
+          "speaker": "bidik",
+          "mood": "mutlu",
+          "text": "Vrak! Ne güzel bir çember oldu."
+        }
+      ]
+    },
+    {
+      "when": {
         "objective_done": "kopuk_koy/bidik"
       },
       "lines": [
