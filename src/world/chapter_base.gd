@@ -47,6 +47,14 @@ func send_home(prefix: String, flag_prefix: String, count: int) -> void:
 			tw.tween_callback(n.queue_free)
 
 
+## Arriving by fast travel (or from a house): stand at SceneFlow.return_point.
+func take_return_point() -> void:
+	if SceneFlow.return_point != Vector3.INF:
+		_player.global_position = SceneFlow.return_point
+		_player.respawn_point = SceneFlow.return_point
+		SceneFlow.return_point = Vector3.INF
+
+
 # --- test helpers -------------------------------------------------------------
 
 func close_dialogs() -> void:

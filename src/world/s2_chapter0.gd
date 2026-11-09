@@ -55,6 +55,7 @@ func _ready() -> void:
 	d.quest_changed.connect(func(_id: String) -> void: _refresh())
 	_refresh()
 	_player.respawn_point = _player.global_position
+	take_return_point()
 	await get_tree().create_timer(1.8).timeout
 	if not d.has_flag("s2c0_geldi"):
 		d.set_flag("s2c0_geldi")
@@ -255,6 +256,32 @@ func _bubble(n: Node3D) -> Label3D:
 
 func _run_demo(which: String) -> void:
 	match which:
+		"travel":
+			# arrived by fast travel: standing by the bell, on solid ground
+			await get_tree().create_timer(1.0).timeout
+			print("S2TRAVEL at=%s floor=%s near_bell=%s" % [_player.global_position.snapped(Vector3.ONE * 0.1), _player.is_on_floor(), _player.global_position.distance_to(BELL_AT) < 3.5])
+			get_tree().quit()
+		"skills":
+			# each Season 2 calming skill on two fresh Köpüklüler (headless)
+			var d := GameState.data
+			for k: String in ["pati", "bado", "citir", "lumi"]:
+				d.choose_keeper(k, Content.keeper(k)["stats"], {}, k)
+				while d.level < Skills.S2_LEVEL:
+					d.add_xp(Progression.xp_to_next(d.level) - d.xp)
+				d.mp = d.max_mp
+				var at := Vector3(-14, 0.3, 14)
+				_player.global_position = at
+				var a := Mob.spawn(self, "kopuklu_tavuk", at + Vector3(1.5, 0, 0))
+				var b := Mob.spawn(self, "kopuklu_tavuk", at + Vector3(-1.5, 0, 1))
+				await get_tree().create_timer(0.3).timeout
+				_player._attack_cd = 0.0
+				_player.use_skill()
+				await get_tree().create_timer(0.3).timeout
+				print("S2SKILL %s skill=%s a=%s b=%s slow=%s" % [k, d.active_skill(), a.state, b.state, a._slow_until > Time.get_ticks_msec() / 1000.0])
+				a.queue_free()
+				b.queue_free()
+				await get_tree().create_timer(0.2).timeout
+			get_tree().quit()
 		"village":
 			# the whole chapter, scripted (headless check)
 			DevTools.auto_dialogue = true

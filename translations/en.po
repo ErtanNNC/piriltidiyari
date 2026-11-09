@@ -27,6 +27,9 @@ msgstr "For %d seconds, mobs barely notice you"
 msgid "%d saniye nefesin daha hızlı"
 msgstr "Your breath is faster for %d seconds"
 
+msgid "%d saniye öfke barın dolmaz"
+msgstr "Your anger bar won't fill for %d seconds"
+
 msgid "%s aldın"
 msgstr "You got %s"
 
@@ -71,6 +74,9 @@ msgstr "More power for 60 seconds"
 
 msgid "90 saniye moblar seni zor fark eder"
 msgstr "For 90 seconds, mobs barely notice you"
+
+msgid "90 saniye öfke barın dolmaz (Ses Çanı tozundan)"
+msgstr "Your anger bar won't fill for 90 seconds (made from Echo Bell dust)"
 
 msgid "Aaa... Yıldızlar neden sönüyor?"
 msgstr "Ooh... Why are the stars going out?"
@@ -395,6 +401,9 @@ msgstr "Flag Race"
 
 msgid "Bayrak Koşusu'nu kazan"
 msgstr "Win the Flag Race"
+
+msgid "Başka bir çan çalınca buradan oraya gidebilirsin."
+msgstr "Ring another bell and you can travel there from here."
 
 msgid "Başla"
 msgstr "Start"
@@ -768,6 +777,9 @@ msgstr "Cloud Harbor"
 msgid "Bum bum bum, of!"
 msgstr "Boom boom boom, ugh!"
 
+msgid "Bum! Bu tokmağı kimse unutmayacak. Tezgâhım hep açık."
+msgstr "Boom! Nobody will forget this drumstick. My stall is always open."
+
 msgid "Bum, bum, sus! Daire bir vuruş sonra iner. Nefeslenince vur!"
 msgstr "Boom, boom, hush! A circle lands one beat later. Hit when he rests!"
 
@@ -776,6 +788,9 @@ msgstr "Boom-boom-tap! Grumble and I will play together. Come listen!"
 
 msgid "Bum-tak! Bum-tak! Kimse 'Sus!' demiyor!"
 msgstr "Boom-tap! Boom-tap! Nobody says 'Hush!'"
+
+msgid "Bum-tak! Gel bakalım. Ritim Tılsımı'm vuruşlarını güçlendirir."
+msgstr "Boom-tap! Come here. My Rhythm Charm makes your hits stronger."
 
 msgid "Bum. Ben de geldim. Hırıl'ın davulunu ben dinlerdim."
 msgstr "Boom. I came too. I used to listen to Grumble's drum."
@@ -1509,6 +1524,9 @@ msgstr "Rumble drums every evening. And I dance!"
 msgid "Gümbür nefesleniyor! Şimdi vur!"
 msgstr "Rumble is catching his breath! Hit now!"
 
+msgid "Gümbür'ün Davul Tezgâhı"
+msgstr "Rumble's Drum Stall"
+
 msgid "Gümbür'ün davulu kızınca yankılar büyüdü, büyüdü..."
 msgstr "When Rumble's drum got angry, the echoes grew and grew..."
 
@@ -1601,6 +1619,9 @@ msgstr "Dodge the rings, hit when he sits!"
 
 msgid "Halkalardan kaç. Bulut alçalınca vur!"
 msgstr "Dodge the rings. Hit when the cloud sinks low!"
+
+msgid "Hangi çana gidelim?"
+msgstr "Which bell shall we go to?"
 
 msgid "Haritamda o dağın arkası bomboş. Ne var orada?"
 msgstr "Behind that mountain, my map is empty. What's there?"
@@ -2178,6 +2199,9 @@ msgstr "Nobody... listens... to me!"
 msgid "Kirişin altından Tospik Nine'ye ulaş"
 msgstr "Reach Granny Shelly under the beam"
 
+msgid "Kocaman Sarılma"
+msgstr "Big Hug"
+
 msgid "Kocaman Yürek"
 msgstr "Big Heart"
 
@@ -2189,6 +2213,9 @@ msgstr "Easy! Take a deep breath, then blow out slowly."
 
 msgid "Kombo"
 msgstr "Combo"
+
+msgid "Komik Yüz"
+msgstr "Funny Face"
 
 msgid "Konuş"
 msgstr "Talk"
@@ -2652,6 +2679,9 @@ msgstr "Purple Spark"
 msgid "Mor Kıvılcım'ı al"
 msgstr "Take the Purple Spark"
 
+msgid "Mrrr..."
+msgstr "Purrr..."
+
 msgid "Mumlar seni bekliyor, doğum günü yıldızı!"
 msgstr "The candles are waiting for you, birthday star!"
 
@@ -2660,6 +2690,12 @@ msgstr "Music volume"
 
 msgid "Müzik: %s"
 msgstr "Music: %s"
+
+msgid "Mırla"
+msgstr "Purr"
+
+msgid "Mırlama"
+msgstr "Purring"
 
 msgid "Mırıl"
 msgstr "Mumble"
@@ -2768,6 +2804,9 @@ msgstr "Hop to the island, listen to Burble"
 
 msgid "Ninni"
 msgstr "Lullaby"
+
+msgid "Ninni Işığı"
+msgstr "Lullaby Light"
 
 msgid "Ninni'ye bas: hepsi birden otursun!"
 msgstr "Press Lullaby: everyone sits down!"
@@ -3117,6 +3156,9 @@ msgstr "Calm the raccoons and give the toys back to their owners."
 msgid "Renk"
 msgstr "Color"
 
+msgid "Ritim Tılsımı"
+msgstr "Rhythm Charm"
+
 msgid "Ritmi dinle, nefeslenince vur!"
 msgstr "Hear the rhythm, hit when he rests!"
 
@@ -3215,6 +3257,9 @@ msgstr "The Yellow Spark! That makes three, two to go."
 
 msgid "Sarı Kıvılcım'ı yuttu, yuvasında fırtına koparıyor."
 msgstr "He swallowed the Yellow Spark and is stirring up a storm in his nest."
+
+msgid "Sarıl"
+msgstr "Hug"
 
 msgid "Satın al"
 msgstr "Buy"
@@ -3329,6 +3374,9 @@ msgstr "Erase"
 
 msgid "Sincap"
 msgstr "Squirrel"
+
+msgid "Sis Kalkanı"
+msgstr "Mist Shield"
 
 msgid "Sis büyüdükçe küçük yıldız gizlenmeyi öğrendi."
 msgstr "As the mist grew, the little star learned to hide."
@@ -3684,6 +3732,12 @@ msgstr "Press Hit. When it sits down, go up close!"
 msgid "Vur, oturunca Sakinleş!"
 msgstr "Hit, then Breathe when it sits!"
 
+msgid "Vurma, Ninni ile uyut!"
+msgstr "Don't hit, use the Lullaby!"
+
+msgid "Vuruşların davul gibi güçlenir: kalıcı +4 güç"
+msgstr "Your hits grow strong as a drum: +4 power for good"
+
 msgid "Vuruşun geniş bir yıldız halkası olur (+6)"
 msgstr "Your hit becomes a wide ring of stars (+6)"
 
@@ -3798,6 +3852,9 @@ msgstr "Hooray! I'm running home!"
 msgid "Yedi renk! Kırmızı da geldi. Gökkuşağı tamam!"
 msgstr "Seven colors! Red is here too. The rainbow is whole!"
 
+msgid "Yeni Köpüklüler geldi! Vurma, Ninni ile uyut."
+msgstr "New Fizzlers are here! Don't hit, use the Lullaby."
+
 msgid "Yeni bekçi"
 msgstr "New keeper"
 
@@ -3818,6 +3875,9 @@ msgstr "New game"
 
 msgid "Yeni yetenek!"
 msgstr "New skill!"
+
+msgid "Yeni yetenek: %s!"
+msgstr "New skill: %s!"
 
 msgid "Yeni yol: kızgın yaratıkları nefesle sakinleştir"
 msgstr "A new way: calm cross creatures with a breath"
@@ -3863,6 +3923,9 @@ msgstr "The way is open! I'll hide the kids in my shell."
 
 msgid "Yolculukta"
 msgstr "On a journey"
+
+msgid "Yolda üşürsen Sis Kalkanı da var. Çanın tozundan yaptım."
+msgstr "If you get cold on the road, there's a Mist Shield. Made from bell dust."
 
 msgid "Yoldaki Köpüklülere nefes aldır"
 msgstr "Help the Fizzlers on the path breathe"
@@ -4172,6 +4235,9 @@ msgstr "I'll light the lantern that went out first."
 
 msgid "Önce Çıngır'la konuş"
 msgstr "Talk to Jingle first"
+
+msgid "Önce Çıngır'la konuş. Sonra gel, sana ritim satayım."
+msgstr "Talk to Jingle first. Then come back and I'll sell you some rhythm."
 
 msgid "Önce çanları çal ve Balon Tepesi'ne çık"
 msgstr "First ring the bells and climb Balloon Hill"

@@ -1,0 +1,21 @@
+{
+  "shops": {
+    "gumbur": {
+      "title": "Gümbür'ün Davul Tezgâhı",
+      "items": [
+        {
+          "id": "ritim_tilsimi",
+          "price": 120
+        },
+        {
+          "id": "papatya_cayi",
+          "price": 25
+        },
+        {
+          "id": "sis_kalkani",
+          "price": 35
+        }
+      ]
+    }
+  }
+}

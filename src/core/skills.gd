@@ -13,12 +13,35 @@ const DEFS := {
 	"yildiz_ninnisi": {"name": "Yıldız Ninnisi", "short": "Ninni", "mp": 20, "owner": "miril"},
 	# Season 2's new keeper Tıpış: a well-timed breath turns a hit away
 	"derin_nefes": {"name": "Derin Nefes", "short": "Nefes", "mp": 10, "owner": "tipis_panda"},
+	# Season 2: each Season 1 keeper learns a calming skill at level 5
+	"mirlama": {"name": "Mırlama", "short": "Mırla", "mp": 20, "owner": "pati", "season": 2},
+	"kocaman_sarilma": {"name": "Kocaman Sarılma", "short": "Sarıl", "mp": 25, "owner": "bado", "season": 2},
+	"komik_yuz": {"name": "Komik Yüz", "short": "Komik", "mp": 20, "owner": "citir", "season": 2},
+	"ninni_isigi": {"name": "Ninni Işığı", "short": "Ninni", "mp": 25, "owner": "lumi", "season": 2},
 }
+
+## The level a keeper learns their Season 2 calming skill.
+const S2_LEVEL := 5
+## Mırlama / Komik Yüz reach, Kocaman Sarılma's reach, Ninni Işığı's area.
+const PURR_RADIUS := 4.5
+const HUG_REACH := 3.0
+const LAUGH_RADIUS := 5.0
+const NINNI_RADIUS := 5.0
+const NINNI_SLOW := 4.0
+const NINNI_HEAL := 15
 
 
 static func for_character(character_id: String) -> String:
 	for id: String in DEFS:
-		if DEFS[id]["owner"] == character_id:
+		if DEFS[id]["owner"] == character_id and int(DEFS[id].get("season", 1)) == 1:
+			return id
+	return ""
+
+
+## The calming skill a keeper learns in Season 2 ("" if none).
+static func season2_for(character_id: String) -> String:
+	for id: String in DEFS:
+		if DEFS[id]["owner"] == character_id and int(DEFS[id].get("season", 1)) == 2:
 			return id
 	return ""
 

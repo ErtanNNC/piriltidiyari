@@ -39,6 +39,8 @@ var _swoop_from := Vector3.ZERO
 var _swoop_to := Vector3.ZERO
 var _stolen := 0
 var _strafe := 1.0
+## Ninni Işığı: moves slowly until then (engine seconds).
+var _slow_until := 0.0
 
 
 func _ready() -> void:
@@ -166,6 +168,8 @@ func _physics_process(delta: float) -> void:
 		"calm":
 			var away := -to_player.normalized() if dist < INF else Vector3.BACK
 			move = away * 6.0
+	if Time.get_ticks_msec() / 1000.0 < _slow_until and state != "calm":
+		move *= 0.35
 	velocity.x = move.x + _knock.x
 	velocity.z = move.z + _knock.z
 	_knock = _knock.move_toward(Vector3.ZERO, 25.0 * delta)
@@ -348,6 +352,12 @@ func lull() -> void:
 		_daze()
 	else:
 		hit(maxi(1, stats["hp"] / 3), global_position + Vector3.BACK, 2.0)
+
+
+## Ninni Işığı: slow for a while (warned attacks still keep their timing).
+func slow(seconds: float) -> void:
+	_slow_until = Time.get_ticks_msec() / 1000.0 + seconds
+	Effects.sparkle(get_parent(), global_position + Vector3.UP * 1.4, Tokens.color("spark-white"), 4)
 
 
 ## Sakinleş finished on this mob: a deep breath, steam gone, double Pırıl.

@@ -64,6 +64,16 @@
       "icon": "drop",
       "desc": "60 saniye Sakinleş daha hızlı"
     },
+    "sis_kalkani": {
+      "name": "Sis Kalkanı",
+      "color": "sky",
+      "kind": "potion",
+      "buff": "sis_kalkani",
+      "seconds": 90,
+      "price": 35,
+      "icon": "drop",
+      "desc": "90 saniye öfke barın dolmaz (Ses Çanı tozundan)"
+    },
     "yildiz_tozu": {
       "name": "Yıldız Tozu",
       "color": "mp",
@@ -188,6 +198,14 @@
       "count": 10,
       "icon": "drop",
       "desc": "Sapanla uzağa atılır, Pus'u dağıtır"
+    },
+    "ritim_tilsimi": {
+      "name": "Ritim Tılsımı",
+      "color": "honey",
+      "kind": "charm",
+      "power": 4,
+      "icon": "spark",
+      "desc": "Vuruşların davul gibi güçlenir: kalıcı +4 güç"
     }
   }
 }

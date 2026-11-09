@@ -390,6 +390,8 @@
   "Öfke barını soğutur, canını 10 doldurur",
   "Papatya Çayı",
   "60 saniye Sakinleş daha hızlı",
+  "Sis Kalkanı",
+  "90 saniye öfke barın dolmaz (Ses Çanı tozundan)",
   "Yıldız Tozu",
   "Enerjini 30 doldurur",
   "Kristal Tılsım",
@@ -417,7 +419,9 @@
   "Işık Sapanı",
   "Işık Tohumu fırlatır: I tuşu / At",
   "Işık Tohumu (10)",
-  "Sapanla uzağa atılır, Pus'u dağıtır"
+  "Sapanla uzağa atılır, Pus'u dağıtır",
+  "Ritim Tılsımı",
+  "Vuruşların davul gibi güçlenir: kalıcı +4 güç"
  ],
  "content/keepers.json": [
   "Pati",
@@ -880,6 +884,12 @@
   "Beş alay yankısını toplar mısın? Bir şey de kayıp.",
   "Me-ee! Kanyonda sesler dans ediyor!"
  ],
+ "content/s2_chapter4/dialogue/gumbur.json": [
+  "Bum-tak! Gel bakalım. Ritim Tılsımı'm vuruşlarını güçlendirir.",
+  "Yolda üşürsen Sis Kalkanı da var. Çanın tozundan yaptım.",
+  "Bum! Bu tokmağı kimse unutmayacak. Tezgâhım hep açık.",
+  "Önce Çıngır'la konuş. Sonra gel, sana ritim satayım."
+ ],
  "content/s2_chapter4/quests/gumbur.json": [
   "Davulcu Keçi Gümbür",
   "Kanyonun Ses Çanı'nı çal",
@@ -891,6 +901,9 @@
   "Alay Yankıları",
   "Kanyondaki alay yankılarını topla",
   "Kanyonda kaybolan şeyi bul"
+ ],
+ "content/s2_chapter4/shop.json": [
+  "Gümbür'ün Davul Tezgâhı"
  ],
  "content/s2_chapter5/barks.json": [
   "Kükreyen Dağ! Yer bile sıcacık, buhar her yerde.",
@@ -1265,10 +1278,13 @@
  ],
  "src/actors/player.gd": [
   "Enerjin az. Yıldız Tozu iç!",
+  "Mrrr...",
+  "Ha ha!",
   "Oh, serinledin!",
   "Canın zaten dolu",
   "%d saniye gücün arttı!",
   "%d saniye nefesin daha hızlı",
+  "%d saniye öfke barın dolmaz",
   "%d saniye moblar seni zor fark eder",
   "Uykuya daldın",
   "Fener'in yanında uyanıyorsun...",
@@ -1395,7 +1411,13 @@
   "Yıldız Ninnisi",
   "Ninni",
   "Derin Nefes",
-  "Nefes"
+  "Nefes",
+  "Mırlama",
+  "Mırla",
+  "Kocaman Sarılma",
+  "Sarıl",
+  "Komik Yüz",
+  "Ninni Işığı"
  ],
  "src/ui/choice_panel.gd": [
   "Vazgeç"
@@ -1432,7 +1454,8 @@
   "Kızgın!",
   "Öfke",
   " (%s tuşu / düğmesi)",
-  "%s: kademe %d%s"
+  "%s: kademe %d%s",
+  "Yeni yetenek: %s!"
  ],
  "src/ui/keeper_card.gd": [
   "Can",
@@ -1650,7 +1673,9 @@
   "%s|%d|%d"
  ],
  "src/world/echo_bell.gd": [
-  "Çal"
+  "Çal",
+  "Başka bir çan çalınca buradan oraya gidebilirsin.",
+  "Hangi çana gidelim?"
  ],
  "src/world/effects.gd": [
   "%s|%s|%s"
@@ -1796,6 +1821,8 @@
   "Yakındaki Köpüklüler oturup sersemler",
   "L: Yıldız Ninnisi! Hepsi birden otursun.",
   "Ninni'ye bas: hepsi birden otursun!",
+  "Yeni Köpüklüler geldi! Vurma, Ninni ile uyut.",
+  "Vurma, Ninni ile uyut!",
   "Dağ Geçidi ↑"
  ],
  "src/world/s2_scene4.gd": [

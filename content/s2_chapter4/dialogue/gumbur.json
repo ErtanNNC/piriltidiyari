@@ -1,0 +1,43 @@
+{
+  "npc": "gumbur",
+  "variants": [
+    {
+      "when": {
+        "quest": "gumbur",
+        "state": "done"
+      },
+      "lines": [
+        {
+          "speaker": "gumbur",
+          "mood": "mutlu",
+          "text": "Bum-tak! Gel bakalım. Ritim Tılsımı'm vuruşlarını güçlendirir."
+        },
+        {
+          "speaker": "gumbur",
+          "mood": "sakin",
+          "text": "Yolda üşürsen Sis Kalkanı da var. Çanın tozundan yaptım."
+        }
+      ],
+      "then": {
+        "open_shop": "gumbur"
+      }
+    },
+    {
+      "lines": [
+        {
+          "speaker": "gumbur",
+          "mood": "mutlu",
+          "text": "Bum! Bu tokmağı kimse unutmayacak. Tezgâhım hep açık."
+        },
+        {
+          "speaker": "gumbur",
+          "mood": "sakin",
+          "text": "Önce Çıngır'la konuş. Sonra gel, sana ritim satayım."
+        }
+      ],
+      "then": {
+        "open_shop": "gumbur"
+      }
+    }
+  ]
+}

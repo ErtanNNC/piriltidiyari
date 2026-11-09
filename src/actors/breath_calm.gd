@@ -30,6 +30,8 @@ var angry := 0.0
 var heat := 0.0
 ## Papatya Çayı: breaths go faster until this time (seconds).
 var fast_until := 0.0
+## Sis Kalkanı: the Öfke barı doesn't fill until then (engine seconds).
+var shield_until := 0.0
 
 var _ring: MeshInstance3D
 var _label: Label3D
@@ -165,7 +167,7 @@ func _update_anger(delta: float, held: bool) -> void:
 			angry = 0.0
 			anger = 0.0
 			GameState.toast.emit("Oh... Sakinleştin.", "heart")
-	elif heat > 0.0:
+	elif heat > 0.0 and Time.get_ticks_msec() / 1000.0 >= shield_until:
 		anger = minf(anger + heat * delta, 1.0)
 		if anger >= 1.0:
 			angry = ANGRY_TIME

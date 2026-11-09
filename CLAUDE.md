@@ -227,6 +227,18 @@ is a copy of the design system's tokens.
   Pırpır (runs the Patpat fair). Çıngır reuses Gümbür's model
   (`goat_kid.json` "model"). The Season 1 duckling is Vakvak (Tıpış is only
   the red panda).
+- Season 2 calming skills (`Skills` "season": 2, learned at `S2_LEVEL` 5 via
+  `PlayerData.learn_season_skill`, then on the skill button): Pati Mırlama
+  (lulls Köpüklüler around), Bado Kocaman Sarılma (nearest Köpüklü calms at
+  once), Çıtır Komik Yüz (laugh: lull in a wider ring), Lumi Ninni Işığı
+  (`Mob.slow` + heal). Check: `--scene=s2_chapter0 --demo=skills`.
+- Rung Ses Çanları are travel points ("Seyahat", `BellTravel` in core, arrival
+  via `SceneFlow.return_point` + `ChapterBase.take_return_point`); check:
+  `--scene=s2_chapter4 --demo=travel`. Sis Kalkanı potion (buff "sis_kalkani"
+  → `BreathCalm.shield_until`), Gümbür's drum stall in the canyon after he
+  calms (shop "gumbur", Ritim Tılsımı: charm "power").
+- Never a dead end: `s2_scene3` respawns Köpüklüler when too few are left to
+  lull or to breathe with (check `--scene=s2_scene3 --demo=hitfirst`).
 - Kızıl Sis mobs keep their own colors: their builders use `_c(false, ...)`
   (only the face and steam show the anger).
 - Checks: `--scene=s2_scene1 --demo=glide|jump|party`, `--scene=s2_scene2 --demo=redwind|breath|guide|angry`,

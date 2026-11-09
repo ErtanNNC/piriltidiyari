@@ -69,6 +69,7 @@ func _ready() -> void:
 	d.quest_changed.connect(func(_id: String) -> void: _refresh())
 	_refresh()
 	_player.respawn_point = _player.global_position
+	take_return_point()
 	await get_tree().create_timer(1.8).timeout
 	if not d.has_flag("s2c5_geldi"):
 		d.set_flag("s2c5_geldi")

@@ -81,12 +81,50 @@ func _learn_lullaby() -> void:
 	GameState.bark("s3b_yetenek")
 	await GameState.dialogue_closed
 	for k in 4:
-		var a := TAU * k / 4.0
-		var m := Mob.spawn(self, "kopuklu_tavuk" if k % 2 == 0 else "gurultucu_kurbaga", Vector3(cos(a) * 2.2, D_TOP, -37.0 + sin(a) * 2.2))
-		_ninni_mobs.append(m)
+		_spawn_ninni_mob(k)
 	_stage = 4
 	GameState.bark("s3b_ninni")
 	_hud.show_hint("L: Yıldız Ninnisi! Hepsi birden otursun.", "Ninni'ye bas: hepsi birden otursun!")
+
+
+func _spawn_ninni_mob(k: int) -> void:
+	var a := TAU * k / 4.0
+	var m := Mob.spawn(self, "kopuklu_tavuk" if k % 2 == 0 else "gurultucu_kurbaga", Vector3(cos(a) * 2.2, D_TOP, -37.0 + sin(a) * 2.2))
+	_ninni_mobs.append(m)
+
+
+## Never a dead end: if too few Köpüklüler are left to lull (some were hit
+## and calmed instead), new ones come, with a reminder to use the lullaby.
+var _wave_t := 0.0
+
+
+func _process(delta: float) -> void:
+	if GameState.in_dialogue:
+		return
+	var d := GameState.data
+	# the breathing step: creatures that calmed on their own leave nobody to
+	# breathe with, so one more comes along
+	_wave_t -= delta
+	if _stage <= 1 and _wave_t <= 0.0 and not d.objective_done(QUEST, "nefes") \
+			and get_tree().get_nodes_in_group("mob").is_empty() and get_tree().get_nodes_in_group("dazed").is_empty():
+		_wave_t = 2.0
+		var at := _player.global_position + Vector3(2.5, 0, -2.5)
+		at.y = 0.0 if at.z > -9.0 else B_TOP
+		Mob.spawn(self, "kopuklu_tavuk", at)
+	if _stage != 4:
+		return
+	if d.objective_done(QUEST, "ninni"):
+		return
+	var need := d.objective_count(QUEST, "ninni")
+	var left := need.y - need.x
+	var lullable := 0
+	for m in _ninni_mobs:
+		if is_instance_valid(m) and not m.state in ["dazed", "calm"]:
+			lullable += 1
+	if lullable < left:
+		for k in left - lullable:
+			_spawn_ninni_mob(_ninni_mobs.size() + k)
+		_hud.show_hint("Yeni Köpüklüler geldi! Vurma, Ninni ile uyut.", "Vurma, Ninni ile uyut!")
 
 
 func _end() -> void:
@@ -210,6 +248,34 @@ func _crackle(stone: Node3D) -> void:
 
 func _run_demo(which: String) -> void:
 	match which:
+		"hitfirst":
+			# the softlock check: daze every Köpüklü by hitting, then lull the newcomers
+			DevTools.auto_dialogue = true
+			var d := GameState.data
+			for oid: String in ["kaynak", "nefes", "ucurum"]:
+				while not d.objective_done(QUEST, oid):
+					d.advance_objective(QUEST, oid)
+			_advance()
+			for i in 40:
+				await get_tree().create_timer(0.3).timeout
+				await close_dialogs()
+				if _stage == 4:
+					break
+			for m in _ninni_mobs.duplicate():
+				m.hit(9999, m.global_position + Vector3.BACK, 0.0)
+			await get_tree().create_timer(1.0).timeout
+			var fresh := 0
+			for m in _ninni_mobs:
+				if is_instance_valid(m) and not m.state in ["dazed", "calm"]:
+					fresh += 1
+			_player.global_position = Vector3(0, D_TOP + 0.3, -36.0)
+			await get_tree().create_timer(0.4).timeout
+			d.mp = d.max_mp
+			_player._attack_cd = 0.0
+			_player.use_skill()
+			await get_tree().create_timer(0.5).timeout
+			print("S3B_HITFIRST fresh=%d ninni=%s" % [fresh, d.objective_done(QUEST, "ninni")])
+			get_tree().quit()
 		"path":
 			# the whole scene, scripted (headless check): springs, breathe two,
 			# float over the chasm, lullaby, the pass

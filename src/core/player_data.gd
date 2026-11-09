@@ -14,7 +14,7 @@ signal skills_changed
 const POTION_SLOTS := 4
 ## Hikâye Taşları in Season 1 (the design's 20 arrive over two seasons).
 const STORY_STONES := 10
-const POTIONS := ["bal_surubu", "yildiz_tozu", "cesaret_sekeri", "pus_kovucu", "nane_sekeri", "papatya_cayi"]
+const POTIONS := ["bal_surubu", "yildiz_tozu", "cesaret_sekeri", "pus_kovucu", "nane_sekeri", "papatya_cayi", "sis_kalkani"]
 
 var character_id := "fistik"
 var character_name := "Fıstık"
@@ -62,6 +62,7 @@ func add_xp(amount: int) -> void:
 		hp = max_hp
 		mp = max_mp
 		leveled_up.emit(level)
+		learn_season_skill()
 	if level >= Progression.MAX_LEVEL:
 		xp = 0
 	stats_changed.emit()
@@ -180,10 +181,23 @@ func switch_keeper(id: String, stats: Dictionary, look: Dictionary, display_name
 
 ## The skill the L key / skill button uses right now ("" if none yet).
 func active_skill() -> String:
+	# Season 2: the calming skill takes the skill button once it's learned
+	var s2 := Skills.season2_for(character_id)
+	if season == 2 and s2 != "" and skills.has(s2):
+		return s2
 	var own := Skills.for_character(character_id)
 	if skills.has(own):
 		return own
 	return skills[0] if not skills.is_empty() else ""
+
+
+## Season 2: from level 5 a keeper knows their calming skill (also lifts
+## saves that were already past level 5). True when it was just learned.
+func learn_season_skill() -> bool:
+	if season != 2 or level < Skills.S2_LEVEL:
+		return false
+	var s2 := Skills.season2_for(character_id)
+	return s2 != "" and unlock_skill(s2)
 
 
 # --- items --------------------------------------------------------------
@@ -449,6 +463,7 @@ func _gains(item_defs: Dictionary) -> Dictionary:
 		if def.get("kind", "") == "charm" and has_flag("owned_" + item_id):
 			g["hp"] += int(def.get("max_hp", 0))
 			g["speed"] += float(def.get("speed", 0.0))
+			g["power"] += int(def.get("power", 0))
 	return g
 
 

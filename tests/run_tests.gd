@@ -755,6 +755,39 @@ func test_season2() -> void:
 			check(c.barks.has(step["say"]), "Şenlik ara sahnesi: konuşma %s var" % step["say"])
 	var sf := FileAccess.get_file_as_string("res://src/autoload/scene_flow.gd")
 	check(sf.contains("\"s2_final\": \"res://scenes/season2/s2_final.tscn\"") and sf.contains("\"s2_final\": \"s2_chapter5\""), "Şenlik sahnesi kayıtlı")
+	# Season 2 calming skills: learned at level 5, then on the skill button
+	for k: String in ["pati", "bado", "citir", "lumi"]:
+		var s2k := Skills.season2_for(k)
+		check(s2k != "" and Skills.for_character(k) != s2k, "%s: Sezon 2 sakinleştirme yeteneği ayrı" % k)
+		var kp := PlayerData.new()
+		kp.season = 2
+		kp.choose_keeper(k, {"max_hp": 100, "max_mp": 50, "power": 10, "speed": 6.0}, {}, k)
+		check(kp.active_skill() == Skills.for_character(k), "%s: seviye 1'de kendi yeteneği" % k)
+		while kp.level < Skills.S2_LEVEL:
+			kp.add_xp(Progression.xp_to_next(kp.level) - kp.xp)
+		check(kp.active_skill() == s2k, "%s: seviye 5'te %s açılır" % [k, s2k])
+	var s1k := PlayerData.new()
+	s1k.choose_keeper("pati", {"max_hp": 100, "max_mp": 50, "power": 10, "speed": 6.0}, {}, "Pati")
+	while s1k.level < 8:
+		s1k.add_xp(Progression.xp_to_next(s1k.level) - s1k.xp)
+	check(s1k.active_skill() == "pence_kombosu", "Sezon 1'de Sezon 2 yeteneği açılmaz")
+	# Ses Çanları are travel points
+	var bt := PlayerData.new()
+	check(BellTravel.destinations(bt, "s2_can0").is_empty(), "Seyahat: başka çan çalmadan yer yok")
+	bt.set_flag("s2_can0")
+	bt.set_flag("s2_can2")
+	check(BellTravel.destinations(bt, "s2_can0") == ["s2_can2"], "Seyahat: yalnız çalınmış diğer çanlar")
+	for b_id: String in BellTravel.BELLS:
+		check(BellTravel.scene_of(b_id).begins_with("s2_chapter"), "Seyahat %s: sahne var" % b_id)
+	# Sis Kalkanı and Gümbür's Ritim Tılsımı
+	check(c.items.has("sis_kalkani") and PlayerData.POTIONS.has("sis_kalkani"), "Sis Kalkanı iksir")
+	var rt := PlayerData.new()
+	rt.choose_keeper("pati", {"max_hp": 100, "max_mp": 50, "power": 10, "speed": 6.0}, {}, "Pati")
+	rt.add_piril(200)
+	var pw := rt.power
+	check(Shop.buy(rt, c.items["ritim_tilsimi"], "ritim_tilsimi", 120, true) == "ok" and rt.power == pw + 4, "Ritim Tılsımı +4 güç")
+	rt.recompute_stats(c.items)
+	check(rt.power == pw + 4, "Ritim Tılsımı gücü yeniden hesapta kalır")
 	var tp := PlayerData.new()
 	tp.choose_keeper("tipis_panda", c.keeper("tipis_panda")["stats"], {}, "Tıpış")
 	check(tp.level == 1 and tp.active_skill() == "derin_nefes", "Tıpış seçilince seviye 1 ve Derin Nefes")

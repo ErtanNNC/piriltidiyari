@@ -13,7 +13,7 @@ Kullanıcı onaylamadan başlanmaz. Her adım: test → commit → push → sür
      - Lumi: üç arkadaş
      - Tıpış: davul tamiri
    - Üçüncü oyun tohumu: Mavi Titreme.
-3. **Eksik sistemler:**
+3. **Eksik sistemler:** ✅ yapıldı (1.30.0)
    - Ses Çanları arası hızlı seyahat.
    - Sis Kalkanı iksiri.
    - Gümbür dükkânı (ritim yetenekleri).

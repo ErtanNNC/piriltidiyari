@@ -300,6 +300,8 @@ func _ready() -> void:
 	d.quest_changed.connect(func(_id: String) -> void: _refresh_quest())
 	d.items_changed.connect(_refresh_potions)
 	d.skills_changed.connect(_refresh_powers)
+	d.skills_changed.connect(_announce_season_skill)
+	d.learn_season_skill()  # saves already past level 5 in Season 2
 	d.stats_changed.connect(_refresh_potions)
 	d.flags_changed.connect(_refresh_potions)
 	GameState.dialogue_requested.connect(_open_dialogue)
@@ -771,3 +773,13 @@ func _apply_safe_area() -> void:
 	_root.offset_top = (inner.position.y - win.position.y) * to_ui.y
 	_root.offset_right = -(win.end.x - inner.end.x) * to_ui.x
 	_root.offset_bottom = -(win.end.y - inner.end.y) * to_ui.y
+
+
+## Season 2: tell the keeper once when their calming skill is learned.
+func _announce_season_skill() -> void:
+	var d := GameState.data
+	var s2 := Skills.season2_for(d.character_id)
+	if d.season != 2 or s2 == "" or not d.skills.has(s2) or d.has_flag("s2_yetenek_" + s2):
+		return
+	d.set_flag("s2_yetenek_" + s2)
+	GameState.toast.emit(TranslationServer.translate("Yeni yetenek: %s!") % TranslationServer.translate(Skills.DEFS[s2]["name"]), "spark")

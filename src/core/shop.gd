@@ -25,6 +25,9 @@ static func buy(data: PlayerData, item_def: Dictionary, item_id: String, price: 
 		if item_def.has("max_hp"):
 			data.max_hp += int(item_def["max_hp"])
 			data.heal(int(item_def["max_hp"]))
+		if item_def.has("power"):
+			data.power += int(item_def["power"])
+			data.stats_changed.emit()
 	else:
 		data.add_item(item_id)
 		if once:

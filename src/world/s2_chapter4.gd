@@ -53,13 +53,13 @@ func _ready() -> void:
 	_boss.sad.connect(_on_sad)
 	_boss.calmed.connect(_on_calmed)
 	if d.objective_done(Q2, "gumbur"):
-		_boss._cross.visible = false
-		_boss._soft.visible = true
+		_boss_to_shop()
 		if not d.objective_done(Q2, "kor"):
 			_drop_kor()
 	d.quest_changed.connect(func(_id: String) -> void: _refresh())
 	_refresh()
 	_player.respawn_point = _player.global_position
+	take_return_point()
 	await get_tree().create_timer(1.8).timeout
 	if not d.has_flag("s2c4_geldi"):
 		d.set_flag("s2c4_geldi")
@@ -183,6 +183,7 @@ func _on_calmed() -> void:
 	await GameState.dialogue_closed
 	await _memory()
 	_drop_kor()
+	_boss_to_shop()
 
 
 ## Gümbür remembers little Hırıl drumming in the canyon: a faint, small
@@ -218,6 +219,15 @@ func _memory() -> void:
 		var tw := h.create_tween()
 		tw.tween_property(h, "scale", Vector3(0.01, 0.01, 0.01), 0.8)
 		tw.tween_callback(h.queue_free)
+
+
+## Calmed, Gümbür stays in the arena and runs a little drum stall.
+func _boss_to_shop() -> void:
+	if has_node("GumburShop"):
+		return
+	_boss.visible = false
+	_boss.process_mode = Node.PROCESS_MODE_DISABLED
+	npc(self, "gumbur", "gumbur", ARENA + Vector3(-3.0, 0, -2.0), 20.0).name = "GumburShop"
 
 
 func _drop_kor() -> void:
@@ -497,6 +507,17 @@ func _run_demo(which: String) -> void:
 			await get_tree().create_timer(GumburPlan.cycle_time(1)).timeout
 			print("S2C4 dodge standing_hits=%d" % roundi(float(hp0 - d.hp) / GumburPlan.DAMAGE))
 			get_tree().quit()
+		"travel":
+			# ring the canyon bell, then travel back to Kaplıca Köyü's bell
+			DevTools.auto_dialogue = true
+			GameState.data.set_flag("s2_can4")
+			var bell := get_node("Level/Bell") as EchoBell
+			_player.global_position = BELL_AT + Vector3(0, 0.3, 1.6)
+			await get_tree().create_timer(0.3).timeout
+			bell.use(_player)
+			await get_tree().create_timer(0.4).timeout
+			for n in _hud.find_children("*", "ChoicePanel", true, false):
+				(n as ChoicePanel)._pick("s2_can0")
 		"arena":
 			d_arena()
 		"echo":

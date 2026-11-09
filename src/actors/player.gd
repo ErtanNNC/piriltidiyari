@@ -293,6 +293,10 @@ func use_skill() -> void:
 		"isik_patlamasi": _isik_patlamasi()
 		"yildiz_ninnisi": _yildiz_ninnisi()
 		"derin_nefes": _derin_nefes()
+		"mirlama": _mirlama()
+		"kocaman_sarilma": _kocaman_sarilma()
+		"komik_yuz": _komik_yuz()
+		"ninni_isigi": _ninni_isigi()
 
 
 ## Kept for older callers (tests, demos).
@@ -425,6 +429,73 @@ func _yildiz_ninnisi() -> void:
 	for m in get_tree().get_nodes_in_group("hittable"):
 		var n := m as Node3D
 		if n.global_position.distance_to(global_position) > LULLABY_RADIUS:
+			continue
+		if n.has_method("lull"):
+			n.call("lull")
+		else:
+			n.call("hit", attack_power(), global_position, 3.0)
+
+
+## Pati (Season 2): a soft purr. Köpüklüler nearby sit down dazed.
+func _mirlama() -> void:
+	_attack_cd = 0.6
+	Effects.ring(get_parent(), global_position + Vector3.UP * 0.4, Skills.PURR_RADIUS, Tokens.color("honey"), 0.6)
+	FloatText.spawn(get_parent(), global_position + Vector3.UP * 2.4, TranslationServer.translate("Mrrr..."), Tokens.color("panel@light"))
+	_calm_area(Skills.PURR_RADIUS)
+
+
+## Bado (Season 2): one big warm hug. The nearest Köpüklü calms at once,
+## no breathing ring needed.
+func _kocaman_sarilma() -> void:
+	_attack_cd = 0.6
+	var best: Mob = null
+	var best_d := Skills.HUG_REACH
+	for n in get_tree().get_nodes_in_group("mob") + get_tree().get_nodes_in_group("dazed"):
+		var m := n as Mob
+		if m and MobStats.breathes(m.kind) and m.state != "calm":
+			var dd := m.global_position.distance_to(global_position)
+			if dd <= best_d:
+				best = m
+				best_d = dd
+	Effects.ring(get_parent(), global_position + Vector3.UP * 0.8, 1.6, Tokens.color("berry"), 0.5)
+	if best == null:
+		return
+	if best.state != "dazed":
+		best.lull()
+	Effects.sparkle(get_parent(), best.global_position + Vector3.UP * 1.2, Tokens.color("berry"), 14)
+	best.breathe_calm()
+
+
+## Çıtır (Season 2): a funny face. Köpüklüler burst out laughing and sit
+## down; anything else is pushed back, giggling.
+func _komik_yuz() -> void:
+	_attack_cd = 0.6
+	Effects.ring(get_parent(), global_position + Vector3.UP * 0.6, Skills.LAUGH_RADIUS, Tokens.color("spark-yellow"), 0.5)
+	for n in get_tree().get_nodes_in_group("hittable"):
+		var m := n as Node3D
+		if m and m.global_position.distance_to(global_position) <= Skills.LAUGH_RADIUS:
+			FloatText.spawn(get_parent(), m.global_position + Vector3.UP * 2.0, TranslationServer.translate("Ha ha!"), Tokens.color("panel@light"))
+	_calm_area(Skills.LAUGH_RADIUS)
+
+
+## Lumi (Season 2): a lullaby light. Everything around slows down for a
+## while and the keeper heals a little.
+func _ninni_isigi() -> void:
+	_attack_cd = 0.6
+	Effects.ring(get_parent(), global_position + Vector3.UP * 0.4, Skills.NINNI_RADIUS, Tokens.color("spark-purple"), 0.8)
+	for n in get_tree().get_nodes_in_group("mob"):
+		var m := n as Mob
+		if m and m.global_position.distance_to(global_position) <= Skills.NINNI_RADIUS:
+			m.slow(Skills.NINNI_SLOW)
+	GameState.data.heal(Skills.NINNI_HEAL)
+	FloatText.spawn(get_parent(), global_position + Vector3.UP * 2.0, TranslationServer.translate("+%d") % Skills.NINNI_HEAL, Tokens.color("spark-green"))
+
+
+## Lull every creature in reach (Köpüklüler sit dazed, others take a soft hit).
+func _calm_area(radius: float) -> void:
+	for m in get_tree().get_nodes_in_group("hittable"):
+		var n := m as Node3D
+		if n.global_position.distance_to(global_position) > radius:
 			continue
 		if n.has_method("lull"):
 			n.call("lull")
@@ -580,6 +651,10 @@ func drink_potion(slot: int) -> void:
 		if calm:
 			calm.fast_until = Time.get_ticks_msec() / 1000.0 + float(def["seconds"])
 		GameState.toast.emit(TranslationServer.translate("%d saniye nefesin daha hızlı") % int(def["seconds"]), "heart")
+	elif def.get("buff", "") == "sis_kalkani":
+		if calm:
+			calm.shield_until = Time.get_ticks_msec() / 1000.0 + float(def["seconds"])
+		GameState.toast.emit(TranslationServer.translate("%d saniye öfke barın dolmaz") % int(def["seconds"]), "heart")
 	elif def.get("buff", "") == "kovucu":
 		GameState.repel_until = Time.get_ticks_msec() / 1000.0 + float(def["seconds"])
 		GameState.toast.emit(TranslationServer.translate("%d saniye moblar seni zor fark eder") % int(def["seconds"]), "drop")

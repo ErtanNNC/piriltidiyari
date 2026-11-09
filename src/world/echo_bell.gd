@@ -39,7 +39,7 @@ func _build() -> void:
 	add_child(body)
 	if GameState.data.has_flag(bell_id):
 		_lit()
-		(func() -> void: done()).call_deferred()
+		action_label = "Seyahat"  # a rung bell is a travel point
 
 
 func _allowed(d: PlayerData) -> bool:
@@ -55,6 +55,7 @@ func _lit() -> void:
 func use(_by: Node) -> void:
 	var d := GameState.data
 	if d.has_flag(bell_id):
+		_travel()
 		return
 	if needs != "" and not _allowed(d):
 		GameState.bark(locked_bark)
@@ -71,5 +72,29 @@ func use(_by: Node) -> void:
 		Effects.ring(get_parent(), global_position + Vector3.UP * 2.5, 6.0 + i * 4.0, Tokens.color("spark-yellow"), 0.7 + i * 0.2)
 	Effects.sparkle(get_parent(), global_position + Vector3.UP * 2.8, Tokens.color("spark-yellow"), 16)
 	GameState.notify("ring", ring_target)
-	done()
+	if get_node_or_null("Beacon"):
+		get_node("Beacon").queue_free()
+	action_label = "Seyahat"
+	set_meta("action_label", action_label)
 	rung.emit(self)
+
+
+## Fast travel to another rung bell (`BellTravel`).
+func _travel() -> void:
+	var d := GameState.data
+	var to := BellTravel.destinations(d, bell_id)
+	if to.is_empty():
+		GameState.toast.emit(TranslationServer.translate("Başka bir çan çalınca buradan oraya gidebilirsin."), "spark")
+		return
+	var opts := []
+	for id: String in to:
+		opts.append({"id": id, "label": BellTravel.region(id)})
+	var hud := get_tree().get_first_node_in_group("hud") as Hud
+	if hud == null:
+		return
+	var pick: String = await hud.ask("Hangi çana gidelim?", opts)
+	if pick == "":
+		return
+	Audio.play("bell")
+	SceneFlow.return_point = BellTravel.arrival(pick)
+	SceneFlow.go_to(BellTravel.scene_of(pick))
