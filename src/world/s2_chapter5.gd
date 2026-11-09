@@ -431,10 +431,11 @@ func _build() -> void:
 	TravelSign.board(lv, "Gümbür Kanyonu ↓", Vector3(-3.0, 1.3, 27.0), 2.6)
 	Toon.part(lv, "box", Vector3(0.16, 1.2, 0.16), Color("#a86b45"), Vector3(-3.0, 0.6, 26.95))
 	var back := TriggerArea.new()
+	back.once = false
 	back.radius = 1.5
 	lv.add_child(back)
 	back.position = Vector3(0, 0, 30.0)
-	back.reached.connect(func() -> void: SceneFlow.go_to("s2_chapter4"))
+	back.reached.connect(func() -> void: SceneFlow.ask_go("s2_chapter4"))
 	for n in 4:
 		var w := StaticBody3D.new()
 		var c := CollisionShape3D.new()

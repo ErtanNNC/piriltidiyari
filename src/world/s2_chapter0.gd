@@ -230,7 +230,7 @@ func _build() -> void:
 	exit.position = Vector3(0, 0, -25.5)
 	exit.reached.connect(func() -> void:
 		if GameState.data.has_flag("s2_can0"):
-			SceneFlow.go_to("s2_chapter1")
+			SceneFlow.ask_go("s2_chapter1")
 		elif not GameState.in_dialogue:
 			GameState.bark("s2c0_kilit"))
 	for n in 4:

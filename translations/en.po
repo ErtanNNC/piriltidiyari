@@ -45,6 +45,9 @@ msgstr "%s put away"
 msgid "%s teslim edildi"
 msgstr "%s handed over"
 
+msgid "%s yoluna çıkalım mı?"
+msgstr "Shall we set off for %s?"
+
 msgid "%s · Seviye %d"
 msgstr "%s · Level %d"
 
@@ -804,6 +807,9 @@ msgstr "I'll keep it. Maybe we'll find its owner."
 msgid "Burada başla"
 msgstr "Start here"
 
+msgid "Burada kal"
+msgstr "Stay here"
+
 msgid "Buradan bütün köy görünüyor. Süzülmek ne güzel, değil mi?"
 msgstr "You can see the whole village from here. Floating is fun, right?"
 
@@ -1175,6 +1181,9 @@ msgstr "I know the way home now!"
 
 msgid "Evet"
 msgstr "Yes"
+
+msgid "Evet, gidelim"
+msgstr "Yes, let's go"
 
 msgid "Evet. Pus kötülük değil, yalnızlıktır. Bunu unutma."
 msgstr "Yes. The Gloom isn't meanness, it's loneliness. Remember that."

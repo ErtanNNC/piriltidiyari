@@ -37,6 +37,7 @@ static func add(scene: Node3D, mood: String) -> void:
 	var holder := Node3D.new()
 	holder.name = "Backdrop"
 	scene.add_child(holder)
+	_border(scene, holder, floors, mood)
 	var k: Array = WorldLook.SKIES.get(mood, [])
 	var haze := Color(String(k[1])) if not k.is_empty() else Color("#cfe6ff")
 	var rng := RandomNumberGenerator.new()
@@ -124,3 +125,145 @@ static func _spire(h: Node3D, at: Vector3, rng: RandomNumberGenerator, haze: Col
 		if rng.randf() < 0.5:
 			# a faint purple window glow
 			_p(h, "box", Vector3(0.6, 0.9, 0.1), Color(0.75, 0.55, 1.0), p + Vector3(0, height * 0.7, w * 0.5))
+
+
+# --- the map's edge --------------------------------------------------------------
+
+## Where you can't go shouldn't look like empty sky: the ground carries on
+## past the walkable area (a frame of ground around it, so lakes and pits
+## inside stay as they are), and a ring of low mounds with bushes, rocks or
+## trees marks the edge. The edge comes from the scene's WorldBoundary walls
+## (else the floors' extent); exits (TriggerAreas near the edge) get a gap.
+static func _border(scene: Node3D, holder: Node3D, floors: Array, mood: String) -> void:
+	var style: String = STYLE.get(mood, "")
+	if floors.is_empty() or style in ["islands", "spires"]:
+		return
+	# the ground: among the big floors, the one at the keeper's height (not a
+	# lake bed or a low pit that happens to be wider)
+	var biggest := 0.0
+	for f: Dictionary in floors:
+		biggest = maxf(biggest, float(f["area"]))
+	var player := scene.get_node_or_null("Player") as Node3D
+	var py := player.global_position.y if player else 0.0
+	var main: Dictionary = floors[0]
+	var best := INF
+	for f: Dictionary in floors:
+		if float(f["area"]) < biggest * 0.15:
+			continue
+		var dy := absf(float(f["top"]) - py)
+		if dy < best - 0.3 or (absf(dy - best) <= 0.3 and float(f["area"]) > float(main["area"])):
+			best = dy
+			main = f
+	var ground_y: float = main["top"]
+	var ground: Color = main["color"]
+	var rect := _walk_rect(scene, floors, main)
+	var lo: Vector2 = rect[0]
+	var hi: Vector2 = rect[1]
+	# ground frame outside the walkable rectangle
+	var far := 70.0
+	var skirt := ground.darkened(0.06)
+	var y := ground_y - 0.08
+	for side in [[Vector2(lo.x - far, hi.y + 1.0), Vector2(hi.x + far, hi.y + far)],
+			[Vector2(lo.x - far, lo.y - far), Vector2(hi.x + far, lo.y - 1.0)],
+			[Vector2(lo.x - far, lo.y - 1.0), Vector2(lo.x - 1.0, hi.y + 1.0)],
+			[Vector2(hi.x + 1.0, lo.y - 1.0), Vector2(hi.x + far, hi.y + 1.0)]]:
+		var a2: Vector2 = side[0]
+		var b2: Vector2 = side[1]
+		var c := (a2 + b2) * 0.5
+		var sz := b2 - a2
+		_p(holder, "box", Vector3(sz.x, 0.1, sz.y), skirt, Vector3(c.x, y - 0.05, c.y))
+	# the exits along the edge stay open
+	var exits: Array[Vector3] = []
+	for n in scene.find_children("*", "TriggerArea", true, false):
+		var at := (n as Node3D).global_position
+		var near_edge := minf(minf(absf(at.x - lo.x), absf(at.x - hi.x)), minf(absf(at.z - lo.y), absf(at.z - hi.y)))
+		if near_edge < 4.0:
+			exits.append(at)
+	var rng := RandomNumberGenerator.new()
+	rng.seed = hash(mood) + int(lo.x * 3.0 + hi.y * 5.0)
+	var mound := ground.darkened(0.12)
+	var leafy: bool = String(main["class"]) == "green"
+	var snowy: bool = String(main["class"]) == "snow"
+	var edges := [[Vector2(lo.x, lo.y), Vector2(hi.x, lo.y), Vector2(0, -1)],
+		[Vector2(lo.x, hi.y), Vector2(hi.x, hi.y), Vector2(0, 1)],
+		[Vector2(lo.x, lo.y), Vector2(lo.x, hi.y), Vector2(-1, 0)],
+		[Vector2(hi.x, lo.y), Vector2(hi.x, hi.y), Vector2(1, 0)]]
+	for e: Array in edges:
+		var from: Vector2 = e[0]
+		var to: Vector2 = e[1]
+		var out: Vector2 = e[2]
+		var length := from.distance_to(to)
+		var steps := int(length / 4.5) + 1
+		for i in steps + 1:
+			var p2 := from.lerp(to, float(i) / float(maxi(steps, 1))) + out * rng.randf_range(1.6, 3.2)
+			var at := Vector3(p2.x, ground_y, p2.y)
+			var blocked := false
+			for x: Vector3 in exits:
+				if Vector2(x.x - at.x, x.z - at.z).length() < 5.0:
+					blocked = true
+			if blocked:
+				continue
+			var w := rng.randf_range(4.0, 7.0)
+			var h := rng.randf_range(1.6, 3.4)
+			_p(holder, "ellipsoid", Vector3(w, h * 2.0, w * 0.8), mound.lerp(ground, rng.randf() * 0.4), at + Vector3(0, -h * 0.35, 0), Vector3(0, rng.randf() * 180.0, 0))
+			if snowy:
+				_p(holder, "ellipsoid", Vector3(w * 0.6, h * 0.7, w * 0.5), Color("#f4f8ff"), at + Vector3(0, h * 0.5, 0))
+			var r := rng.randf()
+			var top := at + Vector3(rng.randf_range(-1.0, 1.0), h * 0.55, rng.randf_range(-0.8, 0.8))
+			if leafy and r < 0.45:
+				_p(holder, "ellipsoid", Vector3(1.6, 1.2, 1.5), Color("#4fae5a"), top + Vector3(0, 0.3, 0))
+			elif leafy and r < 0.7 and style in ["forest", "hills"]:
+				_p(holder, "cylinder", Vector3(0.35, 1.6, 0.35), Color("#8a5a3c"), top + Vector3(0, 0.8, 0))
+				_p(holder, "cone" if style == "forest" else "ellipsoid", Vector3(1.9, 2.4, 1.9), Color("#3f9a52"), top + Vector3(0, 2.1, 0))
+			elif r < 0.85:
+				_p(holder, "sphere", Vector3(1.2, 0.8, 1.0), ground.darkened(0.3) if not snowy else Color("#c9d3e2"), top)
+
+
+## The walkable rectangle [lo, hi] (x, z): the WorldBoundary walls where a
+## scene has them, else the extent of its floors.
+static func _walk_rect(scene: Node3D, floors: Array, main: Dictionary) -> Array:
+	# start from the main floor and take in the floors that touch it (far-off
+	# decoration slabs don't count)
+	var mt: Transform3D = main["xform"]
+	var mh: Vector2 = _extent(mt, main["half"])
+	var lo := Vector2(mt.origin.x - mh.x, mt.origin.z - mh.y)
+	var hi := Vector2(mt.origin.x + mh.x, mt.origin.z + mh.y)
+	var grew := true
+	while grew:
+		grew = false
+		for f: Dictionary in floors:
+			var t: Transform3D = f["xform"]
+			var half: Vector2 = f["half"]
+			if absf(float(f["top"]) - float(main["top"])) > 6.0:
+				continue
+			var ext := _extent(t, half)
+			var flo := Vector2(t.origin.x - ext.x, t.origin.z - ext.y)
+			var fhi := Vector2(t.origin.x + ext.x, t.origin.z + ext.y)
+			var touches := flo.x <= hi.x + 1.0 and fhi.x >= lo.x - 1.0 and flo.y <= hi.y + 1.0 and fhi.y >= lo.y - 1.0
+			if touches and (flo.x < lo.x - 0.01 or flo.y < lo.y - 0.01 or fhi.x > hi.x + 0.01 or fhi.y > hi.y + 0.01):
+				lo = Vector2(minf(lo.x, flo.x), minf(lo.y, flo.y))
+				hi = Vector2(maxf(hi.x, fhi.x), maxf(hi.y, fhi.y))
+				grew = true
+	for c in scene.find_children("*", "CollisionShape3D", true, false):
+		var cs := c as CollisionShape3D
+		if not cs.shape is WorldBoundaryShape3D:
+			continue
+		var pl: Plane = (cs.shape as WorldBoundaryShape3D).plane
+		var n := cs.global_transform.basis * pl.normal
+		var p := cs.global_transform * (pl.normal * pl.d)
+		if n.x < -0.5:
+			hi.x = p.x
+		elif n.x > 0.5:
+			lo.x = p.x
+		elif n.z < -0.5:
+			hi.y = p.z
+		elif n.z > 0.5:
+			lo.y = p.z
+	return [lo, hi]
+
+
+## A (rotated) floor's half size along world x and z.
+static func _extent(t: Transform3D, half: Vector2) -> Vector2:
+	var bx := t.basis.x.normalized()
+	var bz := t.basis.z.normalized()
+	return Vector2(absf(bx.x) * half.x + absf(bz.x) * half.y, absf(bx.z) * half.x + absf(bz.z) * half.y)

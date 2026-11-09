@@ -303,14 +303,15 @@ func _build() -> void:
 	on.position = Vector3(0, 0, -46.5)
 	on.reached.connect(func() -> void:
 		if GameState.data.has_flag("s2_bolum1_bitti"):
-			SceneFlow.go_to("s2_chapter2"))
+			SceneFlow.ask_go("s2_chapter2"))
 	TravelSign.board(lv, "Buharlı Kaplıca Köyü ↓", Vector3(2.4, 1.3, 22.0), 2.8)
 	Toon.part(lv, "box", Vector3(0.16, 1.2, 0.16), Color("#a86b45"), Vector3(2.4, 0.6, 21.95))
 	var home := TriggerArea.new()
+	home.once = false
 	home.radius = 2.0
 	lv.add_child(home)
 	home.position = Vector3(0, 0, 25.0)
-	home.reached.connect(func() -> void: SceneFlow.go_to("s2_chapter0"))
+	home.reached.connect(func() -> void: SceneFlow.ask_go("s2_chapter0"))
 	for n in 4:
 		var wall := StaticBody3D.new()
 		var c := CollisionShape3D.new()

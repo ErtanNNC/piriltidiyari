@@ -409,14 +409,15 @@ func _build() -> void:
 	on.position = Vector3(0, 0, -39.5)
 	on.reached.connect(func() -> void:
 		if GameState.data.has_flag("s2_bolum4_bitti"):
-			SceneFlow.go_to("s2_chapter5"))
+			SceneFlow.ask_go("s2_chapter5"))
 	TravelSign.board(lv, "Patpat Tarlaları ↓", Vector3(-3.0, 1.3, 26.0), 2.6)
 	Toon.part(lv, "box", Vector3(0.16, 1.2, 0.16), Color("#a86b45"), Vector3(-3.0, 0.6, 25.95))
 	var back := TriggerArea.new()
+	back.once = false
 	back.radius = 1.5
 	lv.add_child(back)
 	back.position = Vector3(0, 0, 29.0)
-	back.reached.connect(func() -> void: SceneFlow.go_to("s2_chapter3"))
+	back.reached.connect(func() -> void: SceneFlow.ask_go("s2_chapter3"))
 	for n in 4:
 		var w := StaticBody3D.new()
 		var c := CollisionShape3D.new()

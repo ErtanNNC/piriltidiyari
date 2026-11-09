@@ -61,6 +61,8 @@ func _ready() -> void:
 		if arg.begins_with("--turn="):  # screenshot helper: start turned by N × 90°
 			_yaw_target = int(arg.get_slice("=", 1)) * PI * 0.5
 			yaw = _yaw_target
+		if arg.begins_with("--zoom="):  # screenshot helper: a farther camera
+			distance = float(arg.get_slice("=", 1))
 	fov = 45.0
 	if _target:
 		global_position = _desired_position()

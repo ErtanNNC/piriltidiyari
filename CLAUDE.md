@@ -259,6 +259,16 @@ is a copy of the design system's tokens.
 - Attack warnings (`Effects.warning`, every boss and mob in both seasons): a
   bold red ring with a dark edge drawn over the ground decor, and a red fill
   growing from the middle that lands when it reaches the ring.
+- Region exits ask first: `SceneFlow.ask_go(scene)` ("… yoluna çıkalım mı?",
+  Evet/Burada kal) instead of switching on contact; exit TriggerAreas are
+  `once = false` so they ask again (`--scene=s2_chapter3 --demo=exit`).
+  `SceneFlow.go_to` releases every held input before and after the change
+  (a held stick used to keep the keeper walking in the next scene).
+- Map edges (`Backdrop._border`, every scene with a WorldLook mood except
+  islands/spires): a frame of ground continues outside the walkable area and
+  a ring of low mounds with bushes/trees/rocks marks the edge, gaps at exits.
+  The edge comes from WorldBoundary walls, else the floors connected to the
+  ground at the keeper's height. `--zoom=N` (FollowCamera) for wide shots.
 - Mobs don't twitch: chase uses hysteresis (`_circling`) and the facing is
   smoothed (`_face_dir`); a mob on the edge of its circling distance used to
   flip direction every other frame.

@@ -422,14 +422,15 @@ func _build() -> void:
 	on.position = Vector3(0, 0, -38.5)
 	on.reached.connect(func() -> void:
 		if GameState.data.has_flag("s2_bolum3_bitti"):
-			SceneFlow.go_to("s2_chapter4"))
+			SceneFlow.ask_go("s2_chapter4"))
 	TravelSign.board(lv, "Fokurdayan Göl ↓", Vector3(-3.0, 1.3, 26.0), 2.6)
 	Toon.part(lv, "box", Vector3(0.16, 1.2, 0.16), Color("#a86b45"), Vector3(-3.0, 0.6, 25.95))
 	var back := TriggerArea.new()
+	back.once = false
 	back.radius = 1.5
 	lv.add_child(back)
 	back.position = Vector3(0, 0, 29.0)
-	back.reached.connect(func() -> void: SceneFlow.go_to("s2_chapter2"))
+	back.reached.connect(func() -> void: SceneFlow.ask_go("s2_chapter2"))
 	for n in 4:
 		var w := StaticBody3D.new()
 		var c := CollisionShape3D.new()
@@ -514,6 +515,19 @@ func _run_demo(which: String) -> void:
 			GameState.talk_to("pirpir")
 			await close_dialogs()
 			print("S2C3_DONE q2=%s kor=%s minnos=%s flag=%s level=%d" % [d.quest_state(Q2), d.has_flag("kor_kehribar"), d.has_flag("s2_minnos_kacti"), d.has_flag("s2_bolum3_bitti"), d.level])
+			get_tree().quit()
+		"exit":
+			# step on the south exit: a question, no scene change until "Evet"
+			while SceneFlow.busy:
+				await get_tree().process_frame
+			_player.global_position = Vector3(0, 0.3, 29.0)
+			await get_tree().create_timer(0.8).timeout
+			var panels := _hud.find_children("*", "ChoicePanel", true, false)
+			print("S2EXIT asked=%s still_here=%s" % [panels.size() > 0, get_tree().current_scene == self])
+			if panels.size() > 0:
+				(panels[0] as ChoicePanel)._pick("stay")
+			await get_tree().create_timer(0.8).timeout
+			print("S2EXIT stayed=%s" % [get_tree().current_scene == self])
 			get_tree().quit()
 		"stalls":
 			_player.global_position = Vector3(0, 0.3, 6.0)

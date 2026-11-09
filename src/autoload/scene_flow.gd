@@ -117,10 +117,40 @@ var return_point := Vector3.INF
 var house_from := "chapter0"
 
 
+## A region exit: ask first ("… yoluna çıkalım mı?") so nobody leaves by
+## stepping on the edge by accident. "Burada kal" just closes the question.
+var _asking := false
+
+
+func ask_go(scene_id: String) -> void:
+	if busy or _asking or GameState.in_dialogue or not SCENES.has(scene_id):
+		return
+	var hud := get_tree().get_first_node_in_group("hud") as Hud
+	if hud == null:
+		go_to(scene_id)
+		return
+	_asking = true
+	var place: String = CARDS.get(scene_id, ["", scene_id])[1]
+	var title := TranslationServer.translate("%s yoluna çıkalım mı?") % TranslationServer.translate(place)
+	var pick: String = await hud.ask(title, [{"id": "go", "label": "Evet, gidelim"}, {"id": "stay", "label": "Burada kal"}])
+	_asking = false
+	if pick == "go":
+		go_to(scene_id)
+
+
+## Let go of every held action (a touch stick or key held while the scene
+## changes would otherwise keep the keeper walking in the next scene).
+func release_inputs() -> void:
+	for a in InputMap.get_actions():
+		if not String(a).begins_with("ui_"):
+			Input.action_release(a)
+
+
 func go_to(scene_id: String, save := true, card := true) -> void:
 	if busy or not SCENES.has(scene_id):
 		return
 	busy = true
+	release_inputs()
 	Audio.scene_changed(scene_id)
 	var tw := create_tween()
 	tw.tween_property(_fade, "modulate:a", 1.0, 0.45)
@@ -140,6 +170,7 @@ func go_to(scene_id: String, save := true, card := true) -> void:
 		SaveGame.write(GameState.data)
 	await get_tree().process_frame
 	await get_tree().process_frame
+	release_inputs()
 	scene_started.emit(scene_id)
 	if card and CARDS.has(scene_id):
 		_small.text = CARDS[scene_id][0]

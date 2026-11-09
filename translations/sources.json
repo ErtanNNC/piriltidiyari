@@ -1347,7 +1347,10 @@
   "Sezon 2 · Bölüm 4",
   "Sezon 2 · Bölüm 5",
   "Sezon 2 · Kapanış",
-  "Gökkuşağı Şenliği"
+  "Gökkuşağı Şenliği",
+  "%s yoluna çıkalım mı?",
+  "Evet, gidelim",
+  "Burada kal"
  ],
  "src/autoload/tokens.gd": [
   "fontSize",
@@ -1702,7 +1705,8 @@
   "Oyna"
  ],
  "src/world/follow_camera.gd": [
-  "--turn="
+  "--turn=",
+  "--zoom="
  ],
  "src/world/house_door.gd": [
   "Gir"
