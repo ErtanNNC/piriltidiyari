@@ -97,6 +97,13 @@ func _build_menu() -> void:
 		saves.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 		saves.pressed.connect(func() -> void: _open_slots("load"))
 		root.add_child(saves)
+		if not ChapterSelect.open_seasons().is_empty():
+			var pick := UiKit.button("Bölüm seç", false)
+			pick.name = "ChapterSelect"
+			pick.custom_minimum_size = Vector2(260, 56)
+			pick.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+			pick.pressed.connect(_open_chapters)
+			root.add_child(pick)
 	# sound settings: two small toggles under the menu
 	var row := HBoxContainer.new()
 	row.alignment = BoxContainer.ALIGNMENT_CENTER
@@ -146,6 +153,9 @@ func _build_menu() -> void:
 	var tw := create_tween()
 	tw.tween_property(root, "modulate:a", 1.0, 0.6)
 	_menu = root
+	if DevTools.demo.begins_with("chapters") and not _demo_shown:
+		_demo_shown = true
+		_open_chapters()
 	if DevTools.demo in ["slots", "slotsnew"] and not _demo_shown:
 		_demo_shown = true
 		_open_slots("new" if DevTools.demo == "slotsnew" else "load")
@@ -153,6 +163,13 @@ func _build_menu() -> void:
 
 var _menu: Control
 var _demo_shown := false
+
+
+func _open_chapters() -> void:
+	var p := ChapterSelect.new()
+	p.closed.connect(func() -> void: _menu.visible = true)
+	_menu.visible = false
+	_ui.add_child(p)
 
 
 func _open_slots(mode: String) -> void:

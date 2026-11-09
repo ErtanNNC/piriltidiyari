@@ -132,6 +132,11 @@ is a copy of the design system's tokens.
   The HUD quest panel follows `PlayerData.tracked_quest(Content.quests)` (only
   the loaded chapter's quests). After a boss, `TravelSign.exit_home` shows a
   "Köye dön" sign by the Kıvılcım Feneri (`--near=ExitSign` for screenshots).
+- Bölüm seç (title, `ChapterSelect`): once any save has `sezon1_bitti` /
+  `sezon2_bitti`, every scene of that season starts from the list with
+  `DevTools.preset` progress and a chosen keeper (`DevTools.preset_keeper`;
+  Tıpış falls back to Pati in Season 1), in `SaveGame.PRACTICE` (slot 9, not
+  shown by Devam et/Kayıtlar). Check: `-- --demo=chapters_<scene>` (headless).
 - Saves: `SaveGame.write` is atomic (.tmp → rename, .bak kept), `load_dict`
   falls back to .bak, `SaveGame.migrate` upgrades by VERSION. Stats are derived:
   `PlayerData.recompute_stats(Content.items)` from `base_stats` + level + charms

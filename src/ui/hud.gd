@@ -638,7 +638,7 @@ func toggle_pause() -> void:
 				Audio.play("coin"))
 		row.add_child(sl)
 		v.add_child(row)
-	var save := UiKit.button(TranslationServer.translate("Kaydet (Kayıt %d)") % SaveGame.slot, false)
+	var save := UiKit.button(TranslationServer.translate("Kaydet (Kayıt %d)") % SaveGame.slot if SaveGame.slot != SaveGame.PRACTICE else "Kaydet (Deneme)", false)
 	save.name = "SaveButton"
 	var stuck := UiKit.button("Takıldım: son fenere dön", false)
 	var menu := UiKit.button("Ana menü", false)

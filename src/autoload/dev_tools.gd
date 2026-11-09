@@ -67,6 +67,10 @@ func _put_near(node_name: String) -> void:
 		p.global_position = n.global_position + Vector3(0, 0.5, 3.0)
 
 
+## Bölüm seç (title): the keeper to play the chosen chapter with.
+static var preset_keeper := ""
+
+
 ## The level a keeper usually has on reaching each region.
 const LEVEL_AT := {"chapter1": 5, "chapter2": 10, "chapter3": 15, "chapter4": 20, "chapter5": 25, "final": 28}
 
@@ -104,7 +108,7 @@ static func _preset_story(data: PlayerData, scene: String) -> void:
 	if idx >= 6:
 		var content: Node = Engine.get_main_loop().root.get_node_or_null("Content")
 		if content:
-			var k := "pati"
+			var k := preset_keeper if preset_keeper != "" else "pati"
 			for arg in OS.get_cmdline_user_args():
 				if arg.begins_with("--keeper="):
 					k = arg.get_slice("=", 1)
@@ -167,7 +171,7 @@ static func _preset_story(data: PlayerData, scene: String) -> void:
 		# Season 2 keeper chosen (--keeper=..., Tıpış too), fresh at level 1
 		var content: Node = Engine.get_main_loop().root.get_node_or_null("Content")
 		if content:
-			var k := "pati"
+			var k := preset_keeper if preset_keeper != "" else "pati"
 			for arg in OS.get_cmdline_user_args():
 				if arg.begins_with("--keeper="):
 					k = arg.get_slice("=", 1)
@@ -243,5 +247,6 @@ func report_next_scene(tag: String) -> void:
 	var id: String = await SceneFlow.scene_started
 	while SceneFlow.busy and Time.get_ticks_msec() - t0 < 15000:
 		await get_tree().process_frame
-	print("%s started=%s busy=%s ms=%d" % [tag, id, SceneFlow.busy, Time.get_ticks_msec() - t0])
+	var d := GameState.data
+	print("%s started=%s busy=%s ms=%d slot=%d keeper=%s level=%d" % [tag, id, SceneFlow.busy, Time.get_ticks_msec() - t0, SaveGame.slot, d.character_id, d.level])
 	get_tree().quit()

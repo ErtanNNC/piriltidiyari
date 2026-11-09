@@ -1527,6 +1527,16 @@
   "Komik Yüz",
   "Ninni Işığı"
  ],
+ "src/ui/chapter_select.gd": [
+  "Bölüm seç",
+  "Deneme kaydında oynanır: asıl kayıtların değişmez.",
+  "Bekçi:",
+  "Sezon %d",
+  "%s\n%s",
+  "Pick_",
+  "Bir sezonu bitirince bölümleri buradan yeniden oynayabilirsin.",
+  "Geri"
+ ],
  "src/ui/choice_panel.gd": [
   "Vazgeç"
  ],
@@ -1546,6 +1556,7 @@
   "Müzik sesi",
   "Efekt sesi",
   "Kaydet (Kayıt %d)",
+  "Kaydet (Deneme)",
   "Takıldım: son fenere dön",
   "Ana menü",
   "Language: English",
@@ -1563,7 +1574,6 @@
   "Tamam!",
   "Kaplıca Köyü'nde Tospik Nine'ye sor (çan çalınca)",
   "Kaplıca Köyü'nde: taşı sırayla götür",
-  "Geri",
   "%s (%s)",
   "Oyun kaydedilemedi. Telefonda yer var mı?",
   "Kızgın!",

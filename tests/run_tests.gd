@@ -857,6 +857,9 @@ func test_season2() -> void:
 		check(src.contains("add_to_group(\"hud_overlay\")") and src.contains("PROCESS_MODE_ALWAYS"), "%s: seviye kartları arkasında açılmaz" % f)
 	check(FileAccess.get_file_as_string("res://src/ui/hud.gd").contains("get_nodes_in_group(\"hud_overlay\")"), "HUD seviye kartını özet ekranında bekletir")
 	check(FileAccess.get_file_as_string("res://src/autoload/scene_flow.gd").contains("get_tree().paused = false"), "sahne değişince duraklama kalkar")
+	# Bölüm seç plays in the practice slot, never one of the three saves
+	check(SaveGame.PRACTICE > SaveGame.SLOTS, "deneme kaydı asıl kayıtlardan ayrı")
+	check(ChapterSelect.S1.size() == 13 and ChapterSelect.S2.size() == 13, "Bölüm seç: iki sezonun bütün sahneleri")
 	# ambience loops named in Audio exist
 	var au := FileAccess.get_file_as_string("res://src/autoload/audio.gd")
 	for loop_name: String in ["forest", "lake", "sea", "farm", "springs", "creek"]:

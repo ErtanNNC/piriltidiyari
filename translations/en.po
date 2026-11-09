@@ -447,6 +447,9 @@ msgstr "Keeper House"
 msgid "Bekçi Evi'ndeki dolaptan istediğin zaman değiştirebilirsin."
 msgstr "You can change outfits anytime at the closet in the Keeper House."
 
+msgid "Bekçi:"
+msgstr "Keeper:"
+
 msgid "Bekçini değiştir"
 msgstr "Change your keeper"
 
@@ -671,6 +674,9 @@ msgstr "When every crystal in a hall is lit, the crystal door opens."
 
 msgid "Bir sarmaşık daha! Çatıya tırman"
 msgstr "One more vine! Climb to the roof"
+
+msgid "Bir sezonu bitirince bölümleri buradan yeniden oynayabilirsin."
+msgstr "Finish a season to replay its chapters from here."
 
 msgid "Bir tünel kazdım, göstermek istedim. Kimse bakmadı."
 msgstr "I dug a tunnel and wanted to show it. Nobody looked."
@@ -927,6 +933,9 @@ msgstr "Chapter 5"
 msgid "Bölüm başlarında kendiliğinden de kaydedilir. · %d FPS"
 msgstr "The game also saves by itself when a chapter starts. · %d FPS"
 
+msgid "Bölüm seç"
+msgstr "Chapter select"
+
 msgid "Bütün davullar özgür! Hırıl bunu duysa çok sevinir."
 msgstr "All the drums are free! Grumble would be so happy to hear."
 
@@ -1073,6 +1082,9 @@ msgstr "So the Gloom's name is Mumble... A lonely star."
 
 msgid "Demlik'in Çay Tezgâhı"
 msgstr "Teapot's Tea Stall"
+
+msgid "Deneme kaydında oynanır: asıl kayıtların değişmez."
+msgstr "Plays in a practice save: your real saves stay as they are."
 
 msgid "Denizin üstünde mavi bir sis... Titriyor."
 msgstr "A blue mist over the sea... It's trembling."
@@ -2198,6 +2210,9 @@ msgstr "Saved!"
 
 msgid "Kaydedilemedi"
 msgstr "Could not save"
+
+msgid "Kaydet (Deneme)"
+msgstr "Save (Practice)"
 
 msgid "Kaydet (Kayıt %d)"
 msgstr "Save (Save %d)"
@@ -3530,6 +3545,9 @@ msgstr "Level %d"
 
 msgid "Seviye %d!"
 msgstr "Level %d!"
+
+msgid "Sezon %d"
+msgstr "Season %d"
 
 msgid "Sezon 1 tamamlandı!"
 msgstr "Season 1 complete!"

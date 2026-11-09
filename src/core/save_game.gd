@@ -22,6 +22,20 @@ static var last_error := OK
 static var base := "user://kayit"
 
 
+## Bölüm seç plays in this slot, so the real saves stay as they are (it is
+## not one of the three slots: Devam et / Kayıtlar never show it).
+const PRACTICE := 9
+
+
+## Has any of the three saves reached this flag (a finished season)?
+static func any_has_flag(flag: String) -> bool:
+	for s in range(1, SLOTS + 1):
+		var f: Variant = load_dict(path_for(s)).get("flags", [])
+		if (f is Array and flag in f) or (f is Dictionary and (f as Dictionary).has(flag)):
+			return true
+	return false
+
+
 static func path_for(s: int) -> String:
 	return base + ".json" if s <= 1 else "%s_%d.json" % [base, s]
 
