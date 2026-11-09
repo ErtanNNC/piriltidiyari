@@ -437,7 +437,11 @@ func _eye_shots() -> void:
 	add_child(cam)
 	for i in 10:
 		await get_tree().process_frame
-	for id: String in ["pati"] + KEEPERS + NPCS + ["gull_chick"] + MOBS + BOSSES:
+	var ids: Array = ["pati"] + KEEPERS + NPCS + ["gull_chick"] + MOBS + BOSSES
+	for arg in OS.get_cmdline_user_args():
+		if arg.begins_with("--ids="):  # only these (new models)
+			ids = Array(arg.get_slice("=", 1).split(","))
+	for id: String in ids:
 		if ModelImport.path_for(id) == "" or ModelImport._options(id).has("model"):
 			continue
 		var m: Node3D

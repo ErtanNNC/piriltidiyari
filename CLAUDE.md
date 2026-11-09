@@ -37,7 +37,7 @@ is a copy of the design system's tokens.
   head looks/nods, tail wags; json "rig" tunes the regions), driven by
   `CharacterRig._animate_shape`; eyes blink with a lid drawn in the toon shader
   ("eyes" [x,y,r,z] fractions of the height + "lid" color, found by
-  `--demo=eyes` + `tools/find_eyes.py`, run twice). Fur variants on textured
+  `--demo=eyes [--ids=a,b]` + `tools/find_eyes.py`, run twice). Fur variants on textured
   keepers: json "fur" hue is shifted to the variant color (`fur_shift`).
   Checks: `--scene=preview --demo=anim --pose=walk|attack|blink|happy`, `--demo=fur`. Thin rings: use shape
   `"ring"` (size.y = tube thickness); `"torus"` reads size.y as the inner radius. Mobs get the same rig
