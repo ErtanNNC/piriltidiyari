@@ -165,7 +165,8 @@ is a copy of the design system's tokens.
   `Content.keepers`). Choosing resets powers, level 1, then `PrologueDone`.
 - Bölüm 0 `s2_chapter0` (Buharlı Kaplıca Köyü, pack `content/s2_chapter0/`):
   four neighbours talk over each other (Label3D shouts until heard; quest
-  `kopuk_koy`), Tospik Nine (shop "tospik"), Madenci Kazma at the forge,
+  `kopuk_koy`), Tospik Nine (shop "tospik", open except while she hands out a
+  quest), Madenci Kazma's anvil stall (shop "kazma": tools, sling, seeds),
   mini boss Homurdanan Çaydanlık (`KettlePlan` + `Kettle`:
   jets/splash warned, hittable while the lid is up, Sakinleş at the end), and
   the first Ses Çanı (`EchoBell`, `needs` = "quest/objective", flag `s2_can0`,
@@ -239,6 +240,10 @@ is a copy of the design system's tokens.
   `--scene=s2_chapter4 --demo=travel`. Sis Kalkanı potion (buff "sis_kalkani"
   → `BreathCalm.shield_until`), Gümbür's drum stall in the canyon after he
   calms (shop "gumbur", Ritim Tılsımı: charm "power").
+- Shops: a chapter's `chapter.json` needs `"shop": "shop"` or its shop.json is
+  never loaded (a test checks every `open_shop` in the Season 2 packs). Stalls:
+  Tospik (Kaplıca Köyü), Kazma (Kaplıca Köyü), Dikiş (forest, outfits), Demlik
+  (lake), Pırpır (fair), Gümbür (canyon).
 - Never a dead end: `s2_scene3` respawns Köpüklüler when too few are left to
   lull or to breathe with (check `--scene=s2_scene3 --demo=hitfirst`).
 - Kızıl Sis mobs keep their own colors: their builders use `_c(false, ...)`

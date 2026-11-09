@@ -12,7 +12,10 @@
           "mood": "mutlu",
           "text": "Panayır açık! Patpat da oynuyor, kaybedince bile gülüyor!"
         }
-      ]
+      ],
+      "then": {
+        "open_shop": "pirpir"
+      }
     },
     {
       "when": {
@@ -57,7 +60,10 @@
           "mood": "dertli",
           "text": "Patpat panayır meydanında. Önce tarlaların çanını çal."
         }
-      ]
+      ],
+      "then": {
+        "open_shop": "pirpir"
+      }
     },
     {
       "when": {
@@ -105,7 +111,10 @@
           "mood": "mutlu",
           "text": "Kaybetmek ayıp değil. Bir daha denemek cesaret ister!"
         }
-      ]
+      ],
+      "then": {
+        "open_shop": "pirpir"
+      }
     },
     {
       "when": {
@@ -145,7 +154,10 @@
           "mood": "mutlu",
           "text": "Ahoy! Mısırlar patlıyor, panayır başlıyor!"
         }
-      ]
+      ],
+      "then": {
+        "open_shop": "pirpir"
+      }
     }
   ]
 }

@@ -585,8 +585,8 @@
   "Herkes konuşuyor, kimse dinlemiyor! Hıh!"
  ],
  "content/s2_chapter0/dialogue/kazma.json": [
-  "Aman, yine sen! Mağarada kazma, burada örs. Ama örsüm soğudu.",
-  "Ateşimi yakınca aletlerini güçlendiririm. Yakında!"
+  "Aman, yine sen! Mağarada kazma, burada örs. Örsüm ısındı!",
+  "Değnek, asa, kılıç, sapan... Pırıl'ın varsa bak bakalım."
  ],
  "content/s2_chapter0/dialogue/pamuk.json": [
   "Bu gece mışıl mışıl uyuyacağım.",
@@ -639,7 +639,8 @@
   "Bıdık'ı dinle"
  ],
  "content/s2_chapter0/shop.json": [
-  "Tospik Nine'nin Kaplıca Tezgâhı"
+  "Tospik Nine'nin Kaplıca Tezgâhı",
+  "Kazma'nın Örs Tezgâhı"
  ],
  "content/s2_chapter1/barks.json": [
   "Kızıl Yaprak Ormanı! Yapraklar hep sonbaharda kalmış.",
@@ -706,6 +707,9 @@
   "Pofu'ya topunu geri ver",
   "Paytak'a uçurtmasını geri ver",
   "Minik'e bez bebeğini geri ver"
+ ],
+ "content/s2_chapter1/shop.json": [
+  "Terzi Dikiş'in Orman Tezgâhı"
  ],
  "content/s2_chapter2/barks.json": [
   "Fokurdayan Göl! Su kaynıyor, nilüferler buhar içinde.",
@@ -836,6 +840,9 @@
   "Tarlaların Ses Çanı'nı çal",
   "Tavuk Patpat'ı dinle",
   "Kehribar Kor'u al"
+ ],
+ "content/s2_chapter3/shop.json": [
+  "Pırpır'ın Panayır Pazarı"
  ],
  "content/s2_chapter4/barks.json": [
   "Gümbür Kanyonu! Her ses bin kez yankılanıyor!",

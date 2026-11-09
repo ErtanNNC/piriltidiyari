@@ -12,7 +12,10 @@
           "mood": "mutlu",
           "text": "Turuncu Kor seninle. Orman yine çıtır çıtır yapraklı!"
         }
-      ]
+      ],
+      "then": {
+        "open_shop": "dikis"
+      }
     },
     {
       "when": {
@@ -57,7 +60,10 @@
           "mood": "dertli",
           "text": "Çan çalınca sis perdesi açılır. Fırfır ormanın en derininde."
         }
-      ]
+      ],
+      "then": {
+        "open_shop": "dikis"
+      }
     },
     {
       "when": {
@@ -97,7 +103,10 @@
           "mood": "sakin",
           "text": "Rakunlar oyuncakları kapmış. Sakinleşince bırakırlar."
         }
-      ]
+      ],
+      "then": {
+        "open_shop": "dikis"
+      }
     },
     {
       "when": {
@@ -140,7 +149,10 @@
           "mood": "sakin",
           "text": "Yapraklar hep turuncu burada. Güzel, değil mi?"
         }
-      ]
+      ],
+      "then": {
+        "open_shop": "dikis"
+      }
     }
   ]
 }

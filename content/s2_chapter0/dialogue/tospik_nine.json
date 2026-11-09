@@ -55,7 +55,10 @@
           "mood": "dertli",
           "text": "Kazan homurdanıyor. Yorulunca kapağı kalkar, o zaman vur."
         }
-      ]
+      ],
+      "then": {
+        "open_shop": "tospik"
+      }
     },
     {
       "when": {
@@ -100,7 +103,10 @@
           "mood": "sakin",
           "text": "Hepsi aynı anda konuşuyor. Teker teker dinle, yavrum."
         }
-      ]
+      ],
+      "then": {
+        "open_shop": "tospik"
+      }
     },
     {
       "when": {
@@ -143,7 +149,10 @@
           "mood": "sakin",
           "text": "Kaplıcanın suyu ılık, yavrum. Bir nefes al."
         }
-      ]
+      ],
+      "then": {
+        "open_shop": "tospik"
+      }
     }
   ]
 }

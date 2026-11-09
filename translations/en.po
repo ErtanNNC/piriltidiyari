@@ -228,8 +228,8 @@ msgstr "But... did you see Cubby? He ran into the Crimson Mist."
 msgid "Aman, bir bekçi! Ben Madenci Kazma."
 msgstr "Oh my, a keeper! I'm Digby the Mole."
 
-msgid "Aman, yine sen! Mağarada kazma, burada örs. Ama örsüm soğudu."
-msgstr "Oh, it's you again! A pickaxe in the cave, an anvil here. But it's cold."
+msgid "Aman, yine sen! Mağarada kazma, burada örs. Örsüm ısındı!"
+msgstr "Oh, it's you again! A pickaxe in the cave, an anvil here. It's warm now!"
 
 msgid "Ana menü"
 msgstr "Main menu"
@@ -263,9 +263,6 @@ msgstr "The fire is lit! The sleepy mist melted away."
 
 msgid "Ateşböceği"
 msgstr "Firefly"
-
-msgid "Ateşimi yakınca aletlerini güçlendiririm. Yakında!"
-msgstr "Once my fire's lit, I'll make your tools stronger. Soon!"
 
 msgid "Atkı"
 msgstr "Scarf"
@@ -1016,6 +1013,9 @@ msgstr "Giant Sulky Shroom"
 
 msgid "Devam et"
 msgstr "Continue"
+
+msgid "Değnek, asa, kılıç, sapan... Pırıl'ın varsa bak bakalım."
+msgstr "Wands, staffs, swords, slings... Have a look if you've got Glim."
 
 msgid "Değnek, asa, kılıç: vuruşların daha parlak olur."
 msgstr "Wand, staff, sword: they make your hits shine brighter."
@@ -2124,6 +2124,9 @@ msgstr "Digby's shop is open! You can go back to the village"
 msgid "Kazma'nın Çocukları"
 msgstr "Digby's Kids"
 
+msgid "Kazma'nın Örs Tezgâhı"
+msgstr "Digby's Anvil Stall"
+
 msgid "Kaç, zıpladıktan sonra vur!"
 msgstr "Dodge, then hit after he hops!"
 
@@ -3114,6 +3117,9 @@ msgstr "Flutter is looking for you! Fly to the ship."
 msgid "Pırpır'ın Nadir Pazarı"
 msgstr "Flutter's Rare Market"
 
+msgid "Pırpır'ın Panayır Pazarı"
+msgstr "Flutter's Fair Market"
+
 msgid "Pırpır'ın pazarı açıldı! Gemiyle limana dön"
 msgstr "Flutter's market is open! Fly back to the harbor"
 
@@ -3527,6 +3533,9 @@ msgstr "Go back to Stitch the tailor"
 
 msgid "Terzi Dikiş'in Kıyafetleri"
 msgstr "Stitch's Outfits"
+
+msgid "Terzi Dikiş'in Orman Tezgâhı"
+msgstr "Stitch's Forest Stall"
 
 msgid "Terzi Örümcek Dikiş"
 msgstr "Stitch the Spider Tailor"

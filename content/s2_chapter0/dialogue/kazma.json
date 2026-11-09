@@ -5,15 +5,18 @@
       "lines": [
         {
           "speaker": "kazma",
-          "mood": "huysuz",
-          "text": "Aman, yine sen! Mağarada kazma, burada örs. Ama örsüm soğudu."
+          "mood": "mutlu",
+          "text": "Aman, yine sen! Mağarada kazma, burada örs. Örsüm ısındı!"
         },
         {
           "speaker": "kazma",
           "mood": "mutlu",
-          "text": "Ateşimi yakınca aletlerini güçlendiririm. Yakında!"
+          "text": "Değnek, asa, kılıç, sapan... Pırıl'ın varsa bak bakalım."
         }
-      ]
+      ],
+      "then": {
+        "open_shop": "kazma"
+      }
     }
   ]
 }

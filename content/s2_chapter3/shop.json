@@ -1,0 +1,26 @@
+{
+  "shops": {
+    "pirpir": {
+      "title": "Pırpır'ın Panayır Pazarı",
+      "items": [
+        {
+          "id": "cesaret_sekeri",
+          "price": 40
+        },
+        {
+          "id": "pus_kovucu",
+          "price": 60
+        },
+        {
+          "id": "bal_surubu",
+          "price": 15
+        },
+        {
+          "id": "ruzgar_tilsimi",
+          "price": 150,
+          "once": true
+        }
+      ]
+    }
+  }
+}

@@ -261,6 +261,14 @@ func _run_demo(which: String) -> void:
 			await get_tree().create_timer(1.0).timeout
 			print("S2TRAVEL at=%s floor=%s near_bell=%s" % [_player.global_position.snapped(Vector3.ONE * 0.1), _player.is_on_floor(), _player.global_position.distance_to(BELL_AT) < 3.5])
 			get_tree().quit()
+		"shop":
+			# talk to Kazma: his anvil stall opens (screenshot)
+			DevTools.auto_dialogue = true
+			GameState.data.add_piril(150)
+			_player.global_position = get_node("Kazma").global_position + Vector3(0, 0.3, 1.8)
+			await get_tree().create_timer(0.3).timeout
+			GameState.talk_to("kazma")
+			await close_dialogs()
 		"skills":
 			# each Season 2 calming skill on two fresh Köpüklüler (headless)
 			var d := GameState.data

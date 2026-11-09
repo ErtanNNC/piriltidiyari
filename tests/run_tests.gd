@@ -788,6 +788,15 @@ func test_season2() -> void:
 	check(Shop.buy(rt, c.items["ritim_tilsimi"], "ritim_tilsimi", 120, true) == "ok" and rt.power == pw + 4, "Ritim Tılsımı +4 güç")
 	rt.recompute_stats(c.items)
 	check(rt.power == pw + 4, "Ritim Tılsımı gücü yeniden hesapta kalır")
+	# every shop a Season 2 dialogue opens exists in that chapter's pack
+	for ch: String in ["s2_chapter0", "s2_chapter1", "s2_chapter2", "s2_chapter3", "s2_chapter4", "s2_chapter5"]:
+		c.load_chapter(ch)
+		for npc_id: String in c.npcs:
+			for dv: Dictionary in c.npcs[npc_id].get("variants", []):
+				var shop_id: String = dv.get("then", {}).get("open_shop", "")
+				if shop_id != "":
+					check(c.shops.has(shop_id), "%s: %s dükkânı (%s) yüklü" % [ch, npc_id, shop_id])
+	check(c.items.size() > 0, "eşyalar yüklü")
 	var tp := PlayerData.new()
 	tp.choose_keeper("tipis_panda", c.keeper("tipis_panda")["stats"], {}, "Tıpış")
 	check(tp.level == 1 and tp.active_skill() == "derin_nefes", "Tıpış seçilince seviye 1 ve Derin Nefes")

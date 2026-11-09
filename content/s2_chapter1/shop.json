@@ -1,0 +1,29 @@
+{
+  "shops": {
+    "dikis": {
+      "title": "Terzi Dikiş'in Orman Tezgâhı",
+      "items": [
+        {
+          "id": "cicek_taci",
+          "price": 40,
+          "once": true
+        },
+        {
+          "id": "kasif_sapkasi",
+          "price": 60,
+          "once": true
+        },
+        {
+          "id": "yildiz_pelerini",
+          "price": 90,
+          "once": true
+        },
+        {
+          "id": "minik_migfer",
+          "price": 110,
+          "once": true
+        }
+      ]
+    }
+  }
+}
