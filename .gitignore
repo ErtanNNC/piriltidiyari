@@ -8,3 +8,4 @@ export_credentials.cfg
 /.tools/
 /screenshots/
 __pycache__/
+work/

@@ -42,6 +42,13 @@ is a copy of the design system's tokens.
   Checks: `--scene=preview --demo=anim --pose=walk|attack|blink|happy`, `--demo=fur`. Thin rings: use shape
   `"ring"` (size.y = tube thickness); `"torus"` reads size.y as the inner radius. Mobs get the same rig
   (blink/breath); Pus mobs keep a faint tint of their own color (`MobModels._c`).
+- Free model pipeline (no credits): `tools/free_model.py <id> "<what>"` makes
+  drawings with FLUX.1 schnell (Apache-2.0) on Hugging Face into
+  work/free_model/ (gitignored), then `--image <pick>` turns one into a
+  textured model with TRELLIS (MIT), strips the floor/shadow slab under the
+  feet, shrinks textures → assets/models/<id>.glb + <id>.json ("facing": 0;
+  TRELLIS faces +Z). Needs the HF token as a Network secret (huggingface.co,
+  *.hf.space). First one: Gümbür (also Çıngır via goat_kid.json).
 - Ground decor is automatic: `Decor.auto(scene, style)` in each scene's `_ready`
   scatters non-colliding MultiMesh props on upright floors; thin meshes are paths.
 - Rigged keepers: Pati, Bado, Çıtır and Lumi play real bone clips (idle,

@@ -79,4 +79,4 @@ Rig + animasyon: aracın kendi "rig/animate" seçeneği ya da Mixamo / AccuRIG.
 3. Oyun kamerasından bak (yukarıdan ~50°): `--scene=chapter1 --at=6`. Küçükken tanınıyor mu?
 4. Aileyi yan yana karşılaştır: biri ötekilerden parlak/koyu/detaylı mı?
 5. Telefonda dene: kare hızı düştüyse üçgen veya doku boyutunu küçült.
-6. Lisansı not et (ücretsiz planlar atıf isteyebilir).
+6. Lisansı not et (ücretsiz planlar atıf isteyebilir). Ücretsiz hat (`tools/free_model.py`): FLUX.1 schnell Apache-2.0, TRELLIS MIT; ikisi de ticari kullanıma açık.

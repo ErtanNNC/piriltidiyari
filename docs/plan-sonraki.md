@@ -33,12 +33,12 @@ Kullanıcı onaylamadan başlanmaz. Her adım: test → commit → push → sür
 
 ## Sezon 2'de geçici (basit şekilli) modeller
 
-Kredi hesabı: karakter başına 1 çizim (GPT Image, 0,25 kredi) + 1 Tripo 3B (9 kredi) = 9,25 kredi.
+Artık ücretsiz hat var: `tools/free_model.py` (FLUX.1 schnell çizim + TRELLIS 3B, Hugging Face; kredi yok). Eski kredi hesabı: karakter başına 1 çizim (GPT Image, 0,25 kredi) + 1 Tripo 3B (9 kredi) = 9,25 kredi.
 Toplam 16 karakter ≈ 150 kredi; 3 mob boyamayla ≈ 120 kredi; tekrar payıyla 140–170.
 
 | Grup | Karakterler |
 |---|---|
-| Köylüler (1) | gumbur (Gümbür; boss ve Çıngır aynı modeli kullanır). Tospik Nine, Kazma, Dikiş ve Pırpır yol arkadaşı olarak bu rolleri aldı (yapıldı). |
+| Köylüler (1) | ~~gumbur~~ ✅ ücretsiz hatla yapıldı (FLUX + TRELLIS, `tools/free_model.py`; boss ve Çıngır aynı modeli kullanır). Tospik Nine, Kazma, Dikiş ve Pırpır yol arkadaşı olarak bu rolleri aldı (yapıldı). |
 | Bosslar (5) | Gürledek, Homurdanan Çaydanlık, Tilki Fırfır, Kaynar Kurbağa Fokur, Hırıl |
 | Moblar (10) | kapici_rakun, somurtkan_sincap, balon_balik, laf_kesen_ordek, patlayan_misir, kiskanc_civciv, yanki_yarasasi, tepinen_keci, lav_damlacigi, sus_bulutu |
 
