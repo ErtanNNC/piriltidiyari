@@ -3765,12 +3765,6 @@ msgstr "Outfits"
 msgid "Kıyı Yolu"
 msgstr "The Shore Path"
 
-msgid "Kıyı Yolu yakında açılıyor."
-msgstr "The Shore Path opens soon."
-
-msgid "Kıyı Yolu yakında açılıyor. Kumsalı dolaşabilirsin."
-msgstr "The Shore Path opens soon. You can roam the beach."
-
 msgid "Kızgın değil, yavrum. Korkuyor. Yorulunca elini uzat."
 msgstr "She isn't angry, dear. She's scared. Reach out a hand when she's tired."
 

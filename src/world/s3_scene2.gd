@@ -49,6 +49,11 @@ func _ready() -> void:
 			add_child(t)
 	d.quest_changed.connect(func(_id: String) -> void: _check())
 	_player.respawn_point = _player.global_position
+	if DevTools.demo == "resume":
+		# a save from before Sahne 3 existed: the scene was done, nothing came next
+		DevTools.auto_dialogue = true
+		DevTools._finish(d, QUEST)
+		get_tree().create_timer(1.0).timeout.connect(func() -> void: DevTools.report_next_scene("S3_RESUME"))
 	await get_tree().create_timer(1.5).timeout
 	if d.quest_state(QUEST) == "done":
 		_end()
@@ -101,7 +106,7 @@ func _check() -> void:
 		_end()
 
 
-## A thin voice from far over the sea: the way on (Sahne 3, soon).
+## A thin voice from far over the sea: on to the shore path (Sahne 3).
 func _end() -> void:
 	if _ended:
 		return
@@ -116,7 +121,7 @@ func _end() -> void:
 		return
 	while GameState.in_dialogue:
 		await get_tree().create_timer(0.2).timeout
-	_hud.show_hint("Kıyı Yolu yakında açılıyor. Kumsalı dolaşabilirsin.", "Kıyı Yolu yakında açılıyor.")
+	SceneFlow.go_to("s3_scene3")
 
 
 func _run_demo(which: String) -> void:

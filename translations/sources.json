@@ -2755,14 +2755,13 @@
   "Kaleler dans etti! Arkadaşlarınla konuş."
  ],
  "src/world/s3_scene2.gd": [
+  "S3_RESUME",
   "Sönmüş meşalelere git ve yak. Işık titremeyi geçirir.",
   "Meşalelere git, Yak'a bas.",
   "Kovalama! J ile düzenli davul çal: durup dinlerler.",
   "Kovalama! Vur'a düzenli bas.",
   "Dinlerken yanına git: ışığın onu ısıtır.",
-  "Dinlerken yanına git.",
-  "Kıyı Yolu yakında açılıyor. Kumsalı dolaşabilirsin.",
-  "Kıyı Yolu yakında açılıyor."
+  "Dinlerken yanına git."
  ],
  "src/world/s3_scene3.gd": [
   "Sesin peşinden git. Meşaleleri yak: ışık yolu güvenli yapar.",
