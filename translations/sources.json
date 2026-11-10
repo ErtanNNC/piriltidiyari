@@ -2741,6 +2741,9 @@
   "S3K5_NEXT"
  ],
  "src/world/s3_island.gd": [
+  "İskeledeki Kabuk Kayık'a bin: %s yolu açıldı!",
+  "İskeleye git, kayığa bin: %s",
+  "Yeni yer açıldı: %s",
   "Sis çok koyu. Önce adanın İşaret Fişeği'ni yak.",
   "Korkuyor. Yanına git, Sakinleş'e basılı tut: el uzat.",
   "İnci",

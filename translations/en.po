@@ -5955,6 +5955,9 @@ msgstr "New adventure: pick a slot"
 msgid "Yeni oyun"
 msgstr "New game"
 
+msgid "Yeni yer açıldı: %s"
+msgstr "New place open: %s"
+
 msgid "Yeni yer önce korkutur. Sonra bakarsın, ev olmuş."
 msgstr "A new place feels scary at first. Then you see, it has become home."
 
@@ -6579,11 +6582,17 @@ msgstr "Startled Seal Pup"
 msgid "İskelede bekleyen arkadaşına dön"
 msgstr "Go back to your friend waiting at the pier"
 
+msgid "İskeledeki Kabuk Kayık'a bin: %s yolu açıldı!"
+msgstr "Board the Shell Boat at the pier: the way to %s is open!"
+
 msgid "İskeledeki ateşin yanında Minik Kol'a dön"
 msgstr "Go back to Little Arm by the fire on the pier"
 
 msgid "İskelenin yanında Tospik Nine'ye dön"
 msgstr "Go back to Granny Shelly next to the pier"
+
+msgid "İskeleye git, kayığa bin: %s"
+msgstr "Go to the pier, board the boat: %s"
 
 msgid "İçimde bir ninni var. Yıldızlar uyurken söylediğim."
 msgstr "There's a lullaby in me. The one I sing as stars sleep."

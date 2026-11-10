@@ -41,7 +41,31 @@ func begin(id: String, mood := "ada") -> Node3D:
 	sea.position.y = SEA_Y
 	WorldLook.water(sea, "sea_night")
 	lv.add_child(sea)
+	# the way on shows as soon as the island is done (the flag is set after
+	# the quest closes, so a quest signal alone would miss it)
+	GameState.data.flags_changed.connect(_way_on)
+	get_tree().create_timer(3.0).timeout.connect(_way_on)
 	return lv
+
+
+## The island is finished and the next one isn't started: a star on the
+## pier and a hint to board the Kabuk Kayık.
+func _way_on() -> void:
+	var d := GameState.data
+	var n := int(scene_id.right(1))
+	var next := "s3_chapter%d" % (n + 1)
+	if not scene_id.begins_with("s3_chapter") or not ShoreTravel.ISLANDS.has(next) or not is_inside_tree():
+		return
+	if not d.has_flag("s3_bolum%d_bitti" % n) or d.has_flag("s3_fisek%d" % (n + 1)):
+		return
+	var dk := lv.get_node_or_null("Dock") as Node3D
+	if dk == null or dk.has_node("Beacon"):
+		return
+	Beacon.attach(dk, 3.0, Tokens.color("spark-white"))
+	var region := TranslationServer.translate(ShoreTravel.region(next))
+	_hud.show_hint(TranslationServer.translate("İskeledeki Kabuk Kayık'a bin: %s yolu açıldı!") % region,
+		TranslationServer.translate("İskeleye git, kayığa bin: %s") % region)
+	GameState.toast.emit(TranslationServer.translate("Yeni yer açıldı: %s") % region, "star")
 
 
 ## A piece of island: a walkable block whose top is at `top` (0 = shore).

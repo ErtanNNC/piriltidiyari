@@ -242,4 +242,12 @@ func _run_demo(which: String) -> void:
 			await close_dialogs()
 			await _talk("mors_dede", "Mors")
 			print("S3K0_DONE q2=%s fisek=%s bitti=%s open=%s" % [d.quest_state(Q2), d.has_flag("s3_fisek0"), d.has_flag("s3_bolum0_bitti"), ShoreTravel.destinations(d, "s3_chapter0")])
+			print("S3K0_WAY dock_star=%s hint=%s" % [lv.get_node("Dock").has_node("Beacon"), _hud._hint_label.text if _hud._hint.visible else ""])
+			# walk to the pier's end: the boat must come into reach ("Bin")
+			_player.global_position = Vector3(0, 0.3, 20.0)
+			Input.action_press("move_back")
+			await get_tree().create_timer(2.0).timeout
+			Input.action_release("move_back")
+			await get_tree().create_timer(0.3).timeout
+			print("S3K0_DOCK z=%.1f focus=%s" % [_player.global_position.z, _player._focus.name if _player._focus else "-"])
 			get_tree().quit()
