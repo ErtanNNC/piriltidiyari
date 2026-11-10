@@ -68,7 +68,20 @@ func _allowed(d: PlayerData) -> bool:
 
 
 func _lit() -> void:
-	_bell.get_child(0).material_override = Toon.material("spark-yellow", 0.035, 0.8, 0.0)
+	var first := _bell.get_child(0)
+	if first is MeshInstance3D:
+		(first as MeshInstance3D).material_override = Toon.material("spark-yellow", 0.035, 0.8, 0.0)
+		return
+	# the real bell model: its own copy of each material, glowing warm
+	for mi in _bell.find_children("*", "MeshInstance3D", true, false):
+		var m := mi as MeshInstance3D
+		for i in m.get_surface_override_material_count():
+			var mat := m.get_surface_override_material(i) as ShaderMaterial
+			if mat:
+				mat = mat.duplicate() as ShaderMaterial
+				mat.set_shader_parameter("emission_color", Color("#ffd23a"))
+				mat.set_shader_parameter("emission_strength", 0.6)
+				m.set_surface_override_material(i, mat)
 
 
 func use(_by: Node) -> void:

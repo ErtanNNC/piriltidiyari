@@ -84,6 +84,7 @@ static func load_static(id: String) -> Node3D:
 
 static var _static_bounds := {}
 static var _templates := {}
+static var _holder: Node3D
 
 
 ## A copy of a prop model sharing one set of materials with every other copy
@@ -95,6 +96,13 @@ static func prop_copy(id: String) -> Node3D:
 		if t == null:
 			return null
 		_templates[id] = t
+		# kept hidden under the root so it is freed with the game (no leak)
+		if _holder == null or not is_instance_valid(_holder):
+			_holder = Node3D.new()
+			_holder.name = "PropTemplates"
+			_holder.visible = false
+			(Engine.get_main_loop() as SceneTree).root.add_child.call_deferred(_holder)
+		_holder.add_child(t)
 	return t.duplicate() as Node3D
 
 
