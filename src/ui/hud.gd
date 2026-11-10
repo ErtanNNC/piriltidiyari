@@ -11,6 +11,7 @@ var _xp: StatBar
 var _anger: StatBar
 var _shiver: StatBar
 var _kors: KorTracker
+var _pearls: PearlTracker
 var _level: Label
 var _piril: Label
 var _pause_btn: Button
@@ -119,6 +120,11 @@ func _ready() -> void:
 	# the Kor slots show once Season 2's keeper is on the road
 	_kors.visible = GameState.data.has_flag("s2_prolog_bitti") and GameState.data.season == 2
 	top_center.add_child(_kors)
+	# Season 3: the lighthouse's five pearls
+	_pearls = PearlTracker.new()
+	_pearls.alignment = BoxContainer.ALIGNMENT_CENTER
+	_pearls.visible = GameState.data.has_flag("s3_prolog_bitti") and GameState.data.season == 3
+	top_center.add_child(_pearls)
 	_boss = VBoxContainer.new()
 	_boss.visible = false
 	_boss.add_theme_constant_override("separation", 2)
@@ -489,6 +495,7 @@ func clear_hint() -> void:
 func show_boss(boss_name: String, hp: int, max_hp: int) -> void:
 	_sparks.visible = false
 	_kors.visible = false
+	_pearls.visible = false
 	_quest_panel.visible = false
 	_boss.visible = true
 	Audio.boss(true)
@@ -505,6 +512,7 @@ func hide_boss() -> void:
 	_boss.visible = false
 	_sparks.visible = GameState.data.season < 2
 	_kors.visible = GameState.data.has_flag("s2_prolog_bitti") and GameState.data.season == 2
+	_pearls.visible = GameState.data.has_flag("s3_prolog_bitti") and GameState.data.season == 3
 	_refresh_quest()
 
 
@@ -845,8 +853,8 @@ func _apply_safe_area() -> void:
 ## Season 2: tell the keeper once when their calming skill is learned.
 func _announce_season_skill() -> void:
 	var d := GameState.data
-	var s2 := Skills.season2_for(d.character_id)
-	if d.season != 2 or s2 == "" or not d.skills.has(s2) or d.has_flag("s2_yetenek_" + s2):
+	var s2 := Skills.season_for(d.character_id, d.season)
+	if s2 == "" or not d.skills.has(s2) or d.has_flag("s%d_yetenek_%s" % [d.season, s2]):
 		return
-	d.set_flag("s2_yetenek_" + s2)
+	d.set_flag("s%d_yetenek_%s" % [d.season, s2])
 	GameState.toast.emit(TranslationServer.translate("Yeni yetenek: %s!") % TranslationServer.translate(Skills.DEFS[s2]["name"]), "spark")

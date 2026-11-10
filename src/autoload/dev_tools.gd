@@ -4,7 +4,7 @@ extends Node
 ## --scene jumps to a story scene with the progress of the scenes before it.
 ## Never active in a normal run.
 
-const ORDER := ["scene1", "scene2", "scene3", "scene4", "scene5", "scene6", "chapter0", "chapter1", "chapter2", "chapter3", "chapter4", "chapter5", "final", "s2_scene1", "s2_scene2", "s2_scene3", "s2_scene4", "s2_scene5", "s2_scene6", "s2_chapter0", "s2_chapter1", "s2_chapter2", "s2_chapter3", "s2_chapter4", "s2_chapter5", "s2_final", "s3_scene1", "s3_scene2"]
+const ORDER := ["scene1", "scene2", "scene3", "scene4", "scene5", "scene6", "chapter0", "chapter1", "chapter2", "chapter3", "chapter4", "chapter5", "final", "s2_scene1", "s2_scene2", "s2_scene3", "s2_scene4", "s2_scene5", "s2_scene6", "s2_chapter0", "s2_chapter1", "s2_chapter2", "s2_chapter3", "s2_chapter4", "s2_chapter5", "s2_final", "s3_scene1", "s3_scene2", "s3_scene3", "s3_scene4", "s3_scene5", "s3_scene6", "s3_chapter0", "s3_chapter1", "s3_chapter2", "s3_chapter3", "s3_chapter4", "s3_chapter5", "s3_final"]
 
 var _shot_path := ""
 var _frames := 60
@@ -219,6 +219,51 @@ static func _preset_story(data: PlayerData, scene: String) -> void:
 		data.start_season3(content3.items if content3 else {})
 	if idx >= 27:
 		data.set_flag("s3_sahne1_bitti")
+	if idx >= 28:
+		_finish(data, "davul_gecesi")
+		_finish(data, "mavi_titreme")
+		data.set_flag("s3_sahne2_bitti")
+		data.add_item("sicak_kakao", 3)
+	if idx >= 29:
+		_finish(data, "kiyi_yolu")
+		data.set_flag("s3_sahne3_bitti")
+		data.unlock_skill("gumbur_dalgasi")
+		while data.level < 2:
+			data.add_xp(Progression.xp_to_next(data.level) - data.xp)
+	if idx >= 30:
+		data.set_flag("s3_sahne4_bitti")
+	if idx >= 32:
+		# Season 3 keeper chosen (--keeper=..., Tosbi too), fresh at level 1
+		var c3: Node = Engine.get_main_loop().root.get_node_or_null("Content")
+		if c3:
+			var k3 := preset_keeper if preset_keeper != "" else "pati"
+			for arg in OS.get_cmdline_user_args():
+				if arg.begins_with("--keeper="):
+					k3 = arg.get_slice("=", 1)
+			if c3.keeper(k3).is_empty():
+				k3 = "pati"
+			data.powers = {}
+			data.power_picks = 0
+			data.choose_keeper(k3, c3.keeper(k3)["stats"], {}, c3.keeper(k3)["name"])
+			data.recompute_stats(c3.items)
+		data.set_flag("s3_prolog_bitti")
+		data.add_item("sicak_kakao", 3)
+		data.add_item("bal_surubu", 3)
+	if idx >= 33:
+		for k: String in ["s3_fisek0", "s3_bolum0_bitti"]:
+			data.set_flag(k)
+	var pearls := ["lacivert", "turkuaz", "kum", "gumus", "beyaz"]
+	for n in 5:
+		if idx >= 34 + n:
+			for k: String in ["s3_fisek%d" % (n + 1), "inci_" + pearls[n], "s3_bolum%d_bitti" % (n + 1)]:
+				data.set_flag(k)
+	if idx >= 38:
+		data.set_flag("sezon3_bitti")
+	if idx >= 33:
+		while data.level < mini(5 * (idx - 32), 28):
+			data.add_xp(Progression.xp_to_next(data.level) - data.xp)
+		while data.power_picks > 0:
+			Powers.pick(data, Powers.choices(data.powers, RandomNumberGenerator.new())[0]["id"])
 
 
 static func _finish(data: PlayerData, quest_id: String) -> void:

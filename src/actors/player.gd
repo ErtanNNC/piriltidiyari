@@ -268,9 +268,11 @@ func spin_attack() -> void:
 	var tool: String = GameState.data.equipped.get("weapon", "")
 	if not GameState.data.has_flag("owned_" + tool) or GameState.data.character_id in ["miril", "hiril"]:
 		tool = ""
-	if GameState.data.character_id == "hiril":
-		# Hırıl drums instead of striking: a beat and a ring of sound
-		Audio.play("drum")
+	if GameState.data.season >= 3:
+		# Season 3: every strike is a beat (Hırıl drums, the keepers keep
+		# the rhythm he left them): steady beats make Titrekler listen
+		if GameState.data.character_id == "hiril":
+			Audio.play("drum")
 		var n := rhythm.beat(Time.get_ticks_msec() / 1000.0)
 		if n >= 2:
 			FloatText.spawn(get_parent(), global_position + Vector3.UP * 2.1, "♪".repeat(mini(n, 4)), Tokens.color("spark-yellow") if n >= 4 else Tokens.color("sky"))
@@ -315,6 +317,9 @@ func use_skill() -> void:
 		"kocaman_sarilma": _kocaman_sarilma()
 		"komik_yuz": _komik_yuz()
 		"ninni_isigi": _ninni_isigi()
+		_:
+			_attack_cd = 0.5
+			S3Skills.use(self, id)
 
 
 ## Kept for older callers (tests, demos).
@@ -680,6 +685,15 @@ func drink_potion(slot: int) -> void:
 		if calm:
 			calm.shield_until = Time.get_ticks_msec() / 1000.0 + float(def["seconds"])
 		GameState.toast.emit(TranslationServer.translate("%d saniye öfke barın dolmaz") % int(def["seconds"]), "heart")
+	elif def.get("buff", "") == "isik":
+		if ring:
+			ring.boost_until = Time.get_ticks_msec() / 1000.0 + float(def["seconds"])
+		GameState.toast.emit(TranslationServer.translate("%d saniye ışığın iki kat büyük") % int(def["seconds"]), "spark")
+	elif def.get("buff", "") == "cesur":
+		if ring:
+			ring.brave_until = Time.get_ticks_msec() / 1000.0 + float(def["seconds"])
+			ring.warm()
+		GameState.toast.emit(TranslationServer.translate("%d saniye titreme barın dolmaz") % int(def["seconds"]), "heart")
 	elif def.get("buff", "") == "kovucu":
 		GameState.repel_until = Time.get_ticks_msec() / 1000.0 + float(def["seconds"])
 		GameState.toast.emit(TranslationServer.translate("%d saniye moblar seni zor fark eder") % int(def["seconds"]), "drop")

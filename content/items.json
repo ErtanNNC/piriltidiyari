@@ -64,6 +64,34 @@
       "icon": "heart",
       "desc": "Titreme barını boşaltır, canını 10 doldurur"
     },
+    "atesbocegi_kavanozu": {
+      "name": "Ateşböceği Kavanozu",
+      "color": "spark-yellow",
+      "kind": "potion",
+      "buff": "isik",
+      "seconds": 60,
+      "price": 30,
+      "icon": "spark",
+      "desc": "60 saniye ışık halkan iki katına çıkar"
+    },
+    "cesaret_kurabiyesi": {
+      "name": "Cesaret Kurabiyesi",
+      "color": "honey",
+      "kind": "potion",
+      "buff": "cesur",
+      "seconds": 90,
+      "price": 35,
+      "icon": "heart",
+      "desc": "90 saniye titreme barın dolmaz"
+    },
+    "murekkep_tilsimi": {
+      "name": "Mürekkep Tılsımı",
+      "color": "spark-purple",
+      "kind": "charm",
+      "max_hp": 20,
+      "icon": "drop",
+      "desc": "Mürekkep'in hediyesi: kalıcı +20 can"
+    },
     "papatya_cayi": {
       "name": "Papatya Çayı",
       "color": "spark-yellow",

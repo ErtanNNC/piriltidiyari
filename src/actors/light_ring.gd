@@ -12,6 +12,10 @@ const BASE := 2.4
 
 var radius := BASE
 var cold := 0.0
+## Set every frame by dark puddles (InkPuddle); used once, then cleared.
+var extra_cold := 0.0
+## Cesaret Kurabiyesi: the bar does not fill until then.
+var brave_until := 0.0
 var shiver := 0.0
 var frozen := 0.0
 var holding_hands := false
@@ -53,7 +57,7 @@ func _process(delta: float) -> void:
 	radius = lerpf(radius, want, minf(delta * 3.0, 1.0))
 	_disc.scale = Vector3(radius, 1.0, radius)
 	_light.omni_range = radius * 1.8
-	_light.light_energy = 1.1 if cold > 0.0 else 0.5
+	_light.light_energy = 1.1 if cold > 0.0 or holding_hands else 0.5
 	var before := shiver
 	var was_frozen := frozen > 0.0
 	if frozen > 0.0:
@@ -66,6 +70,10 @@ func _process(delta: float) -> void:
 			GameState.toast.emit("Oh... Derin bir nefes, titreme geçti.", "heart")
 	else:
 		var c := 0.0 if torch_near(get_tree(), global_position) else cold
+		c = maxf(c, extra_cold)
+		extra_cold = 0.0
+		if now < brave_until:
+			c = 0.0
 		shiver = ShiverRules.fill(shiver, c, delta, holding_hands)
 		if shiver >= 1.0:
 			frozen = ShiverRules.FROZEN_TIME

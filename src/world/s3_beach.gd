@@ -17,9 +17,14 @@ var _npcs := {}
 
 
 func _build_beach() -> Node3D:
+	return build_beach(self)
+
+
+## The beach itself (also used by the cutscene scenes, which have no keeper).
+static func build_beach(scene: Node3D) -> Node3D:
 	var lv := Node3D.new()
 	lv.name = "Level"
-	add_child(lv)
+	scene.add_child(lv)
 	WorldLook.block(lv, Vector3(0, -0.5, 4), Vector3(48, 1, 30), SAND, 0.0)
 	Toon.part(lv, "box", Vector3(48, 0.04, 2.4), SAND_WET, Vector3(0, 0.01, SHORE_Z + 1.2), Vector3.ZERO, 0.0, 0.0)
 	# the sea: a wide night water plane, and the waterline nobody walks past
@@ -29,7 +34,7 @@ func _build_beach() -> Node3D:
 	plane.subdivide_width = 40
 	plane.subdivide_depth = 20
 	sea.mesh = plane
-	sea.position = Vector3(0, -0.12, SHORE_Z - 35)
+	sea.position = Vector3(0, 0.08, SHORE_Z - 35.6)   # above the map-edge ground frame
 	WorldLook.water(sea, "sea_night")
 	lv.add_child(sea)
 	var wall := StaticBody3D.new()

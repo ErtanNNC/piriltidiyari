@@ -9,8 +9,12 @@ signal lit_up
 const RADIUS := 4.5
 
 @export var torch_id := "mesale"
+## Set to keep the torch lit across saves (lit torches are safe paths).
+@export var save_flag := ""
 var radius := RADIUS
 var lit := false
+## A locked torch can't be lit yet (the Dev Gölge covers it).
+var locked := false
 var _area: Area3D
 var _flame: Node3D
 var _light: OmniLight3D
@@ -57,7 +61,7 @@ func _ready() -> void:
 	_area.collision_mask = 0
 	_area.monitoring = false
 	_area.set_meta("interactable", self)
-	_area.set_meta("action_label", "Yak")
+	set_meta("action_label", "Yak")
 	var col := CollisionShape3D.new()
 	var s := SphereShape3D.new()
 	s.radius = 0.8
@@ -75,10 +79,25 @@ func _ready() -> void:
 	body.add_child(bc)
 	add_child(body)
 	Beacon.attach(self, 2.9, Color(1.0, 0.75, 0.4))
+	if save_flag != "" and GameState.data.has_flag(save_flag):
+		light_up(true)
 
 
 func interact(_by: Node) -> void:
-	light_up()
+	if not locked:
+		light_up()
+
+
+## Lock (no star, no "Yak") or unlock the torch.
+func set_locked(on: bool) -> void:
+	locked = on
+	if lit:
+		return
+	_area.collision_layer = 0 if on else 4
+	if on and has_node("Beacon"):
+		get_node("Beacon").queue_free()
+	elif not on and not has_node("Beacon"):
+		Beacon.attach(self, 2.9, Color(1.0, 0.75, 0.4))
 
 
 func light_up(silent := false) -> void:
@@ -94,6 +113,8 @@ func light_up(silent := false) -> void:
 	if silent:
 		_light.light_energy = 1.6
 		return
+	if save_flag != "":
+		GameState.data.set_flag(save_flag)
 	create_tween().tween_property(_light, "light_energy", 1.6, 0.6)
 	Audio.play("lantern")
 	Effects.sparkle(get_parent(), global_position + Vector3.UP * 2.0, Color(1.0, 0.8, 0.4), 12)

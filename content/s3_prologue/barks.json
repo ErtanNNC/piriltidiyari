@@ -75,6 +75,185 @@
         "mood": "şaşkın",
         "text": "Bu ses... Denizin ta uzağından geliyor."
       }
+    ],
+    "s3c_basla": [
+      {
+        "speaker": "tiril",
+        "mood": "üzgün",
+        "text": "Kimse beni bulmayacak..."
+      },
+      {
+        "speaker": "hiril",
+        "mood": "kararlı",
+        "text": "Ses bu yoldan geliyor. Önce ışık lazım."
+      }
+    ],
+    "s3c_tosbi": [
+      {
+        "speaker": "tosbi",
+        "mood": "üzgün",
+        "text": "Kı-kıpırdayamıyorum. Her yer karanlık..."
+      },
+      {
+        "speaker": "hiril",
+        "mood": "sakin",
+        "text": "Tosbi! Korkma. Elimi tut, birlikte yürürüz."
+      }
+    ],
+    "s3c_el": [
+      {
+        "speaker": "tosbi",
+        "mood": "şaşkın",
+        "text": "Elin sıcacık... Işığımız büyüdü!"
+      },
+      {
+        "speaker": "hiril",
+        "mood": "mutlu",
+        "text": "İki ışık bir olunca karanlık küçülür."
+      }
+    ],
+    "s3c_mesale": [
+      {
+        "speaker": "tosbi",
+        "mood": "mutlu",
+        "text": "Yürüdüm! Korktum ama yürüdüm."
+      },
+      {
+        "speaker": "hiril",
+        "mood": "mutlu",
+        "text": "Sen burada ışıkta kal. Davulum bana yeni bir ses verdi!"
+      }
+    ],
+    "s3c_son": [
+      {
+        "speaker": "hiril",
+        "mood": "şaşkın",
+        "text": "Kayalığın üstünde... kocaman bir gölge var!"
+      }
+    ],
+    "s3d_basla": [
+      {
+        "speaker": "hiril",
+        "mood": "şaşkın",
+        "text": "Kıskaçları dağ gibi! Ama... bu sadece bir gölge."
+      },
+      {
+        "speaker": "hiril",
+        "mood": "kararlı",
+        "text": "Gölge ışığı sevmez. Meşaleleri yakmalıyım!"
+      }
+    ],
+    "s3d_mesale": [
+      {
+        "speaker": "hiril",
+        "mood": "mutlu",
+        "text": "Küçüldü! Işık yandıkça gölge küçülüyor."
+      }
+    ],
+    "s3d_minik": [
+      {
+        "speaker": "hiril",
+        "mood": "şaşkın",
+        "text": "Hepsi bu muydu? Minicik bir yengeç!"
+      },
+      {
+        "speaker": "hiril",
+        "mood": "sakin",
+        "text": "Fenerin önünde titriyormuş. Korkma, küçüğüm."
+      }
+    ],
+    "s3d_son": [
+      {
+        "speaker": "hiril",
+        "mood": "sakin",
+        "text": "Korkular gölgeleri gibi: olduğundan büyük görünür."
+      },
+      {
+        "speaker": "hiril",
+        "mood": "şaşkın",
+        "text": "Bak! Dalgaların üstünde bir ışık titriyor..."
+      }
+    ],
+    "s5c_1": [
+      {
+        "speaker": "hiril",
+        "mood": "şaşkın",
+        "text": "Dalgaların üstünde biri var. Işığı tir tir titriyor."
+      }
+    ],
+    "s5c_2": [
+      {
+        "speaker": "hiril",
+        "mood": "sakin",
+        "text": "Hey! Korkma, sana bir şey yapmam!"
+      },
+      {
+        "speaker": "tiril",
+        "mood": "üzgün",
+        "text": "Ses! Çok ses! Kimse beni bulmasın..."
+      }
+    ],
+    "s5c_3": [
+      {
+        "speaker": "hiril",
+        "mood": "üzgün",
+        "text": "Kaçtı... Bu duyguyu tanıyorum. Ben de böyleydim."
+      },
+      {
+        "speaker": "hiril",
+        "mood": "kararlı",
+        "text": "Biri seni aramaya gelecek mi diye bekliyorsun, değil mi?"
+      }
+    ],
+    "s5c_4": [
+      {
+        "speaker": "hiril",
+        "mood": "kararlı",
+        "text": "İşte geldim! Davulum burada kalsın, yolu göstersin."
+      }
+    ],
+    "s6c_1": [
+      {
+        "speaker": "fistik",
+        "mood": "dertli",
+        "text": "Sabah oldu ama Fener'in ışığı bu sisi delemiyor."
+      },
+      {
+        "speaker": "miril",
+        "mood": "dertli",
+        "text": "Hırıl gitti. Davulu hâlâ kendi kendine çalıyor."
+      }
+    ],
+    "s6c_2": [
+      {
+        "speaker": "fistik",
+        "mood": "kararlı",
+        "text": "İlk seferde ışık lazımdı. İkincide kulak."
+      },
+      {
+        "speaker": "fistik",
+        "mood": "sakin",
+        "text": "Bu sefer... el lazım. Kim el uzatacak?"
+      }
+    ],
+    "s6c_3": [
+      {
+        "speaker": "tosbi",
+        "mood": "kararlı",
+        "text": "Ben de geliyorum. Korksam bile."
+      },
+      {
+        "speaker": "tospik_nine",
+        "mood": "mutlu",
+        "text": "Aferin torunuma! Dedenin Kabuk Kayık'ı sizi taşır."
+      }
+    ],
+    "s6c_son": [
+      {
+        "speaker": "fistik",
+        "mood": "mutlu",
+        "text": "Davulun ritmini izleyin. Ve birbirinizin elini bırakmayın!"
+      }
     ]
   }
 }

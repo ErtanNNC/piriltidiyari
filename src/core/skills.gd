@@ -18,6 +18,16 @@ const DEFS := {
 	"kocaman_sarilma": {"name": "Kocaman Sarılma", "short": "Sarıl", "mp": 25, "owner": "bado", "season": 2},
 	"komik_yuz": {"name": "Komik Yüz", "short": "Komik", "mp": 20, "owner": "citir", "season": 2},
 	"ninni_isigi": {"name": "Ninni Işığı", "short": "Ninni", "mp": 25, "owner": "lumi", "season": 2},
+	# Season 3: Hırıl's drum wave (prologue, Sahne 3) and the new keeper Tosbi
+	"gumbur_dalgasi": {"name": "Gümbür Dalgası", "short": "Dalga", "mp": 15, "owner": "hiril"},
+	"kabuk_kalkani": {"name": "Kabuk Kalkanı", "short": "Kabuk", "mp": 10, "owner": "tosbi"},
+	# Season 3: each keeper learns a courage skill at level 5 (light and hands)
+	"onden_giden": {"name": "Önden Giden", "short": "Önden", "mp": 20, "owner": "pati", "season": 3},
+	"ayi_kucagi": {"name": "Ayı Kucağı", "short": "Kucak", "mp": 25, "owner": "bado", "season": 3},
+	"fener_findigi": {"name": "Fener Fındığı", "short": "Fener", "mp": 20, "owner": "citir", "season": 3},
+	"gece_lambasi": {"name": "Gece Lambası", "short": "Lamba", "mp": 25, "owner": "lumi", "season": 3},
+	"ritim_kalkani": {"name": "Ritim Kalkanı", "short": "Ritim", "mp": 20, "owner": "tipis_panda", "season": 3},
+	"kabuk_yuvasi": {"name": "Kabuk Yuvası", "short": "Yuva", "mp": 20, "owner": "tosbi", "season": 3},
 }
 
 ## The level a keeper learns their Season 2 calming skill.
@@ -40,10 +50,29 @@ static func for_character(character_id: String) -> String:
 
 ## The calming skill a keeper learns in Season 2 ("" if none).
 static func season2_for(character_id: String) -> String:
+	return season_for(character_id, 2)
+
+
+## The skill a keeper learns at level 5 of `season` (2: calming, 3: courage).
+static func season_for(character_id: String, season: int) -> String:
+	if season < 2:
+		return ""
 	for id: String in DEFS:
-		if DEFS[id]["owner"] == character_id and int(DEFS[id].get("season", 1)) == 2:
+		if DEFS[id]["owner"] == character_id and int(DEFS[id].get("season", 1)) == season:
 			return id
 	return ""
+
+
+## Season 3 courage skills: light radii/times, hug reach, rhythm reach.
+const LEAD_LIGHTS := 3
+const LEAD_STEP := 2.2
+const TEMP_LIGHT := {"onden_giden": [3.0, 8.0], "fener_findigi": [3.6, 10.0], "gece_lambasi": [5.5, 12.0]}
+const NUT_THROW := 6.0
+const LAMP_HEAL := 15
+const BEAR_HUG := 3.6
+const RHYTHM_SHIELD := 6.5
+const SHELL_GUARD := 3.0
+const DRUM_WAVE := 8.0
 
 
 ## Kucaklama Kalkanı: damage taken while the shield is up.

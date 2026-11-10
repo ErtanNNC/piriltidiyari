@@ -1,0 +1,26 @@
+{
+  "id": "dev_golge",
+  "title": "Dev Gölge",
+  "giver": "tospik_nine",
+  "objectives": [
+    {
+      "id": "mesale",
+      "text": "Üç meşaleyi yak: gölge küçülsün",
+      "type": "light",
+      "target": "golge_mesale",
+      "count": 3
+    },
+    {
+      "id": "yengec",
+      "text": "Gölgenin sahibine el uzat",
+      "type": "titrek",
+      "target": "titrek_yengec",
+      "count": 1
+    }
+  ],
+  "turn_in": "Kayalığın ucuna yürü",
+  "rewards": {
+    "piril": 25,
+    "xp": 25
+  }
+}

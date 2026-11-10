@@ -19,6 +19,9 @@ const INFO := {
 	# Season 2 (real model: assets/models/tipis_panda.glb)
 	"tipis_panda": {"name": "Tıpış", "species": "Kızıl panda", "color": "hp", "line": "Yolu biliyorum.",
 		"variants": [Color("#d9652b"), Color("#b0603e"), Color("#e8a05c")]},
+	# Season 3 (real model: assets/models/tosbi.glb)
+	"tosbi": {"name": "Tosbi", "species": "Kaplumbağa yavrusu", "color": "spark-green", "line": "Korksam bile geliyorum.",
+		"variants": [Color("#b9d86a"), Color("#8fc9a0"), Color("#d9c86a")]},
 }
 const ACCESSORIES := ["yok", "sapka", "atki", "gozluk"]
 const ACCESSORY_NAMES := {"yok": "Yok", "sapka": "Şapka", "atki": "Atkı", "gozluk": "Gözlük"}

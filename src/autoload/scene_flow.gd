@@ -35,6 +35,17 @@ const SCENES := {
 	"s2_final": "res://scenes/season2/s2_final.tscn",
 	"s3_scene1": "res://scenes/season3/s3_scene1_davul_gecesi.tscn",
 	"s3_scene2": "res://scenes/season3/s3_scene2_mavi_titreme.tscn",
+	"s3_scene3": "res://scenes/season3/s3_scene3_kiyi_yolu.tscn",
+	"s3_scene4": "res://scenes/season3/s3_scene4_dev_golge.tscn",
+	"s3_scene5": "res://scenes/season3/s3_scene5_hiril_secimi.tscn",
+	"s3_scene6": "res://scenes/season3/s3_scene6_el_ele.tscn",
+	"s3_chapter0": "res://scenes/season3/s3_chapter0_mercan_koyu.tscn",
+	"s3_chapter1": "res://scenes/season3/s3_chapter1_murekkep_adasi.tscn",
+	"s3_chapter2": "res://scenes/season3/s3_chapter2_ruzgarli_kayaliklar.tscn",
+	"s3_chapter3": "res://scenes/season3/s3_chapter3_degisen_kumlar.tscn",
+	"s3_chapter4": "res://scenes/season3/s3_chapter4_firtina_kayasi.tscn",
+	"s3_chapter5": "res://scenes/season3/s3_chapter5_kayip_ada.tscn",
+	"s3_final": "res://scenes/season3/s3_final.tscn",
 	# inside a village house (which one: SceneFlow.house_id)
 	"house": "res://scenes/chapter0/ev.tscn",
 	# dev only: all characters side by side (tools/screenshot.sh --scene=preview)
@@ -46,7 +57,8 @@ const SCENE_CHAPTER := {"chapter0": "chapter0", "chapter1": "chapter1", "chapter
 	"s2_scene1": "s2_prologue", "s2_scene2": "s2_prologue", "s2_scene3": "s2_prologue",
 	"s2_scene4": "s2_prologue", "s2_scene5": "s2_prologue", "s2_scene6": "s2_prologue",
 	"s2_chapter0": "s2_chapter0", "s2_chapter1": "s2_chapter1", "s2_chapter2": "s2_chapter2", "s2_chapter3": "s2_chapter3", "s2_chapter4": "s2_chapter4", "s2_chapter5": "s2_chapter5", "s2_final": "s2_chapter5",
-	"s3_scene1": "s3_prologue", "s3_scene2": "s3_prologue"}
+	"s3_scene1": "s3_prologue", "s3_scene2": "s3_prologue",
+	"s3_scene3": "s3_prologue", "s3_scene4": "s3_prologue", "s3_scene5": "s3_prologue", "s3_scene6": "s3_prologue", "s3_chapter0": "s3_chapter0", "s3_chapter1": "s3_chapter1", "s3_chapter2": "s3_chapter2", "s3_chapter3": "s3_chapter3", "s3_chapter4": "s3_chapter4", "s3_chapter5": "s3_chapter5", "s3_final": "s3_chapter5"}
 
 ## [small line, big title] shown when a scene starts.
 const CARDS := {
@@ -78,6 +90,17 @@ const CARDS := {
 	"s2_final": ["Sezon 2 · Kapanış", "Gökkuşağı Şenliği"],
 	"s3_scene1": ["Sezon 3 · Prolog · Sahne 1", "Kumsalda Davul Gecesi"],
 	"s3_scene2": ["Sezon 3 · Prolog · Sahne 2", "Mavi Titreme"],
+	"s3_scene3": ["Sezon 3 · Prolog · Sahne 3", "Kıyı Yolu"],
+	"s3_scene4": ["Sezon 3 · Prolog · Sahne 4", "Dev Gölge"],
+	"s3_scene5": ["Sezon 3 · Prolog · Sahne 5", "Hırıl'ın Seçimi"],
+	"s3_scene6": ["Sezon 3 · Prolog · Sahne 6", "El Ele"],
+	"s3_chapter0": ["Sezon 3 · Bölüm 0", "Mercan Koyu"],
+	"s3_chapter1": ["Sezon 3 · Bölüm 1", "Mürekkep Adası"],
+	"s3_chapter2": ["Sezon 3 · Bölüm 2", "Rüzgârlı Kayalıklar"],
+	"s3_chapter3": ["Sezon 3 · Bölüm 3", "Değişen Kumlar"],
+	"s3_chapter4": ["Sezon 3 · Bölüm 4", "Fırtına Kayası"],
+	"s3_chapter5": ["Sezon 3 · Bölüm 5", "Kayıp Ada"],
+	"s3_final": ["Sezon 3 · Kapanış", "Fener Gecesi"],
 }
 
 var current := ""
@@ -168,7 +191,7 @@ func go_to(scene_id: String, save := true, card := true) -> void:
 		Content.load_chapter(chapter)
 	# Gece (dark) theme for the caves and other night chapters
 	# the ending is a sunny morning in the village, whatever chapter it belongs to
-	Tokens.set_theme("light" if scene_id in ["title", "final", "s2_final", "preview"] else String(Content.chapter.get("theme", "light")))
+	Tokens.set_theme("light" if scene_id in ["title", "final", "s2_final", "s3_final", "preview"] else String(Content.chapter.get("theme", "light")))
 	get_tree().change_scene_to_file(SCENES[scene_id])
 	current = scene_id
 	if save and scene_id != "title":

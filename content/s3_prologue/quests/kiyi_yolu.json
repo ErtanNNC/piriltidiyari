@@ -1,0 +1,38 @@
+{
+  "id": "kiyi_yolu",
+  "title": "Kıyı Yolu",
+  "giver": "tospik_nine",
+  "objectives": [
+    {
+      "id": "mesale",
+      "text": "Yoldaki iki meşaleyi yak",
+      "type": "light",
+      "target": "mesale",
+      "count": 2
+    },
+    {
+      "id": "tosbi",
+      "text": "Tosbi'nin elini tut, büyük meşaleye götür",
+      "type": "el",
+      "target": "tosbi"
+    },
+    {
+      "id": "titrek",
+      "text": "Gümbür Dalgası ile Titrekleri sakinleştir",
+      "type": "titrek",
+      "target": "any",
+      "count": 3
+    },
+    {
+      "id": "gecit",
+      "text": "Kayalıklara çık",
+      "type": "reach",
+      "target": "kayaliklar"
+    }
+  ],
+  "turn_in": "Kayalıklara çık",
+  "rewards": {
+    "piril": 15,
+    "xp": 10
+  }
+}

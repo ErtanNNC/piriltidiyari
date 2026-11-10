@@ -8,7 +8,7 @@ extends RefCounted
 const STYLE := {
 	"sabah": "hills", "aksam": "hills", "pus": "hills", "kule": "hills",
 	"orman": "forest", "liman": "islands", "dag": "peaks", "kale": "spires",
-	"kanyon": "mesas", "kumsal": "hills",
+	"kanyon": "mesas", "kumsal": "hills", "ada": "islands",
 }
 ## Region kits of real models (FLUX drawings + TRELLIS): pieces along the map
 ## edge, pieces on the horizon, and a ground detail map. A missing file just
@@ -40,6 +40,19 @@ const KITS := {
 		"far": ["koy_tepe", "liman_ada"], "far_h": [12.0, 20.0], "ground": "zemin_kum", "ground_strength": 0.12, "ground_scale": 0.22},
 	"liman": {"far": ["liman_ada"], "far_h": [8.0, 14.0], "far_lift": [-4.0, 6.0], "ground": "zemin_kum"},
 	"magara": {"ground": "zemin_magara"},
+	# Season 3: islands in the night sea (far pieces only; the sea is the edge)
+	"koy3": {"edge": ["kiyi_kaya", "palmiye", "mercan"], "edge_h": [2.4, 5.0], "far": ["liman_ada", "kayalik_sutun"],
+		"far_h": [10.0, 18.0], "ground": "zemin_kum", "ground_strength": 0.12, "ground_scale": 0.22},
+	"ada_kum": {"far": ["liman_ada", "kayalik_sutun"], "far_h": [9.0, 16.0], "far_lift": [-3.0, 1.0],
+		"ground": "zemin_kum", "ground_strength": 0.12, "ground_scale": 0.22},
+	"ada_murekkep": {"far": ["murekkep_mantar", "liman_ada"], "far_h": [9.0, 16.0], "far_lift": [-3.0, 1.0],
+		"ground": "zemin_kale", "ground_strength": 0.14, "ground_scale": 0.12},
+	"ada_kaya": {"far": ["kayalik_sutun", "kayalik_sutun", "liman_ada"], "far_h": [12.0, 22.0], "far_lift": [-3.0, 1.0],
+		"ground": "kanyon_zemin", "ground_strength": 0.14, "ground_scale": 0.12},
+	"ada_firtina": {"far": ["firtina_kaya", "kayalik_sutun"], "far_h": [10.0, 18.0], "far_lift": [-3.0, 1.0],
+		"ground": "zemin_volkan", "ground_strength": 0.14, "ground_scale": 0.12},
+	"ada_sis": {"far": ["sis_agaci", "liman_ada"], "far_h": [9.0, 15.0], "far_lift": [-3.0, 1.0],
+		"ground": "zemin_kum", "ground_strength": 0.12, "ground_scale": 0.22},
 }
 ## Which kit a scene uses (SceneFlow.current); else the mood's own.
 const SCENE_KIT := {
@@ -48,7 +61,9 @@ const SCENE_KIT := {
 	"s2_scene1": "koy", "s2_scene2": "koy", "s2_scene3": "yol", "s2_scene4": "yol", "s2_scene5": "yol",
 	"s2_scene6": "koy", "s2_chapter0": "kaplica", "s2_chapter1": "kizil", "s2_chapter2": "gol",
 	"s2_chapter3": "tarla", "s2_chapter4": "kanyon", "s2_chapter5": "volkan", "s2_final": "koy",
-	"s3_scene1": "kumsal", "s3_scene2": "kumsal",
+	"s3_scene1": "kumsal", "s3_scene2": "kumsal", "s3_scene3": "koy3", "s3_scene4": "koy3", "s3_scene5": "koy3",
+	"s3_scene6": "kumsal", "s3_chapter0": "koy3", "s3_chapter1": "ada_murekkep", "s3_chapter2": "ada_kaya",
+	"s3_chapter3": "ada_kum", "s3_chapter4": "ada_firtina", "s3_chapter5": "ada_sis", "s3_final": "koy3",
 }
 
 

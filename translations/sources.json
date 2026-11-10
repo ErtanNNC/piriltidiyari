@@ -390,6 +390,12 @@
   "Öfke barını soğutur, canını 10 doldurur",
   "Sıcak Kakao",
   "Titreme barını boşaltır, canını 10 doldurur",
+  "Ateşböceği Kavanozu",
+  "60 saniye ışık halkan iki katına çıkar",
+  "Cesaret Kurabiyesi",
+  "90 saniye titreme barın dolmaz",
+  "Mürekkep Tılsımı",
+  "Mürekkep'in hediyesi: kalıcı +20 can",
   "Papatya Çayı",
   "60 saniye Sakinleş daha hızlı",
   "Sis Kalkanı",
@@ -465,6 +471,19 @@
   "Minnoş da geliyor... değil mi?",
   "Yeni harita, yeni kağıt!",
   "Mırıl, geliyoruz."
+ ],
+ "content/keepers_s3.json": [
+  "Kaplumbağa yavrusu",
+  "Korksam bile geliyorum.",
+  "Kabuk Kalkanı: kabuğuna çekilir, hiç hasar almaz",
+  "Dalış: kısa süre su altında yüzer",
+  "Tospik Nine'nin torunu. Saklanmak dinlenmektir; sonra yeniden çıkmak cesaret.",
+  "Dedesinin Kabuk Kalkanı",
+  "Su mu? Ben mi? Korkmuyorum! ...Biraz.",
+  "Minnoş, elimi tut. Ben burdayım.",
+  "Kaybolursak... haritaya işaretleriz!",
+  "Birlikte daha parlakız.",
+  "Davulu duyuyor musun? Bizi çağırıyor."
  ],
  "content/prologue/barks.json": [
   "Çocuklar güvende. Şimdi sıra kulede!",
@@ -1258,13 +1277,49 @@
   "Durdu ve dinliyor! Şimdi yanına gideyim.",
   "Donakalmak normaldir. Derin bir nefes al, yavrum.",
   "Kimse beni bulmayacak...",
-  "Bu ses... Denizin ta uzağından geliyor."
+  "Bu ses... Denizin ta uzağından geliyor.",
+  "Ses bu yoldan geliyor. Önce ışık lazım.",
+  "Kı-kıpırdayamıyorum. Her yer karanlık...",
+  "Tosbi! Korkma. Elimi tut, birlikte yürürüz.",
+  "Elin sıcacık... Işığımız büyüdü!",
+  "İki ışık bir olunca karanlık küçülür.",
+  "Yürüdüm! Korktum ama yürüdüm.",
+  "Sen burada ışıkta kal. Davulum bana yeni bir ses verdi!",
+  "Kayalığın üstünde... kocaman bir gölge var!",
+  "Kıskaçları dağ gibi! Ama... bu sadece bir gölge.",
+  "Gölge ışığı sevmez. Meşaleleri yakmalıyım!",
+  "Küçüldü! Işık yandıkça gölge küçülüyor.",
+  "Hepsi bu muydu? Minicik bir yengeç!",
+  "Fenerin önünde titriyormuş. Korkma, küçüğüm.",
+  "Korkular gölgeleri gibi: olduğundan büyük görünür.",
+  "Bak! Dalgaların üstünde bir ışık titriyor...",
+  "Dalgaların üstünde biri var. Işığı tir tir titriyor.",
+  "Hey! Korkma, sana bir şey yapmam!",
+  "Ses! Çok ses! Kimse beni bulmasın...",
+  "Kaçtı... Bu duyguyu tanıyorum. Ben de böyleydim.",
+  "Biri seni aramaya gelecek mi diye bekliyorsun, değil mi?",
+  "İşte geldim! Davulum burada kalsın, yolu göstersin.",
+  "Sabah oldu ama Fener'in ışığı bu sisi delemiyor.",
+  "Hırıl gitti. Davulu hâlâ kendi kendine çalıyor.",
+  "İlk seferde ışık lazımdı. İkincide kulak.",
+  "Bu sefer... el lazım. Kim el uzatacak?",
+  "Ben de geliyorum. Korksam bile.",
+  "Aferin torunuma! Dedenin Kabuk Kayık'ı sizi taşır.",
+  "Davulun ritmini izleyin. Ve birbirinizin elini bırakmayın!"
  ],
  "content/s3_prologue/chapter.json": [
   "Titrek Kıyılar",
   "Gökkuşağı Kumsalı",
   "Kumsalda Davul Gecesi",
-  "Mavi Titreme"
+  "Mavi Titreme",
+  "Kıyı Yolu",
+  "Dev Gölge",
+  "Hırıl'ın Seçimi",
+  "El Ele"
+ ],
+ "content/s3_prologue/cutscenes/hiril_secimi.json": [
+  "Hırıl kendi isteğiyle gitti",
+  "Tırıl'ı yalnız bırakmamak için."
  ],
  "content/s3_prologue/dialogue/bado.json": [
   "Minnoş koluma sarıldı. Sis onu da ürküttü.",
@@ -1318,6 +1373,17 @@
   "Çıtır ile konuş",
   "Lumi ile konuş",
   "Ateşin yanında Tospik Nine'ye dön"
+ ],
+ "content/s3_prologue/quests/dev_golge.json": [
+  "Üç meşaleyi yak: gölge küçülsün",
+  "Gölgenin sahibine el uzat",
+  "Kayalığın ucuna yürü"
+ ],
+ "content/s3_prologue/quests/kiyi_yolu.json": [
+  "Yoldaki iki meşaleyi yak",
+  "Tosbi'nin elini tut, büyük meşaleye götür",
+  "Gümbür Dalgası ile Titrekleri sakinleştir",
+  "Kayalıklara çık"
  ],
  "content/s3_prologue/quests/mavi_titreme.json": [
   "Kumsaldaki üç meşaleyi yak",
@@ -1414,6 +1480,9 @@
   "Yoruldu, alçaldı! Şimdi vur!",
   "Alçaldı! Şimdi vur!"
  ],
+ "src/actors/hand_friend.gd": [
+  "El tut"
+ ],
  "src/actors/hiril.gd": [
   "Hırıl'ın buharı bitti! Şimdi vur!",
   "Buharı bitti! Şimdi vur!"
@@ -1475,6 +1544,8 @@
   "%d saniye gücün arttı!",
   "%d saniye nefesin daha hızlı",
   "%d saniye öfke barın dolmaz",
+  "%d saniye ışığın iki kat büyük",
+  "%d saniye titreme barın dolmaz",
   "%d saniye moblar seni zor fark eder",
   "Uykuya daldın",
   "Fener'in yanında uyanıyorsun...",
@@ -1486,6 +1557,11 @@
  "src/actors/ruzgar.gd": [
   "Rüzgâr esiyor! Bir sütunun dibine saklan",
   "Sütunun dibine saklan!"
+ ],
+ "src/actors/shore_boss.gd": [
+  "Soluk soluğa kaldı! Şimdi vur!",
+  "Rüzgâr geliyor! Karşı yürü ya da yuvarlan.",
+  "Rüzgâr geliyor!"
  ],
  "src/autoload/audio.gd": [
   "--lang="
@@ -1528,6 +1604,24 @@
   "Gökkuşağı Şenliği",
   "Sezon 3 · Prolog · Sahne 1",
   "Sezon 3 · Prolog · Sahne 2",
+  "Sezon 3 · Prolog · Sahne 3",
+  "Sezon 3 · Prolog · Sahne 4",
+  "Sezon 3 · Prolog · Sahne 5",
+  "Sezon 3 · Prolog · Sahne 6",
+  "Sezon 3 · Bölüm 0",
+  "Mercan Koyu",
+  "Sezon 3 · Bölüm 1",
+  "Mürekkep Adası",
+  "Sezon 3 · Bölüm 2",
+  "Rüzgârlı Kayalıklar",
+  "Sezon 3 · Bölüm 3",
+  "Değişen Kumlar",
+  "Sezon 3 · Bölüm 4",
+  "Fırtına Kayası",
+  "Sezon 3 · Bölüm 5",
+  "Kayıp Ada",
+  "Sezon 3 · Kapanış",
+  "Fener Gecesi",
   "%s yoluna çıkalım mı?",
   "Evet, gidelim",
   "Burada kal"
@@ -1592,6 +1686,13 @@
   "Daha hızlı koşarsın",
   "Biraz daha hızlı"
  ],
+ "src/core/shore_plan.gd": [
+  "Hortlak Çarşaf",
+  "Ahtapot Mürekkep",
+  "Albatros Yavrusu Pamuk",
+  "Keşiş Yengeç Bikbik",
+  "Fok Tombik"
+ ],
  "src/core/skills.gd": [
   "Dikenli Dönüş",
   "Dönüş",
@@ -1612,7 +1713,30 @@
   "Kocaman Sarılma",
   "Sarıl",
   "Komik Yüz",
-  "Ninni Işığı"
+  "Ninni Işığı",
+  "Gümbür Dalgası",
+  "Kabuk Kalkanı",
+  "Önden Giden",
+  "Önden",
+  "Ayı Kucağı",
+  "Fener Fındığı",
+  "Gece Lambası",
+  "Ritim Kalkanı",
+  "Kabuk Yuvası"
+ ],
+ "src/core/titrek_kinds.gd": [
+  "Titrek Yengeç",
+  "Ürkek Martı",
+  "Saklambaç Ahtapotu",
+  "Gölge Balığı",
+  "Başı Dönen Martı",
+  "Kayan Taş Kaplumbağası",
+  "Kumdan Hortlak",
+  "Kayıp Denizyıldızı",
+  "Minik Gök Gürültüsü Bulutu",
+  "İrkilen Fok Yavrusu",
+  "Sis Kuklası",
+  "Korku Gölgesi"
  ],
  "src/ui/chapter_select.gd": [
   "Bölüm seç",
@@ -1698,13 +1822,19 @@
   "Kademe %d → %d"
  ],
  "src/ui/prologue_done.gd": [
+  "Bölüm 0: Mercan Koyu ve Yaşlı Deniz Feneri",
+  "Mors Dede Bıyık ve kapısını kilitleyen köylüler",
+  "Hortlak Çarşaf ve ilk İşaret Fişeği",
+  "Sonra: beş ada, beş inci, korkan beş bekçi",
   "Bölüm 0: Buharlı Kaplıca Köyü",
   "Tospik Nine ve hiç susmayan köylüler",
   "Homurdanan Çaydanlık ve ilk Ses Çanı",
   "Sonra: beş Kor, beş öfkeli bekçi",
   "Prolog tamamlandı!",
+  "Sezon 3: Titrek Kıyılar",
   "Sezon 2: Kor Vadisi",
   "Sırada ne var?",
+  "Denize açıl",
   "Kor Vadisi'ne in"
  ],
  "src/ui/save_slots_panel.gd": [
@@ -1792,6 +1922,12 @@
  ],
  "src/world/beach_torch.gd": [
   "Yak"
+ ],
+ "src/world/boat_dock.gd": [
+  "Bin",
+  "Kabuk Kayık",
+  "Deniz sisli. Önce buranın İşaret Fişeği'ni yak.",
+  "Kabuk Kayık nereye gitsin?"
  ],
  "src/world/chapter0.gd": [
   "Bekçi Evi",
@@ -2056,6 +2192,13 @@
   "Gürledek dağıldı",
   "Ardında kırmızı bir yankı kaldı..."
  ],
+ "src/world/s3_island.gd": [
+  "Sis çok koyu. Önce adanın İşaret Fişeği'ni yak.",
+  "Korkuyor. Yanına git, Sakinleş'e basılı tut: el uzat.",
+  "İnci",
+  "Halkalardan kaç. Soluklanınca vur!",
+  "Halkalardan kaç, soluklanınca vur!"
+ ],
  "src/world/s3_scene1.gd": [
   "Castle%d",
   "J ile davul çal: düzenli vur, kale dans etsin!",
@@ -2072,6 +2215,29 @@
   "Dinlerken yanına git.",
   "Kıyı Yolu yakında açılıyor. Kumsalı dolaşabilirsin.",
   "Kıyı Yolu yakında açılıyor."
+ ],
+ "src/world/s3_scene3.gd": [
+  "Sesin peşinden git. Meşaleleri yak: ışık yolu güvenli yapar.",
+  "Meşaleleri yak, yoldan git.",
+  "El ele: ışığınız büyüdü! Birlikte sis perdesinden geçin.",
+  "El ele sis perdesinden geçin.",
+  "Kayalıklar ↑",
+  "Tosbi donakalmış. Yanına git ve elini tut.",
+  "Tosbi'nin yanına git, El tut'a bas.",
+  "L: Gümbür Dalgası. Çevrendeki bütün Titrekler durup dinler!",
+  "Dalga düğmesi: bütün Titrekler dinler!",
+  "Yol açık. Kayalıklara çık!",
+  "Kayalıklara çık!"
+ ],
+ "src/world/s3_scene4.gd": [
+  "Halkalardan kaç! Meşale açılınca git ve yak.",
+  "Halkalardan kaç, açılan meşaleyi yak!",
+  "Bir meşale açıldı! Yıldızın altına git ve yak.",
+  "Meşale açıldı! Git ve yak.",
+  "Gölge küçüldü! Halkalardan kaç, sıradaki meşaleyi bekle.",
+  "Küçüldü! Sıradaki meşaleyi bekle.",
+  "Yanına git: ışığın onu ısıtır. Ya da Sakinleş ile el uzat.",
+  "Yanına git, el uzat."
  ],
  "src/world/scene2.gd": [
   "J: Dikenlerinle vur!",
@@ -2109,6 +2275,9 @@
  ],
  "src/world/ship_dock.gd": [
   "Uç"
+ ],
+ "src/world/shiver_veil.gd": [
+  "Sis çok koyu. El ele tutuşunca geçilir."
  ],
  "src/world/side_spot.gd": [
   "Posta kutusu boş. Çan çalınca mektup gelir.",

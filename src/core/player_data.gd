@@ -14,7 +14,7 @@ signal skills_changed
 const POTION_SLOTS := 4
 ## Hikâye Taşları in Season 1 (the design's 20 arrive over two seasons).
 const STORY_STONES := 10
-const POTIONS := ["bal_surubu", "yildiz_tozu", "cesaret_sekeri", "pus_kovucu", "nane_sekeri", "papatya_cayi", "sis_kalkani", "sicak_kakao"]
+const POTIONS := ["bal_surubu", "yildiz_tozu", "cesaret_sekeri", "pus_kovucu", "nane_sekeri", "papatya_cayi", "sis_kalkani", "sicak_kakao", "atesbocegi_kavanozu", "cesaret_kurabiyesi"]
 
 var character_id := "fistik"
 var character_name := "Fıstık"
@@ -169,10 +169,11 @@ func switch_keeper(id: String, stats: Dictionary, look: Dictionary, display_name
 	recompute_stats(item_defs)
 	# shared skills (like Dikenli Dönüş) stay; other keepers' own skills don't
 	var others := []
-	for k: String in ["pati", "bado", "citir", "lumi", "fistik", "tipis_panda"]:
+	for k: String in ["pati", "bado", "citir", "lumi", "fistik", "tipis_panda", "tosbi"]:
 		if k != id:
 			others.append(Skills.for_character(k))
-			others.append(Skills.season2_for(k))
+			others.append(Skills.season_for(k, 2))
+			others.append(Skills.season_for(k, 3))
 	for s: String in old_skills:
 		if not others.has(s) and not skills.has(s):
 			skills.append(s)
@@ -186,8 +187,8 @@ func switch_keeper(id: String, stats: Dictionary, look: Dictionary, display_name
 ## The skill the L key / skill button uses right now ("" if none yet).
 func active_skill() -> String:
 	# Season 2: the calming skill takes the skill button once it's learned
-	var s2 := Skills.season2_for(character_id)
-	if season == 2 and s2 != "" and skills.has(s2):
+	var s2 := Skills.season_for(character_id, season)
+	if s2 != "" and skills.has(s2):
 		return s2
 	var own := Skills.for_character(character_id)
 	if skills.has(own):
@@ -198,9 +199,9 @@ func active_skill() -> String:
 ## Season 2: from level 5 a keeper knows their calming skill (also lifts
 ## saves that were already past level 5). True when it was just learned.
 func learn_season_skill() -> bool:
-	if season != 2 or level < Skills.S2_LEVEL:
+	if season < 2 or level < Skills.S2_LEVEL:
 		return false
-	var s2 := Skills.season2_for(character_id)
+	var s2 := Skills.season_for(character_id, season)
 	return s2 != "" and unlock_skill(s2)
 
 

@@ -23,11 +23,43 @@
         "titreme barı",
         "Sıcak Kakao"
       ]
+    },
+    {
+      "id": "s3_scene3",
+      "title": "Kıyı Yolu",
+      "teaches": [
+        "el ele",
+        "platform",
+        "seviye atlama",
+        "Gümbür Dalgası"
+      ]
+    },
+    {
+      "id": "s3_scene4",
+      "title": "Dev Gölge",
+      "teaches": [
+        "ilk boss",
+        "meşaleler"
+      ]
+    },
+    {
+      "id": "s3_scene5",
+      "title": "Hırıl'ın Seçimi",
+      "teaches": []
+    },
+    {
+      "id": "s3_scene6",
+      "title": "El Ele",
+      "teaches": [
+        "karakter seçimi"
+      ]
     }
   ],
   "quests": [
     "davul_gecesi",
-    "mavi_titreme"
+    "mavi_titreme",
+    "kiyi_yolu",
+    "dev_golge"
   ],
   "dialogue": [
     "tospik_nine",

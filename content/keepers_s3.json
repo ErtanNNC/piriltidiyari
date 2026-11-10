@@ -1,0 +1,35 @@
+{
+  "keepers": {
+    "tosbi": {
+      "name": "Tosbi",
+      "species": "Kaplumbağa yavrusu",
+      "color": "spark-green",
+      "line": "Korksam bile geliyorum.",
+      "stats": {
+        "can": 5,
+        "guc": 2,
+        "hiz": 3
+      },
+      "special": "Kabuk Kalkanı: kabuğuna çekilir, hiç hasar almaz",
+      "world": "Dalış: kısa süre su altında yüzer",
+      "story": "Tospik Nine'nin torunu. Saklanmak dinlenmektir; sonra yeniden çıkmak cesaret.",
+      "signature": "Dedesinin Kabuk Kalkanı"
+    }
+  },
+  "order": [
+    "pati",
+    "bado",
+    "citir",
+    "lumi",
+    "tipis_panda",
+    "tosbi"
+  ],
+  "lines": {
+    "pati": "Su mu? Ben mi? Korkmuyorum! ...Biraz.",
+    "bado": "Minnoş, elimi tut. Ben burdayım.",
+    "citir": "Kaybolursak... haritaya işaretleriz!",
+    "lumi": "Birlikte daha parlakız.",
+    "tipis_panda": "Davulu duyuyor musun? Bizi çağırıyor.",
+    "tosbi": "Korksam bile geliyorum."
+  }
+}

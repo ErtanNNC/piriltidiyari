@@ -38,11 +38,13 @@ func _ready() -> void:
 	col.shape = cap
 	col.position.y = 0.45
 	add_child(col)
-	_model = ModelImport.load_model(kind)
+	_model = ModelImport.load_model(TitrekKinds.model(kind))
 	if _model == null:
 		_model = _primitive()
 		CharacterRig.attach(_model)
+	_model.scale *= float(TitrekKinds.get_kind(kind).get("scale", 1.0))
 	add_child(_model)
+	set_meta("calm_reach", 2.6)
 	_note = Label3D.new()
 	_note.text = "♪"
 	_note.font_size = 96
@@ -59,7 +61,7 @@ func _ready() -> void:
 
 func _primitive() -> Node3D:
 	var r := Node3D.new()
-	if kind == "urkek_marti":
+	if TitrekKinds.get_kind(kind).get("fly", false):
 		Toon.part(r, "ellipsoid", Vector3(0.6, 0.7, 0.7), Color("#f4f4f0"), Vector3(0, 0.45, 0))
 		Toon.part(r, "sphere", Vector3(0.42, 0.42, 0.42), Color("#f4f4f0"), Vector3(0, 0.95, 0.05))
 		Toon.part(r, "cone", Vector3(0.14, 0.2, 0.14), Color("#ffb347"), Vector3(0, 0.92, 0.3), Vector3(90, 0, 0))
@@ -67,7 +69,7 @@ func _primitive() -> Node3D:
 		Toon.part(r, "ellipsoid", Vector3(0.9, 0.5, 0.7), Color("#e0533a"), Vector3(0, 0.35, 0))
 		for s: float in [-1.0, 1.0]:
 			Toon.part(r, "sphere", Vector3(0.3, 0.26, 0.26), Color("#e0533a"), Vector3(0.55 * s, 0.5, 0.2))
-	Face.add(r, Vector3(0, 0.6 if kind != "urkek_marti" else 1.0, 0.3), Vector3(0.3, 0.25, 0.2))
+	Face.add(r, Vector3(0, 1.0 if TitrekKinds.get_kind(kind).get("fly", false) else 0.6, 0.3), Vector3(0.3, 0.25, 0.2))
 	return r
 
 
@@ -101,7 +103,7 @@ func _physics_process(delta: float) -> void:
 					_push_cd = 1.0
 					pl.push(to_pl.normalized() * 7.0)
 					Audio.play("boing")
-			else:
+			elif not TitrekKinds.get_kind(kind).get("still", false):
 				_wander_t -= delta
 				if _wander_t <= 0.0:
 					_wander_t = randf_range(0.8, 1.8)
@@ -120,6 +122,7 @@ func _physics_process(delta: float) -> void:
 			elif _listen <= 0.0:
 				state = "scared"
 				_note.visible = false
+				remove_from_group("dazed")
 		"calm":
 			_model.position.x = 0.0
 	if move.length() > 0.05:
@@ -127,14 +130,14 @@ func _physics_process(delta: float) -> void:
 	velocity.x = move.x
 	velocity.z = move.z
 	move_and_slide()
-	if kind == "urkek_marti" and state == "scared" and move.length() > 0.5:
+	if TitrekKinds.get_kind(kind).get("fly", false) and state == "scared" and move.length() > 0.5:
 		_model.position.y = absf(sin(t * 9.0)) * 0.35   # nervous flaps and hops
 	elif state != "calm":
 		_model.position.y = move_toward(_model.position.y, 0.0, delta * 2.0)
 
 
 func _speed() -> float:
-	return 5.0 if kind == "urkek_marti" else 4.4
+	return TitrekKinds.speed(kind)
 
 
 func _face(dir: Vector3, delta: float) -> void:
@@ -151,9 +154,23 @@ func hear_rhythm(from: Vector3, streak: int) -> void:
 		return
 	if state == "scared":
 		Effects.ring(get_parent(), global_position + Vector3.UP * 0.2, 1.2, Tokens.color("sky"), 0.4)
+	listen()
+
+
+## Stops and listens for a while (a rhythm, a skill): light or a hand
+## (Sakinleş beside it: group "dazed") calms it now.
+func listen(time := LISTEN_TIME) -> void:
+	if state == "calm":
+		return
 	state = "listening"
-	_listen = LISTEN_TIME
+	_listen = time
 	_note.visible = true
+	add_to_group("dazed")
+
+
+## El uzat: Sakinleş held beside a listening Titrek (BreathCalm), or a hug.
+func breathe_calm() -> void:
+	_calm()
 
 
 func _calm() -> void:
@@ -161,10 +178,13 @@ func _calm() -> void:
 		return
 	state = "calm"
 	_note.visible = false
+	remove_from_group("dazed")
 	Audio.play("calm")
 	Effects.sparkle(get_parent(), global_position + Vector3.UP, Tokens.color("spark-yellow"), 10)
 	var d := GameState.data
-	d.add_xp(int(Progression.xp_to_next(d.level) * 0.22))
+	# XP like any mob of its region: a level's 22% at its own level, less later
+	var lv := int(TitrekKinds.get_kind(kind).get("level", 1))
+	d.add_xp(int(Progression.xp_to_next(mini(lv, d.level)) * 0.22))
 	d.add_piril(3)
 	FloatText.spawn(get_parent(), global_position + Vector3.UP * 1.6, "+3", Tokens.color("spark-yellow"))
 	GameState.notify("titrek", kind)
@@ -175,7 +195,7 @@ func _calm() -> void:
 		return
 	# off home: crabs scuttle to the sea, gulls fly up
 	var tw := create_tween()
-	if kind == "urkek_marti":
+	if TitrekKinds.get_kind(kind).get("fly", false):
 		tw.tween_property(self, "global_position", global_position + Vector3(0, 9, -6), 2.2)
 	else:
 		tw.tween_property(self, "global_position", global_position + Vector3(0, -0.2, -10), 3.0)

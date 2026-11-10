@@ -207,14 +207,16 @@ func _keeper_house() -> void:
 func _keeper_ids() -> Array:
 	if GameState.data.season == 2:
 		return Content.keepers_s2.get("order", KeeperSelect.ORDER)
+	if GameState.data.season >= 3:
+		return Content.keepers_s3.get("order", KeeperSelect.ORDER)
 	return ["pati", "bado", "citir", "lumi"]
 
 
 func _open_mirror() -> void:
 	var sel := KeeperSelect.new()
-	if GameState.data.season == 2:
+	if GameState.data.season >= 2:
 		sel.order = _keeper_ids()
-		sel.lines = Content.keepers_s2.get("lines", {})
+		sel.lines = (Content.keepers_s2 if GameState.data.season == 2 else Content.keepers_s3).get("lines", {})
 	_hud.cinematic(true)
 	_player.input_enabled = false
 	GameState.in_dialogue = true

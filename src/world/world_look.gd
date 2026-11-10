@@ -24,6 +24,7 @@ const SKIES := {
 	"liman": ["#4f9ff0", "#e2f2ff", "#8fc4f2", "#ffffff", "#c6dcf4", 0.5, 0.0, "#fff4d0", 0.0016, 0.2],
 	"dag": ["#8494d4", "#f2e6f2", "#9fadd6", "#ffffff", "#c8cdec", 0.4, 0.1, "#fff0e0", 0.0013, 0.12],
 	"kumsal": ["#1e2a5e", "#5a6aa8", "#141c40", "#8a96c8", "#3a4880", 0.3, 0.75, "#e8eeff", 0.0009, 0.05],
+	"ada": ["#1a2658", "#56689f", "#121a3c", "#8a96c8", "#364478", 0.3, 0.8, "#e8eeff", 0.0009, 0.05],
 	"kanyon": ["#d9845e", "#ffe2bf", "#e8a27c", "#fff4e6", "#f2c1a0", 0.4, 0.05, "#fff0d8", 0.0012, 0.14],
 	"kale": ["#100d24", "#4a3f72", "#1e1b30", "#3e3666", "#2a2448", 0.4, 0.85, "#e8e0ff", 0.0009, 0.0],
 }
@@ -136,7 +137,7 @@ static func add(parent: Node, mood: String) -> Environment:
 			sun.light_color = Color("#fff0e0")
 			sun.light_energy = 0.42
 			sun.rotation_degrees = Vector3(-40, 35, 0)
-		"kumsal":
+		"kumsal", "ada":
 			# Titrek Kıyılar: a warm summer night on the beach, moonlit
 			env.background_color = Color("#141c40")
 			env.ambient_light_color = Color("#8b9de0")
