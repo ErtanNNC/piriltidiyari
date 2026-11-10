@@ -36,7 +36,7 @@ const KITS := {
 		"far": ["volkan_dag", "volkan_sutun"], "far_h": [12.0, 20.0], "ground": "zemin_volkan"},
 	"yol": {"edge": ["koy_kaya", "kanyon_kaya_b", "koy_cali"], "edge_h": [2.6, 4.6],
 		"far": ["dag_zirve", "koy_tepe"], "far_h": [12.0, 20.0], "ground": "zemin_cayir"},
-	"liman": {"ground": "zemin_kum"},
+	"liman": {"far": ["liman_ada"], "far_h": [8.0, 14.0], "far_lift": [-4.0, 6.0], "ground": "zemin_kum"},
 	"magara": {"ground": "zemin_magara"},
 }
 ## Which kit a scene uses (SceneFlow.current); else the mood's own.
@@ -194,7 +194,8 @@ static func _far_model(h: Node3D, at: Vector3, rng: RandomNumberGenerator, haze:
 		return false
 	var hr: Array = kit.get("far_h", [8.0, 14.0])
 	m.scale = Vector3.ONE * rng.randf_range(hr[0], hr[1]) / _size(id)
-	m.position = at + Vector3(0, -0.6, 0)
+	var lift: Array = kit.get("far_lift", [-0.6, -0.6])
+	m.position = at + Vector3(0, rng.randf_range(lift[0], lift[1]), 0)
 	m.rotation.y = rng.randf() * TAU
 	_haze(m, haze, mix)
 	h.add_child(m)
