@@ -4,7 +4,7 @@ extends Node
 ## --scene jumps to a story scene with the progress of the scenes before it.
 ## Never active in a normal run.
 
-const ORDER := ["scene1", "scene2", "scene3", "scene4", "scene5", "scene6", "chapter0", "chapter1", "chapter2", "chapter3", "chapter4", "chapter5", "final", "s2_scene1", "s2_scene2", "s2_scene3", "s2_scene4", "s2_scene5", "s2_scene6", "s2_chapter0", "s2_chapter1", "s2_chapter2", "s2_chapter3", "s2_chapter4", "s2_chapter5", "s2_final"]
+const ORDER := ["scene1", "scene2", "scene3", "scene4", "scene5", "scene6", "chapter0", "chapter1", "chapter2", "chapter3", "chapter4", "chapter5", "final", "s2_scene1", "s2_scene2", "s2_scene3", "s2_scene4", "s2_scene5", "s2_scene6", "s2_chapter0", "s2_chapter1", "s2_chapter2", "s2_chapter3", "s2_chapter4", "s2_chapter5", "s2_final", "s3_scene1", "s3_scene2"]
 
 var _shot_path := ""
 var _frames := 60
@@ -213,6 +213,12 @@ static func _preset_story(data: PlayerData, scene: String) -> void:
 			data.add_xp(Progression.xp_to_next(data.level) - data.xp)
 		while data.power_picks > 0:
 			Powers.pick(data, Powers.choices(data.powers, RandomNumberGenerator.new())[0]["id"])
+	if idx >= 26:
+		# Season 3: Season 2 is done, its keeper rests, Hırıl plays the prologue
+		var content3: Node = Engine.get_main_loop().root.get_node_or_null("Content")
+		data.start_season3(content3.items if content3 else {})
+	if idx >= 27:
+		data.set_flag("s3_sahne1_bitti")
 
 
 static func _finish(data: PlayerData, quest_id: String) -> void:

@@ -54,6 +54,16 @@
       "icon": "heart",
       "desc": "Öfke barını soğutur, canını 10 doldurur"
     },
+    "sicak_kakao": {
+      "name": "Sıcak Kakao",
+      "color": "honey",
+      "kind": "potion",
+      "buff": "sicak",
+      "heal": 10,
+      "price": 15,
+      "icon": "heart",
+      "desc": "Titreme barını boşaltır, canını 10 doldurur"
+    },
     "papatya_cayi": {
       "name": "Papatya Çayı",
       "color": "spark-yellow",

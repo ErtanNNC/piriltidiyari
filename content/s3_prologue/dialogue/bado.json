@@ -1,0 +1,58 @@
+{
+  "npc": "bado",
+  "variants": [
+    {
+      "when": {
+        "quest": "mavi_titreme",
+        "state": [
+          "active",
+          "ready",
+          "done"
+        ]
+      },
+      "lines": [
+        {
+          "speaker": "bado",
+          "mood": "dertli",
+          "text": "Minnoş koluma sarıldı. Sis onu da ürküttü."
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "davul_gecesi",
+        "state": "active",
+        "objective_not_done": "davul_gecesi/bado"
+      },
+      "lines": [
+        {
+          "speaker": "bado",
+          "mood": "mutlu",
+          "text": "Minnoş davulu çok sevdi. Bak, ayağıyla tempo tutuyor!"
+        },
+        {
+          "speaker": "minnos",
+          "mood": "mutlu",
+          "text": "Bom! Bom! Bir daha, Hırıl!"
+        }
+      ],
+      "then": {
+        "advance": "davul_gecesi/bado"
+      }
+    },
+    {
+      "lines": [
+        {
+          "speaker": "bado",
+          "mood": "mutlu",
+          "text": "Minnoş davulu çok sevdi. Bak, ayağıyla tempo tutuyor!"
+        },
+        {
+          "speaker": "minnos",
+          "mood": "mutlu",
+          "text": "Bom! Bom! Bir daha, Hırıl!"
+        }
+      ]
+    }
+  ]
+}

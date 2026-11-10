@@ -78,7 +78,8 @@ func _build_menu() -> void:
 		root.add_child(cont)
 		# Season 1 finished in the newest save: Season 2 can begin from here too
 		var latest := PlayerData.new()
-		if SaveGame.read_into(latest, SaveGame.path_for(maxi(SaveGame.latest_slot(), 1))) and latest.can_start_season2():
+		var read_ok := SaveGame.read_into(latest, SaveGame.path_for(maxi(SaveGame.latest_slot(), 1)))
+		if read_ok and latest.can_start_season2():
 			var s2 := UiKit.button("Sezon 2'ye başla")
 			s2.name = "Season2"
 			s2.custom_minimum_size = Vector2(260, 64)
@@ -89,6 +90,18 @@ func _build_menu() -> void:
 				GameState.data = latest
 				SeasonFlow.start_season2())
 			root.add_child(s2)
+		# Season 2 finished in the newest save: Season 3 can begin from here too
+		if read_ok and latest.can_start_season3():
+			var s3 := UiKit.button("Sezon 3'e başla")
+			s3.name = "Season3"
+			s3.custom_minimum_size = Vector2(260, 64)
+			s3.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+			s3.pressed.connect(func() -> void:
+				SaveGame.slot = maxi(SaveGame.latest_slot(), 1)
+				latest.recompute_stats(Content.items)
+				GameState.data = latest
+				SeasonFlow.start_season3())
+			root.add_child(s3)
 		start.text = "Yeni oyun"
 	root.add_child(start)
 	if has_save:

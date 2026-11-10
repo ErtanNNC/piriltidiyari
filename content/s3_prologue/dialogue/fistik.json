@@ -1,0 +1,31 @@
+{
+  "npc": "fistik",
+  "variants": [
+    {
+      "when": {
+        "quest": "mavi_titreme",
+        "state": [
+          "active",
+          "ready",
+          "done"
+        ]
+      },
+      "lines": [
+        {
+          "speaker": "fistik",
+          "mood": "şaşkın",
+          "text": "Ha? Uyandım! Bu soğuk sis de nereden çıktı?"
+        }
+      ]
+    },
+    {
+      "lines": [
+        {
+          "speaker": "fistik",
+          "mood": "sakin",
+          "text": "Zzz... Birkaç dakika daha... Davul çok güzel... Zzz..."
+        }
+      ]
+    }
+  ]
+}

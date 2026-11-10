@@ -1,0 +1,80 @@
+{
+  "barks": {
+    "s3_basla": [
+      {
+        "speaker": "hiril",
+        "mood": "mutlu",
+        "text": "Kumsalda ilk yaz gecesi! Bu gece müzikçi benim."
+      },
+      {
+        "speaker": "tospik_nine",
+        "mood": "mutlu",
+        "text": "Hırıl, davulunu çal! J'ye düzenli bas."
+      }
+    ],
+    "s3_kale": [
+      {
+        "speaker": "hiril",
+        "mood": "mutlu",
+        "text": "Kale dans ediyor! Ritmi tuttum!"
+      }
+    ],
+    "s3_son": [
+      {
+        "speaker": "miril",
+        "mood": "şaşkın",
+        "text": "Bakın, denizin üstü... Bir şey parlıyor."
+      },
+      {
+        "speaker": "hiril",
+        "mood": "şaşkın",
+        "text": "Mavi bir sis geliyor. Çok soğuk..."
+      }
+    ],
+    "s3b_basla": [
+      {
+        "speaker": "tospik_nine",
+        "mood": "dertli",
+        "text": "Bu sis öfke değil. Bu... korku. Herkes titriyor."
+      },
+      {
+        "speaker": "hiril",
+        "mood": "kararlı",
+        "text": "Korkanları kovalamam. Önce ateşi yakalım!"
+      }
+    ],
+    "s3b_titrek": [
+      {
+        "speaker": "hiril",
+        "mood": "sakin",
+        "text": "Kaçıyorlar... Sakin bir ritim çalarsam dinlerler mi?"
+      }
+    ],
+    "s3b_dinle": [
+      {
+        "speaker": "hiril",
+        "mood": "mutlu",
+        "text": "Durdu ve dinliyor! Şimdi yanına gideyim."
+      }
+    ],
+    "s3b_don": [
+      {
+        "speaker": "tospik_nine",
+        "mood": "sakin",
+        "text": "Donakalmak normaldir. Derin bir nefes al, yavrum."
+      }
+    ],
+    "s3b_son": [
+      {
+        "speaker": "tiril",
+        "mood": "üzgün",
+        "text": "Kimse beni bulmayacak..."
+      },
+      {
+        "speaker": "hiril",
+        "mood": "şaşkın",
+        "text": "Bu ses... Denizin ta uzağından geliyor."
+      }
+    ]
+  }
+}

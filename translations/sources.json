@@ -388,6 +388,8 @@
   "Canını 40 doldurur",
   "Nane Şekeri",
   "Öfke barını soğutur, canını 10 doldurur",
+  "Sıcak Kakao",
+  "Titreme barını boşaltır, canını 10 doldurur",
   "Papatya Çayı",
   "60 saniye Sakinleş daha hızlı",
   "Sis Kalkanı",
@@ -1244,6 +1246,83 @@
   "Ona kızma. Belki o da dinlenmek istiyordur.",
   "Seni bekliyorum. Fener'in yanına yer ayırdım!"
  ],
+ "content/s3_prologue/barks.json": [
+  "Kumsalda ilk yaz gecesi! Bu gece müzikçi benim.",
+  "Hırıl, davulunu çal! J'ye düzenli bas.",
+  "Kale dans ediyor! Ritmi tuttum!",
+  "Bakın, denizin üstü... Bir şey parlıyor.",
+  "Mavi bir sis geliyor. Çok soğuk...",
+  "Bu sis öfke değil. Bu... korku. Herkes titriyor.",
+  "Korkanları kovalamam. Önce ateşi yakalım!",
+  "Kaçıyorlar... Sakin bir ritim çalarsam dinlerler mi?",
+  "Durdu ve dinliyor! Şimdi yanına gideyim.",
+  "Donakalmak normaldir. Derin bir nefes al, yavrum.",
+  "Kimse beni bulmayacak...",
+  "Bu ses... Denizin ta uzağından geliyor."
+ ],
+ "content/s3_prologue/chapter.json": [
+  "Titrek Kıyılar",
+  "Gökkuşağı Kumsalı",
+  "Kumsalda Davul Gecesi",
+  "Mavi Titreme"
+ ],
+ "content/s3_prologue/dialogue/bado.json": [
+  "Minnoş koluma sarıldı. Sis onu da ürküttü.",
+  "Minnoş davulu çok sevdi. Bak, ayağıyla tempo tutuyor!",
+  "Bom! Bom! Bir daha, Hırıl!"
+ ],
+ "content/s3_prologue/dialogue/citir.json": [
+  "Haritamda bu sis yok. Ne garip, ne garip!",
+  "Kumsalın haritasını çizdim. Kaleleri de ekledim!",
+  "Dans eden kaleleri nasıl çizerim acaba?"
+ ],
+ "content/s3_prologue/dialogue/fistik.json": [
+  "Ha? Uyandım! Bu soğuk sis de nereden çıktı?",
+  "Zzz... Birkaç dakika daha... Davul çok güzel... Zzz..."
+ ],
+ "content/s3_prologue/dialogue/lumi.json": [
+  "Işığım titriyor... Meşaleleri yak, birlikte parlarız.",
+  "Mırıl'ın ışık şovu ne güzel! Gökyüzü yanıp sönüyor.",
+  "Davulun ritmi yıldızlara bile ulaşıyor, Hırıl."
+ ],
+ "content/s3_prologue/dialogue/miril.json": [
+  "Işık şovumu gördün mü? Senin ritmine göre parlıyorum!"
+ ],
+ "content/s3_prologue/dialogue/pati.json": [
+  "Bu mavi sis tüylerimi diken diken etti!",
+  "Hırıl, bir ritim daha! Kuyruğum kendiliğinden sallanıyor.",
+  "Sen dans et, ben çalarım!"
+ ],
+ "content/s3_prologue/dialogue/tipis_panda.json": [
+  "Eski davulum gibi çalıyorsun! Kulaklarım dans ediyor.",
+  "Sen bana derin nefesi öğrettin. Hâlâ yapıyorum."
+ ],
+ "content/s3_prologue/dialogue/tospik_nine.json": [
+  "Titrekler evine döndü. Ama sis hâlâ denizden geliyor.",
+  "Al yavrum, sıcacık kakao. Titrersen bir yudum iç.",
+  "Denizden ince bir ses geliyor... Biri ağlıyor gibi.",
+  "O sesin peşinden git. Davulun yolunu bulur.",
+  "Korkan biri kovalanmaz. Önce sakin bir ritim çal.",
+  "Durup dinleyince yanına git. Işığın onu ısıtır.",
+  "Ah Hırıl! Kaleler dans etti, herkes gülüyor.",
+  "Davulumu böyle özgürce çalmak... Çok güzel.",
+  "Bak, deniz de seni dinliyor. Ne kadar sakin...",
+  "Kumsalın müzikçisi geldi! Kaleler davul bekliyor.",
+  "Ne çok hızlı ne çok yavaş. Düzenli vur, yavrum.",
+  "Deniz kokusu, sıcak kakao... Yaz gecesi böyle olur."
+ ],
+ "content/s3_prologue/quests/davul_gecesi.json": [
+  "Davulunla üç kum kalesini dans ettir",
+  "Pati ile konuş",
+  "Bado ile konuş",
+  "Çıtır ile konuş",
+  "Lumi ile konuş",
+  "Ateşin yanında Tospik Nine'ye dön"
+ ],
+ "content/s3_prologue/quests/mavi_titreme.json": [
+  "Kumsaldaki üç meşaleyi yak",
+  "Titrekleri ritimle durdur, ışığa al"
+ ],
  "content/speakers.json": [
   "Fıstık",
   "Tospik Nine",
@@ -1291,7 +1370,8 @@
   "Vrakvrak",
   "Vık",
   "Minnoş",
-  "Çıngır"
+  "Çıngır",
+  "Tırıl"
  ],
  "src/actors/breath_calm.gd": [
   "panel@light",
@@ -1358,6 +1438,10 @@
   "Halka geliyor: üstünden zıpla!",
   "Kral esniyor! Şimdi vur!"
  ],
+ "src/actors/light_ring.gd": [
+  "Oh... Derin bir nefes, titreme geçti.",
+  "Donakaldın! Sakinleş'e basılı tut: derin nefes."
+ ],
  "src/actors/miril.gd": [
   "Mırıl yoruldu. Şimdi yaklaş!",
   "Mırıl yoruldu. Yaklaş!"
@@ -1386,6 +1470,7 @@
   "Mrrr...",
   "Ha ha!",
   "Oh, serinledin!",
+  "Oh, ısındın!",
   "Canın zaten dolu",
   "%d saniye gücün arttı!",
   "%d saniye nefesin daha hızlı",
@@ -1441,6 +1526,8 @@
   "Sezon 2 · Bölüm 5",
   "Sezon 2 · Kapanış",
   "Gökkuşağı Şenliği",
+  "Sezon 3 · Prolog · Sahne 1",
+  "Sezon 3 · Prolog · Sahne 2",
   "%s yoluna çıkalım mı?",
   "Evet, gidelim",
   "Burada kal"
@@ -1576,6 +1663,7 @@
   "Kaplıca Köyü'nde: taşı sırayla götür",
   "%s (%s)",
   "Oyun kaydedilemedi. Telefonda yer var mı?",
+  "Donakaldın!",
   "Kızgın!",
   "Öfke",
   " (%s tuşu / düğmesi)",
@@ -1650,6 +1738,7 @@
   "Seviye %d",
   "%d Pırıl",
   "Oynadığın için teşekkürler! · Just A Game Studios",
+  "Sezon 3'e başla",
   "Köyde dolaş"
  ],
  "src/ui/season_end.gd": [
@@ -1700,6 +1789,9 @@
   "Bu kaya çok ağır. %s itebilirdi!",
   "Karşıya halat lazım. %s atabilirdi!",
   "Burası çok karanlık. %s aydınlatabilirdi!"
+ ],
+ "src/world/beach_torch.gd": [
+  "Yak"
  ],
  "src/world/chapter0.gd": [
   "Bekçi Evi",
@@ -1964,6 +2056,23 @@
   "Gürledek dağıldı",
   "Ardında kırmızı bir yankı kaldı..."
  ],
+ "src/world/s3_scene1.gd": [
+  "Castle%d",
+  "J ile davul çal: düzenli vur, kale dans etsin!",
+  "Vur'a düzenli bas: kale dans etsin!",
+  "Kaleler dans etti! Şimdi arkadaşlarınla konuş.",
+  "Kaleler dans etti! Arkadaşlarınla konuş."
+ ],
+ "src/world/s3_scene2.gd": [
+  "Sönmüş meşalelere git ve yak. Işık titremeyi geçirir.",
+  "Meşalelere git, Yak'a bas.",
+  "Kovalama! J ile düzenli davul çal: durup dinlerler.",
+  "Kovalama! Vur'a düzenli bas.",
+  "Dinlerken yanına git: ışığın onu ısıtır.",
+  "Dinlerken yanına git.",
+  "Kıyı Yolu yakında açılıyor. Kumsalı dolaşabilirsin.",
+  "Kıyı Yolu yakında açılıyor."
+ ],
  "src/world/scene2.gd": [
   "J: Dikenlerinle vur!",
   "Saldır'a bas: dikenlerinle vur!",
@@ -2005,9 +2114,6 @@
   "Posta kutusu boş. Çan çalınca mektup gelir.",
   "%s: %d/%d",
   "SUS"
- ],
- "src/world/small_lantern.gd": [
-  "Yak"
  ],
  "src/world/spark_door.gd": [
   "Kıvılcımı göster",

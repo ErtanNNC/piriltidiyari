@@ -1,0 +1,43 @@
+{
+  "id": "davul_gecesi",
+  "title": "Kumsalda Davul Gecesi",
+  "giver": "tospik_nine",
+  "objectives": [
+    {
+      "id": "kale",
+      "text": "Davulunla üç kum kalesini dans ettir",
+      "type": "ritim",
+      "target": "kale",
+      "count": 3
+    },
+    {
+      "id": "pati",
+      "text": "Pati ile konuş",
+      "type": "talk",
+      "target": "pati"
+    },
+    {
+      "id": "bado",
+      "text": "Bado ile konuş",
+      "type": "talk",
+      "target": "bado"
+    },
+    {
+      "id": "citir",
+      "text": "Çıtır ile konuş",
+      "type": "talk",
+      "target": "citir"
+    },
+    {
+      "id": "lumi",
+      "text": "Lumi ile konuş",
+      "type": "talk",
+      "target": "lumi"
+    }
+  ],
+  "turn_in": "Ateşin yanında Tospik Nine'ye dön",
+  "rewards": {
+    "piril": 15,
+    "xp": 10
+  }
+}

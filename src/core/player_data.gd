@@ -14,7 +14,7 @@ signal skills_changed
 const POTION_SLOTS := 4
 ## Hikâye Taşları in Season 1 (the design's 20 arrive over two seasons).
 const STORY_STONES := 10
-const POTIONS := ["bal_surubu", "yildiz_tozu", "cesaret_sekeri", "pus_kovucu", "nane_sekeri", "papatya_cayi", "sis_kalkani"]
+const POTIONS := ["bal_surubu", "yildiz_tozu", "cesaret_sekeri", "pus_kovucu", "nane_sekeri", "papatya_cayi", "sis_kalkani", "sicak_kakao"]
 
 var character_id := "fistik"
 var character_name := "Fıstık"
@@ -47,6 +47,8 @@ var season := 1
 ## Season 1's keeper {"id", "name", "look"}: Season 2's prologue is played as
 ## Mırıl, then the keepers come back (Sahne 6).
 var s1_keeper: Dictionary = {}
+## The keeper who finished Season 2 (Season 3's prologue is played as Hırıl).
+var s2_keeper: Dictionary = {}
 
 
 # --- stats --------------------------------------------------------------
@@ -402,10 +404,42 @@ func start_season2(item_defs: Dictionary) -> void:
 	piril_changed.emit(piril, 0)
 
 
+## True when this save may start Season 3 (Season 2 done, not started yet).
+func can_start_season3() -> bool:
+	return has_flag("sezon2_bitti") and season < 3
+
+
+## Season 3 (Titrek Kıyılar) starts here: like Season 2, level 1 again with
+## no powers, skills or Pırıl; owned outfits, tools and charms stay. The
+## prologue is played as Hırıl, the little volcano drummer.
+func start_season3(item_defs: Dictionary) -> void:
+	s2_keeper = {"id": character_id, "name": character_name, "look": character_look.duplicate()}
+	season = 3
+	character_id = "hiril"
+	character_name = "Hırıl"
+	character_look = {}
+	level = 1
+	xp = 0
+	powers = {}
+	power_picks = 0
+	skills = []
+	piril = 0
+	base_stats = {"hp": 95, "power": 9, "speed": 6.0}
+	max_mp = 50
+	recompute_stats(item_defs)
+	hp = max_hp
+	mp = max_mp
+	scene_id = "s3_scene1"
+	set_flag("sezon3")
+	stats_changed.emit()
+	skills_changed.emit()
+	piril_changed.emit(piril, 0)
+
+
 # --- save ---------------------------------------------------------------
 
 const SAVE_KEYS := ["character_id", "character_name", "character_look", "scene_id", "level", "xp",
-	"max_hp", "hp", "max_mp", "mp", "power", "speed", "piril", "items", "potions", "skills", "quests", "flags", "sparks", "equipped", "powers", "power_picks", "base_stats", "season", "s1_keeper"]
+	"max_hp", "hp", "max_mp", "mp", "power", "speed", "piril", "items", "potions", "skills", "quests", "flags", "sparks", "equipped", "powers", "power_picks", "base_stats", "season", "s1_keeper", "s2_keeper"]
 
 
 func to_dict() -> Dictionary:

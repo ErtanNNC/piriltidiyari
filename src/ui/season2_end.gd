@@ -69,7 +69,12 @@ func _ready() -> void:
 	buttons.alignment = BoxContainer.ALIGNMENT_CENTER
 	buttons.add_theme_constant_override("separation", int(Tokens.px("space-3")))
 	v.add_child(buttons)
-	var stay := UiKit.button("Köyde dolaş")
+	var s3 := UiKit.button("Sezon 3'e başla")
+	s3.name = "Season3"
+	s3.custom_minimum_size = Vector2(240, 60)
+	s3.pressed.connect(func() -> void: chosen.emit("s3"))
+	buttons.add_child(s3)
+	var stay := UiKit.button("Köyde dolaş", false)
 	stay.custom_minimum_size = Vector2(220, 60)
 	stay.pressed.connect(func() -> void: chosen.emit("s2_chapter0"))
 	buttons.add_child(stay)

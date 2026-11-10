@@ -1,0 +1,112 @@
+{
+  "npc": "tospik_nine",
+  "variants": [
+    {
+      "when": {
+        "quest": "mavi_titreme",
+        "state": "ready"
+      },
+      "lines": [
+        {
+          "speaker": "tospik_nine",
+          "mood": "dertli",
+          "text": "Titrekler evine döndü. Ama sis hâlâ denizden geliyor."
+        },
+        {
+          "speaker": "tospik_nine",
+          "mood": "mutlu",
+          "text": "Al yavrum, sıcacık kakao. Titrersen bir yudum iç."
+        },
+        {
+          "speaker": "hiril",
+          "mood": "kararlı",
+          "text": "Denizden ince bir ses geliyor... Biri ağlıyor gibi."
+        },
+        {
+          "speaker": "tospik_nine",
+          "mood": "kararlı",
+          "text": "O sesin peşinden git. Davulun yolunu bulur."
+        }
+      ],
+      "then": {
+        "complete_quest": "mavi_titreme",
+        "give_items": {
+          "sicak_kakao": 3
+        },
+        "set_flag": "s3_sahne2_bitti"
+      }
+    },
+    {
+      "when": {
+        "quest": "mavi_titreme",
+        "state": "active"
+      },
+      "lines": [
+        {
+          "speaker": "tospik_nine",
+          "mood": "dertli",
+          "text": "Korkan biri kovalanmaz. Önce sakin bir ritim çal."
+        },
+        {
+          "speaker": "tospik_nine",
+          "mood": "sakin",
+          "text": "Durup dinleyince yanına git. Işığın onu ısıtır."
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "davul_gecesi",
+        "state": "ready"
+      },
+      "lines": [
+        {
+          "speaker": "tospik_nine",
+          "mood": "mutlu",
+          "text": "Ah Hırıl! Kaleler dans etti, herkes gülüyor."
+        },
+        {
+          "speaker": "hiril",
+          "mood": "utangaç",
+          "text": "Davulumu böyle özgürce çalmak... Çok güzel."
+        },
+        {
+          "speaker": "tospik_nine",
+          "mood": "sakin",
+          "text": "Bak, deniz de seni dinliyor. Ne kadar sakin..."
+        }
+      ],
+      "then": {
+        "complete_quest": "davul_gecesi",
+        "set_flag": "s3_sahne1_bitti"
+      }
+    },
+    {
+      "when": {
+        "quest": "davul_gecesi",
+        "state": "active"
+      },
+      "lines": [
+        {
+          "speaker": "tospik_nine",
+          "mood": "mutlu",
+          "text": "Kumsalın müzikçisi geldi! Kaleler davul bekliyor."
+        },
+        {
+          "speaker": "tospik_nine",
+          "mood": "sakin",
+          "text": "Ne çok hızlı ne çok yavaş. Düzenli vur, yavrum."
+        }
+      ]
+    },
+    {
+      "lines": [
+        {
+          "speaker": "tospik_nine",
+          "mood": "sakin",
+          "text": "Deniz kokusu, sıcak kakao... Yaz gecesi böyle olur."
+        }
+      ]
+    }
+  ]
+}

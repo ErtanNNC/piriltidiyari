@@ -8,7 +8,7 @@ extends RefCounted
 const STYLE := {
 	"sabah": "hills", "aksam": "hills", "pus": "hills", "kule": "hills",
 	"orman": "forest", "liman": "islands", "dag": "peaks", "kale": "spires",
-	"kanyon": "mesas",
+	"kanyon": "mesas", "kumsal": "hills",
 }
 ## Region kits of real models (FLUX drawings + TRELLIS): pieces along the map
 ## edge, pieces on the horizon, and a ground detail map. A missing file just
@@ -36,6 +36,8 @@ const KITS := {
 		"far": ["volkan_dag", "volkan_sutun"], "far_h": [12.0, 20.0], "ground": "zemin_volkan"},
 	"yol": {"edge": ["koy_kaya", "kanyon_kaya_b", "koy_cali"], "edge_h": [2.6, 4.6],
 		"far": ["dag_zirve", "koy_tepe"], "far_h": [12.0, 20.0], "ground": "zemin_cayir"},
+	"kumsal": {"edge": ["koy_kaya", "gol_saz", "koy_kaya"], "edge_h": [2.2, 3.6],
+		"far": ["koy_tepe", "liman_ada"], "far_h": [12.0, 20.0], "ground": "zemin_kum", "ground_strength": 0.12, "ground_scale": 0.22},
 	"liman": {"far": ["liman_ada"], "far_h": [8.0, 14.0], "far_lift": [-4.0, 6.0], "ground": "zemin_kum"},
 	"magara": {"ground": "zemin_magara"},
 }
@@ -46,6 +48,7 @@ const SCENE_KIT := {
 	"s2_scene1": "koy", "s2_scene2": "koy", "s2_scene3": "yol", "s2_scene4": "yol", "s2_scene5": "yol",
 	"s2_scene6": "koy", "s2_chapter0": "kaplica", "s2_chapter1": "kizil", "s2_chapter2": "gol",
 	"s2_chapter3": "tarla", "s2_chapter4": "kanyon", "s2_chapter5": "volkan", "s2_final": "koy",
+	"s3_scene1": "kumsal", "s3_scene2": "kumsal",
 }
 
 
@@ -57,7 +60,7 @@ static func kit_for(mood: String) -> Dictionary:
 static func add(scene: Node3D, mood: String) -> void:
 	var kit := kit_for(mood)
 	if kit.has("ground"):
-		WorldLook.ground_detail(scene, kit["ground"], 0.22, 0.09)
+		WorldLook.ground_detail(scene, kit["ground"], kit.get("ground_strength", 0.22), kit.get("ground_scale", 0.09))
 	if not STYLE.has(mood):
 		return
 	await scene.get_tree().process_frame

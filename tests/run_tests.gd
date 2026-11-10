@@ -298,7 +298,7 @@ func test_owl_plan() -> void:
 
 
 func test_content_is_valid() -> void:
-	for chapter in ["prologue", "chapter0", "chapter1", "chapter2", "chapter3", "chapter4", "chapter5", "s2_prologue", "s2_chapter0", "s2_chapter1", "s2_chapter2", "s2_chapter3", "s2_chapter4", "s2_chapter5"]:
+	for chapter in ["prologue", "chapter0", "chapter1", "chapter2", "chapter3", "chapter4", "chapter5", "s2_prologue", "s2_chapter0", "s2_chapter1", "s2_chapter2", "s2_chapter3", "s2_chapter4", "s2_chapter5", "s3_prologue"]:
 		_validate_chapter(chapter)
 	test_chapter0_flow()
 	test_chapter1_flow()
@@ -312,6 +312,7 @@ func test_content_is_valid() -> void:
 	test_golem_plan()
 	test_chapter5_and_ending()
 	test_season2()
+	test_season3()
 	test_language()
 
 
@@ -965,8 +966,36 @@ func _validate_chapter(chapter: String) -> void:
 				check(c.items.has(o["item"]), "görev %s: eşya %s" % [q["id"], o["item"]])
 			if o.has("to"):
 				check(c.npcs.has(o["to"]), "görev %s: NPC %s" % [q["id"], o["to"]])
-			check(o.get("type", "deliver") in ["deliver", "defeat", "reach", "talk", "light", "ring", "collect", "breathe", "lull", "win", "listen"], "görev %s: hedef türü" % q["id"])
+			check(o.get("type", "deliver") in ["deliver", "defeat", "reach", "talk", "light", "ring", "collect", "breathe", "lull", "win", "listen", "ritim", "titrek"], "görev %s: hedef türü" % q["id"])
 			if o.get("type", "") == "defeat":
 				check(o["target"] in MobStats.KINDS or o["target"] in ["pus", "kutuk_kral", "kiskac", "ruzgar", "dondurma", "miril"], "görev %s: bilinmeyen mob %s" % [q["id"], o["target"]])
 	c.free()
 	t.free()
+
+
+func test_season3() -> void:
+	print("Sezon 3: Titrek Kıyılar")
+	var d := PlayerData.new()
+	d.choose_keeper("bado", {"can": 3, "guc": 4, "hiz": 5}, {}, "Bado")
+	d.start_season2({})
+	check(not d.can_start_season3(), "Sezon 2 bitmeden Sezon 3 açılmaz")
+	d.set_flag("sezon2_bitti")
+	check(d.can_start_season3(), "Sezon 2 bitince Sezon 3 açılır")
+	d.start_season3({})
+	check(d.season == 3 and not d.can_start_season3() and not d.can_start_season2(), "Sezon 3 başladı")
+	check(d.character_id == "hiril" and d.scene_id == "s3_scene1" and d.level == 1, "Prolog Hırıl ile, Sahne 1'den, seviye 1")
+	check(PlayerData.POTIONS.has("sicak_kakao"), "Sıcak Kakao iksir yuvasına girer")
+	var r := Rhythm.new()
+	var n := 0
+	for i in 4:
+		n = r.beat(10.0 + i * 0.6)
+	check(n == 4, "dört düzenli vuruş: ritim 4")
+	check(r.beat(10.0 + 3 * 0.6 + 0.1) == 1, "aceleci vuruş ritmi baştan başlatır")
+	r.reset()
+	r.beat(1.0); r.beat(1.6)
+	check(r.beat(2.9) == 1, "çok yavaş vuruş ritmi baştan başlatır")
+	r.reset()
+	r.beat(1.0); r.beat(1.5); r.beat(2.0)
+	check(r.beat(2.9) == 2, "aralık birden değişince yeni ritim sayılır")
+	check(ShiverRules.fill(0.0, 1.0, 1.0) > 0.0 and ShiverRules.fill(0.5, 0.0, 1.0) < 0.5, "titreme karanlıkta dolar, ışıkta boşalır")
+	check(ShiverRules.fill(0.5, 1.0, 1.0, true) < 0.5, "el ele tutunca titreme dolmaz")

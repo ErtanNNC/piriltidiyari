@@ -8,6 +8,8 @@ extends CharacterBody3D
 signal focus_changed(target: Node)
 signal fell_asleep
 signal fell_off   ## dropped off the world (e.g. into the clouds)
+## Hırıl (Season 3 prologue) struck: one drum beat.
+signal drummed(streak: int)
 
 const LAYER_WORLD := 1
 const LAYER_LOW_BARRIER := 16   ## beams you can only roll under
@@ -62,6 +64,8 @@ var _stand_shape: CapsuleShape3D
 var _ball_shape: SphereShape3D
 ## Season 2: Sakinleş (breath) and the Öfke barı (see BreathCalm).
 var calm: BreathCalm
+var ring: LightRing   ## Season 3: light ring + Titreme barı
+var rhythm := Rhythm.new()
 ## Mırıl's world ability: holding jump while falling floats down (seconds left).
 var _glide_left := 0.0
 var _glide_fx := 0.0
@@ -89,6 +93,10 @@ func _ready() -> void:
 		calm = BreathCalm.new()
 		calm.name = "BreathCalm"
 		add_child(calm)
+	if GameState.data.season >= 3:
+		ring = LightRing.new()
+		ring.name = "LightRing"
+		add_child(ring)
 	GameState.data.stats_changed.connect(_maybe_rebuild)
 	var sensor := Area3D.new()
 	sensor.collision_layer = 0
@@ -127,6 +135,8 @@ func _physics_process(delta: float) -> void:
 		if calm and calm.is_angry() and dir.length() > 0.1:
 			# kızgın: the steps go a little where they want
 			dir = dir.rotated(Vector3.UP, sin(Time.get_ticks_msec() / 260.0) * 0.6)
+		if ring and ring.is_frozen():
+			dir = Vector3.ZERO   # donakaldı: a deep breath (Sakinleş) thaws
 	var target := dir * speed * slow
 	var grip := acceleration * (0.12 if ice else 1.0)
 	_move.x = move_toward(_move.x, target.x, grip * delta)
@@ -256,8 +266,16 @@ func spin_attack() -> void:
 	_spin_tween.tween_property(model, "rotation:y", start, 0.16).set_trans(Tween.TRANS_BACK)
 	Effects.ring(get_parent(), global_position + Vector3.UP * 0.7 + _facing() * 0.5, ATTACK_RADIUS * 0.8, Color(1, 1, 1, 0.8), 0.2)
 	var tool: String = GameState.data.equipped.get("weapon", "")
-	if not GameState.data.has_flag("owned_" + tool) or GameState.data.character_id == "miril":
+	if not GameState.data.has_flag("owned_" + tool) or GameState.data.character_id in ["miril", "hiril"]:
 		tool = ""
+	if GameState.data.character_id == "hiril":
+		# Hırıl drums instead of striking: a beat and a ring of sound
+		Audio.play("drum")
+		var n := rhythm.beat(Time.get_ticks_msec() / 1000.0)
+		if n >= 2:
+			FloatText.spawn(get_parent(), global_position + Vector3.UP * 2.1, "♪".repeat(mini(n, 4)), Tokens.color("spark-yellow") if n >= 4 else Tokens.color("sky"))
+		get_tree().call_group("rhythm_listener", "hear_rhythm", global_position, n)
+		drummed.emit(n)
 	match tool:
 		"yildiz_asasi":
 			# Yıldız Halkası: a wide purple star ring around the keeper
@@ -636,6 +654,12 @@ func drink_potion(slot: int) -> void:
 			calm.cool_down()
 		d.heal(int(def.get("heal", 0)))
 		GameState.toast.emit("Oh, serinledin!", "heart")
+	elif def.get("buff", "") == "sicak":
+		# Sıcak Kakao: the Titreme barı empties, a frozen keeper moves again
+		if ring:
+			ring.warm()
+		d.heal(int(def.get("heal", 0)))
+		GameState.toast.emit("Oh, ısındın!", "heart")
 	elif def.has("heal"):
 		if d.hp >= d.max_hp:
 			GameState.toast.emit("Canın zaten dolu", "heart")
@@ -761,6 +785,12 @@ func _build_model() -> void:
 			l.omni_range = 2.5
 		# a star keeps its own light: the mist never greys Mırıl out
 		MobModels._no_pus(model)
+	elif d.character_id == "hiril":
+		# Season 3's prologue: the little volcano drummer
+		model = HirilModel.build(true)
+		MobModels._no_pus(model)
+		if model.find_child("Rig", true, false) == null:
+			CharacterRig.attach(model)
 	else:
 		model = KeeperModels.build(d.character_id, look)
 	model.rotation.y = yaw

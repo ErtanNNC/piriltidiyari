@@ -1,0 +1,19 @@
+{
+  "npc": "tipis_panda",
+  "variants": [
+    {
+      "lines": [
+        {
+          "speaker": "tipis_panda",
+          "mood": "mutlu",
+          "text": "Eski davulum gibi çalıyorsun! Kulaklarım dans ediyor."
+        },
+        {
+          "speaker": "hiril",
+          "mood": "utangaç",
+          "text": "Sen bana derin nefesi öğrettin. Hâlâ yapıyorum."
+        }
+      ]
+    }
+  ]
+}

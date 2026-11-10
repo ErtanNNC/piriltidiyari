@@ -418,3 +418,34 @@ from exports (`.claude/*` in export_presets.cfg).
   English names follow the story doc's "İngilizce İsimler" tab: Glimmerland
   (app name via `config/name_localized`), the Gloom (Pus), Glim (Pırıl), Peanut,
   Paws, Crunch, Mumble, Granny Shelly, Teacher Hoo, King Stump, Pinch, Gale.
+
+## Season 3 (Titrek Kıyılar)
+
+- Opens after Season 2's ending (flag "sezon2_bitti"): `Season2End` has
+  "Sezon 3'e başla" (`chosen("s3")`), the title shows it while the newest save
+  qualifies (`PlayerData.can_start_season3`). `SeasonFlow.start_season3` →
+  `PlayerData.start_season3`: season 3, level 1, the Season 2 keeper kept in
+  `s2_keeper`, the prologue is played as Hırıl (`character_id` "hiril",
+  `HirilModel.build(true)`). Story doc answers taken as defaults: Tırıl is a
+  jellyfish, Tosbi the 6th keeper later, holding hands is done with NPCs (no
+  co-op), night is story-driven (no clock).
+- Pack `content/s3_prologue/`; scenes share `S3Beach` (src/world/s3_beach.gd:
+  moonlit sand, night sea `WorldLook.water(.., "sea_night")`, campfire, friends
+  `_place_friends`), mood "kumsal" (sky, fireflies, Backdrop kit, ground
+  `zemin_kum` with kit `ground_strength`/`ground_scale`), Decor style "kumsal".
+- Hırıl drums instead of striking: `Player.rhythm` (`Rhythm` in core: steady
+  gaps 0.32–1.15 s, wobble ≤ 0.24) counts the streak; every beat calls
+  `hear_rhythm(from, streak)` on group "rhythm_listener" and emits `drummed(n)`.
+- `s3_scene1` Kumsalda Davul Gecesi: `SandCastle` dances at 4 steady beats
+  (event "ritim"/"kale"), talk to the four keepers (dialogue `advance`),
+  Tospik Nine ends it (`s3_sahne1_bitti`). Check: `--scene=s3_scene1 --demo=drum`.
+- `s3_scene2` Mavi Titreme: blue Pus, torches out. `LightRing` (player child,
+  season ≥ 3) = the keeper's small light + Titreme barı (`ShiverRules`; scene
+  sets `ring.cold`; HUD StatBar "shiver"; full = donakaldın, Sakinleş thaws 3×
+  faster; Sıcak Kakao buff "sicak" → `ring.warm()`). `BeachTorch` ("Yak",
+  event "light"/"mesale", group "light_ring" with `radius`/`lit`). `Titrek`
+  (not a Mob: never attacks, flees and pushes; 3 steady beats within 7 m →
+  "listening"; any light then calms it, a lit torch calms it anyway; event
+  "titrek"/kind and "any"). Check: `--scene=s3_scene2 --demo=shiver`.
+- Models (FLUX + TRELLIS): tiril, tosbi, titrek_yengec, urkek_marti,
+  kum_kalesi, sezlong, kabuk_kayik (mesale has a primitive torch).

@@ -1,0 +1,58 @@
+{
+  "npc": "citir",
+  "variants": [
+    {
+      "when": {
+        "quest": "mavi_titreme",
+        "state": [
+          "active",
+          "ready",
+          "done"
+        ]
+      },
+      "lines": [
+        {
+          "speaker": "citir",
+          "mood": "şaşkın",
+          "text": "Haritamda bu sis yok. Ne garip, ne garip!"
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "davul_gecesi",
+        "state": "active",
+        "objective_not_done": "davul_gecesi/citir"
+      },
+      "lines": [
+        {
+          "speaker": "citir",
+          "mood": "mutlu",
+          "text": "Kumsalın haritasını çizdim. Kaleleri de ekledim!"
+        },
+        {
+          "speaker": "citir",
+          "mood": "mutlu",
+          "text": "Dans eden kaleleri nasıl çizerim acaba?"
+        }
+      ],
+      "then": {
+        "advance": "davul_gecesi/citir"
+      }
+    },
+    {
+      "lines": [
+        {
+          "speaker": "citir",
+          "mood": "mutlu",
+          "text": "Kumsalın haritasını çizdim. Kaleleri de ekledim!"
+        },
+        {
+          "speaker": "citir",
+          "mood": "mutlu",
+          "text": "Dans eden kaleleri nasıl çizerim acaba?"
+        }
+      ]
+    }
+  ]
+}

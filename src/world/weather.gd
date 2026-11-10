@@ -52,6 +52,8 @@ func _ready() -> void:
 			_storm.append(_snow(160, 0.1))
 		"kanyon":
 			_motes(40)
+		"kumsal":
+			_fireflies(18, Color(1.9, 2.2, 1.2))
 		"kale":
 			_mist(14, Color(0.55, 0.42, 0.85, 0.22))
 			_motes(30, true)

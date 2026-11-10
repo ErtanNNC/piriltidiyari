@@ -243,6 +243,14 @@
     "gumbur": {
       "name": "Davulcu Keçi Gümbür",
       "color": "honey"
+    },
+    "tosbi": {
+      "name": "Tosbi",
+      "color": "spark-green"
+    },
+    "tiril": {
+      "name": "Tırıl",
+      "color": "sky"
     }
   }
 }

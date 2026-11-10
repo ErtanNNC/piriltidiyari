@@ -1,0 +1,14 @@
+{
+  "npc": "miril",
+  "variants": [
+    {
+      "lines": [
+        {
+          "speaker": "miril",
+          "mood": "mutlu",
+          "text": "Işık şovumu gördün mü? Senin ritmine göre parlıyorum!"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "id": "s3_prologue",
+  "title": "Titrek Kıyılar",
+  "region": "Gökkuşağı Kumsalı",
+  "theme": "dark",
+  "spark": null,
+  "scenes": [
+    {
+      "id": "s3_scene1",
+      "title": "Kumsalda Davul Gecesi",
+      "teaches": [
+        "yürüme",
+        "davul",
+        "konuşma"
+      ]
+    },
+    {
+      "id": "s3_scene2",
+      "title": "Mavi Titreme",
+      "teaches": [
+        "ışık halkası",
+        "cesaret ritmi",
+        "titreme barı",
+        "Sıcak Kakao"
+      ]
+    }
+  ],
+  "quests": [
+    "davul_gecesi",
+    "mavi_titreme"
+  ],
+  "dialogue": [
+    "tospik_nine",
+    "pati",
+    "bado",
+    "citir",
+    "lumi",
+    "tipis_panda",
+    "fistik",
+    "miril"
+  ],
+  "barks": "barks"
+}

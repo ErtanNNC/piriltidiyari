@@ -1,0 +1,58 @@
+{
+  "npc": "pati",
+  "variants": [
+    {
+      "when": {
+        "quest": "mavi_titreme",
+        "state": [
+          "active",
+          "ready",
+          "done"
+        ]
+      },
+      "lines": [
+        {
+          "speaker": "pati",
+          "mood": "şaşkın",
+          "text": "Bu mavi sis tüylerimi diken diken etti!"
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "davul_gecesi",
+        "state": "active",
+        "objective_not_done": "davul_gecesi/pati"
+      },
+      "lines": [
+        {
+          "speaker": "pati",
+          "mood": "mutlu",
+          "text": "Hırıl, bir ritim daha! Kuyruğum kendiliğinden sallanıyor."
+        },
+        {
+          "speaker": "hiril",
+          "mood": "mutlu",
+          "text": "Sen dans et, ben çalarım!"
+        }
+      ],
+      "then": {
+        "advance": "davul_gecesi/pati"
+      }
+    },
+    {
+      "lines": [
+        {
+          "speaker": "pati",
+          "mood": "mutlu",
+          "text": "Hırıl, bir ritim daha! Kuyruğum kendiliğinden sallanıyor."
+        },
+        {
+          "speaker": "hiril",
+          "mood": "mutlu",
+          "text": "Sen dans et, ben çalarım!"
+        }
+      ]
+    }
+  ]
+}

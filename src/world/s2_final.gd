@@ -219,6 +219,9 @@ func season_end() -> void:
 		get_tree().quit()
 		return
 	var to: String = await panel.chosen
+	if to == "s3":
+		SeasonFlow.start_season3()
+		return
 	SceneFlow.go_to(to, to != "title")
 
 

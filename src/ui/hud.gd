@@ -9,6 +9,7 @@ var _hp: StatBar
 var _mp: StatBar
 var _xp: StatBar
 var _anger: StatBar
+var _shiver: StatBar
 var _kors: KorTracker
 var _level: Label
 var _piril: Label
@@ -96,6 +97,8 @@ func _ready() -> void:
 	_xp = StatBar.new(); _xp.stat = "xp"; bars.add_child(_xp)
 	# Season 2: the Öfke barı, shown while the Kızıl Sis heats the keeper up
 	_anger = StatBar.new(); _anger.stat = "anger"; _anger.visible = false; bars.add_child(_anger)
+	# Season 3: the Titreme barı, out in the dark Mavi Titreme
+	_shiver = StatBar.new(); _shiver.stat = "shiver"; _shiver.visible = false; bars.add_child(_shiver)
 
 	# top-center: spark tracker
 	var tc := CenterContainer.new()
@@ -114,7 +117,7 @@ func _ready() -> void:
 	_kors = KorTracker.new()
 	_kors.alignment = BoxContainer.ALIGNMENT_CENTER
 	# the Kor slots show once Season 2's keeper is on the road
-	_kors.visible = GameState.data.has_flag("s2_prolog_bitti")
+	_kors.visible = GameState.data.has_flag("s2_prolog_bitti") and GameState.data.season == 2
 	top_center.add_child(_kors)
 	_boss = VBoxContainer.new()
 	_boss.visible = false
@@ -501,7 +504,7 @@ func hide_boss() -> void:
 	Audio.boss(false)
 	_boss.visible = false
 	_sparks.visible = GameState.data.season < 2
-	_kors.visible = GameState.data.has_flag("s2_prolog_bitti")
+	_kors.visible = GameState.data.has_flag("s2_prolog_bitti") and GameState.data.season == 2
 	_refresh_quest()
 
 
@@ -780,6 +783,10 @@ func _process(_delta: float) -> void:
 
 
 func _update_anger() -> void:
+	var r: LightRing = _player.ring if _player and is_instance_valid(_player) else null
+	_shiver.visible = r != null and (r.shiver > 0.01 or r.is_frozen())
+	if _shiver.visible:
+		_shiver.set_values(r.shiver * 100.0, 100.0, TranslationServer.translate("Donakaldın!") if r.is_frozen() else TranslationServer.translate("Titreme"))
 	var c: BreathCalm = _player.calm if _player and is_instance_valid(_player) else null
 	_anger.visible = c != null and (c.anger > 0.01 or c.is_angry())
 	if _anger.visible:

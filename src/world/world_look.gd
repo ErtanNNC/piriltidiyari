@@ -23,6 +23,7 @@ const SKIES := {
 	"orman": ["#3d6f62", "#b7d9b8", "#22362e", "#e2f0dc", "#9cbca8", 0.35, 0.0, "#fff6d8", 0.0014, 0.16],
 	"liman": ["#4f9ff0", "#e2f2ff", "#8fc4f2", "#ffffff", "#c6dcf4", 0.5, 0.0, "#fff4d0", 0.0016, 0.2],
 	"dag": ["#8494d4", "#f2e6f2", "#9fadd6", "#ffffff", "#c8cdec", 0.4, 0.1, "#fff0e0", 0.0013, 0.12],
+	"kumsal": ["#1e2a5e", "#5a6aa8", "#141c40", "#8a96c8", "#3a4880", 0.3, 0.75, "#e8eeff", 0.0009, 0.05],
 	"kanyon": ["#d9845e", "#ffe2bf", "#e8a27c", "#fff4e6", "#f2c1a0", 0.4, 0.05, "#fff0d8", 0.0012, 0.14],
 	"kale": ["#100d24", "#4a3f72", "#1e1b30", "#3e3666", "#2a2448", 0.4, 0.85, "#e8e0ff", 0.0009, 0.0],
 }
@@ -135,6 +136,20 @@ static func add(parent: Node, mood: String) -> Environment:
 			sun.light_color = Color("#fff0e0")
 			sun.light_energy = 0.42
 			sun.rotation_degrees = Vector3(-40, 35, 0)
+		"kumsal":
+			# Titrek Kıyılar: a warm summer night on the beach, moonlit
+			env.background_color = Color("#141c40")
+			env.ambient_light_color = Color("#8b9de0")
+			env.ambient_light_energy = 0.3
+			env.glow_intensity = 0.6
+			env.glow_hdr_threshold = 1.0
+			env.fog_enabled = true
+			env.fog_light_color = Color("#2a3870")
+			env.fog_density = 0.006
+			env.fog_sky_affect = 0.0
+			sun.light_color = Color("#b8c8ff")
+			sun.light_energy = 0.26
+			sun.rotation_degrees = Vector3(-48, 150, 0)
 		"kanyon":
 			# Gümbür Kanyonu: warm late afternoon over red sandstone
 			env.background_color = Color("#e8a27c")
@@ -227,6 +242,7 @@ const WATERS := {
 	"lake": ["#4fa3e0", "#d9f3ff", 1.0, 0.03, 1.0, 1.0],
 	"syrup": ["#ff8fbd", "#ffe3f0", 0.45, 0.015, 0.6, 0.8],
 	"ice": ["#b9def2", "#ffffff", 0.12, 0.0, 1.6, 0.7],
+	"sea_night": ["#1d3570", "#7fb2ee", 0.6, 0.06, 1.3, 0.8],
 }
 static var _waters: Dictionary = {}
 

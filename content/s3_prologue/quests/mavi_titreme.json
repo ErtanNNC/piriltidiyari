@@ -1,0 +1,26 @@
+{
+  "id": "mavi_titreme",
+  "title": "Mavi Titreme",
+  "giver": "tospik_nine",
+  "objectives": [
+    {
+      "id": "mesale",
+      "text": "Kumsaldaki üç meşaleyi yak",
+      "type": "light",
+      "target": "mesale",
+      "count": 3
+    },
+    {
+      "id": "titrek",
+      "text": "Titrekleri ritimle durdur, ışığa al",
+      "type": "titrek",
+      "target": "any",
+      "count": 4
+    }
+  ],
+  "turn_in": "Ateşin yanında Tospik Nine'ye dön",
+  "rewards": {
+    "piril": 20,
+    "xp": 20
+  }
+}
