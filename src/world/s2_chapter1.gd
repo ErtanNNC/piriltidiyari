@@ -210,9 +210,17 @@ func _build() -> void:
 	# autumn trees everywhere but on the path, the clearing and the glade
 	var rng := RandomNumberGenerator.new()
 	rng.seed = 21
+	# side-quest spots stay in the open (the tree crowns would hide them
+	# from the camera)
+	var keep_clear: Array[Vector3] = []
+	for e: Array in SideQuests.spots(Content.side, "s2_chapter1"):
+		var at: Array = e[1]["at"]
+		keep_clear.append(Vector3(float(at[0]), 0, float(at[1])))
 	for i in 90:
 		var p := Vector3(rng.randf_range(-24, 24), 0, rng.randf_range(-46, 24))
 		if absf(p.x) < 6.5 or p.distance_to(GLADE) < 12.0 or (absf(p.x) < 10 and p.z > 10) or p.distance_to(BELL_AT) < 4.0:
+			continue
+		if keep_clear.any(func(c: Vector3) -> bool: return p.distance_to(c) < 4.5):
 			continue
 		var tree := Node3D.new()
 		lv.add_child(tree)
