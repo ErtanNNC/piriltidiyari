@@ -8,7 +8,7 @@ metadata={
 "vram_texture": false
 }
 generator_parameters={
-"md5": "0124b184e5a83ba0be9157bdf51dfd5f"
+"md5": "422ebdd1c9ae2fa97af2c360974a277f"
 }
 
 [deps]
@@ -18,9 +18,9 @@ dest_files=["res://.godot/imported/golge_baligi_0.jpg-e2bf8e8056f7a3c803c2eb8cad
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/high_quality=false
-compress/lossy_quality=0.7
+compress/lossy_quality=0.8
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1

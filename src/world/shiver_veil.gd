@@ -30,6 +30,7 @@ func _ready() -> void:
 		puff.material_override = mat
 		puff.set_meta("phase", randf() * TAU)
 	_body = StaticBody3D.new()
+	_body.set_meta("camera_ignore", true)
 	var c := CollisionShape3D.new()
 	var b := BoxShape3D.new()
 	b.size = Vector3(width, 6.0, 1.0)

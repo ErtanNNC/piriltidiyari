@@ -1,0 +1,262 @@
+{
+  "barks": {
+    "s3k5_basla": [
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Kayıp Ada... Her yol birbirine benziyor."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "kararlı",
+        "text": "Dinle! Uzaktan bir davul: bum... bum... Hırıl!"
+      }
+    ],
+    "s3k5_kilit": [
+      {
+        "speaker": "oyuncu",
+        "mood": "dertli",
+        "text": "Fişek sisten sırılsıklam. Önce Hırıl'ı bulmalıyım."
+      }
+    ],
+    "s3k5_fisek": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Fişek yandı! Sis perdesi açılıyor."
+      },
+      {
+        "speaker": "tiril",
+        "mood": "üzgün",
+        "text": "Işık! Çok ışık! Gölgelerim, beni saklayın!"
+      }
+    ],
+    "s3k5_tiril": [
+      {
+        "speaker": "tiril",
+        "mood": "üzgün",
+        "text": "Gelmeyin! Karanlık, uçurum, fırtına... Hepsi burada!"
+      },
+      {
+        "speaker": "hiril",
+        "mood": "sakin",
+        "text": "Bunlar senin değil, bizim korkularımız. Geçer."
+      }
+    ],
+    "s3k5_faz2": [
+      {
+        "speaker": "tiril",
+        "mood": "üzgün",
+        "text": "Yoruldum... Saklanacağım. Kimse beni bulmasın!"
+      },
+      {
+        "speaker": "hiril",
+        "mood": "kararlı",
+        "text": "Saklambaç mı? İyi oynarız. Seni hep bulacağız!"
+      }
+    ],
+    "s3k5_buldum1": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Seni buldum!"
+      },
+      {
+        "speaker": "tiril",
+        "mood": "şaşkın",
+        "text": "Bu... buldun mu? Bir daha saklanırım!"
+      }
+    ],
+    "s3k5_buldum2": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Seni buldum!"
+      },
+      {
+        "speaker": "tiril",
+        "mood": "şaşkın",
+        "text": "Yine mi? Ama çok iyi saklanmıştım..."
+      }
+    ],
+    "s3k5_buldum3": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Seni yine buldum!"
+      },
+      {
+        "speaker": "tiril",
+        "mood": "utangaç",
+        "text": "Her seferinde arıyorsunuz. Hiç vazgeçmiyorsunuz."
+      }
+    ],
+    "s3k5_buldum4": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Buldum! Kaç kere saklanırsan saklan."
+      },
+      {
+        "speaker": "tiril",
+        "mood": "utangaç",
+        "text": "Demek... biri beni hep arıyormuş."
+      }
+    ],
+    "s3k5_halka": [
+      {
+        "speaker": "hiril",
+        "mood": "mutlu",
+        "text": "Herkes el ele! Halka kuruldu."
+      },
+      {
+        "speaker": "tiril",
+        "mood": "üzgün",
+        "text": "Işığım titriyor. Ya yine sönerse?"
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "sakin",
+        "text": "Sönerse biz buradayız. Elimi tut."
+      }
+    ],
+    "s3k5_son": [
+      {
+        "speaker": "tiril",
+        "mood": "mutlu",
+        "text": "Işığım... durdu. Titremiyor!"
+      },
+      {
+        "speaker": "hiril",
+        "mood": "mutlu",
+        "text": "Korkun bitmedi belki. Ama artık yalnız değilsin."
+      },
+      {
+        "speaker": "tiril",
+        "mood": "mutlu",
+        "text": "Kimse karanlıkta yalnız kalmaz. Öyle mi?"
+      }
+    ],
+    "s3k5_inci": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "İnci Beyazı! Beşinci ve son inci."
+      }
+    ],
+    "s3f_1": [
+      {
+        "speaker": "mors_dede",
+        "mood": "mutlu",
+        "text": "Ho ho! Beş inci de geldi. Bıyıklarım sevinçten titriyor!"
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Hadi incileri yerine koyalım, Mors Dede."
+      }
+    ],
+    "s3f_2": [
+      {
+        "speaker": "mors_dede",
+        "mood": "mutlu",
+        "text": "Yandı! Yıllar sonra ilk kez yandı!"
+      },
+      {
+        "speaker": "tosbi",
+        "mood": "mutlu",
+        "text": "Işığı ta denizin öbür ucuna gidiyor!"
+      }
+    ],
+    "s3f_3": [
+      {
+        "speaker": "tiril",
+        "mood": "şaşkın",
+        "text": "O ışıklar... Onlar... annem! Babam!"
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Seni hiç bırakmamışlar. Yıllardır arıyorlarmış."
+      }
+    ],
+    "s3f_4": [
+      {
+        "speaker": "tiril",
+        "mood": "mutlu",
+        "text": "Buradayım! Beni buldular. Siz de buldunuz!"
+      },
+      {
+        "speaker": "hiril",
+        "mood": "mutlu",
+        "text": "Fener Gecesi başlasın! Bum, bum, bum!"
+      }
+    ],
+    "s3f_5": [
+      {
+        "speaker": "miril",
+        "mood": "mutlu",
+        "text": "Ben gökyüzünü aydınlatırım, Tırıl denizi!"
+      },
+      {
+        "speaker": "fistik",
+        "mood": "huysuz",
+        "text": "Bir dahaki sefere tatil yapacağım, haberiniz olsun."
+      }
+    ],
+    "s3f_pati": [
+      {
+        "speaker": "pati",
+        "mood": "mutlu",
+        "text": "Herkes baksın: atlıyorum! Şap! ...Yüzüyorum!"
+      }
+    ],
+    "s3f_bado": [
+      {
+        "speaker": "bado",
+        "mood": "mutlu",
+        "text": "Minnoş uyudu. Gece lambası yok, elim yanında."
+      }
+    ],
+    "s3f_citir": [
+      {
+        "speaker": "citir",
+        "mood": "mutlu",
+        "text": "Haritaya yazdım: Kaybolursan buraya gel."
+      }
+    ],
+    "s3f_lumi": [
+      {
+        "speaker": "lumi",
+        "mood": "mutlu",
+        "text": "Ailem geldi! Işık dansı: ateşböcekleri ve denizanaları!"
+      }
+    ],
+    "s3f_tipis_panda": [
+      {
+        "speaker": "tipis_panda",
+        "mood": "mutlu",
+        "text": "Hırıl, hazır mısın? İlk konserimiz: bir, iki, üç!"
+      }
+    ],
+    "s3f_tosbi": [
+      {
+        "speaker": "tospik_nine",
+        "mood": "mutlu",
+        "text": "Dedenin kabuk kalkanı artık senin, Tosbi."
+      },
+      {
+        "speaker": "tosbi",
+        "mood": "mutlu",
+        "text": "Saklanmak da cesaret. Yeter ki tekrar çıkayım!"
+      }
+    ],
+    "s3f_6": [
+      {
+        "speaker": "fistik",
+        "mood": "şaşkın",
+        "text": "Bu sarmaşık da ne? Dikenleri benimkilere benzemiyor."
+      }
+    ]
+  }
+}

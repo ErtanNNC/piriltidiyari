@@ -1,0 +1,206 @@
+{
+  "npc": "minik_kol",
+  "variants": [
+    {
+      "when": {
+        "quest": "murekkebin_isigi",
+        "state": "ready"
+      },
+      "lines": [
+        {
+          "speaker": "minik_kol",
+          "mood": "mutlu",
+          "text": "Mürekkep amca artık saklanmıyor! Ada ilk kez aydınlık."
+        },
+        {
+          "speaker": "minik_kol",
+          "mood": "sakin",
+          "text": "Küçük bir ışık ve bir arkadaş... Karanlığa bu yetermiş."
+        },
+        {
+          "speaker": "minik_kol",
+          "mood": "kararlı",
+          "text": "Sıradaki inci Rüzgârlı Kayalıklar'da. Kabuk Kayık hazır!"
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "mutlu",
+          "text": "Görüşürüz Minik Kol! Işıklarınız hiç sönmesin."
+        }
+      ],
+      "then": {
+        "complete_quest": "murekkebin_isigi",
+        "set_flag": "s3_bolum1_bitti",
+        "give_items": {
+          "atesbocegi_kavanozu": 1
+        }
+      }
+    },
+    {
+      "when": {
+        "quest": "murekkebin_isigi",
+        "state": "active",
+        "objective_done": "murekkebin_isigi/murekkep"
+      },
+      "lines": [
+        {
+          "speaker": "minik_kol",
+          "mood": "mutlu",
+          "text": "Mürekkep amca gülümsüyor! Kavanozu çok sevdi."
+        },
+        {
+          "speaker": "minik_kol",
+          "mood": "sakin",
+          "text": "İnci orada parlıyor. Hadi, al onu!"
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "murekkebin_isigi",
+        "state": "active",
+        "flag": "s3_fisek1"
+      },
+      "lines": [
+        {
+          "speaker": "minik_kol",
+          "mood": "sakin",
+          "text": "Sis perdesi açıldı. Mürekkep amca kuzeyde, tek başına."
+        },
+        {
+          "speaker": "minik_kol",
+          "mood": "dertli",
+          "text": "Mürekkep püskürtür ama kötü değil. Sadece çok korkuyor."
+        },
+        {
+          "speaker": "minik_kol",
+          "mood": "kararlı",
+          "text": "Yorulunca yanına git, elini uzat."
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "murekkebin_isigi",
+        "state": "active"
+      },
+      "lines": [
+        {
+          "speaker": "minik_kol",
+          "mood": "sakin",
+          "text": "İşaret Fişeği kuzeydeki açıklıkta, ışık yolunun sonunda."
+        },
+        {
+          "speaker": "minik_kol",
+          "mood": "kararlı",
+          "text": "Onu yak, sis çekilsin. Sonra Mürekkep amcaya gideriz."
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "isik_yolu",
+        "state": "ready"
+      },
+      "lines": [
+        {
+          "speaker": "minik_kol",
+          "mood": "mutlu",
+          "text": "Mantarlar yandı! Kardeşim de ateşin başında. Sağ ol!"
+        },
+        {
+          "speaker": "minik_kol",
+          "mood": "dertli",
+          "text": "Ama Mürekkep amca hâlâ saklanıyor. Karanlıktan çok korkuyor."
+        },
+        {
+          "speaker": "minik_kol",
+          "mood": "dertli",
+          "text": "Ürkünce mürekkep püskürtüyor. Ada daha da kararıyor."
+        },
+        {
+          "speaker": "minik_kol",
+          "mood": "kararlı",
+          "text": "Kuzeydeki İşaret Fişeği'ni yak. Sonra ona bir ışık götür."
+        }
+      ],
+      "then": {
+        "complete_quest": "isik_yolu",
+        "start_quest": "murekkebin_isigi"
+      }
+    },
+    {
+      "when": {
+        "quest": "isik_yolu",
+        "state": "active"
+      },
+      "lines": [
+        {
+          "speaker": "minik_kol",
+          "mood": "sakin",
+          "text": "Işık mantarlarını yak. Mürekkep ışıktan çekilir."
+        },
+        {
+          "speaker": "minik_kol",
+          "mood": "sakin",
+          "text": "Kardeşim batıdaki karanlık köşede. Elini uzat, tutar."
+        },
+        {
+          "speaker": "minik_kol",
+          "mood": "sakin",
+          "text": "Titreyenleri görürsen ritim tut. Dinlerler."
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "isik_yolu",
+        "state": "none"
+      },
+      "lines": [
+        {
+          "speaker": "minik_kol",
+          "mood": "şaşkın",
+          "text": "Şşşt! Ben Minik Kol. Burada herkes saklanıyor."
+        },
+        {
+          "speaker": "minik_kol",
+          "mood": "dertli",
+          "text": "Bekçimiz Mürekkep amca her yeri mürekkeple kapladı."
+        },
+        {
+          "speaker": "minik_kol",
+          "mood": "dertli",
+          "text": "Mürekkebe basınca insan buz gibi titriyor. Brr!"
+        },
+        {
+          "speaker": "minik_kol",
+          "mood": "kararlı",
+          "text": "Işık mantarlarını yakar mısın? Işıkta mürekkep çekilir."
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "kararlı",
+          "text": "Yakarız! Kimse karanlıkta tek başına kalmasın."
+        }
+      ],
+      "then": {
+        "start_quest": "isik_yolu"
+      }
+    },
+    {
+      "lines": [
+        {
+          "speaker": "minik_kol",
+          "mood": "mutlu",
+          "text": "Artık saklambacı sadece oyun olsun diye oynuyoruz!"
+        },
+        {
+          "speaker": "minik_kol",
+          "mood": "sakin",
+          "text": "Mürekkep amcanın tılsımlarına baktın mı?"
+        }
+      ]
+    }
+  ]
+}

@@ -8,7 +8,7 @@ metadata={
 "vram_texture": false
 }
 generator_parameters={
-"md5": "97db8ce8dc85500b22d5389e874098ca"
+"md5": "a98d14295ccc7275fb10aa018b7fffd2"
 }
 
 [deps]
@@ -18,9 +18,9 @@ dest_files=["res://.godot/imported/kerpeten_0.jpg-bd5937079f27faac93cb364747faeb
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/high_quality=false
-compress/lossy_quality=0.7
+compress/lossy_quality=0.8
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1

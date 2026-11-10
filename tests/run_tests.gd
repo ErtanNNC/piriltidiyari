@@ -298,7 +298,7 @@ func test_owl_plan() -> void:
 
 
 func test_content_is_valid() -> void:
-	for chapter in ["prologue", "chapter0", "chapter1", "chapter2", "chapter3", "chapter4", "chapter5", "s2_prologue", "s2_chapter0", "s2_chapter1", "s2_chapter2", "s2_chapter3", "s2_chapter4", "s2_chapter5", "s3_prologue"]:
+	for chapter in ["prologue", "chapter0", "chapter1", "chapter2", "chapter3", "chapter4", "chapter5", "s2_prologue", "s2_chapter0", "s2_chapter1", "s2_chapter2", "s2_chapter3", "s2_chapter4", "s2_chapter5", "s3_prologue", "s3_chapter0", "s3_chapter1", "s3_chapter2", "s3_chapter3", "s3_chapter4", "s3_chapter5"]:
 		_validate_chapter(chapter)
 	test_chapter0_flow()
 	test_chapter1_flow()
@@ -999,3 +999,35 @@ func test_season3() -> void:
 	check(r.beat(2.9) == 2, "aralık birden değişince yeni ritim sayılır")
 	check(ShiverRules.fill(0.0, 1.0, 1.0) > 0.0 and ShiverRules.fill(0.5, 0.0, 1.0) < 0.5, "titreme karanlıkta dolar, ışıkta boşalır")
 	check(ShiverRules.fill(0.5, 1.0, 1.0, true) < 0.5, "el ele tutunca titreme dolmaz")
+	# the islands: every keeper gets out of breath, pearls and the boat
+	for id: String in ShorePlan.BOSSES:
+		for p in [1, 2, 3]:
+			check(ShorePlan.cycle(id, p).back() == "tired", "%s: her turun sonunda soluklanır (faz %d)" % [id, p])
+			check(ShorePlan.rest(p) >= 1.0, "%s: saldırılar arası en az 1 sn (faz %d)" % [id, p])
+	check(is_equal_approx(ShorePlan.BEAT, 0.8), "gök gürültüsü vuruşu uyarı süresi kadar")
+	for p in [1, 2, 3]:
+		check(DevGolgePlan.cycle(p).back() == "torch", "Dev Gölge her turun sonunda bir meşale açar (faz %d)" % p)
+	check(DevGolgePlan.SCALE[3] < DevGolgePlan.SCALE[0] * 0.2, "üç meşaleden sonra gölge minicik")
+	var t := PlayerData.new()
+	check(ShoreTravel.destinations(t, "s3_chapter0").is_empty(), "fişek yanmadan kayık bir yere gitmez")
+	t.set_flag("s3_fisek0")
+	check(ShoreTravel.destinations(t, "s3_chapter0") == ["s3_chapter1"], "koyun fişeği Mürekkep Adası'nı açar")
+	t.set_flag("s3_bolum1_bitti")
+	check(ShoreTravel.destinations(t, "s3_chapter1") == ["s3_chapter0", "s3_chapter2"], "bir ada bitince sıradaki açılır")
+	t.set_flag("inci_lacivert")
+	check(ShoreTravel.pearls(t) == 1, "inci sayılır")
+	for k: String in TitrekKinds.KINDS:
+		check(TitrekKinds.speed(k) >= 3.0 and TitrekKinds.speed(k) <= 5.5, "%s: kaçış hızı bekçiden yavaş" % k)
+	for k: String in ["pati", "bado", "citir", "lumi", "tipis_panda", "tosbi"]:
+		var s3k := Skills.season_for(k, 3)
+		check(s3k != "" and s3k != Skills.for_character(k) and s3k != Skills.season_for(k, 2), "%s: Sezon 3 cesaret yeteneği ayrı" % k)
+		var kp := PlayerData.new()
+		kp.season = 3
+		kp.choose_keeper(k, {"can": 3, "guc": 3, "hiz": 3}, {}, k)
+		check(kp.active_skill() == Skills.for_character(k), "%s: Sezon 3 seviye 1'de kendi yeteneği" % k)
+		while kp.level < Skills.S2_LEVEL:
+			kp.add_xp(Progression.xp_to_next(kp.level) - kp.xp)
+		check(kp.active_skill() == s3k, "%s: seviye 5'te cesaret yeteneği" % k)
+	check(Skills.for_character("tosbi") == "kabuk_kalkani", "Tosbi: Kabuk Kalkanı")
+	for id: String in ["sicak_kakao", "atesbocegi_kavanozu", "cesaret_kurabiyesi"]:
+		check(PlayerData.POTIONS.has(id), "%s iksir yuvasına girer" % id)

@@ -1,0 +1,37 @@
+{
+  "id": "tiril",
+  "title": "Seni Buldum",
+  "giver": "hiril",
+  "objectives": [
+    {
+      "id": "fisek",
+      "text": "Kayıp Ada'nın İşaret Fişeği'ni yak",
+      "type": "light",
+      "target": "fisek"
+    },
+    {
+      "id": "saklambac",
+      "text": "Saklanan Tırıl'ı dört kez bul",
+      "type": "collect",
+      "target": "saklambac",
+      "count": 4
+    },
+    {
+      "id": "tiril",
+      "text": "El ele halkanın ortasında Tırıl'a el uzat",
+      "type": "breathe",
+      "target": "tiril"
+    },
+    {
+      "id": "inci",
+      "text": "İnci Beyazı'nı al",
+      "type": "collect",
+      "target": "inci"
+    }
+  ],
+  "turn_in": "Hırıl ile konuş",
+  "rewards": {
+    "piril": 100,
+    "xp": 200
+  }
+}

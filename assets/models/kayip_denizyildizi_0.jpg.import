@@ -8,7 +8,7 @@ metadata={
 "vram_texture": false
 }
 generator_parameters={
-"md5": "625213d6086eb568ba278dc1ef0d9496"
+"md5": "b38070ea08e1fa80a918c993e981e350"
 }
 
 [deps]
@@ -18,9 +18,9 @@ dest_files=["res://.godot/imported/kayip_denizyildizi_0.jpg-053b98f712bc4d819968
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/high_quality=false
-compress/lossy_quality=0.7
+compress/lossy_quality=0.8
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1

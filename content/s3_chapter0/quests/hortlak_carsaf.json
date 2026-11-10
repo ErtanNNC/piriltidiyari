@@ -1,0 +1,24 @@
+{
+  "id": "hortlak_carsaf",
+  "title": "Hortlak Çarşaf",
+  "giver": "mors_dede",
+  "objectives": [
+    {
+      "id": "carsaf",
+      "text": "Çamaşır ipindeki hortlağa el uzat",
+      "type": "breathe",
+      "target": "carsaf"
+    },
+    {
+      "id": "fisek",
+      "text": "Koyun İşaret Fişeği'ni yak",
+      "type": "light",
+      "target": "fisek"
+    }
+  ],
+  "turn_in": "Mors Dede'ye dön",
+  "rewards": {
+    "piril": 40,
+    "xp": 60
+  }
+}

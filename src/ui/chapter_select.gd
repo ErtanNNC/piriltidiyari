@@ -11,7 +11,9 @@ const S1 := ["scene1", "scene2", "scene3", "scene4", "scene5", "scene6", "chapte
 	"chapter2", "chapter3", "chapter4", "chapter5", "final"]
 const S2 := ["s2_scene1", "s2_scene2", "s2_scene3", "s2_scene4", "s2_scene5", "s2_scene6",
 	"s2_chapter0", "s2_chapter1", "s2_chapter2", "s2_chapter3", "s2_chapter4", "s2_chapter5", "s2_final"]
-const KEEPERS := ["pati", "bado", "citir", "lumi", "tipis_panda"]
+const S3 := ["s3_scene1", "s3_scene2", "s3_scene3", "s3_scene4", "s3_scene5", "s3_scene6",
+	"s3_chapter0", "s3_chapter1", "s3_chapter2", "s3_chapter3", "s3_chapter4", "s3_chapter5", "s3_final"]
+const KEEPERS := ["pati", "bado", "citir", "lumi", "tipis_panda", "tosbi"]
 
 var _keeper := "pati"
 var _keeper_buttons := {}
@@ -20,12 +22,14 @@ var _keeper_buttons := {}
 ## Which seasons can be chosen (finished in some save).
 static func open_seasons() -> Array:
 	if DevTools.demo.begins_with("chapters"):
-		return [1, 2]
+		return [1, 2, 3]
 	var out := []
 	if SaveGame.any_has_flag("sezon1_bitti"):
 		out.append(1)
 	if SaveGame.any_has_flag("sezon2_bitti"):
 		out.append(2)
+	if SaveGame.any_has_flag("sezon3_bitti"):
+		out.append(3)
 	return out
 
 
@@ -88,7 +92,7 @@ func _ready() -> void:
 		grid.add_theme_constant_override("h_separation", int(Tokens.px("space-2")))
 		grid.add_theme_constant_override("v_separation", int(Tokens.px("space-2")))
 		list.add_child(grid)
-		for scene: String in (S1 if season == 1 else S2):
+		for scene: String in ([S1, S2, S3][season - 1]):
 			var card: Array = SceneFlow.CARDS.get(scene, ["", scene])
 			var b := UiKit.button("%s\n%s" % [TranslationServer.translate(String(card[0])), TranslationServer.translate(String(card[1]))], false)
 			b.name = "Pick_" + scene

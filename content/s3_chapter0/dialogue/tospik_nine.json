@@ -1,0 +1,31 @@
+{
+  "npc": "tospik_nine",
+  "variants": [
+    {
+      "when": {
+        "flag": "s3_fisek0"
+      },
+      "lines": [
+        {
+          "speaker": "tospik_nine",
+          "mood": "mutlu",
+          "text": "Fişek ne güzel yandı! Kakao da hazır, yavrum."
+        }
+      ]
+    },
+    {
+      "lines": [
+        {
+          "speaker": "tospik_nine",
+          "mood": "sakin",
+          "text": "Ateşin başındayım. Üşürsen gel, ısın."
+        },
+        {
+          "speaker": "tospik_nine",
+          "mood": "sakin",
+          "text": "Korkan birini gördün mü? Elini uzat, yeter."
+        }
+      ]
+    }
+  ]
+}

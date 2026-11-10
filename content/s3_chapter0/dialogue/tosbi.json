@@ -1,0 +1,19 @@
+{
+  "npc": "tosbi",
+  "variants": [
+    {
+      "lines": [
+        {
+          "speaker": "tosbi",
+          "mood": "utangaç",
+          "text": "Ben ateşi beklerim. Sen çağırırsan gelirim!"
+        },
+        {
+          "speaker": "tosbi",
+          "mood": "kararlı",
+          "text": "Korksam bile."
+        }
+      ]
+    }
+  ]
+}

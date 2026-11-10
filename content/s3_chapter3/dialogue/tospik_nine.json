@@ -1,0 +1,203 @@
+{
+  "npc": "tospik_nine",
+  "variants": [
+    {
+      "when": {
+        "quest": "dar_kabuk",
+        "state": "ready"
+      },
+      "lines": [
+        {
+          "speaker": "tospik_nine",
+          "mood": "mutlu",
+          "text": "Kum İncisi! Bikbik de yeni evine sığdı. Aferin yavrum!"
+        },
+        {
+          "speaker": "tospik_nine",
+          "mood": "sakin",
+          "text": "Yeni yer önce korkutur. Sonra bakarsın, ev olmuş."
+        },
+        {
+          "speaker": "tospik_nine",
+          "mood": "kararlı",
+          "text": "Sıradaki inci Fırtına Kayası'nda. Kayık iskelede."
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "kararlı",
+          "text": "Üç inci oldu. Tırıl, az kaldı, geliyoruz!"
+        }
+      ],
+      "then": {
+        "complete_quest": "dar_kabuk",
+        "set_flag": "s3_bolum3_bitti",
+        "give_items": {
+          "sicak_kakao": 2
+        }
+      }
+    },
+    {
+      "when": {
+        "quest": "dar_kabuk",
+        "state": "active",
+        "objective_done": "dar_kabuk/bikbik"
+      },
+      "lines": [
+        {
+          "speaker": "tospik_nine",
+          "mood": "mutlu",
+          "text": "Bikbik sakinleşti! İnci arenanın ortasında parlıyor."
+        },
+        {
+          "speaker": "tospik_nine",
+          "mood": "sakin",
+          "text": "Al onu, sonra yanıma gel."
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "dar_kabuk",
+        "state": "active",
+        "objective_done": "dar_kabuk/fisek"
+      },
+      "lines": [
+        {
+          "speaker": "tospik_nine",
+          "mood": "sakin",
+          "text": "Perde açıldı. Bikbik kuzeyde, eski kabuğunda sıkışmış."
+        },
+        {
+          "speaker": "tospik_nine",
+          "mood": "sakin",
+          "text": "Kızgın değil, yavrum. Korkuyor. Yorulunca elini uzat."
+        }
+      ],
+      "then": {
+        "open_shop": "kum_sepeti"
+      }
+    },
+    {
+      "when": {
+        "quest": "dar_kabuk",
+        "state": "active"
+      },
+      "lines": [
+        {
+          "speaker": "tospik_nine",
+          "mood": "kararlı",
+          "text": "Fişek kumların kuzeyinde. Oklara bak, yolu onlar bilir."
+        },
+        {
+          "speaker": "tospik_nine",
+          "mood": "sakin",
+          "text": "Yol için kakao ister misin?"
+        }
+      ],
+      "then": {
+        "open_shop": "kum_sepeti"
+      }
+    },
+    {
+      "when": {
+        "quest": "kayan_kumlar",
+        "state": "ready"
+      },
+      "lines": [
+        {
+          "speaker": "tospik_nine",
+          "mood": "mutlu",
+          "text": "Meşaleler yandı, yıldızlar havuzunda. Ellerine sağlık!"
+        },
+        {
+          "speaker": "tospik_nine",
+          "mood": "dertli",
+          "text": "Ama kuzeyden tak tak sesler geliyor. Keşiş Yengeç Bikbik."
+        },
+        {
+          "speaker": "tospik_nine",
+          "mood": "dertli",
+          "text": "Eski kabuğuna sığmıyor, bırakmaya da korkuyor. Sıkışmış."
+        },
+        {
+          "speaker": "tospik_nine",
+          "mood": "kararlı",
+          "text": "Önce fişeği yak ki sis açılsın. Sonra ona el uzat."
+        }
+      ],
+      "then": {
+        "complete_quest": "kayan_kumlar",
+        "start_quest": "dar_kabuk"
+      }
+    },
+    {
+      "when": {
+        "quest": "kayan_kumlar",
+        "state": "active"
+      },
+      "lines": [
+        {
+          "speaker": "tospik_nine",
+          "mood": "sakin",
+          "text": "Kum tepesi yürüyünce bekle. Bir geçit kapanır, biri açılır."
+        },
+        {
+          "speaker": "tospik_nine",
+          "mood": "sakin",
+          "text": "Yıldızların elini tut, havuza getir. Yolluk da bende."
+        }
+      ],
+      "then": {
+        "open_shop": "kum_sepeti"
+      }
+    },
+    {
+      "when": {
+        "quest": "kayan_kumlar",
+        "state": "none"
+      },
+      "lines": [
+        {
+          "speaker": "tospik_nine",
+          "mood": "şaşkın",
+          "text": "Aman yavrum! Bu adada kum tepeleri her gece yer değiştirir."
+        },
+        {
+          "speaker": "tospik_nine",
+          "mood": "dertli",
+          "text": "Dün çizdiğim harita bugün tutmuyor. Çıtır görse saçını yolar!"
+        },
+        {
+          "speaker": "tospik_nine",
+          "mood": "dertli",
+          "text": "İki küçük denizyıldızı kumların arasında yolunu kaybetmiş."
+        },
+        {
+          "speaker": "tospik_nine",
+          "mood": "kararlı",
+          "text": "Meşaleleri yak, Titrekleri sakinleştir, yıldızları getir."
+        }
+      ],
+      "then": {
+        "start_quest": "kayan_kumlar"
+      }
+    },
+    {
+      "lines": [
+        {
+          "speaker": "tospik_nine",
+          "mood": "mutlu",
+          "text": "Kumlar yine yürüyor ama artık yol aydınlık, yavrum."
+        },
+        {
+          "speaker": "tospik_nine",
+          "mood": "sakin",
+          "text": "Sepetimde kakao var. Bak istersen."
+        }
+      ],
+      "then": {
+        "open_shop": "kum_sepeti"
+      }
+    }
+  ]
+}

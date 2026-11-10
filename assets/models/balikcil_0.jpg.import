@@ -8,7 +8,7 @@ metadata={
 "vram_texture": false
 }
 generator_parameters={
-"md5": "a7ab3c063242effe3423c6dd019887e0"
+"md5": "973ac908bca72e4a193ce79ee00c6844"
 }
 
 [deps]
@@ -18,9 +18,9 @@ dest_files=["res://.godot/imported/balikcil_0.jpg-af0ba177ce67cd6db881fa779e45b7
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/high_quality=false
-compress/lossy_quality=0.7
+compress/lossy_quality=0.8
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1

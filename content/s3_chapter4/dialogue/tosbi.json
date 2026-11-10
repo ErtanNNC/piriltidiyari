@@ -1,0 +1,183 @@
+{
+  "npc": "tosbi",
+  "variants": [
+    {
+      "when": {
+        "quest": "bagiran_bekci",
+        "state": "ready"
+      },
+      "lines": [
+        {
+          "speaker": "tosbi",
+          "mood": "mutlu",
+          "text": "Gümüş İnci! Fırtına bile ritim tutuyor artık."
+        },
+        {
+          "speaker": "tombik",
+          "mood": "mutlu",
+          "text": "Güm gelince sayıyorum. Bir, iki, üç... Davul gibi!"
+        },
+        {
+          "speaker": "tosbi",
+          "mood": "kararlı",
+          "text": "Geriye tek inci kaldı. Kayıp Ada sisin içinde."
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "kararlı",
+          "text": "Tırıl da orada bir yerde. Hadi, Kabuk Kayık'a!"
+        }
+      ],
+      "then": {
+        "complete_quest": "bagiran_bekci",
+        "set_flag": "s3_bolum4_bitti"
+      }
+    },
+    {
+      "when": {
+        "quest": "bagiran_bekci",
+        "state": "active",
+        "objective_done": "bagiran_bekci/tombik"
+      },
+      "lines": [
+        {
+          "speaker": "tosbi",
+          "mood": "mutlu",
+          "text": "Gümüş İnci orada parlıyor. Al onu!"
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "bagiran_bekci",
+        "state": "active",
+        "flag": "s3_fisek4"
+      },
+      "lines": [
+        {
+          "speaker": "tosbi",
+          "mood": "sakin",
+          "text": "Sis perdesi açıldı. Tombik köprünün ötesinde bağırıyor."
+        },
+        {
+          "speaker": "tosbi",
+          "mood": "kararlı",
+          "text": "Şimşek dört vuruşla gelir. Say, arada koş, yorulunca vur."
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "bagiran_bekci",
+        "state": "active"
+      },
+      "lines": [
+        {
+          "speaker": "tosbi",
+          "mood": "sakin",
+          "text": "Fişek kuzeyde, taş köprünün önünde duruyor."
+        },
+        {
+          "speaker": "tosbi",
+          "mood": "kararlı",
+          "text": "Onu yak ki sis çekilsin, şimşekler denize gitsin."
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "gok_davulu",
+        "state": "ready"
+      },
+      "lines": [
+        {
+          "speaker": "tosbi",
+          "mood": "mutlu",
+          "text": "Yavru iskelede, meşaleler yanıyor. Harikasın!"
+        },
+        {
+          "speaker": "fok_yavrusu",
+          "mood": "utangaç",
+          "text": "Güm deyince saklanıyordum. Sayınca içim rahatladı."
+        },
+        {
+          "speaker": "tosbi",
+          "mood": "kararlı",
+          "text": "Şimdi İşaret Fişeği. Kuzeyde, taş köprünün önünde."
+        },
+        {
+          "speaker": "tosbi",
+          "mood": "dertli",
+          "text": "Sonra Tombik'e gidelim. O hâlâ kulaklarını kapatıyor."
+        }
+      ],
+      "then": {
+        "complete_quest": "gok_davulu",
+        "start_quest": "bagiran_bekci"
+      }
+    },
+    {
+      "when": {
+        "quest": "gok_davulu",
+        "state": "active"
+      },
+      "lines": [
+        {
+          "speaker": "tosbi",
+          "mood": "sakin",
+          "text": "Yerdeki halka dolunca şimşek düşer. Sonra sessizlik gelir."
+        },
+        {
+          "speaker": "tosbi",
+          "mood": "sakin",
+          "text": "Kaya altına şimşek düşmez. Meşaleler de orada."
+        },
+        {
+          "speaker": "tosbi",
+          "mood": "sakin",
+          "text": "Üst Kaya'da bir fok yavrusu saklanıyor. Elini uzat."
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "gok_davulu",
+        "state": "none"
+      },
+      "lines": [
+        {
+          "speaker": "tosbi",
+          "mood": "şaşkın",
+          "text": "Güm! Duydun mu? Bu ada hiç susmuyor."
+        },
+        {
+          "speaker": "tosbi",
+          "mood": "dertli",
+          "text": "Bekçi Fok Tombik her gürültüde bağırıyor. Fırtına büyüyor."
+        },
+        {
+          "speaker": "tosbi",
+          "mood": "kararlı",
+          "text": "Ama şimşek hep sırayla düşüyor. Say: güm, sus, sus, sus."
+        },
+        {
+          "speaker": "tosbi",
+          "mood": "kararlı",
+          "text": "Sessizlikte yürü, kaya altında bekle. Meşaleleri yakalım!"
+        }
+      ],
+      "then": {
+        "start_quest": "gok_davulu"
+      }
+    },
+    {
+      "lines": [
+        {
+          "speaker": "tosbi",
+          "mood": "mutlu",
+          "text": "Güm, sus, sus, sus... Artık ben de ritim tutuyorum!"
+        }
+      ]
+    }
+  ]
+}

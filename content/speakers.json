@@ -251,6 +251,70 @@
     "tiril": {
       "name": "Tırıl",
       "color": "sky"
+    },
+    "mors_dede": {
+      "name": "Mors Dede Bıyık",
+      "color": "sky"
+    },
+    "kerpeten": {
+      "name": "Demirci Kerpeten",
+      "color": "hp"
+    },
+    "dantel": {
+      "name": "Terzi Dantel",
+      "color": "berry"
+    },
+    "olta": {
+      "name": "Balıkçı Olta",
+      "color": "honey"
+    },
+    "koylu": {
+      "name": "Köylü",
+      "color": "sky"
+    },
+    "balikcil": {
+      "name": "Balıkçıl Yavruları",
+      "color": "sky"
+    },
+    "carsaf": {
+      "name": "Hortlak Çarşaf",
+      "color": "sky"
+    },
+    "murekkep": {
+      "name": "Ahtapot Mürekkep",
+      "color": "spark-purple"
+    },
+    "pamuk3": {
+      "name": "Pamuk",
+      "color": "sky"
+    },
+    "bikbik": {
+      "name": "Bikbik",
+      "color": "honey"
+    },
+    "tombik": {
+      "name": "Tombik",
+      "color": "sky"
+    },
+    "fok_yavrusu": {
+      "name": "Fok Yavrusu Pıtır",
+      "color": "sky"
+    },
+    "minik_kol": {
+      "name": "Minik Kol",
+      "color": "spark-purple"
+    },
+    "kardes": {
+      "name": "Kardeş Kol",
+      "color": "sky"
+    },
+    "denizyildizi": {
+      "name": "Kayıp Denizyıldızı",
+      "color": "honey"
+    },
+    "civciv": {
+      "name": "Martı Civciv",
+      "color": "honey"
     }
   }
 }

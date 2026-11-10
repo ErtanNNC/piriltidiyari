@@ -1,0 +1,222 @@
+{
+  "barks": {
+    "s3k3_basla": [
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Değişen Kumlar... Şu kum tepesi az önce orada mıydı?"
+      },
+      {
+        "speaker": "tospik_nine",
+        "mood": "sakin",
+        "text": "Burada kumlar yürür, yavrum. Gel, anlatayım."
+      }
+    ],
+    "s3k3_kum": [
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Kum tepesi kaydı! Bir geçit kapandı, öbürü açıldı."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "kararlı",
+        "text": "Direkteki ok açık geçidi gösteriyor. Oka bakarım!"
+      }
+    ],
+    "s3k3_kilit": [
+      {
+        "speaker": "oyuncu",
+        "mood": "dertli",
+        "text": "Fişeğin içi kum dolmuş. Önce Tospik Nine'nin işini bitireyim."
+      }
+    ],
+    "s3k3_havuz": [
+      {
+        "speaker": "denizyildizi",
+        "mood": "mutlu",
+        "text": "Su! Burası evimiz gibi kokuyor!"
+      },
+      {
+        "speaker": "denizyildizi",
+        "mood": "utangaç",
+        "text": "Kumlar yürüyünce yolu şaşırdık. Elimizi tuttun, teşekkürler!"
+      }
+    ],
+    "s3k3_fisek": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "İşaret Fişeği yandı! Sis kumların üstünden çekiliyor."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "kararlı",
+        "text": "Kuzeydeki perde açıldı. Bikbik orada olmalı."
+      }
+    ],
+    "s3k3_bikbik": [
+      {
+        "speaker": "bikbik",
+        "mood": "şaşkın",
+        "text": "Tak tak! Yaklaşmayın! Kabuğumu almaya mı geldiniz?"
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "sakin",
+        "text": "Almaya gelmedik. Ama bu kabuk sana dar gelmiş, sıkışmışsın."
+      },
+      {
+        "speaker": "bikbik",
+        "mood": "dertli",
+        "text": "Dar değil! Sadece... biraz sıkı. Çıkmam, çıkamam!"
+      }
+    ],
+    "s3k3_bikbik_yorgun": [
+      {
+        "speaker": "bikbik",
+        "mood": "üzgün",
+        "text": "Kıskaçlarım yoruldu... Bu kabuktan başka evim yok ki."
+      }
+    ],
+    "s3k3_bikbik_son": [
+      {
+        "speaker": "bikbik",
+        "mood": "şaşkın",
+        "text": "Kıskacımı tuttun... Kimse tutmamıştı."
+      },
+      {
+        "speaker": "bikbik",
+        "mood": "dertli",
+        "text": "Bu kabukta büyüdüm. Dışarısı çok büyük, çok yeni."
+      },
+      {
+        "speaker": "tosbi",
+        "mood": "kararlı",
+        "text": "Kabuk bir ev değil, bir başlangıç."
+      },
+      {
+        "speaker": "tosbi",
+        "mood": "utangaç",
+        "text": "Ben de kabuğumdan çıkmaya korkardım. Ama bak, buradayım."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Yenisini birlikte seçelim. Biz yanındayız, Bikbik."
+      }
+    ],
+    "s3k3_bikbik_son_tosbi": [
+      {
+        "speaker": "bikbik",
+        "mood": "şaşkın",
+        "text": "Kıskacımı tuttun... Kimse tutmamıştı."
+      },
+      {
+        "speaker": "bikbik",
+        "mood": "dertli",
+        "text": "Bu kabukta büyüdüm. Dışarısı çok büyük, çok yeni."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "kararlı",
+        "text": "Kabuk bir ev değil, bir başlangıç."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "utangaç",
+        "text": "Ben de kabuğumdan çıkmaya korkardım. Ama bak, buradayım."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Yenisini birlikte seçelim. Ben yanındayım, Bikbik."
+      }
+    ],
+    "s3k3_kabuk_pembe": [
+      {
+        "speaker": "bikbik",
+        "mood": "mutlu",
+        "text": "Pembe Sarmal! İçi deniz gibi uğulduyor. Sığdım, sığdım!"
+      },
+      {
+        "speaker": "bikbik",
+        "mood": "utangaç",
+        "text": "Biraz yabancı kokuyor. Ama büyümeye yerim var artık."
+      },
+      {
+        "speaker": "bikbik",
+        "mood": "mutlu",
+        "text": "Eski kabuğumda bir şey saklıyordum. Kum İncisi senin olsun."
+      }
+    ],
+    "s3k3_kabuk_altin": [
+      {
+        "speaker": "bikbik",
+        "mood": "mutlu",
+        "text": "Altın Külah! Kıskaçlarım rahat rahat dönüyor. Tak tak!"
+      },
+      {
+        "speaker": "bikbik",
+        "mood": "utangaç",
+        "text": "Biraz yabancı kokuyor. Ama büyümeye yerim var artık."
+      },
+      {
+        "speaker": "bikbik",
+        "mood": "mutlu",
+        "text": "Eski kabuğumda bir şey saklıyordum. Kum İncisi senin olsun."
+      }
+    ],
+    "s3k3_kabuk_mavi": [
+      {
+        "speaker": "bikbik",
+        "mood": "mutlu",
+        "text": "Mavi Kubbe! Tavanı gökyüzü kadar yüksek. Yankı yapıyor!"
+      },
+      {
+        "speaker": "bikbik",
+        "mood": "utangaç",
+        "text": "Biraz yabancı kokuyor. Ama büyümeye yerim var artık."
+      },
+      {
+        "speaker": "bikbik",
+        "mood": "mutlu",
+        "text": "Eski kabuğumda bir şey saklıyordum. Kum İncisi senin olsun."
+      }
+    ],
+    "s3k3_inci": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Kum İncisi! Avucumda güneşli kum gibi sıcacık."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Bir dakika... İncinin içinde bir şey parlıyor."
+      }
+    ],
+    "s3k3_ani": [
+      {
+        "speaker": "tiril",
+        "mood": "sakin",
+        "text": "Mercan bahçesi... Annem, babam, kardeşlerim. Hep beraberdik."
+      },
+      {
+        "speaker": "tiril",
+        "mood": "mutlu",
+        "text": "Mercanların arasında saklambaç oynardık. Hiç üşümezdim."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Bu Tırıl'ın sesi! İnci onun ilk anısını saklamış."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "kararlı",
+        "text": "Bir ailesi var. Onu bulup evine götüreceğiz."
+      }
+    ]
+  }
+}

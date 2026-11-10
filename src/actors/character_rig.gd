@@ -201,8 +201,15 @@ func _process(delta: float) -> void:
 		_step += delta * 11.0 * (0.6 + 0.4 * _walk)
 	_arms_up = move_toward(_arms_up, 0.0, delta * 3.0)
 	# squash & stretch spring (positive = squashed)
-	_squash_v += (-_squash * 120.0 - _squash_v * 12.0) * delta
-	_squash += _squash_v * delta
+	# (small steps: on a slow frame one big step made the spring blow up and
+	# the model vanish after any landing)
+	var left := minf(delta, 0.25)
+	while left > 0.0:
+		var h := minf(left, 1.0 / 60.0)
+		_squash_v += (-_squash * 120.0 - _squash_v * 12.0) * h
+		_squash += _squash_v * h
+		left -= h
+	_squash = clampf(_squash, -0.4, 0.4)
 	var breath := sin(_t * 2.4 + _phase) * 0.018 * (1.0 - _walk)
 	var sq := _squash + (0.08 if airborne else 0.0) * -1.0
 	var sy := 1.0 + breath - sq

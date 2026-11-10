@@ -1,0 +1,71 @@
+{
+  "barks": {
+    "s3k0_basla": [
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Mercan Koyu... Bütün kapılar kilitli."
+      },
+      {
+        "speaker": "tosbi",
+        "mood": "dertli",
+        "text": "Deniz Feneri sönük. Dedem orada biri yaşar derdi."
+      }
+    ],
+    "s3k0_kilit": [
+      {
+        "speaker": "oyuncu",
+        "mood": "dertli",
+        "text": "Fişek ıslak ve soğuk. Köy korkarken yanmaz bu."
+      }
+    ],
+    "s3k0_carsaf": [
+      {
+        "speaker": "carsaf",
+        "mood": "şaşkın",
+        "text": "Huuu! Huuuu! Buradan gidin, huuu!"
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "kararlı",
+        "text": "Bir hortlak mı? Bakalım yorulunca ne olacak!"
+      }
+    ],
+    "s3k0_carsaf_yorgun": [
+      {
+        "speaker": "carsaf",
+        "mood": "üzgün",
+        "text": "Hu... hu... Yoruldum. Vurmayın artık..."
+      }
+    ],
+    "s3k0_carsaf_son": [
+      {
+        "speaker": "balikcil",
+        "mood": "mutlu",
+        "text": "Hi hi hi! Biziz! Çarşafın altında saklanıyorduk."
+      },
+      {
+        "speaker": "balikcil",
+        "mood": "utangaç",
+        "text": "Karanlıktan korkunca hortlak olduk. Kimse yaklaşmasın diye."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "sakin",
+        "text": "Korkunca saklanmak olur. Ama gelin, ateş sıcak."
+      }
+    ],
+    "s3k0_fisek": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "İşaret Fişeği yandı! Sis denize doğru çekiliyor."
+      },
+      {
+        "speaker": "mors_dede",
+        "mood": "mutlu",
+        "text": "Ho ho! Yıllardır bu koyu böyle aydınlık görmedim!"
+      }
+    ]
+  }
+}

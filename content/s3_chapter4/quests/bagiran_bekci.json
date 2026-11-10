@@ -1,0 +1,30 @@
+{
+  "id": "bagiran_bekci",
+  "title": "Bağıran Bekçi",
+  "giver": "tipis_panda",
+  "objectives": [
+    {
+      "id": "fisek",
+      "text": "Fırtına Kayası'nın İşaret Fişeği'ni yak",
+      "type": "light",
+      "target": "fisek"
+    },
+    {
+      "id": "tombik",
+      "text": "Vuruşları say, yorulan Tombik'e el uzat",
+      "type": "breathe",
+      "target": "tombik"
+    },
+    {
+      "id": "inci",
+      "text": "Gümüş İnci'yi al",
+      "type": "collect",
+      "target": "inci"
+    }
+  ],
+  "turn_in": "Arkadaşınla konuş",
+  "rewards": {
+    "piril": 90,
+    "xp": 220
+  }
+}

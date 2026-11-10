@@ -1,0 +1,213 @@
+{
+  "npc": "paytak",
+  "variants": [
+    {
+      "when": {
+        "quest": "ilk_kanat",
+        "state": "ready"
+      },
+      "lines": [
+        {
+          "speaker": "paytak",
+          "mood": "mutlu",
+          "text": "Vak vak! Pamuk süzüldü! Bunu haritama çizdim bile."
+        },
+        {
+          "speaker": "paytak",
+          "mood": "mutlu",
+          "text": "Fırtına dindi. Kayalıklar ilk kez bu kadar sakin."
+        },
+        {
+          "speaker": "paytak",
+          "mood": "kararlı",
+          "text": "Üçüncü inci Değişen Kumlar'da. Kabuk Kayık iskelede."
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "kararlı",
+          "text": "İki inci tamam. Sıradaki adaya yelken açalım!"
+        }
+      ],
+      "then": {
+        "complete_quest": "ilk_kanat",
+        "set_flag": "s3_bolum2_bitti",
+        "give_items": {
+          "cesaret_kurabiyesi": 2
+        }
+      }
+    },
+    {
+      "when": {
+        "quest": "ilk_kanat",
+        "state": "active",
+        "objective_done": "ilk_kanat/pamuk"
+      },
+      "lines": [
+        {
+          "speaker": "paytak",
+          "mood": "mutlu",
+          "text": "Vak! Turkuaz İnci orada parlıyor. Al bakalım!"
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "ilk_kanat",
+        "state": "active",
+        "flag": "s3_fisek2"
+      },
+      "lines": [
+        {
+          "speaker": "paytak",
+          "mood": "sakin",
+          "text": "Perde açıldı. Yuva, ikinci köprünün öbür ucunda."
+        },
+        {
+          "speaker": "paytak",
+          "mood": "sakin",
+          "text": "Pamuk kızgın değil. Sadece aşağı bakmaya korkuyor."
+        },
+        {
+          "speaker": "paytak",
+          "mood": "mutlu",
+          "text": "Yolluk lazımsa çantam açık."
+        }
+      ],
+      "then": {
+        "open_shop": "paytak"
+      }
+    },
+    {
+      "when": {
+        "quest": "ilk_kanat",
+        "state": "active"
+      },
+      "lines": [
+        {
+          "speaker": "paytak",
+          "mood": "kararlı",
+          "text": "Fişek hemen şurada. Yak ki sis perdesi açılsın."
+        },
+        {
+          "speaker": "paytak",
+          "mood": "mutlu",
+          "text": "Yolluk lazımsa çantam açık."
+        }
+      ],
+      "then": {
+        "open_shop": "paytak"
+      }
+    },
+    {
+      "when": {
+        "quest": "ruzgar_yolu",
+        "state": "ready"
+      },
+      "lines": [
+        {
+          "speaker": "paytak",
+          "mood": "mutlu",
+          "text": "Vak! Meşaleler yandı, civciv yuvasında. Harikasın!"
+        },
+        {
+          "speaker": "paytak",
+          "mood": "dertli",
+          "text": "Ama fırtına dinmiyor. Tepedeki yuvadan esiyor."
+        },
+        {
+          "speaker": "paytak",
+          "mood": "dertli",
+          "text": "Orada Pamuk var. Koca bir albatros yavrusu."
+        },
+        {
+          "speaker": "paytak",
+          "mood": "sakin",
+          "text": "Yüksekten korkuyor. Kanat çırptıkça fırtına kopuyor."
+        },
+        {
+          "speaker": "paytak",
+          "mood": "kararlı",
+          "text": "Fişeği yak, köprüyü geç. Ona bir el lazım."
+        }
+      ],
+      "then": {
+        "complete_quest": "ruzgar_yolu",
+        "start_quest": "ilk_kanat"
+      }
+    },
+    {
+      "when": {
+        "quest": "ruzgar_yolu",
+        "state": "active"
+      },
+      "lines": [
+        {
+          "speaker": "paytak",
+          "mood": "sakin",
+          "text": "Meşaleleri yaka yaka tırman. Işık olan yer güvenli."
+        },
+        {
+          "speaker": "paytak",
+          "mood": "sakin",
+          "text": "Rüzgâr esince kayanın ardında bekle. Sonra yürü."
+        },
+        {
+          "speaker": "paytak",
+          "mood": "mutlu",
+          "text": "Düşersen korkma. Aşağısı yumuşak, merdiven de orada."
+        }
+      ],
+      "then": {
+        "open_shop": "paytak"
+      }
+    },
+    {
+      "when": {
+        "quest": "ruzgar_yolu",
+        "state": "none"
+      },
+      "lines": [
+        {
+          "speaker": "paytak",
+          "mood": "mutlu",
+          "text": "Vak! Ben Kaşif Paytak. Bu kayalıkların haritasını çiziyorum."
+        },
+        {
+          "speaker": "paytak",
+          "mood": "dertli",
+          "text": "Ama rüzgâr kalemimi bile uçurdu! Tepeden fırtına esiyor."
+        },
+        {
+          "speaker": "paytak",
+          "mood": "dertli",
+          "text": "Köprüler sallanıyor, meşaleler söndü, kuşlar titriyor."
+        },
+        {
+          "speaker": "paytak",
+          "mood": "kararlı",
+          "text": "Yukarı çıkan yolu aydınlatır mısın? Ben de peşinden gelirim."
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "kararlı",
+          "text": "Tamam Paytak. Adım adım, meşale meşale çıkarız."
+        }
+      ],
+      "then": {
+        "start_quest": "ruzgar_yolu"
+      }
+    },
+    {
+      "lines": [
+        {
+          "speaker": "paytak",
+          "mood": "mutlu",
+          "text": "Vak! Kaşif çantamda yolluk var. Bir bak istersen."
+        }
+      ],
+      "then": {
+        "open_shop": "paytak"
+      }
+    }
+  ]
+}

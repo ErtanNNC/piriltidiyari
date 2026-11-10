@@ -1,0 +1,25 @@
+{
+  "shops": {
+    "paytak": {
+      "title": "Paytak'ın Kaşif Çantası",
+      "items": [
+        {
+          "id": "bal_surubu",
+          "price": 15
+        },
+        {
+          "id": "sicak_kakao",
+          "price": 15
+        },
+        {
+          "id": "cesaret_kurabiyesi",
+          "price": 35
+        },
+        {
+          "id": "atesbocegi_kavanozu",
+          "price": 30
+        }
+      ]
+    }
+  }
+}

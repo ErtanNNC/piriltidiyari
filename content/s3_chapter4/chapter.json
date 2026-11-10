@@ -1,0 +1,20 @@
+{
+  "id": "s3_chapter4",
+  "title": "Fırtına Kayası",
+  "region": "Fırtına Kayası",
+  "theme": "dark",
+  "levels": [
+    20,
+    25
+  ],
+  "spark": null,
+  "quests": [
+    "gok_davulu",
+    "bagiran_bekci"
+  ],
+  "dialogue": [
+    "tipis_panda",
+    "tosbi"
+  ],
+  "barks": "barks"
+}

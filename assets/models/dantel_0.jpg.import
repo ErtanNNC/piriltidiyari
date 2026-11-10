@@ -8,7 +8,7 @@ metadata={
 "vram_texture": false
 }
 generator_parameters={
-"md5": "f639a5d3d2cb643f38e3a42d4bac67ab"
+"md5": "b33dd376f94a93523c21b89215f7ae9e"
 }
 
 [deps]
@@ -18,9 +18,9 @@ dest_files=["res://.godot/imported/dantel_0.jpg-6ed7a1093d3f90555de9402ffe936792
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/high_quality=false
-compress/lossy_quality=0.7
+compress/lossy_quality=0.8
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1

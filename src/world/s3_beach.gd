@@ -38,6 +38,7 @@ static func build_beach(scene: Node3D) -> Node3D:
 	WorldLook.water(sea, "sea_night")
 	lv.add_child(sea)
 	var wall := StaticBody3D.new()
+	wall.set_meta("camera_ignore", true)
 	var wc := CollisionShape3D.new()
 	var wb := BoxShape3D.new()
 	wb.size = Vector3(60, 6, 1)

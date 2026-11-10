@@ -1,0 +1,21 @@
+{
+  "id": "s3_chapter3",
+  "title": "Değişen Kumlar",
+  "region": "Değişen Kumlar",
+  "theme": "dark",
+  "levels": [
+    15,
+    20
+  ],
+  "spark": null,
+  "quests": [
+    "kayan_kumlar",
+    "dar_kabuk"
+  ],
+  "dialogue": [
+    "tospik_nine",
+    "tosbi"
+  ],
+  "barks": "barks",
+  "shop": "shop"
+}

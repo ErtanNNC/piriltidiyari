@@ -1,0 +1,33 @@
+{
+  "id": "gece_bekcileri",
+  "title": "Gece Bekçileri",
+  "giver": "mors_dede",
+  "objectives": [
+    {
+      "id": "mesale",
+      "text": "Köyün üç meşalesini yak",
+      "type": "light",
+      "target": "mesale",
+      "count": 3
+    },
+    {
+      "id": "el",
+      "text": "Korkan iki köylüyü el ele ateşe getir",
+      "type": "el",
+      "target": "koylu",
+      "count": 2
+    },
+    {
+      "id": "titrek",
+      "text": "Titrekleri ritimle durdur, sakinleştir",
+      "type": "titrek",
+      "target": "any",
+      "count": 4
+    }
+  ],
+  "turn_in": "Deniz Feneri'nde Mors Dede'ye dön",
+  "rewards": {
+    "piril": 30,
+    "xp": 40
+  }
+}

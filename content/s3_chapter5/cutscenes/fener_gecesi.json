@@ -1,0 +1,159 @@
+{
+  "steps": [
+    {
+      "cam": {
+        "pos": [
+          0,
+          6,
+          12
+        ],
+        "look": [
+          2,
+          1.4,
+          -5
+        ],
+        "time": 0
+      }
+    },
+    {
+      "wait": 1.0
+    },
+    {
+      "say": "s3f_1"
+    },
+    {
+      "do": "pearls_to_lamp"
+    },
+    {
+      "cam": {
+        "pos": [
+          2,
+          5,
+          10
+        ],
+        "look": [
+          13,
+          9,
+          -6
+        ],
+        "time": 2.0
+      }
+    },
+    {
+      "wait": 0.6
+    },
+    {
+      "do": "lighthouse_on"
+    },
+    {
+      "wait": 1.6
+    },
+    {
+      "say": "s3f_2"
+    },
+    {
+      "do": "family_arrives"
+    },
+    {
+      "cam": {
+        "pos": [
+          0,
+          5,
+          4
+        ],
+        "look": [
+          0,
+          1,
+          -22
+        ],
+        "time": 2.5
+      }
+    },
+    {
+      "wait": 1.5
+    },
+    {
+      "say": "s3f_3"
+    },
+    {
+      "do": "tiril_to_family"
+    },
+    {
+      "wait": 2.2
+    },
+    {
+      "say": "s3f_4"
+    },
+    {
+      "do": "lanterns_float"
+    },
+    {
+      "do": "three_friends"
+    },
+    {
+      "cam": {
+        "pos": [
+          0,
+          7,
+          13
+        ],
+        "look": [
+          0,
+          1.5,
+          -8
+        ],
+        "time": 2.5
+      }
+    },
+    {
+      "wait": 3.0
+    },
+    {
+      "say": "s3f_5"
+    },
+    {
+      "say": "s3f_{keeper}"
+    },
+    {
+      "wait": 2.0
+    },
+    {
+      "card": [
+        "",
+        "Kimse karanlıkta yalnız kalmaz",
+        "Fener o geceden sonra mavi bir gece lambası gibi parladı."
+      ],
+      "time": 4.0
+    },
+    {
+      "do": "vine_grows"
+    },
+    {
+      "cam": {
+        "pos": [
+          7.5,
+          2.6,
+          2.5
+        ],
+        "look": [
+          5.6,
+          0.8,
+          -1.4
+        ],
+        "time": 2.0
+      }
+    },
+    {
+      "wait": 2.2
+    },
+    {
+      "say": "s3f_6"
+    },
+    {
+      "wait": 1.0
+    },
+    {
+      "do": "season_end"
+    }
+  ]
+}

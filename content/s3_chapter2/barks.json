@@ -1,0 +1,165 @@
+{
+  "barks": {
+    "s3k2_basla": [
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Rüzgârlı Kayalıklar... Kayalar göğe kadar uzanıyor!"
+      },
+      {
+        "speaker": "paytak",
+        "mood": "mutlu",
+        "text": "Vak vak! Bir yolcu! Buraya gel, sana bir şey soracağım."
+      }
+    ],
+    "s3k2_kilit": [
+      {
+        "speaker": "oyuncu",
+        "mood": "dertli",
+        "text": "Fişek rüzgârda sönüyor. Önce Paytak'ın işini bitireyim."
+      }
+    ],
+    "s3k2_ruzgar": [
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Hop! Rüzgâr beni itiyor. Köprü de sallanıyor!"
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "kararlı",
+        "text": "Esince kayanın ardına geçerim. Ya da karşı yürürüm."
+      }
+    ],
+    "s3k2_dustu": [
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Hop! Yumuşak düştüm. Bir şeyim yok."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "kararlı",
+        "text": "Merdivenden yine çıkarım. Bu sefer rüzgârı beklerim."
+      }
+    ],
+    "s3k2_civciv_el": [
+      {
+        "speaker": "civciv",
+        "mood": "dertli",
+        "text": "Cik... Başım dönüyor. Yuvam köprünün öbür ucunda."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "sakin",
+        "text": "Elimi tut. Aşağı bakma, bana bak. Birlikte geçeriz."
+      }
+    ],
+    "s3k2_civciv_yuva": [
+      {
+        "speaker": "civciv",
+        "mood": "mutlu",
+        "text": "Cik cik! Geçtim! El ele köprü kısacıkmış!"
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "İlk sefer hep zor. Bir el tutunca kolaylaşıyor."
+      }
+    ],
+    "s3k2_ust": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Üst kattayım! Buradan bütün deniz görünüyor."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "sakin",
+        "text": "Paytak da geliyor. Fişek tam burada duruyor."
+      }
+    ],
+    "s3k2_fisek": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "İşaret Fişeği yandı! Sis perdesi açılıyor."
+      },
+      {
+        "speaker": "paytak",
+        "mood": "mutlu",
+        "text": "Vak vak! Yuvanın köprüsü göründü!"
+      }
+    ],
+    "s3k2_pamuk": [
+      {
+        "speaker": "pamuk3",
+        "mood": "şaşkın",
+        "text": "Gelmeyin! Yuvadan çıkmam! Aşağısı çok yüksek!"
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "kararlı",
+        "text": "Kanat çırptıkça fırtına kopuyor. Yorulunca yaklaşırım."
+      }
+    ],
+    "s3k2_pamuk_yorgun": [
+      {
+        "speaker": "pamuk3",
+        "mood": "üzgün",
+        "text": "Puf... Kanatlarım yoruldu. Ama içim hâlâ pır pır..."
+      }
+    ],
+    "s3k2_pamuk_son": [
+      {
+        "speaker": "pamuk3",
+        "mood": "utangaç",
+        "text": "Yuvaya sığmıyorum artık. Ama uçmayı hiç denemedim."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "sakin",
+        "text": "İlk sefer tek başına zor olur. Kanadını ver."
+      },
+      {
+        "speaker": "pamuk3",
+        "mood": "şaşkın",
+        "text": "Tutacak mısın? Ama bırakmak yok!"
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "kararlı",
+        "text": "Bırakmak yok. Üç deyince: bir, iki, üüüç!"
+      }
+    ],
+    "s3k2_sustu": [
+      {
+        "speaker": "pamuk3",
+        "mood": "mutlu",
+        "text": "Süzüldüm! Gördün mü? Rüzgâr beni taşıdı!"
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Hem de ilk seferde! El ele her şey daha kolay."
+      },
+      {
+        "speaker": "pamuk3",
+        "mood": "mutlu",
+        "text": "Fırtınam dindi. Al, bu inci yuvamda duruyordu."
+      }
+    ],
+    "s3k2_inci": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Turkuaz İnci! Deniz Feneri'nin ikinci incisi."
+      },
+      {
+        "speaker": "paytak",
+        "mood": "mutlu",
+        "text": "Vak! Haritama yazıyorum: Pamuk bugün uçtu!"
+      }
+    ]
+  }
+}

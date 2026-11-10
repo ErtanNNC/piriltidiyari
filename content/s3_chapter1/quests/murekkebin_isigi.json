@@ -1,0 +1,30 @@
+{
+  "id": "murekkebin_isigi",
+  "title": "Mürekkep'e Bir Işık",
+  "giver": "minik_kol",
+  "objectives": [
+    {
+      "id": "fisek",
+      "text": "Adanın İşaret Fişeği'ni yak",
+      "type": "light",
+      "target": "fisek"
+    },
+    {
+      "id": "murekkep",
+      "text": "Mürekkep yorulunca ona el uzat",
+      "type": "breathe",
+      "target": "murekkep"
+    },
+    {
+      "id": "inci",
+      "text": "Lacivert İnci'yi al",
+      "type": "collect",
+      "target": "inci"
+    }
+  ],
+  "turn_in": "Minik Kol'a dön",
+  "rewards": {
+    "piril": 60,
+    "xp": 120
+  }
+}

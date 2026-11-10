@@ -53,6 +53,7 @@ func land(center: Vector3, size: Vector2, col: Color, top := 0.0, thick := 3.0) 
 func fence(center: Vector3, size: Vector2) -> void:
 	for k in 4:
 		var wall := StaticBody3D.new()
+		wall.set_meta("camera_ignore", true)   # the camera looks over the sea
 		var c := CollisionShape3D.new()
 		var b := BoxShape3D.new()
 		var along_x := k < 2
@@ -264,3 +265,58 @@ func prop(id: String, at: Vector3, h: float, yaw := 0.0) -> Node3D:
 	m.scale = Vector3.ONE * s
 	m.position = -Vector3(b.position.x + b.size.x * 0.5, b.position.y, b.position.z + b.size.z * 0.5) * s
 	return holder
+
+
+# --- demo helpers ---------------------------------------------------------
+
+func _talk(npc_id: String, node_name: String) -> void:
+	var n := get_node(node_name) as Node3D
+	_player.global_position = n.global_position + Vector3(0, 0.3, 1.8)
+	await get_tree().create_timer(0.3).timeout
+	GameState.talk_to(npc_id)
+	await close_dialogs()
+
+
+## Demo: drum every Titrek still, then stand next to it.
+func _calm_all() -> void:
+	for i in 40:
+		var left := get_tree().get_nodes_in_group("titrek").filter(func(t: Titrek) -> bool: return t.state != "calm")
+		if left.is_empty():
+			break
+		var t: Titrek = left[0]
+		_player.global_position = t.global_position + Vector3(0, 0.3, 5.5)
+		for k in 4:
+			_player.spin_attack()
+			await get_tree().create_timer(0.6).timeout
+		_player.global_position = t.global_position + Vector3(0, 0.3, 1.2)
+		await get_tree().create_timer(0.6).timeout
+
+
+## Demo: wait for the fight, hit the keeper whenever it is tired, then hold
+## out a hand (Sakinleş) once it trembles.
+func _beat_boss() -> void:
+	for i in 80:
+		if fighting:
+			break
+		await get_tree().create_timer(0.25).timeout
+	await close_dialogs()
+	for i in 2400:
+		if boss.is_sad or not boss.active and boss.hp <= 0:
+			break
+		if boss.tired:
+			boss.hit(60, _player.global_position, 0.0)
+		await get_tree().create_timer(0.1).timeout
+		if GameState.data.hp < 30:
+			GameState.data.heal(100)
+	await close_dialogs()
+	_player.global_position = boss.global_position + Vector3(0, 0.3, 1.6)
+	await get_tree().create_timer(0.3).timeout
+	Input.action_press("calm")
+	for i in 60:
+		if not boss.is_sad:
+			break
+		await get_tree().create_timer(0.2).timeout
+	Input.action_release("calm")
+	await close_dialogs()
+	await get_tree().create_timer(0.5).timeout
+	await close_dialogs()

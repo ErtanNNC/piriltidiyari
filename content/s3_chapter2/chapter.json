@@ -1,0 +1,20 @@
+{
+  "id": "s3_chapter2",
+  "title": "Rüzgârlı Kayalıklar",
+  "region": "Rüzgârlı Kayalıklar",
+  "theme": "dark",
+  "levels": [
+    10,
+    15
+  ],
+  "spark": null,
+  "quests": [
+    "ruzgar_yolu",
+    "ilk_kanat"
+  ],
+  "dialogue": [
+    "paytak"
+  ],
+  "barks": "barks",
+  "shop": "shop"
+}

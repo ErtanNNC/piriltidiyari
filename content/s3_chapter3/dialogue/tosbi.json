@@ -1,0 +1,36 @@
+{
+  "npc": "tosbi",
+  "variants": [
+    {
+      "when": {
+        "flag": "inci_kum"
+      },
+      "lines": [
+        {
+          "speaker": "tosbi",
+          "mood": "mutlu",
+          "text": "Bikbik yeni kabuğunda dans ediyor! Gördün mü?"
+        },
+        {
+          "speaker": "tosbi",
+          "mood": "kararlı",
+          "text": "Ben de bir gün daha büyük bir kabuk seçeceğim."
+        }
+      ]
+    },
+    {
+      "lines": [
+        {
+          "speaker": "tosbi",
+          "mood": "utangaç",
+          "text": "Kumlar yürüyor... Benim kabuğum en azından yerinde duruyor."
+        },
+        {
+          "speaker": "tosbi",
+          "mood": "kararlı",
+          "text": "Ninemin yanındayım. Çağırırsan gelirim, korksam bile!"
+        }
+      ]
+    }
+  ]
+}

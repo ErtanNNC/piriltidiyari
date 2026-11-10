@@ -80,7 +80,7 @@ func _loop() -> void:
 ## A wide ring round the boss (a frightened shout, a wing clap): get away.
 func _ring() -> void:
 	_busy = true
-	var at := Vector3(global_position.x, 0, global_position.z)
+	var at := global_position
 	Effects.warning(get_parent(), at, ShorePlan.RING_RADIUS, Mob.TELEGRAPH)
 	var tw := create_tween()
 	tw.tween_property(_model, "scale", Vector3(1.2, 0.8, 1.2), Mob.TELEGRAPH)

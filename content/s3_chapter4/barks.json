@@ -1,0 +1,194 @@
+{
+  "barks": {
+    "s3k4_kilit": [
+      {
+        "speaker": "oyuncu",
+        "mood": "dertli",
+        "text": "Fişek ıslak. Önce meşaleler ve yavru, sonra bu."
+      }
+    ],
+    "s3k4_ust": [
+      {
+        "speaker": "fok_yavrusu",
+        "mood": "üzgün",
+        "text": "Güm... Yine güm... Buradan çıkamıyorum."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "sakin",
+        "text": "Elimi tut. Sessizlikte yürür, kaya altında bekleriz."
+      }
+    ],
+    "s3k4_yavru": [
+      {
+        "speaker": "fok_yavrusu",
+        "mood": "mutlu",
+        "text": "Geldik! Bir kere bile çarpmadı. Saymak işe yarıyor!"
+      }
+    ],
+    "s3k4_tombik": [
+      {
+        "speaker": "tombik",
+        "mood": "şaşkın",
+        "text": "GÜM! Aaah, kulaklarım! Susun, susun, SUSUN!"
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "kararlı",
+        "text": "Bağırdıkça fırtına büyüyor. Vuruşları say, arada koş!"
+      }
+    ],
+    "s3k4_tombik_yorgun": [
+      {
+        "speaker": "tombik",
+        "mood": "üzgün",
+        "text": "Ne zaman gürleyecek, bilmiyorum... Çok yoruldum."
+      }
+    ],
+    "s3k4_inci": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Gümüş İnci! Deniz Feneri'nin dördüncü incisi."
+      },
+      {
+        "speaker": "tombik",
+        "mood": "sakin",
+        "text": "Fırtınalı bir gece buradan minik bir ışık geçti. Titriyordu."
+      }
+    ],
+    "s3k4_ani": [
+      {
+        "speaker": "tiril",
+        "mood": "üzgün",
+        "text": "Çok gürültü vardı. Batık bir oyuncak tekneye saklandım."
+      },
+      {
+        "speaker": "tiril",
+        "mood": "üzgün",
+        "text": "Ailem beni aramış. Ama gök gürlerken hiç duymadım."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "sakin",
+        "text": "Seni bulacağız Tırıl. Bu sefer sesimizi duyacaksın."
+      }
+    ],
+    "s3k4_basla": [
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Fırtına Kayası... Şimşek hiç durmuyor!"
+      },
+      {
+        "speaker": "tipis_panda",
+        "mood": "şaşkın",
+        "text": "Güm! Ama dinle... Hep aynı sırayla geliyor."
+      }
+    ],
+    "s3k4_fisek": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "İşaret Fişeği yandı! Şimşekler denize çekildi."
+      },
+      {
+        "speaker": "tipis_panda",
+        "mood": "dertli",
+        "text": "Kuzeyde hâlâ gürlüyor. Tombik bağırdıkça büyüyor."
+      }
+    ],
+    "s3k4_ritim": [
+      {
+        "speaker": "tipis_panda",
+        "mood": "sakin",
+        "text": "Tombik, gök gürültüsü bir davul gibi. Hep sırayla vurur."
+      },
+      {
+        "speaker": "tombik",
+        "mood": "şaşkın",
+        "text": "Davul mu? Ama çok yüksek sesli..."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "kararlı",
+        "text": "Birlikte ritim tutalım. Dört vuruş, sen de say!"
+      }
+    ],
+    "s3k4_ritim_son": [
+      {
+        "speaker": "tombik",
+        "mood": "mutlu",
+        "text": "Bir, iki, üç, dört... Güm! Biliyordum, şimdi gelecekti!"
+      },
+      {
+        "speaker": "tipis_panda",
+        "mood": "mutlu",
+        "text": "Ne zaman geleceğini bilince o kadar ürkütmüyor, değil mi?"
+      },
+      {
+        "speaker": "tombik",
+        "mood": "mutlu",
+        "text": "Gök davul çalıyor, ben de sayıyorum. Bu inci senin olsun."
+      }
+    ],
+    "s3k4_basla_t": [
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Fırtına Kayası... Şimşek hiç durmuyor!"
+      },
+      {
+        "speaker": "tosbi",
+        "mood": "şaşkın",
+        "text": "Güm! Ama dinle... Hep aynı sırayla geliyor."
+      }
+    ],
+    "s3k4_fisek_t": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "İşaret Fişeği yandı! Şimşekler denize çekildi."
+      },
+      {
+        "speaker": "tosbi",
+        "mood": "dertli",
+        "text": "Kuzeyde hâlâ gürlüyor. Tombik bağırdıkça büyüyor."
+      }
+    ],
+    "s3k4_ritim_t": [
+      {
+        "speaker": "tosbi",
+        "mood": "sakin",
+        "text": "Tombik, gök gürültüsü bir davul gibi. Hep sırayla vurur."
+      },
+      {
+        "speaker": "tombik",
+        "mood": "şaşkın",
+        "text": "Davul mu? Ama çok yüksek sesli..."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "kararlı",
+        "text": "Birlikte ritim tutalım. Dört vuruş, sen de say!"
+      }
+    ],
+    "s3k4_ritim_son_t": [
+      {
+        "speaker": "tombik",
+        "mood": "mutlu",
+        "text": "Bir, iki, üç, dört... Güm! Biliyordum, şimdi gelecekti!"
+      },
+      {
+        "speaker": "tosbi",
+        "mood": "mutlu",
+        "text": "Ne zaman geleceğini bilince o kadar ürkütmüyor, değil mi?"
+      },
+      {
+        "speaker": "tombik",
+        "mood": "mutlu",
+        "text": "Gök davul çalıyor, ben de sayıyorum. Bu inci senin olsun."
+      }
+    ]
+  }
+}

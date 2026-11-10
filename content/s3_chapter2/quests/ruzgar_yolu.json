@@ -1,0 +1,38 @@
+{
+  "id": "ruzgar_yolu",
+  "title": "Rüzgârın Yolu",
+  "giver": "paytak",
+  "objectives": [
+    {
+      "id": "mesale",
+      "text": "Tırmanış yolundaki altı meşaleyi yak",
+      "type": "light",
+      "target": "mesale",
+      "count": 6
+    },
+    {
+      "id": "titrek",
+      "text": "Titrekleri ritimle durdur, sakinleştir",
+      "type": "titrek",
+      "target": "any",
+      "count": 4
+    },
+    {
+      "id": "civciv",
+      "text": "Başı dönen civcivi el ele köprüden geçir",
+      "type": "el",
+      "target": "civciv"
+    },
+    {
+      "id": "ust",
+      "text": "Rüzgâr tünelinden geç, üst kata çık",
+      "type": "reach",
+      "target": "s3k2_ust"
+    }
+  ],
+  "turn_in": "Üst katta Kaşif Paytak ile konuş",
+  "rewards": {
+    "piril": 60,
+    "xp": 110
+  }
+}

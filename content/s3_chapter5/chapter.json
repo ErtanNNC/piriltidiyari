@@ -1,0 +1,19 @@
+{
+  "id": "s3_chapter5",
+  "title": "Kayıp Ada",
+  "region": "Kayıp Ada",
+  "theme": "dark",
+  "levels": [
+    25,
+    30
+  ],
+  "spark": null,
+  "quests": [
+    "davulun_izi",
+    "tiril"
+  ],
+  "dialogue": [
+    "hiril"
+  ],
+  "barks": "barks"
+}

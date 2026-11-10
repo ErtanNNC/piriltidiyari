@@ -447,5 +447,59 @@ from exports (`.claude/*` in export_presets.cfg).
   (not a Mob: never attacks, flees and pushes; 3 steady beats within 7 m →
   "listening"; any light then calms it, a lit torch calms it anyway; event
   "titrek"/kind and "any"). Check: `--scene=s3_scene2 --demo=shiver`.
-- Models (FLUX + TRELLIS): tiril, tosbi, titrek_yengec, urkek_marti,
-  kum_kalesi, sezlong, kabuk_kayik (mesale has a primitive torch).
+- Every keeper's strike is a beat in Season 3 (`Player.rhythm`); a listening
+  Titrek is in group "dazed", so Sakinleş beside it ("el uzat") calms it too.
+  Titrek kinds/speeds/models: `TitrekKinds` (core). `HandFriend` ("El tut":
+  walks beside you, `ring.holding_hands` = bigger ring and no shiver; at
+  `goal` → event "el"/id). `ShiverVeil` (mist wall: opens hand in hand or by
+  `open()`, flag). `InkPuddle` (dark puddle: `ring.extra_cold` unless a light
+  covers it). `TempLight` (a light for a while; counts as a torch).
+- Prologue 3–6: `s3_scene3` Kıyı Yolu (Tosbi frozen → hand → veil → big torch,
+  level 2 + Hırıl's skill Gümbür Dalgası; `--demo=path`), `s3_scene4` Dev
+  Gölge (`GiantShadow` + `DevGolgePlan`: can't be hit; each round frees a
+  locked `BeachTorch`, each torch lit shrinks the shadow; then a tiny crab by
+  a lantern; `--demo=shadow`), `s3_scene5` cutscene Hırıl'ın Seçimi
+  (`--demo=flow --auto`), `s3_scene6` El Ele: six-keeper select with Tosbi
+  (`content/keepers_s3.json`, `--demo=pick_<id> --auto`), then `PrologueDone`
+  (Season 3 lines) → `s3_chapter0`.
+- Skills: Tosbi's own Kabuk Kalkanı; at level 5 each keeper's courage skill
+  (`Skills.season_for(id, 3)`: Önden Giden, Ayı Kucağı, Fener Fındığı, Gece
+  Lambası, Ritim Kalkanı, Kabuk Yuvası), all in `S3Skills.use`. Potions:
+  Sıcak Kakao, Ateşböceği Kavanozu (buff "isik": ring ×2), Cesaret Kurabiyesi
+  (buff "cesur": `ring.brave_until`).
+- Islands extend `S3Island` (src/world/s3_island.gd): `begin`, `land`,
+  `fence` (invisible sea walls carry meta "camera_ignore": any invisible wall
+  must, or the camera zooms onto the keeper), `dock` (`BoatDock` "Bin" →
+  `ShoreTravel`: an island opens when the one before is done), `torch` (stays
+  lit, flag "<scene>_m<n>"), `titrek(s)`, `flare` (`SignalFlare`, flag
+  `s3_fisek<N>`, event "light"/"fisek"), `veil`, `friend`, `make_boss`
+  (`ShoreBoss` by id from `ShorePlan`: circles, dash, ring, gust, ink,
+  thunder, burrow, tired = hittable; 0 HP → trembles in "dazed" → Sakinleş),
+  `drop_pearl` (flag `inci_<id>`, event "collect"/"inci"; HUD `PearlTracker`),
+  `prop`. Spawn quest things only once their quest is active (calmed early
+  they wouldn't count). Content packs are generated: `tools/s3_packs/c<N>.py`
+  with `tools/s3_pack.py`.
+- Chapters: `s3_chapter0` Mercan Koyu (hub: Mors Dede, Kerpeten, Dantel, Olta;
+  Gece Bekçileri; mini boss Hortlak Çarşaf; `--demo=cove`), `s3_chapter1`
+  Mürekkep Adası (permanent ink + light-mushrooms, Mürekkep gets a jar and
+  keeps a stall), `s3_chapter2` Rüzgârlı Kayalıklar (gusts on bridges, Paytak's
+  shop, Pamuk's first glide), `s3_chapter3` Değişen Kumlar (`ShiftDune` walls
+  that walk on a warned timer, Bikbik picks a new shell, memory card),
+  `s3_chapter4` Fırtına Kayası (thunder rows on the beat, shelters, drum with
+  Tombik, memory card), `s3_chapter5` Kayıp Ada (maze: the drum pulses at the
+  right gate, the wrong one walks you back; boss Tırıl, then Faz 2 hide-and-
+  seek ×4 and the ring of hands; Hırıl → `s3_final`). All: `--demo=island`
+  through `tools/run_demo.sh <scene> <demo> [seconds]` (imports, holds a lock).
+- `s3_final` Fener Gecesi (cutscene `s3_chapter5/cutscenes/fener_gecesi.json`:
+  pearls to the lamp, the lighthouse burns, Tırıl's family, lanterns, keeper
+  beat `s3f_<id>`, next season's seed: a green thorny vine) → `Season3End`
+  (flag `sezon3_bitti`; Bölüm seç lists Season 3). `--demo=run --auto`.
+- English names follow the doc: Shivering Shores, the Blue Shiver,
+  Shiverlings, Tremble (Tırıl), Pebble (Tosbi), Grandpa Whiskers, Inky,
+  Cotton, Shelby, Chubby.
+- Models (FLUX + TRELLIS): every Season 3 character, boss, Titrek kind, prop
+  and island scenery piece has one (no palm: it came out as flat cards). White
+  characters come out with black patches (the local background cut eats the
+  white body): tint the drawing's inside cream first (see pamuk).
+- CharacterRig's squash spring steps in small pieces: on a slow frame one
+  big step blew it up and a bone-animated keeper vanished after any landing.

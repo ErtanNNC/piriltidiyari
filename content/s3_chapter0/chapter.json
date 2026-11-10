@@ -1,0 +1,25 @@
+{
+  "id": "s3_chapter0",
+  "title": "Mercan Koyu",
+  "region": "Mercan Koyu",
+  "theme": "dark",
+  "levels": [
+    1,
+    5
+  ],
+  "spark": null,
+  "quests": [
+    "gece_bekcileri",
+    "hortlak_carsaf"
+  ],
+  "dialogue": [
+    "mors_dede",
+    "kerpeten",
+    "dantel",
+    "olta",
+    "tospik_nine",
+    "tosbi"
+  ],
+  "barks": "barks",
+  "shop": "shop"
+}

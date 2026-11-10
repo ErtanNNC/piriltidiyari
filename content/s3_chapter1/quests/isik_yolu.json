@@ -1,0 +1,32 @@
+{
+  "id": "isik_yolu",
+  "title": "Saklananlara Işık",
+  "giver": "minik_kol",
+  "objectives": [
+    {
+      "id": "mantar",
+      "text": "Altı ışık mantarını yak",
+      "type": "light",
+      "target": "mesale",
+      "count": 6
+    },
+    {
+      "id": "titrek",
+      "text": "Titrekleri ritimle durdur, sakinleştir",
+      "type": "titrek",
+      "target": "any",
+      "count": 5
+    },
+    {
+      "id": "kardes",
+      "text": "Minik Kol'un kardeşini el ele ateşe getir",
+      "type": "el",
+      "target": "kardes"
+    }
+  ],
+  "turn_in": "İskeledeki ateşin yanında Minik Kol'a dön",
+  "rewards": {
+    "piril": 50,
+    "xp": 80
+  }
+}

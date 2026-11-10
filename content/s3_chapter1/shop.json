@@ -1,0 +1,18 @@
+{
+  "shops": {
+    "murekkep": {
+      "title": "Mürekkep'in Tılsım Hokkası",
+      "items": [
+        {
+          "id": "murekkep_tilsimi",
+          "price": 120,
+          "once": true
+        },
+        {
+          "id": "atesbocegi_kavanozu",
+          "price": 30
+        }
+      ]
+    }
+  }
+}

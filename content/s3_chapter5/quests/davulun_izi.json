@@ -1,0 +1,32 @@
+{
+  "id": "davulun_izi",
+  "title": "Davulun İzi",
+  "giver": "hiril",
+  "objectives": [
+    {
+      "id": "mesale",
+      "text": "Yol ayrımlarındaki dört meşaleyi yak",
+      "type": "light",
+      "target": "mesale",
+      "count": 4
+    },
+    {
+      "id": "titrek",
+      "text": "Sisin içindeki Titrekleri sakinleştir",
+      "type": "titrek",
+      "target": "any",
+      "count": 4
+    },
+    {
+      "id": "tekne",
+      "text": "Davulu izle: batık oyuncak tekneye ulaş",
+      "type": "reach",
+      "target": "tekne"
+    }
+  ],
+  "turn_in": "Teknenin yanında Hırıl ile konuş",
+  "rewards": {
+    "piril": 60,
+    "xp": 120
+  }
+}

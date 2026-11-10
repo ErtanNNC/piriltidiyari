@@ -1,0 +1,22 @@
+{
+  "npc": "dantel",
+  "variants": [
+    {
+      "lines": [
+        {
+          "speaker": "dantel",
+          "mood": "mutlu",
+          "text": "Hoş geldin canım! Deniz için şık bir şey diktim."
+        },
+        {
+          "speaker": "dantel",
+          "mood": "sakin",
+          "text": "Şapkalar, pelerinler... Hepsi dantelli."
+        }
+      ],
+      "then": {
+        "open_shop": "dantel"
+      }
+    }
+  ]
+}

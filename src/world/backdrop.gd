@@ -41,7 +41,7 @@ const KITS := {
 	"liman": {"far": ["liman_ada"], "far_h": [8.0, 14.0], "far_lift": [-4.0, 6.0], "ground": "zemin_kum"},
 	"magara": {"ground": "zemin_magara"},
 	# Season 3: islands in the night sea (far pieces only; the sea is the edge)
-	"koy3": {"edge": ["kiyi_kaya", "palmiye", "mercan"], "edge_h": [2.4, 5.0], "far": ["liman_ada", "kayalik_sutun"],
+	"koy3": {"edge": ["kiyi_kaya", "koy_cali", "mercan"], "edge_h": [2.4, 5.0], "far": ["liman_ada", "kayalik_sutun"],
 		"far_h": [10.0, 18.0], "ground": "zemin_kum", "ground_strength": 0.12, "ground_scale": 0.22},
 	"ada_kum": {"far": ["liman_ada", "kayalik_sutun"], "far_h": [9.0, 16.0], "far_lift": [-3.0, 1.0],
 		"ground": "zemin_kum", "ground_strength": 0.12, "ground_scale": 0.22},

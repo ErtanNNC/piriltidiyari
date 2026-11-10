@@ -1,0 +1,30 @@
+{
+  "id": "dar_kabuk",
+  "title": "Dar Gelen Kabuk",
+  "giver": "tospik_nine",
+  "objectives": [
+    {
+      "id": "fisek",
+      "text": "Adanın İşaret Fişeği'ni yak",
+      "type": "light",
+      "target": "fisek"
+    },
+    {
+      "id": "bikbik",
+      "text": "Keşiş Yengeç Bikbik'e el uzat",
+      "type": "breathe",
+      "target": "bikbik"
+    },
+    {
+      "id": "inci",
+      "text": "Kum İncisi'ni al",
+      "type": "collect",
+      "target": "inci"
+    }
+  ],
+  "turn_in": "Tospik Nine'ye dön",
+  "rewards": {
+    "piril": 90,
+    "xp": 150
+  }
+}

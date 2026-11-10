@@ -8,7 +8,7 @@ metadata={
 "vram_texture": false
 }
 generator_parameters={
-"md5": "b85205a4ee6621a2401614a1b74c1147"
+"md5": "f0e4af00f2211d5e7fedb7460be25fa8"
 }
 
 [deps]
@@ -18,9 +18,9 @@ dest_files=["res://.godot/imported/paytak_0.jpg-6f0771741756723162f43a82c67626c1
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/high_quality=false
-compress/lossy_quality=0.7
+compress/lossy_quality=0.8
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1

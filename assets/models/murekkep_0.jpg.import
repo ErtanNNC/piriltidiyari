@@ -8,7 +8,7 @@ metadata={
 "vram_texture": false
 }
 generator_parameters={
-"md5": "43a3c294de826b68211ba2c8e406f136"
+"md5": "b098a6ad425cd9b3a1c2b349c73be083"
 }
 
 [deps]
@@ -18,9 +18,9 @@ dest_files=["res://.godot/imported/murekkep_0.jpg-7be6d9a460b28e7cd60eb3e4d23668
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/high_quality=false
-compress/lossy_quality=0.7
+compress/lossy_quality=0.8
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1

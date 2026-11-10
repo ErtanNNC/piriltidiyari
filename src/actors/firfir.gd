@@ -146,7 +146,7 @@ func _leaves() -> void:
 	var spots: Array[Vector3] = []
 	for i in FirfirPlan.whirls(phase):
 		var off := Vector3.ZERO if i == 0 else Vector3(randf_range(-4, 4), 0, randf_range(-4, 4))
-		spots.append(Vector3(p.global_position.x, 0, p.global_position.z) + off)
+		spots.append(Vector3(p.global_position.x, global_position.y, p.global_position.z) + off)
 	for s in spots:
 		Effects.warning(get_parent(), s, FirfirPlan.LEAF_RADIUS, Mob.TELEGRAPH)
 	var spin := create_tween()
@@ -167,8 +167,8 @@ func _leaves() -> void:
 func _dash() -> void:
 	_busy = true
 	var p := _player()
-	var from := Vector3(global_position.x, 0, global_position.z)
-	var dir := Vector3(p.global_position.x, 0, p.global_position.z) - from
+	var from := global_position   # warnings on the boss's own floor (raised arenas)
+	var dir := Vector3(p.global_position.x, from.y, p.global_position.z) - from
 	dir = dir.normalized() if dir.length() > 0.1 else Vector3.BACK
 	var length := 9.0
 	for k in 5:
@@ -181,7 +181,7 @@ func _dash() -> void:
 	var hit := false
 	var tw := create_tween()
 	tw.tween_method(func(k: float) -> void:
-		global_position = from.lerp(to, k) + Vector3.UP * global_position.y
+		global_position = from.lerp(to, k)
 		if not hit and p.global_position.distance_to(global_position) < 1.3:
 			hit = p.hurt(FirfirPlan.DASH_DAMAGE, global_position), 0.0, 1.0, 0.45)
 	await tw.finished

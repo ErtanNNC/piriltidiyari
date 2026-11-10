@@ -1,0 +1,111 @@
+{
+  "npc": "hiril",
+  "variants": [
+    {
+      "when": {
+        "quest": "tiril",
+        "state": "ready"
+      },
+      "lines": [
+        {
+          "speaker": "hiril",
+          "mood": "mutlu",
+          "text": "Başardın! Tırıl'ın ışığı artık titremiyor."
+        },
+        {
+          "speaker": "tiril",
+          "mood": "utangaç",
+          "text": "Beni buldunuz... Dört kere. Hep buldunuz."
+        },
+        {
+          "speaker": "hiril",
+          "mood": "mutlu",
+          "text": "Davulumu alıyorum. Hadi eve, Fener Gecesi'ne!"
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "mutlu",
+          "text": "Beş inci tamam. Deniz Feneri yeniden yanacak!"
+        }
+      ],
+      "then": {
+        "complete_quest": "tiril",
+        "set_flag": "s3_bolum5_bitti",
+        "goto_scene": "s3_final"
+      }
+    },
+    {
+      "when": {
+        "quest": "tiril",
+        "state": "active",
+        "objective_done": "tiril/tiril"
+      },
+      "lines": [
+        {
+          "speaker": "hiril",
+          "mood": "mutlu",
+          "text": "İnci Beyazı orada parlıyor. Al onu!"
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "tiril",
+        "state": "active"
+      },
+      "lines": [
+        {
+          "speaker": "hiril",
+          "mood": "sakin",
+          "text": "Fişeği yak. Işık gelince Tırıl dışarı bakar."
+        },
+        {
+          "speaker": "hiril",
+          "mood": "sakin",
+          "text": "Ürkünce gölgeler çağırır. Kızma, sadece korkuyor."
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "davulun_izi",
+        "state": "ready"
+      },
+      "lines": [
+        {
+          "speaker": "hiril",
+          "mood": "mutlu",
+          "text": "Geldin! Davulumu duydun, değil mi?"
+        },
+        {
+          "speaker": "hiril",
+          "mood": "sakin",
+          "text": "Tırıl bu teknenin içinde. Günlerdir çalıyorum, çıkmadı."
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "kararlı",
+          "text": "Yalnız değilsin artık. Birlikte bekleyelim."
+        },
+        {
+          "speaker": "hiril",
+          "mood": "kararlı",
+          "text": "Önce adanın fişeğini yak. Sis incelsin."
+        }
+      ],
+      "then": {
+        "complete_quest": "davulun_izi",
+        "start_quest": "tiril"
+      }
+    },
+    {
+      "lines": [
+        {
+          "speaker": "hiril",
+          "mood": "sakin",
+          "text": "Bum... bum... Yavaş çalıyorum ki korkmasın."
+        }
+      ]
+    }
+  ]
+}

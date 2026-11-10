@@ -1,0 +1,34 @@
+{
+  "npc": "murekkep",
+  "variants": [
+    {
+      "when": {
+        "flag": "s3_bolum1_bitti"
+      },
+      "lines": [
+        {
+          "speaker": "murekkep",
+          "mood": "mutlu",
+          "text": "Kavanozum hep yanımda. Mürekkebimle artık tılsım yapıyorum!"
+        },
+        {
+          "speaker": "murekkep",
+          "mood": "sakin",
+          "text": "Karanlık için küçük bir ışık yeter. Bak istersen."
+        }
+      ],
+      "then": {
+        "open_shop": "murekkep"
+      }
+    },
+    {
+      "lines": [
+        {
+          "speaker": "murekkep",
+          "mood": "utangaç",
+          "text": "Işığım yanımda... Teşekkür ederim."
+        }
+      ]
+    }
+  ]
+}

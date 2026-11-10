@@ -1,0 +1,25 @@
+{
+  "shops": {
+    "kum_sepeti": {
+      "title": "Tospik Nine'nin Yolluk Sepeti",
+      "items": [
+        {
+          "id": "sicak_kakao",
+          "price": 15
+        },
+        {
+          "id": "bal_surubu",
+          "price": 15
+        },
+        {
+          "id": "atesbocegi_kavanozu",
+          "price": 30
+        },
+        {
+          "id": "cesaret_kurabiyesi",
+          "price": 35
+        }
+      ]
+    }
+  }
+}

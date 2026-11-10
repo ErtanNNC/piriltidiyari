@@ -55,6 +55,7 @@ func _build() -> void:
 	ModelImport.cover_row(WorldLook.block(lv, Vector3(0, 3.0, -60.2), Vector3(22, 8, 2.4), ROCK_DARK), ["kiyi_kaya", "koy_kaya"], 6.0)
 	for k: Array in [[Vector3(0, 6, 16.5), Vector3(24, 12, 1)], [Vector3(-9.5, 6, -22), Vector3(1, 12, 78)]]:
 		var wall := StaticBody3D.new()
+		wall.set_meta("camera_ignore", true)
 		var c := CollisionShape3D.new()
 		var b := BoxShape3D.new()
 		b.size = k[1]

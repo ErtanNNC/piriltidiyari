@@ -1,0 +1,38 @@
+{
+  "id": "gok_davulu",
+  "title": "Gök Davulu",
+  "giver": "tipis_panda",
+  "objectives": [
+    {
+      "id": "mesale",
+      "text": "Kaya altlarındaki beş meşaleyi yak",
+      "type": "light",
+      "target": "mesale",
+      "count": 5
+    },
+    {
+      "id": "titrek",
+      "text": "Titrekleri ritimle durdur, sakinleştir",
+      "type": "titrek",
+      "target": "any",
+      "count": 4
+    },
+    {
+      "id": "ust_kaya",
+      "text": "Basamaklardan zıplayarak Üst Kaya'ya çık",
+      "type": "reach",
+      "target": "ust_kaya"
+    },
+    {
+      "id": "el",
+      "text": "Fok yavrusunu el ele iskeleye getir",
+      "type": "el",
+      "target": "yavru"
+    }
+  ],
+  "turn_in": "İskelede bekleyen arkadaşına dön",
+  "rewards": {
+    "piril": 70,
+    "xp": 160
+  }
+}

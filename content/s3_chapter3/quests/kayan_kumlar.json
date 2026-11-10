@@ -1,0 +1,33 @@
+{
+  "id": "kayan_kumlar",
+  "title": "Kayan Kumlar",
+  "giver": "tospik_nine",
+  "objectives": [
+    {
+      "id": "mesale",
+      "text": "Kumların arasında altı meşale yak",
+      "type": "light",
+      "target": "mesale",
+      "count": 6
+    },
+    {
+      "id": "titrek",
+      "text": "Titrekleri ritimle durdur, sakinleştir",
+      "type": "titrek",
+      "target": "any",
+      "count": 4
+    },
+    {
+      "id": "el",
+      "text": "İki kayıp denizyıldızını el ele havuza getir",
+      "type": "el",
+      "target": "yildiz",
+      "count": 2
+    }
+  ],
+  "turn_in": "İskelenin yanında Tospik Nine'ye dön",
+  "rewards": {
+    "piril": 70,
+    "xp": 110
+  }
+}

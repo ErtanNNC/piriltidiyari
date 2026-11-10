@@ -1,0 +1,21 @@
+{
+  "id": "s3_chapter1",
+  "title": "Mürekkep Adası",
+  "region": "Mürekkep Adası",
+  "theme": "dark",
+  "levels": [
+    5,
+    10
+  ],
+  "spark": null,
+  "quests": [
+    "isik_yolu",
+    "murekkebin_isigi"
+  ],
+  "dialogue": [
+    "minik_kol",
+    "murekkep"
+  ],
+  "barks": "barks",
+  "shop": "shop"
+}

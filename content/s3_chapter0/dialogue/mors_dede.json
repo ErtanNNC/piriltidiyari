@@ -1,0 +1,165 @@
+{
+  "npc": "mors_dede",
+  "variants": [
+    {
+      "when": {
+        "quest": "hortlak_carsaf",
+        "state": "ready"
+      },
+      "lines": [
+        {
+          "speaker": "mors_dede",
+          "mood": "mutlu",
+          "text": "Ho ho! Fişek yandı, koy aydınlandı. Bıyıklarım titredi!"
+        },
+        {
+          "speaker": "mors_dede",
+          "mood": "dertli",
+          "text": "Ama Fener'in beş incisi denize düştü. Beş adaya dağıldı."
+        },
+        {
+          "speaker": "mors_dede",
+          "mood": "kararlı",
+          "text": "İlk inci Mürekkep Adası'nda. Kabuk Kayık seni bekliyor."
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "kararlı",
+          "text": "Beş inciyi de bulacağız. Hırıl'ı ve Tırıl'ı da!"
+        }
+      ],
+      "then": {
+        "complete_quest": "hortlak_carsaf",
+        "set_flag": "s3_bolum0_bitti",
+        "give_items": {
+          "cesaret_kurabiyesi": 2
+        }
+      }
+    },
+    {
+      "when": {
+        "quest": "hortlak_carsaf",
+        "state": "active",
+        "objective_done": "hortlak_carsaf/carsaf"
+      },
+      "lines": [
+        {
+          "speaker": "mors_dede",
+          "mood": "mutlu",
+          "text": "Hortlak iki yavruymuş demek! Ho ho ho!"
+        },
+        {
+          "speaker": "mors_dede",
+          "mood": "kararlı",
+          "text": "Şimdi fişeği yak. Fenerin dibinde duruyor."
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "hortlak_carsaf",
+        "state": "active"
+      },
+      "lines": [
+        {
+          "speaker": "mors_dede",
+          "mood": "dertli",
+          "text": "Çamaşır ipinde bir hortlak uçuşuyor. Herkes ondan korkuyor."
+        },
+        {
+          "speaker": "mors_dede",
+          "mood": "sakin",
+          "text": "Doğuda, avluda. Yorulunca yanına git, el uzat."
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "gece_bekcileri",
+        "state": "ready"
+      },
+      "lines": [
+        {
+          "speaker": "mors_dede",
+          "mood": "mutlu",
+          "text": "Meşaleler yandı, köylüler ateşin başında. Aferin!"
+        },
+        {
+          "speaker": "mors_dede",
+          "mood": "dertli",
+          "text": "Ama kimse hâlâ kapısını açmıyor. Bir hortlak varmış!"
+        },
+        {
+          "speaker": "mors_dede",
+          "mood": "kararlı",
+          "text": "Çamaşır ipine bak. O gitmeden fişeği yakamam."
+        }
+      ],
+      "then": {
+        "complete_quest": "gece_bekcileri",
+        "start_quest": "hortlak_carsaf"
+      }
+    },
+    {
+      "when": {
+        "quest": "gece_bekcileri",
+        "state": "active"
+      },
+      "lines": [
+        {
+          "speaker": "mors_dede",
+          "mood": "sakin",
+          "text": "Önce meşaleler. Sonra korkan köylüleri ateşe getir."
+        },
+        {
+          "speaker": "mors_dede",
+          "mood": "sakin",
+          "text": "Elini uzat, tutarlar. El ele kimse donakalmaz."
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "gece_bekcileri",
+        "state": "none"
+      },
+      "lines": [
+        {
+          "speaker": "mors_dede",
+          "mood": "mutlu",
+          "text": "Ho! Gökkuşağı Köyü'nün bekçileri! Ben Mors Dede Bıyık."
+        },
+        {
+          "speaker": "mors_dede",
+          "mood": "dertli",
+          "text": "Mavi Titreme geldiğinden beri gece kimse dışarı çıkmıyor."
+        },
+        {
+          "speaker": "mors_dede",
+          "mood": "dertli",
+          "text": "Feneri tek başıma yakamıyorum. İncileri yok artık."
+        },
+        {
+          "speaker": "mors_dede",
+          "mood": "kararlı",
+          "text": "Önce köye ışık lazım. Gece bekçisi olur musun?"
+        }
+      ],
+      "then": {
+        "start_quest": "gece_bekcileri"
+      }
+    },
+    {
+      "lines": [
+        {
+          "speaker": "mors_dede",
+          "mood": "mutlu",
+          "text": "Annemin tarifi: Cesaret Kurabiyesi. Bir bak istersen."
+        }
+      ],
+      "then": {
+        "open_shop": "mors"
+      }
+    }
+  ]
+}

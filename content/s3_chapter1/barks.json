@@ -1,0 +1,143 @@
+{
+  "barks": {
+    "s3k1_basla": [
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Mürekkep Adası... Burası gece gibi kapkara."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "sakin",
+        "text": "Mantarlar sönük. Ateşin yanında minik biri el sallıyor!"
+      }
+    ],
+    "s3k1_bas": [
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Brr! Mürekkebin içi buz gibi. Titreme barım doluyor!"
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "kararlı",
+        "text": "Yanındaki ışık mantarını yakarsam mürekkep çekilir."
+      }
+    ],
+    "s3k1_mantar": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Işık mantarı yandı! Mürekkep ışıktan kaçıyor."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "kararlı",
+        "text": "Işıklı yoldan yürürsem titremem. Hadi sıradakine!"
+      }
+    ],
+    "s3k1_kardes": [
+      {
+        "speaker": "kardes",
+        "mood": "utangaç",
+        "text": "Elin sıcacık... Karanlık artık o kadar büyük değil."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "sakin",
+        "text": "El ele gidelim. Ateş çok uzak değil."
+      }
+    ],
+    "s3k1_kardes_geldi": [
+      {
+        "speaker": "kardes",
+        "mood": "mutlu",
+        "text": "Ateş! Minik Kol! Geldim! El ele hiç titremedim."
+      }
+    ],
+    "s3k1_kilit": [
+      {
+        "speaker": "oyuncu",
+        "mood": "dertli",
+        "text": "Fişek mürekkep içinde. Önce adaya biraz ışık lazım."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "sakin",
+        "text": "Minik Kol'un istediklerini bitireyim."
+      }
+    ],
+    "s3k1_fisek": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "İşaret Fişeği yandı! Sis çekiliyor, perde açıldı."
+      },
+      {
+        "speaker": "minik_kol",
+        "mood": "sakin",
+        "text": "Mürekkep amca kuzeyde. Lütfen kızma ona, sadece korkuyor."
+      }
+    ],
+    "s3k1_murekkep": [
+      {
+        "speaker": "murekkep",
+        "mood": "şaşkın",
+        "text": "Yaklaşma! Karanlıkta ne var bilmiyorum! Fışşşt!"
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "kararlı",
+        "text": "Saklanmana gerek yok. Ama önce biraz yorul bakalım!"
+      }
+    ],
+    "s3k1_yorgun": [
+      {
+        "speaker": "murekkep",
+        "mood": "üzgün",
+        "text": "Mürekkebim bitti... Artık saklanamam. Çok karanlık..."
+      }
+    ],
+    "s3k1_kavanoz": [
+      {
+        "speaker": "oyuncu",
+        "mood": "sakin",
+        "text": "Al, bu Ateşböceği Kavanozu senin olsun."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "sakin",
+        "text": "Karanlıkta yanında bir ışık olsun yeter."
+      },
+      {
+        "speaker": "murekkep",
+        "mood": "şaşkın",
+        "text": "Işık... Küçücük ama her yeri görebiliyorum!"
+      },
+      {
+        "speaker": "murekkep",
+        "mood": "utangaç",
+        "text": "Saklandıkça adayı daha da karartmışım. Özür dilerim."
+      }
+    ],
+    "s3k1_inci_dustu": [
+      {
+        "speaker": "murekkep",
+        "mood": "mutlu",
+        "text": "Bunu mürekkebin içinde saklıyordum. Lacivert İnci senin!"
+      }
+    ],
+    "s3k1_inci": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Lacivert İnci! Fener'in ilk incisi bizde."
+      },
+      {
+        "speaker": "minik_kol",
+        "mood": "mutlu",
+        "text": "Başardın! Hadi, yanıma gel!"
+      }
+    ]
+  }
+}

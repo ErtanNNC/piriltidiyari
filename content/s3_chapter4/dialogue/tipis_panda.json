@@ -1,0 +1,183 @@
+{
+  "npc": "tipis_panda",
+  "variants": [
+    {
+      "when": {
+        "quest": "bagiran_bekci",
+        "state": "ready"
+      },
+      "lines": [
+        {
+          "speaker": "tipis_panda",
+          "mood": "mutlu",
+          "text": "Gümüş İnci! Fırtına bile ritim tutuyor artık."
+        },
+        {
+          "speaker": "tombik",
+          "mood": "mutlu",
+          "text": "Güm gelince sayıyorum. Bir, iki, üç... Davul gibi!"
+        },
+        {
+          "speaker": "tipis_panda",
+          "mood": "kararlı",
+          "text": "Geriye tek inci kaldı. Kayıp Ada sisin içinde."
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "kararlı",
+          "text": "Tırıl da orada bir yerde. Hadi, Kabuk Kayık'a!"
+        }
+      ],
+      "then": {
+        "complete_quest": "bagiran_bekci",
+        "set_flag": "s3_bolum4_bitti"
+      }
+    },
+    {
+      "when": {
+        "quest": "bagiran_bekci",
+        "state": "active",
+        "objective_done": "bagiran_bekci/tombik"
+      },
+      "lines": [
+        {
+          "speaker": "tipis_panda",
+          "mood": "mutlu",
+          "text": "Gümüş İnci orada parlıyor. Al onu!"
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "bagiran_bekci",
+        "state": "active",
+        "flag": "s3_fisek4"
+      },
+      "lines": [
+        {
+          "speaker": "tipis_panda",
+          "mood": "sakin",
+          "text": "Sis perdesi açıldı. Tombik köprünün ötesinde bağırıyor."
+        },
+        {
+          "speaker": "tipis_panda",
+          "mood": "kararlı",
+          "text": "Şimşek dört vuruşla gelir. Say, arada koş, yorulunca vur."
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "bagiran_bekci",
+        "state": "active"
+      },
+      "lines": [
+        {
+          "speaker": "tipis_panda",
+          "mood": "sakin",
+          "text": "Fişek kuzeyde, taş köprünün önünde duruyor."
+        },
+        {
+          "speaker": "tipis_panda",
+          "mood": "kararlı",
+          "text": "Onu yak ki sis çekilsin, şimşekler denize gitsin."
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "gok_davulu",
+        "state": "ready"
+      },
+      "lines": [
+        {
+          "speaker": "tipis_panda",
+          "mood": "mutlu",
+          "text": "Yavru iskelede, meşaleler yanıyor. Harikasın!"
+        },
+        {
+          "speaker": "fok_yavrusu",
+          "mood": "utangaç",
+          "text": "Güm deyince saklanıyordum. Sayınca içim rahatladı."
+        },
+        {
+          "speaker": "tipis_panda",
+          "mood": "kararlı",
+          "text": "Şimdi İşaret Fişeği. Kuzeyde, taş köprünün önünde."
+        },
+        {
+          "speaker": "tipis_panda",
+          "mood": "dertli",
+          "text": "Sonra Tombik'e gidelim. O hâlâ kulaklarını kapatıyor."
+        }
+      ],
+      "then": {
+        "complete_quest": "gok_davulu",
+        "start_quest": "bagiran_bekci"
+      }
+    },
+    {
+      "when": {
+        "quest": "gok_davulu",
+        "state": "active"
+      },
+      "lines": [
+        {
+          "speaker": "tipis_panda",
+          "mood": "sakin",
+          "text": "Yerdeki halka dolunca şimşek düşer. Sonra sessizlik gelir."
+        },
+        {
+          "speaker": "tipis_panda",
+          "mood": "sakin",
+          "text": "Kaya altına şimşek düşmez. Meşaleler de orada."
+        },
+        {
+          "speaker": "tipis_panda",
+          "mood": "sakin",
+          "text": "Üst Kaya'da bir fok yavrusu saklanıyor. Elini uzat."
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "gok_davulu",
+        "state": "none"
+      },
+      "lines": [
+        {
+          "speaker": "tipis_panda",
+          "mood": "şaşkın",
+          "text": "Güm! Duydun mu? Bu ada hiç susmuyor."
+        },
+        {
+          "speaker": "tipis_panda",
+          "mood": "dertli",
+          "text": "Bekçi Fok Tombik her gürültüde bağırıyor. Fırtına büyüyor."
+        },
+        {
+          "speaker": "tipis_panda",
+          "mood": "kararlı",
+          "text": "Ama şimşek hep sırayla düşüyor. Say: güm, sus, sus, sus."
+        },
+        {
+          "speaker": "tipis_panda",
+          "mood": "kararlı",
+          "text": "Sessizlikte yürü, kaya altında bekle. Meşaleleri yakalım!"
+        }
+      ],
+      "then": {
+        "start_quest": "gok_davulu"
+      }
+    },
+    {
+      "lines": [
+        {
+          "speaker": "tipis_panda",
+          "mood": "mutlu",
+          "text": "Güm, sus, sus, sus... Artık ben de ritim tutuyorum!"
+        }
+      ]
+    }
+  ]
+}

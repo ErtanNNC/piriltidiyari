@@ -1,0 +1,30 @@
+{
+  "id": "ilk_kanat",
+  "title": "İlk Kanat",
+  "giver": "paytak",
+  "objectives": [
+    {
+      "id": "fisek",
+      "text": "Kayalıkların İşaret Fişeği'ni yak",
+      "type": "light",
+      "target": "fisek"
+    },
+    {
+      "id": "pamuk",
+      "text": "Yuvadaki Pamuk'a el uzat",
+      "type": "breathe",
+      "target": "pamuk"
+    },
+    {
+      "id": "inci",
+      "text": "Turkuaz İnci'yi al",
+      "type": "collect",
+      "target": "inci"
+    }
+  ],
+  "turn_in": "Kaşif Paytak ile konuş",
+  "rewards": {
+    "piril": 90,
+    "xp": 170
+  }
+}

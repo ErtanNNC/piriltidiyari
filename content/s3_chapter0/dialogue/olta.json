@@ -1,0 +1,42 @@
+{
+  "npc": "olta",
+  "variants": [
+    {
+      "when": {
+        "flag": "s3_fisek0"
+      },
+      "lines": [
+        {
+          "speaker": "olta",
+          "mood": "mutlu",
+          "text": "Miyav! Fişek yandı, deniz açıldı. Kayık hazır!"
+        },
+        {
+          "speaker": "olta",
+          "mood": "sakin",
+          "text": "Yol için kavanoz ve kakao al. Denizde gece uzun olur."
+        }
+      ],
+      "then": {
+        "open_shop": "olta"
+      }
+    },
+    {
+      "lines": [
+        {
+          "speaker": "olta",
+          "mood": "dertli",
+          "text": "Miyav... Sis kalkmadan kayık iskeleden çıkmaz."
+        },
+        {
+          "speaker": "olta",
+          "mood": "sakin",
+          "text": "Ama yolluk hazır. Bak istersen."
+        }
+      ],
+      "then": {
+        "open_shop": "olta"
+      }
+    }
+  ]
+}

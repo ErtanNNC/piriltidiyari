@@ -1,0 +1,22 @@
+{
+  "npc": "kerpeten",
+  "variants": [
+    {
+      "lines": [
+        {
+          "speaker": "kerpeten",
+          "mood": "mutlu",
+          "text": "Tak tak! Kıskacım çekiç, örsüm hazır."
+        },
+        {
+          "speaker": "kerpeten",
+          "mood": "mutlu",
+          "text": "Değnek, asa, kılıç... Pırıl'ın varsa bak bakalım."
+        }
+      ],
+      "then": {
+        "open_shop": "kerpeten"
+      }
+    }
+  ]
+}

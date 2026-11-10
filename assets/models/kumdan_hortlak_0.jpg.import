@@ -8,7 +8,7 @@ metadata={
 "vram_texture": false
 }
 generator_parameters={
-"md5": "367e47bfeadaf86efb94142b804aa059"
+"md5": "8da2288329693e286c75206602bb2cb5"
 }
 
 [deps]
@@ -18,9 +18,9 @@ dest_files=["res://.godot/imported/kumdan_hortlak_0.jpg-3ece5a9dc8ddc14c31d3b84d
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/high_quality=false
-compress/lossy_quality=0.7
+compress/lossy_quality=0.8
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1

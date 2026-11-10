@@ -8,7 +8,7 @@ metadata={
 "vram_texture": false
 }
 generator_parameters={
-"md5": "26b29d62fb52bc4175ab4840d5d976fd"
+"md5": "9091ba04aafd9b39cd1ce23e1cd0100f"
 }
 
 [deps]
@@ -18,9 +18,9 @@ dest_files=["res://.godot/imported/kayan_tas_kaplumbagasi_0.jpg-af17fd1885ae218c
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/high_quality=false
-compress/lossy_quality=0.7
+compress/lossy_quality=0.8
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
