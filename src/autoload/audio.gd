@@ -14,7 +14,7 @@ const SCENE_MUSIC := {
 	"title": "title", "scene1": "festival", "scene2": "pus", "scene3": "pus",
 	"scene4": "tower", "scene5": "tower", "scene6": "village", "chapter0": "village",
 	"chapter1": "forest", "chapter2": "cave", "chapter3": "harbor", "chapter4": "mountain",
-	"chapter5": "castle", "final": "festival", "preview": "village", "house": "title",
+	"chapter5": "castle", "final": "festival", "preview": "village",
 	"s3_scene1": "festival", "s3_scene2": "pus",
 	"s3_scene3": "pus", "s3_scene4": "tower", "s3_scene5": "tower", "s3_scene6": "village", "s3_chapter0": "village", "s3_chapter1": "cave", "s3_chapter2": "harbor", "s3_chapter3": "forest", "s3_chapter4": "mountain", "s3_chapter5": "castle", "s3_final": "festival",
 	"s2_scene1": "festival", "s2_scene2": "pus", "s2_scene3": "mountain", "s2_scene4": "tower",
@@ -33,11 +33,15 @@ const SCENE_AMBIENCE := {
 	"s2_chapter2": "lake", "s2_chapter3": "farm", "s2_final": "creek", "final": "creek",
 }
 const AMBIENCE_DB := -17.0
+## the recordings differ in loudness: dB added per loop so each is heard
+const AMBIENCE_LEVEL := {"forest": 8.0, "sea": -1.0}
 ## per-sound loudness in dB (0 = as generated) and how much the pitch may wander
 const LEVEL := {"blip": -9.0, "click": -6.0, "pop": -6.0, "warn": -9.0, "land": -8.0,
 	"jump": -5.0, "jump2": -5.0, "swish": -4.0, "roll": -5.0, "hit": -2.0, "coin": -5.0,
 	"wind": -6.0, "splash": -6.0, "card": -4.0, "fanfare": -3.0, "boss_calm": -3.0,
-	"calm": -4.0, "memory": -4.0, "laugh": -5.0, "page": -4.0, "drum": -2.0, "shop": -5.0}
+	"calm": -4.0, "memory": -4.0, "laugh": -5.0, "page": -4.0, "drum": -7.0, "shop": -5.0,
+	"sleep": -8.0, "fall": -7.0, "stone": -6.0, "heal": -6.0, "bell": -5.0, "crystal": -5.0,
+	"quest": -3.0}
 const PITCH_VAR := {"blip": 0.08, "hit": 0.1, "coin": 0.04, "swish": 0.08, "jump": 0.05,
 	"land": 0.1, "click": 0.05, "pop": 0.08}
 const MUSIC_DB := -9.0
@@ -89,7 +93,12 @@ func _ready() -> void:
 	_amb.bus = "Sfx"
 	_amb.volume_db = -60.0
 	add_child(_amb)
+	# many loud sounds at once (bell + fanfare + music) must not clip the speaker
+	var lim := AudioEffectHardLimiter.new()
+	lim.ceiling_db = -1.0
+	AudioServer.add_bus_effect(0, lim)
 	_load_settings()
+	AudioServer.set_bus_mute(_sfx_bus, not sfx_on)
 	GameState.toast.connect(func(_t: String, _i: String) -> void: play("pop"))
 	GameState.shop_requested.connect(func(_id: String) -> void: play("shop"))
 
@@ -110,8 +119,8 @@ func _process(delta: float) -> void:
 	_lowpass.cutoff_hz = lerpf(_lowpass.cutoff_hz, target, 0.05)
 	# ducking: music dips while someone is talking, so words come first
 	_duck = move_toward(_duck, 1.0 if GameState.in_dialogue else 0.0, delta * 3.0)
-	AudioServer.set_bus_volume_db(_music_bus, linear_to_db(maxf(music_volume, 0.0001)) - 7.0 * _duck)
-	AudioServer.set_bus_volume_db(_sfx_bus, linear_to_db(maxf(sfx_volume, 0.0001)))
+	AudioServer.set_bus_volume_db(_music_bus, linear_to_db(maxf(music_volume * music_volume, 0.0001)) + 1.9 - 7.0 * _duck)
+	AudioServer.set_bus_volume_db(_sfx_bus, linear_to_db(maxf(sfx_volume * sfx_volume, 0.0001)) + 0.9)
 	if GameState.data != _data:
 		_watch(GameState.data)
 
@@ -151,8 +160,14 @@ func play(sound: String, db := 0.0) -> void:
 	var stream := _stream(SFX_DIR + sound + ".wav")
 	if stream == null:
 		return
+	# a free voice first; only when all twelve ring is the oldest one cut
 	var v := _voices[_next_voice]
-	_next_voice = (_next_voice + 1) % VOICES
+	for i in VOICES:
+		var c := _voices[(_next_voice + i) % VOICES]
+		if not c.playing:
+			v = c
+			break
+	_next_voice = (_voices.find(v) + 1) % VOICES
 	v.stream = stream
 	# a little loudness variety too, so repeats don't sound like a machine gun
 	v.volume_db = float(LEVEL.get(sound, 0.0)) + db + randf_range(-1.5, 0.5)
@@ -200,7 +215,7 @@ func ambience(loop_name: String) -> void:
 	_amb.stream = s
 	_amb.volume_db = -60.0
 	_amb.play()
-	_fade(_amb, AMBIENCE_DB, 1.5, false)
+	_fade(_amb, AMBIENCE_DB + float(AMBIENCE_LEVEL.get(loop_name, 0.0)), 1.5, false)
 
 
 func boss(on: bool) -> void:
@@ -268,6 +283,7 @@ func set_music_on(on: bool) -> void:
 
 func set_sfx_on(on: bool) -> void:
 	sfx_on = on
+	AudioServer.set_bus_mute(_sfx_bus, not on)
 	var a := _amb_name
 	_amb_name = ""
 	if on:

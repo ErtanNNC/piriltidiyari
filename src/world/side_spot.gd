@@ -235,8 +235,9 @@ func _start_beat() -> void:
 	_beat_player = AudioStreamPlayer3D.new()
 	_beat_player.stream = load("res://assets/audio/sfx/drum.wav")
 	_beat_player.bus = "Sfx"
-	_beat_player.unit_size = 3.0
-	_beat_player.max_distance = HEAR + 3.0
+	# the listener is the camera (about 14 m behind the keeper), not the keeper
+	_beat_player.unit_size = 9.0
+	_beat_player.max_distance = HEAR + 22.0
 	_beat_player.position = Vector3(0, 0.8, 0)
 	add_child(_beat_player)
 	_beat_i = 0
