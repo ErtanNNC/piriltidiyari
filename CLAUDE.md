@@ -503,3 +503,44 @@ from exports (`.claude/*` in export_presets.cfg).
   white body): tint the drawing's inside cream first (see pamuk).
 - CharacterRig's squash spring steps in small pieces: on a slow frame one
   big step blew it up and a bone-animated keeper vanished after any landing.
+
+## Review rules (from the retrospective audit with the gamedev skills)
+
+- Gameplay waits use `get_tree().create_timer(t, false)` (pausable) in
+  src/actors and src/world: the default keeps counting behind Mola and the
+  level-up cards, so warned attacks landed with no warning left. A frame loop
+  that hurts skips while `get_tree().paused`. Buff and cooldown clocks read
+  `GameState.clock` (stands still while paused or in a dialogue), not
+  `Time.get_ticks_msec()`; only Rhythm and Audio stay on real time.
+- `Player.hurt` does nothing while a dialogue is open.
+- Saving: `SceneFlow.autosave()` runs when the app is sent away, every minute,
+  when a quest closes and on Mola → Ana menü; never in a boss fight and never
+  in linear scenes (`SceneFlow.is_linear`: prologues and finals restart from
+  their beginning, their scripts only react to `quest_changed`). A chapter
+  must therefore rebuild from quests/flags at any point (`_restore_progress`,
+  or spawn by objective counts).
+- Quest events never get lost: `TriggerArea` re-sends "reach" on every visit
+  and when a quest changes while the keeper stands in it; things that stay
+  done by a flag (torches: `S3Island.count_torches`, bells: `EchoBell._sync`,
+  Minnoş: flag `s2c5_minnos_sakin`) are counted again on `quest_changed`;
+  quest mobs/friends spawn only once their quest is active (`_spawn_q1`).
+  Side quests of Season 1 start on entering the region.
+- A dialogue's effects run `complete_quest` before `set_flag`: UI that
+  depends on the flag listens to `flags_changed` (NPC "!" markers do).
+- `fence()` is a closed box: never lay it across a route (Kayıp Ada was
+  sealed by two of them; its `island` demo teleported). Every chapter needs
+  one demo that WALKS the route (`walk_to`): `s3_chapter5 --demo=walk`.
+- Custom tap targets take `InputEventMouseButton` only: a tap also arrives as
+  `InputEventScreenTouch`, handling both fires twice. `Hud.cinematic` releases
+  held touches. Android back opens Mola (`quit_on_go_back=false`,
+  `SceneFlow._notification`), on the title it leaves the game.
+- Camera: bosses, NPCs, mobs and bodies made of collision shapes only never
+  push the camera (`FollowCamera._see_past`).
+- Audio: a hard limiter on Master, per-sound `LEVEL` for every loud file,
+  a free voice is taken before one is cut, sliders are squared, the Sfx bus
+  is muted by "Sesler: Kapalı", houses keep the region's music.
+- Performance: the sun uses one orthogonal shadow pass (60 m); horizon and
+  edge models cast no shadows; `ModelImport.clear_templates()` on every scene
+  change; ground detail maps have mipmaps; 2x MSAA on mobile.
+- `tools/test.sh` also runs `-- --compile-check` (DevTools loads every script
+  in src/ with the autoloads present).

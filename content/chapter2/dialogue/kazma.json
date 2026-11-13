@@ -3,21 +3,6 @@
   "variants": [
     {
       "when": {
-        "flag": "kazma_dukkan"
-      },
-      "lines": [
-        {
-          "speaker": "kazma",
-          "mood": "mutlu",
-          "text": "Hoş geldin bekçi! Dükkânımız açık, bak bakalım."
-        }
-      ],
-      "then": {
-        "open_shop": "kazma"
-      }
-    },
-    {
-      "when": {
         "quest": "sekerleme_magaralari",
         "state": "active",
         "objective_not_done": "sekerleme_magaralari/kazma",
@@ -58,6 +43,21 @@
       "then": {
         "advance": "sekerleme_magaralari/kazma",
         "start_quest": "kazma_cocuklari"
+      }
+    },
+    {
+      "when": {
+        "flag": "kazma_dukkan"
+      },
+      "lines": [
+        {
+          "speaker": "kazma",
+          "mood": "mutlu",
+          "text": "Hoş geldin bekçi! Dükkânımız açık, bak bakalım."
+        }
+      ],
+      "then": {
+        "open_shop": "kazma"
       }
     },
     {

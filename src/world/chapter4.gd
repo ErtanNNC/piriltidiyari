@@ -303,6 +303,9 @@ func _melt(instant: bool) -> void:
 
 func _side_content(lv: Node3D) -> void:
 	var d := GameState.data
+	# on from the start: a kid found before the quest giver still counts
+	if d.quest_state("uykulu_yavrular") == "none":
+		d.start_quest(Content.quests["uykulu_yavrular"])
 	var kids := [Vector3(10, 0, 36), Vector3(-10, 3, -12), Vector3(9, 6, -36)]
 	for i in 3:
 		if d.has_flag("uykulu_yavru%d" % (i + 1)):

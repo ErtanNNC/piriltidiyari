@@ -47,6 +47,9 @@ func _advance() -> void:
 		_hud.show_hint("Gri kristallere vur, parlasınlar!", "Gri kristallere vur!")
 	elif d.objective_done(QUEST, "salon"):
 		_hud.clear_hint()
+	# Kazma skipped until after Kıskaç: the quest still closes
+	if d.has_flag("bolum2_bitti") and d.quest_state(QUEST) == "ready":
+		d.complete_quest(Content.quests[QUEST])
 
 
 func _restore_progress() -> void:
@@ -317,6 +320,9 @@ func _friendly_crab() -> void:
 
 func _side_content(lv: Node3D) -> void:
 	var d := GameState.data
+	# on from the start: a kid found before the quest giver still counts
+	if d.quest_state("kazma_cocuklari") == "none":
+		d.start_quest(Content.quests["kazma_cocuklari"])
 	var kids := [["kazma_cocuk1", Vector3(-11.5, 0, 2.5)], ["kazma_cocuk2", Vector3(11.5, 0, -18.5)], ["kazma_cocuk3", Vector3(11.5, 0, -42)]]
 	for k: Array in kids:
 		if d.has_flag(k[0]):

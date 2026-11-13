@@ -127,7 +127,13 @@ func _collect_word(i: int) -> void:
 
 func _add_minnos() -> void:
 	var d := GameState.data
-	if d.objective_done(Q1, "minnos") or d.quest_state(Q1) == "done":
+	# calmed before Gümbür asked: it still counts once the quest is on
+	var sync := func(_id := "") -> void:
+		if d.has_flag("s2c5_minnos_sakin") and d.quest_state(Q1) == "active" and not d.objective_done(Q1, "minnos"):
+			GameState.notify.call_deferred("breathe", "minnos")
+	d.quest_changed.connect(sync)
+	sync.call()
+	if d.objective_done(Q1, "minnos") or d.quest_state(Q1) == "done" or d.has_flag("s2c5_minnos_sakin"):
 		return
 	_minnos = SittingFriend.new()
 	_minnos.name = "Minnos"
@@ -139,6 +145,7 @@ func _add_minnos() -> void:
 	m.scale = Vector3(0.55, 0.45, 0.55)  # sitting, curled up
 	_minnos.set_model(m)
 	_minnos.calmed.connect(func() -> void:
+		d.set_flag("s2c5_minnos_sakin")
 		GameState.bark("s2c5_minnos")
 		if _minnos.has_node("Beacon"):
 			_minnos.get_node("Beacon").queue_free()
@@ -212,6 +219,7 @@ func _on_faz2() -> void:
 		Beacon.attach(orb, 2.2, Tokens.color("spark-purple"))
 		var t := TriggerArea.new()
 		t.radius = 1.4
+		t.once = false  # touched while another word plays: it waits, not lost
 		orb.add_child(t)
 		t.reached.connect(_play_echo.bind(i))
 		_orbs.append(orb)
@@ -219,10 +227,11 @@ func _on_faz2() -> void:
 
 ## A word goes back to Hırıl: he says it, the keeper answers.
 func _play_echo(i: int) -> void:
-	if _busy_echo or not _faz2:
+	if _busy_echo or not _faz2 or not is_instance_valid(_orbs[i]) or _orbs[i].has_meta("done"):
 		return
 	_busy_echo = true
 	var orb := _orbs[i]
+	orb.set_meta("done", true)
 	var tw := orb.create_tween()
 	tw.tween_property(orb, "global_position", _boss.global_position + Vector3.UP * 1.5, 0.6).set_trans(Tween.TRANS_SINE)
 	tw.tween_callback(orb.queue_free)

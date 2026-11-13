@@ -39,6 +39,8 @@ func _ready() -> void:
 	var d := GameState.data
 	Pus.set_amount(0.03 if d.has_flag("s2_can0") else 0.18)
 	_build()
+	GameState.data.flags_changed.connect(_refresh)  # the last talk sets its flag after the quest
+	way_on("s2_bolum0_bitti", Vector3(0, 0, -25.5), "Kızıl Yaprak Ormanı")
 	Decor.auto(self, "koy")
 	npc(self, "tospik_nine", "turtle", Vector3(-3.6, 0, 0.6), 30.0).name = "Tospik Nine"
 	npc(self, "kazma", "mole", Vector3(12.0, 0, 2.5), -60.0).name = "Kazma"

@@ -155,6 +155,7 @@ func _on_chosen(id: String, look: Dictionary, display_name: String) -> void:
 	d.recompute_stats(Content.items)
 	d.hp = d.max_hp
 	d.set_flag("s3_prolog_bitti")
+	d.scene_id = "s3_chapter0"  # Devam et goes on from the cove, not this choice again
 	SaveGame.write(d)
 	var m: Node3D = _keepers[id]
 	Effects.ring(self, m.global_position + Vector3.UP * 0.2, 3.0, Tokens.color("sky"), 0.5)

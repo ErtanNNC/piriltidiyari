@@ -57,14 +57,11 @@ func _ready() -> void:
 	npc(self, "tospik_nine", "turtle", Vector3(4, 0, 23.5), -150.0).name = "Tospik"
 	if d.character_id != "tosbi":
 		npc(self, "tosbi", "tosbi", Vector3(6, 0, 22), -130.0).name = "Tosbi"
-	if d.quest_state(Q1) != "done":
-		titreks(TITREKS)
-		for i in STARFISH.size():
-			if d.objective_count(Q1, "el").x > i:
-				continue
-			var f := friend("yildiz", "kayip_denizyildizi", STARFISH[i], POOL)
-			f.goal_radius = 3.2
-			f.arrived.connect(_on_starfish_home)
+	_spawn_q1()
+	d.quest_changed.connect(func(_id: String) -> void:
+		_spawn_q1()
+		count_torches(Q1))
+	count_torches(Q1)
 	make_boss("bikbik", ARENA, d.objective_done(Q2, "bikbik"))
 	if d.objective_done(Q2, "bikbik"):
 		_stand_by_shell(_chosen_shell(), false)
@@ -472,3 +469,24 @@ func _demo_dunes() -> void:
 	var now_open := _player.global_position.z < z - 1.5
 	print("S3K3_DUNE waits_for_keeper=%s keeper_free=%s warned=%s shifted=%s old_gap_open=%s arrow=%s" % [waited, free, warned,
 		sd.at_b != was_b, now_open, is_equal_approx(absf(_arrows[0].rotation.y), 0.0) == (closed_x > 0.0)])
+
+
+var _q1_spawned := false
+
+
+## The quest's Titrekler and starfish come only once Tospik Nine has asked
+## (calmed or led home before that, they would never count).
+func _spawn_q1() -> void:
+	var d := GameState.data
+	if _q1_spawned or d.quest_state(Q1) != "active":
+		return
+	_q1_spawned = true
+	var c := d.objective_count(Q1, "titrek")
+	for i in range(mini(c.x, TITREKS.size()), TITREKS.size()):
+		titrek(TITREKS[i][0], TITREKS[i][1])
+	for i in STARFISH.size():
+		if d.objective_count(Q1, "el").x > i:
+			continue
+		var f := friend("yildiz", "kayip_denizyildizi", STARFISH[i], POOL)
+		f.goal_radius = 3.2
+		f.arrived.connect(_on_starfish_home)

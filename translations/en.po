@@ -1014,6 +1014,9 @@ msgstr "This teddy bear... Nobody ever played with me."
 msgid "Bu rüzgâr sıcak... ve kırmızı. Bu Pus değil!"
 msgstr "This wind is hot... and red. This isn't the Gloom!"
 
+msgid "Bu sahne başından devam eder"
+msgstr "This scene continues from its start"
+
 msgid "Bu sarmaşık da ne? Dikenleri benimkilere benzemiyor."
 msgstr "What's this vine? Its thorns don't look like mine."
 

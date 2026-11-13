@@ -183,7 +183,15 @@ func autosave() -> void:
 		return
 	if current != d.scene_id and current != "house":
 		return
+	if is_linear(current) or Audio._in_boss:
+		return
 	SaveGame.write(d)
+
+
+## Short story scenes (prologues, finals) always begin again from their start:
+## a save in their middle would keep the quest steps but not the scene.
+func is_linear(scene_id: String) -> bool:
+	return scene_id.contains("scene") or scene_id.contains("final")
 
 
 func _notification(what: int) -> void:

@@ -423,6 +423,9 @@ func shadow_flee() -> void:
 
 func _side_content(lv: Node3D) -> void:
 	var d := GameState.data
+	# on from the start: a kid found before the quest giver still counts
+	if d.quest_state("marti_yavrulari") == "none":
+		d.start_quest(Content.quests["marti_yavrulari"])
 	var chicks := [["marti_yavru1", Vector3(-9, 0, -7)], ["marti_yavru2", ISLANDS["balon"]["center"] + Vector3(-2, 8, -10)], ["marti_yavru3", ISLANDS["gul"]["center"] + Vector3(9, 0, 8)]]
 	for k: Array in chicks:
 		if d.has_flag(k[0]):

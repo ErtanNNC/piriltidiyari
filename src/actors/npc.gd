@@ -47,6 +47,7 @@ func _ready() -> void:
 	add_child(_marker)
 	GameState.data.quest_changed.connect(func(_id: String) -> void: _refresh_marker())
 	GameState.data.items_changed.connect(_refresh_marker)
+	GameState.data.flags_changed.connect(_refresh_marker)  # effects set flags after the quest
 	_refresh_marker()
 
 

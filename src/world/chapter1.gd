@@ -121,6 +121,11 @@ func _build() -> void:
 	heart.checkpoint = true
 	heart.position = Vector3(8, 0, -63.5)
 	lv.add_child(heart)
+	# a save made in the middle of the fight: Kütük Kral is there again
+	heart.reached.connect(func() -> void:
+		var hd := GameState.data
+		if hd.objective_done(QUEST, "kalp") and _king == null and not hd.objective_done(QUEST, "kral"):
+			_start_boss())
 	var kf := SmallLantern.new()
 	kf.name = "KivilcimFeneri"
 	kf.big = true

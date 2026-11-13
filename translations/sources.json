@@ -154,13 +154,13 @@
   "Şekerleme Mağaraları"
  ],
  "content/chapter2/dialogue/kazma.json": [
-  "Hoş geldin bekçi! Dükkânımız açık, bak bakalım.",
   "Aman, bir bekçi! Ben Madenci Kazma.",
   "Pus kristallerimizi griye boyadı, mağara karardı.",
   "Gri kristale vurursan yeniden parlar!",
   "Bir salonun bütün kristalleri yanınca kristal kapı açılır.",
   "Bir de çocuklarım karanlıkta kayboldu. Görürsen eve yolla.",
   "Kristallere vur, çocukları bul. Anlaştık!",
+  "Hoş geldin bekçi! Dükkânımız açık, bak bakalım.",
   "Gri kristale vur, parlasın! Kıskaç'ın gölü en dipte.",
   "Önce Mağara Feneri'ni yak, ışık lazım bize!"
  ],
@@ -2231,6 +2231,7 @@
   "Açık",
   "Kapalı",
   "Sesler: %s",
+  "Bu sahne başından devam eder",
   "Kaydedildi!",
   "Kaydedilemedi",
   "Oyun kendiliğinden de kaydedilir. · %d FPS",

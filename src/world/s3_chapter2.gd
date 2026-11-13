@@ -78,15 +78,11 @@ func _ready() -> void:
 	Decor.auto(self, "kumsal")
 	_spot = _want_spot()
 	npc(self, "paytak", "paytak", PAYTAK_AT[_spot], 140.0).name = "Paytak"
-	if d.quest_state(Q1) != "done":
-		titreks(TITREKS)
-		if not d.objective_done(Q1, "civciv"):
-			var f := friend("civciv", "balikcil", CHICK_AT, NEST_B)
-			f.name = "Civciv"
-			f.goal_radius = 3.5
-			f.scale = Vector3.ONE * 0.8
-			f.held.connect(func() -> void: GameState.bark("s3k2_civciv_el"))
-			f.arrived.connect(func() -> void: GameState.bark("s3k2_civciv_yuva"))
+	_spawn_q1()
+	d.quest_changed.connect(func(_id: String) -> void:
+		_spawn_q1()
+		count_torches(Q1))
+	count_torches(Q1)
 	make_boss("pamuk", ARENA, d.objective_done(Q2, "pamuk"))
 	if d.objective_done(Q2, "pamuk"):
 		boss.position = LAND_AT
@@ -598,3 +594,25 @@ func _run_demo(which: String) -> void:
 			await _talk("paytak", "Paytak")
 			print("S3K2_DONE q2=%s fisek=%s inci=%s bitti=%s" % [d.quest_state(Q2) == "done", d.has_flag("s3_fisek2"), d.has_flag("inci_turkuaz"), d.has_flag("s3_bolum2_bitti")])
 			get_tree().quit()
+
+
+var _q1_spawned := false
+
+
+## The quest's Titrekler and the chick come only once Paytak has asked
+## (calmed or led home before that, they would never count).
+func _spawn_q1() -> void:
+	var d := GameState.data
+	if _q1_spawned or d.quest_state(Q1) != "active":
+		return
+	_q1_spawned = true
+	var c := d.objective_count(Q1, "titrek")
+	for i in range(mini(c.x, TITREKS.size()), TITREKS.size()):
+		titrek(TITREKS[i][0], TITREKS[i][1])
+	if not d.objective_done(Q1, "civciv"):
+		var f := friend("civciv", "balikcil", CHICK_AT, NEST_B)
+		f.name = "Civciv"
+		f.goal_radius = 3.5
+		f.scale = Vector3.ONE * 0.8
+		f.held.connect(func() -> void: GameState.bark("s3k2_civciv_el"))
+		f.arrived.connect(func() -> void: GameState.bark("s3k2_civciv_yuva"))

@@ -700,6 +700,9 @@ func toggle_pause() -> void:
 		if _player and is_instance_valid(_player):
 			_player.unstick())
 	save.pressed.connect(func() -> void:
+		if SceneFlow.is_linear(SceneFlow.current):
+			save.text = "Bu sahne başından devam eder"
+			return
 		var ok := SaveGame.write(GameState.data) == OK
 		save.text = "Kaydedildi!" if ok else "Kaydedilemedi"
 		Audio.play("coin" if ok else "warn"))

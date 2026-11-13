@@ -110,6 +110,21 @@ func torch(at: Vector3, target := "mesale") -> BeachTorch:
 	return t
 
 
+## Torches lit before the quest asked for them still count: call on every
+## quest change (a torch stays lit by its flag, so its event never comes again).
+func count_torches(quest: String, objective := "mesale") -> void:
+	var d := GameState.data
+	if d.quest_state(quest) != "active":
+		return
+	var lit := 0
+	for t in lv.get_children():
+		if t is BeachTorch and (t as BeachTorch).lit and (t as BeachTorch).torch_id == "mesale":
+			lit += 1
+	var c := d.objective_count(quest, objective)
+	if lit > c.x and c.x < c.y:
+		d.advance_objective(quest, objective, mini(lit, c.y) - c.x)
+
+
 func titrek(kind: String, at: Vector3) -> Titrek:
 	var t := Titrek.new()
 	t.kind = kind

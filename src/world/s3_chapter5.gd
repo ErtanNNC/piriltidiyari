@@ -76,7 +76,7 @@ func _ready() -> void:
 func _build() -> void:
 	land(Vector3(0, 0, -16), Vector2(22, 100), SAND)
 	land(CLEARING, Vector2(34, 30), SAND)
-	fence(Vector3(0, 0, 9), Vector2(20, 48))
+	_wall(Vector3(0, 0, 34.5), Vector2(24, 1))  # the sea behind the pier
 	dock(Vector3(0, 0, 33.5))
 	# the fork rooms: a torch each, and a gate row with a wall in the middle
 	for i in ROOM_Z.size():
@@ -104,15 +104,19 @@ func _build() -> void:
 		wall.set_meta("camera_ignore", true)
 		var c := CollisionShape3D.new()
 		var b := BoxShape3D.new()
-		b.size = Vector3(1, 12, 70)
+		b.size = Vector3(1, 12, 72)
 		c.shape = b
 		wall.add_child(c)
-		wall.position = Vector3(11.0 * s, 6, 0)
+		wall.position = Vector3(11.0 * s, 6, -1.0)
 		lv.add_child(wall)
 		for k in 9:
 			prop("sis_agaci" if k % 2 == 0 else "kiyi_kaya", Vector3(12.5 * s, 0, 30.0 - k * 8.0), 5.0 if k % 2 == 0 else 2.2, k * 0.9)
 	# the clearing: the sunken toy boat, the flare, a ring of pale trees
-	fence(CLEARING, Vector2(32, 28))
+	# its walls leave the last gate row open (a full fence closed the way in)
+	_wall(CLEARING + Vector3(0, 0, -15.5), Vector2(36, 1))
+	for s: float in [-1.0, 1.0]:
+		_wall(CLEARING + Vector3(17.5 * s, 0, 0), Vector2(1, 32))
+		_wall(Vector3(14.5 * s, 0, -36.5), Vector2(7, 1))
 	if prop("oyuncak_tekne", CLEARING + Vector3(0, -0.3, -4.5), 3.6, 0.5) == null:
 		Toon.part(lv, "ellipsoid", Vector3(2.6, 1.2, 5.0), Color("#7fa0c8"), CLEARING + Vector3(0, 0.3, -4.5), Vector3(0, 30, 18))
 	var bb := StaticBody3D.new()
@@ -128,7 +132,7 @@ func _build() -> void:
 	for k in 10:
 		var a := TAU * k / 10.0
 		prop("sis_agaci", CLEARING + Vector3(cos(a) * 15.0, 0, sin(a) * 13.0 - 1.0), 5.5, a)
-	_veil = veil(Vector3(0, 0, -39.5), 20.0, "s3k5_perde", false)
+	# no mist wall here: the flare and Hırıl stand inside the clearing
 	var t := TriggerArea.new()
 	t.area_id = "tekne"
 	t.radius = 5.0
@@ -177,7 +181,6 @@ func _begin_fight() -> void:
 
 
 func _on_flare() -> void:
-	_veil.open()
 	GameState.bark("s3k5_fisek")
 	_refresh()
 
@@ -298,6 +301,18 @@ func _refresh() -> void:
 
 func _run_demo(which: String) -> void:
 	match which:
+		"walk":
+			# on foot from the pier through the four right gates to the boat
+			DevTools.auto_dialogue = true
+			for i in ROOM_Z.size():
+				await walk_to(Vector3(0, 0, ROOM_Z[i] + 4.0), 8.0)
+				await walk_to(Vector3(GATE_X * RIGHT_SIDE[i], 0, ROOM_Z[i] - 5.0), 6.0)
+				await walk_to(Vector3(GATE_X * RIGHT_SIDE[i], 0, ROOM_Z[i] - 11.0), 6.0)
+				print("S3K5_WALK gate=%d z=%.1f passed=%s" % [i, _player.global_position.z, _player.global_position.z < ROOM_Z[i] - 9.0])
+			await walk_to(CLEARING + Vector3(0, 0, 8.0), 10.0)
+			await walk_to(CLEARING + Vector3(-9, 0, 8.6), 8.0)
+			print("S3K5_WALKED z=%.1f tekne=%s flare_dist=%.1f" % [_player.global_position.z, GameState.data.objective_done(Q1, "tekne"), _player.global_position.distance_to(lv.get_node("Flare").global_position)])
+			get_tree().quit()
 		"island":
 			# the whole final: wrong gate, the maze by the drum, Hırıl, the
 			# flare, the fight, hide-and-seek, the ring, the pearl, home
@@ -325,7 +340,7 @@ func _run_demo(which: String) -> void:
 			await get_tree().create_timer(0.5, false).timeout
 			_player.interact()
 			await close_dialogs()
-			print("S3K5_FLARE q2=%s fisek=%s veil=%s" % [d.quest_state(Q2), d.has_flag("s3_fisek5"), _veil.is_open])
+			print("S3K5_FLARE q2=%s fisek=%s veil=%s" % [d.quest_state(Q2), d.has_flag("s3_fisek5"), true])
 			_player.global_position = CLEARING + Vector3(0, 0.3, 7.0)
 			for i in 80:
 				if fighting:
@@ -374,3 +389,16 @@ func _run_demo(which: String) -> void:
 			print("S3K5_DONE q2=%s fisek=%s inci=%s bitti=%s sezon=%s" % [d.quest_state(Q2), d.has_flag("s3_fisek5"), d.has_flag("inci_beyaz"), d.has_flag("s3_bolum5_bitti"), d.has_flag("sezon3_bitti")])
 			await get_tree().create_timer(3.0, false).timeout
 			get_tree().quit()
+
+
+## An invisible wall (the camera looks over it).
+func _wall(center: Vector3, size: Vector2) -> void:
+	var wall := StaticBody3D.new()
+	wall.set_meta("camera_ignore", true)
+	var c := CollisionShape3D.new()
+	var b := BoxShape3D.new()
+	b.size = Vector3(size.x, 12.0, size.y)
+	c.shape = b
+	wall.add_child(c)
+	wall.position = center + Vector3(0, 6, 0)
+	lv.add_child(wall)
