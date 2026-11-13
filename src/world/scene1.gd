@@ -14,7 +14,7 @@ func _run_demo(which: String) -> void:
 	match which:
 		"talk":
 			player.global_position = $Tospik.global_position + Vector3(0, 0, 2.2)
-			await get_tree().create_timer(0.3).timeout
+			await get_tree().create_timer(0.3, false).timeout
 			GameState.talk_to("tospik_nine")
 		"quest":
 			GameState.data.start_quest(Content.quests["kayip_fenerler"])
@@ -26,7 +26,7 @@ func _run_demo(which: String) -> void:
 			GameState.data.start_quest(Content.quests["kayip_fenerler"])
 			GameState.data.add_item("fener_mavi")
 			player.global_position = $Tipis.global_position + Vector3(0, 0, 1.8)
-			await get_tree().create_timer(0.3).timeout
+			await get_tree().create_timer(0.3, false).timeout
 			GameState.talk_to("tipis")
 		"done":
 			GameState.data.add_piril(30)

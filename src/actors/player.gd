@@ -352,7 +352,7 @@ func _pence_kombosu() -> void:
 			to.y = 0.0
 			if to.length() <= 2.6 + n.get_meta("hit_radius", 0.5) and (to.length() < 0.8 or to.normalized().dot(fwd) > 0.3):
 				n.hit(attack_power(), global_position, 3.0)
-		await get_tree().create_timer(0.16).timeout
+		await get_tree().create_timer(0.16, false).timeout
 
 
 ## Bado: a big warm hug-shield — no damage for a while.
@@ -431,7 +431,7 @@ var _guard_until := 0.0
 
 func _derin_nefes() -> void:
 	_attack_cd = 0.4
-	_guard_until = Time.get_ticks_msec() / 1000.0 + BREATH_GUARD
+	_guard_until = GameState.clock + BREATH_GUARD
 	Effects.ring(get_parent(), global_position + Vector3.UP * 0.9, 1.4, Tokens.color("leaf"), BREATH_GUARD)
 	var tw := create_tween()
 	tw.tween_property(model, "scale", Vector3(1.12, 1.12, 1.12), 0.25).set_trans(Tween.TRANS_SINE)
@@ -535,7 +535,7 @@ func _hit_around(radius: float, damage: int, push: float) -> void:
 
 
 func start_roll() -> void:
-	if rolling or not is_on_floor() or climbing:
+	if rolling or not is_on_floor() or climbing or (ring and ring.is_frozen()):
 		return
 	rolling = true
 	Audio.play("roll")
@@ -603,7 +603,7 @@ func attack_power() -> int:
 	var p := roundi((GameState.data.power + Shop.weapon_power(GameState.data, Content.items)) * Powers.attack_mult(GameState.data.powers))
 	if calm and calm.is_angry():
 		p = int(p * 1.5)
-	return int(p * 1.5) if Time.get_ticks_msec() / 1000.0 < _power_until else p
+	return int(p * 1.5) if GameState.clock < _power_until else p
 
 
 ## A shove from an explosion or a gust (added to knockback).
@@ -615,9 +615,10 @@ func push(v: Vector3) -> void:
 
 ## Called by mobs and hazards. Returns false while invulnerable.
 func hurt(amount: int, from: Vector3) -> bool:
-	if _invulnerable > 0.0 or rolling or asleep:
+	# nothing lands while someone is talking (attacks already flying included)
+	if _invulnerable > 0.0 or rolling or asleep or GameState.in_dialogue:
 		return false
-	if Time.get_ticks_msec() / 1000.0 < _guard_until:
+	if GameState.clock < _guard_until:
 		# Derin Nefes: the hit slides off and whoever threw it calms a little
 		_guard_until = 0.0
 		Effects.ring(get_parent(), global_position + Vector3.UP * 0.5, 2.4, Tokens.color("leaf"), 0.4)
@@ -675,27 +676,27 @@ func drink_potion(slot: int) -> void:
 		d.restore_mp(int(def["mp"]))
 		FloatText.spawn(get_parent(), global_position + Vector3.UP * 2.0, TranslationServer.translate("+%d") % int(def["mp"]), Tokens.color("mp"))
 	elif def.get("buff", "") == "guc":
-		_power_until = Time.get_ticks_msec() / 1000.0 + float(def["seconds"])
+		_power_until = GameState.clock + float(def["seconds"])
 		GameState.toast.emit(TranslationServer.translate("%d saniye gücün arttı!") % int(def["seconds"]), "star")
 	elif def.get("buff", "") == "papatya":
 		if calm:
-			calm.fast_until = Time.get_ticks_msec() / 1000.0 + float(def["seconds"])
+			calm.fast_until = GameState.clock + float(def["seconds"])
 		GameState.toast.emit(TranslationServer.translate("%d saniye nefesin daha hızlı") % int(def["seconds"]), "heart")
 	elif def.get("buff", "") == "sis_kalkani":
 		if calm:
-			calm.shield_until = Time.get_ticks_msec() / 1000.0 + float(def["seconds"])
+			calm.shield_until = GameState.clock + float(def["seconds"])
 		GameState.toast.emit(TranslationServer.translate("%d saniye öfke barın dolmaz") % int(def["seconds"]), "heart")
 	elif def.get("buff", "") == "isik":
 		if ring:
-			ring.boost_until = Time.get_ticks_msec() / 1000.0 + float(def["seconds"])
+			ring.boost_until = GameState.clock + float(def["seconds"])
 		GameState.toast.emit(TranslationServer.translate("%d saniye ışığın iki kat büyük") % int(def["seconds"]), "spark")
 	elif def.get("buff", "") == "cesur":
 		if ring:
-			ring.brave_until = Time.get_ticks_msec() / 1000.0 + float(def["seconds"])
+			ring.brave_until = GameState.clock + float(def["seconds"])
 			ring.warm()
 		GameState.toast.emit(TranslationServer.translate("%d saniye titreme barın dolmaz") % int(def["seconds"]), "heart")
 	elif def.get("buff", "") == "kovucu":
-		GameState.repel_until = Time.get_ticks_msec() / 1000.0 + float(def["seconds"])
+		GameState.repel_until = GameState.clock + float(def["seconds"])
 		GameState.toast.emit(TranslationServer.translate("%d saniye moblar seni zor fark eder") % int(def["seconds"]), "drop")
 	d.remove_item(id)
 	Audio.play("heal")
@@ -708,9 +709,9 @@ func _fall_asleep() -> void:
 	fell_asleep.emit()
 	var tw := create_tween()
 	tw.tween_property(model, "rotation:z", PI / 2.2, 0.4).set_trans(Tween.TRANS_BOUNCE)
-	await get_tree().create_timer(0.6).timeout
+	await get_tree().create_timer(0.6, false).timeout
 	get_tree().call_group("hud", "show_scene_card", "", "Uykuya daldın", "Fener'in yanında uyanıyorsun...")
-	await get_tree().create_timer(2.2).timeout
+	await get_tree().create_timer(2.2, false).timeout
 	global_position = respawn_point
 	velocity = Vector3.ZERO
 	model.rotation.z = 0.0
@@ -835,7 +836,7 @@ func shoot() -> void:
 	var d := GameState.data
 	if not d.has_flag("owned_isik_sapani") or asleep or rolling:
 		return
-	var now := Time.get_ticks_msec() / 1000.0
+	var now := GameState.clock
 	if now < _shoot_cd:
 		return
 	if d.item_count(SEED) <= 0:
@@ -920,7 +921,7 @@ var _power_ready: Dictionary = {}
 
 ## Seconds until power `id` can be used again (0 = ready).
 func power_wait(id: String) -> float:
-	return maxf(0.0, float(_power_ready.get(id, 0.0)) - Time.get_ticks_msec() / 1000.0)
+	return maxf(0.0, float(_power_ready.get(id, 0.0)) - GameState.clock)
 
 
 func use_power(slot: int) -> void:
@@ -935,7 +936,7 @@ func use_power(slot: int) -> void:
 	if not d.use_mp(int(def["mp"])):
 		GameState.toast.emit("Enerjin az. Yıldız Tozu iç!", "drop")
 		return
-	_power_ready[id] = Time.get_ticks_msec() / 1000.0 + float(def["cd"])
+	_power_ready[id] = GameState.clock + float(def["cd"])
 	var n := Powers.numbers(id, Powers.rank(d.powers, id))
 	var dmg := maxi(1, roundi(attack_power() * float(n.get("mult", 1.0))))
 	if _rig:

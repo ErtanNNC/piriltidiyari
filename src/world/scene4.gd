@@ -19,7 +19,7 @@ func _ready() -> void:
 	_owl.phase_changed.connect(_on_phase)
 	_owl.defeated.connect(_on_defeated)
 	$Player.respawn_point = $Player.global_position
-	await get_tree().create_timer(1.9).timeout
+	await get_tree().create_timer(1.9, false).timeout
 	var intro := create_tween()
 	intro.tween_property(_owl, "position", Vector3(0, Owl.ORBIT_HEIGHT, -Owl.ORBIT_RADIUS), 1.2).set_trans(Tween.TRANS_BACK)
 	if DevTools.demo == "":
@@ -28,7 +28,7 @@ func _ready() -> void:
 	_hud.show_boss("Pus Baykuşu", _owl.hp, OwlPlan.MAX_HP)
 	_hud.show_hint("Tüylerden kaç ya da yuvarlan. Dalıştan sonra vur!", "Tüylerden kaç. Dalıştan sonra vur!")
 	_owl.start()
-	await get_tree().create_timer(6.0).timeout
+	await get_tree().create_timer(6.0, false).timeout
 	if _owl.active and not _owl.dazed:
 		_hud.clear_hint()
 	if DevTools.demo != "":
@@ -47,9 +47,9 @@ func _on_phase(p: int) -> void:
 func _on_defeated() -> void:
 	_hud.hide_boss()
 	GameState.data.set_flag("sahne4_bitti")
-	await get_tree().create_timer(0.8).timeout
+	await get_tree().create_timer(0.8, false).timeout
 	_hud.show_scene_card("", "Pus Baykuşu dağıldı", "Ama arkasında bir fısıltı kaldı...")
-	await get_tree().create_timer(3.2).timeout
+	await get_tree().create_timer(3.2, false).timeout
 	GameState.bark("s4_son", {"goto_scene": "scene5"})
 
 
@@ -76,7 +76,7 @@ func _run_demo(which: String) -> void:
 					if GameState.data.mp >= Player.SKILL_COST:
 						player._attack_cd = 0.0
 						player.dikenli_donus()
-				await get_tree().create_timer(0.4).timeout
+				await get_tree().create_timer(0.4, false).timeout
 				t += 0.4
 				for i in 2:
 					if _hud._dialog.is_open():
@@ -90,6 +90,6 @@ func _run_demo(which: String) -> void:
 				if _hud._dialog.is_open():
 					_hud._dialog.advance()
 					_hud._dialog.advance()
-				await get_tree().create_timer(0.3).timeout
+				await get_tree().create_timer(0.3, false).timeout
 			print("WIN2 flag=%s next=%s" % [GameState.data.has_flag("sahne4_bitti"), SceneFlow.busy])
 			get_tree().quit()

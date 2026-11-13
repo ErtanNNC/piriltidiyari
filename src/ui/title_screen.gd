@@ -212,9 +212,13 @@ func _continue(s: int) -> void:
 	SaveGame.slot = maxi(s, 1)
 	var d := PlayerData.new()
 	if not SaveGame.read_into(d):
-		_start_in(SaveGame.slot)
+		# a save that won't open is never wiped by "Devam et"
+		if not SaveGame.exists():
+			_start_in(SaveGame.slot)
 		return
 	d.recompute_stats(Content.items)  # derived stats, never drifting
 	d.catch_up()  # saves from before mob levels
+	if not SceneFlow.SCENES.has(d.scene_id):
+		d.scene_id = ["chapter0", "chapter0", "s2_chapter0", "s3_chapter0"][clampi(d.season, 0, 3)]
 	GameState.data = d
 	SceneFlow.go_to(d.scene_id, false)

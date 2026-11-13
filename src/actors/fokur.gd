@@ -102,7 +102,7 @@ func _loop() -> void:
 		for attack in FokurPlan.cycle(phase):
 			if not active:
 				return
-			await get_tree().create_timer(FokurPlan.rest(phase)).timeout
+			await get_tree().create_timer(FokurPlan.rest(phase), false).timeout
 			if not active:
 				return
 			await GameState.wait_dialogue_closed()
@@ -137,7 +137,7 @@ func _bubbles() -> void:
 		spots.append(Vector3(p.global_position.x, home.y, p.global_position.z) + off)
 	for s in spots:
 		Effects.warning(get_parent(), s, FokurPlan.BUBBLE_RADIUS, Mob.TELEGRAPH)
-	await get_tree().create_timer(Mob.TELEGRAPH).timeout
+	await get_tree().create_timer(Mob.TELEGRAPH, false).timeout
 	for s in spots:
 		Effects.ring(get_parent(), s + Vector3.UP * 0.2, FokurPlan.BUBBLE_RADIUS, Color("#ffb0a0"), 0.35)
 		Effects.sparkle(get_parent(), s + Vector3.UP * 0.6, Color(1, 1, 1), 6)
@@ -182,7 +182,7 @@ func _hop() -> void:
 	up.tween_property(self, "global_position", Vector3(global_position.x, home.y + 6.0, global_position.z), 0.4).set_trans(Tween.TRANS_SINE)
 	await up.finished
 	Effects.warning(get_parent(), spot, FokurPlan.HOP_RADIUS, Mob.TELEGRAPH)
-	await get_tree().create_timer(Mob.TELEGRAPH).timeout
+	await get_tree().create_timer(Mob.TELEGRAPH, false).timeout
 	var down := create_tween()
 	down.tween_property(self, "global_position", spot, 0.25).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUAD)
 	await down.finished
@@ -219,7 +219,7 @@ func _tongue() -> void:
 	while k < FokurPlan.TONGUE_LENGTH:
 		Effects.warning(get_parent(), from + dir * (1.2 + k), FokurPlan.TONGUE_WIDTH, Mob.TELEGRAPH)
 		k += 1.8
-	await get_tree().create_timer(Mob.TELEGRAPH).timeout
+	await get_tree().create_timer(Mob.TELEGRAPH, false).timeout
 	if not active:
 		_busy = false
 		return
@@ -290,7 +290,7 @@ func _rest(seconds := FokurPlan.TIRED_TIME) -> void:
 	var sit := create_tween()
 	sit.tween_property(_model, "scale", Vector3(1.1, 0.85, 1.1), 0.25)
 	get_tree().call_group("hud", "show_hint", "Fokur yoruldu, soluk soluğa! Şimdi vur!", "Yoruldu! Şimdi vur!")
-	await get_tree().create_timer(seconds).timeout
+	await get_tree().create_timer(seconds, false).timeout
 	if not active:
 		return
 	get_tree().call_group("hud", "clear_hint")

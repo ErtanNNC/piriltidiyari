@@ -52,7 +52,7 @@ func _loop() -> void:
 		for attack: String in ShorePlan.cycle(boss_id, phase):
 			if not active:
 				return
-			await get_tree().create_timer(ShorePlan.rest(phase)).timeout
+			await get_tree().create_timer(ShorePlan.rest(phase), false).timeout
 			if not active:
 				return
 			await GameState.wait_dialogue_closed()
@@ -105,10 +105,13 @@ func _gust() -> void:
 		Effects.ring(get_parent(), global_position + dir * (2.0 + k * 2.0) + Vector3.UP * 1.0, 1.2, Color(1, 1, 1, 0.7), Mob.TELEGRAPH)
 	_model.rotation.y = atan2(dir.x, dir.z)
 	get_tree().call_group("hud", "show_hint", "Rüzgâr geliyor! Karşı yürü ya da yuvarlan.", "Rüzgâr geliyor!")
-	await get_tree().create_timer(Mob.TELEGRAPH).timeout
+	await get_tree().create_timer(Mob.TELEGRAPH, false).timeout
 	Audio.play("wind")
 	var t := 0.0
 	while t < ShorePlan.GUST_TIME and active:
+		if get_tree().paused:
+			await get_tree().process_frame
+			continue
 		p.wind = dir * ShorePlan.GUST_PUSH
 		if randf() < 0.3:
 			Effects.sparkle(get_parent(), global_position + dir * randf_range(1, 8) + Vector3(randf_range(-2, 2), 1.0, randf_range(-2, 2)), Color(1, 1, 1), 2)
@@ -130,7 +133,7 @@ func _ink() -> void:
 		spots.append(Vector3(p.global_position.x, global_position.y, p.global_position.z) + off)
 	for s in spots:
 		Effects.warning(get_parent(), s, 2.2, Mob.TELEGRAPH)
-	await get_tree().create_timer(Mob.TELEGRAPH).timeout
+	await get_tree().create_timer(Mob.TELEGRAPH, false).timeout
 	Audio.play("splash")
 	for s in spots:
 		InkPuddle.spawn(get_parent(), s, 2.2, ShorePlan.INK_TIME)
@@ -148,13 +151,13 @@ func _thunder() -> void:
 		var s := Vector3(p.global_position.x, global_position.y, p.global_position.z)
 		Effects.warning(get_parent(), s, FirfirPlan.LEAF_RADIUS, ShorePlan.BEAT)
 		_strike_later(s)
-		await get_tree().create_timer(ShorePlan.BEAT).timeout
-	await get_tree().create_timer(ShorePlan.BEAT).timeout
+		await get_tree().create_timer(ShorePlan.BEAT, false).timeout
+	await get_tree().create_timer(ShorePlan.BEAT, false).timeout
 	_busy = false
 
 
 func _strike_later(s: Vector3) -> void:
-	await get_tree().create_timer(ShorePlan.BEAT).timeout
+	await get_tree().create_timer(ShorePlan.BEAT, false).timeout
 	if not is_inside_tree():
 		return
 	Audio.play("drum")
@@ -177,7 +180,7 @@ func _burrow() -> void:
 	s.z = clampf(s.z, home.z - arena, home.z + arena)
 	global_position = s
 	Effects.warning(get_parent(), s, ShorePlan.BURROW_RADIUS, Mob.TELEGRAPH)
-	await get_tree().create_timer(Mob.TELEGRAPH).timeout
+	await get_tree().create_timer(Mob.TELEGRAPH, false).timeout
 	var up := create_tween()
 	up.tween_property(_model, "scale", Vector3.ONE, 0.18).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	Effects.ring(get_parent(), s + Vector3.UP * 0.3, ShorePlan.BURROW_RADIUS, attack_color, 0.35)

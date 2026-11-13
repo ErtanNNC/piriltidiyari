@@ -90,6 +90,7 @@ static func auto(root: Node3D, style: String, seed_value := 0) -> void:
 ## Synchronous version (needs bodies already in the physics space).
 ## Returns the number of placed props per mesh.
 static func scatter(root: Node3D, style: String, seed_value := 0) -> Dictionary:
+	_patched.clear()  # last scene's floor materials must not stay alive
 	var rules: Dictionary = STYLES[style]
 	var floors: Array = []
 	var paths: Array = []

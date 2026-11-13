@@ -34,7 +34,7 @@ func _ready() -> void:
 		d.start_quest(Content.quests[QUEST])
 	d.quest_changed.connect(func(_id: String) -> void: _check())
 	_player.respawn_point = _player.global_position
-	await get_tree().create_timer(1.5).timeout
+	await get_tree().create_timer(1.5, false).timeout
 	GameState.bark("s3c_basla")
 	_hud.show_hint("Sesin peşinden git. Meşaleleri yak: ışık yolu güvenli yapar.", "Meşaleleri yak, yoldan git.")
 	if DevTools.demo != "":
@@ -159,30 +159,30 @@ func _run_demo(which: String) -> void:
 				var bt := n as BeachTorch
 				if bt and not bt.lit:
 					_player.global_position = bt.global_position + Vector3(0, 0.3, 1.2)
-					await get_tree().create_timer(0.4).timeout
+					await get_tree().create_timer(0.4, false).timeout
 					_player.interact()
-					await get_tree().create_timer(0.3).timeout
+					await get_tree().create_timer(0.3, false).timeout
 			await close_dialogs()
 			_player.global_position = Vector3(0, 0.3, -16.0)
 			Input.action_press("move_forward")
-			await get_tree().create_timer(1.5).timeout
+			await get_tree().create_timer(1.5, false).timeout
 			Input.action_release("move_forward")
 			print("S3_VEIL alone z=%.1f blocked=%s" % [_player.global_position.z, _player.global_position.z > -18.0])
 			_player.global_position = TOSBI_AT + Vector3(0, 0.3, 1.3)
-			await get_tree().create_timer(0.6).timeout
+			await get_tree().create_timer(0.6, false).timeout
 			await close_dialogs()
 			_player.interact()
 			await close_dialogs()
 			print("S3_HAND holding=%s ring=%.1f" % [_tosbi.holding, _player.ring.radius])
 			_player.global_position = Vector3(0, 0.3, -16.0)
 			Input.action_press("move_forward")
-			await get_tree().create_timer(1.6).timeout
+			await get_tree().create_timer(1.6, false).timeout
 			Input.action_release("move_forward")
 			print("S3_VEIL hand z=%.1f through=%s" % [_player.global_position.z, _player.global_position.z < -18.5])
 			_player.global_position = BIG_TORCH + Vector3(0, 0.4, 3.0)
-			await get_tree().create_timer(1.5).timeout
+			await get_tree().create_timer(1.5, false).timeout
 			await close_dialogs()
-			await get_tree().create_timer(1.0).timeout
+			await get_tree().create_timer(1.0, false).timeout
 			await close_dialogs()
 			print("S3_TOSBI done=%s level=%d skill=%s" % [_tosbi.done, GameState.data.level, GameState.data.active_skill()])
 			for i in 12:
@@ -191,11 +191,11 @@ func _run_demo(which: String) -> void:
 					break
 				var t: Titrek = left[0]
 				_player.global_position = t.global_position + Vector3(0, 0.3, 4.0)
-				await get_tree().create_timer(0.3).timeout
+				await get_tree().create_timer(0.3, false).timeout
 				GameState.data.mp = GameState.data.max_mp
 				_player.use_skill()
-				await get_tree().create_timer(0.4).timeout
+				await get_tree().create_timer(0.4, false).timeout
 				print("S3_WAVE %s state=%s" % [t.kind, t.state])
 				_player.global_position = t.global_position + Vector3(0, 0.3, 1.2)
-				await get_tree().create_timer(0.8).timeout
+				await get_tree().create_timer(0.8, false).timeout
 			_player.global_position = PASS_AT + Vector3(0, 0.3, 1.0)

@@ -63,7 +63,7 @@ func _ready() -> void:
 	d.quest_changed.connect(func(_id: String) -> void: _refresh())
 	_refresh()
 	_player.respawn_point = _player.global_position
-	await get_tree().create_timer(1.8).timeout
+	await get_tree().create_timer(1.8, false).timeout
 	if not d.has_flag("s3c5_geldi"):
 		d.set_flag("s3c5_geldi")
 		GameState.bark("s3k5_basla")
@@ -304,25 +304,25 @@ func _run_demo(which: String) -> void:
 			DevTools.auto_dialogue = true
 			var d := GameState.data
 			_player.global_position = Vector3(GATE_X * -RIGHT_SIDE[0], 0.3, ROOM_Z[0] - 8.6)
-			await get_tree().create_timer(0.6).timeout
+			await get_tree().create_timer(0.6, false).timeout
 			print("S3K5_WRONG back=%s z=%.1f" % [_player.global_position.z > ROOM_Z[0], _player.global_position.z])
 			for n in lv.get_children():
 				var bt := n as BeachTorch
 				if bt and not bt.lit:
 					_player.global_position = bt.global_position + Vector3(0, 0.3, 1.2)
-					await get_tree().create_timer(0.4).timeout
+					await get_tree().create_timer(0.4, false).timeout
 					_player.interact()
-					await get_tree().create_timer(0.2).timeout
+					await get_tree().create_timer(0.2, false).timeout
 			await _calm_all()
 			for i in ROOM_Z.size():
 				_player.global_position = Vector3(GATE_X * RIGHT_SIDE[i], 0.3, ROOM_Z[i] - 8.8)
-				await get_tree().create_timer(0.5).timeout
+				await get_tree().create_timer(0.5, false).timeout
 			_player.global_position = CLEARING + Vector3(0, 0.3, 9.0)
-			await get_tree().create_timer(0.8).timeout
+			await get_tree().create_timer(0.8, false).timeout
 			print("S3K5_Q1 state=%s" % d.quest_state(Q1))
 			await _talk("hiril", "Hiril")
 			_player.global_position = lv.get_node("Flare").global_position + Vector3(0, 0.3, 1.6)
-			await get_tree().create_timer(0.5).timeout
+			await get_tree().create_timer(0.5, false).timeout
 			_player.interact()
 			await close_dialogs()
 			print("S3K5_FLARE q2=%s fisek=%s veil=%s" % [d.quest_state(Q2), d.has_flag("s3_fisek5"), _veil.is_open])
@@ -330,14 +330,14 @@ func _run_demo(which: String) -> void:
 			for i in 80:
 				if fighting:
 					break
-				await get_tree().create_timer(0.25).timeout
+				await get_tree().create_timer(0.25, false).timeout
 			await close_dialogs()
 			for i in 2400:
 				if _phase2:
 					break
 				if boss.tired:
 					boss.hit(60, _player.global_position, 0.0)
-				await get_tree().create_timer(0.1).timeout
+				await get_tree().create_timer(0.1, false).timeout
 				if d.hp < 30:
 					d.heal(100)
 			await close_dialogs()
@@ -346,31 +346,31 @@ func _run_demo(which: String) -> void:
 				for k in 40:
 					if _glimmer:
 						break
-					await get_tree().create_timer(0.2).timeout
+					await get_tree().create_timer(0.2, false).timeout
 					await close_dialogs()
 				_player.global_position = HIDES[i] + Vector3(0, 0.3, 1.2)
-				await get_tree().create_timer(0.5).timeout
+				await get_tree().create_timer(0.5, false).timeout
 				await close_dialogs()
-			await get_tree().create_timer(0.6).timeout
+			await get_tree().create_timer(0.6, false).timeout
 			await close_dialogs()
 			print("S3K5_FOUND n=%d chain=%d sad=%s" % [_found, _chain.size(), boss.is_sad])
 			_player.global_position = boss.global_position + Vector3(0, 0.3, 1.6)
-			await get_tree().create_timer(0.3).timeout
+			await get_tree().create_timer(0.3, false).timeout
 			Input.action_press("calm")
 			for i in 60:
 				if not boss.is_sad:
 					break
-				await get_tree().create_timer(0.2).timeout
+				await get_tree().create_timer(0.2, false).timeout
 			Input.action_release("calm")
 			await close_dialogs()
-			await get_tree().create_timer(0.6).timeout
+			await get_tree().create_timer(0.6, false).timeout
 			await close_dialogs()
 			_player.global_position = CLEARING + Vector3(0, 0.3, 5.0)
-			await get_tree().create_timer(0.8).timeout
+			await get_tree().create_timer(0.8, false).timeout
 			await close_dialogs()
 			print("S3K5_PEARL tiril=%s inci=%s pus=%.2f" % [d.objective_done(Q2, "tiril"), d.has_flag("inci_beyaz"), Pus.amount])
 			DevTools.report_next_scene("S3K5_NEXT")
 			await _talk("hiril", "Hiril")
 			print("S3K5_DONE q2=%s fisek=%s inci=%s bitti=%s sezon=%s" % [d.quest_state(Q2), d.has_flag("s3_fisek5"), d.has_flag("inci_beyaz"), d.has_flag("s3_bolum5_bitti"), d.has_flag("sezon3_bitti")])
-			await get_tree().create_timer(3.0).timeout
+			await get_tree().create_timer(3.0, false).timeout
 			get_tree().quit()

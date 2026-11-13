@@ -231,7 +231,9 @@ static func _haze(node: Node, haze: Color, mix: float) -> void:
 			if mat is ShaderMaterial:
 				var c := (mat as ShaderMaterial).duplicate() as ShaderMaterial
 				c.set_shader_parameter("albedo", Color.WHITE.lerp(haze, mix))
+				c.next_pass = null  # no outline that far away
 				m.set_surface_override_material(s, c)
+		m.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 
 
 static func _border(scene: Node3D, holder: Node3D, floors: Array, mood: String) -> void:
@@ -341,6 +343,9 @@ static func _edge_model(holder: Node3D, at: Vector3, rng: RandomNumberGenerator,
 	m.scale = Vector3.ONE * rng.randf_range(hr[0], hr[1]) / _size(id)
 	m.position = at + Vector3(0, -0.3, 0)
 	m.rotation.y = rng.randf() * TAU
+	# its shadow falls outside the map
+	for mi in m.find_children("*", "MeshInstance3D", true, false):
+		(mi as MeshInstance3D).cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	holder.add_child(m)
 	return true
 

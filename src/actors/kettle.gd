@@ -108,7 +108,7 @@ func _loop() -> void:
 		for attack in KettlePlan.cycle(phase):
 			if not active:
 				return
-			await get_tree().create_timer(KettlePlan.rest(phase)).timeout
+			await get_tree().create_timer(KettlePlan.rest(phase), false).timeout
 			if not active:
 				return
 			await GameState.wait_dialogue_closed()
@@ -139,7 +139,7 @@ func _jets() -> void:
 	for d in dirs:
 		for k in 4:
 			Effects.warning(get_parent(), base + d * (2.2 + k * 1.5), 0.55, Mob.TELEGRAPH)
-	await get_tree().create_timer(Mob.TELEGRAPH).timeout
+	await get_tree().create_timer(Mob.TELEGRAPH, false).timeout
 	var p := _player()
 	for d in dirs:
 		for k in 5:
@@ -163,7 +163,7 @@ func _splash() -> void:
 		spots.append(Vector3(p.global_position.x, 0, p.global_position.z) + off)
 	for s in spots:
 		Effects.warning(get_parent(), s, KettlePlan.SPLASH_RADIUS, Mob.TELEGRAPH)
-	await get_tree().create_timer(Mob.TELEGRAPH).timeout
+	await get_tree().create_timer(Mob.TELEGRAPH, false).timeout
 	for s in spots:
 		Effects.ring(get_parent(), s + Vector3.UP * 0.15, KettlePlan.SPLASH_RADIUS, Tokens.color("sky"), 0.3)
 		Effects.sparkle(get_parent(), s + Vector3.UP * 0.5, Tokens.color("sky"), 6)
@@ -181,7 +181,7 @@ func _pop_lid() -> void:
 	var tw := create_tween()
 	tw.tween_property(_lid, "position:y", 3.4, 0.3).set_trans(Tween.TRANS_BACK)
 	get_tree().call_group("hud", "show_hint", "Kapağı kalktı! Şimdi vur!", "Kapak kalktı! Şimdi vur!")
-	await get_tree().create_timer(KettlePlan.LID_TIME).timeout
+	await get_tree().create_timer(KettlePlan.LID_TIME, false).timeout
 	if not active:
 		return
 	get_tree().call_group("hud", "clear_hint")

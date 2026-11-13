@@ -63,7 +63,7 @@ func _ready() -> void:
 	_refresh()
 	_player.respawn_point = _player.global_position
 	take_return_point()
-	await get_tree().create_timer(1.8).timeout
+	await get_tree().create_timer(1.8, false).timeout
 	if not d.has_flag("s2c4_geldi"):
 		d.set_flag("s2c4_geldi")
 		GameState.bark("s2c4_basla")
@@ -451,16 +451,16 @@ func _run_demo(which: String) -> void:
 			for o: String in ["yanki", "tokmak"]:
 				d.complete_objective(Q1, o)
 			_player.global_position = (get_node("Level/Bell") as Node3D).global_position + Vector3(0, 0.3, 1.6)
-			await get_tree().create_timer(0.4).timeout
+			await get_tree().create_timer(0.4, false).timeout
 			(get_node("Level/Bell") as EchoBell).use(_player)
 			await close_dialogs()
 			print("S2BELL rung=%s q2=%s" % [d.has_flag("s2_can4"), d.quest_state(Q2)])
 			GameState.talk_to("cingir")
 			await close_dialogs()
-			await get_tree().create_timer(0.3).timeout
+			await get_tree().create_timer(0.3, false).timeout
 			print("S2BELL q1=%s q2=%s can=%s" % [d.quest_state(Q1), d.quest_state(Q2), d.objective_done(Q2, "can")])
 			_player.global_position = ARENA + Vector3(0, 0.3, 6.0)
-			await get_tree().create_timer(1.5).timeout
+			await get_tree().create_timer(1.5, false).timeout
 			print("S2BELL_DONE fight=%s" % _fight)
 			get_tree().quit()
 		"canyon":
@@ -468,30 +468,30 @@ func _run_demo(which: String) -> void:
 			DevTools.auto_dialogue = true
 			var d := GameState.data
 			_player.global_position = get_node("Cingir").global_position + Vector3(0, 0.3, 1.8)
-			await get_tree().create_timer(0.3).timeout
+			await get_tree().create_timer(0.3, false).timeout
 			GameState.talk_to("cingir")
 			await close_dialogs()
 			for i in ECHOES.size():
 				_player.global_position = ECHOES[i] + Vector3(0, 0.4, 0)
-				await get_tree().create_timer(0.4).timeout
+				await get_tree().create_timer(0.4, false).timeout
 				await close_dialogs()
 			_player.global_position = STICK_AT + Vector3(0, 0.3, 0)
-			await get_tree().create_timer(0.4).timeout
+			await get_tree().create_timer(0.4, false).timeout
 			await close_dialogs()
 			print("S2C4 echoes q1=%s yanki=%s tokmak=%s" % [d.quest_state(Q1), d.objective_done(Q1, "yanki"), d.objective_done(Q1, "tokmak")])
 			_player.global_position = get_node("Cingir").global_position + Vector3(0, 0.3, 1.8)
-			await get_tree().create_timer(0.3).timeout
+			await get_tree().create_timer(0.3, false).timeout
 			GameState.talk_to("cingir")
 			await close_dialogs()
 			_player.global_position = BELL_AT + Vector3(0, 0.3, 1.6)
-			await get_tree().create_timer(0.4).timeout
+			await get_tree().create_timer(0.4, false).timeout
 			(get_node("Level/Bell") as EchoBell).use(_player)
 			await close_dialogs()
-			await get_tree().create_timer(1.6).timeout
+			await get_tree().create_timer(1.6, false).timeout
 			_player.global_position = ARENA + Vector3(0, 0.3, 8.0)
 			var hp_start := d.hp
 			for i in 400:
-				await get_tree().create_timer(0.3).timeout
+				await get_tree().create_timer(0.3, false).timeout
 				await close_dialogs()
 				if _boss.tired:
 					_player.global_position = _boss.global_position + Vector3(0, 0.3, 2.2)
@@ -500,31 +500,31 @@ func _run_demo(which: String) -> void:
 				if _boss.is_sad or d.objective_done(Q2, "gumbur"):
 					break
 			print("S2C4 boss hp=%d sad=%s player_hp=%d/%d" % [_boss.hp, _boss.is_sad, d.hp, hp_start])
-			await get_tree().create_timer(0.6).timeout
+			await get_tree().create_timer(0.6, false).timeout
 			await close_dialogs()
 			for tries in 3:
 				if not _boss.is_sad:
 					break
 				await close_dialogs()
 				_player.global_position = _boss.global_position + Vector3(0, 0.3, 2.4)
-				await get_tree().create_timer(0.5).timeout
+				await get_tree().create_timer(0.5, false).timeout
 				Input.action_press("calm")
-				await get_tree().create_timer(BreathCalm.BREATH_IN + BreathCalm.BREATH_OUT + 0.5).timeout
+				await get_tree().create_timer(BreathCalm.BREATH_IN + BreathCalm.BREATH_OUT + 0.5, false).timeout
 				Input.action_release("calm")
 			print("S2C4 calm sad=%s dist=%.1f q2gumbur=%s" % [_boss.is_sad, _player.global_position.distance_to(_boss.global_position), d.objective_done(Q2, "gumbur")])
 			for i in 20:
 				await close_dialogs()
-				await get_tree().create_timer(0.3).timeout
+				await get_tree().create_timer(0.3, false).timeout
 				if has_node("Kor"):
 					break
 			_player.global_position = ARENA + Vector3(3, 0.3, 7.0)
-			await get_tree().create_timer(0.3).timeout
+			await get_tree().create_timer(0.3, false).timeout
 			_player.global_position = ARENA + Vector3(0, 0.3, 3.5)
 			for i in 8:
-				await get_tree().create_timer(0.5).timeout
+				await get_tree().create_timer(0.5, false).timeout
 				await close_dialogs()
 			_player.global_position = get_node("Cingir").global_position + Vector3(0, 0.3, 1.8)
-			await get_tree().create_timer(0.3).timeout
+			await get_tree().create_timer(0.3, false).timeout
 			GameState.talk_to("cingir")
 			await close_dialogs()
 			print("S2C4_DONE q2=%s kor=%s ani=%s flag=%s level=%d cingir_at_arena=%s way_on=%s" % [d.quest_state(Q2), d.has_flag("kor_bakir"), d.has_flag("s2c4_ani"), d.has_flag("s2_bolum4_bitti"), d.level, (get_node("Cingir") as Node3D).global_position.distance_to(ARENA) < 9.0, has_node("WayOn")])
@@ -540,7 +540,7 @@ func _run_demo(which: String) -> void:
 			boss_camera(true, ARENA, 0.4, 19.0)
 			_boss.start()
 			var hp0 := d.hp
-			await get_tree().create_timer(GumburPlan.cycle_time(1)).timeout
+			await get_tree().create_timer(GumburPlan.cycle_time(1), false).timeout
 			print("S2C4 dodge standing_hits=%d" % roundi(float(hp0 - d.hp) / GumburPlan.DAMAGE))
 			get_tree().quit()
 		"travel":
@@ -549,9 +549,9 @@ func _run_demo(which: String) -> void:
 			GameState.data.set_flag("s2_can4")
 			var bell := get_node("Level/Bell") as EchoBell
 			_player.global_position = BELL_AT + Vector3(0, 0.3, 1.6)
-			await get_tree().create_timer(0.3).timeout
+			await get_tree().create_timer(0.3, false).timeout
 			bell.use(_player)
-			await get_tree().create_timer(0.4).timeout
+			await get_tree().create_timer(0.4, false).timeout
 			for n in _hud.find_children("*", "ChoicePanel", true, false):
 				(n as ChoicePanel)._pick("s2_can0")
 		"arena":
@@ -570,6 +570,6 @@ func d_arena() -> void:
 ## After the Kor: Cingir comes over to the arena for the last talk.
 func _giver_after_kor() -> void:
 	await GameState.wait_dialogue_closed()
-	await get_tree().create_timer(0.4).timeout
+	await get_tree().create_timer(0.4, false).timeout
 	await GameState.wait_dialogue_closed()
 	giver_comes("Cingir", ARENA + Vector3(3.5, 0, 5.5))

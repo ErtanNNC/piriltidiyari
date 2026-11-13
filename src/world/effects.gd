@@ -137,6 +137,11 @@ static func hit(target: Node3D, strong := false) -> void:
 	var parent := target.get_parent()
 	var at := target.global_position + Vector3.UP * (1.2 if not strong else 2.0)
 	impact(parent, at, 1.4 if strong else 1.0)
+	# one spin through a crowd (or a power that re-hits) shakes and stops once
+	var now := Time.get_ticks_msec()
+	if now - _last_hit_ms < 180 and not strong:
+		return
+	_last_hit_ms = now
 	shake(target.get_viewport(), 0.35 if not strong else 0.55)
 	hitstop(target.get_tree(), 0.045)
 
@@ -224,6 +229,7 @@ static func shake(vp: Viewport, amount: float) -> void:
 
 
 static var _stop_depth := 0
+static var _last_hit_ms := 0
 
 
 ## Freezes the game for a blink (real time, so it always ends).

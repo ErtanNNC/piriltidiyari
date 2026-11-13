@@ -21,7 +21,7 @@ func _ready() -> void:
 	if d.quest_state(QUEST) == "none":
 		d.start_quest(Content.quests[QUEST])
 	d.quest_changed.connect(func(_id: String) -> void: _advance())
-	await get_tree().create_timer(1.8).timeout
+	await get_tree().create_timer(1.8, false).timeout
 	if DevTools.demo != "":
 		_run_demo(DevTools.demo)
 		return
@@ -48,10 +48,10 @@ func _advance() -> void:
 
 
 func _learn_skill() -> void:
-	await get_tree().create_timer(3.2).timeout
+	await get_tree().create_timer(3.2, false).timeout
 	GameState.data.unlock_skill("dikenli_donus")
 	_hud.show_scene_card("Yeni yetenek!", "Dikenli Dönüş", "Etrafındaki herkese birden vurur")
-	await get_tree().create_timer(3.2).timeout
+	await get_tree().create_timer(3.2, false).timeout
 	GameState.bark("s3_yetenek")
 	await GameState.dialogue_closed
 	for at in [Vector3(26, 14, -30.5), Vector3(30.5, 14, -31), Vector3(28, 14, -28.5)]:
@@ -67,7 +67,7 @@ func _on_roof_mob_calmed(m: Mob) -> void:
 		return
 	_hud.clear_hint()
 	GameState.data.set_flag("sahne3_bitti")
-	await get_tree().create_timer(1.2).timeout
+	await get_tree().create_timer(1.2, false).timeout
 	GameState.bark("s3_kapi", {"goto_scene": "scene4"})
 
 
@@ -178,9 +178,9 @@ func _run_demo(which: String) -> void:
 		"climb":
 			player.global_position = Vector3(1, 0, -20.5)
 			Input.action_press("move_forward")
-			await get_tree().create_timer(1.6).timeout
+			await get_tree().create_timer(1.6, false).timeout
 			print("CLIMB y=%.2f z=%.2f" % [player.global_position.y, player.global_position.z])
-			await get_tree().create_timer(1.2).timeout
+			await get_tree().create_timer(1.2, false).timeout
 			Input.action_release("move_forward")
 			print("CLIMB2 y=%.2f z=%.2f obj=%s" % [player.global_position.y, player.global_position.z, GameState.data.objective_done(QUEST, "balkon1")])
 			get_tree().quit()
@@ -190,7 +190,7 @@ func _run_demo(which: String) -> void:
 		"hop":
 			# scripted run across the lanterns: jump right at each platform
 			player.global_position = Vector3(9.2, 5.1, -24)
-			await get_tree().create_timer(0.5).timeout
+			await get_tree().create_timer(0.5, false).timeout
 			var plats := get_tree().get_nodes_in_group("_none")
 			for i in 4:
 				var target_x := 12.6 + i * 3.0 if i < 3 else 22.5
@@ -216,13 +216,13 @@ func _run_demo(which: String) -> void:
 				Input.action_release("move_right")
 				Input.action_release("move_forward")
 				Input.action_release("move_back")
-				await get_tree().create_timer(0.35).timeout
+				await get_tree().create_timer(0.35, false).timeout
 				print("HOP %d x=%.2f y=%.2f z=%.2f floor=%s" % [i, player.global_position.x, player.global_position.y, player.global_position.z, player.is_on_floor()])
 			get_tree().quit()
 		"climb2":
 			player.global_position = Vector3(29, 7.1, -24.2)
 			Input.action_press("move_forward")
-			await get_tree().create_timer(3.0).timeout
+			await get_tree().create_timer(3.0, false).timeout
 			Input.action_release("move_forward")
 			print("CLIMB2 y=%.2f z=%.2f" % [player.global_position.y, player.global_position.z])
 			get_tree().quit()
@@ -230,34 +230,34 @@ func _run_demo(which: String) -> void:
 			for o in ["dip", "balkon1", "balkon2"]:
 				GameState.data.complete_objective(QUEST, o)
 			player.global_position = Vector3(26, 14.2, -29)
-			await get_tree().create_timer(6.8).timeout
+			await get_tree().create_timer(6.8, false).timeout
 			for i in 6:
 				var hud_dialog_open: bool = _hud._dialog.is_open()
 				if hud_dialog_open:
 					_hud._dialog.advance()
 					_hud._dialog.advance()
-				await get_tree().create_timer(0.3).timeout
+				await get_tree().create_timer(0.3, false).timeout
 			print("FLOW level=%d skill=%s mobs=%d" % [GameState.data.level, GameState.data.skills, _roof_mobs.size()])
 			var tries := 0
 			while not _roof_mobs.is_empty() and tries < 8:
 				tries += 1
 				var m: Mob = _roof_mobs[0]
 				player.global_position = m.global_position + Vector3(0, 0.2, 1.5)
-				await get_tree().create_timer(0.2).timeout
+				await get_tree().create_timer(0.2, false).timeout
 				player.dikenli_donus()
-				await get_tree().create_timer(0.8).timeout
+				await get_tree().create_timer(0.8, false).timeout
 				player._attack_cd = 0.0
 				for k in 3:
 					player.spin_attack()
 					player._attack_cd = 0.0
-					await get_tree().create_timer(0.1).timeout
-			await get_tree().create_timer(3.0).timeout
+					await get_tree().create_timer(0.1, false).timeout
+			await get_tree().create_timer(3.0, false).timeout
 			for i in 4:
 				if _hud._dialog.is_open():
 					_hud._dialog.advance()
 					_hud._dialog.advance()
-				await get_tree().create_timer(0.3).timeout
-			await get_tree().create_timer(3.5).timeout
+				await get_tree().create_timer(0.3, false).timeout
+			await get_tree().create_timer(3.5, false).timeout
 			for m in _roof_mobs:
 				print("LEFT ", m.state, " hp=", m.hp, " pos=", m.global_position, " player=", player.global_position, " valid=", is_instance_valid(m))
 			print("FLOW2 mobs=%d flag=%s scene=%s" % [_roof_mobs.size(), GameState.data.has_flag("sahne3_bitti"), SceneFlow.current])

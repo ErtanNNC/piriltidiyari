@@ -36,7 +36,7 @@ func _ready() -> void:
 	d.quest_changed.connect(func(_id: String) -> void: _advance())
 	for i in VENTS.size():
 		_vent_loop(VENTS[i], i * 1.0)
-	await get_tree().create_timer(1.6).timeout
+	await get_tree().create_timer(1.6, false).timeout
 	GameState.bark("s3b_basla")
 	_hud.show_hint("Fokurdayan suya dikkat: halka çıkınca uzak dur!", "Fokurdayan suya dikkat!")
 	_advance()
@@ -74,10 +74,10 @@ func _learn_lullaby() -> void:
 	var d := GameState.data
 	if d.level < 3:
 		d.add_xp(Progression.xp_to_next(d.level) - d.xp)
-	await get_tree().create_timer(1.2).timeout
+	await get_tree().create_timer(1.2, false).timeout
 	d.unlock_skill("yildiz_ninnisi")
 	_hud.show_scene_card("Yeni yetenek!", "Yıldız Ninnisi", "Yakındaki Köpüklüler oturup sersemler")
-	await get_tree().create_timer(3.0).timeout
+	await get_tree().create_timer(3.0, false).timeout
 	GameState.bark("s3b_yetenek")
 	await GameState.dialogue_closed
 	for k in 4:
@@ -128,7 +128,7 @@ func _process(delta: float) -> void:
 
 
 func _end() -> void:
-	await get_tree().create_timer(0.8).timeout
+	await get_tree().create_timer(0.8, false).timeout
 	GameState.bark("s3b_ses")
 	await GameState.dialogue_closed
 	if DevTools.demo == "path" and DisplayServer.get_name() == "headless":
@@ -221,10 +221,10 @@ func _checkpoint(parent: Node3D, area_id: String, at: Vector3) -> void:
 ## A boiling spring: every few seconds a steam ring is announced (0.8 s, like
 ## every attack), then puffs. Standing in it stings a little and pushes back.
 func _vent_loop(at: Vector3, delay: float) -> void:
-	await get_tree().create_timer(2.0 + delay).timeout
+	await get_tree().create_timer(2.0 + delay, false).timeout
 	while is_inside_tree() and _vents_on:
 		Effects.warning(self, at, VENT_RADIUS, Mob.TELEGRAPH)
-		await get_tree().create_timer(Mob.TELEGRAPH).timeout
+		await get_tree().create_timer(Mob.TELEGRAPH, false).timeout
 		if not is_inside_tree():
 			return
 		Effects.ring(self, at + Vector3.UP * 0.4, VENT_RADIUS + 0.3, Color(1, 1, 1, 0.9), 0.5)
@@ -236,7 +236,7 @@ func _vent_loop(at: Vector3, delay: float) -> void:
 				if not GameState.data.has_flag("s3b_kaynak"):
 					GameState.data.set_flag("s3b_kaynak")
 					GameState.bark("s3b_kaynak")
-		await get_tree().create_timer(VENT_PERIOD).timeout
+		await get_tree().create_timer(VENT_PERIOD, false).timeout
 
 
 func _crackle(stone: Node3D) -> void:
@@ -257,23 +257,23 @@ func _run_demo(which: String) -> void:
 					d.advance_objective(QUEST, oid)
 			_advance()
 			for i in 40:
-				await get_tree().create_timer(0.3).timeout
+				await get_tree().create_timer(0.3, false).timeout
 				await close_dialogs()
 				if _stage == 4:
 					break
 			for m in _ninni_mobs.duplicate():
 				m.hit(9999, m.global_position + Vector3.BACK, 0.0)
-			await get_tree().create_timer(1.0).timeout
+			await get_tree().create_timer(1.0, false).timeout
 			var fresh := 0
 			for m in _ninni_mobs:
 				if is_instance_valid(m) and not m.state in ["dazed", "calm"]:
 					fresh += 1
 			_player.global_position = Vector3(0, D_TOP + 0.3, -36.0)
-			await get_tree().create_timer(0.4).timeout
+			await get_tree().create_timer(0.4, false).timeout
 			d.mp = d.max_mp
 			_player._attack_cd = 0.0
 			_player.use_skill()
-			await get_tree().create_timer(0.5).timeout
+			await get_tree().create_timer(0.5, false).timeout
 			print("S3B_HITFIRST fresh=%d ninni=%s" % [fresh, d.objective_done(QUEST, "ninni")])
 			get_tree().quit()
 		"path":
@@ -291,11 +291,11 @@ func _run_demo(which: String) -> void:
 					_player.global_position = (dazed[0] as Node3D).global_position + Vector3(0, 0.3, 1.3)
 					await get_tree().physics_frame
 					Input.action_press("calm")
-					await get_tree().create_timer(BreathCalm.BREATH_IN + BreathCalm.BREATH_OUT + 0.4).timeout
+					await get_tree().create_timer(BreathCalm.BREATH_IN + BreathCalm.BREATH_OUT + 0.4, false).timeout
 					Input.action_release("calm")
 				elif not mobs.is_empty():
 					(mobs[0] as Mob).hit(999, _player.global_position, 0.5)
-				await get_tree().create_timer(0.3).timeout
+				await get_tree().create_timer(0.3, false).timeout
 			await close_dialogs()
 			print("S3B nefes=%s" % GameState.data.objective_done(QUEST, "nefes"))
 			# up the stairs onto the terrace, to its far edge
@@ -306,21 +306,21 @@ func _run_demo(which: String) -> void:
 			# jump and float north across the chasm
 			Input.action_press("move_forward")
 			Input.action_press("jump")
-			await get_tree().create_timer(2.4).timeout
+			await get_tree().create_timer(2.4, false).timeout
 			Input.action_release("jump")
-			await get_tree().create_timer(0.4).timeout
+			await get_tree().create_timer(0.4, false).timeout
 			Input.action_release("move_forward")
 			print("S3B chasm y=%.2f z=%.2f ucurum=%s" % [_player.global_position.y, _player.global_position.z, GameState.data.objective_done(QUEST, "ucurum")])
 			for i in 30:
-				await get_tree().create_timer(0.5).timeout
+				await get_tree().create_timer(0.5, false).timeout
 				await close_dialogs()
 				if _stage >= 4:
 					break
 			await walk_to(Vector3(0, D_TOP, -35.0), 3.0)
-			await get_tree().create_timer(0.3).timeout
+			await get_tree().create_timer(0.3, false).timeout
 			GameState.data.mp = GameState.data.max_mp
 			_player.use_skill()
-			await get_tree().create_timer(1.0).timeout
+			await get_tree().create_timer(1.0, false).timeout
 			print("S3B ninni=%s lulled=%d" % [GameState.data.objective_done(QUEST, "ninni"), GameState.data.objective_count(QUEST, "ninni").x])
 			if not GameState.data.objective_done(QUEST, "ninni"):
 				GameState.data.mp = GameState.data.max_mp
@@ -331,13 +331,13 @@ func _run_demo(which: String) -> void:
 		"jumponly":
 			# a plain jump must not cross the chasm
 			_player.global_position = Vector3(0, B_TOP + 0.3, -19.4)
-			await get_tree().create_timer(0.4).timeout
+			await get_tree().create_timer(0.4, false).timeout
 			Input.action_press("move_forward")
 			Input.action_press("jump")
 			await get_tree().physics_frame
 			await get_tree().physics_frame
 			Input.action_release("jump")
-			await get_tree().create_timer(2.0).timeout
+			await get_tree().create_timer(2.0, false).timeout
 			Input.action_release("move_forward")
 			print("S3B jumponly y=%.2f z=%.2f ucurum=%s" % [_player.global_position.y, _player.global_position.z, GameState.data.objective_done(QUEST, "ucurum")])
 			# and from the chasm floor the stairs lead back up to the terrace
@@ -347,7 +347,7 @@ func _run_demo(which: String) -> void:
 			get_tree().quit()
 		"stairs":
 			_player.global_position = Vector3(0, 0.3, -7.5)
-			await get_tree().create_timer(0.3).timeout
+			await get_tree().create_timer(0.3, false).timeout
 			await _hop_to(Vector3(0, B_TOP, -14.0), 5.0)
 			print("S3B stairs y=%.2f z=%.2f" % [_player.global_position.y, _player.global_position.z])
 			get_tree().quit()

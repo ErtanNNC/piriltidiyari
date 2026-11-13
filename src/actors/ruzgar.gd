@@ -77,7 +77,7 @@ func _loop() -> void:
 		for attack in GullPlan.cycle(phase):
 			if not active:
 				return
-			await get_tree().create_timer(GullPlan.rest(phase)).timeout
+			await get_tree().create_timer(GullPlan.rest(phase), false).timeout
 			await GameState.wait_dialogue_closed()
 			if not active:
 				return
@@ -104,6 +104,9 @@ func _gale() -> void:
 	_model.scale = Vector3.ONE
 	var t := 0.0
 	while t < GullPlan.GALE_TIME and active:
+		if get_tree().paused:
+			await get_tree().process_frame
+			continue
 		var safe := false
 		for s in get_tree().get_nodes_in_group("shelter"):
 			var n := s as Node3D
@@ -122,7 +125,7 @@ func _lightning() -> void:
 		spots.append(spots[0] + Vector3(randf_range(-4, 4), 0, randf_range(-4, 4)))
 	for s in spots:
 		Effects.warning(get_parent(), s, 1.1, Mob.TELEGRAPH)
-	await get_tree().create_timer(Mob.TELEGRAPH).timeout
+	await get_tree().create_timer(Mob.TELEGRAPH, false).timeout
 	for s in spots:
 		var bolt := Toon.part(get_parent(), "cylinder", Vector3(0.35, 12.0, 0.35), "spark-yellow", s + Vector3.UP * 6.0, Vector3.ZERO, 2.0, 0.03)
 		var tw := bolt.create_tween()
@@ -140,7 +143,7 @@ func _dive() -> void:
 	await up.finished
 	spot = _player.global_position
 	Effects.warning(get_parent(), spot, 2.0, Mob.TELEGRAPH)
-	await get_tree().create_timer(Mob.TELEGRAPH).timeout
+	await get_tree().create_timer(Mob.TELEGRAPH, false).timeout
 	var down := create_tween()
 	down.tween_property(self, "global_position", spot, 0.25).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUAD)
 	await down.finished
@@ -156,7 +159,7 @@ func _dive() -> void:
 		var a := TAU * i / 4.0
 		Toon.part(_stars, "sphere", Vector3(0.35, 0.35, 0.35), "spark-yellow", Vector3(cos(a), 0, sin(a)), Vector3.ZERO, 1.2, 0.02)
 	get_tree().call_group("hud", "show_hint", "Sersemledi! Şimdi vur!", "Sersemledi! Şimdi vur!")
-	await get_tree().create_timer(GullPlan.DAZE_TIME).timeout
+	await get_tree().create_timer(GullPlan.DAZE_TIME, false).timeout
 	if _stars:
 		_stars.queue_free()
 		_stars = null

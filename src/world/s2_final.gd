@@ -74,7 +74,7 @@ func _ready() -> void:
 	var crystal := get_node_or_null("Village/FenerKulesi/BuyukKivilcim")
 	if crystal:
 		crystal.visible = false
-	await get_tree().create_timer(1.9).timeout
+	await get_tree().create_timer(1.9, false).timeout
 	if DevTools.demo != "" and DisplayServer.get_name() == "headless":
 		DevTools.auto_dialogue = true
 	var cs := CutscenePlayer.new()
@@ -230,7 +230,7 @@ func _click_test(panel: Control) -> void:
 	# a level-up waiting at the end of the season (Hırıl's reward) used to
 	# open its cards behind this summary and pause the game under it
 	GameState.data.power_picks += 1
-	await get_tree().create_timer(1.5).timeout
+	await get_tree().create_timer(1.5, false).timeout
 	print("S2END paused=%s level_panel=%s" % [get_tree().paused, _hud._level_panel != null])
 	var target: Button = null
 	for b in panel.find_children("*", "Button", true, false):
@@ -258,8 +258,8 @@ func _click_test(panel: Control) -> void:
 	up.pressed = false
 	await get_tree().process_frame
 	Input.parse_input_event(up)
-	await get_tree().create_timer(0.3).timeout
+	await get_tree().create_timer(0.3, false).timeout
 	print("S2END at=%s paused=%s hovered=%s scene=%s busy=%s" % [at, get_tree().paused, hit, SceneFlow.current, SceneFlow.busy])
-	await get_tree().create_timer(2.5).timeout
+	await get_tree().create_timer(2.5, false).timeout
 	print("S2END_DONE scene=%s" % SceneFlow.current)
 	get_tree().quit()

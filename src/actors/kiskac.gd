@@ -45,7 +45,7 @@ func _loop() -> void:
 		for attack in CrabPlan.cycle(phase):
 			if not active:
 				return
-			await get_tree().create_timer(CrabPlan.rest(phase)).timeout
+			await get_tree().create_timer(CrabPlan.rest(phase), false).timeout
 			await GameState.wait_dialogue_closed()
 			if not active:
 				return
@@ -133,6 +133,9 @@ func _spin() -> void:
 		var t := 0.0
 		var hit := false
 		while t < 0.6:
+			if get_tree().paused:
+				await get_tree().process_frame
+				continue
 			t += get_process_delta_time()
 			global_position = start.lerp(end, minf(t / 0.6, 1.0))
 			_model.rotation.y += get_process_delta_time() * 18.0
@@ -154,7 +157,7 @@ func _opening(seconds: float, hint: String) -> void:
 		var a := TAU * i / 4.0
 		Toon.part(_stars, "sphere", Vector3(0.35, 0.35, 0.35), "spark-yellow", Vector3(cos(a), 0, sin(a)) * 1.0, Vector3.ZERO, 1.2, 0.02)
 	get_tree().call_group("hud", "show_hint", hint, hint)
-	await get_tree().create_timer(seconds).timeout
+	await get_tree().create_timer(seconds, false).timeout
 	if _stars:
 		_stars.queue_free()
 		_stars = null

@@ -27,7 +27,7 @@ func _ready() -> void:
 	_miril.position = Vector3(-1.3, 0, 1.0)
 	_miril.rotation.y = PI
 	_cam.make_current()
-	await get_tree().create_timer(1.9).timeout
+	await get_tree().create_timer(1.9, false).timeout
 	var cs := CutscenePlayer.new()
 	cs.scene = self
 	cs.camera = _cam

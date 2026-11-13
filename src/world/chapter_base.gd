@@ -65,7 +65,7 @@ func _side_occluders(s: Node3D, at := Vector3.INF) -> Array:
 func _side_demo() -> void:
 	var d := GameState.data
 	DevTools.auto_dialogue = true
-	await get_tree().create_timer(3.0).timeout
+	await get_tree().create_timer(3.0, false).timeout
 	await close_dialogs()
 	var ok := true
 	for s: SideSpot in find_children("Side_*", "SideSpot", false, false):
@@ -76,7 +76,7 @@ func _side_demo() -> void:
 		_player.global_position = stand
 		_player.respawn_point = stand
 		_player.velocity = Vector3.ZERO
-		await get_tree().create_timer(0.7).timeout
+		await get_tree().create_timer(0.7, false).timeout
 		var on_floor := _player.is_on_floor() and _player.global_position.distance_to(stand) < 0.8
 		var focus := _player._focus == s
 		var hidden := _side_occluders(s)
@@ -199,10 +199,10 @@ func take_return_point() -> void:
 # --- test helpers -------------------------------------------------------------
 
 func close_dialogs() -> void:
-	await get_tree().create_timer(0.3).timeout
+	await get_tree().create_timer(0.3, false).timeout
 	while _hud._dialog.is_open():
 		_hud._dialog.advance()
-		await get_tree().create_timer(0.05).timeout
+		await get_tree().create_timer(0.05, false).timeout
 
 
 func walk_to(target: Vector3, seconds: float) -> void:

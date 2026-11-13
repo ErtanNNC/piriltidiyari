@@ -24,21 +24,21 @@ func _ready() -> void:
 
 func _cycle() -> void:
 	while is_inside_tree():
-		await get_tree().create_timer(rest).timeout
+		await get_tree().create_timer(rest, false).timeout
 		if not active or not is_inside_tree():
 			continue
 		await GameState.wait_dialogue_closed()
 		_dir = directions[_i % directions.size()]
 		_i += 1
 		_tell(_dir)
-		await get_tree().create_timer(Mob.TELEGRAPH).timeout
+		await get_tree().create_timer(Mob.TELEGRAPH, false).timeout
 		if not active:
 			continue
 		Audio.play("wind")
 		gust_started.emit(_dir)
 		_blowing = true
 		_streaks(_dir)
-		await get_tree().create_timer(gust_time).timeout
+		await get_tree().create_timer(gust_time, false).timeout
 		_blowing = false
 		if _player:
 			_player.wind = Vector3.ZERO

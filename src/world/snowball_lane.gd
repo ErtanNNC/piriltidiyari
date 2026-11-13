@@ -26,7 +26,7 @@ func _roll() -> void:
 	await GameState.wait_dialogue_closed()
 	for k in 4:
 		Effects.warning(get_parent(), top.lerp(bottom, (k + 0.5) / 4.0), 1.0, Mob.TELEGRAPH)
-	await get_tree().create_timer(Mob.TELEGRAPH).timeout
+	await get_tree().create_timer(Mob.TELEGRAPH, false).timeout
 	var ball := Node3D.new()
 	get_parent().add_child(ball)
 	Toon.part(ball, "sphere", Vector3(1.8, 1.8, 1.8), MountainKit.SNOW, Vector3.ZERO)

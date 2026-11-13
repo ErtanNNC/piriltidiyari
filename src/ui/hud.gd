@@ -395,7 +395,8 @@ func _open_dialogue(npc_id: String) -> void:
 
 
 func _open_lines(lines: Array, then: Dictionary) -> void:
-	if _dialog.is_open():
+	# several requests may wait: each takes its turn (one emit wakes them all)
+	while _dialog.is_open():
 		await _dialog.finished
 	if _player:
 		_player.input_enabled = false
@@ -406,6 +407,9 @@ func _open_lines(lines: Array, then: Dictionary) -> void:
 
 
 func _on_dialog_finished() -> void:
+	# a dialogue's own effects may have opened the next bark already
+	if _dialog.is_open():
+		return
 	GameState.in_dialogue = false
 	_refresh_potions()
 	GameState.dialogue_closed.emit()
@@ -441,6 +445,7 @@ func show_scene_card(small: String, big: String, sub: String) -> void:
 	var bg := ColorRect.new()
 	bg.color = Tokens.color("scrim")
 	bg.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	bg.mouse_filter = Control.MOUSE_FILTER_IGNORE  # the buttons under the card stay alive
 	card.add_child(bg)
 	var v := VBoxContainer.new()
 	v.set_anchors_and_offsets_preset(Control.PRESET_CENTER)
@@ -524,6 +529,7 @@ func cinematic(on: bool) -> void:
 	if on == _cinematic:
 		return
 	_cinematic = on
+	_release_touch()  # hidden buttons never see the finger lift
 	for c in _root.get_children():
 		if c == _dialog or c == _toast:
 			continue
@@ -587,6 +593,12 @@ func ask(title: String, options: Array) -> String:
 
 # --- pause ("Mola") -----------------------------------------------------------
 
+## The phone's back button opens (or closes) Mola.
+func back_pressed() -> void:
+	if _pause_panel or not get_tree().paused:
+		toggle_pause()
+
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel") and not _cinematic and not _dialog.is_open():
 		toggle_pause()
@@ -601,7 +613,7 @@ func toggle_pause() -> void:
 		_release_touch()
 		get_tree().paused = false
 		return
-	if _cinematic or _dialog.is_open() or SceneFlow.busy:
+	if _cinematic or _dialog.is_open() or SceneFlow.busy or get_tree().paused:
 		return
 	_release_touch()
 	get_tree().paused = true
@@ -619,7 +631,7 @@ func toggle_pause() -> void:
 	panel.grow_vertical = Control.GROW_DIRECTION_BOTH
 	p.add_child(panel)
 	var v := VBoxContainer.new()
-	v.add_theme_constant_override("separation", int(Tokens.px("space-3")))
+	v.add_theme_constant_override("separation", int(Tokens.px("space-2")))
 	panel.add_child(v)
 	var title := UiKit.label("Mola", "text-title", "ink")
 	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
@@ -693,8 +705,9 @@ func toggle_pause() -> void:
 		Audio.play("coin" if ok else "warn"))
 	menu.pressed.connect(func() -> void:
 		toggle_pause()
+		SceneFlow.autosave()
 		SceneFlow.go_to("title", false))
-	var note := UiKit.label(TranslationServer.translate("Bölüm başlarında kendiliğinden de kaydedilir. · %d FPS") % Engine.get_frames_per_second(), "text-caption", "ink-muted")
+	var note := UiKit.label(TranslationServer.translate("Oyun kendiliğinden de kaydedilir. · %d FPS") % Engine.get_frames_per_second(), "text-caption", "ink-muted")
 	note.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	v.add_child(note)
 	_root.add_child(p)
@@ -829,7 +842,7 @@ func _maybe_level_up() -> void:
 		_refresh_stats()
 		if id != Powers.FALLBACK:
 			var def: Dictionary = Powers.DEFS[id]
-			var how: String = TranslationServer.translate(" (%s tuşu / düğmesi)") % ["O", "P"][Powers.actives(d.powers).find(id)] if def["kind"] == "active" else ""
+			var how: String = TranslationServer.translate(" (%s tuşu / düğmesi)") % ["O", "P"][Powers.actives(d.powers).find(id)] if def["kind"] == "active" and not DisplayServer.is_touchscreen_available() else ""
 			show_toast(TranslationServer.translate("%s: kademe %d%s") % [TranslationServer.translate(def["name"]), Powers.rank(d.powers, id), how], "star"))
 
 

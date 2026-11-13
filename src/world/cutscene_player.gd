@@ -51,7 +51,7 @@ func _run(step: Dictionary) -> void:
 		GameState.bark(String(step["say"]).replace("{keeper}", GameState.data.character_id))
 		await GameState.dialogue_closed
 	elif step.has("wait"):
-		await get_tree().create_timer(float(step["wait"])).timeout
+		await get_tree().create_timer(float(step["wait"]), false).timeout
 	elif step.has("do"):
 		scene.callv(step["do"], step.get("args", []))
 	elif step.has("pus"):
@@ -63,7 +63,7 @@ func _run(step: Dictionary) -> void:
 	elif step.has("card"):
 		var c: Array = step["card"]
 		hud.show_scene_card(c[0], c[1], c[2] if c.size() > 2 else "")
-		await get_tree().create_timer(float(step.get("time", 3.4))).timeout
+		await get_tree().create_timer(float(step.get("time", 3.4)), false).timeout
 	elif step.has("goto"):
 		SceneFlow.go_to(step["goto"])
 

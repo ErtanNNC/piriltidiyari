@@ -70,8 +70,8 @@ func refresh() -> void:
 
 
 func _gui_input(event: InputEvent) -> void:
-	if (event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT) \
-			or (event is InputEventScreenTouch and event.pressed):
+	# a tap arrives as a touch AND as a mouse click: take one, or it fires twice
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		var p: Player = _hud.player()
 		if p:
 			p.switch_tool(index)

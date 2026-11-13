@@ -51,7 +51,7 @@ func _loop() -> void:
 		for attack in MirilPlan.cycle(phase):
 			if not active:
 				return
-			await get_tree().create_timer(MirilPlan.rest(phase)).timeout
+			await get_tree().create_timer(MirilPlan.rest(phase), false).timeout
 			await GameState.wait_dialogue_closed()
 			if not active:
 				return
@@ -93,7 +93,7 @@ func _echo_owl() -> void:
 	var tint := Toon.material(Color("#8d89a0"), 0.03, 0.0, 0.0)
 	for mi in owl.find_children("*", "MeshInstance3D", true, false):
 		(mi as MeshInstance3D).material_override = tint
-	await get_tree().create_timer(Mob.TELEGRAPH).timeout
+	await get_tree().create_timer(Mob.TELEGRAPH, false).timeout
 	var tw := owl.create_tween()
 	tw.tween_property(owl, "global_position", spot, 0.25).set_ease(Tween.EASE_IN)
 	await tw.finished
@@ -109,7 +109,7 @@ func _echo_owl() -> void:
 func _echo_ring() -> void:
 	get_tree().call_group("hud", "show_hint", "Halka geliyor: zıpla!", "Halka: zıpla!")
 	Effects.warning(get_parent(), global_position, 3.0, Mob.TELEGRAPH)
-	await get_tree().create_timer(Mob.TELEGRAPH).timeout
+	await get_tree().create_timer(Mob.TELEGRAPH, false).timeout
 	var mi := MeshInstance3D.new()
 	var t := TorusMesh.new()
 	t.inner_radius = 0.92
@@ -142,7 +142,7 @@ func _echo_icicles() -> void:
 		spots.append(spots[0] + Vector3(randf_range(-4, 4), 0, randf_range(-4, 4)))
 	for s in spots:
 		Effects.warning(get_parent(), s, 1.1, Mob.TELEGRAPH)
-	await get_tree().create_timer(Mob.TELEGRAPH).timeout
+	await get_tree().create_timer(Mob.TELEGRAPH, false).timeout
 	for s in spots:
 		var ic := Toon.part(get_parent(), "cone", Vector3(0.7, 1.8, 0.7), Color("#8d89a0"), s + Vector3.UP * 0.9, Vector3(180, 0, 0), 0.0, 0.03)
 		var tw := ic.create_tween()
@@ -169,7 +169,7 @@ func _tired() -> void:
 	_sad.position.y = 6.0
 	add_child(_sad)
 	get_tree().call_group("hud", "show_hint", "Mırıl yoruldu. Şimdi yaklaş!", "Mırıl yoruldu. Yaklaş!")
-	await get_tree().create_timer(MirilPlan.TIRED_TIME).timeout
+	await get_tree().create_timer(MirilPlan.TIRED_TIME, false).timeout
 	if is_instance_valid(_sad):
 		_sad.queue_free()
 	if not active:

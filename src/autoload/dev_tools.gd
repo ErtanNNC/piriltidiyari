@@ -15,6 +15,9 @@ var auto_dialogue := false
 
 
 func _ready() -> void:
+	if "--compile-check" in OS.get_cmdline_user_args():
+		_compile_check()
+		return
 	var scene := ""
 	for arg in OS.get_cmdline_user_args():
 		if arg.begins_with("--shot="):
@@ -301,3 +304,24 @@ func report_next_scene(tag: String) -> void:
 	var d := GameState.data
 	print("%s started=%s busy=%s ms=%d slot=%d keeper=%s level=%d" % [tag, id, SceneFlow.busy, Time.get_ticks_msec() - t0, SaveGame.slot, d.character_id, d.level])
 	get_tree().quit()
+
+
+## `-- --compile-check` (tools/test.sh): loads every script in src/ with the
+## autoloads present, so a parse error in a scene no test opens fails the run.
+func _compile_check() -> void:
+	var bad := 0
+	var n := 0
+	var dirs := ["res://src"]
+	while not dirs.is_empty():
+		var d: String = dirs.pop_back()
+		for sub in DirAccess.get_directories_at(d):
+			dirs.append(d + "/" + sub)
+		for f in DirAccess.get_files_at(d):
+			if f.ends_with(".gd"):
+				n += 1
+				var sc := load(d + "/" + f) as GDScript
+				if sc == null or not sc.can_instantiate():
+					bad += 1
+					print("DERLENMEDI ", d, "/", f)
+	print("DERLEME %d betik, %d hata" % [n, bad])
+	get_tree().quit(1 if bad > 0 else 0)

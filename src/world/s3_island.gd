@@ -44,7 +44,7 @@ func begin(id: String, mood := "ada") -> Node3D:
 	# the way on shows as soon as the island is done (the flag is set after
 	# the quest closes, so a quest signal alone would miss it)
 	GameState.data.flags_changed.connect(_way_on)
-	get_tree().create_timer(3.0).timeout.connect(_way_on)
+	get_tree().create_timer(3.0, false).timeout.connect(_way_on)
 	return lv
 
 
@@ -296,7 +296,7 @@ func prop(id: String, at: Vector3, h: float, yaw := 0.0) -> Node3D:
 func _talk(npc_id: String, node_name: String) -> void:
 	var n := get_node(node_name) as Node3D
 	_player.global_position = n.global_position + Vector3(0, 0.3, 1.8)
-	await get_tree().create_timer(0.3).timeout
+	await get_tree().create_timer(0.3, false).timeout
 	GameState.talk_to(npc_id)
 	await close_dialogs()
 
@@ -311,9 +311,9 @@ func _calm_all() -> void:
 		_player.global_position = t.global_position + Vector3(0, 0.3, 5.5)
 		for k in 4:
 			_player.spin_attack()
-			await get_tree().create_timer(0.6).timeout
+			await get_tree().create_timer(0.6, false).timeout
 		_player.global_position = t.global_position + Vector3(0, 0.3, 1.2)
-		await get_tree().create_timer(0.6).timeout
+		await get_tree().create_timer(0.6, false).timeout
 
 
 ## Demo: wait for the fight, hit the keeper whenever it is tired, then hold
@@ -322,25 +322,25 @@ func _beat_boss() -> void:
 	for i in 80:
 		if fighting:
 			break
-		await get_tree().create_timer(0.25).timeout
+		await get_tree().create_timer(0.25, false).timeout
 	await close_dialogs()
 	for i in 2400:
 		if boss.is_sad or not boss.active and boss.hp <= 0:
 			break
 		if boss.tired:
 			boss.hit(60, _player.global_position, 0.0)
-		await get_tree().create_timer(0.1).timeout
+		await get_tree().create_timer(0.1, false).timeout
 		if GameState.data.hp < 30:
 			GameState.data.heal(100)
 	await close_dialogs()
 	_player.global_position = boss.global_position + Vector3(0, 0.3, 1.6)
-	await get_tree().create_timer(0.3).timeout
+	await get_tree().create_timer(0.3, false).timeout
 	Input.action_press("calm")
 	for i in 60:
 		if not boss.is_sad:
 			break
-		await get_tree().create_timer(0.2).timeout
+		await get_tree().create_timer(0.2, false).timeout
 	Input.action_release("calm")
 	await close_dialogs()
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(0.5, false).timeout
 	await close_dialogs()

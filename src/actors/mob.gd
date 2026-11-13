@@ -175,7 +175,7 @@ func _physics_process(delta: float) -> void:
 		"calm":
 			var away := -to_player.normalized() if dist < INF else Vector3.BACK
 			move = away * 6.0
-	if Time.get_ticks_msec() / 1000.0 < _slow_until and state != "calm":
+	if GameState.clock < _slow_until and state != "calm":
 		move *= 0.35
 	velocity.x = move.x + _knock.x
 	velocity.z = move.z + _knock.z
@@ -364,7 +364,7 @@ func lull() -> void:
 
 ## Ninni Işığı: slow for a while (warned attacks still keep their timing).
 func slow(seconds: float) -> void:
-	_slow_until = Time.get_ticks_msec() / 1000.0 + seconds
+	_slow_until = GameState.clock + seconds
 	Effects.sparkle(get_parent(), global_position + Vector3.UP * 1.4, Tokens.color("spark-white"), 4)
 
 

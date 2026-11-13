@@ -56,7 +56,7 @@ func _ready() -> void:
 	add_child(drum)
 	drum.position = Vector3(0, 0, -5.5)
 	_beat(drum)
-	await get_tree().create_timer(1.9).timeout
+	await get_tree().create_timer(1.9, false).timeout
 	var cs := CutscenePlayer.new()
 	cs.scene = self
 	cs.camera = _cam
@@ -71,7 +71,7 @@ func _beat(drum: Node3D) -> void:
 		var tw := create_tween()
 		tw.tween_property(drum, "scale", Vector3(1.1, 0.9, 1.1), 0.08)
 		tw.tween_property(drum, "scale", Vector3.ONE, 0.2)
-		await get_tree().create_timer(1.1).timeout
+		await get_tree().create_timer(1.1, false).timeout
 
 
 func _process(_delta: float) -> void:
@@ -117,7 +117,7 @@ func open_select() -> void:
 	if DevTools.demo.begins_with("pick_"):
 		var who := DevTools.demo.substr(5)
 		_select.select(who)
-		await get_tree().create_timer(1.0).timeout
+		await get_tree().create_timer(1.0, false).timeout
 		_select.chosen.emit(who, {}, String(Content.keeper(who).get("name", who)))
 		return
 	if back in _order:

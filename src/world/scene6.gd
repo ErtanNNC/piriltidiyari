@@ -35,7 +35,7 @@ func _ready() -> void:
 	statue.position = Vector3(-4.6, 1.0, -12.6)
 	statue.rotation.y = 0.35
 	Toon.part(self, "cylinder", Vector3(1.6, 1.0, 1.8), Color("#b9b0a4"), Vector3(-4.6, 0.5, -12.6))
-	await get_tree().create_timer(1.9).timeout
+	await get_tree().create_timer(1.9, false).timeout
 	var cs := CutscenePlayer.new()
 	cs.scene = self
 	cs.camera = _cam
@@ -74,13 +74,13 @@ func open_select() -> void:
 	_select.chosen.connect(_on_chosen)
 	if DevTools.demo == "choose":
 		_select.select("lumi")
-		await get_tree().create_timer(0.5).timeout
+		await get_tree().create_timer(0.5, false).timeout
 		_select.chosen.emit("lumi", {"variant": 1, "accessory": "atki"}, "Işıltı")
 		return
 	if DevTools.demo.begins_with("pick_"):
 		_select.select(DevTools.demo.substr(5).trim_suffix("_cards"))
 		if DevTools.auto_dialogue and not DevTools.demo.ends_with("_cards"):
-			await get_tree().create_timer(1.0).timeout
+			await get_tree().create_timer(1.0, false).timeout
 			_select._open_custom()
 
 
@@ -109,7 +109,11 @@ func _on_look(id: String, look: Dictionary) -> void:
 func _on_chosen(id: String, look: Dictionary, display_name: String) -> void:
 	_select.queue_free()
 	var d := GameState.data
+	# Fıstık's level-up card stays with Fıstık (as in Seasons 2 and 3)
+	d.powers = {}
+	d.power_picks = 0
 	d.choose_keeper(id, Content.keepers[id]["stats"], look, display_name)
+	d.recompute_stats(Content.items)
 	d.set_flag("prolog_bitti")
 	# the chosen keeper takes the spark in their hands
 	var tw := create_tween()
@@ -119,7 +123,7 @@ func _on_chosen(id: String, look: Dictionary, display_name: String) -> void:
 	_spark.visible = false
 	_hud.cinematic(false)
 	_hud.show_scene_card("Yeni bekçi", display_name, "Kıvılcım avucunda. Macera başlıyor!")
-	await get_tree().create_timer(3.4).timeout
+	await get_tree().create_timer(3.4, false).timeout
 	SceneFlow.go_to("chapter0")
 
 

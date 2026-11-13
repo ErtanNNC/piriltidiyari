@@ -71,6 +71,9 @@ static func add(parent: Node, mood: String) -> Environment:
 	var sun := DirectionalLight3D.new()
 	sun.rotation_degrees = Vector3(-55, -35, 0)
 	sun.shadow_enabled = true
+	# one shadow pass over what the camera sees (the default is four over 100 m)
+	sun.directional_shadow_mode = DirectionalLight3D.SHADOW_ORTHOGONAL
+	sun.directional_shadow_max_distance = 60.0
 	match mood:
 		"aksam":
 			env.background_color = Color("#2b2950")

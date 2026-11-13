@@ -49,7 +49,7 @@ func _ready() -> void:
 	d.quest_changed.connect(func(_id: String) -> void: _refresh())
 	_refresh()
 	_player.respawn_point = _player.global_position
-	await get_tree().create_timer(1.8).timeout
+	await get_tree().create_timer(1.8, false).timeout
 	if not d.has_flag("s3c0_geldi"):
 		d.set_flag("s3c0_geldi")
 		GameState.bark("s3k0_basla")
@@ -219,16 +219,16 @@ func _run_demo(which: String) -> void:
 				var bt := n as BeachTorch
 				if bt and not bt.lit:
 					_player.global_position = bt.global_position + Vector3(0, 0.3, 1.2)
-					await get_tree().create_timer(0.4).timeout
+					await get_tree().create_timer(0.4, false).timeout
 					_player.interact()
-					await get_tree().create_timer(0.2).timeout
+					await get_tree().create_timer(0.2, false).timeout
 			for f: HandFriend in get_children().filter(func(n: Node) -> bool: return n is HandFriend):
 				_player.global_position = f.global_position + Vector3(0, 0.3, 1.2)
-				await get_tree().create_timer(0.5).timeout
+				await get_tree().create_timer(0.5, false).timeout
 				_player.interact()
-				await get_tree().create_timer(0.3).timeout
+				await get_tree().create_timer(0.3, false).timeout
 				_player.global_position = FIRE + Vector3(0, 0.3, 2.0)
-				await get_tree().create_timer(1.5).timeout
+				await get_tree().create_timer(1.5, false).timeout
 			print("S3K0_Q1 mesale=%s el=%s" % [d.objective_done(Q1, "mesale"), d.objective_done(Q1, "el")])
 			await _calm_all()
 			await _talk("mors_dede", "Mors")
@@ -237,7 +237,7 @@ func _run_demo(which: String) -> void:
 			await _beat_boss()
 			print("S3K0_BOSS carsaf=%s" % d.objective_done(Q2, "carsaf"))
 			_player.global_position = lv.get_node("Flare").global_position + Vector3(0, 0.3, 1.6)
-			await get_tree().create_timer(0.5).timeout
+			await get_tree().create_timer(0.5, false).timeout
 			_player.interact()
 			await close_dialogs()
 			await _talk("mors_dede", "Mors")
@@ -246,8 +246,8 @@ func _run_demo(which: String) -> void:
 			# walk to the pier's end: the boat must come into reach ("Bin")
 			_player.global_position = Vector3(0, 0.3, 20.0)
 			Input.action_press("move_back")
-			await get_tree().create_timer(2.0).timeout
+			await get_tree().create_timer(2.0, false).timeout
 			Input.action_release("move_back")
-			await get_tree().create_timer(0.3).timeout
+			await get_tree().create_timer(0.3, false).timeout
 			print("S3K0_DOCK z=%.1f focus=%s" % [_player.global_position.z, _player._focus.name if _player._focus else "-"])
 			get_tree().quit()

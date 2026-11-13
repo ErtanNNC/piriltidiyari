@@ -21,7 +21,7 @@ func _process(delta: float) -> void:
 	if _t > seconds:
 		queue_free()
 		return
-	var now := Time.get_ticks_msec() / 1000.0
+	var now := GameState.clock
 	for i in _orbs.size():
 		var a := _t * 3.2 + TAU * i / _orbs.size()
 		var o := _orbs[i]

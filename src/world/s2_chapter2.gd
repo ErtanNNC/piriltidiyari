@@ -68,7 +68,7 @@ func _ready() -> void:
 	_refresh()
 	_player.respawn_point = _player.global_position
 	take_return_point()
-	await get_tree().create_timer(1.8).timeout
+	await get_tree().create_timer(1.8, false).timeout
 	if not d.has_flag("s2c2_geldi"):
 		d.set_flag("s2c2_geldi")
 		GameState.bark("s2c2_basla")
@@ -376,16 +376,16 @@ func _run_demo(which: String) -> void:
 			_fight = true
 			_boss.start()
 			while not _boss.singing:
-				await get_tree().create_timer(0.1).timeout
+				await get_tree().create_timer(0.1, false).timeout
 			while _boss.singing:
-				await get_tree().create_timer(0.1).timeout
-			await get_tree().create_timer(0.3).timeout
+				await get_tree().create_timer(0.1, false).timeout
+			await get_tree().create_timer(0.3, false).timeout
 			var waited := _boss.tired
 			while not _boss.singing:
-				await get_tree().create_timer(0.1).timeout
-			await get_tree().create_timer(0.5).timeout
+				await get_tree().create_timer(0.1, false).timeout
+			await get_tree().create_timer(0.5, false).timeout
 			_boss.hit(5, _player.global_position, 0.0)
-			await get_tree().create_timer(1.6).timeout
+			await get_tree().create_timer(1.6, false).timeout
 			print("S2C2_SONG waited_rest=%s cut_short_rest=%s hp=%d" % [waited, _boss.tired, _boss.hp])
 			get_tree().quit()
 		"tongue":
@@ -401,27 +401,27 @@ func _run_demo(which: String) -> void:
 			# wrong order first: the little one waits
 			for id: String in ["demlik", "vik", "dede_virak", "vrakvrak", "vik", "demlik"]:
 				_player.global_position = (get_node("Demlik") if id == "demlik" else _frog_node(id)).global_position + Vector3(0, 0.3, 1.8)
-				await get_tree().create_timer(0.3).timeout
+				await get_tree().create_timer(0.3, false).timeout
 				GameState.talk_to(id)
 				await close_dialogs()
 				if id == "vik" and d.objective_count(Q1, "kucuk").x == 0:
 					print("S2C2 vik waits=%s" % (not d.objective_done(Q1, "kucuk")))
 			print("S2C2 q1=%s q2=%s tea=%d" % [d.quest_state(Q1), d.quest_state(Q2), d.item_count("papatya_cayi")])
 			_player.global_position = BELL_AT + Vector3(0, 0.3, 1.6)
-			await get_tree().create_timer(0.4).timeout
+			await get_tree().create_timer(0.4, false).timeout
 			(get_node("Level/Bell") as EchoBell).use(_player)
 			await close_dialogs()
-			await get_tree().create_timer(1.6).timeout
+			await get_tree().create_timer(1.6, false).timeout
 			# hop the lily pads
 			_player.global_position = Vector3(0, 0.3, 8.0)
 			_player.respawn_point = _player.global_position
-			await get_tree().create_timer(0.4).timeout
+			await get_tree().create_timer(0.4, false).timeout
 			for p: Vector3 in PADS:
 				await _hop_to(p, 1.6)
 			await _hop_to(ISLAND + Vector3(0, 0, ISLAND_R - 1.0), 1.6)
 			print("S2C2 crossed pos=%s" % _player.global_position)
 			for i in 400:
-				await get_tree().create_timer(0.3).timeout
+				await get_tree().create_timer(0.3, false).timeout
 				await close_dialogs()
 				if _boss.tired:
 					_player.global_position = _boss.global_position + Vector3(0, 0.3, 2.2)
@@ -430,32 +430,32 @@ func _run_demo(which: String) -> void:
 				if _boss.is_sad or d.objective_done(Q2, "fokur"):
 					break
 			print("S2C2 boss hp=%d sad=%s player_hp=%d" % [_boss.hp, _boss.is_sad, d.hp])
-			await get_tree().create_timer(0.6).timeout
+			await get_tree().create_timer(0.6, false).timeout
 			await close_dialogs()
 			_player.global_position = _boss.global_position + Vector3(0, 0.3, 2.4)
-			await get_tree().create_timer(0.3).timeout
+			await get_tree().create_timer(0.3, false).timeout
 			Input.action_press("calm")
-			await get_tree().create_timer(BreathCalm.BREATH_IN + BreathCalm.BREATH_OUT + 0.5).timeout
+			await get_tree().create_timer(BreathCalm.BREATH_IN + BreathCalm.BREATH_OUT + 0.5, false).timeout
 			Input.action_release("calm")
 			for i in 10:
 				await close_dialogs()
-				await get_tree().create_timer(0.3).timeout
+				await get_tree().create_timer(0.3, false).timeout
 				if has_node("Kor"):
 					break
 			_player.global_position = ISLAND + Vector3(3, 0.3, 6.0)
-			await get_tree().create_timer(0.3).timeout
+			await get_tree().create_timer(0.3, false).timeout
 			_player.global_position = ISLAND + Vector3(0, 0.3, 3.0)
-			await get_tree().create_timer(0.8).timeout
+			await get_tree().create_timer(0.8, false).timeout
 			await close_dialogs()
 			_player.global_position = get_node("Demlik").global_position + Vector3(0, 0.3, 1.8)
-			await get_tree().create_timer(0.3).timeout
+			await get_tree().create_timer(0.3, false).timeout
 			GameState.talk_to("demlik")
 			await close_dialogs()
 			print("S2C2_DONE q2=%s kor=%s flag=%s level=%d" % [d.quest_state(Q2), d.has_flag("kor_mercan"), d.has_flag("s2_bolum2_bitti"), d.level])
 			get_tree().quit()
 		"water":
 			_player.global_position = Vector3(6, 0.3, 2.0)
-			await get_tree().create_timer(1.5).timeout
+			await get_tree().create_timer(1.5, false).timeout
 			print("S2C2 water back=%s pos=%s" % [_player.global_position.z > 5.0, _player.global_position])
 			get_tree().quit()
 		"pads":
@@ -494,6 +494,6 @@ func _hop_to(target: Vector3, seconds: float) -> void:
 ## After the Kor: Demlik comes over to the arena for the last talk.
 func _giver_after_kor() -> void:
 	await GameState.wait_dialogue_closed()
-	await get_tree().create_timer(0.4).timeout
+	await get_tree().create_timer(0.4, false).timeout
 	await GameState.wait_dialogue_closed()
 	giver_comes("Demlik", ISLAND + Vector3(3.0, 0, 4.0))

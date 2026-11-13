@@ -52,7 +52,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	var now := Time.get_ticks_msec() / 1000.0
+	var now := GameState.clock
 	var want := BASE * (2.0 if now < boost_until else 1.0) * (1.6 if holding_hands else 1.0)
 	radius = lerpf(radius, want, minf(delta * 3.0, 1.0))
 	_disc.scale = Vector3(radius, 1.0, radius)

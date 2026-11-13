@@ -73,7 +73,7 @@ func _ready() -> void:
 	d.quest_changed.connect(func(_id: String) -> void: _refresh())
 	_refresh()
 	_player.respawn_point = _player.global_position
-	await get_tree().create_timer(1.8).timeout
+	await get_tree().create_timer(1.8, false).timeout
 	if not d.has_flag("s3c3_geldi"):
 		d.set_flag("s3c3_geldi")
 		GameState.bark("s3k3_basla")
@@ -333,7 +333,7 @@ func _on_pearl(_id: String) -> void:
 		d.set_flag("s3c3_ani")
 		Audio.play("memory")
 		_hud.show_scene_card("Anı", "Mercan Bahçesi", "Tırıl'ın ilk anısı")
-		await get_tree().create_timer(2.6).timeout
+		await get_tree().create_timer(2.6, false).timeout
 		GameState.bark("s3k3_ani")
 		await GameState.dialogue_closed
 	_refresh()
@@ -374,16 +374,16 @@ func _run_demo(which: String) -> void:
 				var bt := n as BeachTorch
 				if bt and not bt.lit:
 					_player.global_position = bt.global_position + Vector3(0, 0.3, 1.2)
-					await get_tree().create_timer(0.4).timeout
+					await get_tree().create_timer(0.4, false).timeout
 					_player.interact()
-					await get_tree().create_timer(0.2).timeout
+					await get_tree().create_timer(0.2, false).timeout
 			for f: HandFriend in get_children().filter(func(n: Node) -> bool: return n is HandFriend):
 				_player.global_position = f.global_position + Vector3(0, 0.3, 1.2)
-				await get_tree().create_timer(0.5).timeout
+				await get_tree().create_timer(0.5, false).timeout
 				_player.interact()
-				await get_tree().create_timer(0.3).timeout
+				await get_tree().create_timer(0.3, false).timeout
 				_player.global_position = POOL + Vector3(0, 0.3, 2.0)
-				await get_tree().create_timer(1.5).timeout
+				await get_tree().create_timer(1.5, false).timeout
 				await close_dialogs()
 			print("S3K3_Q1 mesale=%s el=%s" % [d.objective_done(Q1, "mesale"), d.objective_done(Q1, "el")])
 			await _calm_all()
@@ -391,7 +391,7 @@ func _run_demo(which: String) -> void:
 			await _talk("tospik_nine", "Tospik")
 			print("S3K3_Q1 state=%s q2=%s level=%d" % [d.quest_state(Q1), d.quest_state(Q2), d.level])
 			_player.global_position = FLARE + Vector3(0, 0.3, 1.6)
-			await get_tree().create_timer(0.5).timeout
+			await get_tree().create_timer(0.5, false).timeout
 			_player.interact()
 			await close_dialogs()
 			print("S3K3_FISEK fisek=%s perde=%s" % [d.has_flag("s3_fisek3"), _veil.is_open])
@@ -405,19 +405,19 @@ func _run_demo(which: String) -> void:
 				if cp:
 					cp._pick("mavi")
 					break
-				await get_tree().create_timer(0.1).timeout
+				await get_tree().create_timer(0.1, false).timeout
 			for i in 100:
 				await close_dialogs()
 				if not _choosing:
 					break
-				await get_tree().create_timer(0.1).timeout
+				await get_tree().create_timer(0.1, false).timeout
 			print("S3K3_KABUK mavi=%s yaninda=%s" % [d.has_flag("s3c3_kabuk_mavi"), boss.position.distance_to(SHELLS[2]["at"]) < 5.0])
 			_player.global_position = ARENA + Vector3(0, 0.3, 5.0)
 			for i in 60:
 				await close_dialogs()
 				if d.has_flag("s3c3_ani") and not GameState.in_dialogue:
 					break
-				await get_tree().create_timer(0.2).timeout
+				await get_tree().create_timer(0.2, false).timeout
 			await close_dialogs()
 			print("S3K3_INCI inci=%s ani=%s" % [d.has_flag("inci_kum"), d.has_flag("s3c3_ani")])
 			await _talk("tospik_nine", "Tospik")
@@ -441,7 +441,7 @@ func _demo_dunes() -> void:
 	for i in 300:
 		if sd.at_b != at_start:
 			break
-		await get_tree().create_timer(0.1).timeout
+		await get_tree().create_timer(0.1, false).timeout
 	var closed_x := sd.position.x
 	var open_x := -closed_x
 	var z := sd.a.z
@@ -455,7 +455,7 @@ func _demo_dunes() -> void:
 	# stand in the open gap: the dune must not come
 	_player.global_position = Vector3(open_x, 0.3, z)
 	var was_b := sd.at_b
-	await get_tree().create_timer(sd.period + 3.0).timeout
+	await get_tree().create_timer(sd.period + 3.0, false).timeout
 	var waited := sd.at_b == was_b and not sd.moving and sd.held
 	var free := absf(_player.global_position.x - open_x) < 0.5 and absf(_player.global_position.z - z) < 1.2   # still in the gap, not pushed out
 	# step out: warned, then it slides over and the other gap opens
@@ -466,7 +466,7 @@ func _demo_dunes() -> void:
 			warned = true
 		if sd.at_b != was_b:
 			break
-		await get_tree().create_timer(0.1).timeout
+		await get_tree().create_timer(0.1, false).timeout
 	_player.global_position = Vector3(closed_x, 0.3, z + 4.0)
 	await walk_to(Vector3(closed_x, 0, z - 4.0), 3.0)
 	var now_open := _player.global_position.z < z - 1.5

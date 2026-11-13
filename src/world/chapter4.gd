@@ -29,7 +29,7 @@ func _ready() -> void:
 	d.quest_changed.connect(func(_id: String) -> void: _advance())
 	d.flags_changed.connect(_on_flags)
 	_restore_progress()
-	await get_tree().create_timer(1.9).timeout
+	await get_tree().create_timer(1.9, false).timeout
 	if DevTools.demo != "":
 		_run_demo(DevTools.demo)
 		return
@@ -254,9 +254,9 @@ func _start_boss() -> void:
 func _on_golem_awake() -> void:
 	_hud.hide_boss()
 	GameState.notify("defeat", "dondurma")
-	await get_tree().create_timer(0.8).timeout
+	await get_tree().create_timer(0.8, false).timeout
 	_hud.show_scene_card("", "Dondurma uyandı!", "Meğer sadece bir sarılma istiyormuş")
-	await get_tree().create_timer(3.2).timeout
+	await get_tree().create_timer(3.2, false).timeout
 	GameState.bark("c4_dondurma_son")
 	await GameState.dialogue_closed
 	await fly_spark(_boss.global_position + Vector3.UP * 6.0, "spark-white")
@@ -266,7 +266,7 @@ func _on_golem_awake() -> void:
 	boss_camera(false)
 	_melt(false)
 	_hud.show_scene_card("Kıvılcım bulundu!", "Beyaz Kıvılcım", "Uyku Dağı uyandı")
-	await get_tree().create_timer(3.4).timeout
+	await get_tree().create_timer(3.4, false).timeout
 	if d.quest_state(QUEST) == "ready":
 		d.complete_quest(Content.quests[QUEST])
 	d.set_flag("bolum4_bitti")
@@ -443,7 +443,7 @@ func _run_demo(which: String) -> void:
 					await walk_to(step[1], 8.0)
 				else:
 					_player.interact()
-					await get_tree().create_timer(0.4).timeout
+					await get_tree().create_timer(0.4, false).timeout
 				print("  step %s -> pos=%s" % [step[0], _player.global_position.round()])
 			await close_dialogs()
 			print("CLIMB pos=%s fener=%s ates=%s kuzey=%s lake_open=%s boss=%s hp=%d" % [_player.global_position.round(),
@@ -466,19 +466,19 @@ func _run_demo(which: String) -> void:
 			_player.global_position = Vector3(-3.2, 9.1, -46.2)
 			await close_dialogs()
 			_player.interact()
-			await get_tree().create_timer(4.2).timeout
+			await get_tree().create_timer(4.2, false).timeout
 			for i in 4:
 				_hud._dialog.advance()
 				_hud._dialog.advance()
-				await get_tree().create_timer(0.1).timeout
+				await get_tree().create_timer(0.1, false).timeout
 		"ramp":
 			for m in get_tree().get_nodes_in_group("mob"):
 				m.queue_free()
 			_player.global_position = Vector3(0, 0.1, 21)
-			await get_tree().create_timer(0.3).timeout
+			await get_tree().create_timer(0.3, false).timeout
 			Input.action_press("move_forward")
 			for i in 30:
-				await get_tree().create_timer(0.1).timeout
+				await get_tree().create_timer(0.1, false).timeout
 				if i % 3 == 0:
 					print("RAMP t=%.1f pos=(%.2f, %.2f, %.2f) floor=%s" % [i * 0.1, _player.global_position.x, _player.global_position.y, _player.global_position.z, _player.is_on_floor()])
 			Input.action_release("move_forward")
@@ -487,20 +487,20 @@ func _run_demo(which: String) -> void:
 			for m in get_tree().get_nodes_in_group("mob"):
 				m.queue_free()
 			_player.global_position = Vector3(-8, 3.1, -3.5)
-			await get_tree().create_timer(0.3).timeout
+			await get_tree().create_timer(0.3, false).timeout
 			Input.action_press("move_right")
-			await get_tree().create_timer(0.8).timeout
+			await get_tree().create_timer(0.8, false).timeout
 			Input.action_release("move_right")
 			var x0 := _player.global_position.x
-			await get_tree().create_timer(0.6).timeout
+			await get_tree().create_timer(0.6, false).timeout
 			var ice_slide := _player.global_position.x - x0
 			_player.global_position = Vector3(-2, 3.1, 4)
-			await get_tree().create_timer(0.3).timeout
+			await get_tree().create_timer(0.3, false).timeout
 			Input.action_press("move_right")
-			await get_tree().create_timer(0.8).timeout
+			await get_tree().create_timer(0.8, false).timeout
 			Input.action_release("move_right")
 			x0 = _player.global_position.x
-			await get_tree().create_timer(0.6).timeout
+			await get_tree().create_timer(0.6, false).timeout
 			print("ICE slide_after_release ice=%.2f m snow=%.2f m" % [ice_slide, _player.global_position.x - x0])
 			get_tree().quit()
 		"boss", "bossfight":
@@ -519,7 +519,7 @@ func _run_demo(which: String) -> void:
 					_player.global_position = _boss.global_position + Vector3(0, 0.2, 3.0)
 					_player._attack_cd = 0.0
 					_player.spin_attack()
-				await get_tree().create_timer(0.1).timeout
+				await get_tree().create_timer(0.1, false).timeout
 				t += 0.1
 				if _hud._dialog.is_open():
 					_hud._dialog.advance()
@@ -528,7 +528,7 @@ func _run_demo(which: String) -> void:
 				if _hud._dialog.is_open():
 					_hud._dialog.advance()
 					_hud._dialog.advance()
-				await get_tree().create_timer(0.1).timeout
+				await get_tree().create_timer(0.1, false).timeout
 			print("GOLEM2 quest=%s sparks=%s flag=%s exit=%s" % [d.quest_state(QUEST), d.sparks, d.has_flag("bolum4_bitti"), ($Level/ExitSign as Node3D).visible])
 			get_tree().quit()
 		"spots":
@@ -542,14 +542,14 @@ func _run_demo(which: String) -> void:
 			var spot: Vector3 = {"bado": A + Vector3(0, 0, 4.0), "citir": B + Vector3(1.6, 0, 0.6), "lumi": C + Vector3(4.0, 0, 0), "pati": start}[me]
 			var chest: Vector3 = {"bado": A, "citir": B + Vector3(0, 0, -5.5), "lumi": C + Vector3(-0.8, 0, 0), "pati": Vector3(9, 2.3, 30)}[me]
 			_player.global_position = start + Vector3.UP * 0.1
-			await get_tree().create_timer(0.3).timeout
+			await get_tree().create_timer(0.3, false).timeout
 			if me != "pati":
 				await walk_to(chest, 2.5)
 				var blocked := _player.global_position.distance_to(chest) > 1.6
 				_player.global_position = spot + Vector3.UP * 0.1
-				await get_tree().create_timer(0.3).timeout
+				await get_tree().create_timer(0.3, false).timeout
 				_player.interact()
-				await get_tree().create_timer(1.2).timeout
+				await get_tree().create_timer(1.2, false).timeout
 				await close_dialogs()
 				if me == "citir":
 					_player.global_position = B + Vector3(0, 0.1, 0.8)
@@ -560,7 +560,7 @@ func _run_demo(which: String) -> void:
 				Input.action_press("jump")
 				await get_tree().physics_frame
 				Input.action_release("jump")
-				await get_tree().create_timer(0.3).timeout
+				await get_tree().create_timer(0.3, false).timeout
 				Input.action_press("jump")
 				await get_tree().physics_frame
 				Input.action_release("jump")
@@ -569,6 +569,6 @@ func _run_demo(which: String) -> void:
 					if _player.global_position.z < 30.6 and _player.global_position.y > 2.0:
 						break
 				Input.action_release("move_forward")
-				await get_tree().create_timer(0.5).timeout
+				await get_tree().create_timer(0.5, false).timeout
 				print("SPOT pati reached=%s y=%.2f" % [_player.global_position.distance_to(chest) < 1.6, _player.global_position.y])
 			get_tree().quit()

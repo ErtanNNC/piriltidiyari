@@ -4,7 +4,7 @@ extends RefCounted
 
 ## Result: "ok", "piril" (not enough), or "owned" (a once-only item you have).
 static func buy(data: PlayerData, item_def: Dictionary, item_id: String, price: int, once := false) -> String:
-	if once and data.has_flag("owned_" + item_id):
+	if (once or item_def.get("kind", "") == "charm") and data.has_flag("owned_" + item_id):
 		return "owned"
 	if not data.spend_piril(price):
 		return "piril"

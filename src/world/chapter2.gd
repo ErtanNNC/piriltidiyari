@@ -30,7 +30,7 @@ func _ready() -> void:
 	d.quest_changed.connect(func(_id: String) -> void: _advance())
 	d.flags_changed.connect(_kids_go_home)
 	_restore_progress()
-	await get_tree().create_timer(1.9).timeout
+	await get_tree().create_timer(1.9, false).timeout
 	if DevTools.demo != "":
 		_run_demo(DevTools.demo)
 		return
@@ -273,9 +273,9 @@ func _start_boss() -> void:
 func _on_crab_friend() -> void:
 	_hud.hide_boss()
 	GameState.notify("defeat", "kiskac")
-	await get_tree().create_timer(0.8).timeout
+	await get_tree().create_timer(0.8, false).timeout
 	_hud.show_scene_card("", "Kıskaç dost oldu!", "Meğer Kıvılcım'ı koruyormuş")
-	await get_tree().create_timer(3.2).timeout
+	await get_tree().create_timer(3.2, false).timeout
 	GameState.bark("c2_kiskac_son")
 	await GameState.dialogue_closed
 	var orb := Toon.part(self, "sphere", Vector3(0.8, 1.1, 0.8), "spark-blue", _boss.global_position + Vector3.UP * 3.5, Vector3.ZERO, 1.2, 0.04)
@@ -294,7 +294,7 @@ func _on_crab_friend() -> void:
 	cam.anchor_weight = 0.0
 	cam.distance = 14.0
 	_hud.show_scene_card("Kıvılcım bulundu!", "Mavi Kıvılcım", "Mağaralar yeniden pırıl pırıl")
-	await get_tree().create_timer(3.4).timeout
+	await get_tree().create_timer(3.4, false).timeout
 	if d.quest_state(QUEST) == "ready":
 		d.complete_quest(Content.quests[QUEST])
 	d.set_flag("kazma_dukkan")
@@ -468,22 +468,22 @@ func _run_demo(which: String) -> void:
 				m.queue_free()
 			for c in get_tree().get_nodes_in_group("crystal_salon"):
 				_player.global_position = c.global_position + Vector3(0, 0, 1.6)
-				await get_tree().create_timer(0.2).timeout
+				await get_tree().create_timer(0.2, false).timeout
 				_player._attack_cd = 0.0
 				_player.spin_attack()
-				await get_tree().create_timer(0.3).timeout
+				await get_tree().create_timer(0.3, false).timeout
 				await _close_dialogs()
 			print("CRYSTALS salon_done=%s gate_open=%s" % [d.objective_done(QUEST, "salon"), _gate_salon.is_open])
 			_player.global_position = Vector3(0, 0, 2.5)
 			Input.action_press("move_forward")
-			await get_tree().create_timer(1.0).timeout
+			await get_tree().create_timer(1.0, false).timeout
 			Input.action_release("move_forward")
 			print("GATE passed=%s z=%.1f" % [_player.global_position.z < -1.0, _player.global_position.z])
 			# syrup slows
 			_player.global_position = Vector3(10, 0, -4.2)
-			await get_tree().create_timer(0.3).timeout
+			await get_tree().create_timer(0.3, false).timeout
 			Input.action_press("move_forward")
-			await get_tree().create_timer(1.0).timeout
+			await get_tree().create_timer(1.0, false).timeout
 			Input.action_release("move_forward")
 			var syrup_dz := -4.2 - _player.global_position.z
 			print("SYRUP moved %.2f m in 1 s (slow=%.1f)" % [syrup_dz, _player.slow])
@@ -503,7 +503,7 @@ func _run_demo(which: String) -> void:
 					_player.global_position = _boss.global_position + Vector3(0, 0.1, 2.8)
 					_player._attack_cd = 0.0
 					_player.spin_attack()
-				await get_tree().create_timer(0.1).timeout
+				await get_tree().create_timer(0.1, false).timeout
 				t += 0.1
 				if _hud._dialog.is_open():
 					_hud._dialog.advance()
@@ -512,13 +512,13 @@ func _run_demo(which: String) -> void:
 				if _hud._dialog.is_open():
 					_hud._dialog.advance()
 					_hud._dialog.advance()
-				await get_tree().create_timer(0.1).timeout
+				await get_tree().create_timer(0.1, false).timeout
 			print("CRAB2 quest=%s sparks=%s shop=%s flag=%s exit=%s" % [d.quest_state(QUEST), d.sparks, d.has_flag("kazma_dukkan"), d.has_flag("bolum2_bitti"), ($Level/ExitSign as Node3D).visible])
 			get_tree().quit()
 
 
 func _close_dialogs() -> void:
-	await get_tree().create_timer(0.3).timeout
+	await get_tree().create_timer(0.3, false).timeout
 	while _hud._dialog.is_open():
 		_hud._dialog.advance()
-		await get_tree().create_timer(0.05).timeout
+		await get_tree().create_timer(0.05, false).timeout

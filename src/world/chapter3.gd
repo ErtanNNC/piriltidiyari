@@ -37,7 +37,7 @@ func _ready() -> void:
 	d.flags_changed.connect(_chicks_go_home)
 	_player.fell_off.connect(func() -> void: GameState.bark("c3_dustu"))
 	_restore_progress()
-	await get_tree().create_timer(1.9).timeout
+	await get_tree().create_timer(1.9, false).timeout
 	if DevTools.demo != "":
 		_run_demo(DevTools.demo)
 		return
@@ -329,9 +329,9 @@ func _on_gull_calm() -> void:
 	_set_dock_visible("firtina", true)
 	_hud.hide_boss()
 	GameState.notify("defeat", "ruzgar")
-	await get_tree().create_timer(0.8).timeout
+	await get_tree().create_timer(0.8, false).timeout
 	_hud.show_scene_card("", "Rüzgâr sakinleşti!", "Fırtına dindi")
-	await get_tree().create_timer(3.2).timeout
+	await get_tree().create_timer(3.2, false).timeout
 	GameState.bark("c3_ruzgar_son")
 	await GameState.dialogue_closed
 	var orb := Toon.part(self, "sphere", Vector3(0.8, 1.1, 0.8), "spark-yellow", _boss.global_position + Vector3.UP * 3.5, Vector3.ZERO, 1.2, 0.04)
@@ -347,7 +347,7 @@ func _on_gull_calm() -> void:
 	cam.anchor_weight = 0.0
 	cam.distance = 14.0
 	_hud.show_scene_card("Kıvılcım bulundu!", "Sarı Kıvılcım", "Gökyüzü yeniden masmavi")
-	await get_tree().create_timer(3.4).timeout
+	await get_tree().create_timer(3.4, false).timeout
 	# the little shadow in the mist (first glimpse of Mırıl)
 	var cs := CutscenePlayer.new()
 	cs.scene = self
@@ -555,16 +555,16 @@ func _run_demo(which: String) -> void:
 			await travel_to("gul")
 			_player.global_position = c + Vector3(2, 0, 9)
 			var gust: Vector3 = await _wind.gust_started
-			await get_tree().create_timer(0.1).timeout
+			await get_tree().create_timer(0.1, false).timeout
 			var p0 := _player.global_position
-			await get_tree().create_timer(1.0).timeout
+			await get_tree().create_timer(1.0, false).timeout
 			var open_moved := Vector2(_player.global_position.x - p0.x, _player.global_position.z - p0.z).length()
 			await _close_dialogs()
 			_player.global_position = c + Vector3(5, 0, 4) + Vector3(0, 0, 1.4)
 			await _wind.gust_started
-			await get_tree().create_timer(0.1).timeout
+			await get_tree().create_timer(0.1, false).timeout
 			p0 = _player.global_position
-			await get_tree().create_timer(1.0).timeout
+			await get_tree().create_timer(1.0, false).timeout
 			var shel_moved := Vector2(_player.global_position.x - p0.x, _player.global_position.z - p0.z).length()
 			print("WIND open=%.2f m sheltered=%.2f m" % [open_moved, shel_moved])
 			for b in get_tree().get_nodes_in_group("_x"):
@@ -590,7 +590,7 @@ func _run_demo(which: String) -> void:
 			for h: Array in hops:
 				await _close_dialogs()
 				_player.global_position = h[0] + Vector3.UP * 0.3
-				await get_tree().create_timer(0.3).timeout
+				await get_tree().create_timer(0.3, false).timeout
 				var target: Vector3 = h[2]
 				var ball: Vector3 = h[1]
 				# walk into the balloon, then steer to the next tier while airborne
@@ -611,7 +611,7 @@ func _run_demo(which: String) -> void:
 				for a in ["move_left", "move_right", "move_forward", "move_back"]:
 					Input.action_release(a)
 				print("HOP y=%.2f target_y=%.1f on_floor=%s" % [_player.global_position.y, target.y, _player.is_on_floor()])
-			await get_tree().create_timer(0.5).timeout
+			await get_tree().create_timer(0.5, false).timeout
 			print("TOP balon_tepesi=%s" % d.objective_done(QUEST, "balon"))
 			get_tree().quit()
 		"gul":
@@ -638,15 +638,15 @@ func _run_demo(which: String) -> void:
 			var chest: Vector3 = {"bado": Vector3(-5.5, 0, -4.5), "citir": Vector3(0, 0, 23.0), "lumi": Vector3(-12.2, 0, 2.5), "pati": Vector3(10, 2.3, -7)}[me]
 			# without the ability: try to walk to the chest first
 			_player.global_position = {"bado": Vector3(-5.5, 0, -0.5), "citir": Vector3(0, 0, 12.5), "lumi": Vector3(-6.5, 0, 2.5), "pati": Vector3(10, 0, -4.6)}[me]
-			await get_tree().create_timer(0.3).timeout
+			await get_tree().create_timer(0.3, false).timeout
 			if me != "pati":
 				await _walk_to(chest, 2.5)
 				var blocked := _player.global_position.distance_to(chest) > 1.6
 				print("SPOT %s blocked_before=%s" % [me, blocked])
 				_player.global_position = spot
-				await get_tree().create_timer(0.3).timeout
+				await get_tree().create_timer(0.3, false).timeout
 				_player.interact()
-				await get_tree().create_timer(1.2).timeout
+				await get_tree().create_timer(1.2, false).timeout
 				await _close_dialogs()
 				if me == "bado":
 					_player.global_position = Vector3(-5.5, 0, -8.5)
@@ -658,7 +658,7 @@ func _run_demo(which: String) -> void:
 				Input.action_press("jump")
 				await get_tree().physics_frame
 				Input.action_release("jump")
-				await get_tree().create_timer(0.3).timeout
+				await get_tree().create_timer(0.3, false).timeout
 				Input.action_press("jump")
 				await get_tree().physics_frame
 				Input.action_release("jump")
@@ -667,7 +667,7 @@ func _run_demo(which: String) -> void:
 					if _player.global_position.z < -6.4 and _player.global_position.y > 2.0:
 						break
 				Input.action_release("move_forward")
-				await get_tree().create_timer(0.5).timeout
+				await get_tree().create_timer(0.5, false).timeout
 			print("SPOT %s reached_chest=%s dist=%.2f y=%.2f" % [me, _player.global_position.distance_to(chest) < 1.6, _player.global_position.distance_to(chest), _player.global_position.y])
 			get_tree().quit()
 		"travel":
@@ -694,7 +694,7 @@ func _run_demo(which: String) -> void:
 					_player.spin_attack()
 				if _player.global_position.y < -5.0:
 					print("FELL during boss")
-				await get_tree().create_timer(0.1).timeout
+				await get_tree().create_timer(0.1, false).timeout
 				t += 0.1
 				if _hud._dialog.is_open():
 					_hud._dialog.advance()
@@ -703,7 +703,7 @@ func _run_demo(which: String) -> void:
 				if _hud._dialog.is_open():
 					_hud._dialog.advance()
 					_hud._dialog.advance()
-				await get_tree().create_timer(0.1).timeout
+				await get_tree().create_timer(0.1, false).timeout
 			print("GULL2 quest=%s sparks=%s pazar=%s flag=%s cam_current=%s exit=%s" % [d.quest_state(QUEST), d.sparks, d.has_flag("pirpir_pazar"), d.has_flag("bolum3_bitti"), ($Camera as Camera3D).current, ($Level/ExitSign as Node3D).visible])
 			get_tree().quit()
 
@@ -729,7 +729,7 @@ func _walk_to(target: Vector3, seconds: float) -> void:
 
 
 func _close_dialogs() -> void:
-	await get_tree().create_timer(0.3).timeout
+	await get_tree().create_timer(0.3, false).timeout
 	while _hud._dialog.is_open():
 		_hud._dialog.advance()
-		await get_tree().create_timer(0.05).timeout
+		await get_tree().create_timer(0.05, false).timeout

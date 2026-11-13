@@ -32,7 +32,7 @@ func _process(delta: float) -> void:
 
 func _drop() -> void:
 	Effects.warning(self, global_position, radius, Mob.TELEGRAPH)
-	await get_tree().create_timer(Mob.TELEGRAPH).timeout
+	await get_tree().create_timer(Mob.TELEGRAPH, false).timeout
 	_beam.visible = true
 	_beam.position = Vector3(0, 9, 0)
 	_beam.rotation.y = randf() * TAU
@@ -44,7 +44,7 @@ func _drop() -> void:
 	if p and Vector2(p.global_position.x - global_position.x, p.global_position.z - global_position.z).length() < radius + 0.3 \
 			and p.global_position.y < global_position.y + 2.0:
 		p.hurt(damage, global_position)
-	await get_tree().create_timer(0.6).timeout
+	await get_tree().create_timer(0.6, false).timeout
 	var out := create_tween()
 	out.tween_property(_beam, "scale", Vector3.ZERO, 0.2)
 	await out.finished

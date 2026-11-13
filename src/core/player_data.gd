@@ -236,6 +236,12 @@ func _slot_potion(item_id: String) -> void:
 	if potions.has(item_id):
 		return
 	var free := potions.find("")
+	if free == -1:
+		# every slot was used once: an emptied potion gives its place away
+		for i in potions.size():
+			if item_count(String(potions[i])) <= 0:
+				free = i
+				break
 	if free != -1:
 		potions[free] = item_id
 

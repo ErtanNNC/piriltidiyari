@@ -13,11 +13,20 @@ var data := PlayerData.new()
 var in_dialogue := false
 ## Pus Kovucu: mobs notice you from much closer until this time (seconds).
 var repel_until := 0.0
+## Game seconds: stands still in Mola, on the level-up cards and while
+## someone talks, so a potion never runs out behind a panel.
+var clock := 0.0
+
+
+func _process(delta: float) -> void:
+	if not get_tree().paused and not in_dialogue:
+		clock += delta
+
 
 
 ## Multiplier for how far mobs notice the player (Pus Kovucu → 0.4).
 func notice_factor() -> float:
-	return 0.4 if Time.get_ticks_msec() / 1000.0 < repel_until else 1.0
+	return 0.4 if clock < repel_until else 1.0
 
 
 ## Await this before an attack: returns when no dialogue is open.

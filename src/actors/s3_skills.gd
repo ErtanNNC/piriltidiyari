@@ -70,7 +70,7 @@ static func _listen_around(p: Player, radius: float) -> void:
 
 
 static func _guard(p: Player, seconds: float, col: Color) -> void:
-	p._guard_until = Time.get_ticks_msec() / 1000.0 + seconds
+	p._guard_until = GameState.clock + seconds
 	Effects.ring(p.get_parent(), p.global_position + Vector3.UP * 0.9, 1.5, col, seconds)
 	var tw := p.create_tween()
 	tw.tween_property(p.model, "scale", Vector3(1.1, 0.85, 1.1), 0.2)

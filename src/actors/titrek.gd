@@ -190,7 +190,7 @@ func _calm() -> void:
 	GameState.notify("titrek", kind)
 	GameState.notify("titrek", "any")
 	calmed.emit()
-	await get_tree().create_timer(1.2).timeout
+	await get_tree().create_timer(1.2, false).timeout
 	if not is_inside_tree():
 		return
 	# off home: crabs scuttle to the sea, gulls fly up

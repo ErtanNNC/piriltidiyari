@@ -55,7 +55,7 @@ func _ready() -> void:
 	_crystal = $Village/FenerKulesi.get_node_or_null("BuyukKivilcim")
 	if _crystal:
 		_crystal.visible = false
-	await get_tree().create_timer(1.9).timeout
+	await get_tree().create_timer(1.9, false).timeout
 	var cs := CutscenePlayer.new()
 	cs.scene = self
 	cs.camera = _cam

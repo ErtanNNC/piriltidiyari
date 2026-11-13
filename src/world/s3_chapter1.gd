@@ -87,9 +87,9 @@ func _ready() -> void:
 	d.flags_changed.connect(_refresh)
 	_refresh()
 	_player.respawn_point = _player.global_position
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(0.5, false).timeout
 	_dry_ink()
-	await get_tree().create_timer(1.3).timeout
+	await get_tree().create_timer(1.3, false).timeout
 	if not d.has_flag("s3c1_geldi"):
 		d.set_flag("s3c1_geldi")
 		GameState.bark("s3k1_basla")
@@ -287,7 +287,7 @@ func _on_boss_calmed() -> void:
 	Audio.play("lantern")
 	Effects.ring(self, boss.global_position + Vector3.UP * 0.3, 6.0, WARM, 0.7)
 	_fade_arena_ink()
-	await get_tree().create_timer(1.4).timeout
+	await get_tree().create_timer(1.4, false).timeout
 	GameState.bark("s3k1_inci_dustu")
 	await GameState.dialogue_closed
 	drop_pearl("lacivert", ARENA + Vector3(0, 0, 5.5), "Lacivert İnci", "Karanlıkta küçük bir ışık yeter.")
@@ -382,19 +382,19 @@ func _run_demo(which: String) -> void:
 			# the ink: cold in the dark, harmless once its light-mushroom burns
 			var mid: Vector3 = INK[1][0]
 			_player.global_position = mid + Vector3(0, 0.3, 0)
-			await get_tree().create_timer(0.3).timeout
+			await get_tree().create_timer(0.3, false).timeout
 			await close_dialogs()
 			ring.warm()
-			await get_tree().create_timer(1.0).timeout
+			await get_tree().create_timer(1.0, false).timeout
 			var dark := ring.shiver
 			_player.global_position = _torches[1].global_position + Vector3(0, 0.3, 1.2)
-			await get_tree().create_timer(0.4).timeout
+			await get_tree().create_timer(0.4, false).timeout
 			_player.interact()
 			await close_dialogs()
 			_player.global_position = mid + Vector3(0, 0.3, 0)
 			ring.warm()
 			ring.shiver = 0.5
-			await get_tree().create_timer(1.0).timeout
+			await get_tree().create_timer(1.0, false).timeout
 			print("S3K1_INK dark=+%.2f lit=0.50->%.2f torch=%s dry=%s west_dark=%s" % [dark, ring.shiver, _torches[1].lit,
 				_inks[1].has_meta("dry"), not _inks[0].has_meta("dry")])
 			ring.warm()
@@ -404,17 +404,17 @@ func _run_demo(which: String) -> void:
 			for bt in _torches:
 				if not bt.lit:
 					_player.global_position = bt.global_position + Vector3(0, 0.3, 1.2)
-					await get_tree().create_timer(0.4).timeout
+					await get_tree().create_timer(0.4, false).timeout
 					_player.interact()
 					await close_dialogs()
 			var f := get_node("Kardes") as HandFriend
 			_player.global_position = f.global_position + Vector3(0, 0.3, 1.2)
-			await get_tree().create_timer(0.5).timeout
+			await get_tree().create_timer(0.5, false).timeout
 			_player.interact()
 			await close_dialogs()
 			var held := ring.holding_hands
 			_player.global_position = FIRE + Vector3(0, 0.3, 2.0)
-			await get_tree().create_timer(1.5).timeout
+			await get_tree().create_timer(1.5, false).timeout
 			await close_dialogs()
 			print("S3K1_Q1 mantar=%s kardes=%s held=%s" % [d.objective_done(Q1, "mantar"), d.objective_done(Q1, "kardes"), held])
 			await _calm_all()
@@ -423,7 +423,7 @@ func _run_demo(which: String) -> void:
 			await _talk("minik_kol", "MinikKol")
 			print("S3K1_Q1 state=%s q2=%s level=%d" % [d.quest_state(Q1), d.quest_state(Q2), d.level])
 			_player.global_position = FLARE + Vector3(0, 0.3, 1.6)
-			await get_tree().create_timer(0.5).timeout
+			await get_tree().create_timer(0.5, false).timeout
 			_player.interact()
 			await close_dialogs()
 			print("S3K1_FLARE fisek=%s veil_open=%s" % [d.has_flag("s3_fisek1"), _veil.is_open])
@@ -437,11 +437,11 @@ func _run_demo(which: String) -> void:
 				get_tree().get_nodes_in_group("ink").filter(func(p: Node3D) -> bool: return p.global_position.z < -27.0 and p.scale.x > 0.1).size(),
 				has_node("Pearl")])
 			_player.global_position = ARENA + Vector3(0, 0.3, 5.5)
-			await get_tree().create_timer(0.6).timeout
+			await get_tree().create_timer(0.6, false).timeout
 			await close_dialogs()
-			await get_tree().create_timer(2.0).timeout
+			await get_tree().create_timer(2.0, false).timeout
 			await _talk("minik_kol", "MinikKol")
-			await get_tree().create_timer(0.3).timeout
+			await get_tree().create_timer(0.3, false).timeout
 			var keeper := get_node_or_null("Murekkep") as Node3D
 			print("S3K1_SHOP npc=%s boss_hidden=%s shop=%s" % [keeper != null, not boss.visible, Content.shops.has("murekkep")])
 			print("S3K1_DONE q2=%s fisek=%s inci=%s bitti=%s open=%s" % [d.quest_state(Q2), d.has_flag("s3_fisek1"),

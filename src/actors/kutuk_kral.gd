@@ -92,7 +92,7 @@ func _loop() -> void:
 		for attack in KingPlan.cycle(phase):
 			if not active:
 				return
-			await get_tree().create_timer(KingPlan.rest(phase)).timeout
+			await get_tree().create_timer(KingPlan.rest(phase), false).timeout
 			if not active:
 				return
 			await GameState.wait_dialogue_closed()
@@ -114,7 +114,7 @@ func _roots() -> void:
 	for s in spots:
 		Effects.warning(get_parent(), s, 1.1, Mob.TELEGRAPH)
 	_model.scale = Vector3(1.04, 0.96, 1.04)
-	await get_tree().create_timer(Mob.TELEGRAPH).timeout
+	await get_tree().create_timer(Mob.TELEGRAPH, false).timeout
 	_model.scale = Vector3.ONE
 	var roots: Array[Node3D] = []
 	for s in spots:
@@ -129,7 +129,7 @@ func _roots() -> void:
 		roots.append(r)
 		if Vector2(p.global_position.x - s.x, p.global_position.z - s.z).length() < 1.2:
 			p.hurt(KingPlan.ROOT_DAMAGE, s)
-	await get_tree().create_timer(0.7).timeout
+	await get_tree().create_timer(0.7, false).timeout
 	for r in roots:
 		var tw := r.create_tween()
 		tw.tween_property(r, "scale", Vector3(1, 0.01, 1), 0.2)
@@ -139,7 +139,7 @@ func _roots() -> void:
 func _summon() -> void:
 	for side in [-1.0, 1.0]:
 		Mob.spawn(get_parent(), "kirpi_topu", global_position + Vector3(3.5 * side, 0, 3.0))
-	await get_tree().create_timer(0.6).timeout
+	await get_tree().create_timer(0.6, false).timeout
 
 
 func _stomp() -> void:
@@ -173,6 +173,9 @@ func _ring() -> void:
 	var hit := false
 	var p := _player()
 	while r < KingPlan.RING_MAX and active:
+		if get_tree().paused:
+			await get_tree().process_frame
+			continue
 		r += KingPlan.RING_SPEED * get_process_delta_time()
 		mi.scale = Vector3(r, 3.0, r)
 		if not hit and p:
@@ -188,7 +191,7 @@ func _daze() -> void:
 	add_to_group("hittable")
 	_zzz.visible = true
 	get_tree().call_group("hud", "show_hint", "Kral esniyor! Şimdi vur!", "Kral esniyor! Şimdi vur!")
-	await get_tree().create_timer(KingPlan.DAZE_TIME).timeout
+	await get_tree().create_timer(KingPlan.DAZE_TIME, false).timeout
 	if not active:
 		return
 	get_tree().call_group("hud", "clear_hint")

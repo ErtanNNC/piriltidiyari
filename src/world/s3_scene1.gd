@@ -39,7 +39,7 @@ func _ready() -> void:
 		_castles[i].set_done()
 	d.quest_changed.connect(func(_id: String) -> void: _check())
 	_player.respawn_point = _player.global_position
-	await get_tree().create_timer(1.4).timeout
+	await get_tree().create_timer(1.4, false).timeout
 	if d.quest_state(QUEST) == "done":
 		_end()
 		return
@@ -85,7 +85,7 @@ func _check() -> void:
 		if _npcs["tospik_nine"].has_node("Beacon"):
 			_npcs["tospik_nine"].get_node("Beacon").queue_free()
 		while GameState.in_dialogue:
-			await get_tree().create_timer(0.2).timeout
+			await get_tree().create_timer(0.2, false).timeout
 		_end()
 
 
@@ -94,7 +94,7 @@ func _end() -> void:
 	if _ended:
 		return
 	_ended = true
-	await get_tree().create_timer(0.6).timeout
+	await get_tree().create_timer(0.6, false).timeout
 	GameState.bark("s3_son")
 	if DevTools.demo == "drum" and DisplayServer.get_name() == "headless":
 		await close_dialogs()
@@ -103,7 +103,7 @@ func _end() -> void:
 		get_tree().quit()
 		return
 	while GameState.in_dialogue:
-		await get_tree().create_timer(0.2).timeout
+		await get_tree().create_timer(0.2, false).timeout
 	SceneFlow.go_to("s3_scene2")
 
 
@@ -117,18 +117,18 @@ func _run_demo(which: String) -> void:
 			for gap: float in [0.6, 0.2, 1.5]:
 				# an uneven rhythm doesn't count
 				_player.spin_attack()
-				await get_tree().create_timer(gap).timeout
+				await get_tree().create_timer(gap, false).timeout
 			print("S3_UNEVEN danced=%s" % odd.danced)
 			for c in _castles:
 				_player.global_position = c.global_position + Vector3(0, 0.3, 2.5)
-				await get_tree().create_timer(1.0).timeout
+				await get_tree().create_timer(1.0, false).timeout
 				for i in 5:
 					_player.spin_attack()
-					await get_tree().create_timer(0.6).timeout
+					await get_tree().create_timer(0.6, false).timeout
 			print("S3_CASTLES danced=%d" % _castles.filter(func(c: SandCastle) -> bool: return c.danced).size())
 			for id: String in ["pati", "bado", "citir", "lumi", "tipis_panda", "fistik", "miril", "tospik_nine"]:
 				_player.global_position = _npcs[id].global_position + Vector3(0, 0.3, 1.6)
-				await get_tree().create_timer(0.3).timeout
+				await get_tree().create_timer(0.3, false).timeout
 				GameState.talk_to(id)
 				await close_dialogs()
 				print("S3_TALK %s quest=%s" % [id, GameState.data.quest_state(QUEST)])

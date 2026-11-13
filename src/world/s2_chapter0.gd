@@ -61,7 +61,7 @@ func _ready() -> void:
 	_refresh()
 	_player.respawn_point = _player.global_position
 	take_return_point()
-	await get_tree().create_timer(1.8).timeout
+	await get_tree().create_timer(1.8, false).timeout
 	if not d.has_flag("s2c0_geldi"):
 		d.set_flag("s2c0_geldi")
 		GameState.bark("s2c0_basla")
@@ -342,14 +342,14 @@ func _run_demo(which: String) -> void:
 			GameState.talk_to("tospik_nine")
 			await close_dialogs()
 			print("S2CIRCLE started=%s" % d.quest_state(Q3))
-			await get_tree().create_timer(0.4).timeout
+			await get_tree().create_timer(0.4, false).timeout
 			GameState.talk_to("pamuk")
 			await close_dialogs()
 			print("S2CIRCLE out_of_turn pamuk=%s" % d.objective_done(Q3, "tas_pamuk"))
 			for id: String in CIRCLE_ORDER:
 				GameState.talk_to(id)
 				await close_dialogs()
-				await get_tree().create_timer(0.8).timeout
+				await get_tree().create_timer(0.8, false).timeout
 				var st := _stone.global_position
 				print("S2CIRCLE %s done=%s stone=%s" % [id, d.objective_done(Q3, "tas_" + id), st.snapped(Vector3.ONE * 0.1)])
 			GameState.talk_to("tospik_nine")
@@ -359,7 +359,7 @@ func _run_demo(which: String) -> void:
 			get_tree().quit()
 		"travel":
 			# arrived by fast travel: standing by the bell, on solid ground
-			await get_tree().create_timer(1.0).timeout
+			await get_tree().create_timer(1.0, false).timeout
 			print("S2TRAVEL at=%s floor=%s near_bell=%s" % [_player.global_position.snapped(Vector3.ONE * 0.1), _player.is_on_floor(), _player.global_position.distance_to(BELL_AT) < 3.5])
 			get_tree().quit()
 		"bekci":
@@ -368,7 +368,7 @@ func _run_demo(which: String) -> void:
 			if d.has_flag("dbg_bekci"):
 				while SceneFlow.busy:
 					await get_tree().process_frame
-				await get_tree().create_timer(0.5).timeout
+				await get_tree().create_timer(0.5, false).timeout
 				var door := get_node("Level/BekciDoor") as Node3D
 				print("S2HOUSE back scene=%s near_door=%s floor=%s" % [SceneFlow.current, _player.global_position.distance_to(door.global_position) < 3.0, _player.is_on_floor()])
 				get_tree().quit()
@@ -385,7 +385,7 @@ func _run_demo(which: String) -> void:
 			DevTools.auto_dialogue = true
 			GameState.data.add_piril(150)
 			_player.global_position = get_node("Kazma").global_position + Vector3(0, 0.3, 1.8)
-			await get_tree().create_timer(0.3).timeout
+			await get_tree().create_timer(0.3, false).timeout
 			GameState.talk_to("kazma")
 			await close_dialogs()
 		"skills":
@@ -400,14 +400,14 @@ func _run_demo(which: String) -> void:
 				_player.global_position = at
 				var a := Mob.spawn(self, "kopuklu_tavuk", at + Vector3(1.5, 0, 0))
 				var b := Mob.spawn(self, "kopuklu_tavuk", at + Vector3(-1.5, 0, 1))
-				await get_tree().create_timer(0.3).timeout
+				await get_tree().create_timer(0.3, false).timeout
 				_player._attack_cd = 0.0
 				_player.use_skill()
-				await get_tree().create_timer(0.3).timeout
-				print("S2SKILL %s skill=%s a=%s b=%s slow=%s" % [k, d.active_skill(), a.state, b.state, a._slow_until > Time.get_ticks_msec() / 1000.0])
+				await get_tree().create_timer(0.3, false).timeout
+				print("S2SKILL %s skill=%s a=%s b=%s slow=%s" % [k, d.active_skill(), a.state, b.state, a._slow_until > GameState.clock])
 				a.queue_free()
 				b.queue_free()
-				await get_tree().create_timer(0.2).timeout
+				await get_tree().create_timer(0.2, false).timeout
 			get_tree().quit()
 		"village":
 			# the whole chapter, scripted (headless check)
@@ -416,13 +416,13 @@ func _run_demo(which: String) -> void:
 			for id: String in ["tospik_nine", "pitpit", "pamuk", "toprak", "bidik", "tospik_nine"]:
 				var n := get_node(id.capitalize()) as Node3D
 				_player.global_position = n.global_position + Vector3(0, 0.3, 1.8)
-				await get_tree().create_timer(0.3).timeout
+				await get_tree().create_timer(0.3, false).timeout
 				GameState.talk_to(id)
 				await close_dialogs()
 			print("S2C0 q1=%s q2=%s" % [d.quest_state(Q1), d.quest_state(Q2)])
 			_player.global_position = KETTLE_AT + Vector3(0, 0.3, 6.0)
 			for i in 300:
-				await get_tree().create_timer(0.3).timeout
+				await get_tree().create_timer(0.3, false).timeout
 				await close_dialogs()
 				if _kettle.lid_up:
 					_player.global_position = KETTLE_AT + Vector3(0, 0.3, 2.4)
@@ -432,39 +432,39 @@ func _run_demo(which: String) -> void:
 					break
 			print("S2C0 kettle hp=%d simmering=%s player_hp=%d" % [_kettle.hp, _kettle.is_simmering, d.hp])
 			_player.global_position = KETTLE_AT + Vector3(0, 0.3, 2.6)
-			await get_tree().create_timer(0.3).timeout
+			await get_tree().create_timer(0.3, false).timeout
 			Input.action_press("calm")
-			await get_tree().create_timer(BreathCalm.BREATH_IN + BreathCalm.BREATH_OUT + 0.5).timeout
+			await get_tree().create_timer(BreathCalm.BREATH_IN + BreathCalm.BREATH_OUT + 0.5, false).timeout
 			Input.action_release("calm")
 			await close_dialogs()
 			print("S2C0 calmed=%s" % d.objective_done(Q2, "caydanlik"))
 			_player.global_position = BELL_AT + Vector3(0, 0.3, 1.6)
-			await get_tree().create_timer(0.4).timeout
+			await get_tree().create_timer(0.4, false).timeout
 			(get_node("Level/Bell") as EchoBell).use(_player)
 			await close_dialogs()
 			var b := get_node("Tospik Nine") as Node3D
 			_player.global_position = b.global_position + Vector3(0, 0.3, 1.8)
-			await get_tree().create_timer(0.3).timeout
+			await get_tree().create_timer(0.3, false).timeout
 			GameState.talk_to("tospik_nine")
 			await close_dialogs()
 			print("S2C0_DONE q2=%s flag=%s bell=%s level=%d" % [d.quest_state(Q2), d.has_flag("s2_bolum0_bitti"), d.has_flag("s2_can0"), d.level])
 			get_tree().quit()
 		"bell_locked":
 			_player.global_position = BELL_AT + Vector3(0, 0.3, 1.6)
-			await get_tree().create_timer(0.4).timeout
+			await get_tree().create_timer(0.4, false).timeout
 			(get_node("Level/Bell") as EchoBell).use(_player)
 			await close_dialogs()
 			print("S2C0 bell_locked rung=%s" % GameState.data.has_flag("s2_can0"))
 			get_tree().quit()
 		"stairs":
 			_player.global_position = Vector3(BELL_AT.x - 1.0, 0.3, BELL_AT.z + 6.5)
-			await get_tree().create_timer(0.4).timeout
+			await get_tree().create_timer(0.4, false).timeout
 			Input.action_press("move_forward")
 			for i in 6:
 				Input.action_press("jump")
-				await get_tree().create_timer(0.2).timeout
+				await get_tree().create_timer(0.2, false).timeout
 				Input.action_release("jump")
-				await get_tree().create_timer(0.3).timeout
+				await get_tree().create_timer(0.3, false).timeout
 			Input.action_release("move_forward")
 			print("S2C0 stairs y=%.2f z=%.2f" % [_player.global_position.y, _player.global_position.z])
 			get_tree().quit()

@@ -53,8 +53,8 @@ func _ready() -> void:
 		# a save from before Sahne 3 existed: the scene was done, nothing came next
 		DevTools.auto_dialogue = true
 		DevTools._finish(d, QUEST)
-		get_tree().create_timer(1.0).timeout.connect(func() -> void: DevTools.report_next_scene("S3_RESUME"))
-	await get_tree().create_timer(1.5).timeout
+		get_tree().create_timer(1.0, false).timeout.connect(func() -> void: DevTools.report_next_scene("S3_RESUME"))
+	await get_tree().create_timer(1.5, false).timeout
 	if d.quest_state(QUEST) == "done":
 		_end()
 		return
@@ -102,7 +102,7 @@ func _check() -> void:
 		if _npcs["tospik_nine"].has_node("Beacon"):
 			_npcs["tospik_nine"].get_node("Beacon").queue_free()
 		while GameState.in_dialogue:
-			await get_tree().create_timer(0.2).timeout
+			await get_tree().create_timer(0.2, false).timeout
 		_end()
 
 
@@ -111,7 +111,7 @@ func _end() -> void:
 	if _ended:
 		return
 	_ended = true
-	await get_tree().create_timer(0.6).timeout
+	await get_tree().create_timer(0.6, false).timeout
 	GameState.bark("s3b_son")
 	if DevTools.demo == "shiver" and DisplayServer.get_name() == "headless":
 		await close_dialogs()
@@ -120,7 +120,7 @@ func _end() -> void:
 		get_tree().quit()
 		return
 	while GameState.in_dialogue:
-		await get_tree().create_timer(0.2).timeout
+		await get_tree().create_timer(0.2, false).timeout
 	SceneFlow.go_to("s3_scene3")
 
 
@@ -134,19 +134,19 @@ func _run_demo(which: String) -> void:
 			for i in 60:
 				if _player.ring.is_frozen():
 					break
-				await get_tree().create_timer(0.5).timeout
+				await get_tree().create_timer(0.5, false).timeout
 			print("S3_FROZEN shiver=%.2f frozen=%s" % [_player.ring.shiver, _player.ring.is_frozen()])
 			await close_dialogs()
 			_player.ring.frozen = ShiverRules.FROZEN_TIME
 			Input.action_press("calm")
-			await get_tree().create_timer(1.2).timeout
+			await get_tree().create_timer(1.2, false).timeout
 			Input.action_release("calm")
 			print("S3_THAW frozen=%s" % _player.ring.is_frozen())
 			for t in _torches:
 				_player.global_position = t.global_position + Vector3(0, 0.3, 1.2)
-				await get_tree().create_timer(0.4).timeout
+				await get_tree().create_timer(0.4, false).timeout
 				_player.interact()
-				await get_tree().create_timer(0.3).timeout
+				await get_tree().create_timer(0.3, false).timeout
 			print("S3_TORCHES lit=%d shiver=%.2f" % [_torches.filter(func(t: BeachTorch) -> bool: return t.lit).size(), _player.ring.shiver])
 			for i in 30:
 				var left := get_tree().get_nodes_in_group("titrek").filter(func(t: Titrek) -> bool: return t.state != "calm")
@@ -156,11 +156,11 @@ func _run_demo(which: String) -> void:
 				_player.global_position = t.global_position + Vector3(0, 0.3, 5.5)
 				for k in 4:
 					_player.spin_attack()
-					await get_tree().create_timer(0.6).timeout
+					await get_tree().create_timer(0.6, false).timeout
 				print("S3_LISTEN %s state=%s" % [t.kind, t.state])
 				_player.global_position = t.global_position + Vector3(0, 0.3, 1.2)
-				await get_tree().create_timer(0.5).timeout
+				await get_tree().create_timer(0.5, false).timeout
 			_player.global_position = _npcs["tospik_nine"].global_position + Vector3(0, 0.3, 1.8)
-			await get_tree().create_timer(0.3).timeout
+			await get_tree().create_timer(0.3, false).timeout
 			GameState.talk_to("tospik_nine")
 			await close_dialogs()

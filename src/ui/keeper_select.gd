@@ -69,6 +69,12 @@ func _ready() -> void:
 		var card := KeeperCard.new(id)
 		if order.size() > 4:
 			card.custom_minimum_size.x = 226
+		if order.size() > 5:
+			# six cards must fit a 16:9 phone (1280 wide)
+			card.custom_minimum_size.x = 196
+			for pip in card.find_children("*", "Panel", true, false):
+				if (pip as Panel).custom_minimum_size == Vector2(26, 14):
+					(pip as Panel).custom_minimum_size = Vector2(19, 14)
 		card.pressed.connect(func() -> void: select(id))
 		_cards_row.add_child(card)
 		_cards[id] = card

@@ -28,7 +28,7 @@ func _ready() -> void:
 	var d := GameState.data
 	d.quest_changed.connect(func(_id: String) -> void: _refresh())
 	_refresh()
-	await get_tree().create_timer(1.6).timeout
+	await get_tree().create_timer(1.6, false).timeout
 	GameState.bark("s2_basla")
 	if DevTools.demo != "":
 		await close_dialogs()
@@ -45,7 +45,7 @@ func _process(_delta: float) -> void:
 	if not _hinted and _player.global_position.distance_to(Vector3(LEDGE.x, 0, LEDGE.z - 3.0)) < 5.0:
 		_hinted = true
 		_hud.show_hint("Boşluk: zıpla, havada basılı tut: süzül!", "Zıpla'ya basılı tut: süzül!")
-		get_tree().create_timer(7.0).timeout.connect(_hud.clear_hint)
+		get_tree().create_timer(7.0, false).timeout.connect(_hud.clear_hint)
 	if _player.global_position.y > 2.7 and _player.global_position.distance_to(HILL) < 3.0 and not GameState.data.has_flag("s2_suzuldu"):
 		GameState.data.set_flag("s2_suzuldu")
 		GameState.bark("s2_suzul")
@@ -120,7 +120,7 @@ func _build_glide_course() -> void:
 
 ## All invitations out and the cake blown: the candles go out, wishes rise.
 func _blow_candles() -> void:
-	await get_tree().create_timer(0.6).timeout
+	await get_tree().create_timer(0.6, false).timeout
 	for c in _candles:
 		Effects.sparkle(self, c.global_position, Tokens.color("spark-white"), 6)
 		var tw := c.create_tween()
@@ -129,7 +129,7 @@ func _blow_candles() -> void:
 	var l := get_node_or_null("CakeLight") as OmniLight3D
 	if l:
 		l.create_tween().tween_property(l, "light_energy", 0.0, 0.6)
-	await get_tree().create_timer(2.2).timeout
+	await get_tree().create_timer(2.2, false).timeout
 	if DevTools.demo == "party" and DisplayServer.get_name() == "headless":
 		print("S2_PARTY done=%s flag=%s" % [GameState.data.quest_state(QUEST), GameState.data.has_flag("s2_sahne1_bitti")])
 		get_tree().quit()
@@ -143,7 +143,7 @@ func _run_demo(which: String) -> void:
 			# from the ledge's edge toward the hilltop: floating gets there,
 			# a plain jump doesn't (headless check)
 			_player.global_position = LEDGE + Vector3(0.8, 2.1, 0)
-			await get_tree().create_timer(0.5).timeout
+			await get_tree().create_timer(0.5, false).timeout
 			var hold := which == "glide"
 			Input.action_press("move_right")
 			Input.action_press("jump")
@@ -151,10 +151,10 @@ func _run_demo(which: String) -> void:
 			await get_tree().physics_frame
 			if not hold:
 				Input.action_release("jump")
-			await get_tree().create_timer(2.2).timeout
+			await get_tree().create_timer(2.2, false).timeout
 			Input.action_release("move_right")
 			Input.action_release("jump")
-			await get_tree().create_timer(0.5).timeout
+			await get_tree().create_timer(0.5, false).timeout
 			var p := _player.global_position
 			var on_hill := p.y > 2.8 and absf(p.x - HILL.x) < 1.8 and absf(p.z - HILL.z) < 1.8
 			print("S2_GLIDE hold=%s pos=%s on_hill=%s" % [hold, p, on_hill])
@@ -165,12 +165,12 @@ func _run_demo(which: String) -> void:
 			DevTools.auto_dialogue = true
 			for id: String in ["fistik", "pati", "bado", "citir", "lumi", "fistik"]:
 				_player.global_position = _npcs[id].global_position + Vector3(0, 0.3, 1.6)
-				await get_tree().create_timer(0.3).timeout
+				await get_tree().create_timer(0.3, false).timeout
 				GameState.talk_to(id)
 				await close_dialogs()
 		"invite":
 			_player.global_position = _npcs["fistik"].global_position + Vector3(0, 0, 2.0)
-			await get_tree().create_timer(0.3).timeout
+			await get_tree().create_timer(0.3, false).timeout
 			GameState.talk_to("fistik")
 		"stairs":
 			_player.global_position = Vector3(LEDGE.x - 1.0, 0.3, LEDGE.z - 9.0)

@@ -45,7 +45,7 @@ func _ready() -> void:
 	out.position = Vector3(0, 0, D + 1.4)
 	add_child(out)
 	out.reached.connect(_leave)
-	await get_tree().create_timer(0.6).timeout
+	await get_tree().create_timer(0.6, false).timeout
 	_hud.show_hint("Kapıdan çıkınca köye dönersin", "Kapıdan çıkınca köye dönersin")
 	if DevTools.demo != "":
 		_run_demo(DevTools.demo)
@@ -264,9 +264,9 @@ func _run_demo(which: String) -> void:
 			d.add_piril(600)
 			for spec in [["kasif_sapkasi", 60], ["yildiz_asasi", 150], ["isik_sapani", 80], ["isik_tohumu", 15]]:
 				Shop.buy(d, Content.items[spec[0]], spec[0], spec[1], spec[0] != "isik_tohumu")
-			await get_tree().create_timer(0.4).timeout
+			await get_tree().create_timer(0.4, false).timeout
 			_player.shoot()
-			await get_tree().create_timer(0.2).timeout
+			await get_tree().create_timer(0.2, false).timeout
 			var speed_before := _player.speed
 			print("SHOP outfit=%s weapon=%s seeds=%d power=%d attack=%d speed=%.1f magnet=%.1f" % [d.equipped["outfit"], d.equipped["weapon"],
 				d.item_count("isik_tohumu"), d.power, _player.attack_power(), speed_before, _player.magnet_range])
@@ -277,11 +277,11 @@ func _run_demo(which: String) -> void:
 				# the staff's ring is wide (2.9 m: past a plain spin), the others reach far
 				var m := Mob.spawn(self, "mantar", _player.global_position + Vector3(0, 0, -2.9 if tool == "yildiz_asasi" else -4.5))
 				_player.model.rotation.y = PI
-				await get_tree().create_timer(0.5).timeout
+				await get_tree().create_timer(0.5, false).timeout
 				var hp0 := m.hp
 				_player._attack_cd = 0.0
 				_player.spin_attack()
-				await get_tree().create_timer(0.8).timeout
+				await get_tree().create_timer(0.8, false).timeout
 				print("TOOL %s far_mob_hit=%s" % [tool, m.hp < hp0 or m.state == "calm"])
 				m.queue_free()
 			if DisplayServer.get_name() == "headless":
@@ -298,7 +298,7 @@ func _run_demo(which: String) -> void:
 			var d := GameState.data
 			var lv := d.level
 			d.switch_keeper("lumi", Content.keepers["lumi"]["stats"], {"variant": 1}, "Lumi", Content.items)
-			await get_tree().create_timer(0.3).timeout
+			await get_tree().create_timer(0.3, false).timeout
 			print("SWITCH id=%s level=%d same_level=%s model_ok=%s" % [d.character_id, d.level, d.level == lv, _player.model != null])
 			if DisplayServer.get_name() == "headless":
 				get_tree().quit()

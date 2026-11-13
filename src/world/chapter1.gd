@@ -31,7 +31,7 @@ func _ready() -> void:
 	_build()
 	d.quest_changed.connect(func(_id: String) -> void: _advance())
 	_restore_progress()
-	await get_tree().create_timer(1.9).timeout
+	await get_tree().create_timer(1.9, false).timeout
 	if DevTools.demo != "":
 		_run_demo(DevTools.demo)
 		return
@@ -389,9 +389,9 @@ func _start_boss() -> void:
 func _on_king_awake() -> void:
 	_hud.hide_boss()
 	GameState.notify("defeat", "kutuk_kral")
-	await get_tree().create_timer(0.8).timeout
+	await get_tree().create_timer(0.8, false).timeout
 	_hud.show_scene_card("", "Kütük Kral uyandı!", "Sonunda güzel bir uyku çekecek")
-	await get_tree().create_timer(3.2).timeout
+	await get_tree().create_timer(3.2, false).timeout
 	GameState.bark("c1_kral_son")
 	await GameState.dialogue_closed
 	# the Yeşil Kıvılcım flies out to the keeper
@@ -408,7 +408,7 @@ func _on_king_awake() -> void:
 	cam.anchor_weight = 0.0
 	cam.distance = 14.0
 	_hud.show_scene_card("Kıvılcım bulundu!", "Yeşil Kıvılcım", "Fısıltı Ormanı yeniden yeşil")
-	await get_tree().create_timer(3.4).timeout
+	await get_tree().create_timer(3.4, false).timeout
 	if d.quest_state(QUEST) == "ready":
 		d.complete_quest(Content.quests[QUEST])
 	d.set_flag("bolum1_bitti")
@@ -428,16 +428,16 @@ func _run_demo(which: String) -> void:
 			var target: Vector3 = {"bado": Vector3(-8.9, 0, 23), "citir": Vector3(-9.2, 0, -11.6), "lumi": Vector3(5.6, 0, -35.2), "pati": Vector3(10, 0, 32.4)}[me]
 			var chest: Vector3 = {"bado": Vector3(-12.6, 0, 23), "citir": Vector3(-11, 0, -6.4), "lumi": Vector3(11, 0, -35), "pati": Vector3(10, 2.3, 30)}[me]
 			_player.global_position = target
-			await get_tree().create_timer(0.4).timeout
+			await get_tree().create_timer(0.4, false).timeout
 			if me == "pati":
 				# double jump onto the pillar from the south, stop on top
 				_player.global_position = Vector3(10, 0, 32.0)
-				await get_tree().create_timer(0.3).timeout
+				await get_tree().create_timer(0.3, false).timeout
 				Input.action_press("move_forward")
 				Input.action_press("jump")
 				await get_tree().physics_frame
 				Input.action_release("jump")
-				await get_tree().create_timer(0.3).timeout
+				await get_tree().create_timer(0.3, false).timeout
 				Input.action_press("jump")
 				await get_tree().physics_frame
 				Input.action_release("jump")
@@ -448,19 +448,19 @@ func _run_demo(which: String) -> void:
 					if _player.global_position.z < 30.6 and _player.global_position.y > 2.0:
 						break
 				Input.action_release("move_forward")
-				await get_tree().create_timer(0.6).timeout
+				await get_tree().create_timer(0.6, false).timeout
 				print("PATI top=%.2f on_pillar_y=%.2f" % [top, _player.global_position.y])
 			elif me == "citir":
 				_player.interact()
-				await get_tree().create_timer(1.0).timeout
+				await get_tree().create_timer(1.0, false).timeout
 				_player.global_position = Vector3(-10.5, 0, -11.4)
-				await get_tree().create_timer(0.2).timeout
+				await get_tree().create_timer(0.2, false).timeout
 				Input.action_press("move_back")
-				await get_tree().create_timer(1.3).timeout
+				await get_tree().create_timer(1.3, false).timeout
 				Input.action_release("move_back")
 			else:
 				_player.interact()
-				await get_tree().create_timer(1.2).timeout
+				await get_tree().create_timer(1.2, false).timeout
 				# walk toward the chest
 				var to: Vector3 = chest - _player.global_position
 				to.y = 0
@@ -469,12 +469,12 @@ func _run_demo(which: String) -> void:
 				if absf(dir.z) > 0.3:
 					Input.action_press("move_back" if dir.z > 0 else "move_forward", absf(dir.z))
 				for i in 40:
-					await get_tree().create_timer(0.05).timeout
+					await get_tree().create_timer(0.05, false).timeout
 					if _player.global_position.distance_to(chest) < 1.4:
 						break
 				for a in ["move_right", "move_left", "move_forward", "move_back"]:
 					Input.action_release(a)
-			await get_tree().create_timer(0.3).timeout
+			await get_tree().create_timer(0.3, false).timeout
 			print("SPOT %s player=(%.1f, %.1f, %.1f) chest_dist=%.2f flag=%s" % [me, _player.global_position.x, _player.global_position.y, _player.global_position.z,
 				_player.global_position.distance_to(chest), d.has_flag("spot_" + {"bado": "c1_kaya", "citir": "c1_dere", "lumi": "c1_karanlik", "pati": "-"}[me])])
 			get_tree().quit()
@@ -507,7 +507,7 @@ func _run_demo(which: String) -> void:
 						if dist - r > 0.0 and dist - r < 1.6:
 							_player.velocity.y = _player.jump_velocity
 							jumps += 1
-				await get_tree().create_timer(0.05).timeout
+				await get_tree().create_timer(0.05, false).timeout
 				t += 0.05
 				if _hud._dialog.is_open():
 					_hud._dialog.advance()
@@ -516,7 +516,7 @@ func _run_demo(which: String) -> void:
 				if _hud._dialog.is_open():
 					_hud._dialog.advance()
 					_hud._dialog.advance()
-				await get_tree().create_timer(0.1).timeout
+				await get_tree().create_timer(0.1, false).timeout
 			print("BOSS2 quest=%s sparks=%s flag=%s level=%d piril=%d exit=%s" % [d.quest_state(QUEST), d.sparks, d.has_flag("bolum1_bitti"), d.level, d.piril, ($Level/ExitSign as Node3D).visible])
 			get_tree().quit()
 		"mobs":
@@ -528,7 +528,7 @@ func _run_demo(which: String) -> void:
 			var hp0 := GameState.data.hp
 			for i in 50:
 				states[k.state] = true
-				await get_tree().create_timer(0.1).timeout
+				await get_tree().create_timer(0.1, false).timeout
 			print("KIRPI states=%s player_hp %d->%d" % [states.keys(), hp0, GameState.data.hp])
 			k.queue_free()
 			GameState.data.wake_up()
@@ -539,7 +539,7 @@ func _run_demo(which: String) -> void:
 			var hit_on_ground := false
 			hp0 = GameState.data.hp
 			for i in 70:
-				await get_tree().create_timer(0.1).timeout
+				await get_tree().create_timer(0.1, false).timeout
 				if not is_instance_valid(c):
 					break
 				max_y = maxf(max_y, c.global_position.y)
@@ -556,34 +556,34 @@ func _run_demo(which: String) -> void:
 			GameState.notify("light", "orman_feneri")
 			$Level/OrmanFeneri.light_up(true)
 			_player.global_position = Vector3(8, 0, 1.8)
-			await get_tree().create_timer(0.3).timeout
+			await get_tree().create_timer(0.3, false).timeout
 			while _hud._dialog.is_open():
 				_hud._dialog.advance()
-				await get_tree().create_timer(0.05).timeout
+				await get_tree().create_timer(0.05, false).timeout
 		"junction":
 			GameState.notify("light", "orman_feneri")
 			$Level/OrmanFeneri.light_up(true)
-			await get_tree().create_timer(0.3).timeout
+			await get_tree().create_timer(0.3, false).timeout
 			while _hud._dialog.is_open():
 				_hud._dialog.advance()
-				await get_tree().create_timer(0.05).timeout
+				await get_tree().create_timer(0.05, false).timeout
 			_player.global_position = Vector3(0, 0, 11)
 		"wrong":
 			_player.global_position = Vector3(-8, 0, 7)
 			Input.action_press("move_forward")
-			await get_tree().create_timer(1.6).timeout
+			await get_tree().create_timer(1.6, false).timeout
 			Input.action_release("move_forward")
-			await get_tree().create_timer(1.4).timeout
+			await get_tree().create_timer(1.4, false).timeout
 			print("WRONG z=%.2f (geri döndü: %s)" % [_player.global_position.z, _player.global_position.z > 8.0])
 			for i in 6:
 				if _hud._dialog.is_open():
 					_hud._dialog.advance()
 					_hud._dialog.advance()
-				await get_tree().create_timer(0.1).timeout
+				await get_tree().create_timer(0.1, false).timeout
 			_player.global_position = Vector3(8, 0, 7)
 			Input.action_press("move_forward")
-			await get_tree().create_timer(1.6).timeout
+			await get_tree().create_timer(1.6, false).timeout
 			Input.action_release("move_forward")
-			await get_tree().create_timer(0.4).timeout
+			await get_tree().create_timer(0.4, false).timeout
 			print("RIGHT z=%.2f (geçti: %s)" % [_player.global_position.z, _player.global_position.z < 2.0])
 			get_tree().quit()

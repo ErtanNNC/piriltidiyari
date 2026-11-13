@@ -51,7 +51,7 @@ func _loop() -> void:
 		for attack in OwlPlan.cycle(phase):
 			if not active:
 				return
-			await get_tree().create_timer(OwlPlan.rest(phase)).timeout
+			await get_tree().create_timer(OwlPlan.rest(phase), false).timeout
 			if not active:
 				return
 			await GameState.wait_dialogue_closed()
@@ -110,7 +110,7 @@ func _dive() -> void:
 	up.tween_property(self, "position", Vector3(spot.x, 9.0, spot.z), 0.6).set_trans(Tween.TRANS_SINE)
 	await up.finished
 	Effects.warning(get_parent(), spot, 2.0, Mob.TELEGRAPH)
-	await get_tree().create_timer(Mob.TELEGRAPH).timeout
+	await get_tree().create_timer(Mob.TELEGRAPH, false).timeout
 	var down := create_tween()
 	down.tween_property(self, "position", spot, 0.25).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUAD)
 	await down.finished
@@ -131,7 +131,7 @@ func _daze() -> void:
 		var a := TAU * i / 4.0
 		Toon.part(_stars, "sphere", Vector3(0.35, 0.35, 0.35), "spark-yellow", Vector3(cos(a), 0, sin(a)) * 0.9, Vector3.ZERO, 1.2, 0.02)
 	get_tree().call_group("hud", "show_hint", "Sersemledi! Şimdi vur!", "Sersemledi! Şimdi vur!")
-	await get_tree().create_timer(OwlPlan.STUN_TIME).timeout
+	await get_tree().create_timer(OwlPlan.STUN_TIME, false).timeout
 	if not active:
 		return
 	get_tree().call_group("hud", "clear_hint")

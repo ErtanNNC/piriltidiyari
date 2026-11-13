@@ -136,7 +136,7 @@ func _watch(d: PlayerData) -> void:
 			play("coin"))
 	d.leveled_up.connect(func(_l: int) -> void: play("levelup"))
 	d.quest_changed.connect(func(id: String) -> void:
-		if d.quest_state(id) == "done":
+		if GameState.data and GameState.data.quest_state(id) == "done":
 			play("quest"))
 
 

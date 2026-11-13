@@ -62,7 +62,7 @@ func _loop() -> void:
 				if not active:
 					return
 				_play_beat(bar[i], i)
-				await get_tree().create_timer(GumburPlan.BEAT).timeout
+				await get_tree().create_timer(GumburPlan.BEAT, false).timeout
 		if not active:
 			return
 		await _rest()
@@ -91,7 +91,7 @@ func _play_beat(mark: String, n: int) -> void:
 
 
 func _land(spot: Vector3, r: float) -> void:
-	await get_tree().create_timer(Mob.TELEGRAPH).timeout
+	await get_tree().create_timer(Mob.TELEGRAPH, false).timeout
 	if not active:
 		return
 	Effects.ring(get_parent(), spot + Vector3.UP * 0.3, r, attack_color, 0.35)
@@ -109,7 +109,7 @@ func _rest() -> void:
 	var sit := create_tween()
 	sit.tween_property(_model, "scale", Vector3(1.1, 0.85, 1.1), 0.25)
 	get_tree().call_group("hud", "show_hint", tired_hint, "Nefesleniyor! Şimdi vur!")
-	await get_tree().create_timer(GumburPlan.TIRED_TIME).timeout
+	await get_tree().create_timer(GumburPlan.TIRED_TIME, false).timeout
 	if not active:
 		return
 	get_tree().call_group("hud", "clear_hint")

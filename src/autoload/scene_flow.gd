@@ -174,10 +174,53 @@ func release_inputs() -> void:
 			Input.action_release(a)
 
 
+## Progress is kept without asking: when the app is sent away (Home, back,
+## a call), every minute, and when a quest closes. Regions used to save only
+## on entry, so a bell rung or a pearl won was lost with the app.
+func autosave() -> void:
+	var d := GameState.data
+	if busy or d == null or current in ["", "title", "preview"] or not SCENES.has(d.scene_id) or d.scene_id == "title":
+		return
+	if current != d.scene_id and current != "house":
+		return
+	SaveGame.write(d)
+
+
+func _notification(what: int) -> void:
+	if what in [NOTIFICATION_APPLICATION_PAUSED, NOTIFICATION_WM_GO_BACK_REQUEST, NOTIFICATION_WM_CLOSE_REQUEST]:
+		autosave()
+	# Android back: Mola in a scene, leave the game only from the title
+	if what == NOTIFICATION_WM_GO_BACK_REQUEST:
+		if current in ["", "title"]:
+			get_tree().quit()
+		else:
+			get_tree().call_group("hud", "back_pressed")
+
+
+var _autosave_t := 0.0
+var _watched: PlayerData
+
+
+func _process(delta: float) -> void:
+	if GameState.data != _watched:
+		_watched = GameState.data
+		if _watched:
+			_watched.quest_changed.connect(func(id: String) -> void:
+				if GameState.data.quest_state(id) == "done":
+					autosave.call_deferred())
+	_autosave_t += delta
+	if _autosave_t > 60.0 and not GameState.in_dialogue and not get_tree().paused:
+		_autosave_t = 0.0
+		autosave()
+
+
 func go_to(scene_id: String, save := true, card := true) -> void:
 	if busy or not SCENES.has(scene_id):
 		return
 	busy = true
+	_asking = false
+	if scene_id == "title":
+		return_point = Vector3.INF
 	release_inputs()
 	Audio.scene_changed(scene_id)
 	var tw := create_tween()
@@ -192,6 +235,7 @@ func go_to(scene_id: String, save := true, card := true) -> void:
 	# Gece (dark) theme for the caves and other night chapters
 	# the ending is a sunny morning in the village, whatever chapter it belongs to
 	Tokens.set_theme("light" if scene_id in ["title", "final", "s2_final", "s3_final", "preview"] else String(Content.chapter.get("theme", "light")))
+	ModelImport.clear_templates()
 	get_tree().change_scene_to_file(SCENES[scene_id])
 	current = scene_id
 	if save and scene_id != "title":

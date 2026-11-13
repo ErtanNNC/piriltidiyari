@@ -30,7 +30,7 @@ func _ready() -> void:
 	if d.quest_state(QUEST) == "none":
 		d.start_quest(Content.quests[QUEST])
 	d.quest_changed.connect(func(_id: String) -> void: _advance())
-	await get_tree().create_timer(1.5).timeout
+	await get_tree().create_timer(1.5, false).timeout
 	if d.quest_state(QUEST) == "done":
 		_after_end()
 		return
@@ -101,7 +101,7 @@ func _advance() -> void:
 
 ## Mırıl hears the voice in the wind and follows it up the mountain (Sahne 3).
 func _end() -> void:
-	await get_tree().create_timer(0.8).timeout
+	await get_tree().create_timer(0.8, false).timeout
 	GameState.bark("s2_son")
 	if DevTools.demo == "redwind" and DisplayServer.get_name() == "headless":
 		await close_dialogs()
@@ -109,7 +109,7 @@ func _end() -> void:
 		print("S2_REDWIND quest=%s flag=%s nane=%d level=%d" % [d.quest_state(QUEST), d.has_flag("s2_sahne2_bitti"), d.item_count("nane_sekeri"), d.level])
 		get_tree().quit()
 		return
-	await get_tree().create_timer(1.0).timeout
+	await get_tree().create_timer(1.0, false).timeout
 	_after_end()
 
 
@@ -232,21 +232,21 @@ func _run_demo(which: String) -> void:
 					var m: Node3D = dazed[0]
 					_player.global_position = m.global_position + Vector3(0, 0.3, 1.4)
 					Input.action_press("calm")
-					await get_tree().create_timer(BreathCalm.BREATH_IN + BreathCalm.BREATH_OUT + 0.3).timeout
+					await get_tree().create_timer(BreathCalm.BREATH_IN + BreathCalm.BREATH_OUT + 0.3, false).timeout
 					Input.action_release("calm")
 				elif not mobs.is_empty():
 					var m: Mob = mobs[0]
 					_player.global_position = m.global_position + Vector3(0, 0.3, 1.2)
 					await get_tree().physics_frame
 					m.hit(999, _player.global_position, 1.0)
-				await get_tree().create_timer(0.3).timeout
+				await get_tree().create_timer(0.3, false).timeout
 			_player.global_position = get_node("Tospik").global_position + Vector3(0, 0.3, 1.8)
-			await get_tree().create_timer(0.3).timeout
+			await get_tree().create_timer(0.3, false).timeout
 			GameState.talk_to("tospik_nine")
 			await close_dialogs()
 			# frogs: stand in the hot mist until angry, then a Nane Şekeri
 			_player.global_position = HOT_SPOT + Vector3(0, 0.3, 4.5)
-			await get_tree().create_timer(8.0).timeout
+			await get_tree().create_timer(8.0, false).timeout
 			print("S2_ANGER anger=%.2f angry=%s" % [_player.calm.anger, _player.calm.is_angry()])
 			var slot := GameState.data.potions.find("nane_sekeri")
 			if slot >= 0:
@@ -259,14 +259,14 @@ func _run_demo(which: String) -> void:
 					break
 				if not mobs.is_empty():
 					(mobs[0] as Mob).hit(999, _player.global_position, 1.0)
-				await get_tree().create_timer(0.4).timeout
+				await get_tree().create_timer(0.4, false).timeout
 			# dazed frogs calm down by themselves after a while
 			for i in 30:
 				if get_tree().get_nodes_in_group("dazed").is_empty():
 					break
-				await get_tree().create_timer(0.5).timeout
+				await get_tree().create_timer(0.5, false).timeout
 			_player.global_position = get_node("Tospik").global_position + Vector3(0, 0.3, 1.8)
-			await get_tree().create_timer(0.3).timeout
+			await get_tree().create_timer(0.3, false).timeout
 			GameState.talk_to("tospik_nine")
 			await close_dialogs()
 		"guide":

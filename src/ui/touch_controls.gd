@@ -186,7 +186,8 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventScreenTouch:
 		var p: Vector2 = event.position
 		if event.pressed:
-			var paused := get_tree().paused
+			# no stick or camera drag behind Mola, a dialogue or a shop
+			var paused := get_tree().paused or GameState.in_dialogue
 			if _stick_touch == -1 and p.x < vp.x * 0.4 and not paused and p.y > 120.0:
 				_stick_touch = event.index
 				_stick_center = p

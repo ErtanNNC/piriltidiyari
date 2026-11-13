@@ -65,7 +65,7 @@ func _ready() -> void:
 	_refresh()
 	_player.respawn_point = _player.global_position
 	take_return_point()
-	await get_tree().create_timer(1.8).timeout
+	await get_tree().create_timer(1.8, false).timeout
 	if not d.has_flag("s2c3_geldi"):
 		d.set_flag("s2c3_geldi")
 		GameState.bark("s2c3_basla")
@@ -263,7 +263,7 @@ func _minnos_runs() -> void:
 	m.position = SQUARE + Vector3(7.0, 0, -4.0)
 	m.rotation.y = PI
 	MobModels._pus_wisps(m, 2.4, Tokens.color("hp"), 6, 0.6)
-	await get_tree().create_timer(0.6).timeout
+	await get_tree().create_timer(0.6, false).timeout
 	GameState.bark("s2c3_minnos")
 	await GameState.dialogue_closed
 	var rig := CharacterRig.of(m)
@@ -299,17 +299,17 @@ func _on_bell_rung(_b: EchoBell) -> void:
 
 ## A kernel pops in the field: a warned circle, then a little burst.
 func _pop_loop(at: Vector3, delay: float) -> void:
-	await get_tree().create_timer(2.5 + delay).timeout
+	await get_tree().create_timer(2.5 + delay, false).timeout
 	while is_inside_tree():
 		Effects.warning(self, at, 1.4, Mob.TELEGRAPH)
-		await get_tree().create_timer(Mob.TELEGRAPH).timeout
+		await get_tree().create_timer(Mob.TELEGRAPH, false).timeout
 		if not is_inside_tree():
 			return
 		Effects.ring(self, at + Vector3.UP * 0.3, 1.6, Color("#fff4d6"), 0.35)
 		Effects.sparkle(self, at + Vector3.UP * 1.0, Color("#fff4d6"), 8)
 		if Vector2(_player.global_position.x - at.x, _player.global_position.z - at.z).length() < 1.4 and not GameState.in_dialogue:
 			_player.hurt(6, at)
-		await get_tree().create_timer(3.6).timeout
+		await get_tree().create_timer(3.6, false).timeout
 
 
 # --- level ---------------------------------------------------------------
@@ -450,12 +450,12 @@ func _run_demo(which: String) -> void:
 			DevTools.auto_dialogue = true
 			var d := GameState.data
 			_player.global_position = get_node("Pirpir").global_position + Vector3(0, 0.3, 1.8)
-			await get_tree().create_timer(0.3).timeout
+			await get_tree().create_timer(0.3, false).timeout
 			GameState.talk_to("pirpir")
 			await close_dialogs()
 			# lose the balloon game once (do nothing), then win it
 			_on_play("balon")
-			await get_tree().create_timer(BALLOON_TIME + 0.5).timeout
+			await get_tree().create_timer(BALLOON_TIME + 0.5, false).timeout
 			await close_dialogs()
 			print("S2C3 lost_once balon=%s" % d.objective_done(Q1, "balon"))
 			_on_play("balon")
@@ -464,26 +464,26 @@ func _run_demo(which: String) -> void:
 					_player.global_position = n.global_position + Vector3(0, 0.3, 1.0)
 					await get_tree().physics_frame
 					(n as FairBalloon).hit(1, _player.global_position, 0.0)
-					await get_tree().create_timer(0.2).timeout
+					await get_tree().create_timer(0.2, false).timeout
 			await close_dialogs()
 			_on_play("kosu")
 			for f in _flags:
 				_player.global_position = f.global_position + Vector3.UP * 0.3
-				await get_tree().create_timer(0.4).timeout
+				await get_tree().create_timer(0.4, false).timeout
 			await close_dialogs()
 			print("S2C3 games balon=%s kosu=%s" % [d.objective_done(Q1, "balon"), d.objective_done(Q1, "kosu")])
 			_player.global_position = get_node("Pirpir").global_position + Vector3(0, 0.3, 1.8)
-			await get_tree().create_timer(0.3).timeout
+			await get_tree().create_timer(0.3, false).timeout
 			GameState.talk_to("pirpir")
 			await close_dialogs()
 			_player.global_position = BELL_AT + Vector3(0, 0.3, 1.6)
-			await get_tree().create_timer(0.4).timeout
+			await get_tree().create_timer(0.4, false).timeout
 			(get_node("Level/Bell") as EchoBell).use(_player)
 			await close_dialogs()
-			await get_tree().create_timer(1.6).timeout
+			await get_tree().create_timer(1.6, false).timeout
 			_player.global_position = SQUARE + Vector3(0, 0.3, 8.0)
 			for i in 400:
-				await get_tree().create_timer(0.3).timeout
+				await get_tree().create_timer(0.3, false).timeout
 				await close_dialogs()
 				if _boss.tired:
 					_player.global_position = _boss.global_position + Vector3(0, 0.3, 2.2)
@@ -492,26 +492,26 @@ func _run_demo(which: String) -> void:
 				if _boss.is_sad or d.objective_done(Q2, "patpat"):
 					break
 			print("S2C3 boss hp=%d sad=%s player_hp=%d" % [_boss.hp, _boss.is_sad, d.hp])
-			await get_tree().create_timer(0.6).timeout
+			await get_tree().create_timer(0.6, false).timeout
 			await close_dialogs()
 			_player.global_position = _boss.global_position + Vector3(0, 0.3, 2.4)
-			await get_tree().create_timer(0.3).timeout
+			await get_tree().create_timer(0.3, false).timeout
 			Input.action_press("calm")
-			await get_tree().create_timer(BreathCalm.BREATH_IN + BreathCalm.BREATH_OUT + 0.5).timeout
+			await get_tree().create_timer(BreathCalm.BREATH_IN + BreathCalm.BREATH_OUT + 0.5, false).timeout
 			Input.action_release("calm")
 			for i in 10:
 				await close_dialogs()
-				await get_tree().create_timer(0.3).timeout
+				await get_tree().create_timer(0.3, false).timeout
 				if has_node("Kor"):
 					break
 			_player.global_position = SQUARE + Vector3(3, 0.3, 6.0)
-			await get_tree().create_timer(0.3).timeout
+			await get_tree().create_timer(0.3, false).timeout
 			_player.global_position = SQUARE + Vector3(0, 0.3, 3.0)
 			for i in 12:
-				await get_tree().create_timer(0.5).timeout
+				await get_tree().create_timer(0.5, false).timeout
 				await close_dialogs()
 			_player.global_position = get_node("Pirpir").global_position + Vector3(0, 0.3, 1.8)
-			await get_tree().create_timer(0.3).timeout
+			await get_tree().create_timer(0.3, false).timeout
 			GameState.talk_to("pirpir")
 			await close_dialogs()
 			print("S2C3_DONE q2=%s kor=%s minnos=%s flag=%s level=%d" % [d.quest_state(Q2), d.has_flag("kor_kehribar"), d.has_flag("s2_minnos_kacti"), d.has_flag("s2_bolum3_bitti"), d.level])
@@ -521,12 +521,12 @@ func _run_demo(which: String) -> void:
 			while SceneFlow.busy:
 				await get_tree().process_frame
 			_player.global_position = Vector3(0, 0.3, 29.0)
-			await get_tree().create_timer(0.8).timeout
+			await get_tree().create_timer(0.8, false).timeout
 			var panels := _hud.find_children("*", "ChoicePanel", true, false)
 			print("S2EXIT asked=%s still_here=%s" % [panels.size() > 0, get_tree().current_scene == self])
 			if panels.size() > 0:
 				(panels[0] as ChoicePanel)._pick("stay")
-			await get_tree().create_timer(0.8).timeout
+			await get_tree().create_timer(0.8, false).timeout
 			print("S2EXIT stayed=%s" % [get_tree().current_scene == self])
 			get_tree().quit()
 		"stalls":
@@ -536,6 +536,6 @@ func _run_demo(which: String) -> void:
 ## After the Kor: Pirpir comes over to the arena for the last talk.
 func _giver_after_kor() -> void:
 	await GameState.wait_dialogue_closed()
-	await get_tree().create_timer(0.4).timeout
+	await get_tree().create_timer(0.4, false).timeout
 	await GameState.wait_dialogue_closed()
 	giver_comes("Pirpir", SQUARE + Vector3(3.5, 0, 5.0))

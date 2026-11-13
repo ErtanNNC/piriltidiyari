@@ -27,7 +27,7 @@ func _ready() -> void:
 	_boss.calmed.connect(_on_calmed)
 	_player.respawn_point = _player.global_position
 	boss_camera(true, Vector3(0, 0, -3), 0.4, 20.0)
-	await get_tree().create_timer(1.9).timeout
+	await get_tree().create_timer(1.9, false).timeout
 	var intro := create_tween()
 	intro.tween_property(_boss, "position", Vector3(0, Gurledek.HOVER, -4.0), 1.4).set_trans(Tween.TRANS_BACK)
 	GameState.bark("s4b_basla")
@@ -59,13 +59,13 @@ func _on_crying() -> void:
 func _on_calmed() -> void:
 	_hud.clear_hint()
 	GameState.data.set_flag("s2_sahne4_bitti")
-	await get_tree().create_timer(0.6).timeout
+	await get_tree().create_timer(0.6, false).timeout
 	GameState.bark("s4b_son")
 	await GameState.dialogue_closed
 	await _boss.dissolve()
 	_hud.show_scene_card("", "Gürledek dağıldı", "Ardında kırmızı bir yankı kaldı...")
 	_drop_echo()
-	await get_tree().create_timer(3.2).timeout
+	await get_tree().create_timer(3.2, false).timeout
 	if DevTools.demo == "win" and DisplayServer.get_name() == "headless":
 		print("S4B_WIN flag=%s hp=%d asleep=%s" % [GameState.data.has_flag("s2_sahne4_bitti"), GameState.data.hp, _player.asleep])
 		get_tree().quit()
@@ -146,21 +146,21 @@ func _run_demo(which: String) -> void:
 					_player.global_position = Vector3(_boss.global_position.x, 0.2, _boss.global_position.z + 2.2)
 					_player._attack_cd = 0.0
 					_player.spin_attack()
-				await get_tree().create_timer(0.35).timeout
+				await get_tree().create_timer(0.35, false).timeout
 				t += 0.35
 				await close_dialogs()
 			print("S4B fight t=%.1f hp=%d crying=%s player_hp=%d" % [t, _boss.hp, _boss.is_crying, GameState.data.hp])
-			await get_tree().create_timer(1.0).timeout
+			await get_tree().create_timer(1.0, false).timeout
 			await close_dialogs()
 			_player.global_position = Vector3(_boss.global_position.x, 0.2, _boss.global_position.z + 2.4)
-			await get_tree().create_timer(0.3).timeout
+			await get_tree().create_timer(0.3, false).timeout
 			Input.action_press("calm")
-			await get_tree().create_timer(BreathCalm.BREATH_IN + BreathCalm.BREATH_OUT + 0.5).timeout
+			await get_tree().create_timer(BreathCalm.BREATH_IN + BreathCalm.BREATH_OUT + 0.5, false).timeout
 			Input.action_release("calm")
 			print("S4B breathed crying=%s" % _boss.is_crying)
 			for i in 20:
 				await close_dialogs()
-				await get_tree().create_timer(0.5).timeout
+				await get_tree().create_timer(0.5, false).timeout
 		"low":
 			while not _boss.low:
 				await get_tree().process_frame

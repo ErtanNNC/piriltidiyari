@@ -69,7 +69,7 @@ func _ready() -> void:
 	d.quest_changed.connect(func(_id: String) -> void: _advance())
 	d.flags_changed.connect(_on_flags)
 	_advance()
-	await get_tree().create_timer(1.9).timeout
+	await get_tree().create_timer(1.9, false).timeout
 	if d.quest_state(QUEST) == "none":
 		var sk := d.active_skill()
 		if sk != "":
@@ -99,9 +99,9 @@ func _on_flags() -> void:
 	GameState.data.set_flag("_son_gosterildi")
 	_hud.clear_hint()
 	SaveGame.write(GameState.data)
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(0.5, false).timeout
 	_hud.show_scene_card("Prolog tamamlandı!", "Sıradaki: Fısıltı Ormanı", "Kuzeye, ormanın sönmüş fenerine")
-	await get_tree().create_timer(4.0).timeout
+	await get_tree().create_timer(4.0, false).timeout
 	SceneFlow.go_to("chapter1")
 
 
@@ -110,7 +110,7 @@ func _run_demo(which: String) -> void:
 	match which:
 		"roll", "strike":
 			# screenshots: --demo=roll|strike --at=... (roll/strike starts at 6 s)
-			await get_tree().create_timer(6.0).timeout
+			await get_tree().create_timer(6.0, false).timeout
 			player._roll_dir = Vector3(1, 0, 0)
 			if which == "roll":
 				player.start_roll()
@@ -128,10 +128,10 @@ func _run_demo(which: String) -> void:
 					m.level = 1
 					player.model.rotation.y = 0.0
 					d.mp = d.max_mp
-					await get_tree().create_timer(0.4).timeout
+					await get_tree().create_timer(0.4, false).timeout
 					var hp0 := m.hp
 					player.use_power(slot)
-					await get_tree().create_timer(1.6).timeout
+					await get_tree().create_timer(1.6, false).timeout
 					print("POWER %s hit=%s" % [pair[slot], not is_instance_valid(m) or m.hp < hp0 or m.state == "calm"])
 					if is_instance_valid(m):
 						m.queue_free()
@@ -147,23 +147,23 @@ func _run_demo(which: String) -> void:
 				mobs.append(Mob.spawn(self, "dev_mantar", at))
 			player.global_position = Vector3(0, 0, 2)
 			player.model.rotation.y = 0.0
-			await get_tree().create_timer(0.3).timeout
+			await get_tree().create_timer(0.3, false).timeout
 			d.take_damage(30)
 			var hp_before := d.hp
 			var before := mobs.map(func(m: Mob) -> int: return m.hp)
 			player.use_skill()
-			await get_tree().create_timer(1.0).timeout
+			await get_tree().create_timer(1.0, false).timeout
 			var after := mobs.map(func(m: Mob) -> int: return m.hp)
 			var shield_test := player.hurt(20, player.global_position + Vector3.FORWARD)
 			print("SKILL %s mp=%d mobs %s -> %s hp %d -> %d hurt_while_shield=%s" % [d.active_skill(), d.mp, before, after, hp_before, d.hp, shield_test])
 			# double jump
 			player.global_position = Vector3(8, 0, 0)
-			await get_tree().create_timer(0.4).timeout
+			await get_tree().create_timer(0.4, false).timeout
 			var top := 0.0
 			Input.action_press("jump")
 			await get_tree().physics_frame
 			Input.action_release("jump")
-			await get_tree().create_timer(0.25).timeout
+			await get_tree().create_timer(0.25, false).timeout
 			Input.action_press("jump")
 			await get_tree().physics_frame
 			Input.action_release("jump")

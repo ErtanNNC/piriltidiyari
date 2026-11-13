@@ -75,7 +75,7 @@ func _loop() -> void:
 		for move in DevGolgePlan.cycle(phase):
 			if not active:
 				return
-			await get_tree().create_timer(DevGolgePlan.rest(phase)).timeout
+			await get_tree().create_timer(DevGolgePlan.rest(phase), false).timeout
 			if not active:
 				return
 			await GameState.wait_dialogue_closed()
@@ -129,7 +129,7 @@ func _rocks() -> void:
 	for s in spots:
 		Effects.warning(get_parent(), s, DevGolgePlan.ROCK_RADIUS, Mob.TELEGRAPH)
 	get_tree().call_group("camera", "shake", 0.3)
-	await get_tree().create_timer(Mob.TELEGRAPH).timeout
+	await get_tree().create_timer(Mob.TELEGRAPH, false).timeout
 	Audio.play("stone")
 	for s in spots:
 		var rock := Toon.part(get_parent(), "sphere", Vector3(1.0, 0.8, 1.0), Color("#6a6680"), s + Vector3.UP * 0.3)

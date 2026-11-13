@@ -29,7 +29,7 @@ func _ready() -> void:
 		d.start_quest(Content.quests[QUEST])
 	d.quest_changed.connect(func(_id: String) -> void: _check())
 	_player.respawn_point = _player.global_position
-	await get_tree().create_timer(1.5).timeout
+	await get_tree().create_timer(1.5, false).timeout
 	if d.quest_state(QUEST) == "done":
 		_end()
 		return
@@ -118,7 +118,7 @@ func _check() -> void:
 
 func _end() -> void:
 	_hud.clear_hint()
-	await get_tree().create_timer(1.0).timeout
+	await get_tree().create_timer(1.0, false).timeout
 	GameState.bark("s3d_son")
 	if DevTools.demo == "shadow" and DisplayServer.get_name() == "headless":
 		await close_dialogs()
@@ -141,16 +141,16 @@ func _run_demo(which: String) -> void:
 				for k in 120:
 					if not t.locked:
 						break
-					await get_tree().create_timer(0.25).timeout
+					await get_tree().create_timer(0.25, false).timeout
 				print("S3_TORCH free=%d hp=%d scale=%.2f" % [i, GameState.data.hp, _shadow.scale.x])
 				_player.global_position = t.global_position + Vector3(0, 0.3, 1.2)
-				await get_tree().create_timer(0.4).timeout
+				await get_tree().create_timer(0.4, false).timeout
 				_player.interact()
 				await close_dialogs()
 			for k in 40:
 				if _crab:
 					break
-				await get_tree().create_timer(0.25).timeout
+				await get_tree().create_timer(0.25, false).timeout
 			await close_dialogs()
 			print("S3_REVEAL crab=%s shadow=%s" % [_crab != null, _shadow.visible])
 			_player.global_position = _crab.global_position + Vector3(0, 0.3, 1.2)

@@ -42,7 +42,7 @@ func _loop() -> void:
 		for attack in HirilPlan.cycle(phase):
 			if not active:
 				return
-			await get_tree().create_timer(HirilPlan.rest(phase)).timeout
+			await get_tree().create_timer(HirilPlan.rest(phase), false).timeout
 			if not active:
 				return
 			await GameState.wait_dialogue_closed()
@@ -95,7 +95,7 @@ func _summon() -> void:
 	_summons += 1
 	var at := home + Vector3(randf_range(-6, 6), 0, randf_range(2, 6))
 	Effects.warning(get_parent(), at, 1.2, Mob.TELEGRAPH)
-	await get_tree().create_timer(Mob.TELEGRAPH).timeout
+	await get_tree().create_timer(Mob.TELEGRAPH, false).timeout
 	if not active:
 		return
 	var m := Mob.spawn(get_parent(), kind, at)
@@ -110,7 +110,7 @@ func _rest() -> void:
 	var sit := create_tween()
 	sit.tween_property(_model, "scale", Vector3(1.1, 0.85, 1.1), 0.25)
 	get_tree().call_group("hud", "show_hint", tired_hint, "Buharı bitti! Şimdi vur!")
-	await get_tree().create_timer(HirilPlan.TIRED_TIME).timeout
+	await get_tree().create_timer(HirilPlan.TIRED_TIME, false).timeout
 	if not active:
 		return
 	get_tree().call_group("hud", "clear_hint")

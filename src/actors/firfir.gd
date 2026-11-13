@@ -120,7 +120,7 @@ func _loop() -> void:
 		for attack in FirfirPlan.cycle(phase):
 			if not active:
 				return
-			await get_tree().create_timer(FirfirPlan.rest(phase)).timeout
+			await get_tree().create_timer(FirfirPlan.rest(phase), false).timeout
 			if not active:
 				return
 			await GameState.wait_dialogue_closed()
@@ -174,7 +174,7 @@ func _dash() -> void:
 	for k in 5:
 		Effects.warning(get_parent(), from + dir * (1.5 + k * 1.8), 0.8, Mob.TELEGRAPH)
 	_model.rotation.y = atan2(dir.x, dir.z)
-	await get_tree().create_timer(Mob.TELEGRAPH).timeout
+	await get_tree().create_timer(Mob.TELEGRAPH, false).timeout
 	var to := from + dir * length
 	to.x = clampf(to.x, home.x - 8.0, home.x + 8.0)
 	to.z = clampf(to.z, home.z - 8.0, home.z + 8.0)
@@ -197,7 +197,7 @@ func _rest() -> void:
 	var sit := create_tween()
 	sit.tween_property(_model, "scale", Vector3(1.1, 0.85, 1.1), 0.25)
 	get_tree().call_group("hud", "show_hint", tired_hint, "Oturdu! Şimdi vur!")
-	await get_tree().create_timer(FirfirPlan.TIRED_TIME).timeout
+	await get_tree().create_timer(FirfirPlan.TIRED_TIME, false).timeout
 	if not active:
 		return
 	get_tree().call_group("hud", "clear_hint")

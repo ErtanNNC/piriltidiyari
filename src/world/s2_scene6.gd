@@ -41,7 +41,7 @@ func _ready() -> void:
 	add_child(f)
 	f.position = Vector3(-6.4, 0, -10.6)
 	f.rotation.y = 0.5
-	await get_tree().create_timer(1.9).timeout
+	await get_tree().create_timer(1.9, false).timeout
 	var cs := CutscenePlayer.new()
 	cs.scene = self
 	cs.camera = _cam
@@ -119,7 +119,7 @@ func open_select() -> void:
 	if DevTools.demo.begins_with("pick_"):
 		var who := DevTools.demo.substr(5)
 		_select.select(who)
-		await get_tree().create_timer(1.0).timeout
+		await get_tree().create_timer(1.0, false).timeout
 		_select.chosen.emit(who, {}, String(Content.keeper(who).get("name", who)))
 		return
 	if back in _order:

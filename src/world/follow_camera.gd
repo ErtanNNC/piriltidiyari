@@ -82,6 +82,19 @@ func _physics_process(delta: float) -> void:
 	look_at(focus)
 
 
+## Bosses and villagers are not walls, and a body that is nothing but its
+## collision shapes is an invisible blocker (over a stream, a gap).
+func _see_past(col: Object) -> bool:
+	if col is Npc or col.has_method("hit") or col is CharacterBody3D:
+		return true
+	if col is StaticBody3D:
+		for c in (col as Node).get_children():
+			if not c is CollisionShape3D:
+				return false
+		return true
+	return false
+
+
 ## Walls only (layer 1). Invisible guide walls, world edges and anything
 ## marked "camera_ignore" don't push the camera.
 func _clear_point(focus: Vector3, want: Vector3) -> Vector3:
@@ -95,7 +108,7 @@ func _clear_point(focus: Vector3, want: Vector3) -> Vector3:
 		if hit.is_empty():
 			return want
 		var col: Object = hit["collider"]
-		if col is CollisionObject3D and (col.has_meta("camera_ignore") or _is_boundary(col)):
+		if col is CollisionObject3D and (col.has_meta("camera_ignore") or _is_boundary(col) or _see_past(col)):
 			exclude.append(hit["rid"])
 			continue
 		var dir := (want - focus).normalized()

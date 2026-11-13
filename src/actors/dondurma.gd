@@ -77,7 +77,7 @@ func _loop() -> void:
 		for attack in GolemPlan.cycle(phase):
 			if not active:
 				return
-			await get_tree().create_timer(GolemPlan.rest(phase)).timeout
+			await get_tree().create_timer(GolemPlan.rest(phase), false).timeout
 			await GameState.wait_dialogue_closed()
 			if not active:
 				return
@@ -93,7 +93,7 @@ func _icicles() -> void:
 		spots.append(spots[0] + Vector3(randf_range(-4, 4), 0, randf_range(-4, 4)))
 	for s in spots:
 		Effects.warning(get_parent(), s, 1.1, Mob.TELEGRAPH)
-	await get_tree().create_timer(Mob.TELEGRAPH).timeout
+	await get_tree().create_timer(Mob.TELEGRAPH, false).timeout
 	for s in spots:
 		var ic := Toon.part(get_parent(), "cone", Vector3(0.7, 1.8, 0.7), MountainKit.ICE, s + Vector3.UP * 8.0, Vector3(180, 0, 0), 0.3, 0.03)
 		var tw := ic.create_tween()
@@ -101,7 +101,7 @@ func _icicles() -> void:
 		tw.tween_interval(0.6)
 		tw.tween_property(ic, "scale", Vector3.ZERO, 0.2)
 		tw.tween_callback(ic.queue_free)
-	await get_tree().create_timer(0.2).timeout
+	await get_tree().create_timer(0.2, false).timeout
 	for s in spots:
 		Effects.ring(get_parent(), s + Vector3.UP * 0.2, 1.4, Tokens.color("panel@light"), 0.25)
 		if Vector2(_player.global_position.x - s.x, _player.global_position.z - s.z).length() < 1.2:
@@ -129,10 +129,10 @@ func _breath() -> void:
 	if GolemPlan.in_breath(fwd, _player.global_position - global_position) and _player.hurt(GolemPlan.BREATH_DAMAGE, global_position):
 		_player.slow = GolemPlan.BREATH_SLOW
 		GameState.toast.emit("Brrr! Biraz donakaldın", "drop")
-		await get_tree().create_timer(GolemPlan.BREATH_SLOW_TIME).timeout
+		await get_tree().create_timer(GolemPlan.BREATH_SLOW_TIME, false).timeout
 		_player.slow = 1.0
 	else:
-		await get_tree().create_timer(0.5).timeout
+		await get_tree().create_timer(0.5, false).timeout
 
 
 ## Both fists slam: a ring runs along the ice (jump over it) and the fists
@@ -162,7 +162,7 @@ func _slam() -> void:
 		var a := TAU * i / 4.0
 		Toon.part(_stars, "sphere", Vector3(0.4, 0.4, 0.4), "spark-yellow", Vector3(cos(a), 0, sin(a)) * 1.1, Vector3.ZERO, 1.2, 0.02)
 	get_tree().call_group("hud", "show_hint", "Yumrukları buza saplandı! Şimdi vur!", "Yumrukları saplandı! Vur!")
-	await get_tree().create_timer(GolemPlan.STUCK_TIME).timeout
+	await get_tree().create_timer(GolemPlan.STUCK_TIME, false).timeout
 	if _stars:
 		_stars.queue_free()
 		_stars = null
@@ -192,6 +192,9 @@ func _ring() -> void:
 	var r := 2.5
 	var hit := false
 	while r < KingPlan.RING_MAX and active:
+		if get_tree().paused:
+			await get_tree().process_frame
+			continue
 		r += KingPlan.RING_SPEED * get_process_delta_time()
 		mi.scale = Vector3(r, 3.0, r)
 		if not hit:

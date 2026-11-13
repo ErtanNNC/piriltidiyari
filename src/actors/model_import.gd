@@ -87,6 +87,15 @@ static var _templates := {}
 static var _holder: Node3D
 
 
+## Scenery templates of the region just left (called on every scene change:
+## they used to pile up, every region's textures staying in memory).
+static func clear_templates() -> void:
+	if _holder and is_instance_valid(_holder):
+		for c in _holder.get_children():
+			c.queue_free()
+	_templates.clear()
+
+
 ## A copy of a prop model sharing one set of materials with every other copy
 ## (scenery repeated dozens of times: one material per model, not per copy).
 static func prop_copy(id: String) -> Node3D:

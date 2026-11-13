@@ -97,7 +97,7 @@ func _ready() -> void:
 	_refresh()
 	_player.respawn_point = _player.global_position
 	_wind_loop()
-	await get_tree().create_timer(1.8).timeout
+	await get_tree().create_timer(1.8, false).timeout
 	if not d.has_flag("s3c2_geldi"):
 		d.set_flag("s3c2_geldi")
 		GameState.bark("s3k2_basla")
@@ -242,14 +242,14 @@ func _in_lee(i: int, p: Vector3) -> bool:
 
 func _wind_loop() -> void:
 	while is_inside_tree():
-		await get_tree().create_timer(GUST_REST).timeout
+		await get_tree().create_timer(GUST_REST, false).timeout
 		if not is_inside_tree():
 			return
 		var i := _stretch_at(_player.global_position, 3.5)
 		if i < 0 or fighting or _gliding or GameState.in_dialogue:
 			continue
 		_cue(i)
-		await get_tree().create_timer(Mob.TELEGRAPH).timeout
+		await get_tree().create_timer(Mob.TELEGRAPH, false).timeout
 		if not is_inside_tree():
 			return
 		if fighting or _gliding:
@@ -257,7 +257,7 @@ func _wind_loop() -> void:
 		Audio.play("wind")
 		_gust = i
 		gust_started.emit(i)
-		await get_tree().create_timer(GUST_TIME).timeout
+		await get_tree().create_timer(GUST_TIME, false).timeout
 		_gust = -1
 		_stop_wind()
 		if _cues <= 2:
@@ -333,7 +333,7 @@ func _physics_process(delta: float) -> void:
 
 ## A bark once nothing else is being said.
 func _bark_soon(id: String) -> void:
-	await get_tree().create_timer(GUST_TIME if id == "s3k2_ruzgar" else 0.4).timeout
+	await get_tree().create_timer(GUST_TIME if id == "s3k2_ruzgar" else 0.4, false).timeout
 	await GameState.wait_dialogue_closed()
 	if is_inside_tree() and not fighting and not _gliding:
 		GameState.bark(id)
@@ -494,7 +494,7 @@ func _demo_gust(at: Vector3, press := "") -> Vector3:
 	await gust_ended
 	if press != "":
 		Input.action_release(press)
-	await get_tree().create_timer(0.6).timeout
+	await get_tree().create_timer(0.6, false).timeout
 	return _player.global_position
 
 
@@ -527,11 +527,11 @@ func _run_demo(which: String) -> void:
 			await _talk("paytak", "Paytak")
 			var cf := get_node_or_null("Civciv") as HandFriend
 			_player.global_position = cf.global_position + Vector3(0, 0.3, 1.1)
-			await get_tree().create_timer(0.5).timeout
+			await get_tree().create_timer(0.5, false).timeout
 			_player.interact()
 			await close_dialogs()
 			_player.global_position = NEST_B + Vector3(-1.2, 0.3, 0.6)
-			await get_tree().create_timer(1.5).timeout
+			await get_tree().create_timer(1.5, false).timeout
 			await close_dialogs()
 			print("S3K2_CHICK done=%s civciv=%s" % [cf.done, GameState.data.objective_done(Q1, "civciv")])
 			get_tree().quit()
@@ -544,33 +544,33 @@ func _run_demo(which: String) -> void:
 				var bt := n as BeachTorch
 				if bt and not bt.lit:
 					_player.global_position = bt.global_position + Vector3(0, 0.3, 1.1)
-					await get_tree().create_timer(0.4).timeout
+					await get_tree().create_timer(0.4, false).timeout
 					_player.interact()
-					await get_tree().create_timer(0.2).timeout
+					await get_tree().create_timer(0.2, false).timeout
 			await close_dialogs()
 			await _demo_wind()
 			await close_dialogs()
 			var f := get_node_or_null("Civciv") as HandFriend
 			if f:
 				_player.global_position = f.global_position + Vector3(0, 0.3, 1.1)
-				await get_tree().create_timer(0.5).timeout
+				await get_tree().create_timer(0.5, false).timeout
 				_player.interact()
 				await close_dialogs()
 				_player.global_position = NEST_B + Vector3(-1.2, 0.3, 0.6)
-				await get_tree().create_timer(1.5).timeout
+				await get_tree().create_timer(1.5, false).timeout
 				await close_dialogs()
 			_player.global_position = Vector3(0, 3.3, -19.5)
-			await get_tree().create_timer(1.0).timeout
+			await get_tree().create_timer(1.0, false).timeout
 			await close_dialogs()
 			print("S3K2_Q1 mesale=%s civciv=%s ust=%s" % [d.objective_done(Q1, "mesale"), d.objective_done(Q1, "civciv"), d.objective_done(Q1, "ust")])
 			await _calm_all()
-			await get_tree().create_timer(2.5).timeout
+			await get_tree().create_timer(2.5, false).timeout
 			await close_dialogs()
 			var paytak := get_node("Paytak") as Node3D
 			print("S3K2_Q1 titrek=%s state=%s paytak_up=%s" % [d.objective_done(Q1, "titrek"), d.quest_state(Q1), paytak.global_position.y > 2.5])
 			var fl := lv.get_node("Flare") as Node3D
 			_player.global_position = fl.global_position + Vector3(0, 0.3, 1.6)
-			await get_tree().create_timer(0.5).timeout
+			await get_tree().create_timer(0.5, false).timeout
 			_player.interact()
 			await close_dialogs()
 			print("S3K2_LOCK fisek_before_turn_in=%s veil_open=%s" % [d.has_flag("s3_fisek2"), _veil.is_open])
@@ -578,7 +578,7 @@ func _run_demo(which: String) -> void:
 			print("S3K2_Q1 state=%s q2=%s level=%d" % [d.quest_state(Q1), d.quest_state(Q2), d.level])
 			if not d.has_flag("s3_fisek2"):
 				_player.global_position = fl.global_position + Vector3(0, 0.3, 1.6)
-				await get_tree().create_timer(0.5).timeout
+				await get_tree().create_timer(0.5, false).timeout
 				_player.interact()
 				await close_dialogs()
 			print("S3K2_FLARE fisek=%s veil_open=%s obj=%s" % [d.has_flag("s3_fisek2"), _veil.is_open, d.objective_done(Q2, "fisek")])
@@ -592,9 +592,9 @@ func _run_demo(which: String) -> void:
 				boss.global_position.distance_to(LAND_AT) < 0.5, _player.input_enabled and _player.is_physics_processing(),
 				_player.global_position.y > 2.5])
 			_player.global_position = ARENA + Vector3(0, 0.3, 4.5)
-			await get_tree().create_timer(1.0).timeout
+			await get_tree().create_timer(1.0, false).timeout
 			await close_dialogs()
-			await get_tree().create_timer(2.0).timeout
+			await get_tree().create_timer(2.0, false).timeout
 			await _talk("paytak", "Paytak")
 			print("S3K2_DONE q2=%s fisek=%s inci=%s bitti=%s" % [d.quest_state(Q2) == "done", d.has_flag("s3_fisek2"), d.has_flag("inci_turkuaz"), d.has_flag("s3_bolum2_bitti")])
 			get_tree().quit()

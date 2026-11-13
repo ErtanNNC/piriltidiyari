@@ -28,7 +28,7 @@ func _ready() -> void:
 	d.quest_changed.connect(func(_id: String) -> void: _advance())
 	if d.objective_done(QUEST, "fener"):
 		$Level/KaleFeneri.light_up(true)
-	await get_tree().create_timer(1.9).timeout
+	await get_tree().create_timer(1.9, false).timeout
 	if DevTools.demo != "":
 		_run_demo(DevTools.demo)
 		return
@@ -228,7 +228,7 @@ func _start_final() -> void:
 ## Faz 2: no fighting. Offer the four sparks, one by one.
 func _faz2() -> void:
 	_hud.hide_boss()
-	await get_tree().create_timer(0.8).timeout
+	await get_tree().create_timer(0.8, false).timeout
 	GameState.bark("c5_faz2")
 	await GameState.dialogue_closed
 	_offered = 0
@@ -313,7 +313,7 @@ func _star_child() -> void:
 	GameState.notify("defeat", "miril")
 	boss_camera(false)
 	_hud.show_scene_card("Kıvılcım bulundu!", "Mor Kıvılcım", "Pus dağıldı. Mırıl artık yalnız değil")
-	await get_tree().create_timer(3.6).timeout
+	await get_tree().create_timer(3.6, false).timeout
 	if d.quest_state(QUEST) == "ready":
 		d.complete_quest(Content.quests[QUEST])
 	d.set_flag("bolum5_bitti")
@@ -345,7 +345,7 @@ func _run_demo(which: String) -> void:
 					await walk_to(step[1], 8.0)
 				else:
 					_player.interact()
-					await get_tree().create_timer(0.4).timeout
+					await get_tree().create_timer(0.4, false).timeout
 			await close_dialogs()
 			print("CASTLE pos=%s fener=%s kapilar=%s anilar=%s miril=%s" % [_player.global_position.round(), d.objective_done(QUEST, "fener"),
 				d.objective_count(QUEST, "kapilar"), d.objective_count(QUEST, "anilar"), _miril != null])
@@ -366,7 +366,7 @@ func _run_demo(which: String) -> void:
 					_player.global_position = _miril.global_position + Vector3(0, 0.2, 3.0)
 					_player._attack_cd = 0.0
 					_player.spin_attack()
-				await get_tree().create_timer(0.1).timeout
+				await get_tree().create_timer(0.1, false).timeout
 				t += 0.1
 				if _hud._dialog.is_open():
 					_hud._dialog.advance()
@@ -377,21 +377,21 @@ func _run_demo(which: String) -> void:
 				if _hud._dialog.is_open():
 					_hud._dialog.advance()
 					_hud._dialog.advance()
-				await get_tree().create_timer(0.1).timeout
+				await get_tree().create_timer(0.1, false).timeout
 			for i in 4:
 				while _offer_btn != null and _offer_btn.disabled:
 					if _hud._dialog.is_open():
 						_hud._dialog.advance()
 						_hud._dialog.advance()
-					await get_tree().create_timer(0.1).timeout
+					await get_tree().create_timer(0.1, false).timeout
 				if _offer_btn:
 					_offer_btn.pressed.emit()
-				await get_tree().create_timer(1.5).timeout
+				await get_tree().create_timer(1.5, false).timeout
 				print("  offered %d" % _offered)
 			for i in 150:
 				if _hud._dialog.is_open():
 					_hud._dialog.advance()
 					_hud._dialog.advance()
-				await get_tree().create_timer(0.1).timeout
+				await get_tree().create_timer(0.1, false).timeout
 			print("MIRIL2 sparks=%s quest=%s flag=%s scene=%s" % [d.sparks, d.quest_state(QUEST), d.has_flag("bolum5_bitti"), SceneFlow.current])
 			get_tree().quit()

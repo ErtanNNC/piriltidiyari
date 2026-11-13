@@ -85,7 +85,7 @@ func _ready() -> void:
 	_sync_q1()
 	_refresh()
 	_player.respawn_point = _player.global_position
-	await get_tree().create_timer(1.8).timeout
+	await get_tree().create_timer(1.8, false).timeout
 	if not d.has_flag("s3c4_geldi"):
 		d.set_flag("s3c4_geldi")
 		GameState.bark(_b("s3k4_basla"))
@@ -258,7 +258,7 @@ func _process(delta: float) -> void:
 func _warn_row(i: int) -> void:
 	for at: Vector3 in _rows[i]:
 		Effects.warning(self, at, STRIKE_R, ShorePlan.BEAT)
-	await get_tree().create_timer(ShorePlan.BEAT).timeout
+	await get_tree().create_timer(ShorePlan.BEAT, false).timeout
 	if not is_inside_tree() or not storm_on():
 		return
 	Audio.play("drum")
@@ -410,13 +410,13 @@ func _on_drummed(n: int) -> void:
 ## After the pearl: the stormy night Tırıl got lost.
 func _on_pearl(_id: String) -> void:
 	var d := GameState.data
-	await get_tree().create_timer(2.6).timeout
+	await get_tree().create_timer(2.6, false).timeout
 	GameState.bark("s3k4_inci")
 	await GameState.dialogue_closed
 	if not d.has_flag("s3c4_ani"):
 		d.set_flag("s3c4_ani")
 		_hud.show_scene_card("Anı", "Fırtınalı Gece", "Tırıl o gece batık bir oyuncak tekneye saklandı.")
-		await get_tree().create_timer(2.8).timeout
+		await get_tree().create_timer(2.8, false).timeout
 		GameState.bark("s3k4_ani")
 		await GameState.dialogue_closed
 	_refresh()
@@ -451,7 +451,7 @@ func _demo_keeper() -> void:
 			_player.ring.shiver = 0.0
 		if GameState.data.hp < GameState.data.max_hp / 2:
 			GameState.data.heal(GameState.data.max_hp)
-		await get_tree().create_timer(0.4).timeout
+		await get_tree().create_timer(0.4, false).timeout
 
 
 func _run_demo(which: String) -> void:
@@ -478,10 +478,10 @@ func _run_demo(which: String) -> void:
 			var hurt_open := d.hp < hp0
 			# 2) under a rock overhang: never hit, and no mark lies in one
 			_player.global_position = SHELTERS[0] + Vector3.UP * 0.3
-			await get_tree().create_timer(1.6).timeout
+			await get_tree().create_timer(1.6, false).timeout
 			d.heal(d.max_hp)
 			hp0 = d.hp
-			await get_tree().create_timer(ShorePlan.BEAT * BAR * 2.0).timeout
+			await get_tree().create_timer(ShorePlan.BEAT * BAR * 2.0, false).timeout
 			var safe_shelter := d.hp == hp0
 			var clear := true
 			for row: Array in _rows:
@@ -496,7 +496,7 @@ func _run_demo(which: String) -> void:
 			hp0 = d.hp
 			await walk_to(Vector3(0, 0, 13.4), 2.0)
 			var crossed := _player.global_position.z < 14.2
-			await get_tree().create_timer(0.3).timeout
+			await get_tree().create_timer(0.3, false).timeout
 			print("S3K4_STORM hurt_open=%s safe_shelter=%s marks_clear=%s cross_quiet=%s unhurt=%s rows=%s" % [hurt_open, safe_shelter, clear, crossed, d.hp == hp0, _rows.map(func(r: Array) -> int: return r.size())])
 			# Quest 1
 			await _talk(helper_id, "Helper")
@@ -505,45 +505,45 @@ func _run_demo(which: String) -> void:
 				var bt := n as BeachTorch
 				if bt and not bt.lit:
 					_player.global_position = bt.global_position + Vector3(0.4, 0.3, 1.1)
-					await get_tree().create_timer(0.4).timeout
+					await get_tree().create_timer(0.4, false).timeout
 					_player.interact()
-					await get_tree().create_timer(0.2).timeout
+					await get_tree().create_timer(0.2, false).timeout
 			await _calm_all()
 			# the steps up the Üst Kaya, on foot (a hop per step)
 			_player.global_position = Vector3(10, 0.3, -10.4)
-			await get_tree().create_timer(0.3).timeout
+			await get_tree().create_timer(0.3, false).timeout
 			Input.action_press("move_forward")
 			for i in 12:
 				Input.action_press("jump")
-				await get_tree().create_timer(0.2).timeout
+				await get_tree().create_timer(0.2, false).timeout
 				Input.action_release("jump")
-				await get_tree().create_timer(0.3).timeout
+				await get_tree().create_timer(0.3, false).timeout
 				if _player.global_position.z < -16.0:
 					break
 			Input.action_release("move_forward")
-			await get_tree().create_timer(0.4).timeout
+			await get_tree().create_timer(0.4, false).timeout
 			print("S3K4_UPPER y=%.2f reach=%s" % [_player.global_position.y, d.objective_done(Q1, "ust_kaya")])
 			await close_dialogs()
 			_player.global_position = _pup.global_position + Vector3(-0.3, 0.3, 1.2)
-			await get_tree().create_timer(0.5).timeout
+			await get_tree().create_timer(0.5, false).timeout
 			_player.interact()
-			await get_tree().create_timer(0.3).timeout
+			await get_tree().create_timer(0.3, false).timeout
 			var held := _pup.holding
 			_player.global_position = LANDING + Vector3(0, 0.3, 1.0)
-			await get_tree().create_timer(1.5).timeout
+			await get_tree().create_timer(1.5, false).timeout
 			await close_dialogs()
 			print("S3K4_Q1 mesale=%s titrek=%s ust=%s held=%s el=%s" % [d.objective_done(Q1, "mesale"), d.objective_done(Q1, "titrek"), d.objective_done(Q1, "ust_kaya"), held, d.objective_done(Q1, "el")])
 			await _talk(helper_id, "Helper")
 			print("S3K4_Q1 state=%s q2=%s level=%d" % [d.quest_state(Q1), d.quest_state(Q2), d.level])
 			# the flare: the veil opens, the lightning leaves the route
 			_player.global_position = FLARE_AT + Vector3(0, 0.3, 1.6)
-			await get_tree().create_timer(0.5).timeout
+			await get_tree().create_timer(0.5, false).timeout
 			_player.interact()
 			await close_dialogs()
 			_player.global_position = mark + Vector3.UP * 0.3
-			await get_tree().create_timer(1.6).timeout
+			await get_tree().create_timer(1.6, false).timeout
 			hp0 = d.hp
-			await get_tree().create_timer(ShorePlan.BEAT * BAR * 1.5).timeout
+			await get_tree().create_timer(ShorePlan.BEAT * BAR * 1.5, false).timeout
 			print("S3K4_FLARE fisek=%s veil=%s storm=%s quiet=%s" % [d.has_flag("s3_fisek4"), _veil.is_open, storm_on(), d.hp == hp0])
 			# Tombik
 			_player.global_position = ARENA + Vector3(0, 0.3, 7.0)
@@ -554,15 +554,15 @@ func _run_demo(which: String) -> void:
 					break
 				await close_dialogs()
 			_player.global_position = boss.global_position + Vector3(0, 0.3, 2.4)
-			await get_tree().create_timer(1.3).timeout
+			await get_tree().create_timer(1.3, false).timeout
 			for i in 10:
 				if d.has_flag("s3c4_ritim"):
 					break
 				_player.spin_attack()
-				await get_tree().create_timer(0.6).timeout
+				await get_tree().create_timer(0.6, false).timeout
 			print("S3K4_RHYTHM ritim=%s" % d.has_flag("s3c4_ritim"))
 			await close_dialogs()
-			await get_tree().create_timer(0.4).timeout
+			await get_tree().create_timer(0.4, false).timeout
 			_player.global_position = ARENA + Vector3(0, 0.3, 4.5)
 			for i in 40:
 				await close_dialogs()

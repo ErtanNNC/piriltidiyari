@@ -70,7 +70,7 @@ func _ready() -> void:
 	_refresh()
 	_player.respawn_point = _player.global_position
 	take_return_point()
-	await get_tree().create_timer(1.8).timeout
+	await get_tree().create_timer(1.8, false).timeout
 	if not d.has_flag("s2c5_geldi"):
 		d.set_flag("s2c5_geldi")
 		GameState.bark("s2c5_basla")
@@ -227,7 +227,7 @@ func _play_echo(i: int) -> void:
 	tw.tween_property(orb, "global_position", _boss.global_position + Vector3.UP * 1.5, 0.6).set_trans(Tween.TRANS_SINE)
 	tw.tween_callback(orb.queue_free)
 	Audio.play("memory")
-	await get_tree().create_timer(0.6).timeout
+	await get_tree().create_timer(0.6, false).timeout
 	GameState.bark("s2c5_e%d" % i)
 	await GameState.dialogue_closed
 	var replies: Array = Content.barks.get("s2c5_cevap", [])
@@ -250,7 +250,7 @@ func _on_calmed() -> void:
 	_faz2 = false
 	boss_camera(false)
 	Pus.fade_to(self, 0.0, 3.0)
-	await get_tree().create_timer(1.2).timeout
+	await get_tree().create_timer(1.2, false).timeout
 	GameState.bark("s2c5_sakin")
 	await GameState.dialogue_closed
 	# Tıpış comes up the path to say sorry (the player, if they are Tıpış)
@@ -325,17 +325,17 @@ func _on_bell_rung(_b: EchoBell) -> void:
 
 ## A warm vent by the path: a warned circle, then a puff of hot steam.
 func _vent_loop(at: Vector3, delay: float) -> void:
-	await get_tree().create_timer(3.0 + delay).timeout
+	await get_tree().create_timer(3.0 + delay, false).timeout
 	while is_inside_tree():
 		Effects.warning(self, at, 1.3, Mob.TELEGRAPH)
-		await get_tree().create_timer(Mob.TELEGRAPH).timeout
+		await get_tree().create_timer(Mob.TELEGRAPH, false).timeout
 		if not is_inside_tree():
 			return
 		Effects.ring(self, at + Vector3.UP * 0.3, 1.5, LAVA, 0.35)
 		Effects.sparkle(self, at + Vector3.UP * 1.0, Color("#ffd27a"), 8)
 		if Vector2(_player.global_position.x - at.x, _player.global_position.z - at.z).length() < 1.3 and not GameState.in_dialogue:
 			_player.hurt(7, at)
-		await get_tree().create_timer(4.0).timeout
+		await get_tree().create_timer(4.0, false).timeout
 
 
 # --- level ---------------------------------------------------------------
@@ -464,39 +464,39 @@ func _run_demo(which: String) -> void:
 			DevTools.auto_dialogue = true
 			var d := GameState.data
 			_player.global_position = get_node("Gumbur").global_position + Vector3(0, 0.3, 2.0)
-			await get_tree().create_timer(0.3).timeout
+			await get_tree().create_timer(0.3, false).timeout
 			GameState.talk_to("gumbur")
 			await close_dialogs()
 			for i in WORDS.size():
 				_player.global_position = WORDS[i] + Vector3(0, 0.4, 0)
-				await get_tree().create_timer(0.4).timeout
+				await get_tree().create_timer(0.4, false).timeout
 				await close_dialogs()
 			_player.global_position = MINNOS_AT + Vector3(-2.2, 0.3, 0)
-			await get_tree().create_timer(0.6).timeout
+			await get_tree().create_timer(0.6, false).timeout
 			await close_dialogs()
 			for tries in 3:
 				if _minnos.is_calm:
 					break
 				await close_dialogs()
 				_player.global_position = MINNOS_AT + Vector3(-2.0, 0.3, 0)
-				await get_tree().create_timer(0.4).timeout
+				await get_tree().create_timer(0.4, false).timeout
 				Input.action_press("calm")
-				await get_tree().create_timer(BreathCalm.BREATH_IN + BreathCalm.BREATH_OUT + 0.5).timeout
+				await get_tree().create_timer(BreathCalm.BREATH_IN + BreathCalm.BREATH_OUT + 0.5, false).timeout
 				Input.action_release("calm")
 			await close_dialogs()
 			print("S2C5 words q1=%s sozler=%s minnos=%s" % [d.quest_state(Q1), d.objective_done(Q1, "sozler"), d.objective_done(Q1, "minnos")])
 			_player.global_position = get_node("Gumbur").global_position + Vector3(0, 0.3, 2.0)
-			await get_tree().create_timer(0.3).timeout
+			await get_tree().create_timer(0.3, false).timeout
 			GameState.talk_to("gumbur")
 			await close_dialogs()
 			_player.global_position = BELL_AT + Vector3(0, 0.3, 1.6)
-			await get_tree().create_timer(0.4).timeout
+			await get_tree().create_timer(0.4, false).timeout
 			(get_node("Level/Bell") as EchoBell).use(_player)
 			await close_dialogs()
-			await get_tree().create_timer(1.6).timeout
+			await get_tree().create_timer(1.6, false).timeout
 			_player.global_position = ARENA + Vector3(0, 0.3, 8.0)
 			for i in 500:
-				await get_tree().create_timer(0.3).timeout
+				await get_tree().create_timer(0.3, false).timeout
 				await close_dialogs()
 				if _boss.tired:
 					_player.global_position = _boss.global_position + Vector3(0, 0.3, 2.4)
@@ -507,11 +507,11 @@ func _run_demo(which: String) -> void:
 			print("S2C5 faz1 hp=%d faz2=%s player_hp=%d" % [_boss.hp, _faz2, d.hp])
 			for i in 10:
 				await close_dialogs()
-				await get_tree().create_timer(0.3).timeout
+				await get_tree().create_timer(0.3, false).timeout
 			for i in HirilPlan.ECHOES:
 				_player.global_position = _orbs[i].global_position + Vector3(0, 0.3, 0)
 				for k in 20:
-					await get_tree().create_timer(0.3).timeout
+					await get_tree().create_timer(0.3, false).timeout
 					_answer_choices()
 					await close_dialogs()
 					if not _busy_echo:
@@ -519,22 +519,22 @@ func _run_demo(which: String) -> void:
 			print("S2C5 faz2 heard=%d q2hiril=%s" % [_heard, d.objective_done(Q2, "hiril")])
 			for i in 20:
 				await close_dialogs()
-				await get_tree().create_timer(0.3).timeout
+				await get_tree().create_timer(0.3, false).timeout
 				if has_node("Kor"):
 					break
 			_player.global_position = ARENA + Vector3(3, 0.3, 7.0)
-			await get_tree().create_timer(0.3).timeout
+			await get_tree().create_timer(0.3, false).timeout
 			_player.global_position = ARENA + Vector3(0, 0.3, 3.5)
 			for i in 8:
-				await get_tree().create_timer(0.5).timeout
+				await get_tree().create_timer(0.5, false).timeout
 				await close_dialogs()
 			print("S2C5 kor=%s q2=%s" % [d.has_flag("kor_al"), d.quest_state(Q2)])
 			_player.global_position = get_node("Miril").global_position + Vector3(0, 0.3, 2.0)
-			await get_tree().create_timer(0.3).timeout
+			await get_tree().create_timer(0.3, false).timeout
 			GameState.talk_to("miril")
 			for i in 20:
 				await close_dialogs()
-				await get_tree().create_timer(0.3).timeout
+				await get_tree().create_timer(0.3, false).timeout
 			print("S2C5 no_end q2=%s flag=%s" % [d.quest_state(Q2), d.has_flag("sezon2_bitti")])
 			get_tree().quit()
 		"faz2":

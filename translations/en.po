@@ -1209,9 +1209,6 @@ msgstr "Chapter 4"
 msgid "Bölüm 5"
 msgstr "Chapter 5"
 
-msgid "Bölüm başlarında kendiliğinden de kaydedilir. · %d FPS"
-msgstr "The game also saves by itself when a chapter starts. · %d FPS"
-
 msgid "Bölüm seç"
 msgstr "Chapter select"
 
@@ -4460,6 +4457,9 @@ msgstr "Thanks for playing! · Just A Game Studios"
 
 msgid "Oyun kaydedilemedi. Telefonda yer var mı?"
 msgstr "Couldn't save the game. Is there space on the phone?"
+
+msgid "Oyun kendiliğinden de kaydedilir. · %d FPS"
+msgstr "The game also saves by itself. · %d FPS"
 
 msgid "Oyuncaklar sahiplerine döndü! Yavrular gülüyor."
 msgstr "The toys are back with their owners! The little ones are laughing."

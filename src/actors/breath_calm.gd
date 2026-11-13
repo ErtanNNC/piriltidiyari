@@ -83,7 +83,7 @@ func _physics_process(delta: float) -> void:
 	_update_anger(delta, held)
 	target = _nearest_dazed() if not is_angry() else null
 	if held and target:
-		var fast := 1.6 if Time.get_ticks_msec() / 1000.0 < fast_until else 1.0
+		var fast := 1.6 if GameState.clock < fast_until else 1.0
 		breath += delta * fast / (BREATH_IN + BREATH_OUT)
 		if breath >= 1.0:
 			var m := target
@@ -167,7 +167,7 @@ func _update_anger(delta: float, held: bool) -> void:
 			angry = 0.0
 			anger = 0.0
 			GameState.toast.emit("Oh... Sakinleştin.", "heart")
-	elif heat > 0.0 and Time.get_ticks_msec() / 1000.0 >= shield_until:
+	elif heat > 0.0 and GameState.clock >= shield_until:
 		anger = minf(anger + heat * delta, 1.0)
 		if anger >= 1.0:
 			angry = ANGRY_TIME

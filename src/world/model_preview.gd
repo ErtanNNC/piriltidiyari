@@ -151,7 +151,7 @@ func _ready() -> void:
 		cp.position = Vector3(5.5, 2.0, 5.5) if act == "attack" else Vector3(0, 2.2, 8.0)
 		add_child(cp)
 		cp.look_at(Vector3(0, 0.9, 0))
-		await get_tree().create_timer(2.0).timeout
+		await get_tree().create_timer(2.0, false).timeout
 		pl._roll_dir = Vector3.RIGHT
 		pl.model.rotation.y = PI * 0.5
 		match act:
@@ -193,7 +193,7 @@ func _ready() -> void:
 				"blink": r.hold_blink = 1.0
 				"happy": r.happy()
 		if pose_name == "attack":
-			await get_tree().create_timer(1.83).timeout
+			await get_tree().create_timer(1.83, false).timeout
 			for r: CharacterRig in rigs:
 				if r:
 					r.attack()
@@ -291,19 +291,19 @@ func _audio_check() -> void:
 			missing.append(t + ".ogg")
 	Audio.scene_changed("chapter1")
 	Audio.boss(true)
-	await get_tree().create_timer(0.3).timeout
+	await get_tree().create_timer(0.3, false).timeout
 	var boss_track := Audio._track
 	Audio.boss(false)
-	await get_tree().create_timer(0.3).timeout
+	await get_tree().create_timer(0.3, false).timeout
 	# Müzik: Kapalı must silence it, Açık must bring it back
 	Audio.set_music_on(false)
-	await get_tree().create_timer(0.8).timeout
+	await get_tree().create_timer(0.8, false).timeout
 	var silent: bool = not Audio._music[0].playing and not Audio._music[1].playing
 	Audio.scene_changed("chapter2")
-	await get_tree().create_timer(0.3).timeout
+	await get_tree().create_timer(0.3, false).timeout
 	var still_silent: bool = not Audio._music[0].playing and not Audio._music[1].playing
 	Audio.set_music_on(true)
-	await get_tree().create_timer(0.3).timeout
+	await get_tree().create_timer(0.3, false).timeout
 	var back_on: bool = Audio._music[0].playing or Audio._music[1].playing
 	print("AUDIO sfx_files=%d tracks=%d missing=%s boss=%s back=%s off=%s off_after_scene=%s on=%s" % [sfx, tracks.size(), missing, boss_track, Audio._track, silent, still_silent, back_on])
 	get_tree().quit()

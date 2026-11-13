@@ -85,4 +85,6 @@ static func _lantern(parent: Node3D, col: String) -> void:
 func _clear_to(p: Node3D) -> bool:
 	var q := PhysicsRayQueryParameters3D.create(global_position + Vector3.UP * 0.6, p.global_position + Vector3.UP * 0.6)
 	q.collision_mask = Player.LAYER_WORLD | Player.LAYER_LOW_BARRIER
+	if p is CollisionObject3D:
+		q.exclude = [(p as CollisionObject3D).get_rid()]  # the keeper's own body is no wall
 	return get_world_3d().direct_space_state.intersect_ray(q).is_empty()

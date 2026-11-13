@@ -82,7 +82,7 @@ func _ready() -> void:
 		m.position = f[1]
 		m.rotation_degrees.y = f[2]
 		_dancers.append(m)
-	await get_tree().create_timer(1.9).timeout
+	await get_tree().create_timer(1.9, false).timeout
 	if DevTools.demo != "" and DisplayServer.get_name() == "headless":
 		DevTools.auto_dialogue = true
 	var cs := CutscenePlayer.new()
@@ -207,7 +207,7 @@ func _beat() -> void:
 	while _dancing and is_inside_tree():
 		Audio.play("drum")
 		Effects.ring(self, _hiril.position + Vector3.UP * 0.4, 2.6, Tokens.color("hp"), 0.5)
-		await get_tree().create_timer(0.6).timeout
+		await get_tree().create_timer(0.6, false).timeout
 
 
 func _sky() -> void:
@@ -215,7 +215,7 @@ func _sky() -> void:
 	while _dancing and is_inside_tree():
 		Effects.sparkle(self, Vector3(randf_range(-14, 14), randf_range(7, 11), randf_range(-26, -14)), Tokens.color(cols[randi() % cols.size()]), 14)
 		Effects.ring(self, Vector3(randf_range(-10, 10), 0.3, SEA_Z - randf_range(3, 12)), 1.6, Color("#9fd8ff"), 0.8)
-		await get_tree().create_timer(0.7).timeout
+		await get_tree().create_timer(0.7, false).timeout
 
 
 ## Next season's seed: a thin green thorny vine creeps up by Fıstık.

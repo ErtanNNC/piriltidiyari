@@ -19,7 +19,7 @@ func _ready() -> void:
 	_drift_fog()
 	d.quest_changed.connect(func(_id: String) -> void: _advance())
 	d.stats_changed.connect(_maybe_potion_hint)
-	await get_tree().create_timer(1.5).timeout
+	await get_tree().create_timer(1.5, false).timeout
 	_advance()
 	if DevTools.demo != "":
 		_run_demo(DevTools.demo)
@@ -56,7 +56,7 @@ func _maybe_potion_hint() -> void:
 		return
 	_potion_hint_shown = true
 	_hud.show_hint("1: Bal Şurubu iç, canın dolsun!", "Kalbe dokun: Bal Şurubu iç!")
-	await get_tree().create_timer(5.0).timeout
+	await get_tree().create_timer(5.0, false).timeout
 	if _stage < 5:
 		_hud.clear_hint()
 
@@ -98,10 +98,10 @@ func _run_demo(which: String) -> void:
 	var player: Player = _hud.player()
 	match which:
 		"fight":
-			await get_tree().create_timer(1.6).timeout
+			await get_tree().create_timer(1.6, false).timeout
 			player.global_position = Vector3(0, 0, 11)
 			GameState.data.take_damage(30)
-			await get_tree().create_timer(0.4).timeout
+			await get_tree().create_timer(0.4, false).timeout
 			player.spin_attack()
 		"touchtest":
 			# press the on-screen buttons the way a finger does
@@ -110,7 +110,7 @@ func _run_demo(which: String) -> void:
 			for label in ["Vur", "Yuvarlan", "Zıpla"]:
 				player.global_position = Vector3(0, 0, 4)
 				player._attack_cd = 0.0
-				await get_tree().create_timer(0.8).timeout
+				await get_tree().create_timer(0.8, false).timeout
 				var b: Button = null
 				for c in tc.find_children("*", "Button", true, false):
 					if (c as Button).text == label:
@@ -154,18 +154,18 @@ func _run_demo(which: String) -> void:
 				m.queue_free()
 			player.global_position = Vector3(0, 0, -7.5)
 			Input.action_press("move_forward")
-			await get_tree().create_timer(1.2).timeout
+			await get_tree().create_timer(1.2, false).timeout
 			var walked := player.global_position.z
 			player.global_position = Vector3(0, 0, -7.5)
 			player.velocity.y = 9.0  # try to jump over
-			await get_tree().create_timer(1.2).timeout
+			await get_tree().create_timer(1.2, false).timeout
 			var jumped := player.global_position.z
 			Input.action_release("move_forward")
 			player.global_position = Vector3(0, 0, -7.5)
-			await get_tree().create_timer(0.3).timeout
+			await get_tree().create_timer(0.3, false).timeout
 			player._roll_dir = Vector3.FORWARD
 			player.start_roll()
-			await get_tree().create_timer(1.0).timeout
+			await get_tree().create_timer(1.0, false).timeout
 			print("BEAMTEST walked_z=%.2f jumped_z=%.2f rolled_z=%.2f rolling=%s" % [walked, jumped, player.global_position.z, player.rolling])
 			get_tree().quit()
 		"beam":

@@ -62,7 +62,7 @@ func _ready() -> void:
 	_drum.position = Vector3(-2.2, 0, 2.6)
 	_drum.visible = false
 	_cam.make_current()
-	await get_tree().create_timer(1.6).timeout
+	await get_tree().create_timer(1.6, false).timeout
 	var cs := CutscenePlayer.new()
 	cs.scene = self
 	cs.camera = _cam
@@ -151,7 +151,7 @@ func drum_beats() -> void:
 		var tw := create_tween()
 		tw.tween_property(_drum, "scale", Vector3(1.1, 0.9, 1.1), 0.08)
 		tw.tween_property(_drum, "scale", Vector3.ONE, 0.2)
-		await get_tree().create_timer(1.0).timeout
+		await get_tree().create_timer(1.0, false).timeout
 
 
 func finish() -> void:

@@ -5,7 +5,8 @@
       "items": [
         {
           "id": "ritim_tilsimi",
-          "price": 120
+          "price": 120,
+          "once": true
         },
         {
           "id": "papatya_cayi",

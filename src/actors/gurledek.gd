@@ -102,7 +102,7 @@ func _loop() -> void:
 		for attack in GurledekPlan.cycle(phase):
 			if not active:
 				return
-			await get_tree().create_timer(GurledekPlan.rest(phase)).timeout
+			await get_tree().create_timer(GurledekPlan.rest(phase), false).timeout
 			if not active:
 				return
 			await GameState.wait_dialogue_closed()
@@ -172,7 +172,7 @@ func _rain() -> void:
 		spots.append(Vector3(p.global_position.x, 0.0, p.global_position.z) + off)
 	for s in spots:
 		Effects.warning(get_parent(), s, GurledekPlan.RAIN_RADIUS, Mob.TELEGRAPH)
-	await get_tree().create_timer(Mob.TELEGRAPH).timeout
+	await get_tree().create_timer(Mob.TELEGRAPH, false).timeout
 	for s in spots:
 		_shower(s)
 	for tick in 3:
@@ -180,7 +180,7 @@ func _rain() -> void:
 			if Vector2(p.global_position.x - s.x, p.global_position.z - s.z).length() < GurledekPlan.RAIN_RADIUS:
 				p.hurt(GurledekPlan.RAIN_DAMAGE, s)
 				break
-		await get_tree().create_timer(0.35).timeout
+		await get_tree().create_timer(0.35, false).timeout
 	_busy = false
 
 
@@ -207,7 +207,7 @@ func _shower(at: Vector3) -> void:
 	get_parent().add_child(r)
 	r.global_position = at + Vector3.UP * 4.0
 	r.emitting = true
-	get_tree().create_timer(1.6).timeout.connect(r.queue_free)
+	get_tree().create_timer(1.6, false).timeout.connect(r.queue_free)
 
 
 ## Tired: it sinks low and puffs; this is when it can be hit.
@@ -219,7 +219,7 @@ func _sink_low() -> void:
 	low = true
 	add_to_group("hittable")
 	get_tree().call_group("hud", "show_hint", "Yoruldu, alçaldı! Şimdi vur!", "Alçaldı! Şimdi vur!")
-	await get_tree().create_timer(GurledekPlan.LOW_TIME).timeout
+	await get_tree().create_timer(GurledekPlan.LOW_TIME, false).timeout
 	if not active:
 		return
 	get_tree().call_group("hud", "clear_hint")

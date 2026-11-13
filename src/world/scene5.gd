@@ -23,7 +23,7 @@ func _ready() -> void:
 	_fistik.position = Vector3(0, 0, 4)
 	_fistik.rotation.y = PI
 	_cam.make_current()
-	await get_tree().create_timer(1.9).timeout
+	await get_tree().create_timer(1.9, false).timeout
 	var cs := CutscenePlayer.new()
 	cs.scene = self
 	cs.camera = _cam

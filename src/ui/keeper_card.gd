@@ -70,7 +70,7 @@ func set_selected(on: bool) -> void:
 
 
 func _gui_input(event: InputEvent) -> void:
-	if (event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT) \
-			or (event is InputEventScreenTouch and event.pressed):
+	# a tap arrives as a touch AND as a mouse click: take one, or it fires twice
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		pressed.emit()
 		accept_event()
