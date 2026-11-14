@@ -515,6 +515,21 @@
   "Birlikte daha parlakız.",
   "Davulu duyuyor musun? Bizi çağırıyor."
  ],
+ "content/keepers_s4.json": [
+  "Tavşan bahçıvan",
+  "Her tohum kendi zamanında açar.",
+  "Tohum Ekme: önüne tohum eker, iyileştiren çiçek büyür",
+  "Filizlendirme: nazlı topraktan köprü ve merdiven büyütür",
+  "Yarışmada hep son olur ama herkesin bahçesine yardım eder.",
+  "Dedesinin Tohum Kesesi",
+  "Bu sefer de öndeyim. ...Ama önde olmak şart mı?",
+  "Minnoş, sen burada kal. ...Hayır, gel. Gel tamam mı?",
+  "Yeni harita! Paytak'ınkinden de güzel olacak. ...Şaka şaka.",
+  "Tırıl'ın ışığını bulalım.",
+  "Bu sefer ritmi ben tutarım.",
+  "Ben artık küçük değilim!",
+  "Her tohum kendi zamanında açar. Dedem öyle derdi."
+ ],
  "content/prologue/barks.json": [
   "Çocuklar güvende. Şimdi sıra kulede!",
   "Hıh. Bu yol eskiden daha kısaydı.",
@@ -2042,6 +2057,103 @@
   "Kart 6: Kaybolan bulunur. Ben de bir kere kaybolmuştum.",
   "Beni bulan sizdiniz. Şimdi sıra sizde. Yolunuz açık olsun."
  ],
+ "content/s4_chapter0/barks.json": [
+  "Cam seralar... ama hepsinin perdesi kapalı.",
+  "Kapının yanındaki dede bizi bekliyor gibi.",
+  "Alkışlayınca dikenler çekildi! Perde de açıldı.",
+  "Sırtında diken var, komşunun havucunu kapmış!",
+  "Önce sersemlet. Sonra alkışla: kendi havucunu görsün.",
+  "Tohum büyüdü, yaprak köprü oldu! Kanalın ötesine geçebiliriz.",
+  "Çark dönmüyor. Önce Dede Toprak'ın işini bitirelim.",
+  "Su akıyor! Dikenler kuruyor, kuzey yolu açıldı.",
+  "Kışt! Kışt! Uçabiliyorsunuz diye hava atmayın!",
+  "Kuşları kovalıyor... Yoksa onlar gibi uçmak mı istiyor?",
+  "Ben hep burada dikiliyorum. Onlar gökte süzülüyor.",
+  "Ama bostanı sen bekliyorsun! Sen olmasan lahana kalmazdı.",
+  "Beni... alkışladın mı? Beni ilk kez biri alkışladı.",
+  "Kuşlar omzuma kondu! Gıdıklanıyorum! Hih hih!"
+ ],
+ "content/s4_chapter0/chapter.json": [
+  "Sera Kasabası"
+ ],
+ "content/s4_chapter0/dialogue/boynuz.json": [
+  "Tak! Tak! Boynuzum çekiç gibidir, sorma."
+ ],
+ "content/s4_chapter0/dialogue/fasulye.json": [
+  "Eğri ama en uzunu benimki! Hiç fark etmemiştim.",
+  "Eğri fasulye de tatlıdır. Buyur, tadına bak!",
+  "Fasulyelerim eğri büğrü. Marul Teyze'ninkiler düzgün!",
+  "Seranın önünde bir alkış patlatayım, belki iyi gelir."
+ ],
+ "content/s4_chapter0/dialogue/kozacik.json": [
+  "İpek mi istersin, yaprak mı? İkisini de diktim!",
+  "Çiçekli şapkalar, pelerinler... Hepsi el emeği."
+ ],
+ "content/s4_chapter0/dialogue/marul.json": [
+  "Aa! Dikenler çekildi. Marullarım ne güzelmiş meğer!",
+  "Alkışın için sağ ol. Turp'a da el sallayacağım.",
+  "Marullarım küçük kaldı. Turp Amca'nınkiler kocaman!"
+ ],
+ "content/s4_chapter0/dialogue/toprak.json": [
+  "Kuşlar korkuluğun omzunda! Bunu yüz yıldır görmedim.",
+  "Toprak herkese aynı suyu verir. Ama herkes aynı gün açmaz.",
+  "İlk tohum Parlak Pazar'da. Bahar Kapısı çiçek açtı!",
+  "Beş tohumu da bulacağız. Tırıl'ı ve Dırıl'ı da!",
+  "Su akıyor! Kuzeydeki dikenler de çekildi.",
+  "Bostanda bir korkuluk kuşları kovalıyor. Uçamıyor ya, ondan.",
+  "Yorulunca yanına git, alkışla. Kimse onu hiç alkışlamadı.",
+  "Ark kapağı kuzeyde, köprünün ötesinde. Çarkı çevir!",
+  "Perdeler açıldı! Komşular yine selamlaşıyor.",
+  "Ama arkımız tıkalı. Su gelmezse tohumlar uyanmaz.",
+  "Kapağı aç evlat. Sonra bostandaki huysuza bak.",
+  "Komşunun serasının önünde dur ve alkışla. Dikenler çekilir.",
+  "Dikenci sersemleyince de alkışla. Kendi elindekini görür.",
+  "Hoş geldin evlat! Ben Solucan Dede Toprak.",
+  "Burası Sera Kasabası. Herkes perdesini kapattı.",
+  "Komşusunun bitkisine gizlice bakıyor: 'Onunki daha güzel!'",
+  "Yeşil Diken böyle büyüyor. Bana bir el... yani bir alkış lazım!",
+  "Tohum, gübre, limonata... Toprağın sırları bende. Bak istersen."
+ ],
+ "content/s4_chapter0/dialogue/turp.json": [
+  "Sen alkışlayınca baktım: turplarım pespembe!",
+  "Komşuya turp götüreceğim. Fazla fazla var.",
+  "Turplarım solgun. Fasulye'ninkiler göğe uzanıyor!"
+ ],
+ "content/s4_chapter0/quests/huysuz_korkuluk.json": [
+  "Huysuz Korkuluk",
+  "Kasabanın ark kapağını aç",
+  "Bostandaki korkuluğu alkışla",
+  "Solucan Dede Toprak'a dön"
+ ],
+ "content/s4_chapter0/quests/perdeler_acilsin.json": [
+  "Perdeler Açılsın",
+  "Üç komşunun serasını alkışla",
+  "Dikencileri sersemlet, sonra alkışla",
+  "Kanalın başına bir köprü tohumu ek"
+ ],
+ "content/s4_chapter0/shop.json": [
+  "Dede Toprak'ın Tohum Kesesi",
+  "Boynuz'un Örsü",
+  "Kozacık'ın İpek Sandığı"
+ ],
+ "content/s4_chapter1/chapter.json": [
+  "Parlak Pazar"
+ ],
+ "content/s4_chapter2/chapter.json": [
+  "Şarkı Çayırı"
+ ],
+ "content/s4_chapter3/chapter.json": [
+  "Yuva Ağacı"
+ ],
+ "content/s4_chapter4/chapter.json": [
+  "Ayna Gölü"
+ ],
+ "content/s4_chapter5/chapter.json": [
+  "Gölge Köşesi"
+ ],
+ "content/s4_prologue/chapter.json": [
+  "Onunki Daha Güzel"
+ ],
  "content/speakers.json": [
   "Fıstık",
   "Tospik Nine",
@@ -2104,7 +2216,19 @@
   "Martı Civciv",
   "Tırıl'ın Annesi",
   "Tırıl'ın Babası",
-  "Tırıl'ın Kardeşi"
+  "Tırıl'ın Kardeşi",
+  "Demirci Boynuz",
+  "Terzi Kozacık",
+  "Marul Teyze",
+  "Turp Amca",
+  "Dırıl",
+  "Çiçekçi Vızık",
+  "Saksağan Şıkır",
+  "Bülbül Nihan",
+  "Cırcır",
+  "Paçalı",
+  "Kuğu",
+  "Dev Kabak"
  ],
  "src/actors/applause.gd": [
   "Kıskandın! Birini alkışla, geçer."
@@ -2290,6 +2414,26 @@
   "Sezon 3 · Kapanış",
   "Fener Gecesi",
   "Gizli Bölge",
+  "Sezon 4 · Prolog · Sahne 1",
+  "İlk Bahar",
+  "Sezon 4 · Prolog · Sahne 2",
+  "Yeşil Diken",
+  "Sezon 4 · Prolog · Sahne 3",
+  "Köklerin Peşinde",
+  "Sezon 4 · Prolog · Sahne 4",
+  "Dev Kabak Bahçıvan",
+  "Sezon 4 · Prolog · Sahne 5",
+  "Tırıl'ın Seçimi",
+  "Sezon 4 · Prolog · Sahne 6",
+  "Alkış",
+  "Sezon 4 · Bölüm 0",
+  "Sezon 4 · Bölüm 1",
+  "Sezon 4 · Bölüm 2",
+  "Sezon 4 · Bölüm 3",
+  "Sezon 4 · Bölüm 4",
+  "Sezon 4 · Bölüm 5",
+  "Sezon 4 · Kapanış",
+  "Çiçek Şenliği",
   "%s yoluna çıkalım mı?",
   "Evet, gidelim",
   "Burada kal"
@@ -2297,14 +2441,6 @@
  "src/autoload/tokens.gd": [
   "fontSize",
   "fontWeight"
- ],
- "src/core/garden_travel.gd": [
-  "Sera Kasabası",
-  "Parlak Pazar",
-  "Şarkı Çayırı",
-  "Yuva Ağacı",
-  "Ayna Gölü",
-  "Gölge Köşesi"
  ],
  "src/core/growth.gd": [
   "Yaprak Köprü",
@@ -2385,13 +2521,9 @@
   "Albatros Yavrusu Pamuk",
   "Keşiş Yengeç Bikbik",
   "Fok Tombik",
-  "Dev Kabak Bahçıvan",
-  "Huysuz Korkuluk",
-  "Saksağan Şıkır",
   "Cırcır Böceği Cırcır",
   "Serçe Pıtpıt",
-  "Ördek Yavrusu Paçalı",
-  "Dırıl"
+  "Ördek Yavrusu Paçalı"
  ],
  "src/core/skills.gd": [
   "Dikenli Dönüş",
@@ -2424,7 +2556,18 @@
   "Ritim Kalkanı",
   "Kabuk Yuvası",
   "Işık Dalgası",
-  "Aile Işığı"
+  "Aile Işığı",
+  "Tohum Ekme",
+  "Takım Pençesi",
+  "Takım",
+  "Bal Paylaşımı",
+  "Alkış Fındığı",
+  "Güneş Damlası",
+  "Güneş",
+  "Ortak Ritim",
+  "Kabuk Kalesi",
+  "Bahçe Çemberi",
+  "Bahçe"
  ],
  "src/core/thorn_rules.gd": [
   "kıskandın"
@@ -2626,7 +2769,6 @@
   "Zıpla",
   "Yuvarlan",
   "At",
-  "Alkış",
   "Sakinleş",
   "At\n%d"
  ],
@@ -3090,6 +3232,18 @@
   "Küçüldü! Sıradaki meşaleyi bekle.",
   "Yanına git: ışığın onu ısıtır. Ya da Sakinleş ile el uzat.",
   "Yanına git, el uzat."
+ ],
+ "src/world/s4_chapter0.gd": [
+  "Rüzgâra karşı yürü, halkalardan kaç. Yorulunca vur!",
+  "Kapının yanındaki Solucan Dede Toprak ile konuş",
+  "Dede Toprak ile konuş",
+  "C: alkışla. Seraların önünde, sersemleyen Dikencilerin yanında!",
+  "Alkış'a bas: seraların ve Dikencilerin yanında!",
+  "Dede Toprak'a dön",
+  "Yaprak köprüden geç, ark kapağının çarkını çevir",
+  "Köprüden geç, ark kapağını aç",
+  "Kuzeydeki bostana git: Huysuz Korkuluk orada",
+  "Kuzeydeki bostana git"
  ],
  "src/world/s4_garden.gd": [
   "Bahar Kapısı çiçek açtı: %s yolu açıldı!",

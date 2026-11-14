@@ -1,0 +1,36 @@
+{
+  "npc": "fasulye",
+  "variants": [
+    {
+      "when": {
+        "flag": "s4_chapter0_d2"
+      },
+      "lines": [
+        {
+          "speaker": "fasulye",
+          "mood": "mutlu",
+          "text": "Eğri ama en uzunu benimki! Hiç fark etmemiştim."
+        },
+        {
+          "speaker": "fasulye",
+          "mood": "mutlu",
+          "text": "Eğri fasulye de tatlıdır. Buyur, tadına bak!"
+        }
+      ]
+    },
+    {
+      "lines": [
+        {
+          "speaker": "fasulye",
+          "mood": "dertli",
+          "text": "Fasulyelerim eğri büğrü. Marul Teyze'ninkiler düzgün!"
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "sakin",
+          "text": "Seranın önünde bir alkış patlatayım, belki iyi gelir."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "npc": "boynuz",
+  "variants": [
+    {
+      "lines": [
+        {
+          "speaker": "boynuz",
+          "mood": "mutlu",
+          "text": "Tak! Tak! Boynuzum çekiç gibidir, sorma."
+        },
+        {
+          "speaker": "boynuz",
+          "mood": "mutlu",
+          "text": "Değnek, asa, kılıç... Pırıl'ın varsa bak bakalım."
+        }
+      ],
+      "then": {
+        "open_shop": "boynuz"
+      }
+    }
+  ]
+}

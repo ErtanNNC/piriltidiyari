@@ -1,0 +1,90 @@
+{
+  "barks": {
+    "s4k0_basla": [
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Cam seralar... ama hepsinin perdesi kapalı."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "sakin",
+        "text": "Kapının yanındaki dede bizi bekliyor gibi."
+      }
+    ],
+    "s4k0_sera": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Alkışlayınca dikenler çekildi! Perde de açıldı."
+      }
+    ],
+    "s4k0_dikenci": [
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Sırtında diken var, komşunun havucunu kapmış!"
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "kararlı",
+        "text": "Önce sersemlet. Sonra alkışla: kendi havucunu görsün."
+      }
+    ],
+    "s4k0_tohum": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Tohum büyüdü, yaprak köprü oldu! Kanalın ötesine geçebiliriz."
+      }
+    ],
+    "s4k0_kilit": [
+      {
+        "speaker": "oyuncu",
+        "mood": "sakin",
+        "text": "Çark dönmüyor. Önce Dede Toprak'ın işini bitirelim."
+      }
+    ],
+    "s4k0_ark": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Su akıyor! Dikenler kuruyor, kuzey yolu açıldı."
+      }
+    ],
+    "s4k0_korkuluk": [
+      {
+        "speaker": "korkuluk",
+        "mood": "huysuz",
+        "text": "Kışt! Kışt! Uçabiliyorsunuz diye hava atmayın!"
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Kuşları kovalıyor... Yoksa onlar gibi uçmak mı istiyor?"
+      }
+    ],
+    "s4k0_sakin": [
+      {
+        "speaker": "korkuluk",
+        "mood": "dertli",
+        "text": "Ben hep burada dikiliyorum. Onlar gökte süzülüyor."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Ama bostanı sen bekliyorsun! Sen olmasan lahana kalmazdı."
+      },
+      {
+        "speaker": "korkuluk",
+        "mood": "şaşkın",
+        "text": "Beni... alkışladın mı? Beni ilk kez biri alkışladı."
+      },
+      {
+        "speaker": "korkuluk",
+        "mood": "mutlu",
+        "text": "Kuşlar omzuma kondu! Gıdıklanıyorum! Hih hih!"
+      }
+    ]
+  }
+}

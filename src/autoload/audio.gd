@@ -17,6 +17,7 @@ const SCENE_MUSIC := {
 	"chapter5": "castle", "final": "festival", "preview": "village",
 	"s3_scene1": "festival", "s3_scene2": "pus",
 	"s3_scene3": "pus", "s3_scene4": "tower", "s3_scene5": "tower", "s3_scene6": "village", "s3_chapter0": "village", "s3_chapter1": "cave", "s3_chapter2": "harbor", "s3_chapter3": "forest", "s3_chapter4": "mountain", "s3_chapter5": "castle", "s3_final": "festival", "s3_regatta": "harbor", "s3_garden": "cave",
+	"s4_scene1": "festival", "s4_scene2": "pus", "s4_scene3": "forest", "s4_scene4": "tower", "s4_scene5": "tower", "s4_scene6": "village", "s4_chapter0": "village", "s4_chapter1": "festival", "s4_chapter2": "forest", "s4_chapter3": "mountain", "s4_chapter4": "harbor", "s4_chapter5": "castle", "s4_final": "festival",
 	"s2_scene1": "festival", "s2_scene2": "pus", "s2_scene3": "mountain", "s2_scene4": "tower",
 	"s2_scene5": "tower", "s2_scene6": "village", "s2_chapter0": "village", "s2_chapter1": "forest", "s2_chapter2": "harbor", "s2_chapter3": "festival", "s2_chapter4": "mountain", "s2_chapter5": "castle", "s2_final": "festival",
 }
@@ -29,6 +30,7 @@ const SCENE_AMBIENCE := {
 	"scene1": "creek", "chapter0": "creek", "chapter1": "forest", "chapter3": "sea",
 	"s3_scene1": "sea", "s3_scene2": "sea",
 	"s3_scene3": "sea", "s3_scene4": "sea", "s3_scene5": "sea", "s3_scene6": "sea", "s3_chapter0": "sea", "s3_chapter1": "sea", "s3_chapter2": "sea", "s3_chapter3": "sea", "s3_chapter4": "sea", "s3_chapter5": "sea", "s3_final": "sea", "s3_regatta": "sea", "s3_garden": "lake",
+	"s4_scene1": "creek", "s4_scene2": "creek", "s4_scene3": "forest", "s4_scene6": "creek", "s4_chapter0": "creek", "s4_chapter1": "farm", "s4_chapter2": "forest", "s4_chapter3": "forest", "s4_chapter4": "lake", "s4_final": "creek",
 	"s2_scene1": "creek", "s2_chapter0": "springs", "s2_chapter1": "forest",
 	"s2_chapter2": "lake", "s2_chapter3": "farm", "s2_final": "creek", "final": "creek",
 }

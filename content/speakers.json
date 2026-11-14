@@ -327,6 +327,66 @@
     "tiril_kardes": {
       "name": "Tırıl'ın Kardeşi",
       "color": "spark-green"
+    },
+    "boynuz": {
+      "name": "Demirci Boynuz",
+      "color": "sky"
+    },
+    "kozacik": {
+      "name": "Terzi Kozacık",
+      "color": "berry"
+    },
+    "marul": {
+      "name": "Marul Teyze",
+      "color": "spark-green"
+    },
+    "turp": {
+      "name": "Turp Amca",
+      "color": "hp"
+    },
+    "fasulye": {
+      "name": "Fasulye",
+      "color": "spark-yellow"
+    },
+    "korkuluk": {
+      "name": "Huysuz Korkuluk",
+      "color": "honey"
+    },
+    "yonca": {
+      "name": "Yonca",
+      "color": "spark-green"
+    },
+    "diril": {
+      "name": "Dırıl",
+      "color": "spark-green"
+    },
+    "vizik": {
+      "name": "Çiçekçi Vızık",
+      "color": "spark-yellow"
+    },
+    "sikir": {
+      "name": "Saksağan Şıkır",
+      "color": "sky"
+    },
+    "nihan": {
+      "name": "Bülbül Nihan",
+      "color": "berry"
+    },
+    "circir": {
+      "name": "Cırcır",
+      "color": "spark-green"
+    },
+    "pacali": {
+      "name": "Paçalı",
+      "color": "spark-yellow"
+    },
+    "kugu": {
+      "name": "Kuğu",
+      "color": "sky"
+    },
+    "kabak": {
+      "name": "Dev Kabak",
+      "color": "hp"
     }
   }
 }

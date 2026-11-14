@@ -1,0 +1,83 @@
+{
+  "shops": {
+    "toprak": {
+      "title": "Dede Toprak'ın Tohum Kesesi",
+      "items": [
+        {
+          "id": "bal_surubu",
+          "price": 15
+        },
+        {
+          "id": "nane_limonata",
+          "price": 15
+        },
+        {
+          "id": "yildiz_tozu",
+          "price": 20
+        },
+        {
+          "id": "gubre_topu",
+          "price": 30
+        },
+        {
+          "id": "papatya_celengi",
+          "price": 35
+        }
+      ]
+    },
+    "boynuz": {
+      "title": "Boynuz'un Örsü",
+      "items": [
+        {
+          "id": "isik_degnegi",
+          "price": 60,
+          "once": true
+        },
+        {
+          "id": "yildiz_asasi",
+          "price": 150,
+          "once": true
+        },
+        {
+          "id": "kivilcim_kilici",
+          "price": 280,
+          "once": true
+        },
+        {
+          "id": "isik_sapani",
+          "price": 80,
+          "once": true
+        },
+        {
+          "id": "isik_tohumu",
+          "price": 15
+        }
+      ]
+    },
+    "kozacik": {
+      "title": "Kozacık'ın İpek Sandığı",
+      "items": [
+        {
+          "id": "cicek_taci",
+          "price": 40,
+          "once": true
+        },
+        {
+          "id": "kasif_sapkasi",
+          "price": 70,
+          "once": true
+        },
+        {
+          "id": "minik_migfer",
+          "price": 110,
+          "once": true
+        },
+        {
+          "id": "yildiz_pelerini",
+          "price": 160,
+          "once": true
+        }
+      ]
+    }
+  }
+}

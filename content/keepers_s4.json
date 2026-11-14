@@ -1,0 +1,37 @@
+{
+ "keepers": {
+  "yonca": {
+   "name": "Yonca",
+   "species": "Tavşan bahçıvan",
+   "color": "spark-green",
+   "line": "Her tohum kendi zamanında açar.",
+   "stats": {
+    "can": 3,
+    "guc": 2,
+    "hiz": 4
+   },
+   "special": "Tohum Ekme: önüne tohum eker, iyileştiren çiçek büyür",
+   "world": "Filizlendirme: nazlı topraktan köprü ve merdiven büyütür",
+   "story": "Yarışmada hep son olur ama herkesin bahçesine yardım eder.",
+   "signature": "Dedesinin Tohum Kesesi"
+  }
+ },
+ "order": [
+  "pati",
+  "bado",
+  "citir",
+  "lumi",
+  "tipis_panda",
+  "tosbi",
+  "yonca"
+ ],
+ "lines": {
+  "pati": "Bu sefer de öndeyim. ...Ama önde olmak şart mı?",
+  "bado": "Minnoş, sen burada kal. ...Hayır, gel. Gel tamam mı?",
+  "citir": "Yeni harita! Paytak'ınkinden de güzel olacak. ...Şaka şaka.",
+  "lumi": "Tırıl'ın ışığını bulalım.",
+  "tipis_panda": "Bu sefer ritmi ben tutarım.",
+  "tosbi": "Ben artık küçük değilim!",
+  "yonca": "Her tohum kendi zamanında açar. Dedem öyle derdi."
+ }
+}

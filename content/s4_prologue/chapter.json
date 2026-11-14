@@ -1,0 +1,14 @@
+{
+  "id": "s4_prologue",
+  "title": "Onunki Daha Güzel",
+  "region": "Gökkuşağı Köyü",
+  "theme": "light",
+  "levels": [
+    1,
+    5
+  ],
+  "spark": null,
+  "quests": [],
+  "dialogue": [],
+  "barks": "barks"
+}

@@ -48,6 +48,19 @@ const SCENES := {
 	"s3_final": "res://scenes/season3/s3_final.tscn",
 	"s3_regatta": "res://scenes/season3/s3_regatta.tscn",
 	"s3_garden": "res://scenes/season3/s3_garden.tscn",
+	"s4_scene1": "res://scenes/season4/s4_scene1_ilk_bahar.tscn",
+	"s4_scene2": "res://scenes/season4/s4_scene2_yesil_diken.tscn",
+	"s4_scene3": "res://scenes/season4/s4_scene3_koklerin_pesinde.tscn",
+	"s4_scene4": "res://scenes/season4/s4_scene4_dev_kabak.tscn",
+	"s4_scene5": "res://scenes/season4/s4_scene5_tiril_secimi.tscn",
+	"s4_scene6": "res://scenes/season4/s4_scene6_alkis.tscn",
+	"s4_chapter0": "res://scenes/season4/s4_chapter0_sera_kasabasi.tscn",
+	"s4_chapter1": "res://scenes/season4/s4_chapter1_parlak_pazar.tscn",
+	"s4_chapter2": "res://scenes/season4/s4_chapter2_sarki_cayiri.tscn",
+	"s4_chapter3": "res://scenes/season4/s4_chapter3_yuva_agaci.tscn",
+	"s4_chapter4": "res://scenes/season4/s4_chapter4_ayna_golu.tscn",
+	"s4_chapter5": "res://scenes/season4/s4_chapter5_golge_kosesi.tscn",
+	"s4_final": "res://scenes/season4/s4_final.tscn",
 	# inside a village house (which one: SceneFlow.house_id)
 	"house": "res://scenes/chapter0/ev.tscn",
 	# dev only: all characters side by side (tools/screenshot.sh --scene=preview)
@@ -61,7 +74,8 @@ const SCENE_CHAPTER := {"chapter0": "chapter0", "chapter1": "chapter1", "chapter
 	"s2_chapter0": "s2_chapter0", "s2_chapter1": "s2_chapter1", "s2_chapter2": "s2_chapter2", "s2_chapter3": "s2_chapter3", "s2_chapter4": "s2_chapter4", "s2_chapter5": "s2_chapter5", "s2_final": "s2_chapter5",
 	"s3_scene1": "s3_prologue", "s3_scene2": "s3_prologue",
 	"s3_scene3": "s3_prologue", "s3_scene4": "s3_prologue", "s3_scene5": "s3_prologue", "s3_scene6": "s3_prologue", "s3_chapter0": "s3_chapter0", "s3_chapter1": "s3_chapter1", "s3_chapter2": "s3_chapter2", "s3_chapter3": "s3_chapter3", "s3_chapter4": "s3_chapter4", "s3_chapter5": "s3_chapter5", "s3_final": "s3_chapter5",
-	"s3_regatta": "s3_regatta", "s3_garden": "s3_garden"}
+	"s3_regatta": "s3_regatta", "s3_garden": "s3_garden",
+	"s4_scene1": "s4_prologue", "s4_scene2": "s4_prologue", "s4_scene3": "s4_prologue", "s4_scene4": "s4_prologue", "s4_scene5": "s4_prologue", "s4_scene6": "s4_prologue", "s4_chapter0": "s4_chapter0", "s4_chapter1": "s4_chapter1", "s4_chapter2": "s4_chapter2", "s4_chapter3": "s4_chapter3", "s4_chapter4": "s4_chapter4", "s4_chapter5": "s4_chapter5", "s4_final": "s4_chapter5"}
 
 ## [small line, big title] shown when a scene starts.
 const CARDS := {
@@ -106,6 +120,19 @@ const CARDS := {
 	"s3_final": ["Sezon 3 · Kapanış", "Fener Gecesi"],
 	"s3_regatta": ["Titrek Kıyılar", "Gece Regatası"],
 	"s3_garden": ["Gizli Bölge", "Mercan Bahçesi"],
+	"s4_scene1": ["Sezon 4 · Prolog · Sahne 1", "İlk Bahar"],
+	"s4_scene2": ["Sezon 4 · Prolog · Sahne 2", "Yeşil Diken"],
+	"s4_scene3": ["Sezon 4 · Prolog · Sahne 3", "Köklerin Peşinde"],
+	"s4_scene4": ["Sezon 4 · Prolog · Sahne 4", "Dev Kabak Bahçıvan"],
+	"s4_scene5": ["Sezon 4 · Prolog · Sahne 5", "Tırıl'ın Seçimi"],
+	"s4_scene6": ["Sezon 4 · Prolog · Sahne 6", "Alkış"],
+	"s4_chapter0": ["Sezon 4 · Bölüm 0", "Sera Kasabası"],
+	"s4_chapter1": ["Sezon 4 · Bölüm 1", "Parlak Pazar"],
+	"s4_chapter2": ["Sezon 4 · Bölüm 2", "Şarkı Çayırı"],
+	"s4_chapter3": ["Sezon 4 · Bölüm 3", "Yuva Ağacı"],
+	"s4_chapter4": ["Sezon 4 · Bölüm 4", "Ayna Gölü"],
+	"s4_chapter5": ["Sezon 4 · Bölüm 5", "Gölge Köşesi"],
+	"s4_final": ["Sezon 4 · Kapanış", "Çiçek Şenliği"],
 }
 
 var current := ""
@@ -247,7 +274,7 @@ func go_to(scene_id: String, save := true, card := true) -> void:
 		Content.load_chapter(chapter)
 	# Gece (dark) theme for the caves and other night chapters
 	# the ending is a sunny morning in the village, whatever chapter it belongs to
-	Tokens.set_theme("light" if scene_id in ["title", "final", "s2_final", "s3_final", "preview"] else String(Content.chapter.get("theme", "light")))
+	Tokens.set_theme("light" if scene_id in ["title", "final", "s2_final", "s3_final", "s4_final", "preview"] else String(Content.chapter.get("theme", "light")))
 	ModelImport.clear_templates()
 	get_tree().change_scene_to_file(SCENES[scene_id])
 	current = scene_id

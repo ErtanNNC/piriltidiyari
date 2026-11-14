@@ -1,0 +1,24 @@
+{
+  "id": "huysuz_korkuluk",
+  "title": "Huysuz Korkuluk",
+  "giver": "toprak",
+  "objectives": [
+    {
+      "id": "ark",
+      "text": "Kasabanın ark kapağını aç",
+      "type": "light",
+      "target": "ark"
+    },
+    {
+      "id": "korkuluk",
+      "text": "Bostandaki korkuluğu alkışla",
+      "type": "breathe",
+      "target": "korkuluk"
+    }
+  ],
+  "turn_in": "Solucan Dede Toprak'a dön",
+  "rewards": {
+    "piril": 40,
+    "xp": 60
+  }
+}

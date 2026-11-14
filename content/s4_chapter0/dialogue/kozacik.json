@@ -1,0 +1,22 @@
+{
+  "npc": "kozacik",
+  "variants": [
+    {
+      "lines": [
+        {
+          "speaker": "kozacik",
+          "mood": "mutlu",
+          "text": "İpek mi istersin, yaprak mı? İkisini de diktim!"
+        },
+        {
+          "speaker": "kozacik",
+          "mood": "sakin",
+          "text": "Çiçekli şapkalar, pelerinler... Hepsi el emeği."
+        }
+      ],
+      "then": {
+        "open_shop": "kozacik"
+      }
+    }
+  ]
+}

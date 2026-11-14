@@ -56,6 +56,13 @@ func _gate_star() -> void:
 	GameState.toast.emit(TranslationServer.translate("Yeni yer açıldı: %s") % region, "star")
 
 
+func _process(delta: float) -> void:
+	super._process(delta)
+	# daylight: the keeper's night ring only shows once it is night
+	if _player and _player.ring:
+		_player.ring.visible = night
+
+
 ## The Bahar Kapısı (travel between gardens). Marks this garden as visited.
 func gate(at: Vector3, yaw := 0.0) -> SpringGate:
 	GameState.data.set_flag("s4_geldi%s" % scene_id.right(1))

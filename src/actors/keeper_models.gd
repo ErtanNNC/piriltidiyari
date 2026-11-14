@@ -22,6 +22,9 @@ const INFO := {
 	# Season 3 (real model: assets/models/tosbi.glb)
 	"tosbi": {"name": "Tosbi", "species": "Kaplumbağa yavrusu", "color": "spark-green", "line": "Korksam bile geliyorum.",
 		"variants": [Color("#b9d86a"), Color("#8fc9a0"), Color("#d9c86a")]},
+	# Season 4 (real model: assets/models/yonca.glb)
+	"yonca": {"name": "Yonca", "species": "Tavşan bahçıvan", "color": "spark-green", "line": "Her tohum kendi zamanında açar.",
+		"variants": [Color("#d9b48a")]},
 	# Yeni Oyun+ (Season 3): one look each; shop outfits and tools still go on
 	"hiril": {"name": "Hırıl", "species": "Yanardağ yavrusu", "color": "hp", "line": "Davulum hazır. Bu kez birlikte çalalım!",
 		"variants": [Color("#a85a42")]},
@@ -30,7 +33,7 @@ const INFO := {
 }
 ## Keepers with one look of their own (no fur color or accessory to pick);
 ## shop outfits and tools are worn at their json "anchors" like on anyone.
-const PLAIN := ["hiril", "tiril"]
+const PLAIN := ["hiril", "tiril", "yonca"]
 const ACCESSORIES := ["yok", "sapka", "atki", "gozluk"]
 const ACCESSORY_NAMES := {"yok": "Yok", "sapka": "Şapka", "atki": "Atkı", "gozluk": "Gözlük"}
 const CREAM := Color("#fff1dc")

@@ -1,0 +1,14 @@
+{
+  "id": "s4_chapter5",
+  "title": "Gölge Köşesi",
+  "region": "Gölge Köşesi",
+  "theme": "light",
+  "levels": [
+    1,
+    5
+  ],
+  "spark": null,
+  "quests": [],
+  "dialogue": [],
+  "barks": "barks"
+}

@@ -1,0 +1,165 @@
+{
+  "npc": "toprak",
+  "variants": [
+    {
+      "when": {
+        "quest": "huysuz_korkuluk",
+        "state": "ready"
+      },
+      "lines": [
+        {
+          "speaker": "toprak",
+          "mood": "mutlu",
+          "text": "Kuşlar korkuluğun omzunda! Bunu yüz yıldır görmedim."
+        },
+        {
+          "speaker": "toprak",
+          "mood": "sakin",
+          "text": "Toprak herkese aynı suyu verir. Ama herkes aynı gün açmaz."
+        },
+        {
+          "speaker": "toprak",
+          "mood": "kararlı",
+          "text": "İlk tohum Parlak Pazar'da. Bahar Kapısı çiçek açtı!"
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "kararlı",
+          "text": "Beş tohumu da bulacağız. Tırıl'ı ve Dırıl'ı da!"
+        }
+      ],
+      "then": {
+        "complete_quest": "huysuz_korkuluk",
+        "set_flag": "s4_bolum0_bitti",
+        "give_items": {
+          "papatya_celengi": 2
+        }
+      }
+    },
+    {
+      "when": {
+        "quest": "huysuz_korkuluk",
+        "state": "active",
+        "objective_done": "huysuz_korkuluk/ark"
+      },
+      "lines": [
+        {
+          "speaker": "toprak",
+          "mood": "mutlu",
+          "text": "Su akıyor! Kuzeydeki dikenler de çekildi."
+        },
+        {
+          "speaker": "toprak",
+          "mood": "dertli",
+          "text": "Bostanda bir korkuluk kuşları kovalıyor. Uçamıyor ya, ondan."
+        },
+        {
+          "speaker": "toprak",
+          "mood": "sakin",
+          "text": "Yorulunca yanına git, alkışla. Kimse onu hiç alkışlamadı."
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "huysuz_korkuluk",
+        "state": "active"
+      },
+      "lines": [
+        {
+          "speaker": "toprak",
+          "mood": "kararlı",
+          "text": "Ark kapağı kuzeyde, köprünün ötesinde. Çarkı çevir!"
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "perdeler_acilsin",
+        "state": "ready"
+      },
+      "lines": [
+        {
+          "speaker": "toprak",
+          "mood": "mutlu",
+          "text": "Perdeler açıldı! Komşular yine selamlaşıyor."
+        },
+        {
+          "speaker": "toprak",
+          "mood": "dertli",
+          "text": "Ama arkımız tıkalı. Su gelmezse tohumlar uyanmaz."
+        },
+        {
+          "speaker": "toprak",
+          "mood": "kararlı",
+          "text": "Kapağı aç evlat. Sonra bostandaki huysuza bak."
+        }
+      ],
+      "then": {
+        "complete_quest": "perdeler_acilsin",
+        "start_quest": "huysuz_korkuluk"
+      }
+    },
+    {
+      "when": {
+        "quest": "perdeler_acilsin",
+        "state": "active"
+      },
+      "lines": [
+        {
+          "speaker": "toprak",
+          "mood": "sakin",
+          "text": "Komşunun serasının önünde dur ve alkışla. Dikenler çekilir."
+        },
+        {
+          "speaker": "toprak",
+          "mood": "sakin",
+          "text": "Dikenci sersemleyince de alkışla. Kendi elindekini görür."
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "perdeler_acilsin",
+        "state": "none"
+      },
+      "lines": [
+        {
+          "speaker": "toprak",
+          "mood": "mutlu",
+          "text": "Hoş geldin evlat! Ben Solucan Dede Toprak."
+        },
+        {
+          "speaker": "toprak",
+          "mood": "dertli",
+          "text": "Burası Sera Kasabası. Herkes perdesini kapattı."
+        },
+        {
+          "speaker": "toprak",
+          "mood": "dertli",
+          "text": "Komşusunun bitkisine gizlice bakıyor: 'Onunki daha güzel!'"
+        },
+        {
+          "speaker": "toprak",
+          "mood": "kararlı",
+          "text": "Yeşil Diken böyle büyüyor. Bana bir el... yani bir alkış lazım!"
+        }
+      ],
+      "then": {
+        "start_quest": "perdeler_acilsin"
+      }
+    },
+    {
+      "lines": [
+        {
+          "speaker": "toprak",
+          "mood": "mutlu",
+          "text": "Tohum, gübre, limonata... Toprağın sırları bende. Bak istersen."
+        }
+      ],
+      "then": {
+        "open_shop": "toprak"
+      }
+    }
+  ]
+}

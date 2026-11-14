@@ -1,0 +1,36 @@
+{
+  "npc": "marul",
+  "variants": [
+    {
+      "when": {
+        "flag": "s4_chapter0_d0"
+      },
+      "lines": [
+        {
+          "speaker": "marul",
+          "mood": "mutlu",
+          "text": "Aa! Dikenler çekildi. Marullarım ne güzelmiş meğer!"
+        },
+        {
+          "speaker": "marul",
+          "mood": "mutlu",
+          "text": "Alkışın için sağ ol. Turp'a da el sallayacağım."
+        }
+      ]
+    },
+    {
+      "lines": [
+        {
+          "speaker": "marul",
+          "mood": "dertli",
+          "text": "Marullarım küçük kaldı. Turp Amca'nınkiler kocaman!"
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "sakin",
+          "text": "Seranın önünde bir alkış patlatayım, belki iyi gelir."
+        }
+      ]
+    }
+  ]
+}

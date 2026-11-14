@@ -331,7 +331,8 @@ func use_skill() -> void:
 		"ninni_isigi": _ninni_isigi()
 		_:
 			_attack_cd = 0.5
-			S3Skills.use(self, id)
+			if not S4Skills.use(self, id):
+				S3Skills.use(self, id)
 
 
 ## Kept for older callers (tests, demos).

@@ -1,0 +1,36 @@
+{
+  "npc": "turp",
+  "variants": [
+    {
+      "when": {
+        "flag": "s4_chapter0_d1"
+      },
+      "lines": [
+        {
+          "speaker": "turp",
+          "mood": "mutlu",
+          "text": "Sen alkışlayınca baktım: turplarım pespembe!"
+        },
+        {
+          "speaker": "turp",
+          "mood": "mutlu",
+          "text": "Komşuya turp götüreceğim. Fazla fazla var."
+        }
+      ]
+    },
+    {
+      "lines": [
+        {
+          "speaker": "turp",
+          "mood": "dertli",
+          "text": "Turplarım solgun. Fasulye'ninkiler göğe uzanıyor!"
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "sakin",
+          "text": "Seranın önünde bir alkış patlatayım, belki iyi gelir."
+        }
+      ]
+    }
+  ]
+}

@@ -13,6 +13,8 @@ var keepers: Dictionary = {}    # id -> keeper candidate (content/keepers.json)
 var keepers_s2: Dictionary = {}
 ## Season 3: Tosbi, the six-keeper order and lines (content/keepers_s3.json).
 var keepers_s3: Dictionary = {}
+## Season 4: Yonca, the seven-keeper order and lines (content/keepers_s4.json).
+var keepers_s4: Dictionary = {}
 var shops: Dictionary = {}      # id -> {title, items: [{id, price, once?}]}
 var barks: Dictionary = {}      # id -> [lines]: short monologues and asides
 ## Season 2 side collections (content/s2_side.json, see SideQuests).
@@ -25,6 +27,7 @@ func _init() -> void:
 	keepers = read_json("res://content/keepers.json").get("keepers", {})
 	keepers_s2 = read_json("res://content/keepers_s2.json")
 	keepers_s3 = read_json("res://content/keepers_s3.json")
+	keepers_s4 = read_json("res://content/keepers_s4.json")
 	side = read_json("res://content/s2_side.json")
 	# Season 3's collections live in their own file; sets carry "season": 3
 	var s3: Dictionary = read_json("res://content/s3_side.json")
@@ -54,7 +57,9 @@ func keeper(id: String) -> Dictionary:
 		return keepers[id]
 	if keepers_s2.get("keepers", {}).has(id):
 		return keepers_s2["keepers"][id]
-	return keepers_s3.get("keepers", {}).get(id, {})
+	if keepers_s3.get("keepers", {}).has(id):
+		return keepers_s3["keepers"][id]
+	return keepers_s4.get("keepers", {}).get(id, {})
 
 
 func npc(npc_id: String) -> Dictionary:

@@ -31,7 +31,26 @@ const DEFS := {
 	# Yeni Oyun+: Tırıl is a keeper too (a light pulse; at level 5 the family's light)
 	"isik_dalgasi": {"name": "Işık Dalgası", "short": "Işık", "mp": 15, "owner": "tiril"},
 	"aile_isigi": {"name": "Aile Işığı", "short": "Aile", "mp": 25, "owner": "tiril", "season": 3},
+	# Season 4: the new keeper Yonca plants; at level 5 everyone learns a skill
+	# about growing, sharing and cheering others on
+	"tohum_ekme": {"name": "Tohum Ekme", "short": "Tohum", "mp": 15, "owner": "yonca"},
+	"takim_pencesi": {"name": "Takım Pençesi", "short": "Takım", "mp": 20, "owner": "pati", "season": 4},
+	"bal_paylasimi": {"name": "Bal Paylaşımı", "short": "Bal", "mp": 25, "owner": "bado", "season": 4},
+	"alkis_findigi": {"name": "Alkış Fındığı", "short": "Alkış", "mp": 20, "owner": "citir", "season": 4},
+	"gunes_damlasi": {"name": "Güneş Damlası", "short": "Güneş", "mp": 25, "owner": "lumi", "season": 4},
+	"ortak_ritim": {"name": "Ortak Ritim", "short": "Ritim", "mp": 20, "owner": "tipis_panda", "season": 4},
+	"kabuk_kalesi": {"name": "Kabuk Kalesi", "short": "Kale", "mp": 20, "owner": "tosbi", "season": 4},
+	"bahce_cemberi": {"name": "Bahçe Çemberi", "short": "Bahçe", "mp": 25, "owner": "yonca", "season": 4},
 }
+
+## Season 4 skills: reach of the cheering ones, how long a boost or a planted
+## flower lasts, how much sharing heals.
+const CHEER_RADIUS := 5.0
+const TEAM_TIME := 8.0
+const SEED_FLOWER_TIME := 12.0
+const SHARE_HEAL := 0.25
+const SUN_RADIUS := 6.0
+const FORT_GUARD := 5.0
 
 ## The level a keeper learns their Season 2 calming skill.
 const S2_LEVEL := 5

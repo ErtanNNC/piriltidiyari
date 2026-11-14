@@ -23,6 +23,7 @@ var _result: Node3D
 
 
 func _build() -> void:
+	add_to_group("seed_plot")
 	action_label = "Ek"
 	reach = 1.5
 	Toon.part(self, "ellipsoid", Vector3(1.2, 0.3, 1.2), Color("#7a5236"), Vector3(0, 0.08, 0))

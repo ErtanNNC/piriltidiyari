@@ -1,0 +1,14 @@
+{
+  "id": "s4_chapter1",
+  "title": "Parlak Pazar",
+  "region": "Parlak Pazar",
+  "theme": "light",
+  "levels": [
+    1,
+    5
+  ],
+  "spark": null,
+  "quests": [],
+  "dialogue": [],
+  "barks": "barks"
+}

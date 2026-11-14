@@ -1,0 +1,14 @@
+{
+  "id": "s4_chapter3",
+  "title": "Yuva Ağacı",
+  "region": "Yuva Ağacı",
+  "theme": "light",
+  "levels": [
+    1,
+    5
+  ],
+  "spark": null,
+  "quests": [],
+  "dialogue": [],
+  "barks": "barks"
+}

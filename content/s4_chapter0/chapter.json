@@ -1,0 +1,25 @@
+{
+  "id": "s4_chapter0",
+  "title": "Sera Kasabası",
+  "region": "Sera Kasabası",
+  "theme": "light",
+  "levels": [
+    1,
+    5
+  ],
+  "spark": null,
+  "quests": [
+    "perdeler_acilsin",
+    "huysuz_korkuluk"
+  ],
+  "dialogue": [
+    "toprak",
+    "boynuz",
+    "kozacik",
+    "marul",
+    "turp",
+    "fasulye"
+  ],
+  "barks": "barks",
+  "shop": "shop"
+}

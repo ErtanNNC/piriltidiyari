@@ -236,6 +236,6 @@ func _continue(s: int) -> void:
 	d.recompute_stats(Content.items)  # derived stats, never drifting
 	d.catch_up()  # saves from before mob levels
 	if not SceneFlow.SCENES.has(d.scene_id):
-		d.scene_id = ["chapter0", "chapter0", "s2_chapter0", "s3_chapter0"][clampi(d.season, 0, 3)]
+		d.scene_id = ["chapter0", "chapter0", "s2_chapter0", "s3_chapter0", "s4_chapter0"][clampi(d.season, 0, 4)]
 	GameState.data = d
 	SceneFlow.go_to(d.scene_id, false)
