@@ -834,6 +834,34 @@ func test_season2() -> void:
 		for sp: Dictionary in side["spots"][sc]:
 			for l: Dictionary in sp.get("lines", []):
 				check(String(l["text"]).length() <= 70, "yan görev satırı ≤ 70: %s" % l["text"])
+	# Season 3 collections: 25 bottles open the Mercan Bahçesi, a postcard
+	# waits for its island's flare, every line fits
+	check(SideQuests.total(side, "sise") == 25 and SideQuests.total(side, "isik") == 5 and SideQuests.total(side, "kart") == 6 and SideQuests.total(side, "pati") == 3, "Sezon 3 yan görev sayıları 25/5/6/3")
+	var s3q := PlayerData.new()
+	s3q.choose_keeper("pati", {"max_hp": 100, "max_mp": 50, "power": 10, "speed": 6.0}, {}, "Pati")
+	var k0: Array = SideQuests.spots(side, "s3_chapter0", "kart")[0]
+	check(SideQuests.take(s3q, side, "s3_chapter0", k0[0]).is_empty(), "kartpostal fişek yanmadan gelmez")
+	s3q.set_flag("s3_fisek0")
+	check("found" in SideQuests.take(s3q, side, "s3_chapter0", k0[0]), "fişek yanınca kartpostal okunur")
+	var last: Array[String] = []
+	for sc: String in side["spots"]:
+		for pair: Array in SideQuests.spots(side, sc, "sise"):
+			check(not s3q.has_flag("yan_sise_bitti"), "bahçe son şişeden önce açılmaz")
+			last = SideQuests.take(s3q, side, sc, pair[0])
+	check("done" in last and s3q.has_flag("yan_sise_bitti"), "25 şişe: Mercan Bahçesi açılır")
+	for id: String in side["sets"]:
+		var sd: Dictionary = side["sets"][id]
+		check(sd.has("title") and sd.has("desc") and sd.has("action"), "yan görev tanımı tam: %s" % id)
+		for key: String in sd:
+			if sd[key] is Array:
+				for l: Dictionary in sd[key]:
+					check(String(l["text"]).length() <= 70 and (c.speakers.has(l["speaker"]) or l["speaker"] == "oyuncu"), "yan görev satırı: %s" % l["text"])
+	for sc: String in side["spots"]:
+		for sp: Dictionary in side["spots"][sc]:
+			for key: String in sp:
+				if key.begins_with("lines"):
+					for l: Dictionary in sp[key]:
+						check(String(l["text"]).length() <= 70 and (c.speakers.has(l["speaker"]) or l["speaker"] == "oyuncu"), "yan görev satırı: %s" % l["text"])
 	# Konuşma Çemberi: in order only
 	c.load_chapter("s2_chapter0")
 	check(c.quests.has("konusma_cemberi") and c.quests["konusma_cemberi"].get("ordered", false), "Konuşma Çemberi sıralı görev")
@@ -975,6 +1003,7 @@ func _validate_chapter(chapter: String) -> void:
 
 func test_season3() -> void:
 	print("Sezon 3: Titrek Kıyılar")
+	_test_new_game_plus()
 	var d := PlayerData.new()
 	d.choose_keeper("bado", {"can": 3, "guc": 4, "hiz": 5}, {}, "Bado")
 	d.start_season2({})
@@ -1031,3 +1060,42 @@ func test_season3() -> void:
 	check(Skills.for_character("tosbi") == "kabuk_kalkani", "Tosbi: Kabuk Kalkanı")
 	for id: String in ["sicak_kakao", "atesbocegi_kavanozu", "cesaret_kurabiyesi"]:
 		check(PlayerData.POTIONS.has(id), "%s iksir yuvasına girer" % id)
+
+
+func _test_new_game_plus() -> void:
+	var n := PlayerData.new()
+	n.choose_keeper("pati", {"max_hp": 100, "max_mp": 50, "power": 10, "speed": 6.0}, {}, "Pati")
+	check(not n.can_start_new_game_plus(), "Yeni Oyun+ sezon bitmeden açılmaz")
+	n.season = 3
+	while n.level < 12:
+		n.add_xp(Progression.xp_to_next(n.level) - n.xp)
+	n.add_piril(345)
+	n.add_item("sicak_kakao", 5)
+	for f: String in ["sezon1_bitti", "sezon2_bitti", "sezon3_bitti", "sezon3_senlik", "owned_kasif_sapkasi", "yan_sise_bitti", "regata_altin", "mercan_bahcesi_bitti",
+			"s3_prolog_bitti", "s3_bolum0_bitti", "s3_fisek1", "inci_kum", "s3_chapter1_m1"]:
+		n.set_flag(f)
+	n.start_quest({"id": "q_s3", "objectives": [{"id": "a", "type": "reach", "target": "x"}]})
+	n.start_quest({"id": "q_other", "objectives": [{"id": "a", "type": "reach", "target": "x"}]})
+	check(n.can_start_new_game_plus(), "Sezon 3 bitince Yeni Oyun+ açılır")
+	var lvl := n.level
+	n.start_new_game_plus({}, ["q_s3"])
+	check(n.level == lvl and n.piril == 345 and n.item_count("sicak_kakao") == 5, "Yeni Oyun+: seviye, Pırıl ve eşyalar kalır")
+	check(n.has_flag("ng_plus") and n.ng_plus_runs == 1 and n.season == 3 and n.scene_id == "s3_scene6", "Yeni Oyun+: bekçi seçiminden başlar")
+	for f: String in ["sezon1_bitti", "sezon2_bitti", "sezon3_bitti", "owned_kasif_sapkasi", "yan_sise_bitti", "regata_altin", "mercan_bahcesi_bitti"]:
+		check(n.has_flag(f), "Yeni Oyun+ korur: %s" % f)
+	for f: String in ["s3_prolog_bitti", "s3_bolum0_bitti", "s3_fisek1", "inci_kum", "s3_chapter1_m1", "sezon3_senlik"]:
+		check(not n.has_flag(f), "Yeni Oyun+ siler: %s" % f)
+	check(n.quest_state("q_s3") == "none" and n.quest_state("q_other") == "active", "Yeni Oyun+: yalnız hikâye görevleri silinir")
+	check(ShoreTravel.pearls(n) == 0 and ShoreTravel.destinations(n, "s3_chapter0").is_empty(), "Yeni Oyun+: adalar yeniden kapalı")
+	check(not n.can_start_new_game_plus(), "Yeni Oyun+ koşusunun ortasında yeniden sıfırlanmaz")
+	n.start_new_game_plus({}, ["q_s3"])
+	check(n.ng_plus_runs == 1, "Yeni Oyun+ iki kez çağrılınca bir kez sayılır")
+	var back := PlayerData.new()
+	back.load_dict(n.to_dict())
+	check(back.ng_plus_runs == 1, "Yeni Oyun+ sayısı kayıtta kalır")
+	var c := ContentScript.new()
+	check(Skills.for_character("tiril") == "isik_dalgasi" and Skills.season_for("tiril", 3) == "aile_isigi" and Skills.for_character("hiril") == "gumbur_dalgasi", "Hırıl ve Tırıl'ın yetenekleri")
+	check(not ("hiril" in c.keepers_s3["order"]) and c.keepers_s3.get("ng_plus", []) == ["hiril", "tiril"], "Hırıl ve Tırıl yalnız Yeni Oyun+'ta seçilir")
+	c.load_chapter("s3_chapter5")
+	for id: String in c.keepers_s3["order"] + c.keepers_s3["ng_plus"]:
+		check(c.barks.has("s3f_" + id), "final repliği var: %s" % id)

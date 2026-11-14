@@ -1,0 +1,17 @@
+{
+  "id": "s3_regatta",
+  "title": "Gece Regatası",
+  "region": "Mercan Koyu",
+  "theme": "dark",
+  "levels": [
+    5,
+    10
+  ],
+  "spark": null,
+  "quests": [],
+  "dialogue": [
+    "olta"
+  ],
+  "barks": "barks",
+  "shop": "shop"
+}

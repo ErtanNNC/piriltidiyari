@@ -28,6 +28,9 @@ const DEFS := {
 	"gece_lambasi": {"name": "Gece Lambası", "short": "Lamba", "mp": 25, "owner": "lumi", "season": 3},
 	"ritim_kalkani": {"name": "Ritim Kalkanı", "short": "Ritim", "mp": 20, "owner": "tipis_panda", "season": 3},
 	"kabuk_yuvasi": {"name": "Kabuk Yuvası", "short": "Yuva", "mp": 20, "owner": "tosbi", "season": 3},
+	# Yeni Oyun+: Tırıl is a keeper too (a light pulse; at level 5 the family's light)
+	"isik_dalgasi": {"name": "Işık Dalgası", "short": "Işık", "mp": 15, "owner": "tiril"},
+	"aile_isigi": {"name": "Aile Işığı", "short": "Aile", "mp": 25, "owner": "tiril", "season": 3},
 }
 
 ## The level a keeper learns their Season 2 calming skill.
@@ -66,13 +69,15 @@ static func season_for(character_id: String, season: int) -> String:
 ## Season 3 courage skills: light radii/times, hug reach, rhythm reach.
 const LEAD_LIGHTS := 3
 const LEAD_STEP := 2.2
-const TEMP_LIGHT := {"onden_giden": [3.0, 8.0], "fener_findigi": [3.6, 10.0], "gece_lambasi": [5.5, 12.0]}
+const TEMP_LIGHT := {"onden_giden": [3.0, 8.0], "fener_findigi": [3.6, 10.0], "gece_lambasi": [5.5, 12.0],
+	"isik_dalgasi": [4.5, 5.0], "aile_isigi": [6.0, 12.0]}
 const NUT_THROW := 6.0
 const LAMP_HEAL := 15
 const BEAR_HUG := 3.6
 const RHYTHM_SHIELD := 6.5
 const SHELL_GUARD := 3.0
 const DRUM_WAVE := 8.0
+const FAMILY_HEAL := 15
 
 
 ## Kucaklama Kalkanı: damage taken while the shield is up.

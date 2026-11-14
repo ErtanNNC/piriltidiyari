@@ -22,7 +22,8 @@ var _title: Label
 var _line: Label
 var _line_pill: PanelContainer
 var _pick: Button
-var _cards_row: HBoxContainer
+var _cards_row: Container
+var _look_rows: Array = []   # color + accessory rows (hidden for Hırıl/Tırıl)
 var _custom: PanelContainer
 var _name_edit: LineEdit
 var _swatches: HBoxContainer
@@ -61,15 +62,21 @@ func _ready() -> void:
 	bottom.alignment = BoxContainer.ALIGNMENT_END
 	bottom.add_theme_constant_override("separation", int(Tokens.px("space-3")))
 	add_child(bottom)
-	_cards_row = HBoxContainer.new()
-	_cards_row.alignment = BoxContainer.ALIGNMENT_CENTER
-	_cards_row.add_theme_constant_override("separation", int(Tokens.px("space-3")))
+	var hrow := HBoxContainer.new()
+	hrow.alignment = BoxContainer.ALIGNMENT_CENTER
+	# Yeni Oyun+ (eight keepers): small cards, closer together
+	hrow.add_theme_constant_override("separation", int(Tokens.px("space-2") if order.size() > 6 else Tokens.px("space-3")))
+	_cards_row = hrow
 	bottom.add_child(_cards_row)
 	for id in order:
 		var card := KeeperCard.new(id)
 		if order.size() > 4:
 			card.custom_minimum_size.x = 226
-		if order.size() > 5:
+		if order.size() > 6:
+			# eight cards on a 1280-wide screen: 8 × 148 + 7 × 8 = 1240
+			card.custom_minimum_size.x = 148
+			card.compact = true
+		elif order.size() > 5:
 			# six cards must fit a 16:9 phone (1280 wide)
 			card.custom_minimum_size.x = 196
 			for pip in card.find_children("*", "Panel", true, false):
@@ -114,14 +121,17 @@ func _build_custom() -> void:
 	v.add_theme_constant_override("separation", int(Tokens.px("space-3")))
 	_custom.add_child(v)
 	v.add_child(UiKit.label("Görünüşün", "text-heading", "ink"))
-	v.add_child(UiKit.label("Renk", "text-label", "ink-muted"))
+	var color_label := UiKit.label("Renk", "text-label", "ink-muted")
+	v.add_child(color_label)
 	_swatches = HBoxContainer.new()
 	_swatches.add_theme_constant_override("separation", int(Tokens.px("space-2")))
 	v.add_child(_swatches)
-	v.add_child(UiKit.label("Aksesuar", "text-label", "ink-muted"))
+	var acc_label := UiKit.label("Aksesuar", "text-label", "ink-muted")
+	v.add_child(acc_label)
 	_accessories = HBoxContainer.new()
 	_accessories.add_theme_constant_override("separation", int(Tokens.px("space-2")))
 	v.add_child(_accessories)
+	_look_rows = [color_label, _swatches, acc_label, _accessories]
 	for acc in KeeperModels.ACCESSORIES:
 		var b := UiKit.button(KeeperModels.ACCESSORY_NAMES[acc], false)
 		b.custom_minimum_size = Vector2(76, 52)
@@ -171,6 +181,8 @@ func _open_custom() -> void:
 	_pick.visible = false
 	_custom.visible = true
 	_name_edit.text = Content.keeper(current)["name"]
+	for r: Control in _look_rows:
+		r.visible = not (current in KeeperModels.PLAIN)
 	for c in _swatches.get_children():
 		c.queue_free()
 	var variants: Array = KeeperModels.INFO[current]["variants"]

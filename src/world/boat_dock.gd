@@ -41,12 +41,17 @@ func _build() -> void:
 func use(_by: Node) -> void:
 	var d := GameState.data
 	var to := ShoreTravel.destinations(d, here)
-	if to.is_empty():
+	if to.is_empty() and not d.has_flag("yan_sise_bitti"):
 		GameState.toast.emit("Deniz sisli. Önce buranın İşaret Fişeği'ni yak.", "spark")
 		return
 	var opts := []
 	for id: String in to:
 		opts.append({"id": id, "label": ShoreTravel.region(id)})
+	# after the season: the race; with every Mesaj Şişesi: Tırıl's garden
+	if d.has_flag("sezon3_bitti"):
+		opts.append({"id": "s3_regatta", "label": "Gece Regatası"})
+	if d.has_flag("yan_sise_bitti"):
+		opts.append({"id": "s3_garden", "label": "Mercan Bahçesi"})
 	opts.append({"id": "", "label": "Burada kal"})
 	var hud := get_tree().get_first_node_in_group("hud") as Hud
 	if hud == null:

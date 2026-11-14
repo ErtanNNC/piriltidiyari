@@ -315,6 +315,18 @@
     "civciv": {
       "name": "Martı Civciv",
       "color": "honey"
+    },
+    "tiril_anne": {
+      "name": "Tırıl'ın Annesi",
+      "color": "berry"
+    },
+    "tiril_baba": {
+      "name": "Tırıl'ın Babası",
+      "color": "honey"
+    },
+    "tiril_kardes": {
+      "name": "Tırıl'ın Kardeşi",
+      "color": "spark-green"
     }
   }
 }

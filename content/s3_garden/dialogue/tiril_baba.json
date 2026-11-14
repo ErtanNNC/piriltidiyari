@@ -1,0 +1,51 @@
+{
+  "npc": "tiril_baba",
+  "variants": [
+    {
+      "when": {
+        "not_flag": "mb_aile_baba"
+      },
+      "lines": [
+        {
+          "speaker": "tiril_baba",
+          "mood": "mutlu",
+          "text": "Ho! Misafir! Bahçemize ilk kez bir bekçi geldi."
+        },
+        {
+          "speaker": "tiril_baba",
+          "mood": "sakin",
+          "text": "Tırıl'ı akıntı götürdü. Aramayı hiç bırakmadık."
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "sakin",
+          "text": "O da hep bekledi. Sadece iyi saklanıyordu."
+        }
+      ],
+      "then": {
+        "set_flag": "mb_aile_baba"
+      }
+    },
+    {
+      "when": {
+        "flag": "mercan_bahcesi_bitti"
+      },
+      "lines": [
+        {
+          "speaker": "tiril_baba",
+          "mood": "mutlu",
+          "text": "Mercanları suluyorum. Şaka şaka, zaten suyun altındayız!"
+        }
+      ]
+    },
+    {
+      "lines": [
+        {
+          "speaker": "tiril_baba",
+          "mood": "sakin",
+          "text": "Kabuklara bak. Her birinde Tırıl'ın bir anısı saklı."
+        }
+      ]
+    }
+  ]
+}

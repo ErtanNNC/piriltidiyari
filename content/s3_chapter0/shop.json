@@ -89,6 +89,21 @@
         {
           "id": "bal_surubu",
           "price": 15
+        },
+        {
+          "id": "tekne_yelken",
+          "price": 120,
+          "once": true
+        },
+        {
+          "id": "tekne_kurek",
+          "price": 90,
+          "once": true
+        },
+        {
+          "id": "tekne_fener",
+          "price": 90,
+          "once": true
         }
       ]
     }

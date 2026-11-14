@@ -75,6 +75,9 @@ B.update({
     "s3f_tipis_panda": [L("tipis_panda", "mutlu", "Hırıl, hazır mısın? İlk konserimiz: bir, iki, üç!")],
     "s3f_tosbi": [L("tospik_nine", "mutlu", "Dedenin kabuk kalkanı artık senin, Tosbi."),
                   L("tosbi", "mutlu", "Saklanmak da cesaret. Yeter ki tekrar çıkayım!")],
+    # Yeni Oyun+ keepers
+    "s3f_hiril": [L("hiril", "mutlu", "Bu ritim hepimizin! Tırıl, sen de vur: bum, bum!")],
+    "s3f_tiril": [L("tiril", "mutlu", "Ürkünce ışığıma bakın. Ben hep buradayım!")],
     "s3f_6": [L("fistik", "şaşkın", "Bu sarmaşık da ne? Dikenleri benimkilere benzemiyor.")],
 })
 pack("s3_chapter5", "Kayıp Ada", "Kayıp Ada", [25, 30], [Q1, Q2], D, B)

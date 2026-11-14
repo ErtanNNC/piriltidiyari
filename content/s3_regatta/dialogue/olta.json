@@ -1,0 +1,72 @@
+{
+  "npc": "olta",
+  "variants": [
+    {
+      "when": {
+        "flag": "regata_altin"
+      },
+      "lines": [
+        {
+          "speaker": "olta",
+          "mood": "mutlu",
+          "text": "Miyav! Altın madalyalı kaptan gelmiş. Bıyığım kıvrıldı!"
+        },
+        {
+          "speaker": "olta",
+          "mood": "sakin",
+          "text": "Kayığını süslemek istersen sepetim açık."
+        }
+      ],
+      "then": {
+        "open_shop": "regata"
+      }
+    },
+    {
+      "when": {
+        "flag": "regata_bronz"
+      },
+      "lines": [
+        {
+          "speaker": "olta",
+          "mood": "mutlu",
+          "text": "Miyav! Yine mi yarış? Balıklar bile seni alkışlıyor."
+        },
+        {
+          "speaker": "olta",
+          "mood": "sakin",
+          "text": "Yelken, kürek, fener... Kayık bunlarla uçar!"
+        }
+      ],
+      "then": {
+        "open_shop": "regata"
+      }
+    },
+    {
+      "lines": [
+        {
+          "speaker": "olta",
+          "mood": "mutlu",
+          "text": "Miyav! Gece Regatası'na hoş geldin, kaptan!"
+        },
+        {
+          "speaker": "olta",
+          "mood": "sakin",
+          "text": "Işıklı kapılardan sırayla geç. Yıldızlı kapı sıradaki."
+        },
+        {
+          "speaker": "olta",
+          "mood": "mutlu",
+          "text": "Kayıkta ne kadar dost varsa o kadar hızlı gider. El ele!"
+        },
+        {
+          "speaker": "olta",
+          "mood": "sakin",
+          "text": "Acele yok. Burada kaybeden olmaz, sadece ıslanan olur."
+        }
+      ],
+      "then": {
+        "open_shop": "regata"
+      }
+    }
+  ]
+}

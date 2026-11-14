@@ -13,6 +13,9 @@ const ENDINGS := {
 	"lumi": "Ateşböceği ailen ve Tırıl'ın ailesi birlikte bir ışık dansı yaptı.",
 	"tipis_panda": "Hırıl ile kumsalda ilk ortak davul konserinizi verdiniz.",
 	"tosbi": "Tospik Nine sana dedenin kabuk kalkanını verdi: saklanmak da cesarettir.",
+	# Yeni Oyun+ keepers
+	"hiril": "Davulun bu kez bütün kıyıya yetti. Tırıl ritmini ezbere biliyor!",
+	"tiril": "Küçük bir Titrek'e ışığını gösterdin: \"Ben de korkmuştum. Bak, geçti.\"",
 }
 
 
@@ -77,6 +80,16 @@ func _ready() -> void:
 	stay.custom_minimum_size = Vector2(220, 60)
 	stay.pressed.connect(func() -> void: chosen.emit("s3_chapter0"))
 	buttons.add_child(stay)
+	if d.can_start_new_game_plus():
+		var ng := UiKit.button("Yeni Oyun+", false)
+		ng.name = "NewGamePlus"
+		ng.custom_minimum_size = Vector2(200, 60)
+		ng.pressed.connect(func() -> void:
+			var ask := SeasonFlow.ng_confirm()
+			add_child(ask)
+			if await ask.answered:
+				SeasonFlow.start_new_game_plus())
+		buttons.add_child(ng)
 	var menu := UiKit.button("Ana menü", false)
 	menu.custom_minimum_size = Vector2(180, 60)
 	menu.pressed.connect(func() -> void: chosen.emit("title"))

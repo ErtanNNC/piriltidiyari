@@ -1,0 +1,26 @@
+{
+  "id": "mercan_bahcesi",
+  "title": "Mercan Bahçesi",
+  "giver": "tiril",
+  "objectives": [
+    {
+      "id": "aile",
+      "text": "Tırıl'ın ailesini bul: anne, baba, kardeş",
+      "type": "meet",
+      "target": "tiril_ailesi",
+      "count": 3
+    },
+    {
+      "id": "kabuk",
+      "text": "Beş Anı Kabuğu'nu bul ve aç",
+      "type": "collect",
+      "target": "ani_kabugu",
+      "count": 5
+    }
+  ],
+  "turn_in": "Ortadaki Işık Kabuğu'na gel",
+  "rewards": {
+    "piril": 150,
+    "xp": 300
+  }
+}

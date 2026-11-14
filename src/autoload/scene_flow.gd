@@ -46,6 +46,8 @@ const SCENES := {
 	"s3_chapter4": "res://scenes/season3/s3_chapter4_firtina_kayasi.tscn",
 	"s3_chapter5": "res://scenes/season3/s3_chapter5_kayip_ada.tscn",
 	"s3_final": "res://scenes/season3/s3_final.tscn",
+	"s3_regatta": "res://scenes/season3/s3_regatta.tscn",
+	"s3_garden": "res://scenes/season3/s3_garden.tscn",
 	# inside a village house (which one: SceneFlow.house_id)
 	"house": "res://scenes/chapter0/ev.tscn",
 	# dev only: all characters side by side (tools/screenshot.sh --scene=preview)
@@ -58,7 +60,8 @@ const SCENE_CHAPTER := {"chapter0": "chapter0", "chapter1": "chapter1", "chapter
 	"s2_scene4": "s2_prologue", "s2_scene5": "s2_prologue", "s2_scene6": "s2_prologue",
 	"s2_chapter0": "s2_chapter0", "s2_chapter1": "s2_chapter1", "s2_chapter2": "s2_chapter2", "s2_chapter3": "s2_chapter3", "s2_chapter4": "s2_chapter4", "s2_chapter5": "s2_chapter5", "s2_final": "s2_chapter5",
 	"s3_scene1": "s3_prologue", "s3_scene2": "s3_prologue",
-	"s3_scene3": "s3_prologue", "s3_scene4": "s3_prologue", "s3_scene5": "s3_prologue", "s3_scene6": "s3_prologue", "s3_chapter0": "s3_chapter0", "s3_chapter1": "s3_chapter1", "s3_chapter2": "s3_chapter2", "s3_chapter3": "s3_chapter3", "s3_chapter4": "s3_chapter4", "s3_chapter5": "s3_chapter5", "s3_final": "s3_chapter5"}
+	"s3_scene3": "s3_prologue", "s3_scene4": "s3_prologue", "s3_scene5": "s3_prologue", "s3_scene6": "s3_prologue", "s3_chapter0": "s3_chapter0", "s3_chapter1": "s3_chapter1", "s3_chapter2": "s3_chapter2", "s3_chapter3": "s3_chapter3", "s3_chapter4": "s3_chapter4", "s3_chapter5": "s3_chapter5", "s3_final": "s3_chapter5",
+	"s3_regatta": "s3_regatta", "s3_garden": "s3_garden"}
 
 ## [small line, big title] shown when a scene starts.
 const CARDS := {
@@ -101,6 +104,8 @@ const CARDS := {
 	"s3_chapter4": ["Sezon 3 · Bölüm 4", "Fırtına Kayası"],
 	"s3_chapter5": ["Sezon 3 · Bölüm 5", "Kayıp Ada"],
 	"s3_final": ["Sezon 3 · Kapanış", "Fener Gecesi"],
+	"s3_regatta": ["Titrek Kıyılar", "Gece Regatası"],
+	"s3_garden": ["Gizli Bölge", "Mercan Bahçesi"],
 }
 
 var current := ""
@@ -191,7 +196,7 @@ func autosave() -> void:
 ## Short story scenes (prologues, finals) always begin again from their start:
 ## a save in their middle would keep the quest steps but not the scene.
 func is_linear(scene_id: String) -> bool:
-	return scene_id.contains("scene") or scene_id.contains("final")
+	return scene_id.contains("scene") or scene_id.contains("final") or scene_id in ["s3_regatta", "s3_garden"]
 
 
 func _notification(what: int) -> void:

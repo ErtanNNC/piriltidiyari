@@ -63,7 +63,7 @@ const SCENE_KIT := {
 	"s2_chapter3": "tarla", "s2_chapter4": "kanyon", "s2_chapter5": "volkan", "s2_final": "koy",
 	"s3_scene1": "kumsal", "s3_scene2": "kumsal", "s3_scene3": "koy3", "s3_scene4": "koy3", "s3_scene5": "koy3",
 	"s3_scene6": "kumsal", "s3_chapter0": "koy3", "s3_chapter1": "ada_murekkep", "s3_chapter2": "ada_kaya",
-	"s3_chapter3": "ada_kum", "s3_chapter4": "ada_firtina", "s3_chapter5": "ada_sis", "s3_final": "koy3",
+	"s3_chapter3": "ada_kum", "s3_chapter4": "ada_firtina", "s3_chapter5": "ada_sis", "s3_final": "koy3", "s3_regatta": "koy3", "s3_garden": "ada_murekkep",
 }
 
 

@@ -676,7 +676,7 @@ func toggle_pause() -> void:
 		toggle_pause())
 	var side := UiKit.button("Yan görevler", false)
 	side.name = "SideButton"
-	side.visible = GameState.data.season == 2
+	side.visible = GameState.data.season >= 2
 	side.pressed.connect(func() -> void:
 		panel.visible = false
 		var sp := _side_panel(func() -> void: panel.visible = true)
@@ -737,6 +737,8 @@ func _side_panel(on_back: Callable) -> Control:
 	var region := String(Content.side.get("regions", {}).get(scene, ""))
 	for id: String in Content.side.get("sets", {}):
 		var def: Dictionary = Content.side["sets"][id]
+		if int(def.get("season", 2)) != d.season:
+			continue
 		var n := SideQuests.found(d, Content.side, id)
 		var total := SideQuests.total(Content.side, id)
 		var head := UiKit.label("%s  %d/%d" % [TranslationServer.translate(String(def["title"])), n, total], "text-heading", "ink")
@@ -750,12 +752,13 @@ func _side_panel(on_back: Callable) -> Control:
 		sub.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		sub.custom_minimum_size = Vector2(420, 0)
 		v.add_child(sub)
-	var circle := d.quest_state("konusma_cemberi")
-	v.add_child(UiKit.label(TranslationServer.translate("Konuşma Çemberi"), "text-heading", "ink"))
-	var cl := UiKit.label({"done": "Tamam!", "none": "Kaplıca Köyü'nde Tospik Nine'ye sor (çan çalınca)"}.get(circle, "Kaplıca Köyü'nde: taşı sırayla götür"), "text-body", "ink-muted")
-	cl.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	cl.custom_minimum_size = Vector2(420, 0)
-	v.add_child(cl)
+	if d.season == 2:
+		var circle := d.quest_state("konusma_cemberi")
+		v.add_child(UiKit.label(TranslationServer.translate("Konuşma Çemberi"), "text-heading", "ink"))
+		var cl := UiKit.label({"done": "Tamam!", "none": "Kaplıca Köyü'nde Tospik Nine'ye sor (çan çalınca)"}.get(circle, "Kaplıca Köyü'nde: taşı sırayla götür"), "text-body", "ink-muted")
+		cl.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		cl.custom_minimum_size = Vector2(420, 0)
+		v.add_child(cl)
 	var back := UiKit.button("Geri", false)
 	back.custom_minimum_size = Vector2(280, 56)
 	back.pressed.connect(func() -> void:

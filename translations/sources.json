@@ -429,7 +429,13 @@
   "Işık Tohumu (10)",
   "Sapanla uzağa atılır, Pus'u dağıtır",
   "Ritim Tılsımı",
-  "Vuruşların davul gibi güçlenir: kalıcı +4 güç"
+  "Vuruşların davul gibi güçlenir: kalıcı +4 güç",
+  "Yıldız Yelken",
+  "Kabuk Kayık rüzgârı yakalar: yarışta daha hızlı gider",
+  "Hafif Kürek",
+  "Kabuk Kayık çabuk döner, çabuk hızlanır",
+  "Pruva Feneri",
+  "Kayığın ışığı büyür: sis onu yavaşlatamaz"
  ],
  "content/keepers.json": [
   "Pati",
@@ -479,6 +485,20 @@
   "Dalış: kısa süre su altında yüzer",
   "Tospik Nine'nin torunu. Saklanmak dinlenmektir; sonra yeniden çıkmak cesaret.",
   "Dedesinin Kabuk Kalkanı",
+  "Hırıl",
+  "Yanardağ yavrusu",
+  "Davulum hazır. Bu kez birlikte çalalım!",
+  "Gümbür Dalgası: davul dalgası, Titrekler durup dinler",
+  "Davul: her vuruşu bir ritimdir",
+  "Kor Vadisi'nin davulcusu. Öfkesini ritme çevirdi.",
+  "Hırıl'ın Davulu",
+  "Tırıl",
+  "Denizanası yavrusu",
+  "Artık titremiyorum. Işığım sizinle!",
+  "Işık Dalgası: etrafını kısa süre aydınlatır",
+  "Işık: karanlıkta hep biraz parlar",
+  "Kayıp Ada'nın ışığı. Korkusunu tanıdı, ailesine kavuştu.",
+  "Tırıl'ın Işığı",
   "Su mu? Ben mi? Korkmuyorum! ...Biraz.",
   "Minnoş, elimi tut. Ben burdayım.",
   "Kaybolursak... haritaya işaretleriz!",
@@ -1050,7 +1070,6 @@
   "Hırıl'ı yalnız bırakmadım. Onu dinler misin?"
  ],
  "content/s2_chapter5/quests/hiril.json": [
-  "Hırıl",
   "Dağın Ses Çanı'nı çal",
   "Zirvede Hırıl'ı dinle",
   "Al Kor'u al",
@@ -1677,6 +1696,8 @@
   "Hırıl, hazır mısın? İlk konserimiz: bir, iki, üç!",
   "Dedenin kabuk kalkanı artık senin, Tosbi.",
   "Saklanmak da cesaret. Yeter ki tekrar çıkayım!",
+  "Bu ritim hepimizin! Tırıl, sen de vur: bum, bum!",
+  "Ürkünce ışığıma bakın. Ben hep buradayım!",
   "Bu sarmaşık da ne? Dikenleri benimkilere benzemiyor."
  ],
  "content/s3_chapter5/chapter.json": [
@@ -1715,6 +1736,73 @@
   "El ele halkanın ortasında Tırıl'a el uzat",
   "İnci Beyazı'nı al",
   "Hırıl ile konuş"
+ ],
+ "content/s3_garden/barks.json": [
+  "Vay! Her yer mercan, her yer ışık. Mavi Titreme burada yok.",
+  "Yüzer gibi yürüyorum. Zıplayınca süzülüyorum!",
+  "Baloncuklar beni yukarı taşıdı! Bir daha, bir daha!",
+  "Bu kabukta ilk ışığım var. Annem bana 'minik fenerim' demişti.",
+  "O gece hiç titremedim. Çünkü elimi tutuyordu.",
+  "Babam bana baloncuk üflemeyi öğretti. İlki burnumda patladı!",
+  "Çok güldük. Gülünce ışığım pembe olurdu.",
+  "Burası bahçenin en yüksek yeri. Kardeşimle yıldız sayardık.",
+  "Ben hep on ikide şaşırırdım. O hiç bozuntuya vermezdi.",
+  "Fırtınalı bir gece akıntı beni aldı götürdü. Çok uzağa.",
+  "Ailem her gece ışık yakmış. Göremedim ama yakmışlar.",
+  "Saklandığım tekne çok karanlıktı. Tek ses bir davuldu.",
+  "Bum... bum... Biri beni arıyormuş. Artık biliyorum.",
+  "Herkesi buldun, bütün kabukları açtın!",
+  "Ortadaki Işık Kabuğu'na gel. Ailem seni bekliyor.",
+  "Yıllardır bu bahçenin ışıklarını yakmadık.",
+  "Bu gece yakıyoruz. Hazır mısınız? Bir, iki, üç!",
+  "Her yer parlıyor! Mercanlar bile gülüyor!",
+  "Bak, ışığım hiç titremiyor.",
+  "Çünkü biri beni aramaya geldi. Sonra bir daha geldi.",
+  "Yine gelirim. Kimse karanlıkta yalnız kalmaz.",
+  "Bahçemiz artık senin de bahçen. Ne zaman istersen gel."
+ ],
+ "content/s3_garden/chapter.json": [
+  "Mercan Bahçesi"
+ ],
+ "content/s3_garden/dialogue/tiril.json": [
+  "Bahçemize hoş geldin! Kapımız sana hep açık.",
+  "Kabukları istediğin kadar aç. Anılar eskimez.",
+  "Hepsini buldun! Ortadaki Işık Kabuğu'na gel.",
+  "Ailem orada toplandı. Seni bekliyoruz!",
+  "Ailem bahçeye dağıldı: annem, babam, minik kardeşim.",
+  "Baloncuk sütunları seni yukarı taşır. İçine gir, yeter!",
+  "Düşersen korkma. Burada herkes yavaşça süzülür.",
+  "Geldin! Burası Mercan Bahçesi. Benim evim.",
+  "Suyun altında nefes alabiliyorum! Burnum gıdıklanıyor.",
+  "Bütün şişeleri toplayınca kapı sana açıldı.",
+  "Ailemle tanışır mısın? Bir de beş Anı Kabuğu var.",
+  "Baloncuk sütunları seni yukarı taşır. Burada her şey yavaş!"
+ ],
+ "content/s3_garden/dialogue/tiril_anne.json": [
+  "Sen Tırıl'ı bulan bekçisin! Gel, sana yakından bakayım.",
+  "Her gece Deniz Feneri'ne baktık. Bir gün yanar dedik.",
+  "Yandı! Tırıl da evine geldi.",
+  "Tırıl artık ışığını yakıp mışıl mışıl uyuyor. Sayende.",
+  "Babası karşı kayada. Mercan Kemer'in üstünden geç!"
+ ],
+ "content/s3_garden/dialogue/tiril_baba.json": [
+  "Ho! Misafir! Bahçemize ilk kez bir bekçi geldi.",
+  "Tırıl'ı akıntı götürdü. Aramayı hiç bırakmadık.",
+  "O da hep bekledi. Sadece iyi saklanıyordu.",
+  "Mercanları suluyorum. Şaka şaka, zaten suyun altındayız!",
+  "Kabuklara bak. Her birinde Tırıl'ın bir anısı saklı."
+ ],
+ "content/s3_garden/dialogue/tiril_kardes.json": [
+  "Ce-ee! Beni buldun! Saklambaçta çok iyiyimdir.",
+  "Tırıl da iyi saklanır. Ama sen onu dört kere bulmuşsun!",
+  "Seni de buldum. Bu ailede herkes mi saklanıyor?",
+  "Bir daha saklanayım mı? Say bakalım: bir, iki, üç...",
+  "Baloncuklara bin! Hop diye yukarı çıkarsın. Çok gıdıklar!"
+ ],
+ "content/s3_garden/quests/mercan_bahcesi.json": [
+  "Tırıl'ın ailesini bul: anne, baba, kardeş",
+  "Beş Anı Kabuğu'nu bul ve aç",
+  "Ortadaki Işık Kabuğu'na gel"
  ],
  "content/s3_prologue/barks.json": [
   "Kumsalda ilk yaz gecesi! Bu gece müzikçi benim.",
@@ -1840,6 +1928,110 @@
   "Kumsaldaki üç meşaleyi yak",
   "Titrekleri ritimle durdur, ışığa al"
  ],
+ "content/s3_regatta/barks.json": [
+  "Miyav! Kayık hazır, deniz pırıl pırıl. Yarışalım mı?",
+  "Hazırım! Dostlarım da kayıkta.",
+  "Miyav! Mavi siste kayık kaplumbağa gibi gider.",
+  "Etrafından dolan ya da Pruva Feneri tak!",
+  "Bitirdin! Bronz madalya senin. Balık kokulu ama güzel!",
+  "Bir daha dene. Kapılara düz git, daha da hızlanırsın.",
+  "Miyav miyav! Gümüş madalya! Martılar bile geride kaldı.",
+  "Altın için dönüşleri kıs. Ya da yelkeni dene!",
+  "ALTIN! Miyaaav! Deniz Feneri bile göz kırptı!",
+  "Tek başıma değil. Kayık dost doluydu!",
+  "Güzel yarıştı! Madalyan aynı, keyfin yeni."
+ ],
+ "content/s3_regatta/chapter.json": [
+  "Gece Regatası"
+ ],
+ "content/s3_regatta/dialogue/olta.json": [
+  "Miyav! Altın madalyalı kaptan gelmiş. Bıyığım kıvrıldı!",
+  "Kayığını süslemek istersen sepetim açık.",
+  "Miyav! Yine mi yarış? Balıklar bile seni alkışlıyor.",
+  "Yelken, kürek, fener... Kayık bunlarla uçar!",
+  "Miyav! Gece Regatası'na hoş geldin, kaptan!",
+  "Işıklı kapılardan sırayla geç. Yıldızlı kapı sıradaki.",
+  "Kayıkta ne kadar dost varsa o kadar hızlı gider. El ele!",
+  "Acele yok. Burada kaybeden olmaz, sadece ıslanan olur."
+ ],
+ "content/s3_regatta/shop.json": [
+  "Olta'nın Kayık Sepeti"
+ ],
+ "content/s3_side.json": [
+  "Mesaj Şişeleri",
+  "Kıyıya vuran şişeler: içlerinde Tırıl'ın notları var",
+  "Kumda bir şişe! İçinde rulo yapılmış bir kâğıt var.",
+  "Titrek bir yazı... Bunu Tırıl yazmış olmalı.",
+  "Yirmi beş şişe, yirmi beş not. Hepsini okudum!",
+  "Son notun arkasında bir harita var: Mercan Bahçesi.",
+  "Kabuk Kayık artık oraya da gider. İskeleye!",
+  "Minnoş'un Gece Lambası",
+  "Her adada bir Işık Parçası: Minnoş'un lambası için",
+  "Sıcacık bir ışık parçası! Kum bile ısınmış.",
+  "Minnoş'un gece lambasına tam uyar. Toplayalım!",
+  "Beş parça da tamam! Lamba ay gibi parlıyor.",
+  "Minnoş'a söyleyeceğim: karanlıkta da yalnız değilsin.",
+  "Kardeşim Minnoş bu gece ışıl ışıl uyuyacak!",
+  "Fıstık'ın Kartpostalları",
+  "Fişek yanınca posta kutusuna Fıstık'tan bir kart gelir",
+  "Fıstık'ın bütün kartlarını okudum.",
+  "Ona en güzel deniz kabuğunu götüreceğim!",
+  "Pati'nin Sırrı",
+  "Pati üç adada kıyıda duruyor. Yanında dur, acele etme",
+  "Sırrım şu: sudan çok ürküyorum. Kediyim işte.",
+  "Bunu söylemek cesaret ister. Teşekkür ederim.",
+  "Elimi tutar mısın? Bir patimi suya sokacağım.",
+  "Islak! Soğuk! Ama... hâlâ buradayım!",
+  "Yarın iki pati. Yüzmeyi birlikte öğreniriz.",
+  "Bado, sırrım şu: sudan çok ürküyorum.",
+  "Bunu söylemek cesaret ister. İyi ki söyledin.",
+  "Biri bu şişeyi bulursa: ben Tırıl. Sanırım kayboldum.",
+  "Ailem dalgaların öbür yanında. Hangi yanında, bilmiyorum.",
+  "Bugün bir yıldız kaydı. Ürkmedim. Yani... çok az ürktüm.",
+  "Işığım titriyor. Titreyince etrafım mavi sis oluyor.",
+  "Biri beni arıyor mu? Arıyorsa: buradayım, sisin içinde.",
+  "Kart 1: Deniz mi? Dikenlerime tuz doldu. Çok sağ olun.",
+  "Yine de fişek güzel yandı. Aferin. Söylemedim say.",
+  "Bir ahtapot gördüm. O da saklanıyordu. İkimiz de sustuk.",
+  "Karanlıkta mantarlar parlıyor. Onlar hiç titremiyor.",
+  "Annem 'Uzaklaşma' demişti. Bir dalga beni aldı götürdü.",
+  "Şişe atmayı sürdürüyorum. Deniz iyi bir postacıdır belki.",
+  "Kart 2: Mürekkep lekesi çıkmıyor. Denedim. Üç kere.",
+  "Karanlıkta mantar parlarmış. Bana da bir tane getir.",
+  "Sadece dalgalara bakıyorum. Yaklaşmıyorum, bakıyorum.",
+  "Ben de bakarım. Acelemiz yok.",
+  "Sadece dalgalara bakıyorum Bado. Yaklaşmıyorum.",
+  "Rüzgâr şarkı söylüyor. Önce canavar sandım, rüzgârmış.",
+  "Bir martı yavrusu uçmayı deniyor. O da ürküyor. Yine deniyor.",
+  "Kendi kendime konuşuyorum. Cevap veren yok, komik değil.",
+  "Uzakta bir ışık yandı! Sonra bir tane daha. Kim yakıyor?",
+  "Kart 3: Rüzgâr şapkamı aldı. Şapkam yoktu ama olsun.",
+  "Yavru kuş uçmuş diyorlar. İyi. Çok iyi. Hapşu!",
+  "Rüzgâr su sıçratıyor. Tüylerim diken diken oldu.",
+  "Yanındayım. İstersen bir adım geri gidelim.",
+  "Yok. Burada, seninle durabilirim.",
+  "Burada kumlar yürüyor. Yolumu üç kere kaybettim.",
+  "Bir yengeç evini sırtında taşıyor. Benim evim nerede?",
+  "Bir davul sesi duydum. Gümbür gümbür ama... tatlı.",
+  "Davul çalınca sisim biraz dağıldı. Tuhaf, hoşuma gitti.",
+  "Kart 4: Kum her yerde. Yatağımda bile. Kim getirdi?",
+  "Dar gelen kabuğu değiştirmek akıllıca. Not aldım.",
+  "Burada kumlar bile yürüyor. Ben niye yürüyemiyorum?",
+  "Nereye yürüyemiyorsun Pati?",
+  "Söyleyeceğim. Az kaldı. Yanımda durman iyi geldi.",
+  "Gök gürledi. Gölgem kocaman oldu. Kendi gölgemden kaçtım.",
+  "Büyük bir fok da gök gürültüsünden ürküyor. Rahatladım.",
+  "Işıklar yaklaşıyor. Biri adaları tek tek aydınlatıyor!",
+  "Belki beni arıyorlardır. Belki de sadece geçiyorlardır.",
+  "Kart 5: Gök gürleyince dikenlerim kabardı. Soğuktan!",
+  "Tamam, biraz ürktüm. Kimseye söyleme. Sana söyledim.",
+  "Oyuncak teknem battı. İçinde ailemin resmi vardı.",
+  "Saklandığım yeri kimse bulamaz. Bulsalar... keşke bulsalar.",
+  "Biri 'Buldum seni!' derse kaçmayacağım. Söz.",
+  "Evim Mercan Bahçesi. Bir gün birini oraya götüreceğim.",
+  "Kart 6: Kaybolan bulunur. Ben de bir kere kaybolmuştum.",
+  "Beni bulan sizdiniz. Şimdi sıra sizde. Yolunuz açık olsun."
+ ],
  "content/speakers.json": [
   "Fıstık",
   "Tospik Nine",
@@ -1888,7 +2080,6 @@
   "Vık",
   "Minnoş",
   "Çıngır",
-  "Tırıl",
   "Mors Dede Bıyık",
   "Demirci Kerpeten",
   "Terzi Dantel",
@@ -1900,7 +2091,10 @@
   "Minik Kol",
   "Kardeş Kol",
   "Kayıp Denizyıldızı",
-  "Martı Civciv"
+  "Martı Civciv",
+  "Tırıl'ın Annesi",
+  "Tırıl'ın Babası",
+  "Tırıl'ın Kardeşi"
  ],
  "src/actors/breath_calm.gd": [
   "panel@light",
@@ -2079,6 +2273,7 @@
   "Sezon 3 · Bölüm 5",
   "Sezon 3 · Kapanış",
   "Fener Gecesi",
+  "Gizli Bölge",
   "%s yoluna çıkalım mı?",
   "Evet, gidelim",
   "Burada kal"
@@ -2177,7 +2372,9 @@
   "Fener Fındığı",
   "Gece Lambası",
   "Ritim Kalkanı",
-  "Kabuk Yuvası"
+  "Kabuk Yuvası",
+  "Işık Dalgası",
+  "Aile Işığı"
  ],
  "src/core/titrek_kinds.gd": [
   "Titrek Yengeç",
@@ -2333,12 +2530,15 @@
   "Ateşböceği ailen ve Tırıl'ın ailesi birlikte bir ışık dansı yaptı.",
   "Hırıl ile kumsalda ilk ortak davul konserinizi verdiniz.",
   "Tospik Nine sana dedenin kabuk kalkanını verdi: saklanmak da cesarettir.",
+  "Davulun bu kez bütün kıyıya yetti. Tırıl ritmini ezbere biliyor!",
+  "Küçük bir Titrek'e ışığını gösterdin: \"Ben de korkmuştum. Bak, geçti.\"",
   "Sezon 3 tamamlandı!",
   "Titrek Kıyılar · Kıvılcım Bekçileri 3",
   "Beş inci yerine kondu, Yaşlı Deniz Feneri yeniden yandı.",
   "Tırıl ailesine kavuştu. Işığı artık titremiyor.",
   "Pırıltı Diyarı'nın Feneri geceleri mavi bir gece lambası: korkan herkes için.",
-  "Koyda dolaş"
+  "Koyda dolaş",
+  "Yeni Oyun+"
  ],
  "src/ui/season_end.gd": [
   "Dağların ardında Kor Vadisi ve Kızıl Sis",
@@ -2601,7 +2801,6 @@
   "Ritmi dinle, nefeslenince vur!",
   "Yanına git, Sakinleş'e basılı tut. Davulunu dinle.",
   "Anı",
-  "Hırıl'ın Davulu",
   "Gümbür Kanyonu, çok uzun zaman önce",
   "Bakır Kor",
   "Gümbür Kanyonu artık şarkı yankılıyor",
@@ -2705,7 +2904,6 @@
   "Kıskaçtan ve kum çukurundan kaç. Bikbik yorulunca vur!",
   "Kıskaçtan kaç, yorulunca vur!",
   "Bikbik hangi kabuğu denesin?",
-  "Mercan Bahçesi",
   "Tırıl'ın ilk anısı",
   "Kumların kuzeyindeki İşaret Fişeği'ni yak",
   "Kabuk Kayık'a bin: Fırtına Kayası'na açıl",
@@ -2741,6 +2939,17 @@
   "Mavi Titreme dağıldı",
   "S3K5_NEXT"
  ],
+ "src/world/s3_garden.gd": [
+  "Shell%d",
+  "Girişteki Tırıl ile konuş",
+  "Tırıl ile konuş",
+  "Bahçenin ortasındaki Işık Kabuğu'na git",
+  "Işık Kabuğu'na git",
+  "Mercan Bahçesi ışıl ışıl!",
+  "Kimse karanlıkta yalnız kalmaz.",
+  "İstediğin kadar gez. Baloncuk Kapısı seni Mercan Koyu'na götürür.",
+  "Gez ya da Baloncuk Kapısı'ndan dön"
+ ],
  "src/world/s3_island.gd": [
   "İskeledeki Kabuk Kayık'a bin: %s yolu açıldı!",
   "İskeleye git, kayığa bin: %s",
@@ -2750,6 +2959,24 @@
   "İnci",
   "Halkalardan kaç. Soluklanınca vur!",
   "Halkalardan kaç, soluklanınca vur!"
+ ],
+ "src/world/s3_regatta.gd": [
+  "Yıldızlı tabelaya git: kayığa bin. Olta'da kayık parçaları var.",
+  "Yıldızlı tabelaya git, Bin'e bas!",
+  "Yarışa başla",
+  "Koya dön",
+  "Başla!",
+  "Mavi sis kayığı yavaşlatır. Etrafından dolan!",
+  "Önce yıldızlı kapı! Geri dön, acele yok.",
+  "Kapı %d/%d · %s sn",
+  "Süre: %s sn",
+  "Süre: %s sn · +%d Pırıl",
+  "Altın madalya!",
+  "Gümüş madalya!",
+  "Bronz madalya!",
+  "Yarış bitti! Şimdi ne yapalım?",
+  "Tekrar yarış",
+  "Takıldım"
  ],
  "src/world/s3_scene1.gd": [
   "Castle%d",
@@ -2823,6 +3050,9 @@
   "Işıltı",
   "Yeni bekçi",
   "Kıvılcım avucunda. Macera başlıyor!"
+ ],
+ "src/world/season_flow.gd": [
+  "Seviyen ve eşyaların kalır, hikâye baştan başlar. Hırıl ve Tırıl da seçilebilir!"
  ],
  "src/world/ship_dock.gd": [
   "Uç"

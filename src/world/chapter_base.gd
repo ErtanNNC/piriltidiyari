@@ -23,8 +23,21 @@ func _place_side_spots() -> void:
 		var at: Array = pair[1]["at"]
 		s.position = Vector3(float(at[0]), 0.0, float(at[1]))
 		add_child(s)
+		_snap_side_spot.call_deferred(s)
 	if DevTools.demo == "side":
 		_side_demo()
+
+
+## Islands have ledges: a spot sits on whatever floor is under it.
+func _snap_side_spot(s: Node3D) -> void:
+	await get_tree().physics_frame
+	await get_tree().physics_frame
+	if not is_instance_valid(s):
+		return
+	var q := PhysicsRayQueryParameters3D.create(s.global_position + Vector3.UP * 30.0, s.global_position + Vector3.DOWN * 5.0, 1)
+	var hit := get_world_3d().direct_space_state.intersect_ray(q)
+	if not hit.is_empty():
+		s.global_position.y = hit["position"].y
 
 
 ## Test helper: big meshes between the camera and a side spot (tree

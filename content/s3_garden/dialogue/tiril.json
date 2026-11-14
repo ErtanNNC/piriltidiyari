@@ -1,0 +1,95 @@
+{
+  "npc": "tiril",
+  "variants": [
+    {
+      "when": {
+        "flag": "mercan_bahcesi_bitti"
+      },
+      "lines": [
+        {
+          "speaker": "tiril",
+          "mood": "mutlu",
+          "text": "Bahçemize hoş geldin! Kapımız sana hep açık."
+        },
+        {
+          "speaker": "tiril",
+          "mood": "mutlu",
+          "text": "Kabukları istediğin kadar aç. Anılar eskimez."
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "mercan_bahcesi",
+        "state": "ready"
+      },
+      "lines": [
+        {
+          "speaker": "tiril",
+          "mood": "mutlu",
+          "text": "Hepsini buldun! Ortadaki Işık Kabuğu'na gel."
+        },
+        {
+          "speaker": "tiril",
+          "mood": "mutlu",
+          "text": "Ailem orada toplandı. Seni bekliyoruz!"
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "mercan_bahcesi",
+        "state": "active"
+      },
+      "lines": [
+        {
+          "speaker": "tiril",
+          "mood": "sakin",
+          "text": "Ailem bahçeye dağıldı: annem, babam, minik kardeşim."
+        },
+        {
+          "speaker": "tiril",
+          "mood": "mutlu",
+          "text": "Baloncuk sütunları seni yukarı taşır. İçine gir, yeter!"
+        },
+        {
+          "speaker": "tiril",
+          "mood": "sakin",
+          "text": "Düşersen korkma. Burada herkes yavaşça süzülür."
+        }
+      ]
+    },
+    {
+      "lines": [
+        {
+          "speaker": "tiril",
+          "mood": "mutlu",
+          "text": "Geldin! Burası Mercan Bahçesi. Benim evim."
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "şaşkın",
+          "text": "Suyun altında nefes alabiliyorum! Burnum gıdıklanıyor."
+        },
+        {
+          "speaker": "tiril",
+          "mood": "mutlu",
+          "text": "Bütün şişeleri toplayınca kapı sana açıldı."
+        },
+        {
+          "speaker": "tiril",
+          "mood": "utangaç",
+          "text": "Ailemle tanışır mısın? Bir de beş Anı Kabuğu var."
+        },
+        {
+          "speaker": "tiril",
+          "mood": "mutlu",
+          "text": "Baloncuk sütunları seni yukarı taşır. Burada her şey yavaş!"
+        }
+      ],
+      "then": {
+        "start_quest": "mercan_bahcesi"
+      }
+    }
+  ]
+}

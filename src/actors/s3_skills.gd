@@ -57,6 +57,22 @@ static func use(p: Player, id: String) -> bool:
 			if p.ring:
 				p.ring.warm()
 			_listen_around(p, 4.0)
+		"isik_dalgasi":
+			# Tırıl's light pulse: a soft light for a few seconds; those who
+			# were listening calm down in it (a TempLight counts as a torch)
+			var t4: Array = Skills.TEMP_LIGHT[id]
+			Effects.ring(world, at + Vector3.UP * 0.3, t4[0], Tokens.color("sky"), 0.5)
+			Effects.sparkle(world, at + Vector3.UP, Tokens.color("sky"), 8)
+			TempLight.spawn(world, at, t4[0], t4[1], Tokens.color("sky"))
+		"aile_isigi":
+			# the whole family's light: wide, long, warm
+			var t5: Array = Skills.TEMP_LIGHT[id]
+			for i in 2:
+				Effects.ring(world, at + Vector3.UP * 0.3, t5[0] * (i + 1) / 2.0, Tokens.color("sky"), 0.5 + i * 0.2)
+			TempLight.spawn(world, at, t5[0], t5[1], Tokens.color("sky"))
+			GameState.data.heal(Skills.FAMILY_HEAL)
+			if p.ring:
+				p.ring.warm()
 		_:
 			return false
 	return true

@@ -244,6 +244,27 @@
       "power": 4,
       "icon": "spark",
       "desc": "Vuruşların davul gibi güçlenir: kalıcı +4 güç"
+    },
+    "tekne_yelken": {
+      "name": "Yıldız Yelken",
+      "color": "spark-yellow",
+      "kind": "charm",
+      "icon": "star",
+      "desc": "Kabuk Kayık rüzgârı yakalar: yarışta daha hızlı gider"
+    },
+    "tekne_kurek": {
+      "name": "Hafif Kürek",
+      "color": "sky",
+      "kind": "charm",
+      "icon": "drop",
+      "desc": "Kabuk Kayık çabuk döner, çabuk hızlanır"
+    },
+    "tekne_fener": {
+      "name": "Pruva Feneri",
+      "color": "honey",
+      "kind": "charm",
+      "icon": "spark",
+      "desc": "Kayığın ışığı büyür: sis onu yavaşlatamaz"
     }
   }
 }

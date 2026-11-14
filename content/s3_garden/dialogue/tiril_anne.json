@@ -1,0 +1,51 @@
+{
+  "npc": "tiril_anne",
+  "variants": [
+    {
+      "when": {
+        "not_flag": "mb_aile_anne"
+      },
+      "lines": [
+        {
+          "speaker": "tiril_anne",
+          "mood": "mutlu",
+          "text": "Sen Tırıl'ı bulan bekçisin! Gel, sana yakından bakayım."
+        },
+        {
+          "speaker": "tiril_anne",
+          "mood": "sakin",
+          "text": "Her gece Deniz Feneri'ne baktık. Bir gün yanar dedik."
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "mutlu",
+          "text": "Yandı! Tırıl da evine geldi."
+        }
+      ],
+      "then": {
+        "set_flag": "mb_aile_anne"
+      }
+    },
+    {
+      "when": {
+        "flag": "mercan_bahcesi_bitti"
+      },
+      "lines": [
+        {
+          "speaker": "tiril_anne",
+          "mood": "mutlu",
+          "text": "Tırıl artık ışığını yakıp mışıl mışıl uyuyor. Sayende."
+        }
+      ]
+    },
+    {
+      "lines": [
+        {
+          "speaker": "tiril_anne",
+          "mood": "sakin",
+          "text": "Babası karşı kayada. Mercan Kemer'in üstünden geç!"
+        }
+      ]
+    }
+  ]
+}

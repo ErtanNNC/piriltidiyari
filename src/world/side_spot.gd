@@ -8,7 +8,13 @@ extends Interactable
 ## A small floating star marks what is still to find (not through walls,
 ## so they stay a little hidden).
 
-const COLORS := {"minnos": "spark-green", "davul": "honey", "mektup": "sky"}
+## Season 3 (content/s3_side.json):
+##   sise: a Mesaj Şişesi washed up on the sand, a note from Tırıl ("Oku")
+##   isik: a Işık Parçası for Minnoş's night lamp ("Al")
+##   kart: Fıstık's postcard in a mailbox, after the island's flare ("Oku")
+##   pati: Pati by the water (Bado when you are Pati): stand with them
+const COLORS := {"minnos": "spark-green", "davul": "honey", "mektup": "sky",
+	"sise": "sky", "isik": "spark-yellow", "kart": "honey", "pati": "berry"}
 ## drum beat patterns (one char = BEAT seconds), one per drum of a region
 const PATTERNS := ["x...x...x.x.....", "..x...x...x...x.", "x.x.....x.x.x..."]
 const BEAT := 0.3
@@ -37,14 +43,22 @@ func _build() -> void:
 			_build_drawing()
 		"davul":
 			_build_drum()
-		"mektup":
+		"mektup", "kart":
 			_build_mailbox()
+		"sise":
+			_build_bottle()
+		"isik":
+			_build_shard()
+		"pati":
+			_build_friend()
 	_refresh()
 
 
 func _ready() -> void:
 	super._ready()
 	set_meta("action_label", action_label)
+	if _set == "isik" and is_found():
+		done()
 	_player = get_tree().get_first_node_in_group("player") as Node3D
 	GameState.data.flags_changed.connect(_refresh)
 
@@ -80,24 +94,24 @@ func use(_by: Node) -> void:
 	var d := GameState.data
 	var def: Dictionary = Content.side["sets"][_set]
 	if not SideQuests.available(d, spot):
-		GameState.toast.emit("Posta kutusu boş. Çan çalınca mektup gelir.", "lantern")
+		GameState.toast.emit(String(def.get("locked", "Posta kutusu boş. Çan çalınca mektup gelir.")), "lantern")
 		return
 	if is_found():
 		# drawings and letters can be read again
-		if spot.has("lines"):
-			GameState.lines_requested.emit(GameState.resolve_speakers(spot["lines"]), {})
+		if not _lines(spot, "lines").is_empty():
+			GameState.lines_requested.emit(GameState.resolve_speakers(_lines(spot, "lines")), {})
 		return
 	var events := SideQuests.take(d, Content.side, scene_id, index)
 	if events.is_empty():
 		return
 	var lines := []
 	if "first" in events:
-		lines.append_array(def.get("first", []))
-	lines.append_array(spot.get("lines", []))
+		lines.append_array(_lines(def, "first"))
+	lines.append_array(_lines(spot, "lines"))
 	if "region" in events:
-		lines.append_array(def.get("region", []))
+		lines.append_array(_lines(def, "region"))
 	if "done" in events:
-		lines.append_array(def.get("done", []))
+		lines.append_array(_lines(def, "done"))
 	var n := SideQuests.found(d, Content.side, _set)
 	var title := TranslationServer.translate(String(def["title"]))
 	GameState.toast.emit("%s: %d/%d" % [title, n, SideQuests.total(Content.side, _set)], "star")
@@ -106,8 +120,10 @@ func use(_by: Node) -> void:
 	match _set:
 		"davul":
 			_free_drum("region" in events)
-		"mektup":
+		"mektup", "kart", "sise":
 			Audio.play("page")
+		"isik":
+			Audio.play("crystal")
 		_:
 			Audio.play("memory")
 	if "done" in events:
@@ -117,6 +133,17 @@ func use(_by: Node) -> void:
 	_refresh()
 	if _set == "davul":
 		done()
+	elif _set == "isik":
+		# the shard goes into the pocket
+		if _shard:
+			_shard.queue_free()
+		done()
+
+
+## Lines for whoever is played: "<key>_<keeper id>" wins over "<key>"
+## (Pati's secret is told BY Pati when you are Pati).
+func _lines(from: Dictionary, key: String) -> Array:
+	return from.get("%s_%s" % [key, GameState.data.character_id], from.get(key, []))
 
 
 # --- looks -----------------------------------------------------------------
@@ -187,6 +214,53 @@ func _build_mailbox() -> void:
 	Toon.part(self, "cylinder", Vector3(0.5, 0.8, 0.5), Color("#e8604a"), Vector3(0, 1.39, 0), Vector3(90, 0, 0))
 	Toon.part(self, "box", Vector3(0.3, 0.05, 0.02), Color("#2a2433"), Vector3(0, 1.3, 0.41), Vector3.ZERO, 0.0, 0.0)
 	_mail_flag()
+
+
+## A corked bottle half in the sand, a rolled note inside.
+func _build_bottle() -> void:
+	var b := Node3D.new()
+	b.name = "Bottle"
+	add_child(b)
+	b.rotation_degrees = Vector3(0, 30, 0)
+	if ModelImport.fit_static("mesaj_sisesi", b, Vector3(0, 0.38, 0), Vector3(0.75, 0.76, 0.75)):
+		return
+	b.rotation_degrees = Vector3(0, 30, 62)
+	Toon.part(b, "cylinder", Vector3(0.34, 0.6, 0.34), Color("#9fd8d0"), Vector3(0, 0.36, 0), Vector3.ZERO, 0.3, 0.02)
+	Toon.part(b, "cylinder", Vector3(0.16, 0.24, 0.16), Color("#9fd8d0"), Vector3(0, 0.76, 0), Vector3.ZERO, 0.3, 0.02)
+	Toon.part(b, "cylinder", Vector3(0.18, 0.1, 0.18), Color("#a8794f"), Vector3(0, 0.92, 0))
+	Toon.part(b, "cylinder", Vector3(0.14, 0.4, 0.14), Color("#fff4dc"), Vector3(0, 0.34, 0), Vector3.ZERO, 0.2, 0.0)
+
+
+var _shard: Node3D
+
+
+## A small warm crystal turning over the sand (gone once taken).
+func _build_shard() -> void:
+	if is_found():
+		return
+	_shard = Node3D.new()
+	_shard.name = "Shard"
+	_shard.position.y = 0.9
+	add_child(_shard)
+	Toon.part(_shard, "sphere", Vector3(0.34, 0.5, 0.34), "spark-yellow", Vector3.ZERO, Vector3.ZERO, 1.6, 0.02)
+	Toon.part(_shard, "ring", Vector3(0.7, 0.05, 0.7), "spark-white", Vector3.ZERO, Vector3(70, 0, 0), 1.0, 0.0)
+	var l := OmniLight3D.new()
+	l.light_color = Tokens.color("spark-yellow")
+	l.omni_range = 3.0
+	l.light_energy = 0.8
+	_shard.add_child(l)
+	var tw := _shard.create_tween().set_loops()
+	tw.tween_property(_shard, "rotation:y", TAU, 4.0).from(0.0)
+
+
+## Pati looking at the water (Bado listens when you play Pati).
+func _build_friend() -> void:
+	var id := "bado" if GameState.data.character_id == "pati" else "pati"
+	var m := KeeperModels.build(id)
+	m.name = "Friend"
+	m.rotation.y = float(spot.get("face", 180.0)) * PI / 180.0
+	add_child(m)
+	reach = 1.9
 
 
 ## The flag that stands up while a letter waits.

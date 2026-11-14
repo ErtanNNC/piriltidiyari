@@ -14,6 +14,36 @@
       "world": "Dalış: kısa süre su altında yüzer",
       "story": "Tospik Nine'nin torunu. Saklanmak dinlenmektir; sonra yeniden çıkmak cesaret.",
       "signature": "Dedesinin Kabuk Kalkanı"
+    },
+    "hiril": {
+      "name": "Hırıl",
+      "species": "Yanardağ yavrusu",
+      "color": "hp",
+      "line": "Davulum hazır. Bu kez birlikte çalalım!",
+      "stats": {
+        "can": 4,
+        "guc": 4,
+        "hiz": 2
+      },
+      "special": "Gümbür Dalgası: davul dalgası, Titrekler durup dinler",
+      "world": "Davul: her vuruşu bir ritimdir",
+      "story": "Kor Vadisi'nin davulcusu. Öfkesini ritme çevirdi.",
+      "signature": "Hırıl'ın Davulu"
+    },
+    "tiril": {
+      "name": "Tırıl",
+      "species": "Denizanası yavrusu",
+      "color": "sky",
+      "line": "Artık titremiyorum. Işığım sizinle!",
+      "stats": {
+        "can": 3,
+        "guc": 2,
+        "hiz": 5
+      },
+      "special": "Işık Dalgası: etrafını kısa süre aydınlatır",
+      "world": "Işık: karanlıkta hep biraz parlar",
+      "story": "Kayıp Ada'nın ışığı. Korkusunu tanıdı, ailesine kavuştu.",
+      "signature": "Tırıl'ın Işığı"
     }
   },
   "order": [
@@ -30,6 +60,12 @@
     "citir": "Kaybolursak... haritaya işaretleriz!",
     "lumi": "Birlikte daha parlakız.",
     "tipis_panda": "Davulu duyuyor musun? Bizi çağırıyor.",
-    "tosbi": "Korksam bile geliyorum."
-  }
+    "tosbi": "Korksam bile geliyorum.",
+    "hiril": "Davulum hazır. Bu kez birlikte çalalım!",
+    "tiril": "Artık titremiyorum. Işığım sizinle!"
+  },
+  "ng_plus": [
+    "hiril",
+    "tiril"
+  ]
 }

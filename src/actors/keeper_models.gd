@@ -22,7 +22,14 @@ const INFO := {
 	# Season 3 (real model: assets/models/tosbi.glb)
 	"tosbi": {"name": "Tosbi", "species": "Kaplumbağa yavrusu", "color": "spark-green", "line": "Korksam bile geliyorum.",
 		"variants": [Color("#b9d86a"), Color("#8fc9a0"), Color("#d9c86a")]},
+	# Yeni Oyun+ (Season 3): one look each, no hats or outfits on them
+	"hiril": {"name": "Hırıl", "species": "Yanardağ yavrusu", "color": "hp", "line": "Davulum hazır. Bu kez birlikte çalalım!",
+		"variants": [Color("#a85a42")]},
+	"tiril": {"name": "Tırıl", "species": "Denizanası yavrusu", "color": "sky", "line": "Artık titremiyorum. Işığım sizinle!",
+		"variants": [Color("#9fd8ff")]},
 }
+## Keepers that always wear their own look (no color, accessory, outfit).
+const PLAIN := ["hiril", "tiril"]
 const ACCESSORIES := ["yok", "sapka", "atki", "gozluk"]
 const ACCESSORY_NAMES := {"yok": "Yok", "sapka": "Şapka", "atki": "Atkı", "gozluk": "Gözlük"}
 const CREAM := Color("#fff1dc")
@@ -31,6 +38,8 @@ const PAD := Color("#ff9db4")
 
 
 static func build(id: String, look := {}) -> Node3D:
+	if id in PLAIN:
+		return _plain(id)
 	var imported := ModelImport.load_model(id)
 	if imported:
 		# a real model: hats, capes, scarves and tools still go on, at anchor
@@ -66,6 +75,31 @@ static func build(id: String, look := {}) -> Node3D:
 	return root
 
 
+## Hırıl and Tırıl as keepers (Yeni Oyun+): their own models at keeper size.
+## They glow by themselves, so the mist never greys them.
+static func _plain(id: String) -> Node3D:
+	var m: Node3D
+	if id == "hiril":
+		m = HirilModel.build(true)
+	else:
+		m = ModelImport.load_model(id)
+		if m == null:
+			m = Node3D.new()
+			var body := Toon.part(m, "sphere", Vector3(0.9, 0.9, 0.9), Color("#9fd8ff"), Vector3(0, 0.6, 0), Vector3.ZERO, 1.5, 0.0)
+			body.name = "Body"
+		var glow := OmniLight3D.new()
+		glow.name = "Glow"
+		glow.light_color = Color("#9fd8ff")
+		glow.light_energy = 0.5
+		glow.omni_range = 2.5
+		glow.position = Vector3(0, 0.9, 0)
+		m.add_child(glow)
+	MobModels._no_pus(m)
+	if m.find_child("Rig", true, false) == null:
+		CharacterRig.attach(m)
+	return m
+
+
 ## The color shown on swatch `i` (variant 0 of a real model is its own fur).
 static func swatch(id: String, i: int) -> Color:
 	var info: Dictionary = INFO.get(id, INFO["pati"])
@@ -73,7 +107,8 @@ static func swatch(id: String, i: int) -> Color:
 		var own := String(ModelImport._options(id).get("fur", ""))
 		if own != "":
 			return Color(own)
-	return info["variants"][clampi(i, 0, 2)]
+	var vs: Array = info["variants"]
+	return vs[clampi(i, 0, vs.size() - 1)]
 
 
 ## Fur color on a textured model: its own fur ("fur" in the json) is shifted

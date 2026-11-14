@@ -49,6 +49,8 @@ var season := 1
 var s1_keeper: Dictionary = {}
 ## The keeper who finished Season 2 (Season 3's prologue is played as Hırıl).
 var s2_keeper: Dictionary = {}
+## How many times Yeni Oyun+ was started in this save (0 in older saves).
+var ng_plus_runs := 0
 
 
 # --- stats --------------------------------------------------------------
@@ -443,10 +445,56 @@ func start_season3(item_defs: Dictionary) -> void:
 	piril_changed.emit(piril, 0)
 
 
+## Yeni Oyun+ keeps these flags (by prefix): what you own, side collections,
+## finished seasons, the regatta and coral garden, NG+ itself, and the marks
+## of Seasons 1 and 2. Every other flag is Season 3's story and is forgotten.
+const NG_KEEP := ["owned_", "yan_", "sezon", "regata_", "mercan_", "ng_",
+	"s2", "kor_", "bolum", "sahne", "prolog_", "tas_", "sandik_", "spot_", "ani_", "can_", "kapi_"]
+
+
+## True when this save may start Yeni Oyun+: Season 3 is finished, and a
+## Yeni Oyun+ already under way has reached the Fener Gecesi again.
+func can_start_new_game_plus() -> bool:
+	return has_flag("sezon3_bitti") and season >= 3 and (has_flag("sezon3_senlik") or not has_flag("ng_plus"))
+
+
+## Yeni Oyun+: Season 3's story starts again from the keeper choice (El Ele).
+## Level, XP, powers, skills, Pırıl, items, potions and everything owned or
+## worn stay. `story_quests` = the ids of Season 3's quests (they are
+## forgotten); flags go unless NG_KEEP holds them (pearls, torches, flares,
+## veils and every story mark). Sets flag "ng_plus" (Hırıl and Tırıl can be
+## chosen) and counts the run. Calling it again changes nothing more.
+func start_new_game_plus(item_defs: Dictionary = {}, story_quests: Array = []) -> void:
+	for f: String in flags.keys():
+		var keep := false
+		for pre: String in NG_KEEP:
+			if f.begins_with(pre):
+				keep = true
+				break
+		if not keep:
+			flags.erase(f)
+	flags.erase("sezon3_senlik")  # this run's Fener Gecesi is still ahead
+	for q: Variant in story_quests:
+		quests.erase(String(q))
+	if not has_flag("ng_plus") or ng_plus_runs == 0 or scene_id != "s3_scene6":
+		ng_plus_runs += 1  # a second call before the choice is the same run
+	flags["ng_plus"] = true
+	season = 3
+	scene_id = "s3_scene6"
+	if not item_defs.is_empty():
+		recompute_stats(item_defs)
+	hp = max_hp
+	mp = max_mp
+	flags_changed.emit()
+	for q: Variant in story_quests:
+		quest_changed.emit(String(q))
+	stats_changed.emit()
+
+
 # --- save ---------------------------------------------------------------
 
 const SAVE_KEYS := ["character_id", "character_name", "character_look", "scene_id", "level", "xp",
-	"max_hp", "hp", "max_mp", "mp", "power", "speed", "piril", "items", "potions", "skills", "quests", "flags", "sparks", "equipped", "powers", "power_picks", "base_stats", "season", "s1_keeper", "s2_keeper"]
+	"max_hp", "hp", "max_mp", "mp", "power", "speed", "piril", "items", "potions", "skills", "quests", "flags", "sparks", "equipped", "powers", "power_picks", "base_stats", "season", "s1_keeper", "s2_keeper", "ng_plus_runs"]
 
 
 func to_dict() -> Dictionary:

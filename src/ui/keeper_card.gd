@@ -7,6 +7,8 @@ signal pressed
 
 var id := ""
 var _selected := false
+## Eight keepers in one row (Yeni Oyun+): a narrow card, long words end in “…”.
+var compact := false
 
 
 func _init(keeper_id: String) -> void:
@@ -24,7 +26,8 @@ func _ready() -> void:
 	head.add_theme_constant_override("separation", int(Tokens.px("space-2")))
 	v.add_child(head)
 	var dot := Panel.new()
-	dot.custom_minimum_size = Vector2(36, 36)
+	dot.custom_minimum_size = Vector2(30, 30) if compact else Vector2(36, 36)
+	dot.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 	dot.add_theme_stylebox_override("panel", UiKit.box(Tokens.color(Content.text_safe(info["color"])), "radius-pill"))
 	var letter := UiKit.label(TranslationServer.translate(String(info["name"])).left(1), "text-label", "on-color")
 	letter.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -36,22 +39,32 @@ func _ready() -> void:
 	names.add_theme_constant_override("separation", -4)
 	head.add_child(names)
 	names.add_child(UiKit.label(info["name"], "text-heading", "ink"))
-	names.add_child(UiKit.label(info["species"], "text-caption", "ink-muted"))
+	var species := UiKit.label(info["species"], "text-caption", "ink-muted")
+	if compact:
+		species.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+		species.clip_text = true
+		v.add_child(species)
+	else:
+		names.add_child(species)
 	for stat in [["can", "Can", "hp"], ["guc", "Güç", "berry"], ["hiz", "Hız", "sky"]]:
 		var row := HBoxContainer.new()
 		row.add_theme_constant_override("separation", 4)
 		var l := UiKit.label(stat[1], "text-caption", "ink")
-		l.custom_minimum_size.x = 44
+		l.custom_minimum_size.x = 30 if compact else 44
 		row.add_child(l)
 		var n: int = int(info["stats"][stat[0]])
 		for i in 5:
 			var pip := Panel.new()
-			pip.custom_minimum_size = Vector2(26, 14)
+			pip.custom_minimum_size = Vector2(15, 12) if compact else Vector2(26, 14)
 			pip.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 			pip.add_theme_stylebox_override("panel", UiKit.box(Tokens.color(stat[2]) if i < n else Tokens.color("panel-sunken"), "radius-pill", 0.0, 2.0))
 			row.add_child(pip)
 		v.add_child(row)
 	var special := UiKit.label(String(info["special"]).get_slice(":", 0), "text-caption", "ink-muted")
+	if compact:
+		v.add_theme_constant_override("separation", 2)
+		special.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+		special.clip_text = true
 	v.add_child(special)
 	set_selected(false)
 
@@ -61,7 +74,7 @@ func set_selected(on: bool) -> void:
 	var s := UiKit.box(Tokens.color("panel"), "radius-lg", 4.0, 5.0 if on else 3.0)
 	if on:
 		s.border_color = Tokens.color("honey-deep")
-	s.set_content_margin_all(Tokens.px("space-3"))
+	s.set_content_margin_all(Tokens.px("space-2") if compact else Tokens.px("space-3"))
 	add_theme_stylebox_override("panel", s)
 	position.y = 0
 	var tw := create_tween()

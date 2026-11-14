@@ -102,6 +102,22 @@ func _build_menu() -> void:
 				GameState.data = latest
 				SeasonFlow.start_season3())
 			root.add_child(s3)
+		# Season 3 finished in the newest save: Yeni Oyun+ (asks first)
+		if read_ok and latest.can_start_new_game_plus():
+			var ng := UiKit.button("Yeni Oyun+")
+			ng.name = "NewGamePlus"
+			ng.custom_minimum_size = Vector2(260, 64)
+			ng.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+			ng.pressed.connect(func() -> void:
+				var ask := SeasonFlow.ng_confirm()
+				_ui.add_child(ask)
+				if not await ask.answered:
+					return
+				SaveGame.slot = maxi(SaveGame.latest_slot(), 1)
+				latest.recompute_stats(Content.items)
+				GameState.data = latest
+				SeasonFlow.start_new_game_plus())
+			root.add_child(ng)
 		start.text = "Yeni oyun"
 	root.add_child(start)
 	if has_save:

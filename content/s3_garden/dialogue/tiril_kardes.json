@@ -1,0 +1,51 @@
+{
+  "npc": "tiril_kardes",
+  "variants": [
+    {
+      "when": {
+        "not_flag": "mb_aile_kardes"
+      },
+      "lines": [
+        {
+          "speaker": "tiril_kardes",
+          "mood": "mutlu",
+          "text": "Ce-ee! Beni buldun! Saklambaçta çok iyiyimdir."
+        },
+        {
+          "speaker": "tiril_kardes",
+          "mood": "şaşkın",
+          "text": "Tırıl da iyi saklanır. Ama sen onu dört kere bulmuşsun!"
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "mutlu",
+          "text": "Seni de buldum. Bu ailede herkes mi saklanıyor?"
+        }
+      ],
+      "then": {
+        "set_flag": "mb_aile_kardes"
+      }
+    },
+    {
+      "when": {
+        "flag": "mercan_bahcesi_bitti"
+      },
+      "lines": [
+        {
+          "speaker": "tiril_kardes",
+          "mood": "mutlu",
+          "text": "Bir daha saklanayım mı? Say bakalım: bir, iki, üç..."
+        }
+      ]
+    },
+    {
+      "lines": [
+        {
+          "speaker": "tiril_kardes",
+          "mood": "mutlu",
+          "text": "Baloncuklara bin! Hop diye yukarı çıkarsın. Çok gıdıklar!"
+        }
+      ]
+    }
+  ]
+}

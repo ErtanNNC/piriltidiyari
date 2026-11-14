@@ -1,0 +1,71 @@
+{
+  "barks": {
+    "rg_basla": [
+      {
+        "speaker": "olta",
+        "mood": "mutlu",
+        "text": "Miyav! Kayık hazır, deniz pırıl pırıl. Yarışalım mı?"
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Hazırım! Dostlarım da kayıkta."
+      }
+    ],
+    "rg_sis": [
+      {
+        "speaker": "olta",
+        "mood": "şaşkın",
+        "text": "Miyav! Mavi siste kayık kaplumbağa gibi gider."
+      },
+      {
+        "speaker": "olta",
+        "mood": "sakin",
+        "text": "Etrafından dolan ya da Pruva Feneri tak!"
+      }
+    ],
+    "rg_bronz": [
+      {
+        "speaker": "olta",
+        "mood": "mutlu",
+        "text": "Bitirdin! Bronz madalya senin. Balık kokulu ama güzel!"
+      },
+      {
+        "speaker": "olta",
+        "mood": "sakin",
+        "text": "Bir daha dene. Kapılara düz git, daha da hızlanırsın."
+      }
+    ],
+    "rg_gumus": [
+      {
+        "speaker": "olta",
+        "mood": "mutlu",
+        "text": "Miyav miyav! Gümüş madalya! Martılar bile geride kaldı."
+      },
+      {
+        "speaker": "olta",
+        "mood": "sakin",
+        "text": "Altın için dönüşleri kıs. Ya da yelkeni dene!"
+      }
+    ],
+    "rg_altin": [
+      {
+        "speaker": "olta",
+        "mood": "mutlu",
+        "text": "ALTIN! Miyaaav! Deniz Feneri bile göz kırptı!"
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Tek başıma değil. Kayık dost doluydu!"
+      }
+    ],
+    "rg_yine": [
+      {
+        "speaker": "olta",
+        "mood": "mutlu",
+        "text": "Güzel yarıştı! Madalyan aynı, keyfin yeni."
+      }
+    ]
+  }
+}

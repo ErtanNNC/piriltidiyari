@@ -1,0 +1,821 @@
+{
+ "sets": {
+  "sise": {
+   "season": 3,
+   "title": "Mesaj Şişeleri",
+   "action": "Oku",
+   "desc": "Kıyıya vuran şişeler: içlerinde Tırıl'ın notları var",
+   "reward": {
+    "piril": 300,
+    "xp": 600
+   },
+   "first": [
+    {
+     "speaker": "oyuncu",
+     "mood": "şaşkın",
+     "text": "Kumda bir şişe! İçinde rulo yapılmış bir kâğıt var."
+    },
+    {
+     "speaker": "oyuncu",
+     "mood": "sakin",
+     "text": "Titrek bir yazı... Bunu Tırıl yazmış olmalı."
+    }
+   ],
+   "done": [
+    {
+     "speaker": "oyuncu",
+     "mood": "mutlu",
+     "text": "Yirmi beş şişe, yirmi beş not. Hepsini okudum!"
+    },
+    {
+     "speaker": "oyuncu",
+     "mood": "şaşkın",
+     "text": "Son notun arkasında bir harita var: Mercan Bahçesi."
+    },
+    {
+     "speaker": "oyuncu",
+     "mood": "kararlı",
+     "text": "Kabuk Kayık artık oraya da gider. İskeleye!"
+    }
+   ]
+  },
+  "isik": {
+   "season": 3,
+   "title": "Minnoş'un Gece Lambası",
+   "action": "Al",
+   "desc": "Her adada bir Işık Parçası: Minnoş'un lambası için",
+   "reward": {
+    "piril": 200,
+    "xp": 400
+   },
+   "first": [
+    {
+     "speaker": "oyuncu",
+     "mood": "şaşkın",
+     "text": "Sıcacık bir ışık parçası! Kum bile ısınmış."
+    },
+    {
+     "speaker": "oyuncu",
+     "mood": "mutlu",
+     "text": "Minnoş'un gece lambasına tam uyar. Toplayalım!"
+    }
+   ],
+   "done": [
+    {
+     "speaker": "oyuncu",
+     "mood": "mutlu",
+     "text": "Beş parça da tamam! Lamba ay gibi parlıyor."
+    },
+    {
+     "speaker": "oyuncu",
+     "mood": "sakin",
+     "text": "Minnoş'a söyleyeceğim: karanlıkta da yalnız değilsin."
+    }
+   ],
+   "done_bado": [
+    {
+     "speaker": "oyuncu",
+     "mood": "mutlu",
+     "text": "Beş parça da tamam! Lamba ay gibi parlıyor."
+    },
+    {
+     "speaker": "oyuncu",
+     "mood": "mutlu",
+     "text": "Kardeşim Minnoş bu gece ışıl ışıl uyuyacak!"
+    }
+   ]
+  },
+  "kart": {
+   "season": 3,
+   "title": "Fıstık'ın Kartpostalları",
+   "action": "Oku",
+   "desc": "Fişek yanınca posta kutusuna Fıstık'tan bir kart gelir",
+   "locked": "Posta kutusu boş. Fişek yanınca kart gelir.",
+   "reward": {
+    "piril": 150,
+    "xp": 300
+   },
+   "first": [],
+   "done": [
+    {
+     "speaker": "oyuncu",
+     "mood": "mutlu",
+     "text": "Fıstık'ın bütün kartlarını okudum."
+    },
+    {
+     "speaker": "oyuncu",
+     "mood": "mutlu",
+     "text": "Ona en güzel deniz kabuğunu götüreceğim!"
+    }
+   ]
+  },
+  "pati": {
+   "season": 3,
+   "title": "Pati'nin Sırrı",
+   "action": "Yanında dur",
+   "desc": "Pati üç adada kıyıda duruyor. Yanında dur, acele etme",
+   "reward": {
+    "piril": 200,
+    "xp": 400
+   },
+   "first": [],
+   "done": [
+    {
+     "speaker": "pati",
+     "mood": "dertli",
+     "text": "Sırrım şu: sudan çok ürküyorum. Kediyim işte."
+    },
+    {
+     "speaker": "oyuncu",
+     "mood": "sakin",
+     "text": "Bunu söylemek cesaret ister. Teşekkür ederim."
+    },
+    {
+     "speaker": "pati",
+     "mood": "kararlı",
+     "text": "Elimi tutar mısın? Bir patimi suya sokacağım."
+    },
+    {
+     "speaker": "pati",
+     "mood": "şaşkın",
+     "text": "Islak! Soğuk! Ama... hâlâ buradayım!"
+    },
+    {
+     "speaker": "oyuncu",
+     "mood": "mutlu",
+     "text": "Yarın iki pati. Yüzmeyi birlikte öğreniriz."
+    }
+   ],
+   "done_pati": [
+    {
+     "speaker": "oyuncu",
+     "mood": "dertli",
+     "text": "Bado, sırrım şu: sudan çok ürküyorum."
+    },
+    {
+     "speaker": "bado",
+     "mood": "sakin",
+     "text": "Bunu söylemek cesaret ister. İyi ki söyledin."
+    },
+    {
+     "speaker": "oyuncu",
+     "mood": "kararlı",
+     "text": "Elimi tutar mısın? Bir patimi suya sokacağım."
+    },
+    {
+     "speaker": "oyuncu",
+     "mood": "şaşkın",
+     "text": "Islak! Soğuk! Ama... hâlâ buradayım!"
+    },
+    {
+     "speaker": "bado",
+     "mood": "mutlu",
+     "text": "Yarın iki pati. Yüzmeyi birlikte öğreniriz."
+    }
+   ]
+  }
+ },
+ "regions": {
+  "s3_chapter0": "Mercan Koyu",
+  "s3_chapter1": "Mürekkep Adası",
+  "s3_chapter2": "Rüzgârlı Kayalıklar",
+  "s3_chapter3": "Değişen Kumlar",
+  "s3_chapter4": "Fırtına Kayası",
+  "s3_chapter5": "Kayıp Ada"
+ },
+ "spots": {
+  "s3_chapter0": [
+   {
+    "set": "sise",
+    "at": [
+     -24,
+     19
+    ],
+    "lines": [
+     {
+      "speaker": "tiril",
+      "mood": "dertli",
+      "text": "Biri bu şişeyi bulursa: ben Tırıl. Sanırım kayboldum."
+     }
+    ]
+   },
+   {
+    "set": "sise",
+    "at": [
+     24,
+     21
+    ],
+    "lines": [
+     {
+      "speaker": "tiril",
+      "mood": "dertli",
+      "text": "Ailem dalgaların öbür yanında. Hangi yanında, bilmiyorum."
+     }
+    ]
+   },
+   {
+    "set": "sise",
+    "at": [
+     -25,
+     -20
+    ],
+    "lines": [
+     {
+      "speaker": "tiril",
+      "mood": "sakin",
+      "text": "Bugün bir yıldız kaydı. Ürkmedim. Yani... çok az ürktüm."
+     }
+    ]
+   },
+   {
+    "set": "sise",
+    "at": [
+     25,
+     -6
+    ],
+    "lines": [
+     {
+      "speaker": "tiril",
+      "mood": "dertli",
+      "text": "Işığım titriyor. Titreyince etrafım mavi sis oluyor."
+     }
+    ]
+   },
+   {
+    "set": "sise",
+    "at": [
+     12,
+     -22
+    ],
+    "lines": [
+     {
+      "speaker": "tiril",
+      "mood": "sakin",
+      "text": "Biri beni arıyor mu? Arıyorsa: buradayım, sisin içinde."
+     }
+    ]
+   },
+   {
+    "set": "kart",
+    "at": [
+     9,
+     20
+    ],
+    "needs": "s3_fisek0",
+    "lines": [
+     {
+      "speaker": "fistik",
+      "mood": "huysuz",
+      "text": "Kart 1: Deniz mi? Dikenlerime tuz doldu. Çok sağ olun."
+     },
+     {
+      "speaker": "fistik",
+      "mood": "sakin",
+      "text": "Yine de fişek güzel yandı. Aferin. Söylemedim say."
+     }
+    ]
+   }
+  ],
+  "s3_chapter1": [
+   {
+    "set": "sise",
+    "at": [
+     -12,
+     27
+    ],
+    "lines": [
+     {
+      "speaker": "tiril",
+      "mood": "şaşkın",
+      "text": "Bir ahtapot gördüm. O da saklanıyordu. İkimiz de sustuk."
+     }
+    ]
+   },
+   {
+    "set": "sise",
+    "at": [
+     -13,
+     0
+    ],
+    "lines": [
+     {
+      "speaker": "tiril",
+      "mood": "sakin",
+      "text": "Karanlıkta mantarlar parlıyor. Onlar hiç titremiyor."
+     }
+    ]
+   },
+   {
+    "set": "sise",
+    "at": [
+     8,
+     -16
+    ],
+    "lines": [
+     {
+      "speaker": "tiril",
+      "mood": "dertli",
+      "text": "Annem 'Uzaklaşma' demişti. Bir dalga beni aldı götürdü."
+     }
+    ]
+   },
+   {
+    "set": "sise",
+    "at": [
+     -10,
+     -46
+    ],
+    "lines": [
+     {
+      "speaker": "tiril",
+      "mood": "sakin",
+      "text": "Şişe atmayı sürdürüyorum. Deniz iyi bir postacıdır belki."
+     }
+    ]
+   },
+   {
+    "set": "isik",
+    "at": [
+     6,
+     -44
+    ]
+   },
+   {
+    "set": "kart",
+    "at": [
+     8,
+     17
+    ],
+    "needs": "s3_fisek1",
+    "lines": [
+     {
+      "speaker": "fistik",
+      "mood": "huysuz",
+      "text": "Kart 2: Mürekkep lekesi çıkmıyor. Denedim. Üç kere."
+     },
+     {
+      "speaker": "fistik",
+      "mood": "sakin",
+      "text": "Karanlıkta mantar parlarmış. Bana da bir tane getir."
+     }
+    ]
+   },
+   {
+    "set": "pati",
+    "at": [
+     8,
+     27
+    ],
+    "face": 0,
+    "lines": [
+     {
+      "speaker": "pati",
+      "mood": "sakin",
+      "text": "Sadece dalgalara bakıyorum. Yaklaşmıyorum, bakıyorum."
+     },
+     {
+      "speaker": "oyuncu",
+      "mood": "sakin",
+      "text": "Ben de bakarım. Acelemiz yok."
+     }
+    ],
+    "lines_pati": [
+     {
+      "speaker": "oyuncu",
+      "mood": "sakin",
+      "text": "Sadece dalgalara bakıyorum Bado. Yaklaşmıyorum."
+     },
+     {
+      "speaker": "bado",
+      "mood": "sakin",
+      "text": "Ben de bakarım. Acelemiz yok."
+     }
+    ]
+   }
+  ],
+  "s3_chapter2": [
+   {
+    "set": "sise",
+    "at": [
+     -15,
+     26
+    ],
+    "lines": [
+     {
+      "speaker": "tiril",
+      "mood": "şaşkın",
+      "text": "Rüzgâr şarkı söylüyor. Önce canavar sandım, rüzgârmış."
+     }
+    ]
+   },
+   {
+    "set": "sise",
+    "at": [
+     15,
+     20
+    ],
+    "lines": [
+     {
+      "speaker": "tiril",
+      "mood": "sakin",
+      "text": "Bir martı yavrusu uçmayı deniyor. O da ürküyor. Yine deniyor."
+     }
+    ]
+   },
+   {
+    "set": "sise",
+    "at": [
+     -10,
+     -2
+    ],
+    "lines": [
+     {
+      "speaker": "tiril",
+      "mood": "dertli",
+      "text": "Kendi kendime konuşuyorum. Cevap veren yok, komik değil."
+     }
+    ]
+   },
+   {
+    "set": "sise",
+    "at": [
+     15,
+     -26
+    ],
+    "lines": [
+     {
+      "speaker": "tiril",
+      "mood": "mutlu",
+      "text": "Uzakta bir ışık yandı! Sonra bir tane daha. Kim yakıyor?"
+     }
+    ]
+   },
+   {
+    "set": "isik",
+    "at": [
+     -12,
+     -16
+    ]
+   },
+   {
+    "set": "kart",
+    "at": [
+     5,
+     22
+    ],
+    "needs": "s3_fisek2",
+    "lines": [
+     {
+      "speaker": "fistik",
+      "mood": "huysuz",
+      "text": "Kart 3: Rüzgâr şapkamı aldı. Şapkam yoktu ama olsun."
+     },
+     {
+      "speaker": "fistik",
+      "mood": "mutlu",
+      "text": "Yavru kuş uçmuş diyorlar. İyi. Çok iyi. Hapşu!"
+     }
+    ]
+   },
+   {
+    "set": "pati",
+    "at": [
+     14,
+     27
+    ],
+    "face": 0,
+    "lines": [
+     {
+      "speaker": "pati",
+      "mood": "şaşkın",
+      "text": "Rüzgâr su sıçratıyor. Tüylerim diken diken oldu."
+     },
+     {
+      "speaker": "oyuncu",
+      "mood": "sakin",
+      "text": "Yanındayım. İstersen bir adım geri gidelim."
+     },
+     {
+      "speaker": "pati",
+      "mood": "kararlı",
+      "text": "Yok. Burada, seninle durabilirim."
+     }
+    ],
+    "lines_pati": [
+     {
+      "speaker": "oyuncu",
+      "mood": "şaşkın",
+      "text": "Rüzgâr su sıçratıyor. Tüylerim diken diken oldu."
+     },
+     {
+      "speaker": "bado",
+      "mood": "sakin",
+      "text": "Yanındayım. İstersen bir adım geri gidelim."
+     },
+     {
+      "speaker": "oyuncu",
+      "mood": "kararlı",
+      "text": "Yok. Burada, seninle durabilirim."
+     }
+    ]
+   }
+  ],
+  "s3_chapter3": [
+   {
+    "set": "sise",
+    "at": [
+     -9,
+     27
+    ],
+    "lines": [
+     {
+      "speaker": "tiril",
+      "mood": "şaşkın",
+      "text": "Burada kumlar yürüyor. Yolumu üç kere kaybettim."
+     }
+    ]
+   },
+   {
+    "set": "sise",
+    "at": [
+     12,
+     12
+    ],
+    "lines": [
+     {
+      "speaker": "tiril",
+      "mood": "sakin",
+      "text": "Bir yengeç evini sırtında taşıyor. Benim evim nerede?"
+     }
+    ]
+   },
+   {
+    "set": "sise",
+    "at": [
+     -12,
+     -9
+    ],
+    "lines": [
+     {
+      "speaker": "tiril",
+      "mood": "mutlu",
+      "text": "Bir davul sesi duydum. Gümbür gümbür ama... tatlı."
+     }
+    ]
+   },
+   {
+    "set": "sise",
+    "at": [
+     12,
+     -20
+    ],
+    "lines": [
+     {
+      "speaker": "tiril",
+      "mood": "sakin",
+      "text": "Davul çalınca sisim biraz dağıldı. Tuhaf, hoşuma gitti."
+     }
+    ]
+   },
+   {
+    "set": "isik",
+    "at": [
+     10,
+     0
+    ]
+   },
+   {
+    "set": "kart",
+    "at": [
+     -6,
+     22
+    ],
+    "needs": "s3_fisek3",
+    "lines": [
+     {
+      "speaker": "fistik",
+      "mood": "huysuz",
+      "text": "Kart 4: Kum her yerde. Yatağımda bile. Kim getirdi?"
+     },
+     {
+      "speaker": "fistik",
+      "mood": "sakin",
+      "text": "Dar gelen kabuğu değiştirmek akıllıca. Not aldım."
+     }
+    ]
+   },
+   {
+    "set": "pati",
+    "at": [
+     12,
+     27
+    ],
+    "face": 0,
+    "lines": [
+     {
+      "speaker": "pati",
+      "mood": "dertli",
+      "text": "Burada kumlar bile yürüyor. Ben niye yürüyemiyorum?"
+     },
+     {
+      "speaker": "oyuncu",
+      "mood": "şaşkın",
+      "text": "Nereye yürüyemiyorsun Pati?"
+     },
+     {
+      "speaker": "pati",
+      "mood": "sakin",
+      "text": "Söyleyeceğim. Az kaldı. Yanımda durman iyi geldi."
+     }
+    ],
+    "lines_pati": [
+     {
+      "speaker": "oyuncu",
+      "mood": "dertli",
+      "text": "Burada kumlar bile yürüyor. Ben niye yürüyemiyorum?"
+     },
+     {
+      "speaker": "bado",
+      "mood": "şaşkın",
+      "text": "Nereye yürüyemiyorsun Pati?"
+     },
+     {
+      "speaker": "oyuncu",
+      "mood": "sakin",
+      "text": "Söyleyeceğim. Az kaldı. Yanımda durman iyi geldi."
+     }
+    ]
+   }
+  ],
+  "s3_chapter4": [
+   {
+    "set": "sise",
+    "at": [
+     -8,
+     27
+    ],
+    "lines": [
+     {
+      "speaker": "tiril",
+      "mood": "dertli",
+      "text": "Gök gürledi. Gölgem kocaman oldu. Kendi gölgemden kaçtım."
+     }
+    ]
+   },
+   {
+    "set": "sise",
+    "at": [
+     7,
+     18
+    ],
+    "lines": [
+     {
+      "speaker": "tiril",
+      "mood": "sakin",
+      "text": "Büyük bir fok da gök gürültüsünden ürküyor. Rahatladım."
+     }
+    ]
+   },
+   {
+    "set": "sise",
+    "at": [
+     -8,
+     -2
+    ],
+    "lines": [
+     {
+      "speaker": "tiril",
+      "mood": "mutlu",
+      "text": "Işıklar yaklaşıyor. Biri adaları tek tek aydınlatıyor!"
+     }
+    ]
+   },
+   {
+    "set": "sise",
+    "at": [
+     -8,
+     -12
+    ],
+    "lines": [
+     {
+      "speaker": "tiril",
+      "mood": "şaşkın",
+      "text": "Belki beni arıyorlardır. Belki de sadece geçiyorlardır."
+     }
+    ]
+   },
+   {
+    "set": "isik",
+    "at": [
+     -8,
+     16
+    ]
+   },
+   {
+    "set": "kart",
+    "at": [
+     6,
+     23
+    ],
+    "needs": "s3_fisek4",
+    "lines": [
+     {
+      "speaker": "fistik",
+      "mood": "huysuz",
+      "text": "Kart 5: Gök gürleyince dikenlerim kabardı. Soğuktan!"
+     },
+     {
+      "speaker": "fistik",
+      "mood": "sakin",
+      "text": "Tamam, biraz ürktüm. Kimseye söyleme. Sana söyledim."
+     }
+    ]
+   }
+  ],
+  "s3_chapter5": [
+   {
+    "set": "sise",
+    "at": [
+     -8,
+     24
+    ],
+    "lines": [
+     {
+      "speaker": "tiril",
+      "mood": "dertli",
+      "text": "Oyuncak teknem battı. İçinde ailemin resmi vardı."
+     }
+    ]
+   },
+   {
+    "set": "sise",
+    "at": [
+     8,
+     -1
+    ],
+    "lines": [
+     {
+      "speaker": "tiril",
+      "mood": "sakin",
+      "text": "Saklandığım yeri kimse bulamaz. Bulsalar... keşke bulsalar."
+     }
+    ]
+   },
+   {
+    "set": "sise",
+    "at": [
+     -8,
+     -17
+    ],
+    "lines": [
+     {
+      "speaker": "tiril",
+      "mood": "mutlu",
+      "text": "Biri 'Buldum seni!' derse kaçmayacağım. Söz."
+     }
+    ]
+   },
+   {
+    "set": "sise",
+    "at": [
+     8,
+     -31
+    ],
+    "lines": [
+     {
+      "speaker": "tiril",
+      "mood": "mutlu",
+      "text": "Evim Mercan Bahçesi. Bir gün birini oraya götüreceğim."
+     }
+    ]
+   },
+   {
+    "set": "isik",
+    "at": [
+     12,
+     -55
+    ]
+   },
+   {
+    "set": "kart",
+    "at": [
+     -8,
+     -49
+    ],
+    "needs": "s3_fisek5",
+    "lines": [
+     {
+      "speaker": "fistik",
+      "mood": "sakin",
+      "text": "Kart 6: Kaybolan bulunur. Ben de bir kere kaybolmuştum."
+     },
+     {
+      "speaker": "fistik",
+      "mood": "mutlu",
+      "text": "Beni bulan sizdiniz. Şimdi sıra sizde. Yolunuz açık olsun."
+     }
+    ]
+   }
+  ]
+ }
+}

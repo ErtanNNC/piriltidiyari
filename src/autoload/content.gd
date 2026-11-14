@@ -26,6 +26,10 @@ func _init() -> void:
 	keepers_s2 = read_json("res://content/keepers_s2.json")
 	keepers_s3 = read_json("res://content/keepers_s3.json")
 	side = read_json("res://content/s2_side.json")
+	# Season 3's collections live in their own file; sets carry "season": 3
+	var s3: Dictionary = read_json("res://content/s3_side.json")
+	for k: String in ["sets", "regions", "spots"]:
+		(side[k] as Dictionary).merge(s3.get(k, {}))
 	load_chapter("prologue")
 
 

@@ -251,6 +251,20 @@
         "text": "Saklanmak da cesaret. Yeter ki tekrar çıkayım!"
       }
     ],
+    "s3f_hiril": [
+      {
+        "speaker": "hiril",
+        "mood": "mutlu",
+        "text": "Bu ritim hepimizin! Tırıl, sen de vur: bum, bum!"
+      }
+    ],
+    "s3f_tiril": [
+      {
+        "speaker": "tiril",
+        "mood": "mutlu",
+        "text": "Ürkünce ışığıma bakın. Ben hep buradayım!"
+      }
+    ],
     "s3f_6": [
       {
         "speaker": "fistik",

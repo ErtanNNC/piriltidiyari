@@ -74,5 +74,5 @@ B={
 S={"mors":{"title":"Mors Dede'nin Fener Dolabı","items":[{"id":"bal_surubu","price":15},{"id":"sicak_kakao","price":15},{"id":"yildiz_tozu","price":20},{"id":"cesaret_kurabiyesi","price":35}]},
  "kerpeten":{"title":"Kerpeten'in Örsü","items":[{"id":"isik_degnegi","price":60,"once":True},{"id":"yildiz_asasi","price":150,"once":True},{"id":"kivilcim_kilici","price":280,"once":True},{"id":"isik_sapani","price":80,"once":True},{"id":"isik_tohumu","price":15}]},
  "dantel":{"title":"Dantel'in Dikiş Sandığı","items":[{"id":"cicek_taci","price":40,"once":True},{"id":"kasif_sapkasi","price":70,"once":True},{"id":"minik_migfer","price":110,"once":True},{"id":"yildiz_pelerini","price":160,"once":True}]},
- "olta":{"title":"Olta'nın Yolluk Sepeti","items":[{"id":"atesbocegi_kavanozu","price":30},{"id":"sicak_kakao","price":15},{"id":"bal_surubu","price":15}]}}
+ "olta":{"title":"Olta'nın Yolluk Sepeti","items":[{"id":"atesbocegi_kavanozu","price":30},{"id":"sicak_kakao","price":15},{"id":"bal_surubu","price":15},{"id":"tekne_yelken","price":120,"once":True},{"id":"tekne_kurek","price":90,"once":True},{"id":"tekne_fener","price":90,"once":True}]}}
 pack("s3_chapter0","Mercan Koyu","Mercan Koyu",[1,5],[Q1,Q2],D,B,S)

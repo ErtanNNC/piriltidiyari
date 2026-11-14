@@ -1,0 +1,136 @@
+{
+  "barks": {
+    "mb_basla": [
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Vay! Her yer mercan, her yer ışık. Mavi Titreme burada yok."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Yüzer gibi yürüyorum. Zıplayınca süzülüyorum!"
+      }
+    ],
+    "mb_baloncuk": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Baloncuklar beni yukarı taşıdı! Bir daha, bir daha!"
+      }
+    ],
+    "mb_ani1": [
+      {
+        "speaker": "tiril",
+        "mood": "mutlu",
+        "text": "Bu kabukta ilk ışığım var. Annem bana 'minik fenerim' demişti."
+      },
+      {
+        "speaker": "tiril",
+        "mood": "sakin",
+        "text": "O gece hiç titremedim. Çünkü elimi tutuyordu."
+      }
+    ],
+    "mb_ani2": [
+      {
+        "speaker": "tiril",
+        "mood": "mutlu",
+        "text": "Babam bana baloncuk üflemeyi öğretti. İlki burnumda patladı!"
+      },
+      {
+        "speaker": "tiril",
+        "mood": "mutlu",
+        "text": "Çok güldük. Gülünce ışığım pembe olurdu."
+      }
+    ],
+    "mb_ani3": [
+      {
+        "speaker": "tiril",
+        "mood": "mutlu",
+        "text": "Burası bahçenin en yüksek yeri. Kardeşimle yıldız sayardık."
+      },
+      {
+        "speaker": "tiril",
+        "mood": "utangaç",
+        "text": "Ben hep on ikide şaşırırdım. O hiç bozuntuya vermezdi."
+      }
+    ],
+    "mb_ani4": [
+      {
+        "speaker": "tiril",
+        "mood": "üzgün",
+        "text": "Fırtınalı bir gece akıntı beni aldı götürdü. Çok uzağa."
+      },
+      {
+        "speaker": "tiril",
+        "mood": "sakin",
+        "text": "Ailem her gece ışık yakmış. Göremedim ama yakmışlar."
+      }
+    ],
+    "mb_ani5": [
+      {
+        "speaker": "tiril",
+        "mood": "sakin",
+        "text": "Saklandığım tekne çok karanlıktı. Tek ses bir davuldu."
+      },
+      {
+        "speaker": "tiril",
+        "mood": "mutlu",
+        "text": "Bum... bum... Biri beni arıyormuş. Artık biliyorum."
+      }
+    ],
+    "mb_hazir": [
+      {
+        "speaker": "tiril",
+        "mood": "mutlu",
+        "text": "Herkesi buldun, bütün kabukları açtın!"
+      },
+      {
+        "speaker": "tiril",
+        "mood": "mutlu",
+        "text": "Ortadaki Işık Kabuğu'na gel. Ailem seni bekliyor."
+      }
+    ],
+    "mb_son1": [
+      {
+        "speaker": "tiril_anne",
+        "mood": "sakin",
+        "text": "Yıllardır bu bahçenin ışıklarını yakmadık."
+      },
+      {
+        "speaker": "tiril_baba",
+        "mood": "mutlu",
+        "text": "Bu gece yakıyoruz. Hazır mısınız? Bir, iki, üç!"
+      }
+    ],
+    "mb_son2": [
+      {
+        "speaker": "tiril_kardes",
+        "mood": "mutlu",
+        "text": "Her yer parlıyor! Mercanlar bile gülüyor!"
+      },
+      {
+        "speaker": "tiril",
+        "mood": "mutlu",
+        "text": "Bak, ışığım hiç titremiyor."
+      },
+      {
+        "speaker": "tiril",
+        "mood": "mutlu",
+        "text": "Çünkü biri beni aramaya geldi. Sonra bir daha geldi."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Yine gelirim. Kimse karanlıkta yalnız kalmaz."
+      }
+    ],
+    "mb_son3": [
+      {
+        "speaker": "tiril_anne",
+        "mood": "mutlu",
+        "text": "Bahçemiz artık senin de bahçen. Ne zaman istersen gel."
+      }
+    ]
+  }
+}
