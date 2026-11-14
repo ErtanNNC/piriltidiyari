@@ -8,7 +8,7 @@ metadata={
 "vram_texture": false
 }
 generator_parameters={
-"md5": "6022dfeca8ed76282bb1b569480db3d9"
+"md5": "9e0a5867ebfc2c1bf8e85c60f19fc285"
 }
 
 [deps]
@@ -18,9 +18,9 @@ dest_files=["res://.godot/imported/mesale_0.jpg-83b9005c2909a569e059f49ef456011b
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/high_quality=false
-compress/lossy_quality=0.7
+compress/lossy_quality=0.8
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1

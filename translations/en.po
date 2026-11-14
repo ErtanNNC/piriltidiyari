@@ -1101,6 +1101,9 @@ msgstr "This isn't the Gloom. It's something else."
 msgid "Bu Tırıl'ın sesi! İnci onun ilk anısını saklamış."
 msgstr "That's Tremble's voice! The pearl kept her first memory."
 
+msgid "Bu adanın işi bitmedi. Bitince sıradaki ada açılır."
+msgstr "This island isn't finished yet. The next one opens when it is."
+
 msgid "Bu benim davulum. Gürültü değil, şarkı çalıyordum."
 msgstr "That's my drum. I wasn't making noise, I was playing a song."
 

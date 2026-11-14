@@ -33,10 +33,15 @@ func _ready() -> void:
 	v.add_theme_constant_override("separation", int(Tokens.px("space-3")))
 	panel.add_child(v)
 	v.add_child(UiKit.label(title, "text-title", "ink"))
+	# the highlighted button: the option marked "primary" (the boat's next
+	# island), else the first one that can be chosen
+	var marked := false
+	for o: Dictionary in options:
+		marked = marked or o.has("primary")
 	var first := true
 	for o: Dictionary in options:
 		var ok: bool = o.get("enabled", true)
-		var b := UiKit.button(o["label"], ok and first)
+		var b := UiKit.button(o["label"], ok and (o.get("primary", false) if marked else first))
 		b.custom_minimum_size = Vector2(0, 60)
 		b.disabled = not ok
 		if ok:

@@ -50,6 +50,12 @@ func _ready() -> void:
 		get_tree().create_timer(3.5).timeout.connect(func() -> void:
 			toggle_pause()
 			(_pause_panel.find_child("SideButton", true, false) as Button).pressed.emit())
+	elif DevTools.demo == "padpause":
+		# Mola as a pad player sees it (screenshot): the focus ring is showing
+		get_tree().create_timer(3.5).timeout.connect(func() -> void:
+			toggle_pause()
+			await _demo_key(KEY_DOWN)
+			await _demo_key(KEY_DOWN))
 	elif DevTools.demo == "padmenu":
 		get_tree().create_timer(3.5).timeout.connect(_demo_padmenu)
 	_root = Control.new()
@@ -663,10 +669,16 @@ func toggle_pause() -> void:
 	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	scroll.follow_focus = true
 	outer.add_child(scroll)
+	# a little air so the scroll area doesn't cut the focus ring
+	var pad := MarginContainer.new()
+	pad.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	pad.add_theme_constant_override("margin_left", 8)
+	pad.add_theme_constant_override("margin_right", 8)
+	pad.add_theme_constant_override("margin_bottom", 6)
+	scroll.add_child(pad)
 	var v := VBoxContainer.new()
-	v.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	v.add_theme_constant_override("separation", int(Tokens.px("space-2")))
-	scroll.add_child(v)
+	pad.add_child(v)
 	var cont := UiKit.button("Devam et")
 	var mus := UiKit.button("", false)
 	var sfx := UiKit.button("", false)
@@ -759,7 +771,7 @@ func toggle_pause() -> void:
 	# Esc / pad B closes Mola (the HUD itself gets no input while paused)
 	UiKit.menu(p, cont, cont)
 	var fit := func() -> void:
-		var want := v.get_combined_minimum_size()
+		var want := pad.get_combined_minimum_size()
 		var frame := panel.get_theme_stylebox("panel").get_minimum_size().y + 2.0 * Tokens.px("space-4")
 		var rest := title.get_combined_minimum_size().y + note.get_combined_minimum_size().y \
 				+ 2.0 * Tokens.px("space-2")

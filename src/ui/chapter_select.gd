@@ -81,10 +81,15 @@ func _ready() -> void:
 	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	scroll.follow_focus = true
 	v.add_child(scroll)
+	# a little air so the scroll area doesn't cut the focus ring
+	var air := MarginContainer.new()
+	air.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	for side in ["margin_left", "margin_right", "margin_top", "margin_bottom"]:
+		air.add_theme_constant_override(side, 8)
+	scroll.add_child(air)
 	var list := VBoxContainer.new()
-	list.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	list.add_theme_constant_override("separation", int(Tokens.px("space-2")))
-	scroll.add_child(list)
+	air.add_child(list)
 	var seasons := open_seasons()
 	for season: int in seasons:
 		list.add_child(UiKit.label("Sezon %d" % season, "text-heading", "ink"))

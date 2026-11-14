@@ -52,11 +52,14 @@ func use(_by: Node) -> void:
 	var locked_note := false
 	for e: Dictionary in ShoreTravel.menu(d, here):
 		var name_tr := TranslationServer.translate(ShoreTravel.region(e["scene"]))
-		var o := {"id": e["scene"], "label": "%d · %s" % [e["n"], name_tr]}
+		var o := {"id": e["scene"], "label": "%d · %s" % [e["n"], name_tr], "primary": false}
 		match e["state"]:
 			"here":
 				o["label"] += TranslationServer.translate(" · buradasın")
 				o["enabled"] = false
+				if not ShoreTravel.is_done(d, here):
+					locked_note = true
+					o["note"] = "Bu adanın işi bitmedi. Bitince sıradaki ada açılır."
 			"done":
 				o["label"] += TranslationServer.translate(" · tamam")
 			"next":
@@ -92,3 +95,10 @@ func _ask_more(hud: Hud) -> String:
 		opts.append({"id": "chapter0", "label": "Pırıltı Diyarı: Gökkuşağı Köyü"})
 		opts.append({"id": "s2_chapter0", "label": "Kor Vadisi: Kaplıca Köyü"})
 	return await hud.ask("Başka yerler", opts)
+
+
+func _ready() -> void:
+	super._ready()
+	if DevTools.demo == "boatmenu":   # screenshot: the boat's list
+		await get_tree().create_timer(4.0, false).timeout
+		use(null)

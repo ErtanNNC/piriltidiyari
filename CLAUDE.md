@@ -574,4 +574,26 @@ from exports (`.claude/*` in export_presets.cfg).
   `ng_plus_runs`; the select in `s3_scene6` then offers Hırıl and Tırıl too
   (`keepers_s3.json` "ng_plus", skills Işık Dalgası / Aile Işığı);
   `--scene=s3_scene6 --demo=ngplus_tiril|ngplus_hiril|ngplus_select --auto`.
-- Not built from the doc: three-realm fast travel, Paytak's bottle hints.
+- The boat's list (`ShoreTravel.menu`, `BoatDock.use`) always shows the six
+  islands in story order: "buradasın" (disabled), "tamam", "ŞİMDİ BURAYA!"
+  (`next_stop`: the first open island not finished; the highlighted button,
+  ChoicePanel option "primary"), "sisli" (disabled). Extras sit behind
+  "Başka yerler…": Gece Regatası, Mercan Bahçesi and the two older realms.
+  Screenshot: `--scene=s3_chapter2 --demo=boatmenu --auto --at=7`.
+- Three realms, one net: after `sezon3_bitti` the boat sails to Gökkuşağı
+  Köyü (chapter0) and Kaplıca Köyü (s2_chapter0); a `RealmGate` post there
+  ("Seyahat") goes back or across (`--flag=sezon3_bitti --near=RealmGate`).
+- Paytak sells the Şişe Pusulası (`owned_sise_pusulasi`): bottles not found
+  yet get a through-walls Beacon.
+- The regatta asks "Yarışı bırakalım mı?" when the boat comes back to the
+  pier mid-race.
+- Yeni Oyun+ Bekçi Evi lists all eight keepers; `switch_keeper` cleans the
+  old keeper's skills by `Skills.DEFS` owner; Hırıl and Tırıl wear outfits
+  and tools (`KeeperModels.dress`, json anchors, `cape_scale`).
+- Menus work with a pad/keyboard: `UiFocus` (one node on the root) keeps focus
+  in the top menu and shows the focus ring only after key/pad input;
+  `UiKit.menu(root, first, back)` marks a menu, in-play HUD buttons stay
+  FOCUS_NONE. Pad Start opens Mola (B is Yuvarlan). `--demo=padmenu`.
+- `tools/build_android.sh` exports with the release template (BUILD=debug
+  for a debug build), still signed with the local test key.
+- No palm: a second try came out with a card behind the leaves again.
