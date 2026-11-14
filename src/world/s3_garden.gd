@@ -678,6 +678,7 @@ func _finale() -> void:
 	await GameState.dialogue_closed
 	d.complete_quest(Content.quests[Q])
 	d.set_flag(DONE)
+	SaveGame.write(d)  # linear scenes don't autosave: the finished garden is kept now
 	Audio.play("fanfare")
 	_hud.show_scene_card("Gizli Bölge", "Mercan Bahçesi ışıl ışıl!", "Kimse karanlıkta yalnız kalmaz.")
 	await get_tree().create_timer(3.2, false).timeout

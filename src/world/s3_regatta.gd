@@ -489,6 +489,8 @@ func _finish() -> void:
 	var before := d.piril
 	paid = pay(d, medal)
 	paid_piril = d.piril - before
+	if not paid.is_empty() and DevTools.demo == "":
+		SaveGame.write(d)  # linear scenes don't autosave: a new medal is kept now
 	Audio.play("fanfare")
 	Effects.ring(self, boat.global_position, 8.0, Color(1.0, 0.9, 0.5, 0.9), 0.8)
 	Effects.sparkle(self, boat.global_position + Vector3.UP * 1.5, Color(1.0, 0.9, 0.5), 30)
