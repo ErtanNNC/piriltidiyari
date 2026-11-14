@@ -265,6 +265,13 @@
       "kind": "charm",
       "icon": "spark",
       "desc": "Kayığın ışığı büyür: sis onu yavaşlatamaz"
+    },
+    "sise_pusulasi": {
+      "name": "Şişe Pusulası",
+      "color": "sky",
+      "kind": "charm",
+      "icon": "star",
+      "desc": "Bulunmamış Mesaj Şişelerinin üstünde yıldız yanar"
     }
   }
 }

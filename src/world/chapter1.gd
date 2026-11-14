@@ -65,9 +65,24 @@ func _restore_progress() -> void:
 	_lanterns_lit = n
 	if d.objective_done(QUEST, "fenerler") and d.objective_done(QUEST, "hu"):
 		_gate.open()
-	if d.quest_state(QUEST) == "done":
+	_finish_ending()
+	if d.quest_state(QUEST) == "done" or d.has_flag("bolum1_bitti"):
 		$Level/KivilcimFeneri.light_up(true)
 		Pus.set_amount(0.05)
+
+
+## A save made while the boss's ending was still playing (autosave, app sent
+## away): the boss objective is done but the chapter never closed. Finish
+## quietly what the ending would have set, so the way on is never locked.
+func _finish_ending() -> void:
+	var d := GameState.data
+	if not d.objective_done(QUEST, "kral") or d.has_flag("bolum1_bitti"):
+		return
+	d.add_spark("green")
+	if d.quest_state(QUEST) == "ready":
+		d.complete_quest(Content.quests[QUEST])
+	d.set_flag("bolum1_bitti")
+	SaveGame.write(d)
 
 
 # --- level ----------------------------------------------------------------
@@ -482,6 +497,49 @@ func _run_demo(which: String) -> void:
 			await get_tree().create_timer(0.3, false).timeout
 			print("SPOT %s player=(%.1f, %.1f, %.1f) chest_dist=%.2f flag=%s" % [me, _player.global_position.x, _player.global_position.y, _player.global_position.z,
 				_player.global_position.distance_to(chest), d.has_flag("spot_" + {"bado": "c1_kaya", "citir": "c1_dere", "lumi": "c1_karanlik", "pati": "-"}[me])])
+			get_tree().quit()
+		"buffs":
+			# potion times live in GameState: nodes built by the next scene
+			# read the same ones, and another save starts without them
+			var now := GameState.clock
+			var plain := _player.attack_power()
+			_player._power_until = now + 60.0
+			var c1 := BreathCalm.new()
+			c1.fast_until = now + 90.0
+			c1.shield_until = now + 60.0
+			c1.free()
+			var r1 := LightRing.new()
+			r1.boost_until = now + 90.0
+			r1.brave_until = now + 60.0
+			r1.free()
+			GameState.repel_until = now + 60.0
+			await get_tree().create_timer(1.0, false).timeout
+			var c2 := BreathCalm.new()
+			var r2 := LightRing.new()
+			now = GameState.clock
+			print("BUFFS kept guc=%.0f papatya=%.0f kalkan=%.0f isik=%.0f cesur=%.0f kovucu=%.0f power=%d/%d notice=%.1f" % [_player._power_until - now, c2.fast_until - now,
+				c2.shield_until - now, r2.boost_until - now, r2.brave_until - now, GameState.repel_until - now, _player.attack_power(), plain, GameState.notice_factor()])
+			var old := GameState.data
+			GameState.data = PlayerData.new()
+			print("BUFFS other_save guc=%.0f papatya=%.0f kalkan=%.0f isik=%.0f cesur=%.0f kovucu=%.0f notice=%.1f" % [_player._power_until, c2.fast_until,
+				c2.shield_until, r2.boost_until, r2.brave_until, GameState.repel_until, GameState.notice_factor()])
+			GameState.data = old
+			c2.free()
+			r2.free()
+			get_tree().quit()
+		"midsave":
+			var d := GameState.data
+			# the save was made in the middle of the boss's ending
+			for o in ["kral", "fener", "hu", "fenerler", "kalp"]:
+				d.complete_objective(QUEST, o)
+			d.sparks.erase("green")
+			var before := "obj=%s flag=%s quest=%s" % [d.objective_done(QUEST, "kral"), d.has_flag("bolum1_bitti"), d.quest_state(QUEST)]
+			# let the Pus fades started by the objectives above run out first
+			await get_tree().create_timer(3.5, false).timeout
+			_restore_progress()
+			await get_tree().create_timer(0.8, false).timeout
+			print("MIDSAVE chapter1 before(%s) flag=%s sparks=%s quest=%s exit=%s lantern=%s pus=%.2f boss=%s" % [before, d.has_flag("bolum1_bitti"), d.sparks, d.quest_state(QUEST),
+				($Level/ExitSign as Node3D).visible, $Level/KivilcimFeneri.is_lit, Pus.amount, _king != null])
 			get_tree().quit()
 		"boss", "bossfight":
 			var d := GameState.data

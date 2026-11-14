@@ -43,6 +43,7 @@ func _ready() -> void:
 		closed.emit()
 		queue_free())
 	v.add_child(back)
+	UiKit.menu(self, null, back)
 	_fill()
 
 

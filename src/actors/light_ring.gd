@@ -15,11 +15,15 @@ var cold := 0.0
 ## Set every frame by dark puddles (InkPuddle); used once, then cleared.
 var extra_cold := 0.0
 ## Cesaret Kurabiyesi: the bar does not fill until then.
-var brave_until := 0.0
+var brave_until: float:
+	get: return GameState.buff_until("cesur")
+	set(v): GameState.set_buff_until("cesur", v)
 var shiver := 0.0
 var frozen := 0.0
 var holding_hands := false
-var boost_until := 0.0
+var boost_until: float:
+	get: return GameState.buff_until("isik")
+	set(v): GameState.set_buff_until("isik", v)
 var lit := true
 var _disc: MeshInstance3D
 var _light: OmniLight3D

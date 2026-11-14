@@ -1004,6 +1004,7 @@ func _validate_chapter(chapter: String) -> void:
 func test_season3() -> void:
 	print("Sezon 3: Titrek Kıyılar")
 	_test_new_game_plus()
+	_test_boat_menu()
 	var d := PlayerData.new()
 	d.choose_keeper("bado", {"can": 3, "guc": 4, "hiz": 5}, {}, "Bado")
 	d.start_season2({})
@@ -1060,6 +1061,22 @@ func test_season3() -> void:
 	check(Skills.for_character("tosbi") == "kabuk_kalkani", "Tosbi: Kabuk Kalkanı")
 	for id: String in ["sicak_kakao", "atesbocegi_kavanozu", "cesaret_kurabiyesi"]:
 		check(PlayerData.POTIONS.has(id), "%s iksir yuvasına girer" % id)
+
+
+func _test_boat_menu() -> void:
+	var b := PlayerData.new()
+	var m := ShoreTravel.menu(b, "s3_chapter0")
+	check(m.size() == 6 and m[0]["state"] == "here" and m[1]["state"] == "locked" and m[0]["n"] == 1 and m[5]["n"] == 6, "kayık listesi: 6 ada sırayla, ilk başta hepsi sisli")
+	b.set_flag("s3_fisek0")
+	b.set_flag("s3_bolum0_bitti")
+	m = ShoreTravel.menu(b, "s3_chapter0")
+	check(m[1]["state"] == "next" and m[2]["state"] == "locked" and ShoreTravel.next_stop(b) == "s3_chapter1", "kayık listesi: sıradaki ada işaretli")
+	b.set_flag("s3_bolum1_bitti")
+	m = ShoreTravel.menu(b, "s3_chapter1")
+	check(m[0]["state"] == "done" and m[1]["state"] == "here" and m[2]["state"] == "next", "kayık listesi: biten ada 'tamam', bulunduğun ada 'buradasın'")
+	for n in 6:
+		b.set_flag("s3_bolum%d_bitti" % n)
+	check(ShoreTravel.next_stop(b) == "", "bütün adalar bitince sıradaki ada kalmaz")
 
 
 func _test_new_game_plus() -> void:

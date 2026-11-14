@@ -40,6 +40,7 @@ func _ready() -> void:
 	v.add_child(row)
 	for c: Dictionary in _choices:
 		row.add_child(_card(c))
+	UiKit.menu(self)
 	Audio.play("levelup")
 
 

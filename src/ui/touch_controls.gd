@@ -226,7 +226,9 @@ func _set_stick(v: Vector2) -> void:
 func _draw() -> void:
 	if not visible:
 		return
-	var c := _stick_center
+	# the touch point is in viewport coordinates; this control starts at the
+	# safe-area inset on notched phones, so bring it into local ones to draw
+	var c := get_global_transform_with_canvas().affine_inverse() * _stick_center
 	if _stick_touch == -1:
 		c = Vector2(Tokens.px("space-6") + STICK_RADIUS + 20, size.y - Tokens.px("space-6") - STICK_RADIUS - 20)
 	var ring := Tokens.color("panel")

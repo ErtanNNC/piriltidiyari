@@ -22,13 +22,14 @@ const INFO := {
 	# Season 3 (real model: assets/models/tosbi.glb)
 	"tosbi": {"name": "Tosbi", "species": "Kaplumbağa yavrusu", "color": "spark-green", "line": "Korksam bile geliyorum.",
 		"variants": [Color("#b9d86a"), Color("#8fc9a0"), Color("#d9c86a")]},
-	# Yeni Oyun+ (Season 3): one look each, no hats or outfits on them
+	# Yeni Oyun+ (Season 3): one look each; shop outfits and tools still go on
 	"hiril": {"name": "Hırıl", "species": "Yanardağ yavrusu", "color": "hp", "line": "Davulum hazır. Bu kez birlikte çalalım!",
 		"variants": [Color("#a85a42")]},
 	"tiril": {"name": "Tırıl", "species": "Denizanası yavrusu", "color": "sky", "line": "Artık titremiyorum. Işığım sizinle!",
 		"variants": [Color("#9fd8ff")]},
 }
-## Keepers that always wear their own look (no color, accessory, outfit).
+## Keepers with one look of their own (no fur color or accessory to pick);
+## shop outfits and tools are worn at their json "anchors" like on anyone.
 const PLAIN := ["hiril", "tiril"]
 const ACCESSORIES := ["yok", "sapka", "atki", "gozluk"]
 const ACCESSORY_NAMES := {"yok": "Yok", "sapka": "Şapka", "atki": "Atkı", "gozluk": "Gözlük"}
@@ -39,7 +40,7 @@ const PAD := Color("#ff9db4")
 
 static func build(id: String, look := {}) -> Node3D:
 	if id in PLAIN:
-		return _plain(id)
+		return _plain(id, look)
 	var imported := ModelImport.load_model(id)
 	if imported:
 		# a real model: hats, capes, scarves and tools still go on, at anchor
@@ -77,7 +78,7 @@ static func build(id: String, look := {}) -> Node3D:
 
 ## Hırıl and Tırıl as keepers (Yeni Oyun+): their own models at keeper size.
 ## They glow by themselves, so the mist never greys them.
-static func _plain(id: String) -> Node3D:
+static func _plain(id: String, look := {}) -> Node3D:
 	var m: Node3D
 	if id == "hiril":
 		m = HirilModel.build(true)
@@ -97,7 +98,24 @@ static func _plain(id: String) -> Node3D:
 	MobModels._no_pus(m)
 	if m.find_child("Rig", true, false) == null:
 		CharacterRig.attach(m)
+	dress(m, id, look)
 	return m
+
+
+## Shop outfit and tool on a keeper that has no parts of its own to hang
+## them on (Hırıl, Tırıl): at the anchors in assets/models/<id>.json. Once
+## per model (Hırıl as the player is dressed by HirilModel).
+static func dress(model: Node3D, id: String, look: Dictionary) -> void:
+	if model.has_meta("dressed"):
+		return
+	model.set_meta("dressed", true)
+	var outfit := String(look.get("outfit", ""))
+	var tool := String(look.get("weapon", ""))
+	if outfit == "" and tool == "":
+		return
+	var ap := _anchors(model, id)
+	_outfit(ap, outfit)
+	_tool(ap, tool, id)
 
 
 ## The color shown on swatch `i` (variant 0 of a real model is its own fur).
@@ -147,7 +165,10 @@ static func _anchors(model: Node3D, id: String) -> Dictionary:
 	var over: Variant = ModelImport._options(id).get("anchors")
 	if over is Dictionary:
 		def.merge(over, true)
-	var pose: Node3D = model.get_node_or_null("Pose") if model.has_node("Pose") else model
+	# a boss-style model (Hırıl) keeps its Pose one level down
+	var pose := model.find_child("Pose", true, false) as Node3D
+	if pose == null:
+		pose = model
 	var p := {}
 	for k: String in ["Head", "Body", "HandL", "HandR"]:
 		var v: Array = def[k]
@@ -160,6 +181,7 @@ static func _anchors(model: Node3D, id: String) -> Dictionary:
 	p["head_r"] = Vector3(float(r[0]), float(r[1]), float(r[2]))
 	# hats and crowns are sized for the procedural head (half width ~0.48)
 	p["hat_scale"] = float(def.get("hat_scale", 1.0))
+	p["cape_scale"] = float(def.get("cape_scale", 1.0))
 	_follow_bones(pose, p)
 	return p
 
@@ -384,6 +406,8 @@ static func _outfit(p: Dictionary, outfit: String) -> void:
 	var r: Vector3 = p["head_r"]
 	if outfit == "yildiz_pelerini":
 		_cape(p["Body"] as Node3D)
+		# a small keeper (Tırıl) wears a smaller cape: "cape_scale" anchor
+		(p["Body"] as Node3D).get_node("Cape").scale = Vector3.ONE * float(p.get("cape_scale", 1.0))
 	else:
 		var piece := outfit_piece(outfit)
 		piece.scale = Vector3.ONE * float(p.get("hat_scale", 1.0))

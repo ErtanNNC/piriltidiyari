@@ -10,6 +10,8 @@ extends RefCounted
 static func build(calm := false) -> Node3D:
 	var real := ModelImport.boss("hiril", [])
 	if real:
+		if calm:
+			real.tree_entered.connect(_wear.bind(real), CONNECT_ONE_SHOT)
 		return real
 	var root := Node3D.new()
 	Toon.default_pus = 0.0
@@ -56,4 +58,16 @@ static func build(calm := false) -> Node3D:
 	MobModels._pus_wisps(head, 0.35, Color(1, 1, 1) if calm else Color(0.85, 0.75, 0.75), 6, 0.6)
 	Toon.default_pus = 1.0
 	CharacterRig.attach(root)
+	if calm:
+		root.tree_entered.connect(_wear.bind(root), CONNECT_ONE_SHOT)
 	return root
+
+
+## Hırıl as the keeper in play (Yeni Oyun+): Player builds him straight from
+## here, so the shop outfit and tool go on when the model joins the player.
+## (KeeperModels.build dresses its own copies; `dress` runs once per model.)
+static func _wear(model: Node3D) -> void:
+	if not (model.get_parent() is Player) or GameState.data.character_id != "hiril":
+		return
+	var eq: Dictionary = GameState.data.equipped
+	KeeperModels.dress(model, "hiril", {"outfit": eq.get("outfit", ""), "weapon": eq.get("weapon", "")})

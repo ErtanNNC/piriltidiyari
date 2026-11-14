@@ -28,11 +28,13 @@ var _custom: PanelContainer
 var _name_edit: LineEdit
 var _swatches: HBoxContainer
 var _accessories: HBoxContainer
+var _go: Button
 
 
 func _ready() -> void:
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
+	UiKit.menu(self)
 	var m := Tokens.px("space-6")
 	_title = UiKit.outlined(UiKit.label("Bekçini seç", "text-title", "panel@light"), 10)
 	_title.set_anchors_and_offsets_preset(Control.PRESET_CENTER_TOP)
@@ -153,7 +155,7 @@ func _build_custom() -> void:
 	var es := UiKit.box(Tokens.color("panel-sunken"), "radius-md")
 	es.content_margin_left = 14
 	_name_edit.add_theme_stylebox_override("normal", es)
-	_name_edit.add_theme_stylebox_override("focus", es)
+	_name_edit.add_theme_stylebox_override("focus", UiFocus.ring())
 	v.add_child(_name_edit)
 	var row := HBoxContainer.new()
 	row.add_theme_constant_override("separation", int(Tokens.px("space-2")))
@@ -162,7 +164,8 @@ func _build_custom() -> void:
 	back.pressed.connect(func() -> void:
 		_custom.visible = false
 		_cards_row.visible = true
-		_pick.visible = true)
+		_pick.visible = true
+		UiKit.focus(_pick))
 	row.add_child(back)
 	var go := UiKit.button("Başla")
 	go.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -172,6 +175,7 @@ func _build_custom() -> void:
 			n = Content.keeper(current)["name"]
 		chosen.emit(current, look.duplicate(), n))
 	row.add_child(go)
+	_go = go
 
 
 func _open_custom() -> void:
@@ -180,6 +184,7 @@ func _open_custom() -> void:
 	_cards_row.visible = false
 	_pick.visible = false
 	_custom.visible = true
+	UiKit.focus(_go)
 	_name_edit.text = Content.keeper(current)["name"]
 	for r: Control in _look_rows:
 		r.visible = not (current in KeeperModels.PLAIN)
@@ -189,7 +194,8 @@ func _open_custom() -> void:
 	for i in variants.size():
 		var sw := Button.new()
 		sw.custom_minimum_size = Vector2(56, 56)
-		sw.focus_mode = Control.FOCUS_NONE
+		sw.add_theme_stylebox_override("focus", UiFocus.ring("radius-pill"))
+		UiFocus.track(sw)
 		sw.set_meta("i", i)
 		sw.pressed.connect(func() -> void:
 			look["variant"] = i

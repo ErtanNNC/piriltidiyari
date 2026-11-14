@@ -61,10 +61,26 @@ func _restore_progress() -> void:
 			for c in get_tree().get_nodes_in_group("crystal_" + g[0]):
 				c.light_up(true)
 			(g[1] as CrystalGate).open(true)
-	if d.quest_state(QUEST) == "done":
+	_finish_ending()
+	if d.quest_state(QUEST) == "done" or d.has_flag("bolum2_bitti"):
 		$Level/KivilcimFeneri.light_up(true)
 		Pus.set_amount(0.05)
 		_friendly_crab()
+
+
+## A save made while the boss's ending was still playing (autosave, app sent
+## away): the boss objective is done but the chapter never closed. Finish
+## quietly what the ending would have set, so the way on is never locked.
+func _finish_ending() -> void:
+	var d := GameState.data
+	if not d.objective_done(QUEST, "kiskac") or d.has_flag("bolum2_bitti"):
+		return
+	d.add_spark("blue")
+	if d.quest_state(QUEST) == "ready":
+		d.complete_quest(Content.quests[QUEST])
+	d.set_flag("kazma_dukkan")
+	d.set_flag("bolum2_bitti")
+	SaveGame.write(d)
 
 
 # --- level ----------------------------------------------------------------
@@ -493,6 +509,19 @@ func _run_demo(which: String) -> void:
 			Input.action_release("move_forward")
 			var syrup_dz := -4.2 - _player.global_position.z
 			print("SYRUP moved %.2f m in 1 s (slow=%.1f)" % [syrup_dz, _player.slow])
+			get_tree().quit()
+		"midsave":
+			# the save was made in the middle of the boss's ending
+			for o in ["kiskac", "fener", "kazma", "salon", "tunel"]:
+				d.complete_objective(QUEST, o)
+			d.sparks.erase("blue")
+			var before := "obj=%s flag=%s quest=%s" % [d.objective_done(QUEST, "kiskac"), d.has_flag("bolum2_bitti"), d.quest_state(QUEST)]
+			# let the Pus fades started by the objectives above run out first
+			await get_tree().create_timer(3.5, false).timeout
+			_restore_progress()
+			await get_tree().create_timer(0.8, false).timeout
+			print("MIDSAVE chapter2 before(%s) flag=%s sparks=%s quest=%s exit=%s lantern=%s pus=%.2f shop=%s friend=%s boss=%s" % [before, d.has_flag("bolum2_bitti"), d.sparks, d.quest_state(QUEST),
+				($Level/ExitSign as Node3D).visible, $Level/KivilcimFeneri.is_lit, Pus.amount, d.has_flag("kazma_dukkan"), has_node("Level/KiskacDost"), _boss != null])
 			get_tree().quit()
 		"boss", "bossfight":
 			for o in ["fener", "kazma", "salon", "tunel"]:

@@ -50,12 +50,22 @@ func _ready() -> void:
 		get_tree().create_timer(3.5).timeout.connect(func() -> void:
 			toggle_pause()
 			(_pause_panel.find_child("SideButton", true, false) as Button).pressed.emit())
+	elif DevTools.demo == "padmenu":
+		get_tree().create_timer(3.5).timeout.connect(_demo_padmenu)
 	_root = Control.new()
 	_root.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	_root.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(_root)
 	_apply_safe_area()
 	get_viewport().size_changed.connect(_apply_safe_area)
+	if OS.has_feature("mobile"):
+		# a 180° flip keeps the size: watch the safe area and the orientation
+		var watch := Timer.new()
+		watch.wait_time = 1.0
+		watch.process_mode = Node.PROCESS_MODE_ALWAYS
+		watch.timeout.connect(_check_safe_area)
+		add_child(watch)
+		watch.start()
 	var m := Tokens.px("space-6")
 
 	# top-left: portrait, level badge, bars
@@ -230,6 +240,7 @@ func _ready() -> void:
 	_talk.grow_vertical = Control.GROW_DIRECTION_BEGIN
 	_talk.offset_bottom = -m - 96
 	_talk.custom_minimum_size = Vector2(160, 60)
+	_talk.focus_mode = Control.FOCUS_NONE  # in play: E / pad Y talks
 	_talk.offset_left = -80
 	_talk.offset_right = 80
 	_talk.visible = false
@@ -585,6 +596,7 @@ func ask(title: String, options: Array) -> String:
 	var cp := ChoicePanel.new(title, options)
 	_root.add_child(cp)
 	var id: String = await cp.chosen
+	Input.action_release("jump")  # Space / pad A picked: no jump with it
 	GameState.in_dialogue = false
 	if _player:
 		_player.input_enabled = true
@@ -600,9 +612,17 @@ func back_pressed() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_cancel") and not _cinematic and not _dialog.is_open():
-		toggle_pause()
-		get_viewport().set_input_as_handled()
+	# pad: Start opens Mola; B (ui_cancel) is Yuvarlan in play and only closes Mola
+	var start: bool = event is InputEventJoypadButton and event.pressed \
+			and (event as InputEventJoypadButton).button_index == JOY_BUTTON_START
+	if not start and not event.is_action_pressed("ui_cancel"):
+		return
+	if _cinematic or _dialog.is_open():
+		return
+	if not start and _pause_panel == null and event is InputEventJoypadButton and event.is_action("roll"):
+		return
+	toggle_pause()
+	get_viewport().set_input_as_handled()
 
 
 ## Mola: stops the game; music/sound toggles and the way back to the title.
@@ -613,13 +633,14 @@ func toggle_pause() -> void:
 		_release_touch()
 		get_tree().paused = false
 		return
-	if _cinematic or _dialog.is_open() or SceneFlow.busy or get_tree().paused:
+	if _cinematic or _dialog.is_open() or SceneFlow.busy or get_tree().paused or GameState.in_dialogue:
 		return
 	_release_touch()
 	get_tree().paused = true
 	var p := Control.new()
 	p.process_mode = Node.PROCESS_MODE_ALWAYS
 	p.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	UiKit.menu(p)
 	var bg := ColorRect.new()
 	bg.color = Tokens.color("scrim")
 	bg.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -630,12 +651,22 @@ func toggle_pause() -> void:
 	panel.grow_horizontal = Control.GROW_DIRECTION_BOTH
 	panel.grow_vertical = Control.GROW_DIRECTION_BOTH
 	p.add_child(panel)
-	var v := VBoxContainer.new()
-	v.add_theme_constant_override("separation", int(Tokens.px("space-2")))
-	panel.add_child(v)
+	# title and note stay put; the buttons between them scroll if a small
+	# screen (or a tall safe-area inset) can't hold them all
+	var outer := VBoxContainer.new()
+	outer.add_theme_constant_override("separation", int(Tokens.px("space-2")))
+	panel.add_child(outer)
 	var title := UiKit.label("Mola", "text-title", "ink")
 	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	v.add_child(title)
+	outer.add_child(title)
+	var scroll := ScrollContainer.new()
+	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	scroll.follow_focus = true
+	outer.add_child(scroll)
+	var v := VBoxContainer.new()
+	v.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	v.add_theme_constant_override("separation", int(Tokens.px("space-2")))
+	scroll.add_child(v)
 	var cont := UiKit.button("Devam et")
 	var mus := UiKit.button("", false)
 	var sfx := UiKit.button("", false)
@@ -679,10 +710,20 @@ func toggle_pause() -> void:
 	side.visible = GameState.data.season >= 2
 	side.pressed.connect(func() -> void:
 		panel.visible = false
-		var sp := _side_panel(func() -> void: panel.visible = true)
+		var sp := _side_panel(func() -> void:
+			panel.visible = true
+			UiKit.focus(side))
 		p.add_child(sp))
-	for b: Button in [cont, side, save, mus, sfx, lang, stuck, menu]:
-		b.custom_minimum_size = Vector2(280, 56)
+	# Müzik and Sesler share a row (eight full rows were taller than 720 px)
+	var toggles := HBoxContainer.new()
+	toggles.add_theme_constant_override("separation", int(Tokens.px("space-2")))
+	for b: Button in [mus, sfx]:
+		b.custom_minimum_size = Vector2(170, 56)
+		b.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		toggles.add_child(b)
+	for b: Control in [cont, side, save, toggles, lang, stuck, menu]:
+		if b is Button:
+			b.custom_minimum_size = Vector2(280, 56)
 		v.add_child(b)
 	var refresh := func() -> void:
 		mus.text = TranslationServer.translate("Müzik: %s") % TranslationServer.translate("Açık" if Audio.music_on else "Kapalı")
@@ -712,9 +753,21 @@ func toggle_pause() -> void:
 		SceneFlow.go_to("title", false))
 	var note := UiKit.label(TranslationServer.translate("Oyun kendiliğinden de kaydedilir. · %d FPS") % Engine.get_frames_per_second(), "text-caption", "ink-muted")
 	note.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	v.add_child(note)
+	outer.add_child(note)
 	_root.add_child(p)
 	_pause_panel = p
+	# Esc / pad B closes Mola (the HUD itself gets no input while paused)
+	UiKit.menu(p, cont, cont)
+	var fit := func() -> void:
+		var want := v.get_combined_minimum_size()
+		var frame := panel.get_theme_stylebox("panel").get_minimum_size().y + 2.0 * Tokens.px("space-4")
+		var rest := title.get_combined_minimum_size().y + note.get_combined_minimum_size().y \
+				+ 2.0 * Tokens.px("space-2")
+		var room := maxf(p.size.y - frame - rest, 120.0)
+		# room for the scroll bar only when it is needed
+		scroll.custom_minimum_size = Vector2(want.x + (16.0 if want.y > room else 0.0), minf(want.y, room))
+	fit.call()
+	p.resized.connect(fit)
 
 
 ## Mola → Yan görevler: how far each Season 2 side collection is, with this
@@ -852,12 +905,34 @@ func _maybe_level_up() -> void:
 			show_toast(TranslationServer.translate("%s: kademe %d%s") % [TranslationServer.translate(def["name"]), Powers.rank(d.powers, id), how], "star"))
 
 
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_APPLICATION_RESUMED and _root != null:
+		_apply_safe_area()
+		# the system may report the new inset a moment after coming back
+		get_tree().create_timer(0.5).timeout.connect(_apply_safe_area)
+
+
+var _safe_seen := Rect2i()
+var _orientation_seen := -1
+
+
+## A flip to the other landscape side keeps the window size, so nothing
+## else tells us that the notch changed sides.
+func _check_safe_area() -> void:
+	var safe := DisplayServer.get_display_safe_area()
+	var turn := int(DisplayServer.screen_get_orientation())
+	if safe != _safe_seen or turn != _orientation_seen:
+		_apply_safe_area()
+
+
 ## Keep the HUD out of notches and rounded corners (Android/iOS report a real
 ## safe area; on desktop it's the whole window, so the inset is 0).
 func _apply_safe_area() -> void:
 	if not OS.has_feature("mobile"):
 		return
-	var safe := Rect2(DisplayServer.get_display_safe_area())
+	_safe_seen = DisplayServer.get_display_safe_area()
+	_orientation_seen = int(DisplayServer.screen_get_orientation())
+	var safe := Rect2(_safe_seen)
 	var win := Rect2(Vector2(DisplayServer.window_get_position()), Vector2(DisplayServer.window_get_size()))
 	var inner := safe.intersection(win)
 	if inner.size.x <= 0.0 or win.size.x <= 0.0:
@@ -877,3 +952,121 @@ func _announce_season_skill() -> void:
 		return
 	d.set_flag("s%d_yetenek_%s" % [d.season, s2])
 	GameState.toast.emit(TranslationServer.translate("Yeni yetenek: %s!") % TranslationServer.translate(Skills.DEFS[s2]["name"]), "spark")
+
+
+# --- check: menus driven by keys / a pad (`--demo=padmenu`, headless) ---------
+
+func _demo_key(code: Key) -> void:
+	for down in [true, false]:
+		var ev := InputEventKey.new()
+		ev.keycode = code
+		ev.physical_keycode = code
+		ev.pressed = down
+		Input.parse_input_event(ev)
+		for i in 3:
+			await get_tree().process_frame
+
+
+func _demo_focus() -> String:
+	var f := get_viewport().gui_get_focus_owner()
+	if f == null:
+		return "-"
+	return (f as Button).text if f is Button else String(f.get_class())
+
+
+func _demo_padmenu() -> void:
+	var out := {}
+	# touch first: Mola opens with no focus at all
+	var tap := InputEventScreenTouch.new()
+	tap.pressed = true
+	tap.position = Vector2(640, 20)
+	Input.parse_input_event(tap)
+	tap = tap.duplicate()
+	tap.pressed = false
+	Input.parse_input_event(tap)
+	toggle_pause()
+	for i in 4:
+		await get_tree().process_frame
+	out["touch_no_focus"] = _demo_focus() == "-" and not UiFocus.pad
+	# the first key shows the focus on Devam et; Down walks the buttons
+	await _demo_key(KEY_DOWN)
+	out["first"] = _demo_focus()
+	var seen := []
+	for i in 12:
+		await _demo_key(KEY_DOWN)
+		if _demo_focus() in seen:
+			break
+		seen.append(_demo_focus())
+	out["down"] = seen
+	var toggles: Control = null
+	for b in _pause_panel.find_children("*", "Button", true, false):
+		if (b.get_parent() is HBoxContainer) and (b.get_parent() as Node).get_child_count() == 2 and b.get_index() == 0:
+			toggles = b
+	if toggles:
+		toggles.grab_focus()
+		await _demo_key(KEY_RIGHT)
+		out["right"] = _demo_focus()
+		await _demo_key(KEY_LEFT)
+		out["left"] = _demo_focus()
+	var side := _pause_panel.find_child("SideButton", true, false) as Button
+	if side.visible:
+		side.grab_focus()
+		await _demo_key(KEY_ENTER)
+		for i in 3:
+			await get_tree().process_frame
+		out["side_focus"] = _demo_focus()
+		await _demo_key(KEY_ENTER)
+		for i in 3:
+			await get_tree().process_frame
+		out["side_back"] = _demo_focus()
+	await _demo_key(KEY_ESCAPE)
+	out["closed_by_cancel"] = _pause_panel == null and not get_tree().paused
+	out["focus_after_close"] = _demo_focus()
+	# a choice: accept picks the focused one, and the keeper does not jump
+	var y0 := _player.velocity.y if _player else 0.0
+	var answer := {}
+	var wait := func() -> void: answer["id"] = await ask("Mola", [{"id": "a", "label": "Devam et"}, {"id": "b", "label": "Geri"}])
+	wait.call()
+	for i in 4:
+		await get_tree().process_frame
+	out["choice_first"] = _demo_focus()
+	await _demo_key(KEY_DOWN)
+	out["choice_down"] = _demo_focus()
+	var sp := InputEventKey.new()
+	sp.keycode = KEY_SPACE
+	sp.physical_keycode = KEY_SPACE
+	sp.pressed = true
+	Input.parse_input_event(sp)
+	var jumped := false
+	for i in 16:
+		if i == 6:
+			sp = sp.duplicate()
+			sp.pressed = false
+			Input.parse_input_event(sp)
+		await get_tree().physics_frame
+		if _player and _player.velocity.y > y0 + 2.0:
+			jumped = true
+	out["choice_picked"] = answer.get("id", "")
+	out["no_jump"] = not jumped
+	# cancel closes a choice instead of opening Mola over it
+	wait.call()
+	for i in 4:
+		await get_tree().process_frame
+	answer.erase("id")
+	await _demo_key(KEY_ESCAPE)
+	out["choice_cancel"] = answer.get("id", "?") == "" and _pause_panel == null
+	# level-up cards: left / right between the Seç buttons
+	GameState.data.power_picks = maxi(GameState.data.power_picks, 1)
+	var rng := RandomNumberGenerator.new()
+	_release_touch()
+	get_tree().paused = true
+	_level_panel = LevelUpPanel.new(Powers.choices(GameState.data.powers, rng))
+	_root.add_child(_level_panel)
+	for i in 4:
+		await get_tree().process_frame
+	var a := get_viewport().gui_get_focus_owner()
+	await _demo_key(KEY_RIGHT)
+	var b := get_viewport().gui_get_focus_owner()
+	out["levelup"] = a is Button and b is Button and a != b and _level_panel.is_ancestor_of(b)
+	print("PADMENU ", out)
+	get_tree().quit()

@@ -11,8 +11,16 @@ var data := PlayerData.new()
 ## True while a dialogue box is open: mobs and bosses hold their attacks,
 ## because the player can't move then.
 var in_dialogue := false
+## Timed potion buffs: name → the `clock` time they end. Kept here, not on the
+## Player, so a potion goes on through a house door or a boat trip (both
+## rebuild the Player). Belongs to one PlayerData: emptied when `data` is
+## replaced (new game, another save, Bölüm seç).
+var buffs := {}
+var _buffs_for: PlayerData
 ## Pus Kovucu: mobs notice you from much closer until this time (seconds).
-var repel_until := 0.0
+var repel_until: float:
+	get: return buff_until("kovucu")
+	set(v): set_buff_until("kovucu", v)
 ## Game seconds: stands still in Mola, on the level-up cards and while
 ## someone talks, so a potion never runs out behind a panel.
 var clock := 0.0
@@ -21,7 +29,24 @@ var clock := 0.0
 func _process(delta: float) -> void:
 	if not get_tree().paused and not in_dialogue:
 		clock += delta
+	_own_buffs()
 
+
+func _own_buffs() -> void:
+	if _buffs_for != data:
+		_buffs_for = data
+		buffs.clear()
+
+
+## The game-clock time a potion buff ends (0 = not running).
+func buff_until(buff: String) -> float:
+	_own_buffs()
+	return float(buffs.get(buff, 0.0))
+
+
+func set_buff_until(buff: String, until: float) -> void:
+	_own_buffs()
+	buffs[buff] = until
 
 
 ## Multiplier for how far mobs notice the player (Pus Kovucu → 0.4).

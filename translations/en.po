@@ -6,6 +6,18 @@ msgstr ""
 msgid " (%s tuşu / düğmesi)"
 msgstr " (%s key / button)"
 
+msgid " · buradasın"
+msgstr " · you are here"
+
+msgid " · sisli"
+msgstr " · misty"
+
+msgid " · tamam"
+msgstr " · done"
+
+msgid " · ŞİMDİ BURAYA!"
+msgstr " · GO HERE NOW!"
+
 msgid "\"Sus!\" Bulutu"
 msgstr "\"Hush!\" Cloud"
 
@@ -639,6 +651,12 @@ msgstr "You did it! Tremble's light isn't shivering anymore."
 msgid "Başka bir çan çalınca buradan oraya gidebilirsin."
 msgstr "Ring another bell and you can travel there from here."
 
+msgid "Başka yerler"
+msgstr "Other places"
+
+msgid "Başka yerler…"
+msgstr "Other places…"
+
 msgid "Başla"
 msgstr "Start"
 
@@ -1242,6 +1260,9 @@ msgstr "Out of steam! Hit now!"
 msgid "Buldum! Kaç kere saklanırsan saklan."
 msgstr "Found you! No matter how many times you hide."
 
+msgid "Bulunmamış Mesaj Şişelerinin üstünde yıldız yanar"
+msgstr "A star shines over Message Bottles you have not found"
+
 msgid "Bulut Limanı"
 msgstr "Cloud Harbor"
 
@@ -1721,6 +1742,9 @@ msgstr "Map of Glimmerland"
 
 msgid "Diyar haritam tamam! Her köşesini çizdim."
 msgstr "My map of the land is done! I drew every corner."
+
+msgid "Diyarlar Arası"
+msgstr "Between Realms"
 
 msgid "Dizlerim ağrıdı ama değdi."
 msgstr "My knees ache, but it was worth it."
@@ -3723,6 +3747,9 @@ msgstr "Down to Ember Valley"
 msgid "Kor Vadisi'nin davulcusu. Öfkesini ritme çevirdi."
 msgstr "The drummer of Ember Valley. He turned his anger into rhythm."
 
+msgid "Kor Vadisi: Kaplıca Köyü"
+msgstr "Ember Valley: Steamy Springs Village"
+
 msgid "Kor'u iyi sakla. Fokurdayan Göl seni bekliyor."
 msgstr "Keep the Ember safe. Bubbling Lake is waiting for you."
 
@@ -4707,6 +4734,9 @@ msgstr "Dodge the breath, jump the ring, hit when fists get stuck!"
 msgid "Nefesleniyor! Şimdi vur!"
 msgstr "He's resting! Hit now!"
 
+msgid "Nereye gidelim?"
+msgstr "Where shall we go?"
+
 msgid "Nereye uçalım?"
 msgstr "Where shall we fly?"
 
@@ -5162,6 +5192,9 @@ msgstr "Glimmerland · Spark Keepers"
 
 msgid "Pırıltı Diyarı'nın Feneri geceleri mavi bir gece lambası: korkan herkes için."
 msgstr "Glimmerland's Lighthouse is a blue night-light at night: for everyone who feels scared."
+
+msgid "Pırıltı Diyarı: Gökkuşağı Köyü"
+msgstr "Glimmerland: Rainbow Village"
 
 msgid "Pıtpıt"
 msgstr "Puddles"
@@ -5637,6 +5670,9 @@ msgstr "Calm the Shiverlings in the mist"
 msgid "Sisin içinden iki parlak göz bakıyordu. Hâlâ bir arkadaş arıyordu."
 msgstr "Two shiny eyes looked out from the mist. It was still looking for a friend."
 
+msgid "Sisli adalar, bir önceki ada bitince açılır."
+msgstr "Misty islands open when the one before is finished."
+
 msgid "Sola git..."
 msgstr "Go left..."
 
@@ -5930,6 +5966,9 @@ msgstr "Shivering Shores"
 
 msgid "Titrek Kıyılar · Kıvılcım Bekçileri 3"
 msgstr "Shivering Shores · Spark Guardians 3"
+
+msgid "Titrek Kıyılar: Mercan Koyu"
+msgstr "Shivering Shores: Coral Cove"
 
 msgid "Titrek Yengeç"
 msgstr "Shivering Crab"
@@ -6458,6 +6497,12 @@ msgstr "The race is over! What shall we do now?"
 
 msgid "Yarışa başla"
 msgstr "Start the race"
+
+msgid "Yarışa devam"
+msgstr "Keep racing"
+
+msgid "Yarışı bırakalım mı?"
+msgstr "Leave the race?"
 
 msgid "Yavru iskelede, meşaleler yanıyor. Harikasın!"
 msgstr "The pup is at the pier, the torches are lit. You're great!"
@@ -7274,6 +7319,9 @@ msgstr "Lightning strikes in four beats: count, run in between. Hit when tired!"
 
 msgid "Şimşek dört vuruşla gelir. Say, arada koş, yorulunca vur."
 msgstr "Lightning comes in four beats. Count, run in between, hit when tired."
+
+msgid "Şişe Pusulası"
+msgstr "Bottle Compass"
 
 msgid "Şişe atmayı sürdürüyorum. Deniz iyi bir postacıdır belki."
 msgstr "I keep throwing bottles. Maybe the sea is a good mail carrier."

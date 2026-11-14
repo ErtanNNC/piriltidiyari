@@ -10,6 +10,7 @@ var _boss: Mob
 
 
 func _ready() -> void:
+	RealmGate.place(self, "chapter0", Vector3(6.5, 0, -8.5))
 	Pus.set_amount(0.3 if not GameState.data.has_flag("bolum1_bitti") else 0.12)
 	var sign := TravelSign.new()
 	sign.target_scene = "chapter1"

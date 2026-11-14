@@ -50,6 +50,7 @@ func _ready() -> void:
 	close.size_flags_horizontal = Control.SIZE_SHRINK_END
 	close.pressed.connect(func() -> void: _pick(""))
 	v.add_child(close)
+	UiKit.menu(self, null, close)
 
 
 func _pick(id: String) -> void:

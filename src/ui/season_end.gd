@@ -22,6 +22,7 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	mouse_filter = Control.MOUSE_FILTER_STOP
+	UiKit.menu(self)
 	var bg := ColorRect.new()
 	bg.color = Tokens.color("scrim")
 	bg.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)

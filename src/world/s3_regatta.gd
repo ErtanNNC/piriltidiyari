@@ -44,6 +44,8 @@ var _count: Label3D
 var _hint_t := 0.0
 var _tip_t := 0.0
 var _pulse := 0.0
+var _quit_t := 0.0
+var _away := false
 var _sign: BoatSign
 var _arrow: Node3D
 
@@ -410,6 +412,13 @@ func _physics_process(delta: float) -> void:
 	_seat()
 	if state != "race":
 		return
+	# back at the pier in the middle of a race: a way out without the menu
+	_quit_t = maxf(_quit_t - delta, 0.0)
+	if _away and time > 4.0 and _quit_t <= 0.0 and boat.global_position.distance_to(START) < 5.0 and DevTools.demo == "":
+		_away = false
+		_ask_quit()
+	elif boat.global_position.distance_to(START) > 14.0:
+		_away = true
 	_check_gates()
 	_tip_t = maxf(_tip_t - delta, 0.0)
 	if boat.in_mist and boat.mist_factor < 0.8 and _tip_t <= 0.0:
@@ -615,3 +624,11 @@ func _run_demo(id: String) -> void:
 			var seated := _player.global_position.distance_to(boat.keeper_seat()) < 0.5
 			print("REGATTA_DONE gates=%d/%d time=%.1f medal=%s paid=%s piril=%d bumps=%d seated=%s" % [next, GATES.size(), time, medal, ",".join(paid), d.piril - piril0, bumps[0], seated])
 			get_tree().quit()
+
+
+func _ask_quit() -> void:
+	var pick: String = await _hud.ask("Yarışı bırakalım mı?", [{"id": "", "label": "Yarışa devam"}, {"id": "home", "label": "Koya dön"}])
+	_quit_t = 6.0
+	if pick == "home":
+		Audio.play("splash")
+		SceneFlow.go_to("s3_chapter0")

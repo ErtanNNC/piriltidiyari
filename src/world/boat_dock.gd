@@ -40,24 +40,55 @@ func _build() -> void:
 
 func use(_by: Node) -> void:
 	var d := GameState.data
-	var to := ShoreTravel.destinations(d, here)
-	if to.is_empty() and not d.has_flag("yan_sise_bitti"):
-		GameState.toast.emit("Deniz sisli. Önce buranın İşaret Fişeği'ni yak.", "spark")
-		return
-	var opts := []
-	for id: String in to:
-		opts.append({"id": id, "label": ShoreTravel.region(id)})
-	# after the season: the race; with every Mesaj Şişesi: Tırıl's garden
-	if d.has_flag("sezon3_bitti"):
-		opts.append({"id": "s3_regatta", "label": "Gece Regatası"})
-	if d.has_flag("yan_sise_bitti"):
-		opts.append({"id": "s3_garden", "label": "Mercan Bahçesi"})
-	opts.append({"id": "", "label": "Burada kal"})
 	var hud := get_tree().get_first_node_in_group("hud") as Hud
 	if hud == null:
 		return
+	if ShoreTravel.destinations(d, here).is_empty() and not d.has_flag("yan_sise_bitti") and not d.has_flag("sezon3_bitti"):
+		GameState.toast.emit("Deniz sisli. Önce buranın İşaret Fişeği'ni yak.", "spark")
+		return
+	# every island, in the order of the story: where you are, where you have
+	# been, where to go now, and what is still behind the mist
+	var opts := []
+	var locked_note := false
+	for e: Dictionary in ShoreTravel.menu(d, here):
+		var name_tr := TranslationServer.translate(ShoreTravel.region(e["scene"]))
+		var o := {"id": e["scene"], "label": "%d · %s" % [e["n"], name_tr]}
+		match e["state"]:
+			"here":
+				o["label"] += TranslationServer.translate(" · buradasın")
+				o["enabled"] = false
+			"done":
+				o["label"] += TranslationServer.translate(" · tamam")
+			"next":
+				o["label"] += TranslationServer.translate(" · ŞİMDİ BURAYA!")
+				o["primary"] = true
+			"locked":
+				o["label"] += TranslationServer.translate(" · sisli")
+				o["enabled"] = false
+				if not locked_note:
+					locked_note = true
+					o["note"] = "Sisli adalar, bir önceki ada bitince açılır."
+		opts.append(o)
+	if d.has_flag("sezon3_bitti") or d.has_flag("yan_sise_bitti"):
+		opts.append({"id": "more", "label": "Başka yerler…"})
 	var pick: String = await hud.ask("Kabuk Kayık nereye gitsin?", opts)
+	if pick == "more":
+		pick = await _ask_more(hud)
 	if pick == "":
 		return
 	Audio.play("splash")
 	SceneFlow.go_to(pick)
+
+
+## After the season: the race, Tırıl's garden and the two older realms.
+func _ask_more(hud: Hud) -> String:
+	var d := GameState.data
+	var opts := []
+	if d.has_flag("sezon3_bitti"):
+		opts.append({"id": "s3_regatta", "label": "Gece Regatası"})
+	if d.has_flag("yan_sise_bitti"):
+		opts.append({"id": "s3_garden", "label": "Mercan Bahçesi"})
+	if d.has_flag("sezon3_bitti"):
+		opts.append({"id": "chapter0", "label": "Pırıltı Diyarı: Gökkuşağı Köyü"})
+		opts.append({"id": "s2_chapter0", "label": "Kor Vadisi: Kaplıca Köyü"})
+	return await hud.ask("Başka yerler", opts)

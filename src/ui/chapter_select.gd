@@ -79,6 +79,7 @@ func _ready() -> void:
 	var scroll := ScrollContainer.new()
 	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	scroll.follow_focus = true
 	v.add_child(scroll)
 	var list := VBoxContainer.new()
 	list.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -109,6 +110,8 @@ func _ready() -> void:
 		closed.emit()
 		queue_free())
 	v.add_child(back)
+	var first_pick := find_child("Pick_*", true, false) as Control
+	UiKit.menu(self, first_pick, back)
 	if DevTools.demo.begins_with("chapters_"):
 		# headless check: play one chapter from the list
 		await get_tree().create_timer(0.5).timeout

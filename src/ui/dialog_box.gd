@@ -25,6 +25,7 @@ var _typing: Tween
 func _ready() -> void:
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	mouse_filter = Control.MOUSE_FILTER_STOP
+	add_to_group("ui_dialog")  # UiFocus: no menu focus while a line is up
 	visible = false
 	_scrim = ColorRect.new()
 	_scrim.color = Tokens.color("scrim")

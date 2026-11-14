@@ -56,6 +56,7 @@ func _ready() -> void:
 		closed.emit()
 		queue_free())
 	v.add_child(close)
+	UiKit.menu(self, null, close)
 	_refresh()
 
 

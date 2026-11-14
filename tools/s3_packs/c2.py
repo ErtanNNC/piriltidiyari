@@ -86,5 +86,6 @@ B = {
 }
 S = {"paytak": {"title": "Paytak'ın Kaşif Çantası", "items": [
     {"id": "bal_surubu", "price": 15}, {"id": "sicak_kakao", "price": 15},
-    {"id": "cesaret_kurabiyesi", "price": 35}, {"id": "atesbocegi_kavanozu", "price": 30}]}}
+    {"id": "cesaret_kurabiyesi", "price": 35}, {"id": "atesbocegi_kavanozu", "price": 30},
+    {"id": "sise_pusulasi", "price": 60, "once": True}]}}
 pack("s3_chapter2", "Rüzgârlı Kayalıklar", "Rüzgârlı Kayalıklar", [10, 15], [Q1, Q2], D, B, S)

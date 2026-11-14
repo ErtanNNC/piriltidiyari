@@ -72,9 +72,25 @@ func _restore_progress() -> void:
 		$Level/LimanFeneri.light_up(true)
 	if d.objective_done(QUEST, "canlar"):
 		_wind.active = false
-	if d.quest_state(QUEST) == "done":
+	_finish_ending()
+	if d.quest_state(QUEST) == "done" or d.has_flag("bolum3_bitti"):
 		$Level/KivilcimFeneri.light_up(true)
 		Pus.set_amount(0.05)
+
+
+## A save made while the boss's ending was still playing (autosave, app sent
+## away): the boss objective is done but the chapter never closed. Finish
+## quietly what the ending would have set, so the way on is never locked.
+func _finish_ending() -> void:
+	var d := GameState.data
+	if not d.objective_done(QUEST, "ruzgar") or d.has_flag("bolum3_bitti"):
+		return
+	d.add_spark("yellow")
+	if d.quest_state(QUEST) == "ready":
+		d.complete_quest(Content.quests[QUEST])
+	d.set_flag("pirpir_pazar")
+	d.set_flag("bolum3_bitti")
+	SaveGame.write(d)
 
 
 # --- level -------------------------------------------------------------------
@@ -678,6 +694,19 @@ func _run_demo(which: String) -> void:
 			for id in ["gul", "balon", "liman"]:
 				await travel_to(id)
 				print("TRAVEL %s at=%s" % [id, _player.global_position.round()])
+			get_tree().quit()
+		"midsave":
+			# the save was made in the middle of the boss's ending
+			for o in ["ruzgar", "fener", "pirpir", "canlar", "balon"]:
+				d.complete_objective(QUEST, o)
+			d.sparks.erase("yellow")
+			var before := "obj=%s flag=%s quest=%s" % [d.objective_done(QUEST, "ruzgar"), d.has_flag("bolum3_bitti"), d.quest_state(QUEST)]
+			# let the Pus fades started by the objectives above run out first
+			await get_tree().create_timer(3.5, false).timeout
+			_restore_progress()
+			await get_tree().create_timer(0.8, false).timeout
+			print("MIDSAVE chapter3 before(%s) flag=%s sparks=%s quest=%s exit=%s lantern=%s pus=%.2f pazar=%s dock=%s boss=%s" % [before, d.has_flag("bolum3_bitti"), d.sparks, d.quest_state(QUEST),
+				($Level/ExitSign as Node3D).visible, $Level/KivilcimFeneri.is_lit, Pus.amount, d.has_flag("pirpir_pazar"), ($Level/Dock_firtina as Node3D).visible, _boss != null])
 			get_tree().quit()
 		"boss", "bossfight":
 			for o in ["fener", "pirpir", "canlar", "balon"]:

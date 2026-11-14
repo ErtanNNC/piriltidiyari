@@ -18,6 +18,11 @@
         {
           "id": "atesbocegi_kavanozu",
           "price": 30
+        },
+        {
+          "id": "sise_pusulasi",
+          "price": 60,
+          "once": true
         }
       ]
     }

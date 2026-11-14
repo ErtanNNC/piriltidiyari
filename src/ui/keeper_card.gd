@@ -15,6 +15,12 @@ func _init(keeper_id: String) -> void:
 	id = keeper_id
 	custom_minimum_size = Vector2(250, 0)
 	mouse_filter = Control.MOUSE_FILTER_STOP
+	# pad / keyboard: move onto a card, accept picks it
+	focus_mode = Control.FOCUS_ALL
+	UiFocus.track(self)
+	focus_entered.connect(queue_redraw)
+	focus_exited.connect(queue_redraw)
+	UiFocus.ring("radius-lg").changed.connect(queue_redraw)
 
 
 func _ready() -> void:
@@ -82,8 +88,17 @@ func set_selected(on: bool) -> void:
 	pivot_offset = size * 0.5
 
 
+func _draw() -> void:
+	if has_focus():
+		draw_style_box(UiFocus.ring("radius-lg"), Rect2(Vector2.ZERO, size))
+
+
 func _gui_input(event: InputEvent) -> void:
 	# a tap arrives as a touch AND as a mouse click: take one, or it fires twice
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		pressed.emit()
+		accept_event()
+	elif event.is_action_pressed("ui_accept") and not event.is_echo():
+		Input.action_release("jump")
 		pressed.emit()
 		accept_event()

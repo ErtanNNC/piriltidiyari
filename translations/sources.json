@@ -435,7 +435,9 @@
   "Hafif Kürek",
   "Kabuk Kayık çabuk döner, çabuk hızlanır",
   "Pruva Feneri",
-  "Kayığın ışığı büyür: sis onu yavaşlatamaz"
+  "Kayığın ışığı büyür: sis onu yavaşlatamaz",
+  "Şişe Pusulası",
+  "Bulunmamış Mesaj Şişelerinin üstünde yıldız yanar"
  ],
  "content/keepers.json": [
   "Pati",
@@ -2596,7 +2598,17 @@
   "Bin",
   "Kabuk Kayık",
   "Deniz sisli. Önce buranın İşaret Fişeği'ni yak.",
-  "Kabuk Kayık nereye gitsin?"
+  "%d · %s",
+  " · buradasın",
+  " · tamam",
+  " · ŞİMDİ BURAYA!",
+  " · sisli",
+  "Sisli adalar, bir önceki ada bitince açılır.",
+  "Başka yerler…",
+  "Kabuk Kayık nereye gitsin?",
+  "Pırıltı Diyarı: Gökkuşağı Köyü",
+  "Kor Vadisi: Kaplıca Köyü",
+  "Başka yerler"
  ],
  "src/world/chapter0.gd": [
   "Bekçi Evi",
@@ -2618,7 +2630,8 @@
   "Kıvılcım bulundu!",
   "Yeşil Kıvılcım",
   "Fısıltı Ormanı yeniden yeşil",
-  "Köye dönmek için girişteki tabelaya git"
+  "Köye dönmek için girişteki tabelaya git",
+  "obj=%s flag=%s quest=%s"
  ],
  "src/world/chapter2.gd": [
   "Gri kristallere vur, parlasınlar!",
@@ -2735,6 +2748,11 @@
  ],
  "src/world/pus_gate.gd": [
   "Fener henüz yanmadı"
+ ],
+ "src/world/realm_gate.gd": [
+  "Titrek Kıyılar: Mercan Koyu",
+  "Diyarlar Arası",
+  "Nereye gidelim?"
  ],
  "src/world/s2_chapter0.gd": [
   "Benim sıram!",
@@ -2976,7 +2994,9 @@
   "Bronz madalya!",
   "Yarış bitti! Şimdi ne yapalım?",
   "Tekrar yarış",
-  "Takıldım"
+  "Takıldım",
+  "Yarışı bırakalım mı?",
+  "Yarışa devam"
  ],
  "src/world/s3_scene1.gd": [
   "Castle%d",

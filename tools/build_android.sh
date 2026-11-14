@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Builds export/PiriltiDiyari.apk (debug, arm64) without the Android SDK:
+# Builds export/PiriltiDiyari.apk (release template, arm64) without the Android SDK:
 # Godot's non-Gradle export + our own v2 signer (tools/sign_apk.py).
 # The SDK path only has to exist for Godot's checks; it points to stubs.
 set -euo pipefail
@@ -32,7 +32,11 @@ open(f, "w").write(s)
 PY
 mkdir -p "$ROOT/export"
 "$GODOT" --headless --path "$ROOT" --import >/dev/null 2>&1 || true
-"$GODOT" --headless --path "$ROOT" --export-debug "Android" "$ROOT/export/PiriltiDiyari-unsigned.apk" 2>&1 | grep -E "ERROR" || true
+# release template (optimized, no debugger); BUILD=debug for a debug build.
+# Still signed with the local test key: Play needs an AAB with your own
+# upload key (docs/yayin-rehberi.md).
+MODE="--export-${BUILD:-release}"
+"$GODOT" --headless --path "$ROOT" "$MODE" "Android" "$ROOT/export/PiriltiDiyari-unsigned.apk" 2>&1 | grep -E "ERROR" || true
 python3 "$ROOT/tools/sign_apk.py" "$ROOT/export/PiriltiDiyari-unsigned.apk" "$ROOT/export/PiriltiDiyari.apk" \
   --key "$ROOT/.tools/debug-key.pem" --cert "$ROOT/.tools/debug-cert.der"
 rm -f "$ROOT/export/PiriltiDiyari-unsigned.apk"

@@ -51,6 +51,7 @@ func _build_menu() -> void:
 	root.alignment = BoxContainer.ALIGNMENT_CENTER
 	root.add_theme_constant_override("separation", int(Tokens.px("space-3")))
 	_ui.add_child(root)
+	UiKit.menu(root)
 	var title := UiKit.outlined(UiKit.label("Pırıltı Diyarı", "text-hero", "honey"), 16)
 	title.add_theme_font_size_override("font_size", 84)
 	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER

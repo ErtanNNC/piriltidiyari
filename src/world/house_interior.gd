@@ -177,10 +177,28 @@ func _keeper_house() -> void:
 		Toon.part(lv, "sphere", Vector3(0.1, 0.1, 0.1), "honey", Vector3(-W + 1.14, 1.2, z), Vector3.ZERO, 0.4, 0.015)
 	_spot(Vector3(-W + 1.8, 0, -1.5), "Dolap", func(_by: Node) -> void: _open_wardrobe())
 	TravelSign.board(lv, "Dolap", Vector3(-W + 1.16, 2.65, -1.5), 1.2, 0.45).rotation_degrees.y = 90
-	# the four keepers on pedestals on the right, with their names
+	_pedestals()
+	# a cosy bed and a lamp table
+	WorldLook.block(lv, Vector3(-W + 1.3, 0.35, 2.4), Vector3(2.0, 0.7, 1.4), Color("#c98d5e"))
+	Toon.part(lv, "box", Vector3(1.9, 0.2, 1.3), "sky", Vector3(-W + 1.3, 0.8, 2.4))
+	Toon.part(lv, "ellipsoid", Vector3(0.6, 0.25, 0.9), Color.WHITE, Vector3(-W + 0.6, 0.98, 2.4))
+
+
+func _pedestals() -> void:
+	# the keepers on pedestals on the right, with their names (four rows of
+	# two fit the wall: the Yeni Oyun+ eight stand a little closer)
+	var old := $Level.get_node_or_null("Pedestals")
+	if old:
+		old.name = "PedestalsOld"
+		old.queue_free()
+	var lv := Node3D.new()
+	lv.name = "Pedestals"
+	$Level.add_child(lv)
 	var ids: Array = _keeper_ids()
+	var rows := int((ids.size() + 1) / 2)
+	var step := 2.2 if rows <= 3 else 1.75
 	for i in ids.size():
-		var at := Vector3(2.4 + (i % 2) * 2.0, 0, -2.6 + int(i / 2) * 2.2)
+		var at := Vector3(2.4 + (i % 2) * 2.0, 0, (-2.6 if rows <= 3 else -3.1) + int(i / 2) * step)
 		WorldLook.block(lv, at + Vector3(0, 0.25, 0), Vector3(1.3, 0.5, 1.3), Color("#e8d8c0"))
 		var m := KeeperModels.build(ids[i], {"variant": 0})
 		m.position = at + Vector3(0, 0.5, 0)
@@ -197,18 +215,20 @@ func _keeper_house() -> void:
 		name_l.billboard = BaseMaterial3D.BILLBOARD_ENABLED
 		name_l.position = at + Vector3(0, 2.1, 0)
 		lv.add_child(name_l)
-	# a cosy bed and a lamp table
-	WorldLook.block(lv, Vector3(-W + 1.3, 0.35, 2.4), Vector3(2.0, 0.7, 1.4), Color("#c98d5e"))
-	Toon.part(lv, "box", Vector3(1.9, 0.2, 1.3), "sky", Vector3(-W + 1.3, 0.8, 2.4))
-	Toon.part(lv, "ellipsoid", Vector3(0.6, 0.25, 0.9), Color.WHITE, Vector3(-W + 0.6, 0.98, 2.4))
 
 
-## Season 2's Bekçi Evi has Tıpış too.
+## Season 2's Bekçi Evi has Tıpış too, Season 3's Tosbi; a Yeni Oyun+ save
+## adds Hırıl and Tırıl (so whoever plays as them can come back to them).
 func _keeper_ids() -> Array:
 	if GameState.data.season == 2:
 		return Content.keepers_s2.get("order", KeeperSelect.ORDER)
 	if GameState.data.season >= 3:
-		return Content.keepers_s3.get("order", KeeperSelect.ORDER)
+		var ids: Array = (Content.keepers_s3.get("order", KeeperSelect.ORDER) as Array).duplicate()
+		if GameState.data.has_flag("ng_plus"):
+			for id: String in Content.keepers_s3.get("ng_plus", []):
+				if not ids.has(id):
+					ids.append(id)
+		return ids
 	return ["pati", "bado", "citir", "lumi"]
 
 
@@ -302,6 +322,32 @@ func _run_demo(which: String) -> void:
 			print("SWITCH id=%s level=%d same_level=%s model_ok=%s" % [d.character_id, d.level, d.level == lv, _player.model != null])
 			if DisplayServer.get_name() == "headless":
 				get_tree().quit()
+		"switch_ng":
+			# Yeni Oyun+ (Season 3): the mirror offers all eight; there and back
+			var d := GameState.data
+			d.season = 3
+			d.set_flag("ng_plus")
+			while d.level < Skills.S2_LEVEL:
+				d.add_xp(Progression.xp_to_next(d.level) - d.xp)
+			d.switch_keeper("pati", Content.keeper("pati")["stats"], {}, "Pati", Content.items)
+			print("SWITCH_NG keepers=%s level=%d" % [",".join(PackedStringArray(_keeper_ids())), d.level])
+			for id: String in ["tiril", "hiril", "pati"]:
+				d.switch_keeper(id, Content.keeper(id)["stats"], {}, String(Content.keeper(id)["name"]), Content.items)
+				await get_tree().create_timer(0.3, false).timeout
+				print("SWITCH_NG id=%s skill=%s skills=%s model_ok=%s" % [d.character_id, d.active_skill(), ",".join(PackedStringArray(d.skills)), _player.model != null])
+			if DisplayServer.get_name() == "headless":
+				get_tree().quit()
+		"ng_room":
+			# screenshot: the eight pedestals, and Hırıl in a hat with a staff
+			var d := GameState.data
+			d.season = 3
+			d.set_flag("ng_plus")
+			_pedestals()
+			d.switch_keeper("hiril", Content.keeper("hiril")["stats"], {}, "Hırıl", Content.items)
+			for it: String in ["kasif_sapkasi", "yildiz_asasi"]:
+				d.set_flag("owned_" + it)
+			Shop.equip(d, "outfit", "kasif_sapkasi")
+			Shop.equip(d, "weapon", "yildiz_asasi")
 		"leave":
 			# as if coming in from the shop door, then walking back out
 			SceneFlow.return_point = Vector3(11, 0.05, -3.8)

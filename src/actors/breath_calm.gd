@@ -29,9 +29,13 @@ var angry := 0.0
 ## Kızıl Sis strength around the keeper (bar fill per second), set by scenes.
 var heat := 0.0
 ## Papatya Çayı: breaths go faster until this time (seconds).
-var fast_until := 0.0
+var fast_until: float:
+	get: return GameState.buff_until("papatya")
+	set(v): GameState.set_buff_until("papatya", v)
 ## Sis Kalkanı: the Öfke barı doesn't fill until then (engine seconds).
-var shield_until := 0.0
+var shield_until: float:
+	get: return GameState.buff_until("sis_kalkani")
+	set(v): GameState.set_buff_until("sis_kalkani", v)
 
 var _ring: MeshInstance3D
 var _label: Label3D

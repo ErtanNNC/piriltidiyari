@@ -169,17 +169,13 @@ func switch_keeper(id: String, stats: Dictionary, look: Dictionary, display_name
 	level = lv
 	xp = x
 	recompute_stats(item_defs)
-	# shared skills (like Dikenli Dönüş) stay; other keepers' own skills don't
-	var others := []
-	for k: String in ["pati", "bado", "citir", "lumi", "fistik", "tipis_panda", "tosbi"]:
-		if k != id:
-			others.append(Skills.for_character(k))
-			others.append(Skills.season_for(k, 2))
-			others.append(Skills.season_for(k, 3))
+	# skills that belong to nobody stay; every other character's own and
+	# season skills go (whoever the previous keeper was: Hırıl and Tırıl too)
 	for s: String in old_skills:
-		if not others.has(s) and not skills.has(s):
+		var whose := String((Skills.DEFS.get(s, {}) as Dictionary).get("owner", ""))
+		if (whose == "" or whose == id) and not skills.has(s):
 			skills.append(s)
-	learn_season_skill()  # Season 2: the new keeper's calming skill too
+	learn_season_skill()  # from level 5: the new keeper's skill of this season too
 	hp = max_hp
 	mp = max_mp
 	stats_changed.emit()

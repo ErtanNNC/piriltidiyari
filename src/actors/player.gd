@@ -55,7 +55,11 @@ var _roll_center := 0.9
 var _roll_fx := 0.0
 var _knock := Vector3.ZERO
 var _move := Vector3.ZERO   ## walking velocity, without knockback
-var _power_until := 0.0     ## Cesaret Şekeri: stronger until this time (s)
+## Cesaret Şekeri: stronger until this time (s); kept in GameState so it
+## goes on through a scene change.
+var _power_until: float:
+	get: return GameState.buff_until("guc")
+	set(v): GameState.set_buff_until("guc", v)
 var _air_jumps := 0
 var _shield := 0.0
 var _shield_mesh: MeshInstance3D

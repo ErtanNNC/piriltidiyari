@@ -28,13 +28,33 @@ func _ready() -> void:
 	d.quest_changed.connect(func(_id: String) -> void: _advance())
 	if d.objective_done(QUEST, "fener"):
 		$Level/KaleFeneri.light_up(true)
+	var half_done := _finish_ending()
 	await get_tree().create_timer(1.9, false).timeout
 	if DevTools.demo != "":
 		_run_demo(DevTools.demo)
 		return
+	if half_done:
+		SceneFlow.go_to("final")
+		return
 	if not d.objective_done(QUEST, "fener"):
 		GameState.bark("c5_giris")
 		_hud.show_hint("Kale Feneri'ni yak", "Kale Feneri'ni yak")
+
+
+## A save made in the last seconds of the ending (Mırıl already calm, the
+## chapter not closed yet): close it quietly; true = go on to the final,
+## as the ending does.
+func _finish_ending() -> bool:
+	var d := GameState.data
+	if not d.objective_done(QUEST, "miril") or d.has_flag("bolum5_bitti"):
+		return false
+	d.add_spark("purple")
+	if d.quest_state(QUEST) == "ready":
+		d.complete_quest(Content.quests[QUEST])
+	d.set_flag("bolum5_bitti")
+	Pus.set_amount(0.0)
+	SaveGame.write(d)
+	return true
 
 
 func _advance() -> void:
@@ -349,6 +369,19 @@ func _run_demo(which: String) -> void:
 			await close_dialogs()
 			print("CASTLE pos=%s fener=%s kapilar=%s anilar=%s miril=%s" % [_player.global_position.round(), d.objective_done(QUEST, "fener"),
 				d.objective_count(QUEST, "kapilar"), d.objective_count(QUEST, "anilar"), _miril != null])
+			get_tree().quit()
+		"midsave":
+			# the save was made in the last seconds of the ending
+			for o in ["miril", "fener", "kapilar", "anilar"]:
+				d.complete_objective(QUEST, o)
+			d.sparks.erase("purple")
+			var before := "obj=%s flag=%s quest=%s" % [d.objective_done(QUEST, "miril"), d.has_flag("bolum5_bitti"), d.quest_state(QUEST)]
+			var go := _finish_ending()
+			await get_tree().create_timer(0.8, false).timeout
+			print("MIDSAVE chapter5 before(%s) flag=%s sparks=%s quest=%s to_final=%s pus=%.2f boss=%s" % [before, d.has_flag("bolum5_bitti"), d.sparks, d.quest_state(QUEST), go, Pus.amount, _miril != null])
+			if go:
+				SceneFlow.go_to("final")
+			print("MIDSAVE2 chapter5 leaving=%s" % SceneFlow.busy)
 			get_tree().quit()
 		"final", "finalfight":
 			for o in ["fener", "kapilar", "anilar"]:

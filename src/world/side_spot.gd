@@ -82,6 +82,13 @@ func _refresh() -> void:
 	elif not waiting and _star:
 		_star.queue_free()
 		_star = null
+	# Paytak's Şişe Pusulası: bottles not found yet shine through everything
+	if _set == "sise":
+		var show := waiting and GameState.data.has_flag("owned_sise_pusulasi")
+		if show and not has_node("Beacon"):
+			Beacon.attach(self, 2.6, Tokens.color("sky"))
+		elif not show and has_node("Beacon"):
+			get_node("Beacon").queue_free()
 	if _flag_arm:
 		_flag_arm.rotation_degrees.z = 0.0 if SideQuests.available(GameState.data, spot) and not is_found() else -90.0
 	if _set == "davul" and is_found():

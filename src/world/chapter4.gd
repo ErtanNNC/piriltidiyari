@@ -64,9 +64,24 @@ func _restore_progress() -> void:
 		_clear_fog(i, true)
 	if d.objective_done(QUEST, "ates") and d.objective_done(QUEST, "kuzey"):
 		_gates[2].open(true)
-	if d.quest_state(QUEST) == "done":
+	_finish_ending()
+	if d.quest_state(QUEST) == "done" or d.has_flag("bolum4_bitti"):
 		$Level/KivilcimFeneri.light_up(true)
 		_melt(true)
+
+
+## A save made while the boss's ending was still playing (autosave, app sent
+## away): the boss objective is done but the chapter never closed. Finish
+## quietly what the ending would have set, so the way on is never locked.
+func _finish_ending() -> void:
+	var d := GameState.data
+	if not d.objective_done(QUEST, "dondurma") or d.has_flag("bolum4_bitti"):
+		return
+	d.add_spark("white")
+	if d.quest_state(QUEST) == "ready":
+		d.complete_quest(Content.quests[QUEST])
+	d.set_flag("bolum4_bitti")
+	SaveGame.write(d)
 
 
 # --- level -------------------------------------------------------------------
@@ -505,6 +520,19 @@ func _run_demo(which: String) -> void:
 			x0 = _player.global_position.x
 			await get_tree().create_timer(0.6, false).timeout
 			print("ICE slide_after_release ice=%.2f m snow=%.2f m" % [ice_slide, _player.global_position.x - x0])
+			get_tree().quit()
+		"midsave":
+			# the save was made in the middle of the boss's ending
+			for o in ["dondurma", "fener", "ates", "kuzey"]:
+				d.complete_objective(QUEST, o)
+			d.sparks.erase("white")
+			var before := "obj=%s flag=%s quest=%s" % [d.objective_done(QUEST, "dondurma"), d.has_flag("bolum4_bitti"), d.quest_state(QUEST)]
+			# let the Pus fades started by the objectives above run out first
+			await get_tree().create_timer(3.5, false).timeout
+			_restore_progress()
+			await get_tree().create_timer(0.8, false).timeout
+			print("MIDSAVE chapter4 before(%s) flag=%s sparks=%s quest=%s exit=%s lantern=%s pus=%.2f boss=%s" % [before, d.has_flag("bolum4_bitti"), d.sparks, d.quest_state(QUEST),
+				($Level/ExitSign as Node3D).visible, $Level/KivilcimFeneri.is_lit, Pus.amount, _boss != null])
 			get_tree().quit()
 		"boss", "bossfight":
 			for o in ["fener", "ates", "kuzey"]:

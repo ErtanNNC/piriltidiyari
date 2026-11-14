@@ -46,14 +46,40 @@ static func outlined(l: Label, size := 8) -> Label:
 	return l
 
 
+## Marks `root` as a menu for pad/keyboard players (see UiFocus): the focus
+## stays inside it, starts on `first` (default: its first honey button) and
+## ui_cancel presses `back`.
+static func menu(root: Control, first: Control = null, back: BaseButton = null) -> void:
+	root.set_meta("ui_menu", true)
+	if first != null:
+		root.set_meta("ui_first", first)
+	if back != null:
+		root.set_meta("ui_back", back)
+	UiFocus.ensure()
+
+
+## Moves the focus to `c`, only for players who steer with a pad or keys.
+static func focus(c: Control) -> void:
+	if UiFocus.pad and is_instance_valid(c) and c.is_inside_tree() and c.is_visible_in_tree():
+		c.grab_focus()
+
+
 ## GameButton: honey (primary) or panel (secondary), 48px+ touch target,
 ## pressed state slides 2px down and the shadow shrinks from 4px to 2px.
+## Focusable for pad/keyboard menus (honey-deep ring, UiFocus); buttons used
+## during play set FOCUS_NONE.
 static func button(text: String, primary := true) -> Button:
 	var b := Button.new()
-	b.pressed.connect(func() -> void: Audio.play("click"))
+	b.pressed.connect(func() -> void:
+		Audio.play("click")
+		# Space / pad A is also Zıpla: a menu choice must not jump as well
+		if b.focus_mode != Control.FOCUS_NONE:
+			Input.action_release("jump"))
 	b.text = text
 	b.custom_minimum_size = Vector2(120, 56)
-	b.focus_mode = Control.FOCUS_NONE
+	b.focus_mode = Control.FOCUS_ALL
+	b.set_meta("ui_primary", primary)
+	UiFocus.track(b)
 	var fill := Tokens.color("honey") if primary else Tokens.color("panel")
 	var normal := box(fill, "radius-md", 4.0)
 	normal.content_margin_left = 20
@@ -69,7 +95,7 @@ static func button(text: String, primary := true) -> Button:
 	b.add_theme_stylebox_override("normal", normal)
 	b.add_theme_stylebox_override("hover", hover)
 	b.add_theme_stylebox_override("pressed", pressed)
-	b.add_theme_stylebox_override("focus", StyleBoxEmpty.new())
+	b.add_theme_stylebox_override("focus", UiFocus.ring())
 	var ink := Tokens.color("on-color") if primary else Tokens.color("ink")
 	for k in ["font_color", "font_hover_color", "font_pressed_color", "font_focus_color"]:
 		b.add_theme_color_override(k, ink)
