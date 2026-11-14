@@ -4,11 +4,18 @@
   "region": "Yuva Ağacı",
   "theme": "light",
   "levels": [
-    1,
-    5
+    15,
+    20
   ],
   "spark": null,
-  "quests": [],
-  "dialogue": [],
+  "quests": [
+    "dallara_tirman",
+    "kapali_yuva"
+  ],
+  "dialogue": [
+    "anne_serce",
+    "bado",
+    "minnos"
+  ],
   "barks": "barks"
 }

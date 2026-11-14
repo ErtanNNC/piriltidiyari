@@ -1,0 +1,30 @@
+{
+  "id": "koklerin_pesinde",
+  "title": "Köklerin Peşinde",
+  "giver": "tospik_nine",
+  "objectives": [
+    {
+      "id": "merdiven",
+      "text": "Merdiven tohumu ek, çitin üstünden geç",
+      "type": "grow",
+      "target": "merdiven"
+    },
+    {
+      "id": "kopru",
+      "text": "Derenin başına köprü tohumu ek",
+      "type": "grow",
+      "target": "kopru"
+    },
+    {
+      "id": "kok",
+      "text": "Sarmaşıkların dev köküne ulaş",
+      "type": "reach",
+      "target": "dev_kok"
+    }
+  ],
+  "turn_in": "Dev köke ulaş",
+  "rewards": {
+    "piril": 10,
+    "xp": 0
+  }
+}

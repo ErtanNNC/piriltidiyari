@@ -1,1 +1,210 @@
-{"barks": {}}
+{
+  "barks": {
+    "s4k5_basla": [
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Duvarlar ne kadar yüksek! Buraya hiç güneş düşmüyor."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "sakin",
+        "text": "Kapının yanında biri bekliyor. Önce ona soralım."
+      }
+    ],
+    "s4k5_kapi": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Alkışlayınca dikenler çekildi! Yol açıldı."
+      }
+    ],
+    "s4k5_dikenci": [
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Diken Topları ve gölgeler! Hepsi aynı soruyu mırıldanıyor."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "kararlı",
+        "text": "Önce sersemlet, sonra alkışla. Soru o zaman susuyor."
+      }
+    ],
+    "s4k5_merdiven": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Tohum büyüdü, sarmaşık merdiven oldu! Sete çıkabiliriz."
+      }
+    ],
+    "s4k5_gece": [
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Ektim ama açmıyor. Küçük bir tomurcuk kaldı."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "sakin",
+        "text": "Demek bazı çiçekler gündüz açmaz. Gecesini bekler."
+      }
+    ],
+    "s4k5_kilit": [
+      {
+        "speaker": "oyuncu",
+        "mood": "sakin",
+        "text": "Çark dönmüyor. Önce bu yolun işini bitirelim."
+      }
+    ],
+    "s4k5_ark": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Su akıyor! Son çit de kurudu. Köşenin ortası açıldı."
+      }
+    ],
+    "s4k5_diril": [
+      {
+        "speaker": "diril",
+        "mood": "huysuz",
+        "text": "Lale açtı, gül açtı, herkes açtı! Neden ben değilim?"
+      },
+      {
+        "speaker": "tiril",
+        "mood": "dertli",
+        "text": "Dırıl, dur! Onlar sana bakmaya geldi."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "kararlı",
+        "text": "Sarmaşıklardan kaçalım. Yorulunca konuşuruz."
+      }
+    ],
+    "s4k5_faz2": [
+      {
+        "speaker": "diril",
+        "mood": "dertli",
+        "text": "Alkış mı? Neyi alkışlıyorsun? Ben hiç açmadım ki."
+      },
+      {
+        "speaker": "tiril",
+        "mood": "sakin",
+        "text": "Ona tek alkış yetmiyor. Önce bir bahçe görmesi lazım."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "kararlı",
+        "text": "Dört tohumum var. Çevresine ekelim, hep beraber!"
+      }
+    ],
+    "s4k5_cicek_lale": [
+      {
+        "speaker": "sikir",
+        "mood": "mutlu",
+        "text": "Benim lalem sabah açar. Seninki başka zaman açabilir."
+      },
+      {
+        "speaker": "diril",
+        "mood": "şaşkın",
+        "text": "Başka zaman mı? Öyle bir zaman var mı?"
+      }
+    ],
+    "s4k5_cicek_papatya": [
+      {
+        "speaker": "circir",
+        "mood": "mutlu",
+        "text": "Benim papatyam öğlen açar. Şarkım da öğlen çıkar zaten."
+      },
+      {
+        "speaker": "diril",
+        "mood": "sakin",
+        "text": "Ben öğlen de denedim. Demek benimki öğlen değil."
+      }
+    ],
+    "s4k5_cicek_gul": [
+      {
+        "speaker": "pitpit",
+        "mood": "mutlu",
+        "text": "Benim gülüm geç açtı, kardeşlerimden sonra. Yine de açtı!"
+      },
+      {
+        "speaker": "diril",
+        "mood": "şaşkın",
+        "text": "Geç açan da çiçek sayılıyor mu?"
+      }
+    ],
+    "s4k5_cicek_nilufer": [
+      {
+        "speaker": "pacali",
+        "mood": "mutlu",
+        "text": "Benim nilüferim suda açar. Herkesin yeri de saati de ayrı."
+      },
+      {
+        "speaker": "diril",
+        "mood": "sakin",
+        "text": "Herkesin saati ayrı... Peki benimki ne zaman?"
+      }
+    ],
+    "s4k5_karardi": [
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Hava kararıyor... Gölge Köşesi'ne gece geliyor!"
+      }
+    ],
+    "s4k5_fener": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Güneyden mavi bir ışık! Bu bizim Fener'in gece ışığı!"
+      },
+      {
+        "speaker": "tiril",
+        "mood": "kararlı",
+        "text": "Işığımı ona katıyorum. Bak Dırıl, ay doğuyor!"
+      }
+    ],
+    "s4k5_acti": [
+      {
+        "speaker": "diril",
+        "mood": "şaşkın",
+        "text": "İçim kıpır kıpır... Yapraklarım açılıyor!"
+      },
+      {
+        "speaker": "diril",
+        "mood": "mutlu",
+        "text": "Ben de bir çiçekmişim. Sadece benim saatim gece."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Gümüş bir Ay Çiçeği! Dikenler de çiçek oldu."
+      },
+      {
+        "speaker": "tiril",
+        "mood": "mutlu",
+        "text": "Gece kimse bakmaya gelmemişti. Bu gece herkes burada."
+      }
+    ],
+    "s4k5_gece_cicegi": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Bak! Yoldaki Gece Çiçeği de açtı. Saati gelmiş!"
+      }
+    ],
+    "s4k5_tohum": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Ay Çiçeği Tohumu! Beşinci tohum da tamam."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "sakin",
+        "text": "Tırıl ile konuşalım. Eve dönme vakti."
+      }
+    ]
+  }
+}

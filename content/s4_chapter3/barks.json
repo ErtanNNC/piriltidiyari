@@ -1,1 +1,160 @@
-{"barks": {}}
+{
+  "barks": {
+    "s4k3_basla": [
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Kocaman bir ağaç! Her dalında bir yuva evi var."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "sakin",
+        "text": "En tepedeki yuvanın kapısı dikenle kapalı. Kim var orada?"
+      }
+    ],
+    "s4k3_yuva": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Alkışlayınca yuvanın dikenleri çekildi! Kuşlar cıvıldıyor."
+      }
+    ],
+    "s4k3_dikenci": [
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Civciv somurtmuş, sincap da herkesi dalından itiyor!"
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "kararlı",
+        "text": "Önce sersemlet, sonra alkışla. Kendi dalını görsün."
+      }
+    ],
+    "s4k3_merdiven": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Sarmaşık merdiven oldu! Üst dala çıkabiliriz."
+      }
+    ],
+    "s4k3_dustum": [
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Pof! Yumuşak düştüm. Merdiven yerinde, yine çıkarım."
+      }
+    ],
+    "s4k3_kilit": [
+      {
+        "speaker": "oyuncu",
+        "mood": "sakin",
+        "text": "Çark dönmüyor. Önce Anne Serçe'nin işini bitirelim."
+      }
+    ],
+    "s4k3_ark": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Su dallardan aşağı akıyor! Tepedeki diken çiti kurudu."
+      }
+    ],
+    "s4k3_pitpit": [
+      {
+        "speaker": "pitpit",
+        "mood": "huysuz",
+        "text": "Gelmeyin! Kapıyı ben kapattım. Burası benim yuvam!"
+      },
+      {
+        "speaker": "pitpit",
+        "mood": "dertli",
+        "text": "Dört kardeş geldi. Artık kimse bana bakmıyor!"
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "kararlı",
+        "text": "Kanatlarıyla rüzgâr çıkarıyor. Yorulunca yanına gidelim."
+      }
+    ],
+    "s4k3_sakin": [
+      {
+        "speaker": "pitpit",
+        "mood": "dertli",
+        "text": "Annem bütün gün onları besliyor. Beni unuttu sandım."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Seni alkışladım Pıtpıt! Kanat çırpışın rüzgâr gibiydi."
+      },
+      {
+        "speaker": "pitpit",
+        "mood": "şaşkın",
+        "text": "Beni mi? Kanat çırpışımı gören oldu mu yani?"
+      }
+    ],
+    "s4k3_tuy": [
+      {
+        "speaker": "anne_serce",
+        "mood": "mutlu",
+        "text": "Pıtpıt'ım! Bak, bunu hatırlıyor musun?"
+      },
+      {
+        "speaker": "anne_serce",
+        "mood": "sakin",
+        "text": "Sen minicikken düşen ilk tüyün. Onu yuvaya ben ördüm."
+      },
+      {
+        "speaker": "anne_serce",
+        "mood": "mutlu",
+        "text": "Sen benim ilk yuvamsın. Kalbim büyüdü, senin yerin küçülmedi."
+      },
+      {
+        "speaker": "pitpit",
+        "mood": "mutlu",
+        "text": "İlk tüyüm... Bunca zaman saklamışsın anne!"
+      }
+    ],
+    "s4k3_kardes": [
+      {
+        "speaker": "pitpit",
+        "mood": "şaşkın",
+        "text": "Aa, kardeşlerim! Dördü de bana bakıyor."
+      },
+      {
+        "speaker": "pitpit",
+        "mood": "kararlı",
+        "text": "Daha uçmayı bilmiyorlar. Onlara ben öğreteceğim!"
+      },
+      {
+        "speaker": "anne_serce",
+        "mood": "mutlu",
+        "text": "Abileri gösterirse çabucak kanatlanırlar."
+      }
+    ],
+    "s4k3_tohum": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Gül Tohumu! Sevgi paylaşılınca azalmıyor, çoğalıyor."
+      }
+    ],
+    "s4k3_ani": [
+      {
+        "speaker": "diril",
+        "mood": "dertli",
+        "text": "Bir kürek toprak... Küçük bir çocuk eli..."
+      },
+      {
+        "speaker": "diril",
+        "mood": "sakin",
+        "text": "Beni gölgeli köşeye bıraktı. 'Burada büyü' dedi."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Bu Dırıl'ın ilk anısı! Onu bir çocuk ekmiş."
+      }
+    ]
+  }
+}

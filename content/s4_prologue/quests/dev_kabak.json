@@ -1,0 +1,18 @@
+{
+  "id": "dev_kabak",
+  "title": "Dev Kabak Bahçıvan",
+  "giver": "tiril",
+  "objectives": [
+    {
+      "id": "alkis",
+      "text": "Dev Kabak yorulunca vur, küsünce alkışla",
+      "type": "breathe",
+      "target": "kabak"
+    }
+  ],
+  "turn_in": "Kabağın yanında dur",
+  "rewards": {
+    "piril": 25,
+    "xp": 25
+  }
+}

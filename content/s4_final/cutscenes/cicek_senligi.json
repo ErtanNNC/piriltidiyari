@@ -1,0 +1,237 @@
+{
+  "steps": [
+    {
+      "cam": {
+        "pos": [
+          0,
+          7,
+          13
+        ],
+        "look": [
+          0,
+          1.2,
+          -3
+        ],
+        "time": 0
+      }
+    },
+    {
+      "wait": 1.0
+    },
+    {
+      "say": "s4f_1"
+    },
+    {
+      "do": "seeds_planted"
+    },
+    {
+      "cam": {
+        "pos": [
+          0,
+          5,
+          8
+        ],
+        "look": [
+          0,
+          1.2,
+          -6
+        ],
+        "time": 2.0
+      }
+    },
+    {
+      "wait": 1.8
+    },
+    {
+      "do": "fountain_runs"
+    },
+    {
+      "wait": 1.6
+    },
+    {
+      "say": "s4f_2"
+    },
+    {
+      "cam": {
+        "pos": [
+          0,
+          8,
+          14
+        ],
+        "look": [
+          0,
+          1.0,
+          -2
+        ],
+        "time": 2.0
+      }
+    },
+    {
+      "say": "s4f_3"
+    },
+    {
+      "do": "flowers_swap"
+    },
+    {
+      "wait": 3.0
+    },
+    {
+      "say": "s4f_4"
+    },
+    {
+      "say": "s4f_odul"
+    },
+    {
+      "do": "prize"
+    },
+    {
+      "wait": 2.0
+    },
+    {
+      "say": "s4f_odul2"
+    },
+    {
+      "do": "night_falls"
+    },
+    {
+      "wait": 3.6
+    },
+    {
+      "cam": {
+        "pos": [
+          1,
+          4.5,
+          8
+        ],
+        "look": [
+          1,
+          1.0,
+          -2
+        ],
+        "time": 2.0
+      }
+    },
+    {
+      "say": "s4f_gece"
+    },
+    {
+      "do": "moon_flower"
+    },
+    {
+      "wait": 2.4
+    },
+    {
+      "say": "s4f_gece2"
+    },
+    {
+      "do": "four_friends"
+    },
+    {
+      "cam": {
+        "pos": [
+          0,
+          7,
+          13
+        ],
+        "look": [
+          0,
+          1.5,
+          -3
+        ],
+        "time": 2.5
+      }
+    },
+    {
+      "wait": 3.0
+    },
+    {
+      "say": "s4f_dort"
+    },
+    {
+      "say": "s4f_fistik"
+    },
+    {
+      "say": "s4f_{keeper}"
+    },
+    {
+      "wait": 2.0
+    },
+    {
+      "card": [
+        "",
+        "Herkes kendi saatinde açar",
+        "O gece köyde kimse uyumadı."
+      ],
+      "time": 4.0
+    },
+    {
+      "do": "child_sings"
+    },
+    {
+      "cam": {
+        "pos": [
+          6.5,
+          3.2,
+          8.5
+        ],
+        "look": [
+          8.5,
+          1.0,
+          1.5
+        ],
+        "time": 2.0
+      }
+    },
+    {
+      "wait": 1.6
+    },
+    {
+      "say": "s4f_sarki"
+    },
+    {
+      "do": "pink_cloud"
+    },
+    {
+      "wait": 3.4
+    },
+    {
+      "say": "s4f_bulut"
+    },
+    {
+      "do": "far_clouds"
+    },
+    {
+      "cam": {
+        "pos": [
+          2,
+          4,
+          12
+        ],
+        "look": [
+          0,
+          11,
+          -44
+        ],
+        "time": 2.5
+      }
+    },
+    {
+      "wait": 1.6
+    },
+    {
+      "do": "fistik_bristles"
+    },
+    {
+      "say": "s4f_son"
+    },
+    {
+      "do": "fade_dark"
+    },
+    {
+      "wait": 2.2
+    },
+    {
+      "do": "season_end"
+    }
+  ]
+}

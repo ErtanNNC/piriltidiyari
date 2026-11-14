@@ -1,0 +1,53 @@
+{
+  "npc": "sarki_kurbaga",
+  "variants": [
+    {
+      "when": {
+        "flag": "s4_chapter2_d0"
+      },
+      "lines": [
+        {
+          "speaker": "sarki_kurbaga",
+          "mood": "mutlu",
+          "text": "Beni alkışladın! Dikenler de utandı, çekildi."
+        },
+        {
+          "speaker": "sarki_kurbaga",
+          "mood": "mutlu",
+          "text": "Akşama konser var. En öne sana yer ayırdım!"
+        }
+      ]
+    },
+    {
+      "when": {
+        "flag": "s4c2_sarki0"
+      },
+      "lines": [
+        {
+          "speaker": "sarki_kurbaga",
+          "mood": "mutlu",
+          "text": "Vırak! Vırak! Sesim geri geldi! Ritmin çok iyi geldi."
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "mutlu",
+          "text": "Çok güzel söylüyorsun! Dur, seni bir alkışlayayım."
+        }
+      ]
+    },
+    {
+      "lines": [
+        {
+          "speaker": "sarki_kurbaga",
+          "mood": "dertli",
+          "text": "Vırak diyorum, kimse duymuyor. Cırcır sesi her yerde!"
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "sakin",
+          "text": "Yanında düzenli vurayım. Belki ritim sesini geri getirir."
+        }
+      ]
+    }
+  ]
+}

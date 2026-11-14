@@ -1,0 +1,14 @@
+{
+  "id": "s4_final",
+  "title": "Çiçek Şenliği",
+  "region": "Gökkuşağı Köyü",
+  "theme": "light",
+  "levels": [
+    28,
+    30
+  ],
+  "spark": null,
+  "quests": [],
+  "dialogue": [],
+  "barks": "barks"
+}

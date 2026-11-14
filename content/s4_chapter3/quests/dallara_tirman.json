@@ -1,0 +1,33 @@
+{
+  "id": "dallara_tirman",
+  "title": "Dal Dal Yukarı",
+  "giver": "anne_serce",
+  "objectives": [
+    {
+      "id": "alkis",
+      "text": "Üç yuva evini alkışla",
+      "type": "clap",
+      "target": "yuva",
+      "count": 3
+    },
+    {
+      "id": "merdiven",
+      "text": "Üç sarmaşık merdiven ek, dallara tırman",
+      "type": "grow",
+      "target": "merdiven",
+      "count": 3
+    },
+    {
+      "id": "dikenci",
+      "text": "Dikencileri sersemlet, sonra alkışla",
+      "type": "breathe",
+      "target": "any",
+      "count": 4
+    }
+  ],
+  "turn_in": "Anne Serçe'ye dön",
+  "rewards": {
+    "piril": 60,
+    "xp": 90
+  }
+}

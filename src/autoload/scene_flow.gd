@@ -75,7 +75,7 @@ const SCENE_CHAPTER := {"chapter0": "chapter0", "chapter1": "chapter1", "chapter
 	"s3_scene1": "s3_prologue", "s3_scene2": "s3_prologue",
 	"s3_scene3": "s3_prologue", "s3_scene4": "s3_prologue", "s3_scene5": "s3_prologue", "s3_scene6": "s3_prologue", "s3_chapter0": "s3_chapter0", "s3_chapter1": "s3_chapter1", "s3_chapter2": "s3_chapter2", "s3_chapter3": "s3_chapter3", "s3_chapter4": "s3_chapter4", "s3_chapter5": "s3_chapter5", "s3_final": "s3_chapter5",
 	"s3_regatta": "s3_regatta", "s3_garden": "s3_garden",
-	"s4_scene1": "s4_prologue", "s4_scene2": "s4_prologue", "s4_scene3": "s4_prologue", "s4_scene4": "s4_prologue", "s4_scene5": "s4_prologue", "s4_scene6": "s4_prologue", "s4_chapter0": "s4_chapter0", "s4_chapter1": "s4_chapter1", "s4_chapter2": "s4_chapter2", "s4_chapter3": "s4_chapter3", "s4_chapter4": "s4_chapter4", "s4_chapter5": "s4_chapter5", "s4_final": "s4_chapter5"}
+	"s4_scene1": "s4_prologue", "s4_scene2": "s4_prologue", "s4_scene3": "s4_prologue", "s4_scene4": "s4_prologue", "s4_scene5": "s4_prologue", "s4_scene6": "s4_prologue", "s4_chapter0": "s4_chapter0", "s4_chapter1": "s4_chapter1", "s4_chapter2": "s4_chapter2", "s4_chapter3": "s4_chapter3", "s4_chapter4": "s4_chapter4", "s4_chapter5": "s4_chapter5", "s4_final": "s4_final"}
 
 ## [small line, big title] shown when a scene starts.
 const CARDS := {

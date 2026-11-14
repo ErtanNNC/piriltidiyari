@@ -1,1 +1,153 @@
-{"barks": {}}
+{
+  "barks": {
+    "s4k2_basla": [
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Burası Şarkı Çayırı mı? Hiç şarkı duyulmuyor."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "sakin",
+        "text": "Yalnız uzaktan bir ses geliyor: cır cır cır..."
+      }
+    ],
+    "s4k2_dikenci": [
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Kurbağa bağırıyor, sinek 'şşşt' diyor! Kimse kimseyi dinlemiyor."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "kararlı",
+        "text": "Önce sersemlet. Sonra alkışla: kendi sesini duysun."
+      }
+    ],
+    "s4k2_sarki": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Dört düzenli vuruş, ve şarkı geri geldi!"
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "kararlı",
+        "text": "Şimdi bir alkış! Güzel şarkı alkışı hak eder."
+      }
+    ],
+    "s4k2_alkis": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Alkışlayınca sahnenin dikenleri çekildi. Yol açık!"
+      }
+    ],
+    "s4k2_tohum_kopru": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Yaprak köprü dereyi geçti! Yukarı çayıra gidebiliriz."
+      }
+    ],
+    "s4k2_kilit": [
+      {
+        "speaker": "oyuncu",
+        "mood": "sakin",
+        "text": "Çark dönmüyor. Önce Nihan'ın konserini toparlayalım."
+      }
+    ],
+    "s4k2_ark": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Su akıyor! Büyük sahnenin dikenleri kuruyor."
+      }
+    ],
+    "s4k2_circir": [
+      {
+        "speaker": "circir",
+        "mood": "huysuz",
+        "text": "Cır cır cır! En yüksek ses benim! Başka şarkı yok!"
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Kulağım çınladı! Ama dur... Ritmi hiç şaşmıyor."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "kararlı",
+        "text": "Vuruşları ritimle geliyor. Bir say, sonra kenara çekil!"
+      }
+    ],
+    "s4k2_sakin": [
+      {
+        "speaker": "circir",
+        "mood": "dertli",
+        "text": "Nihan söyleyince herkes susup dinliyor. Benimki sadece cır cır."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "sakin",
+        "text": "Ben seni alkışladım! Çünkü ritmin hiç şaşmadı."
+      },
+      {
+        "speaker": "circir",
+        "mood": "şaşkın",
+        "text": "Ritmim mi? Onu fark eden olmamıştı."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Nihan da geliyor. Birlikte bir deneyin: o söylesin, sen tut!"
+      }
+    ],
+    "s4k2_duet_once": [
+      {
+        "speaker": "nihan",
+        "mood": "mutlu",
+        "text": "Cırcır! Şarkım hep hızlanıp kaçıyor. Ritmi sen tutar mısın?"
+      },
+      {
+        "speaker": "circir",
+        "mood": "şaşkın",
+        "text": "Ben mi? Seninle mi? Şey... Olur. Bir, iki, üç, dört!"
+      }
+    ],
+    "s4k2_duet": [
+      {
+        "speaker": "nihan",
+        "mood": "mutlu",
+        "text": "Çayırın en güzel şarkısı bu oldu!"
+      },
+      {
+        "speaker": "circir",
+        "mood": "mutlu",
+        "text": "Sen söyleyince benim ritmim azalmadı. Daha güzel duyuldu!"
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Başkasının yeteneği seninkini azaltmaz. İkisi birlikte daha güzel!"
+      },
+      {
+        "speaker": "circir",
+        "mood": "mutlu",
+        "text": "Sahnenin ortasında bir papatya açtı. Tohumu senin olsun!"
+      }
+    ],
+    "s4k2_tohum": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Papatya Tohumu! İçinden hâlâ şarkı sesi geliyor."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "sakin",
+        "text": "Nihan da geldi. Onunla konuşalım."
+      }
+    ]
+  }
+}

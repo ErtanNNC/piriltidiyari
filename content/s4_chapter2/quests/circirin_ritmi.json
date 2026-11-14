@@ -1,0 +1,30 @@
+{
+  "id": "circirin_ritmi",
+  "title": "Cırcır'ın Ritmi",
+  "giver": "nihan",
+  "objectives": [
+    {
+      "id": "ark",
+      "text": "Çayırın ark kapağını aç",
+      "type": "light",
+      "target": "ark"
+    },
+    {
+      "id": "circir",
+      "text": "Küsen Cırcır'ı alkışla",
+      "type": "breathe",
+      "target": "circir"
+    },
+    {
+      "id": "tohum",
+      "text": "Papatya Tohumu'nu al",
+      "type": "collect",
+      "target": "tohum"
+    }
+  ],
+  "turn_in": "Bülbül Nihan ile konuş",
+  "rewards": {
+    "piril": 60,
+    "xp": 90
+  }
+}

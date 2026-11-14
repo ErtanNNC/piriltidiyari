@@ -1,0 +1,43 @@
+{
+  "id": "dirilin_saati",
+  "title": "Dırıl'ın Saati",
+  "giver": "yonca",
+  "objectives": [
+    {
+      "id": "ark",
+      "text": "Gölge Köşesi'nin ark kapağını aç",
+      "type": "light",
+      "target": "ark"
+    },
+    {
+      "id": "faz1",
+      "text": "Dırıl yorulunca vur, küsünce alkışla",
+      "type": "clap",
+      "target": "diril"
+    },
+    {
+      "id": "cicek",
+      "text": "Dört tohumu Dırıl'ın çevresine ek",
+      "type": "grow",
+      "target": "kalkan",
+      "count": 4
+    },
+    {
+      "id": "diril",
+      "text": "Geceyi bekle: Dırıl'ın saati geliyor",
+      "type": "listen",
+      "target": "diril"
+    },
+    {
+      "id": "tohum",
+      "text": "Ay Çiçeği Tohumu'nu al",
+      "type": "collect",
+      "target": "tohum"
+    }
+  ],
+  "turn_in": "Tırıl ile konuş",
+  "rewards": {
+    "piril": 120,
+    "xp": 150
+  }
+}

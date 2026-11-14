@@ -1,0 +1,30 @@
+{
+  "id": "kapali_yuva",
+  "title": "Kapalı Yuva",
+  "giver": "anne_serce",
+  "objectives": [
+    {
+      "id": "ark",
+      "text": "Üst daldaki ark kapağını aç",
+      "type": "light",
+      "target": "ark"
+    },
+    {
+      "id": "pitpit",
+      "text": "Tepe yuvadaki Pıtpıt'ı alkışla",
+      "type": "breathe",
+      "target": "pitpit"
+    },
+    {
+      "id": "tohum",
+      "text": "Gül Tohumu'nu al",
+      "type": "collect",
+      "target": "tohum"
+    }
+  ],
+  "turn_in": "Anne Serçe ile konuş",
+  "rewards": {
+    "piril": 80,
+    "xp": 120
+  }
+}

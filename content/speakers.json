@@ -387,6 +387,50 @@
     "kabak": {
       "name": "Dev Kabak",
       "color": "hp"
+    },
+    "sarki_kurbaga": {
+      "name": "Kurbağa Vırvır",
+      "color": "spark-green"
+    },
+    "sarki_ordek": {
+      "name": "Ördek Cıvıl",
+      "color": "spark-yellow"
+    },
+    "sarki_tavsan": {
+      "name": "Tavşan Tıntın",
+      "color": "berry"
+    },
+    "havuc_teyze": {
+      "name": "Havuç Teyze",
+      "color": "honey"
+    },
+    "kok_amca": {
+      "name": "Kök Amca",
+      "color": "sky"
+    },
+    "nilufer_abla": {
+      "name": "Nilüfer Abla",
+      "color": "spark-green"
+    },
+    "ponpon": {
+      "name": "Zilci Ponpon",
+      "color": "honey"
+    },
+    "tombis": {
+      "name": "Bilyeci Tombiş",
+      "color": "sky"
+    },
+    "virak": {
+      "name": "Fırıldakçı Vırak",
+      "color": "berry"
+    },
+    "sarkici_cocuk": {
+      "name": "Küçük Şarkıcı",
+      "color": "berry"
+    },
+    "anne_serce": {
+      "name": "Anne Serçe",
+      "color": "honey"
     }
   }
 }

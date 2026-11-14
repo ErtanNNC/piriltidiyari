@@ -4,11 +4,18 @@
   "region": "Gölge Köşesi",
   "theme": "light",
   "levels": [
-    1,
-    5
+    25,
+    30
   ],
   "spark": null,
-  "quests": [],
-  "dialogue": [],
+  "quests": [
+    "golgenin_yolu",
+    "dirilin_saati"
+  ],
+  "dialogue": [
+    "yonca",
+    "toprak",
+    "tiril"
+  ],
   "barks": "barks"
 }

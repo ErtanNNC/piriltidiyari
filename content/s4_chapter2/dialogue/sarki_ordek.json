@@ -1,0 +1,53 @@
+{
+  "npc": "sarki_ordek",
+  "variants": [
+    {
+      "when": {
+        "flag": "s4_chapter2_d1"
+      },
+      "lines": [
+        {
+          "speaker": "sarki_ordek",
+          "mood": "mutlu",
+          "text": "Alkış en sevdiğim ses! Dikenler bile yol verdi."
+        },
+        {
+          "speaker": "sarki_ordek",
+          "mood": "mutlu",
+          "text": "Kurbağa kalın söyler, ben ince. İkisi yan yana pek hoş!"
+        }
+      ]
+    },
+    {
+      "when": {
+        "flag": "s4c2_sarki1"
+      },
+      "lines": [
+        {
+          "speaker": "sarki_ordek",
+          "mood": "mutlu",
+          "text": "Vak vak vaaak! Duydun mu? Şarkım geri geldi!"
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "mutlu",
+          "text": "Çok güzel söylüyorsun! Dur, seni bir alkışlayayım."
+        }
+      ]
+    },
+    {
+      "lines": [
+        {
+          "speaker": "sarki_ordek",
+          "mood": "dertli",
+          "text": "Vak diyecektim... Sesim boğazımda kaldı."
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "sakin",
+          "text": "Yanında düzenli vurayım. Belki ritim sesini geri getirir."
+        }
+      ]
+    }
+  ]
+}

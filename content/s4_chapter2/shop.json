@@ -1,0 +1,29 @@
+{
+  "shops": {
+    "nihan": {
+      "title": "Nihan'ın Nota Sepeti",
+      "items": [
+        {
+          "id": "nane_limonata",
+          "price": 15
+        },
+        {
+          "id": "bal_surubu",
+          "price": 15
+        },
+        {
+          "id": "yildiz_tozu",
+          "price": 20
+        },
+        {
+          "id": "gubre_topu",
+          "price": 30
+        },
+        {
+          "id": "papatya_celengi",
+          "price": 35
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,179 @@
+{
+  "npc": "vizik",
+  "variants": [
+    {
+      "when": {
+        "quest": "sikirin_yuvasi",
+        "state": "ready"
+      },
+      "lines": [
+        {
+          "speaker": "vizik",
+          "mood": "mutlu",
+          "text": "Vızz! Lale Tohumu! Pazar yine cıvıl cıvıl."
+        },
+        {
+          "speaker": "vizik",
+          "mood": "sakin",
+          "text": "Çok şeyi olan değil, elindekini seven güler. Arılar bilir."
+        },
+        {
+          "speaker": "vizik",
+          "mood": "kararlı",
+          "text": "Sıradaki tohum Şarkı Çayırı'nda. Bahar Kapısı çiçek açtı!"
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "kararlı",
+          "text": "Bir tohum tamam. Dört tane kaldı!"
+        }
+      ],
+      "then": {
+        "complete_quest": "sikirin_yuvasi",
+        "set_flag": "s4_bolum1_bitti",
+        "give_items": {
+          "bal_surubu": 2
+        }
+      }
+    },
+    {
+      "when": {
+        "quest": "sikirin_yuvasi",
+        "state": "active",
+        "objective_done": "sikirin_yuvasi/sikir"
+      },
+      "lines": [
+        {
+          "speaker": "vizik",
+          "mood": "mutlu",
+          "text": "Şıkır gülüyor! Tohum yuvanın önünde parlıyor, al hadi."
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "sikirin_yuvasi",
+        "state": "active",
+        "objective_done": "sikirin_yuvasi/ark"
+      },
+      "lines": [
+        {
+          "speaker": "vizik",
+          "mood": "mutlu",
+          "text": "Su şırıl şırıl! Taraçadaki dikenler de çekildi."
+        },
+        {
+          "speaker": "vizik",
+          "mood": "dertli",
+          "text": "Şıkır yuvasında. Her parlak şeyi oraya taşıdı."
+        },
+        {
+          "speaker": "vizik",
+          "mood": "sakin",
+          "text": "Ama hiçbiriyle oynamıyor. Yorulunca yanına git, alkışla."
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "sikirin_yuvasi",
+        "state": "active"
+      },
+      "lines": [
+        {
+          "speaker": "vizik",
+          "mood": "kararlı",
+          "text": "Ark kapağı taraçada, merdivenin üstünde. Çarkı çevir!"
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "pazar_parlasin",
+        "state": "ready"
+      },
+      "lines": [
+        {
+          "speaker": "vizik",
+          "mood": "mutlu",
+          "text": "Vızz! Herkes kendi oyuncağıyla oynuyor. Ne güzel ses!"
+        },
+        {
+          "speaker": "vizik",
+          "mood": "dertli",
+          "text": "Ama arkımız tıkalı. Çiçeklerim susadı."
+        },
+        {
+          "speaker": "vizik",
+          "mood": "kararlı",
+          "text": "Kapağı aç. Sonra yuvadaki Saksağan Şıkır'a bak."
+        }
+      ],
+      "then": {
+        "complete_quest": "pazar_parlasin",
+        "start_quest": "sikirin_yuvasi"
+      }
+    },
+    {
+      "when": {
+        "quest": "pazar_parlasin",
+        "state": "active"
+      },
+      "lines": [
+        {
+          "speaker": "vizik",
+          "mood": "sakin",
+          "text": "Kargayı sersemlet, alkışla. Oyuncağı bırakır."
+        },
+        {
+          "speaker": "vizik",
+          "mood": "sakin",
+          "text": "Oyuncağı sahibine götür. Sonra tezgâhının önünde alkışla!"
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "pazar_parlasin",
+        "state": "none"
+      },
+      "lines": [
+        {
+          "speaker": "vizik",
+          "mood": "mutlu",
+          "text": "Vızz! Hoş geldin. Ben Çiçekçi Arı Vızık."
+        },
+        {
+          "speaker": "vizik",
+          "mood": "dertli",
+          "text": "Burası Parlak Pazar. Herkes komşusunun oyuncağına bakıyor."
+        },
+        {
+          "speaker": "vizik",
+          "mood": "dertli",
+          "text": "Kendi oyuncağıyla oynayan yok! Kargalar da hepsini kaptı."
+        },
+        {
+          "speaker": "vizik",
+          "mood": "kararlı",
+          "text": "Oyuncakları sahiplerine götürür müsün? Bir de alkış lazım!"
+        }
+      ],
+      "then": {
+        "start_quest": "pazar_parlasin"
+      }
+    },
+    {
+      "lines": [
+        {
+          "speaker": "vizik",
+          "mood": "mutlu",
+          "text": "Nadir tohum, taze bal! Vızır vızır taze. Bak istersen."
+        }
+      ],
+      "then": {
+        "open_shop": "vizik"
+      }
+    }
+  ]
+}

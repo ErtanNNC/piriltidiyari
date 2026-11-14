@@ -1,0 +1,32 @@
+{
+  "id": "yesil_diken",
+  "title": "Yeşil Diken",
+  "giver": "tospik_nine",
+  "objectives": [
+    {
+      "id": "nine",
+      "text": "Meydandaki Tospik Nine ile konuş",
+      "type": "talk",
+      "target": "tospik_nine"
+    },
+    {
+      "id": "dikenci",
+      "text": "Dikencileri sersemlet, sonra alkışla",
+      "type": "breathe",
+      "target": "any",
+      "count": 3
+    },
+    {
+      "id": "bahce",
+      "text": "Üç komşunun bahçesini alkışla",
+      "type": "clap",
+      "target": "bahce",
+      "count": 3
+    }
+  ],
+  "turn_in": "Tospik Nine'ye dön",
+  "rewards": {
+    "piril": 15,
+    "xp": 0
+  }
+}

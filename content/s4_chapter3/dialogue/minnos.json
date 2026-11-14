@@ -1,0 +1,54 @@
+{
+  "npc": "minnos",
+  "variants": [
+    {
+      "when": {
+        "flag": "s4c3_bado_fark"
+      },
+      "lines": [
+        {
+          "speaker": "minnos",
+          "mood": "mutlu",
+          "text": "Abi, inerken beni sırtına alır mısın?"
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "mutlu",
+          "text": "Alırım tabii. Sırtımda yerin hep hazır."
+        }
+      ]
+    },
+    {
+      "lines": [
+        {
+          "speaker": "minnos",
+          "mood": "şaşkın",
+          "text": "Abi, Pıtpıt neden küsmüş? Kardeşleri çok tatlı!"
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "dertli",
+          "text": "Sen doğunca ben de öyle hissettim Minnoş. Kenarda kaldım sandım."
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "şaşkın",
+          "text": "İçimde minik bir diken varmış. Şimdi fark ettim."
+        },
+        {
+          "speaker": "minnos",
+          "mood": "mutlu",
+          "text": "Ama ben en çok senin sırtında uyurum abi!"
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "mutlu",
+          "text": "Gel bakalım. Kalbim büyüdü, sana da yer var, bana da."
+        }
+      ],
+      "then": {
+        "set_flag": "s4c3_bado_fark"
+      }
+    }
+  ]
+}

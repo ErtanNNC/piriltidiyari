@@ -1,0 +1,91 @@
+{
+  "npc": "havuc_teyze",
+  "variants": [
+    {
+      "when": {
+        "quest": "yesil_diken",
+        "state": [
+          "active",
+          "ready",
+          "done"
+        ],
+        "flag": "s4_scene2_d0"
+      },
+      "lines": [
+        {
+          "speaker": "havuc_teyze",
+          "mood": "mutlu",
+          "text": "Alkışladın, dikenler çekildi! Havuçlarım yerinde duruyormuş."
+        },
+        {
+          "speaker": "havuc_teyze",
+          "mood": "mutlu",
+          "text": "Kök Amca'ya bir demet götüreyim. Laleleri de güzelmiş."
+        }
+      ],
+      "by": "a"
+    },
+    {
+      "when": {
+        "quest": "yesil_diken",
+        "state": "active"
+      },
+      "lines": [
+        {
+          "speaker": "havuc_teyze",
+          "mood": "dertli",
+          "text": "Kök Amca'nın laleleri benimkinden uzun. Hiç adil değil!"
+        },
+        {
+          "speaker": "havuc_teyze",
+          "mood": "şaşkın",
+          "text": "Dikenler de nereden çıktı? Havuçlarımı göremiyorum."
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "sakin",
+          "text": "Bahçenin önünde bir alkış patlatayım, belki iyi gelir."
+        }
+      ],
+      "by": "a"
+    },
+    {
+      "when": {
+        "quest": "ilk_bahar",
+        "state": "active",
+        "objective_not_done": "ilk_bahar/havuc"
+      },
+      "lines": [
+        {
+          "speaker": "havuc_teyze",
+          "mood": "mutlu",
+          "text": "Merhaba Tırıl! Su balonun ne güzel parlıyor."
+        },
+        {
+          "speaker": "havuc_teyze",
+          "mood": "mutlu",
+          "text": "Havuçlarımı yarışmaya hazırlıyorum. En turuncusu benim olacak!"
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "mutlu",
+          "text": "Çok güzel olmuş! Ben de ilk tohumumu ekeceğim."
+        }
+      ],
+      "then": {
+        "advance": "ilk_bahar/havuc"
+      },
+      "by": "a"
+    },
+    {
+      "lines": [
+        {
+          "speaker": "havuc_teyze",
+          "mood": "mutlu",
+          "text": "Toprağı kabart, tohumu ek, suyunu ver. Gerisi sabır!"
+        }
+      ],
+      "by": "a"
+    }
+  ]
+}

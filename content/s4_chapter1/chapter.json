@@ -4,11 +4,21 @@
   "region": "Parlak Pazar",
   "theme": "light",
   "levels": [
-    1,
-    5
+    5,
+    10
   ],
   "spark": null,
-  "quests": [],
-  "dialogue": [],
-  "barks": "barks"
+  "quests": [
+    "pazar_parlasin",
+    "sikirin_yuvasi"
+  ],
+  "dialogue": [
+    "vizik",
+    "sikir",
+    "ponpon",
+    "tombis",
+    "virak"
+  ],
+  "barks": "barks",
+  "shop": "shop"
 }

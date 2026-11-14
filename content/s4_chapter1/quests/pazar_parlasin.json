@@ -1,0 +1,32 @@
+{
+  "id": "pazar_parlasin",
+  "title": "Herkesin Kendi Oyuncağı",
+  "giver": "vizik",
+  "objectives": [
+    {
+      "id": "oyuncak",
+      "text": "Kargalardaki üç oyuncağı sahibine götür",
+      "type": "collect",
+      "target": "s4c1_teslim",
+      "count": 3
+    },
+    {
+      "id": "alkis",
+      "text": "Her sahibin KENDİ oyuncağını alkışla",
+      "type": "clap",
+      "target": "tezgah",
+      "count": 3
+    },
+    {
+      "id": "tohum",
+      "text": "Taraçanın dibine merdiven tohumu ek",
+      "type": "grow",
+      "target": "pazar_merdiveni"
+    }
+  ],
+  "turn_in": "Çiçekçi Vızık'a dön",
+  "rewards": {
+    "piril": 45,
+    "xp": 70
+  }
+}

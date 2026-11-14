@@ -1,0 +1,181 @@
+{
+  "npc": "kugu",
+  "variants": [
+    {
+      "when": {
+        "quest": "sari_ayaklar",
+        "state": "ready"
+      },
+      "lines": [
+        {
+          "speaker": "kugu",
+          "mood": "mutlu",
+          "text": "Göl yine ayna gibi! Paçalı da bizimle yüzüyor."
+        },
+        {
+          "speaker": "kugu",
+          "mood": "sakin",
+          "text": "Herkesin kendine ait bir güzelliği var. Göl bunu gösterdi."
+        },
+        {
+          "speaker": "kugu",
+          "mood": "kararlı",
+          "text": "Son tohum Gölge Köşesi'nde. Bahar Kapısı çiçek açtı!"
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "kararlı",
+          "text": "Dırıl orada bekliyor. Tırıl da yanında. Gidiyoruz!"
+        }
+      ],
+      "then": {
+        "complete_quest": "sari_ayaklar",
+        "set_flag": "s4_bolum4_bitti",
+        "give_items": {
+          "nane_limonata": 2
+        }
+      }
+    },
+    {
+      "when": {
+        "quest": "sari_ayaklar",
+        "state": "active",
+        "objective_done": "sari_ayaklar/pacali"
+      },
+      "lines": [
+        {
+          "speaker": "kugu",
+          "mood": "mutlu",
+          "text": "Paçalı gülüyor! Tohum parlıyor, hadi al onu."
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "sari_ayaklar",
+        "state": "active",
+        "objective_done": "sari_ayaklar/ark"
+      },
+      "lines": [
+        {
+          "speaker": "kugu",
+          "mood": "mutlu",
+          "text": "Su akıyor, sazlığın önündeki dikenler çekildi!"
+        },
+        {
+          "speaker": "kugu",
+          "mood": "dertli",
+          "text": "Paçalı kuzeyde, sazlıkta. Suya hiç bakmıyor."
+        },
+        {
+          "speaker": "kugu",
+          "mood": "sakin",
+          "text": "Yorulunca yanına git, alkışla. Ayaklarına bayılıyoruz!"
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "sari_ayaklar",
+        "state": "active"
+      },
+      "lines": [
+        {
+          "speaker": "kugu",
+          "mood": "kararlı",
+          "text": "Ark kapağı hemen şurada, doğuda. Çarkını çevir!"
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "golun_aynalari",
+        "state": "ready"
+      },
+      "lines": [
+        {
+          "speaker": "kugu",
+          "mood": "mutlu",
+          "text": "Gölü geçtin! Ben de peşinden yüzdüm."
+        },
+        {
+          "speaker": "kugu",
+          "mood": "dertli",
+          "text": "Paçalı gölü sarmaşıkla örttü. Bizi görmek istemiyor."
+        },
+        {
+          "speaker": "kugu",
+          "mood": "sakin",
+          "text": "Boynumuz uzun, tüyümüz beyaz diye üzülüyormuş."
+        },
+        {
+          "speaker": "kugu",
+          "mood": "kararlı",
+          "text": "Arkı aç, sazlığa git. Ona kendi güzelliğini gösterelim!"
+        }
+      ],
+      "then": {
+        "complete_quest": "golun_aynalari",
+        "start_quest": "sari_ayaklar"
+      }
+    },
+    {
+      "when": {
+        "quest": "golun_aynalari",
+        "state": "active"
+      },
+      "lines": [
+        {
+          "speaker": "kugu",
+          "mood": "sakin",
+          "text": "Ayna taşına bak. Suda kimi görürsen onun yolundan git."
+        },
+        {
+          "speaker": "kugu",
+          "mood": "sakin",
+          "text": "Öbür yolun yaprakları sallanır, sonra batar. Su zarar vermez."
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "golun_aynalari",
+        "state": "none"
+      },
+      "lines": [
+        {
+          "speaker": "kugu",
+          "mood": "mutlu",
+          "text": "Hoş geldin! Burası Ayna Gölü. Ben bir kuğuyum."
+        },
+        {
+          "speaker": "kugu",
+          "mood": "şaşkın",
+          "text": "Bu göle bakan, kendini değil başkasını görür!"
+        },
+        {
+          "speaker": "kugu",
+          "mood": "dertli",
+          "text": "Çatallarda iki yaprak yolu var. Biri sağlam, biri batar."
+        },
+        {
+          "speaker": "kugu",
+          "mood": "kararlı",
+          "text": "Ayna taşına bak: suda kimi görürsen onun yolu sağlam!"
+        }
+      ],
+      "then": {
+        "start_quest": "golun_aynalari"
+      }
+    },
+    {
+      "lines": [
+        {
+          "speaker": "kugu",
+          "mood": "mutlu",
+          "text": "Göl pırıl pırıl. Paçalı'nın ayak izleri her yerde!"
+        }
+      ]
+    }
+  ]
+}

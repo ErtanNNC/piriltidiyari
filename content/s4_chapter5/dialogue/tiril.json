@@ -1,0 +1,80 @@
+{
+  "npc": "tiril",
+  "variants": [
+    {
+      "when": {
+        "quest": "dirilin_saati",
+        "state": "ready"
+      },
+      "lines": [
+        {
+          "speaker": "tiril",
+          "mood": "mutlu",
+          "text": "Işığım tek başına yetmedi. Ay gelince yetti!"
+        },
+        {
+          "speaker": "diril",
+          "mood": "mutlu",
+          "text": "Ben de bir çiçekmişim. Sadece benim saatim gece."
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "mutlu",
+          "text": "Beş tohum tamam! Bahar Çeşmesi yeniden akacak."
+        },
+        {
+          "speaker": "tiril",
+          "mood": "kararlı",
+          "text": "Hadi köye! Çiçek Şenliği'ne Dırıl da geliyor."
+        }
+      ],
+      "then": {
+        "complete_quest": "dirilin_saati",
+        "set_flag": "s4_bolum5_bitti",
+        "goto_scene": "s4_final"
+      }
+    },
+    {
+      "when": {
+        "quest": "dirilin_saati",
+        "state": "active",
+        "objective_done": "dirilin_saati/diril"
+      },
+      "lines": [
+        {
+          "speaker": "tiril",
+          "mood": "mutlu",
+          "text": "Ay Çiçeği Tohumu hemen şurada parlıyor. Al, gidelim!"
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "dirilin_saati",
+        "state": "active",
+        "objective_done": "dirilin_saati/faz1"
+      },
+      "lines": [
+        {
+          "speaker": "tiril",
+          "mood": "sakin",
+          "text": "Dört tohumu çevresine ek. Bekçiler de yanında duracak."
+        }
+      ]
+    },
+    {
+      "lines": [
+        {
+          "speaker": "tiril",
+          "mood": "dertli",
+          "text": "Günlerdir Dırıl'a ışık tutuyorum. Ama bir tohuma yetmiyor."
+        },
+        {
+          "speaker": "tiril",
+          "mood": "sakin",
+          "text": "Belki ona başka bir ışık lazım. Başka bir saat."
+        }
+      ]
+    }
+  ]
+}

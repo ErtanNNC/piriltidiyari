@@ -4,11 +4,20 @@
   "region": "Şarkı Çayırı",
   "theme": "light",
   "levels": [
-    1,
-    5
+    10,
+    15
   ],
   "spark": null,
-  "quests": [],
-  "dialogue": [],
-  "barks": "barks"
+  "quests": [
+    "cayirin_konseri",
+    "circirin_ritmi"
+  ],
+  "dialogue": [
+    "nihan",
+    "sarki_kurbaga",
+    "sarki_ordek",
+    "sarki_tavsan"
+  ],
+  "barks": "barks",
+  "shop": "shop"
 }

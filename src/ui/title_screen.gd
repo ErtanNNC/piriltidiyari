@@ -103,6 +103,18 @@ func _build_menu() -> void:
 				GameState.data = latest
 				SeasonFlow.start_season3())
 			root.add_child(s3)
+		# Season 3 finished in the newest save: Season 4 can begin from here too
+		if read_ok and latest.can_start_season4():
+			var s4 := UiKit.button("Sezon 4'e başla")
+			s4.name = "Season4"
+			s4.custom_minimum_size = Vector2(260, 64)
+			s4.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+			s4.pressed.connect(func() -> void:
+				SaveGame.slot = maxi(SaveGame.latest_slot(), 1)
+				latest.recompute_stats(Content.items)
+				GameState.data = latest
+				SeasonFlow.start_season4())
+			root.add_child(s4)
 		# Season 3 finished in the newest save: Yeni Oyun+ (asks first)
 		if read_ok and latest.can_start_new_game_plus():
 			var ng := UiKit.button("Yeni Oyun+")

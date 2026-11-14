@@ -1,0 +1,268 @@
+{
+  "barks": {
+    "s4f_1": [
+      {
+        "speaker": "toprak",
+        "mood": "mutlu",
+        "text": "Beş tohum da burada! Haydi, çeşmenin çevresine dikelim."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "kararlı",
+        "text": "Lale, papatya, gül, nilüfer, ay çiçeği... Hepsi toprağa!"
+      }
+    ],
+    "s4f_2": [
+      {
+        "speaker": "toprak",
+        "mood": "mutlu",
+        "text": "Su akıyor! Bahar Çeşmesi yine şırıl şırıl!"
+      },
+      {
+        "speaker": "diril",
+        "mood": "sakin",
+        "text": "Ben de bir çiçekmişim. Sadece benim saatim gece."
+      }
+    ],
+    "s4f_3": [
+      {
+        "speaker": "tospik_nine",
+        "mood": "mutlu",
+        "text": "Çiçek Yarışması başlıyor! Ama bu yıl yarışmak yok."
+      },
+      {
+        "speaker": "tospik_nine",
+        "mood": "mutlu",
+        "text": "Herkes bahçesinden bir çiçeği başka birine hediye etsin!"
+      }
+    ],
+    "s4f_4": [
+      {
+        "speaker": "sikir",
+        "mood": "mutlu",
+        "text": "En parlak lalem senin olsun, Cırcır. Bende daha çok var!"
+      },
+      {
+        "speaker": "korkuluk",
+        "mood": "mutlu",
+        "text": "Bana da mı çiçek? Hih hih, şapkama takacağım!"
+      }
+    ],
+    "s4f_odul": [
+      {
+        "speaker": "tospik_nine",
+        "mood": "mutlu",
+        "text": "Bu yılın ödülü bir bahçeye değil, yardım eden bir ele!"
+      },
+      {
+        "speaker": "tospik_nine",
+        "mood": "mutlu",
+        "text": "Yonca! Herkesin bahçesine en çok sen el verdin."
+      }
+    ],
+    "s4f_odul2": [
+      {
+        "speaker": "yonca",
+        "mood": "şaşkın",
+        "text": "Ben mi? Ben sadece tohum ektim..."
+      },
+      {
+        "speaker": "yonca",
+        "mood": "mutlu",
+        "text": "Teşekkür ederim! Bu çelengi hep birlikte kazandık."
+      }
+    ],
+    "s4f_gece": [
+      {
+        "speaker": "tospik_nine",
+        "mood": "sakin",
+        "text": "Güneş battı ama bu gece kimse uyumuyor. Şşş, bakın!"
+      },
+      {
+        "speaker": "diril",
+        "mood": "mutlu",
+        "text": "Benim saatim geldi. Bakın... açıyorum!"
+      }
+    ],
+    "s4f_gece2": [
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Ay Çiçeği! Meydanın ortasında ay gibi parlıyor."
+      },
+      {
+        "speaker": "diril",
+        "mood": "mutlu",
+        "text": "Beni görmek için beklediniz mi? Hepiniz mi?"
+      }
+    ],
+    "s4f_dort": [
+      {
+        "speaker": "miril",
+        "mood": "mutlu",
+        "text": "Ben gökyüzünü aydınlatırım!"
+      },
+      {
+        "speaker": "hiril",
+        "mood": "mutlu",
+        "text": "Ben müziği! Bum, bum, bum!"
+      },
+      {
+        "speaker": "tiril",
+        "mood": "mutlu",
+        "text": "Ben suyu. Bakın, çeşme masmavi!"
+      },
+      {
+        "speaker": "diril",
+        "mood": "mutlu",
+        "text": "Ben de toprağı. Dördümüz ilk kez yan yanayız!"
+      }
+    ],
+    "s4f_fistik": [
+      {
+        "speaker": "fistik",
+        "mood": "huysuz",
+        "text": "Bu köyde artık herkesin bir türlü ışığı var."
+      },
+      {
+        "speaker": "fistik",
+        "mood": "huysuz",
+        "text": "Benim dikenlerim hariç."
+      }
+    ],
+    "s4f_pati": [
+      {
+        "speaker": "fistik",
+        "mood": "sakin",
+        "text": "Bir çırağın yerini kimse alamaz, Pati."
+      },
+      {
+        "speaker": "pati",
+        "mood": "mutlu",
+        "text": "Yonca, ilk dersin benden: Önce esne, sonra zıpla!"
+      }
+    ],
+    "s4f_bado": [
+      {
+        "speaker": "bado",
+        "mood": "mutlu",
+        "text": "Minnoş'un çiçeği benimkinden büyük çıktı. İlk ben alkışlıyorum!"
+      },
+      {
+        "speaker": "minnos",
+        "mood": "mutlu",
+        "text": "Bahçe ikimizin, Bado! Yarısı senin."
+      }
+    ],
+    "s4f_citir": [
+      {
+        "speaker": "citir",
+        "mood": "mutlu",
+        "text": "Paytak ile ortak bir harita çizdik. İki imza yan yana!"
+      }
+    ],
+    "s4f_lumi": [
+      {
+        "speaker": "lumi",
+        "mood": "mutlu",
+        "text": "Tırıl, ışık dansı! Mavi ile sarı birleşti..."
+      },
+      {
+        "speaker": "tiril",
+        "mood": "mutlu",
+        "text": "Yeşil oldu! Tam bir bahar rengi."
+      }
+    ],
+    "s4f_tipis_panda": [
+      {
+        "speaker": "hiril",
+        "mood": "mutlu",
+        "text": "Tıpış, davul sende. Bu sefer ritmi sen tut."
+      },
+      {
+        "speaker": "tipis_panda",
+        "mood": "mutlu",
+        "text": "Bir, iki, üç... Tutuyorum!"
+      }
+    ],
+    "s4f_tosbi": [
+      {
+        "speaker": "fistik",
+        "mood": "sakin",
+        "text": "Tosbi, artık büyük bekçilerdensin. Takımıma hoş geldin."
+      },
+      {
+        "speaker": "tosbi",
+        "mood": "mutlu",
+        "text": "Kabuğum küçük ama yüreğim kocaman!"
+      }
+    ],
+    "s4f_yonca": [
+      {
+        "speaker": "yonca",
+        "mood": "kararlı",
+        "text": "Size bir şey göstereceğim: kimseye açmadığım bahçem."
+      },
+      {
+        "speaker": "tospik_nine",
+        "mood": "şaşkın",
+        "text": "Ne güzel bir bahçe! Hep buradaymış da biz görmemişiz."
+      }
+    ],
+    "s4f_hiril": [
+      {
+        "speaker": "hiril",
+        "mood": "mutlu",
+        "text": "Davulumla bütün bahçe dans ediyor. Çiçekler bile ritim tutuyor!"
+      }
+    ],
+    "s4f_tiril": [
+      {
+        "speaker": "tiril",
+        "mood": "mutlu",
+        "text": "Dırıl, ışığımı sana tutuyorum. Ay ışığında aç bakalım!"
+      }
+    ],
+    "s4f_sarki": [
+      {
+        "speaker": "sarkici_cocuk",
+        "mood": "mutlu",
+        "text": "La la laa... Bahar geldi, çiçek açt... Gık!"
+      },
+      {
+        "speaker": "koylu",
+        "mood": "mutlu",
+        "text": "Kıkır kıkır!"
+      },
+      {
+        "speaker": "sarkici_cocuk",
+        "mood": "dertli",
+        "text": "Yanlış söyledim... Herkes bana bakıyor."
+      }
+    ],
+    "s4f_bulut": [
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Pembe bir bulut! Pamuk gibi... Üstüne iniyor."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "sakin",
+        "text": "İçine saklandı. Hey, sana gülmedik ki! Çık hadi."
+      }
+    ],
+    "s4f_son": [
+      {
+        "speaker": "fistik",
+        "mood": "şaşkın",
+        "text": "Dağların üstünde de pembe bulutlar toplanıyor."
+      },
+      {
+        "speaker": "fistik",
+        "mood": "kararlı",
+        "text": "Bu sefer kimse kaçırılmadı. Kendisi saklanıyor."
+      }
+    ]
+  }
+}

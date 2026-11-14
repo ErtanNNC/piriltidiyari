@@ -1,1 +1,213 @@
-{"barks": {}}
+{
+  "barks": {
+    "s4k4_basla": [
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Ne sakin bir göl! Ama üstü sarmaşık dolu."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "sakin",
+        "text": "Kıyıdaki kuğu bize bakıyor. Bir derdi var galiba."
+      }
+    ],
+    "s4k4_ayna0": [
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Suya baktım... Bana bir kurbağa bakıyor!"
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "kararlı",
+        "text": "Kurbağanın durduğu yaprak yolu sağlam demek."
+      }
+    ],
+    "s4k4_ayna1": [
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Bu sefer suda bir kuğu var. Boynu ne uzun!"
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "kararlı",
+        "text": "Kuğunun beklediği yoldan gidelim."
+      }
+    ],
+    "s4k4_ayna2": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Sarmaşık çekildi, ayna göründü. Suda bir balık!"
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "kararlı",
+        "text": "Balığın yolu sağlam. Son çatal bu!"
+      }
+    ],
+    "s4k4_batti": [
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Yapraklar sallandı, sonra battı! Su beni çatala getirdi."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "sakin",
+        "text": "Ayna taşına bakmalıyım. O bana doğru yolu söyler."
+      }
+    ],
+    "s4k4_su": [
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Şap! Islandım ama canım yanmadı."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "sakin",
+        "text": "Göl beni son durduğum adacığa geri bıraktı."
+      }
+    ],
+    "s4k4_sarmasik": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Alkışladım, sarmaşık çekildi! Yerinde çiçek kaldı."
+      }
+    ],
+    "s4k4_tohum": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Yaprak köprü kıyıya uzandı! Karşıya geçebiliriz."
+      }
+    ],
+    "s4k4_dikenci": [
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Bu balık pul pul parlıyor, kurbağa da beni taklit ediyor!"
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "kararlı",
+        "text": "Önce sersemlet, sonra alkışla. Kendi parıltısını görsün."
+      }
+    ],
+    "s4k4_kugu": [
+      {
+        "speaker": "kugu",
+        "mood": "mutlu",
+        "text": "Hepsini yaptın! Bekle, yüzerek yanına geliyorum."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Kuğu gölü süzülerek geçti. Ne güzel yüzüyor!"
+      }
+    ],
+    "s4k4_kilit": [
+      {
+        "speaker": "oyuncu",
+        "mood": "sakin",
+        "text": "Çark dönmüyor. Önce Kuğu'nun işini bitirelim."
+      }
+    ],
+    "s4k4_ark": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Su akıyor! Sazlığın önündeki dikenler kurudu."
+      }
+    ],
+    "s4k4_pacali": [
+      {
+        "speaker": "pacali",
+        "mood": "huysuz",
+        "text": "Vak! Göle bakma! Orada hep kuğular görünüyor!"
+      },
+      {
+        "speaker": "pacali",
+        "mood": "dertli",
+        "text": "Uzun boyun, beyaz tüy... Bende hiçbiri yok."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Gölü o örtmüş. Kendi yansımasını hiç görmemiş ki!"
+      }
+    ],
+    "s4k4_sakin": [
+      {
+        "speaker": "pacali",
+        "mood": "şaşkın",
+        "text": "Beni... alkışladın mı? Neyimi alkışladın ki?"
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Gel, göle birlikte bakalım. Sarmaşıklar çekiliyor!"
+      }
+    ],
+    "s4k4_yansima": [
+      {
+        "speaker": "pacali",
+        "mood": "şaşkın",
+        "text": "Suda sarı sarı kocaman ayaklar var. Onlar... benim mi?"
+      },
+      {
+        "speaker": "kugu",
+        "mood": "mutlu",
+        "text": "Senin! O ayaklara hep bayıldık. Şap şap yürüyorsun!"
+      },
+      {
+        "speaker": "pacali",
+        "mood": "mutlu",
+        "text": "Vak vak! Ayaklarım çok sevimliymiş! Şap! Şap!"
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Herkesin kendine ait bir güzelliği var. Seninki de bu!"
+      }
+    ],
+    "s4k4_tohum_al": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Nilüfer Tohumu! Dördüncü Bahar Tohumu bizde."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Tohum ışıldıyor... İçinde bir anı var galiba."
+      }
+    ],
+    "s4k4_ani": [
+      {
+        "speaker": "diril",
+        "mood": "dertli",
+        "text": "Beni eken çocuk bir gece köşeme bakmaya geldi."
+      },
+      {
+        "speaker": "diril",
+        "mood": "dertli",
+        "text": "O gece fırtına çıktı. Çocuk bir daha hiç gelemedi."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "sakin",
+        "text": "Seni unutmadı Dırıl. Sadece yolu kapandı."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "kararlı",
+        "text": "Biz geliyoruz. Bu sefer biri seni görecek."
+      }
+    ]
+  }
+}

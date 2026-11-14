@@ -1,1 +1,150 @@
-{"barks": {}}
+{
+  "barks": {
+    "s4k1_basla": [
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Bayraklar, tezgâhlar... ama oyuncak sesi yok."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "sakin",
+        "text": "Kapının yanındaki arı bize el sallıyor."
+      }
+    ],
+    "s4k1_karga": [
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Kargalar! Her birinin gagasında parlak bir oyuncak var."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "kararlı",
+        "text": "Önce sersemlet, sonra alkışla. Oyuncağı bırakır."
+      }
+    ],
+    "s4k1_oyuncak": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Oyuncağı aldım! Kimin tezgâhından gitmişti acaba?"
+      }
+    ],
+    "s4k1_bos": [
+      {
+        "speaker": "oyuncu",
+        "mood": "sakin",
+        "text": "Tezgâh boş, alkışlayacak oyuncak yok. Önce onu geri getirelim."
+      }
+    ],
+    "s4k1_tezgah": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Kendi oyuncağını alkışlayınca dikenler çekildi!"
+      }
+    ],
+    "s4k1_tohum": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Tohum büyüdü, yaprak yaprak merdiven oldu! Taraçaya çıkabiliriz."
+      }
+    ],
+    "s4k1_kilit": [
+      {
+        "speaker": "oyuncu",
+        "mood": "sakin",
+        "text": "Çark dönmüyor. Önce Vızık'ın işini bitirelim."
+      }
+    ],
+    "s4k1_ark": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Su akıyor! Dikenler kuruyor, yuvanın yolu açıldı."
+      }
+    ],
+    "s4k1_sikir": [
+      {
+        "speaker": "sikir",
+        "mood": "huysuz",
+        "text": "Şıkır şıkır! Hepsi benim! Parlayan ne varsa benim!"
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Yuva tıka basa dolu... Ama hiçbiriyle oynamıyor."
+      }
+    ],
+    "s4k1_sakin": [
+      {
+        "speaker": "sikir",
+        "mood": "dertli",
+        "text": "Topladım, topladım... Yine de içim şıkırdamıyor."
+      },
+      {
+        "speaker": "sikir",
+        "mood": "şaşkın",
+        "text": "Beni... alkışladın mı? Bir şey almadan mı?"
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "sakin",
+        "text": "Şıkır, sana bir şey soracağım."
+      }
+    ],
+    "s4k1_bilemez": [
+      {
+        "speaker": "sikir",
+        "mood": "şaşkın",
+        "text": "En sevdiğim mi? Şey... Bu mu? Yok, şu... Bilmiyorum!"
+      },
+      {
+        "speaker": "sikir",
+        "mood": "dertli",
+        "text": "Hepsini aldım ama hiçbirine doya doya bakmadım."
+      },
+      {
+        "speaker": "sikir",
+        "mood": "şaşkın",
+        "text": "Dur. Yuvanın en dibinde bir şey var..."
+      }
+    ],
+    "s4k1_boncuk": [
+      {
+        "speaker": "sikir",
+        "mood": "mutlu",
+        "text": "İlk boncuğum! Minicik bir yavruyken bulmuştum."
+      },
+      {
+        "speaker": "sikir",
+        "mood": "mutlu",
+        "text": "Çizik, eski... ama benim. En sevdiğim bu!"
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Çok şey değil, sevdiğin tek şey yetiyormuş demek."
+      },
+      {
+        "speaker": "sikir",
+        "mood": "mutlu",
+        "text": "Gerisini pazara geri götüreceğim. Bak, bir de tohum çıktı!"
+      }
+    ],
+    "s4k1_tohum_al": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Lale Tohumu! İlk Bahar Tohumu bizde."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "sakin",
+        "text": "Vızık da geliyor. Ona gösterelim."
+      }
+    ]
+  }
+}

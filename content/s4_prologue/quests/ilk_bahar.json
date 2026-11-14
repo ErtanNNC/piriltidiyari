@@ -1,0 +1,42 @@
+{
+  "id": "ilk_bahar",
+  "title": "İlk Bahar",
+  "giver": "tospik_nine",
+  "objectives": [
+    {
+      "id": "havuc",
+      "text": "Havuç Teyze ile konuş",
+      "type": "talk",
+      "target": "havuc_teyze"
+    },
+    {
+      "id": "kok",
+      "text": "Kök Amca ile konuş",
+      "type": "talk",
+      "target": "kok_amca"
+    },
+    {
+      "id": "nilufer",
+      "text": "Nilüfer Abla ile konuş",
+      "type": "talk",
+      "target": "nilufer_abla"
+    },
+    {
+      "id": "ek",
+      "text": "Kendi toprağına ilk tohumunu ek",
+      "type": "collect",
+      "target": "ekim"
+    },
+    {
+      "id": "su",
+      "text": "Filizini su balonunla sula",
+      "type": "collect",
+      "target": "su"
+    }
+  ],
+  "turn_in": "Meydandaki Tospik Nine'ye git",
+  "rewards": {
+    "piril": 10,
+    "xp": 0
+  }
+}

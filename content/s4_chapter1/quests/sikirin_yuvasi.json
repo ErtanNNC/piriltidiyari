@@ -1,0 +1,30 @@
+{
+  "id": "sikirin_yuvasi",
+  "title": "Şıkır'ın Yuvası",
+  "giver": "vizik",
+  "objectives": [
+    {
+      "id": "ark",
+      "text": "Pazarın ark kapağını aç",
+      "type": "light",
+      "target": "ark"
+    },
+    {
+      "id": "sikir",
+      "text": "Yuvadaki Saksağan Şıkır'ı alkışla",
+      "type": "breathe",
+      "target": "sikir"
+    },
+    {
+      "id": "tohum",
+      "text": "Lale Tohumu'nu al",
+      "type": "collect",
+      "target": "tohum"
+    }
+  ],
+  "turn_in": "Çiçekçi Vızık ile konuş",
+  "rewards": {
+    "piril": 60,
+    "xp": 90
+  }
+}

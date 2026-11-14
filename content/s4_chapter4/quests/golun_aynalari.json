@@ -1,0 +1,39 @@
+{
+  "id": "golun_aynalari",
+  "title": "Gölün Aynaları",
+  "giver": "kugu",
+  "objectives": [
+    {
+      "id": "ayna",
+      "text": "Üç ayna taşına bak, doğru yaprak yolunu bul",
+      "type": "collect",
+      "target": "ayna",
+      "count": 3
+    },
+    {
+      "id": "alkis",
+      "text": "Adacıklardaki sarmaşıkları alkışla",
+      "type": "clap",
+      "target": "sarmasik",
+      "count": 2
+    },
+    {
+      "id": "tohum",
+      "text": "Dikenli adacıktan kıyıya köprü tohumu ek",
+      "type": "grow",
+      "target": "kopru"
+    },
+    {
+      "id": "dikenci",
+      "text": "Dikencileri sersemlet, sonra alkışla",
+      "type": "breathe",
+      "target": "any",
+      "count": 4
+    }
+  ],
+  "turn_in": "Kuzey kıyıya yüzen Kuğu ile konuş",
+  "rewards": {
+    "piril": 45,
+    "xp": 70
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "npc": "bado",
+  "variants": [
+    {
+      "when": {
+        "flag": "s4c3_bado_fark"
+      },
+      "lines": [
+        {
+          "speaker": "minnos",
+          "mood": "mutlu",
+          "text": "Abimin sırtı dünyanın en yumuşak yeri!"
+        },
+        {
+          "speaker": "bado",
+          "mood": "mutlu",
+          "text": "Sırtım geniş. İkimize de yer var."
+        }
+      ]
+    },
+    {
+      "lines": [
+        {
+          "speaker": "bado",
+          "mood": "dertli",
+          "text": "Minnoş doğunca herkes onu kucakladı. Ben kenarda kaldım sandım."
+        },
+        {
+          "speaker": "bado",
+          "mood": "şaşkın",
+          "text": "Pıtpıt'ı duyunca anladım: benim içimde de minik bir diken varmış."
+        },
+        {
+          "speaker": "minnos",
+          "mood": "mutlu",
+          "text": "Ama abi! Ben en çok senin sırtında uyurum."
+        },
+        {
+          "speaker": "bado",
+          "mood": "mutlu",
+          "text": "Öyle mi? Gel bakalım. Sırtımda yerin hep hazır."
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "sakin",
+          "text": "Kalp de bir yuva Bado. Yeni gelen, önce geleni itmez."
+        }
+      ],
+      "then": {
+        "set_flag": "s4c3_bado_fark"
+      }
+    }
+  ]
+}

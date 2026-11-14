@@ -1005,6 +1005,7 @@ func test_season3() -> void:
 	print("Sezon 3: Titrek Kıyılar")
 	_test_new_game_plus()
 	_test_boat_menu()
+	_test_season4()
 	var d := PlayerData.new()
 	d.choose_keeper("bado", {"can": 3, "guc": 4, "hiz": 5}, {}, "Bado")
 	d.start_season2({})
@@ -1077,6 +1078,50 @@ func _test_boat_menu() -> void:
 	for n in 6:
 		b.set_flag("s3_bolum%d_bitti" % n)
 	check(ShoreTravel.next_stop(b) == "", "bütün adalar bitince sıradaki ada kalmaz")
+
+
+func _test_season4() -> void:
+	var d := PlayerData.new()
+	d.choose_keeper("lumi", {"max_hp": 100, "max_mp": 50, "power": 10, "speed": 6.0}, {}, "Lumi")
+	d.season = 3
+	check(not d.can_start_season4(), "Sezon 3 bitmeden Sezon 4 açılmaz")
+	d.set_flag("sezon3_bitti")
+	d.set_flag("owned_kasif_sapkasi")
+	check(d.can_start_season4(), "Sezon 3 bitince Sezon 4 açılır")
+	d.start_season4({})
+	check(d.season == 4 and d.character_id == "tiril" and d.level == 1 and d.scene_id == "s4_scene1" and d.s3_keeper.get("id", "") == "lumi", "Sezon 4: Tırıl ile başlar, Sezon 3 bekçisi saklanır")
+	check(d.has_flag("owned_kasif_sapkasi") and not d.can_start_season4(), "Sezon 4: eşyalar kalır, yeniden başlatılamaz")
+	var back := PlayerData.new()
+	back.load_dict(d.to_dict())
+	check(back.s3_keeper.get("id", "") == "lumi" and back.season == 4, "Sezon 4 kaydı geri yüklenir")
+	# Diken barı: fills in the vines, a clap takes a good piece off
+	var v := 0.0
+	for i in 100:
+		v = ThornRules.fill(v, 1.0, 0.1)
+	check(v > 0.7 and v <= 1.0, "diken barı dikenlerin içinde dolar")
+	check(ThornRules.after_clap(v) < v and ThornRules.fill(0.5, 0.0, 1.0) < 0.5, "alkış ve uzaklaşmak diken barını indirir")
+	# seeds: a Gece Çiçeği waits for the night
+	check(Growth.can_grow("kopru", false) and Growth.can_grow("kopru", true), "köprü tohumu her zaman büyür")
+	check(not Growth.can_grow("gece", false) and Growth.can_grow("gece", true), "Gece Çiçeği yalnız gece açar")
+	check(Growth.progress("gece", 99.0, false) == 0.0 and Growth.progress("gece", 99.0, true) == 1.0, "gündüz beklenen süre gece çiçeğini açmaz")
+	check(Growth.seconds("kopru", true) < Growth.seconds("kopru"), "Gübre Topu tohumu hemen büyütür")
+	# gates: the same ordered list as the boat's
+	var g := PlayerData.new()
+	var m := GardenTravel.menu(g, "s4_chapter0")
+	check(m.size() == 6 and m[0]["state"] == "here" and m[1]["state"] == "locked", "bahar kapısı: 6 bahçe sırayla")
+	g.set_flag("s4_bolum0_bitti")
+	check(GardenTravel.menu(g, "s4_chapter0")[1]["state"] == "next" and GardenTravel.next_stop(g) == "s4_chapter1", "bahar kapısı: sıradaki bahçe işaretli")
+	g.set_flag("tohum_lale")
+	check(GardenTravel.seeds(g) == 1, "tohum sayacı")
+	var c := ContentScript.new()
+	check(c.keepers_s4["order"].size() == 7 and "yonca" in c.keepers_s4["order"] and not c.keeper("yonca").is_empty(), "Sezon 4 seçiminde 7 bekçi (Yonca dahil)")
+	check(Skills.for_character("yonca") == "tohum_ekme", "Yonca'nın yeteneği Tohum Ekme")
+	for k: String in c.keepers_s4["order"]:
+		check(Skills.season_for(k, 4) != "", "Sezon 4 yeteneği var: %s" % k)
+	for id: String in ["kabak", "korkuluk", "sikir", "circir", "pitpit", "pacali", "diril"]:
+		check(ShorePlan.BOSSES.has(id) and ShorePlan.cycle(id, 1).back() == "tired", "bahçe bekçisi her turun sonunda yorulur: %s" % id)
+	for k: String in ["kapici_tavsan", "kiskanc_salyangoz", "kapkac_karga", "benim_faresi", "bagiran_kurbaga", "susturucu_sinek", "somurtkan_civciv", "itici_sincap", "ayna_baligi", "taklitci_kurbaga", "diken_topu", "neden_golgesi"]:
+		check(MobStats.breathes(k) and MobStats.LEVELS.has(k), "Dikenci alkışla sakinleşir: %s" % k)
 
 
 func _test_new_game_plus() -> void:

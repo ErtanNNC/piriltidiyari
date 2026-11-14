@@ -1,0 +1,44 @@
+{
+  "id": "golgenin_yolu",
+  "title": "Gölgenin Yolu",
+  "giver": "yonca",
+  "objectives": [
+    {
+      "id": "alkis",
+      "text": "İki diken kapısını alkışla aç",
+      "type": "clap",
+      "target": "golge",
+      "count": 2
+    },
+    {
+      "id": "dikenci",
+      "text": "Dikencileri sersemlet, sonra alkışla",
+      "type": "breathe",
+      "target": "any",
+      "count": 4
+    },
+    {
+      "id": "merdiven",
+      "text": "Sete çıkmak için merdiven tohumu ek",
+      "type": "grow",
+      "target": "merdiven"
+    },
+    {
+      "id": "gece",
+      "text": "Setteki Gece Çiçeği tohumunu ek",
+      "type": "collect",
+      "target": "gece_tohumu"
+    },
+    {
+      "id": "son_cit",
+      "text": "Son çitin önüne var",
+      "type": "reach",
+      "target": "son_cit"
+    }
+  ],
+  "turn_in": "Ark kapağının yanında seni bekleyenle konuş",
+  "rewards": {
+    "piril": 60,
+    "xp": 80
+  }
+}

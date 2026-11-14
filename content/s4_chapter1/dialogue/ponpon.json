@@ -1,0 +1,94 @@
+{
+  "npc": "ponpon",
+  "variants": [
+    {
+      "when": {
+        "flag": "s4_chapter1_d0"
+      },
+      "lines": [
+        {
+          "speaker": "ponpon",
+          "mood": "mutlu",
+          "text": "Çın çın! Alkışlayınca fark ettim: zilim pazarın en neşeli sesi."
+        },
+        {
+          "speaker": "ponpon",
+          "mood": "mutlu",
+          "text": "Tombiş'e de çaldırırım. Zil paylaşınca eksilmiyor!"
+        }
+      ]
+    },
+    {
+      "when": {
+        "flag": "s4c1_verdi_zil"
+      },
+      "lines": [
+        {
+          "speaker": "ponpon",
+          "mood": "dertli",
+          "text": "Zilim geri geldi. Ama Tombiş'in bilyesi daha mı parlak acaba?"
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "mutlu",
+          "text": "Ben zilini çok beğendim. Dur, tezgâhının önünde alkışlayayım!"
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "pazar_parlasin",
+        "state": "active",
+        "flag": "s4c1_var_zil"
+      },
+      "lines": [
+        {
+          "speaker": "oyuncu",
+          "mood": "mutlu",
+          "text": "Bak ne buldum! Bu altın zil senin, değil mi?"
+        },
+        {
+          "speaker": "ponpon",
+          "mood": "mutlu",
+          "text": "Zilim! Çın çın! Sesini unutmuşum, ne tatlıymış."
+        }
+      ],
+      "then": {
+        "advance": "pazar_parlasin/oyuncak",
+        "set_flag": "s4c1_verdi_zil"
+      }
+    },
+    {
+      "when": {
+        "flag": "s4c1_var_bilye",
+        "not_flag": "s4c1_verdi_bilye"
+      },
+      "lines": [
+        {
+          "speaker": "ponpon",
+          "mood": "şaşkın",
+          "text": "Aa, Tombiş'in bilyesi! Bir kerecik tutsam..."
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "sakin",
+          "text": "Bu Tombiş'in. Senin zilini de bulacağım, söz!"
+        }
+      ]
+    },
+    {
+      "lines": [
+        {
+          "speaker": "ponpon",
+          "mood": "dertli",
+          "text": "Zilimi bir karga kaptı! Gerçi hiç çalmazdım..."
+        },
+        {
+          "speaker": "ponpon",
+          "mood": "dertli",
+          "text": "Hep Tombiş'in bilyesine bakardım. Ne parlak!"
+        }
+      ]
+    }
+  ]
+}

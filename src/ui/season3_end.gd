@@ -81,6 +81,13 @@ func _ready() -> void:
 	stay.custom_minimum_size = Vector2(220, 60)
 	stay.pressed.connect(func() -> void: chosen.emit("s3_chapter0"))
 	buttons.add_child(stay)
+	# the next season: Dikenli Bahçeler
+	if d.can_start_season4():
+		var s4 := UiKit.button("Sezon 4'e başla")
+		s4.name = "Season4"
+		s4.custom_minimum_size = Vector2(220, 60)
+		s4.pressed.connect(func() -> void: SeasonFlow.start_season4())
+		buttons.add_child(s4)
 	if d.can_start_new_game_plus():
 		var ng := UiKit.button("Yeni Oyun+", false)
 		ng.name = "NewGamePlus"

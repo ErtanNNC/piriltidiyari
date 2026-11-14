@@ -14,6 +14,14 @@ const NEXT_S3 := [
 	["quest", "sky", "Sonra: beş ada, beş inci, korkan beş bekçi"],
 ]
 
+## Season 4's prologue: the keeper is chosen, the gardens wait.
+const NEXT_S4 := [
+	["spark", "spark-green", "Bölüm 0: Sera Kasabası ve kapalı perdeler"],
+	["heart", "honey", "Solucan Dede Toprak ve ilk alkışlar"],
+	["star", "spark-purple", "Huysuz Korkuluk ve tıkalı ark"],
+	["quest", "sky", "Sonra: beş bahçe, beş Bahar Tohumu"],
+]
+
 const NEXT := [
 	["spark", "hp", "Bölüm 0: Buharlı Kaplıca Köyü"],
 	["heart", "honey", "Tospik Nine ve hiç susmayan köylüler"],
@@ -48,13 +56,14 @@ func _ready() -> void:
 	title.add_theme_font_size_override("font_size", 40)
 	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	v.add_child(title)
-	var s3 := GameState.data.season >= 3
-	var sub := UiKit.label("Sezon 3: Titrek Kıyılar" if s3 else "Sezon 2: Kor Vadisi", "text-label", "ink-muted")
+	var s4 := GameState.data.season >= 4
+	var s3 := GameState.data.season == 3
+	var sub := UiKit.label("Sezon 4: Dikenli Bahçeler" if s4 else ("Sezon 3: Titrek Kıyılar" if s3 else "Sezon 2: Kor Vadisi"), "text-label", "ink-muted")
 	sub.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	v.add_child(sub)
 	v.add_child(HSeparator.new())
 	v.add_child(UiKit.label("Sırada ne var?", "text-heading", "ink"))
-	for n: Array in (NEXT_S3 if s3 else NEXT):
+	for n: Array in (NEXT_S4 if s4 else (NEXT_S3 if s3 else NEXT)):
 		var row := HBoxContainer.new()
 		row.add_theme_constant_override("separation", int(Tokens.px("space-2")))
 		var ic := GameIcon.new()
@@ -69,9 +78,9 @@ func _ready() -> void:
 	buttons.alignment = BoxContainer.ALIGNMENT_CENTER
 	buttons.add_theme_constant_override("separation", int(Tokens.px("space-3")))
 	v.add_child(buttons)
-	var go := UiKit.button("Denize açıl" if s3 else "Kor Vadisi'ne in")
+	var go := UiKit.button("Bahçelere gir" if s4 else ("Denize açıl" if s3 else "Kor Vadisi'ne in"))
 	go.custom_minimum_size = Vector2(240, 60)
-	go.pressed.connect(func() -> void: chosen.emit("s3_chapter0" if s3 else "s2_chapter0"))
+	go.pressed.connect(func() -> void: chosen.emit("s4_chapter0" if s4 else ("s3_chapter0" if s3 else "s2_chapter0")))
 	buttons.add_child(go)
 	var menu := UiKit.button("Ana menü", false)
 	menu.custom_minimum_size = Vector2(180, 60)

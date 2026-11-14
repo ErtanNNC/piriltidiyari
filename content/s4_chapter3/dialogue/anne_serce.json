@@ -1,0 +1,181 @@
+{
+  "npc": "anne_serce",
+  "variants": [
+    {
+      "when": {
+        "quest": "kapali_yuva",
+        "state": "ready"
+      },
+      "lines": [
+        {
+          "speaker": "anne_serce",
+          "mood": "mutlu",
+          "text": "Bak şunlara! Pıtpıt kardeşlerine kanat çırpmayı gösteriyor."
+        },
+        {
+          "speaker": "anne_serce",
+          "mood": "sakin",
+          "text": "Yeni bir kardeş gelince sevgi bölünmez. Yuva büyür."
+        },
+        {
+          "speaker": "anne_serce",
+          "mood": "kararlı",
+          "text": "Gül Tohumu sende. Sıradaki bahçe Ayna Gölü!"
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "mutlu",
+          "text": "Hoşça kal Anne Serçe! Minikler uçunca haber ver."
+        }
+      ],
+      "then": {
+        "complete_quest": "kapali_yuva",
+        "set_flag": "s4_bolum3_bitti",
+        "give_items": {
+          "nane_limonata": 2
+        }
+      }
+    },
+    {
+      "when": {
+        "quest": "kapali_yuva",
+        "state": "active",
+        "objective_done": "kapali_yuva/pitpit"
+      },
+      "lines": [
+        {
+          "speaker": "anne_serce",
+          "mood": "mutlu",
+          "text": "Gül Tohumu yuvanın önünde parlıyor. Al onu, senin hakkın!"
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "kapali_yuva",
+        "state": "active",
+        "objective_done": "kapali_yuva/ark"
+      },
+      "lines": [
+        {
+          "speaker": "anne_serce",
+          "mood": "mutlu",
+          "text": "Su dallardan akıyor! Tepedeki diken çiti kurudu."
+        },
+        {
+          "speaker": "anne_serce",
+          "mood": "dertli",
+          "text": "Pıtpıt'ım tepe yuvada. Kapıyı dikenle kapattı, kimseyi almıyor."
+        },
+        {
+          "speaker": "anne_serce",
+          "mood": "sakin",
+          "text": "Yorulunca yanına git, alkışla. Ben de arkandan geliyorum."
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "kapali_yuva",
+        "state": "active"
+      },
+      "lines": [
+        {
+          "speaker": "anne_serce",
+          "mood": "kararlı",
+          "text": "Ark kapağı üst dalda, batı yanında. Çarkını çevir!"
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "dallara_tirman",
+        "state": "ready"
+      },
+      "lines": [
+        {
+          "speaker": "anne_serce",
+          "mood": "mutlu",
+          "text": "Yuvalar açıldı, merdivenler hazır! Kanatların yok ama hızlısın."
+        },
+        {
+          "speaker": "anne_serce",
+          "mood": "dertli",
+          "text": "Ama tepeye giden yolu diken çiti kapatıyor."
+        },
+        {
+          "speaker": "anne_serce",
+          "mood": "kararlı",
+          "text": "Üst daldaki ark kapağını aç. Su gelince çit kurur."
+        }
+      ],
+      "then": {
+        "complete_quest": "dallara_tirman",
+        "start_quest": "kapali_yuva"
+      }
+    },
+    {
+      "when": {
+        "quest": "dallara_tirman",
+        "state": "active"
+      },
+      "lines": [
+        {
+          "speaker": "anne_serce",
+          "mood": "sakin",
+          "text": "Dalın dibindeki toprağa merdiven tohumu ek. Hemen büyür."
+        },
+        {
+          "speaker": "anne_serce",
+          "mood": "sakin",
+          "text": "Düşersen üzülme. Alt dala konarsın, merdiven yerinde durur."
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "dallara_tirman",
+        "state": "none"
+      },
+      "lines": [
+        {
+          "speaker": "anne_serce",
+          "mood": "mutlu",
+          "text": "Hoş geldin! Ben Anne Serçe. Burası Yuva Ağacı."
+        },
+        {
+          "speaker": "anne_serce",
+          "mood": "mutlu",
+          "text": "Yumurtalarımdan dört minik çıktı. Cik cik, bütün gün!"
+        },
+        {
+          "speaker": "anne_serce",
+          "mood": "dertli",
+          "text": "Büyük oğlum Pıtpıt o günden beri tepe yuvadan inmiyor."
+        },
+        {
+          "speaker": "anne_serce",
+          "mood": "dertli",
+          "text": "'Artık kimse bana bakmıyor' diyor. Oysa gözüm hep onda."
+        },
+        {
+          "speaker": "anne_serce",
+          "mood": "kararlı",
+          "text": "Ben yavruları bırakamam. Sen dallara tırmanır mısın?"
+        }
+      ],
+      "then": {
+        "start_quest": "dallara_tirman"
+      }
+    },
+    {
+      "lines": [
+        {
+          "speaker": "anne_serce",
+          "mood": "mutlu",
+          "text": "Dört minik, bir de Pıtpıt'ım. Yuvam hiç bu kadar dolu olmamıştı!"
+        }
+      ]
+    }
+  ]
+}

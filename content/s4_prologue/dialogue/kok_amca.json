@@ -1,0 +1,91 @@
+{
+  "npc": "kok_amca",
+  "variants": [
+    {
+      "when": {
+        "quest": "yesil_diken",
+        "state": [
+          "active",
+          "ready",
+          "done"
+        ],
+        "flag": "s4_scene2_d1"
+      },
+      "lines": [
+        {
+          "speaker": "kok_amca",
+          "mood": "mutlu",
+          "text": "Aa, lalelerim ne renkliymiş! Ölçmekten bakmayı unutmuşum."
+        },
+        {
+          "speaker": "kok_amca",
+          "mood": "mutlu",
+          "text": "Alkışın için sağ ol evlat. İçim ferahladı."
+        }
+      ],
+      "by": "a"
+    },
+    {
+      "when": {
+        "quest": "yesil_diken",
+        "state": "active"
+      },
+      "lines": [
+        {
+          "speaker": "kok_amca",
+          "mood": "dertli",
+          "text": "Nilüfer'in gülleri mis kokuyor. Benim lalelerim kokmuyor!"
+        },
+        {
+          "speaker": "kok_amca",
+          "mood": "şaşkın",
+          "text": "Dikenler tarhımı sardı. Ben bunları ekmedim ki!"
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "sakin",
+          "text": "Bahçenin önünde bir alkış patlatayım, belki iyi gelir."
+        }
+      ],
+      "by": "a"
+    },
+    {
+      "when": {
+        "quest": "ilk_bahar",
+        "state": "active",
+        "objective_not_done": "ilk_bahar/kok"
+      },
+      "lines": [
+        {
+          "speaker": "kok_amca",
+          "mood": "mutlu",
+          "text": "Hoş geldin denizanası evlat! Karada yüzmek nasıl?"
+        },
+        {
+          "speaker": "kok_amca",
+          "mood": "mutlu",
+          "text": "Lalelerimi cetvelle ölçüyorum. Bir parmak daha uzasınlar!"
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "mutlu",
+          "text": "Çok güzel olmuş! Ben de ilk tohumumu ekeceğim."
+        }
+      ],
+      "then": {
+        "advance": "ilk_bahar/kok"
+      },
+      "by": "a"
+    },
+    {
+      "lines": [
+        {
+          "speaker": "kok_amca",
+          "mood": "mutlu",
+          "text": "Toprağı kabart, tohumu ek, suyunu ver. Gerisi sabır!"
+        }
+      ],
+      "by": "a"
+    }
+  ]
+}

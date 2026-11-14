@@ -1,0 +1,91 @@
+{
+  "npc": "nilufer_abla",
+  "variants": [
+    {
+      "when": {
+        "quest": "yesil_diken",
+        "state": [
+          "active",
+          "ready",
+          "done"
+        ],
+        "flag": "s4_scene2_d2"
+      },
+      "lines": [
+        {
+          "speaker": "nilufer_abla",
+          "mood": "mutlu",
+          "text": "Vırak! Güllerim açmış da haberim yokmuş."
+        },
+        {
+          "speaker": "nilufer_abla",
+          "mood": "mutlu",
+          "text": "Havuç Teyze'ye gül suyu götüreceğim. Birlikte sevinelim."
+        }
+      ],
+      "by": "a"
+    },
+    {
+      "when": {
+        "quest": "yesil_diken",
+        "state": "active"
+      },
+      "lines": [
+        {
+          "speaker": "nilufer_abla",
+          "mood": "dertli",
+          "text": "Havuç Teyze'nin bahçesi dolu dolu. Benimki yarım kalmış gibi."
+        },
+        {
+          "speaker": "nilufer_abla",
+          "mood": "şaşkın",
+          "text": "Bu dikenler güllerimin dikeni değil. Bunlar başka!"
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "sakin",
+          "text": "Bahçenin önünde bir alkış patlatayım, belki iyi gelir."
+        }
+      ],
+      "by": "a"
+    },
+    {
+      "when": {
+        "quest": "ilk_bahar",
+        "state": "active",
+        "objective_not_done": "ilk_bahar/nilufer"
+      },
+      "lines": [
+        {
+          "speaker": "nilufer_abla",
+          "mood": "mutlu",
+          "text": "Vırak! Balonunda su mu var? Güllerim bayılır."
+        },
+        {
+          "speaker": "nilufer_abla",
+          "mood": "mutlu",
+          "text": "Yarışmayı ben kazanacağım. Ya da... kazanmalıyım, değil mi?"
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "mutlu",
+          "text": "Çok güzel olmuş! Ben de ilk tohumumu ekeceğim."
+        }
+      ],
+      "then": {
+        "advance": "ilk_bahar/nilufer"
+      },
+      "by": "a"
+    },
+    {
+      "lines": [
+        {
+          "speaker": "nilufer_abla",
+          "mood": "mutlu",
+          "text": "Toprağı kabart, tohumu ek, suyunu ver. Gerisi sabır!"
+        }
+      ],
+      "by": "a"
+    }
+  ]
+}

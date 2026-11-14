@@ -1,1 +1,447 @@
-{"barks": {}}
+{
+  "barks": {
+    "s4b_basla": [
+      {
+        "speaker": "tiril",
+        "mood": "şaşkın",
+        "text": "Bostanda dev bir kabak! Yaprakları diken diken olmuş."
+      },
+      {
+        "speaker": "kabak",
+        "mood": "huysuz",
+        "text": "Karpuz benden büyük çıktı! Artık bana kimse bakmıyor!"
+      },
+      {
+        "speaker": "tiril",
+        "mood": "kararlı",
+        "text": "Tohum atıyor, yuvarlanıyor... Yorulunca yanına gideyim."
+      }
+    ],
+    "s4b_faz": [
+      {
+        "speaker": "kabak",
+        "mood": "huysuz",
+        "text": "Bir zamanlar köyün en büyük kabağıydım ben!"
+      }
+    ],
+    "s4b_kustu": [
+      {
+        "speaker": "kabak",
+        "mood": "dertli",
+        "text": "Karpuz varken bana kim bakar ki... Püf."
+      },
+      {
+        "speaker": "tiril",
+        "mood": "sakin",
+        "text": "Küstü. Onu alkışlayayım: kendi güzelliğini görsün."
+      }
+    ],
+    "s4b_alkis": [
+      {
+        "speaker": "tiril",
+        "mood": "mutlu",
+        "text": "Sen hâlâ çok büyük ve turuncu bir kabaksın!"
+      },
+      {
+        "speaker": "kabak",
+        "mood": "şaşkın",
+        "text": "Ben mi? Hâlâ... büyük ve turuncu muyum?"
+      },
+      {
+        "speaker": "kabak",
+        "mood": "mutlu",
+        "text": "Yanaklarım kızardı! Dikenlerim de döküldü, bak!"
+      }
+    ],
+    "s4b_son": [
+      {
+        "speaker": "tiril",
+        "mood": "sakin",
+        "text": "Hep karpuza bakmış. Kendi turuncusunu görememiş."
+      },
+      {
+        "speaker": "tiril",
+        "mood": "sakin",
+        "text": "Kıyaslayınca elindeki güzellik saklanıyor demek."
+      },
+      {
+        "speaker": "tiril",
+        "mood": "şaşkın",
+        "text": "Aa! Ormanın arkasında dikenli bir kapı açılıyor..."
+      }
+    ],
+    "s4b_c1": [
+      {
+        "speaker": "tiril",
+        "mood": "şaşkın",
+        "text": "Dikenli kapı kendi kendine açıldı. İçeride biri var."
+      }
+    ],
+    "s4b_c2": [
+      {
+        "speaker": "diril",
+        "mood": "dertli",
+        "text": "Herkes çiçek açtı. Ben hiç açamadım."
+      },
+      {
+        "speaker": "diril",
+        "mood": "huysuz",
+        "text": "Sen bile ışık saçıyorsun!"
+      }
+    ],
+    "s4b_c3": [
+      {
+        "speaker": "tiril",
+        "mood": "şaşkın",
+        "text": "Sarmaşıklar kabarıyor! Ama ben bu duyguyu tanıyorum."
+      },
+      {
+        "speaker": "tiril",
+        "mood": "sakin",
+        "text": "Ben de önce parlayamıyordum. Işığım tir tir titrerdi."
+      }
+    ],
+    "s4b_c4": [
+      {
+        "speaker": "tiril",
+        "mood": "kararlı",
+        "text": "Yanına geliyorum. Köşeni birlikte aydınlatalım."
+      },
+      {
+        "speaker": "diril",
+        "mood": "şaşkın",
+        "text": "Benim yanıma mı? Buraya kimse gelmezdi ki..."
+      }
+    ],
+    "s4b_m1": [
+      {
+        "speaker": "fistik",
+        "mood": "dertli",
+        "text": "Sabah oldu. Tırıl dikenli kapının ardında kaldı."
+      },
+      {
+        "speaker": "miril",
+        "mood": "sakin",
+        "text": "Kapının altından soluk mavi bir ışık sızıyor."
+      },
+      {
+        "speaker": "hiril",
+        "mood": "kararlı",
+        "text": "O benim elimi tutmuştu. Şimdi sıra bizde!"
+      }
+    ],
+    "s4b_m2": [
+      {
+        "speaker": "fistik",
+        "mood": "kararlı",
+        "text": "İlk seferde ışık, sonra kulak, sonra el lazımdı."
+      },
+      {
+        "speaker": "fistik",
+        "mood": "sakin",
+        "text": "Bu sefer... başkası için sevinebilen bir kalp."
+      }
+    ],
+    "s4b_m3": [
+      {
+        "speaker": "pati",
+        "mood": "şaşkın",
+        "text": "Şey... Çiçek Yarışması'nı kim kazanacak acaba?"
+      },
+      {
+        "speaker": "citir",
+        "mood": "şaşkın",
+        "text": "Hııı! Ben de tam onu düşünüyordum."
+      }
+    ],
+    "s4b_m4": [
+      {
+        "speaker": "yonca",
+        "mood": "sakin",
+        "text": "Ben bahçelerden anlarım. Gelebilir miyim?"
+      },
+      {
+        "speaker": "yonca",
+        "mood": "mutlu",
+        "text": "Yarışmada sona kaldım ama herkesin bahçesini suladım!"
+      },
+      {
+        "speaker": "fistik",
+        "mood": "mutlu",
+        "text": "Gel Yonca! Aradığımız kalp tam da böyle bir kalp."
+      }
+    ],
+    "s4b_sec_pati": [
+      {
+        "speaker": "pati",
+        "mood": "kararlı",
+        "text": "Bu sefer de öndeyim. ...Ama önde olmak şart mı?"
+      }
+    ],
+    "s4b_sec_bado": [
+      {
+        "speaker": "bado",
+        "mood": "sakin",
+        "text": "Minnoş, sen burada kal. ...Hayır, gel. Gel tamam mı?"
+      }
+    ],
+    "s4b_sec_citir": [
+      {
+        "speaker": "citir",
+        "mood": "mutlu",
+        "text": "Yeni harita! Paytak'ınkinden de güzel olacak. ...Şaka şaka."
+      }
+    ],
+    "s4b_sec_lumi": [
+      {
+        "speaker": "lumi",
+        "mood": "kararlı",
+        "text": "Tırıl'ın ışığını bulalım."
+      }
+    ],
+    "s4b_sec_tipis_panda": [
+      {
+        "speaker": "tipis_panda",
+        "mood": "kararlı",
+        "text": "Bu sefer ritmi ben tutarım."
+      }
+    ],
+    "s4b_sec_tosbi": [
+      {
+        "speaker": "tosbi",
+        "mood": "mutlu",
+        "text": "Ben artık küçük değilim!"
+      }
+    ],
+    "s4b_sec_yonca": [
+      {
+        "speaker": "yonca",
+        "mood": "mutlu",
+        "text": "Her tohum kendi zamanında açar. Dedem öyle derdi."
+      }
+    ],
+    "s4b_sec_son": [
+      {
+        "speaker": "fistik",
+        "mood": "mutlu",
+        "text": "Dikenlere kızmayın. Alkışlayın: kendileri çekilir!"
+      },
+      {
+        "speaker": "hiril",
+        "mood": "mutlu",
+        "text": "Tırıl'a söyleyin: davulum onun için çalıyor!"
+      }
+    ],
+    "s4a_basla": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Karadaki ilk baharım! Su balonum sayesinde her yere süzülürüm."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Herkes bahçesini süslüyor. Çiçek Yarışması varmış!"
+      }
+    ],
+    "s4a_ekim": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Tohumu ektim! Minicik bir filiz çıktı."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "sakin",
+        "text": "Biraz su ister. Balonumdan birkaç damla vereyim."
+      }
+    ],
+    "s4a_cicek": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Açtı! İlk çiçeğim bir Şifa Papatyası oldu."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "kararlı",
+        "text": "Tospik Nine'ye göstereyim. Meydanda bekliyor."
+      }
+    ],
+    "s4a_son": [
+      {
+        "speaker": "havuc_teyze",
+        "mood": "kararlı",
+        "text": "En büyük havuç benimki olacak!"
+      },
+      {
+        "speaker": "kok_amca",
+        "mood": "kararlı",
+        "text": "Hayır, en uzun lale benimki!"
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "dertli",
+        "text": "Nine'yi duymadılar. İçimde tuhaf bir his var..."
+      }
+    ],
+    "s4a_diken_basla": [
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Yarışma günü! Ama herkes komşusunun bahçesine bakıyor."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Bahçelerin dibinden ince yeşil sarmaşıklar çıkmış!"
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "kararlı",
+        "text": "Tospik Nine meydanda. Ona sorayım."
+      }
+    ],
+    "s4a_dikenci": [
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Sırtı dikenli bir tavşan, komşunun havucunu kapmış!"
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "kararlı",
+        "text": "Işığımla sersemleteyim. Canı yanmaz, sadece durur."
+      }
+    ],
+    "s4a_sersem": [
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Sersemledi, başında yıldızlar dönüyor."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Onu alkışlayayım: kendi havucu da güzel, görsün!"
+      }
+    ],
+    "s4a_ilk_alkis": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Alkışlayınca dikenleri döküldü! Evine koşuyor."
+      }
+    ],
+    "s4a_bahce": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Dikenler çekildi, yerinde çiçekler kaldı!"
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "sakin",
+        "text": "Birinin bahçesi için sevinmek, dikenin ilacıymış."
+      }
+    ],
+    "s4a_bar": [
+      {
+        "speaker": "oyuncu",
+        "mood": "dertli",
+        "text": "Dikenlerin yanında içim sıkışıyor. Diken barım doluyor!"
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "kararlı",
+        "text": "Birini alkışlarsam ya da limonata içersem boşalır."
+      }
+    ],
+    "s4a_kok_basla": [
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Sarmaşıkların kökleri ormana doğru uzanıyor."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "kararlı",
+        "text": "Dikenli çit yolu kapatmış. Bir tohum toprağı görüyorum!"
+      }
+    ],
+    "s4a_merdiven": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Tohum sarmaşık merdiven oldu! Çitin üstünden geçerim."
+      }
+    ],
+    "s4a_kopru": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Yaprak köprü! Dereyi ıslanmadan geçerim. Gerçi ben hep ıslağım."
+      }
+    ],
+    "s4a_ses1": [
+      {
+        "speaker": "fisilti",
+        "mood": "dertli",
+        "text": "Onunki daha güzel..."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Kim konuştu? Sarmaşıkların arasından ince bir ses geldi."
+      }
+    ],
+    "s4a_kok": [
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Dev bir kök! Bütün sarmaşıklar buradan çıkıyor."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Işığım büyüdü! İçimde yeni bir dalga kıpırdıyor."
+      }
+    ],
+    "s4a_isik": [
+      {
+        "speaker": "oyuncu",
+        "mood": "mutlu",
+        "text": "Işık görünce gölge çiti çekildi! Karanlığı sevmiyor demek."
+      }
+    ],
+    "s4a_ses2": [
+      {
+        "speaker": "fisilti",
+        "mood": "dertli",
+        "text": "...neden ben değilim?"
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "dertli",
+        "text": "Bu ses çok üzgün. Kızgın değil, sadece yalnız."
+      }
+    ],
+    "s4a_son3": [
+      {
+        "speaker": "fisilti",
+        "mood": "dertli",
+        "text": "Onunki daha güzel... neden ben değilim?"
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "kararlı",
+        "text": "Ses ormanın kenarındaki bostandan geliyor. Bakmalıyım."
+      },
+      {
+        "speaker": "oyuncu",
+        "mood": "şaşkın",
+        "text": "Bir dakika... Şu kabak az önce kıpırdadı mı?"
+      }
+    ]
+  }
+}

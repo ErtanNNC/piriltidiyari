@@ -1,0 +1,34 @@
+{
+  "npc": "sikir",
+  "variants": [
+    {
+      "when": {
+        "flag": "s4_bolum1_bitti"
+      },
+      "lines": [
+        {
+          "speaker": "sikir",
+          "mood": "mutlu",
+          "text": "Şıkır şıkır! Boncuğum bende, gerisini takas ediyorum."
+        },
+        {
+          "speaker": "sikir",
+          "mood": "sakin",
+          "text": "Fazla parlak şey yük olurmuş. Sen de bak, beğendiğini al."
+        }
+      ],
+      "then": {
+        "open_shop": "sikir"
+      }
+    },
+    {
+      "lines": [
+        {
+          "speaker": "sikir",
+          "mood": "mutlu",
+          "text": "İlk boncuğum... Hâlâ en güzel şıkırdayan o!"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "id": "cayirin_konseri",
+  "title": "Çayırın Konseri",
+  "giver": "nihan",
+  "objectives": [
+    {
+      "id": "ritim",
+      "text": "Sesi kısılan üç şarkıcının yanında düzenli ritim tut",
+      "type": "ritim",
+      "target": "sarkici",
+      "count": 3
+    },
+    {
+      "id": "alkis",
+      "text": "Şarkı söyleyen üç şarkıcıyı alkışla",
+      "type": "clap",
+      "target": "sarkici",
+      "count": 3
+    },
+    {
+      "id": "dikenci",
+      "text": "Dikencileri sersemlet, sonra alkışla",
+      "type": "breathe",
+      "target": "any",
+      "count": 4
+    },
+    {
+      "id": "tohum",
+      "text": "Derenin başına bir köprü tohumu ek",
+      "type": "grow",
+      "target": "kopru"
+    }
+  ],
+  "turn_in": "Bülbül Nihan'a dön",
+  "rewards": {
+    "piril": 40,
+    "xp": 60
+  }
+}

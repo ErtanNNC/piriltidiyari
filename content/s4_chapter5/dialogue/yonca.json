@@ -1,0 +1,140 @@
+{
+  "npc": "yonca",
+  "variants": [
+    {
+      "when": {
+        "quest": "dirilin_saati",
+        "state": "done"
+      },
+      "lines": [
+        {
+          "speaker": "yonca",
+          "mood": "mutlu",
+          "text": "Gölge Köşesi'nde çiçek açtı. Buna gece bahçesi diyeceğim!"
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "dirilin_saati",
+        "state": "ready"
+      },
+      "lines": [
+        {
+          "speaker": "yonca",
+          "mood": "mutlu",
+          "text": "Ay Çiçeği açtı! Tırıl seni bekliyor, hadi yanına."
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "dirilin_saati",
+        "state": "active",
+        "objective_done": "dirilin_saati/ark"
+      },
+      "lines": [
+        {
+          "speaker": "yonca",
+          "mood": "mutlu",
+          "text": "Su akıyor, son çit kurudu! Dırıl ortada, Tırıl da yanında."
+        },
+        {
+          "speaker": "yonca",
+          "mood": "sakin",
+          "text": "Yorulunca vur. Küsünce alkışla. Sonrası bahçe işi."
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "dirilin_saati",
+        "state": "active"
+      },
+      "lines": [
+        {
+          "speaker": "yonca",
+          "mood": "kararlı",
+          "text": "Ark kapağı hemen şurada. Çarkı çevir, son çit kurusun!"
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "golgenin_yolu",
+        "state": "ready"
+      },
+      "lines": [
+        {
+          "speaker": "yonca",
+          "mood": "mutlu",
+          "text": "Buraya kadar geldin! Ben de peşinden koştum."
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "şaşkın",
+          "text": "Gece Çiçeği'ni ektim ama açmadı. Tohum bozuk mu?"
+        },
+        {
+          "speaker": "yonca",
+          "mood": "sakin",
+          "text": "Bozuk değil. Onun saati gece. Gündüz ne yapsan açmaz."
+        },
+        {
+          "speaker": "yonca",
+          "mood": "kararlı",
+          "text": "Şimdi ark kapağını aç. Son çit kurusun, Dırıl'a varalım."
+        }
+      ],
+      "then": {
+        "complete_quest": "golgenin_yolu",
+        "start_quest": "dirilin_saati"
+      }
+    },
+    {
+      "when": {
+        "quest": "golgenin_yolu",
+        "state": "active"
+      },
+      "lines": [
+        {
+          "speaker": "yonca",
+          "mood": "sakin",
+          "text": "Diken kapısının önünde alkışla. Dikenciler sersemleyince de!"
+        },
+        {
+          "speaker": "yonca",
+          "mood": "sakin",
+          "text": "Sette bir Gece Çiçeği toprağı var. Onu da ek, bak ne olacak."
+        }
+      ]
+    },
+    {
+      "lines": [
+        {
+          "speaker": "yonca",
+          "mood": "dertli",
+          "text": "Bu duvarların ardına hiç güneş girmez. Burası Gölge Köşesi."
+        },
+        {
+          "speaker": "yonca",
+          "mood": "sakin",
+          "text": "Her levhada aynı soru yazıyor: Neden ben değilim?"
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "şaşkın",
+          "text": "Bunları Dırıl mı yazmış? Ne kadar da çok sormuş!"
+        },
+        {
+          "speaker": "yonca",
+          "mood": "kararlı",
+          "text": "Dikenleri alkışla aç, sete tohumla çık. Ortada Tırıl bekliyor."
+        }
+      ],
+      "then": {
+        "start_quest": "golgenin_yolu"
+      }
+    }
+  ]
+}

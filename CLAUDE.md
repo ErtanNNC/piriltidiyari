@@ -597,3 +597,40 @@ from exports (`.claude/*` in export_presets.cfg).
 - `tools/build_android.sh` exports with the release template (BUILD=debug
   for a debug build), still signed with the local test key.
 - No palm: a second try came out with a card behind the leaves again.
+
+## Season 4 (Dikenli Bahçeler)
+
+- Opens after Season 3's ending (`sezon3_bitti`): `Season3End` and the title
+  have "Sezon 4'e başla" (`PlayerData.can_start_season4`, `SeasonFlow.
+  start_season4` → `PlayerData.start_season4`: season 4, level 1, Season 3's
+  keeper kept in `s3_keeper`, the prologue is played as Tırıl). Story doc
+  defaults: no co-op (clap/share with NPCs), seeds grow in seconds, night is
+  story-driven, Yonca is the 7th keeper (`content/keepers_s4.json`).
+- Alkış + Diken barı: `Applause` (player child `clap` when season ≥ 4). The
+  Sakinleş button is "Alkış": one press claps; group "applaudable" nodes in
+  reach get `applauded(by)` (ThornPatch with `clap_opens`), anything in
+  group "dazed" calms at once (Dikenciler, bosses). `clap.heat` (set each
+  frame by ThornPatch) fills the bar (`ThornRules`); full = "kıskandın": no
+  skill or power for a moment; a clap that reached someone, Nane Limonata or
+  a Teşekkür Yaprağı (buff "ferah") empties it, Papatya Çelengi (buff
+  "celenk") holds it. HUD StatBar "thorn", `SeedTracker` (flags `tohum_<id>`).
+- `ThornPatch` (clump or blocking hedge; opens by clap, `open()` or its
+  flag), `SeedPlot` ("Ek"; `Growth` kinds kopru, merdiven, sifa, kalkan,
+  gece: a Gece Çiçeği grows only while the scene's `night` is true; Gübre
+  Topu buff "gubre" = instant; `yonca_only` plots are Yonca's keeper-only
+  corners; events "grow"/kind|any), `ArkGate` (the garden's sluice, the
+  "flare": flag `s4_ark<N>`, event "light"/"ark"), `SpringGate` (Bahar
+  Kapısı, ordered menu from `GardenTravel` like the boat's).
+- Gardens extend `S4Garden` (extends `S3Island`): `begin_garden`, `gate`,
+  `ark`, `thorns`, `plot`, `dikenci(ler)`, `haze`, `drop_seed`,
+  `_calm_dikenciler` (demo). Dikenciler are Mobs with "breath" (dazed at 0 HP
+  until a clap); garden keepers are `ShoreBoss` ids in `ShorePlan` (kabak,
+  korkuluk, sikir, circir, pitpit, pacali, diril). Packs:
+  `tools/s4_packs/*.py` with `tools/s4_pack.py` (`theme="light"`).
+- Skills (`S4Skills.use`): Yonca's Tohum Ekme; at level 5 Takım Pençesi,
+  Bal Paylaşımı, Alkış Fındığı, Güneş Damlası, Ortak Ritim, Kabuk Kalesi,
+  Bahçe Çemberi (`Skills.season_for(id, 4)`).
+- Scenes: `s4_scene1..6` (prologue as Tırıl, pack `s4_prologue` written by
+  two merge scripts `prologue_a.py` / `prologue_b.py`), `s4_chapter0` Sera
+  Kasabası (reference chapter; `--demo=garden` walks all of it),
+  `s4_chapter1..5`, `s4_final` (own pack `s4_final`) → `Season4End`.

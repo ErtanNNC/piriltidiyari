@@ -1,0 +1,194 @@
+{
+  "npc": "nihan",
+  "variants": [
+    {
+      "when": {
+        "quest": "circirin_ritmi",
+        "state": "ready"
+      },
+      "lines": [
+        {
+          "speaker": "nihan",
+          "mood": "mutlu",
+          "text": "Ritim olmadan şarkım hep bir yere kaçıyormuş. Şimdi yerinde!"
+        },
+        {
+          "speaker": "nihan",
+          "mood": "sakin",
+          "text": "Onun yeteneği benimkini azaltmadı. İkimiz birlikte daha güzeliz."
+        },
+        {
+          "speaker": "nihan",
+          "mood": "kararlı",
+          "text": "Sıradaki tohum Yuva Ağacı'nda. Bahar Kapısı çiçek açtı!"
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "mutlu",
+          "text": "Papatya Tohumu cebimde. Şarkınız da kulağımda!"
+        }
+      ],
+      "then": {
+        "complete_quest": "circirin_ritmi",
+        "set_flag": "s4_bolum2_bitti",
+        "give_items": {
+          "nane_limonata": 2
+        }
+      }
+    },
+    {
+      "when": {
+        "quest": "circirin_ritmi",
+        "state": "active",
+        "objective_done": "circirin_ritmi/circir"
+      },
+      "lines": [
+        {
+          "speaker": "nihan",
+          "mood": "mutlu",
+          "text": "Papatya Tohumu sahnenin ortasında parlıyor. Al onu!"
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "circirin_ritmi",
+        "state": "active",
+        "objective_done": "circirin_ritmi/ark"
+      },
+      "lines": [
+        {
+          "speaker": "nihan",
+          "mood": "mutlu",
+          "text": "Su akıyor! Büyük sahnenin dikenleri de çekildi."
+        },
+        {
+          "speaker": "nihan",
+          "mood": "dertli",
+          "text": "Cırcır orada. Herkes beni dinliyor diye çok üzgün."
+        },
+        {
+          "speaker": "nihan",
+          "mood": "sakin",
+          "text": "Vuruşları tam ritimle iner. Uyarıyı gör, bir sayıp kenara çekil."
+        },
+        {
+          "speaker": "nihan",
+          "mood": "sakin",
+          "text": "Yorulup küsünce yanına git, alkışla."
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "circirin_ritmi",
+        "state": "active"
+      },
+      "lines": [
+        {
+          "speaker": "nihan",
+          "mood": "kararlı",
+          "text": "Ark kapağı yukarı çayırda, yokuşun ötesinde. Çarkı çevir!"
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "cayirin_konseri",
+        "state": "ready"
+      },
+      "lines": [
+        {
+          "speaker": "nihan",
+          "mood": "mutlu",
+          "text": "Duydun mu? Çayır yine şarkı söylüyor!"
+        },
+        {
+          "speaker": "nihan",
+          "mood": "dertli",
+          "text": "Ama arkımız tıkalı, papatyalar susuz. Bir de Cırcır var..."
+        },
+        {
+          "speaker": "nihan",
+          "mood": "dertli",
+          "text": "Cırcırıyla herkesin şarkısını bastırıyor. Bence canı sıkkın."
+        },
+        {
+          "speaker": "nihan",
+          "mood": "kararlı",
+          "text": "Önce kapağı aç. Sonra büyük sahnede onu bul."
+        }
+      ],
+      "then": {
+        "complete_quest": "cayirin_konseri",
+        "start_quest": "circirin_ritmi"
+      }
+    },
+    {
+      "when": {
+        "quest": "cayirin_konseri",
+        "state": "active"
+      },
+      "lines": [
+        {
+          "speaker": "nihan",
+          "mood": "sakin",
+          "text": "Şarkıcının yanında dur. Acele etme: tak... tak... tak... tak."
+        },
+        {
+          "speaker": "nihan",
+          "mood": "sakin",
+          "text": "Dört düzenli vuruş! Sesi gelince de alkışla, dikenler çekilir."
+        }
+      ]
+    },
+    {
+      "when": {
+        "quest": "cayirin_konseri",
+        "state": "none"
+      },
+      "lines": [
+        {
+          "speaker": "nihan",
+          "mood": "mutlu",
+          "text": "Hoş geldin! Ben Bülbül Nihan. Burası Şarkı Çayırı."
+        },
+        {
+          "speaker": "nihan",
+          "mood": "dertli",
+          "text": "Eskiden her taşta bir şarkıcı vardı. Şimdi çıt yok."
+        },
+        {
+          "speaker": "nihan",
+          "mood": "dertli",
+          "text": "Koca bir cırcır sesi hepsini bastırdı. Sesleri kısıldı."
+        },
+        {
+          "speaker": "nihan",
+          "mood": "kararlı",
+          "text": "Onlara ritim lazım! Yanlarında düzenli vur, şarkı geri gelir."
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "kararlı",
+          "text": "Tak, tak, tak, tak. Tamam, ritim bende!"
+        }
+      ],
+      "then": {
+        "start_quest": "cayirin_konseri"
+      }
+    },
+    {
+      "lines": [
+        {
+          "speaker": "nihan",
+          "mood": "mutlu",
+          "text": "Şarkı söylerken boğaz kurur. Limonata, bal... Bak istersen."
+        }
+      ],
+      "then": {
+        "open_shop": "nihan"
+      }
+    }
+  ]
+}

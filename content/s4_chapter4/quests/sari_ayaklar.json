@@ -1,0 +1,30 @@
+{
+  "id": "sari_ayaklar",
+  "title": "Sarı Ayaklar",
+  "giver": "kugu",
+  "objectives": [
+    {
+      "id": "ark",
+      "text": "Gölün ark kapağını aç",
+      "type": "light",
+      "target": "ark"
+    },
+    {
+      "id": "pacali",
+      "text": "Sazlıktaki Paçalı'yı alkışla",
+      "type": "breathe",
+      "target": "pacali"
+    },
+    {
+      "id": "tohum",
+      "text": "Nilüfer Tohumu'nu al",
+      "type": "collect",
+      "target": "tohum"
+    }
+  ],
+  "turn_in": "Kuğu ile konuş",
+  "rewards": {
+    "piril": 55,
+    "xp": 90
+  }
+}

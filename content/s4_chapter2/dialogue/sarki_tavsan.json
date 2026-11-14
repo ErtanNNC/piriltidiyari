@@ -1,0 +1,53 @@
+{
+  "npc": "sarki_tavsan",
+  "variants": [
+    {
+      "when": {
+        "flag": "s4_chapter2_d2"
+      },
+      "lines": [
+        {
+          "speaker": "sarki_tavsan",
+          "mood": "mutlu",
+          "text": "Alkışın kulaklarımı dikti! Dikenler de çekildi."
+        },
+        {
+          "speaker": "sarki_tavsan",
+          "mood": "mutlu",
+          "text": "Büyük sahne ileride. Cırcır orada tek başına çalıyor."
+        }
+      ]
+    },
+    {
+      "when": {
+        "flag": "s4c2_sarki2"
+      },
+      "lines": [
+        {
+          "speaker": "sarki_tavsan",
+          "mood": "mutlu",
+          "text": "Tıp tıp tıp! Tempom yerine geldi. Sağ ol!"
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "mutlu",
+          "text": "Çok güzel söylüyorsun! Dur, seni bir alkışlayayım."
+        }
+      ]
+    },
+    {
+      "lines": [
+        {
+          "speaker": "sarki_tavsan",
+          "mood": "dertli",
+          "text": "Ayağımla tempo tutardım. Cırcır başlayınca şaşırdım."
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "sakin",
+          "text": "Yanında düzenli vurayım. Belki ritim sesini geri getirir."
+        }
+      ]
+    }
+  ]
+}

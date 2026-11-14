@@ -4,11 +4,16 @@
   "region": "Ayna Gölü",
   "theme": "light",
   "levels": [
-    1,
-    5
+    20,
+    25
   ],
   "spark": null,
-  "quests": [],
-  "dialogue": [],
+  "quests": [
+    "golun_aynalari",
+    "sari_ayaklar"
+  ],
+  "dialogue": [
+    "kugu"
+  ],
   "barks": "barks"
 }

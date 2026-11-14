@@ -156,6 +156,32 @@ func _ladder() -> void:
 		_result.add_child(st)
 		Toon.part(st, "ellipsoid", Vector3(2.1, 0.3, 1.5), Color("#5fb868"), Vector3.ZERO)
 	Toon.part(_result, "cylinder", Vector3(0.3, absf(span.y) + 0.4, 0.3), Color("#3f8a4a"), Vector3(span.x * 0.5, span.y * 0.5, span.z * 0.5 - 0.9))
+	_ladder_ramp()
+
+
+## An invisible slope over the steps: the keeper has no step-up, so without
+## it the ladder only worked by jumping each leaf.
+func _ladder_ramp() -> void:
+	var flat := Vector2(span.x, span.z).length()
+	if flat < 0.1:
+		return
+	var holder := Node3D.new()
+	holder.name = "LadderRamp"
+	_result.add_child(holder)
+	holder.position = span * 0.5
+	holder.rotation.y = atan2(span.x, span.z)
+	var pivot := Node3D.new()
+	holder.add_child(pivot)
+	pivot.rotation.x = -atan2(span.y, flat)
+	var body := StaticBody3D.new()
+	body.set_meta("camera_ignore", true)
+	var c := CollisionShape3D.new()
+	var b := BoxShape3D.new()
+	b.size = Vector3(1.8, 0.2, span.length() + 0.6)
+	c.shape = b
+	c.position.y = -0.1
+	body.add_child(c)
+	pivot.add_child(body)
 
 
 ## A big flower; a healing one tops up HP when the keeper stands by it.

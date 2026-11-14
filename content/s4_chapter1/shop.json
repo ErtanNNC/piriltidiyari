@@ -1,0 +1,46 @@
+{
+  "shops": {
+    "vizik": {
+      "title": "Vızık'ın Çiçek Tezgâhı",
+      "items": [
+        {
+          "id": "bal_surubu",
+          "price": 15
+        },
+        {
+          "id": "gubre_topu",
+          "price": 28
+        },
+        {
+          "id": "nane_limonata",
+          "price": 15
+        },
+        {
+          "id": "papatya_celengi",
+          "price": 35
+        }
+      ]
+    },
+    "sikir": {
+      "title": "Şıkır'ın Takas Tezgâhı",
+      "items": [
+        {
+          "id": "yildiz_tozu",
+          "price": 18
+        },
+        {
+          "id": "papatya_celengi",
+          "price": 30
+        },
+        {
+          "id": "gubre_topu",
+          "price": 25
+        },
+        {
+          "id": "nane_limonata",
+          "price": 12
+        }
+      ]
+    }
+  }
+}

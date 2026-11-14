@@ -1,0 +1,145 @@
+{
+  "npc": "tospik_nine",
+  "variants": [
+    {
+      "when": {
+        "quest": "yesil_diken",
+        "state": "ready"
+      },
+      "lines": [
+        {
+          "speaker": "tospik_nine",
+          "mood": "mutlu",
+          "text": "Bahçeler yine çiçek dolu! Alkışın herkese iyi geldi yavrum."
+        },
+        {
+          "speaker": "tospik_nine",
+          "mood": "dertli",
+          "text": "Ama bu sarmaşıklar köyde bitmedi. Kökleri ormana uzanıyor."
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "kararlı",
+          "text": "Köklerin peşinden giderim. Balonum hazır, ışığım da!"
+        },
+        {
+          "speaker": "tospik_nine",
+          "mood": "sakin",
+          "text": "Dikenler sıkarsa bir yudum limonata iç. Yolun açık olsun."
+        }
+      ],
+      "then": {
+        "complete_quest": "yesil_diken",
+        "set_flag": "s4_sahne2_bitti"
+      },
+      "by": "a"
+    },
+    {
+      "when": {
+        "quest": "yesil_diken",
+        "state": "active",
+        "objective_not_done": "yesil_diken/nine"
+      },
+      "lines": [
+        {
+          "speaker": "tospik_nine",
+          "mood": "dertli",
+          "text": "Herkes komşusunun bahçesine yan yan bakıyor: Onunki daha güzel!"
+        },
+        {
+          "speaker": "tospik_nine",
+          "mood": "dertli",
+          "text": "Böyle bakınca yerden Yeşil Diken çıkıyor. İçimiz de sıkışıyor."
+        },
+        {
+          "speaker": "tospik_nine",
+          "mood": "mutlu",
+          "text": "Al, Nane Limonata. İçin dikenle dolarsa bir yudum iç, ferahlarsın."
+        },
+        {
+          "speaker": "tospik_nine",
+          "mood": "kararlı",
+          "text": "Asıl çare alkış! Komşunun bahçesi için sevin, dikenler çekilir."
+        }
+      ],
+      "then": {
+        "advance": "yesil_diken/nine",
+        "give_items": {
+          "nane_limonata": 2
+        }
+      },
+      "by": "a"
+    },
+    {
+      "when": {
+        "quest": "yesil_diken",
+        "state": "active"
+      },
+      "lines": [
+        {
+          "speaker": "tospik_nine",
+          "mood": "sakin",
+          "text": "Dikenciyi önce sersemlet, sonra yanında alkışla."
+        },
+        {
+          "speaker": "tospik_nine",
+          "mood": "sakin",
+          "text": "Bahçelerin önünde de alkışla. Dikenler utanıp çekilir."
+        }
+      ],
+      "by": "a"
+    },
+    {
+      "when": {
+        "quest": "ilk_bahar",
+        "state": "ready"
+      },
+      "lines": [
+        {
+          "speaker": "tospik_nine",
+          "mood": "mutlu",
+          "text": "İlk tohumun çiçek açmış! Hem de ilk baharında, aferin Tırıl."
+        },
+        {
+          "speaker": "tospik_nine",
+          "mood": "kararlı",
+          "text": "Duyun! Yarın Çiçek Yarışması var. Jüri başkanı benim."
+        },
+        {
+          "speaker": "tospik_nine",
+          "mood": "kararlı",
+          "text": "Kazanan en büyük çiçek değil, en çok sevilen bahçe olacak!"
+        },
+        {
+          "speaker": "oyuncu",
+          "mood": "şaşkın",
+          "text": "Nine... Kimse dinlemiyor. Herkes çiçeğini ölçüyor."
+        }
+      ],
+      "then": {
+        "complete_quest": "ilk_bahar",
+        "set_flag": "s4_sahne1_bitti"
+      },
+      "by": "a"
+    },
+    {
+      "when": {
+        "quest": "ilk_bahar",
+        "state": "active"
+      },
+      "lines": [
+        {
+          "speaker": "tospik_nine",
+          "mood": "mutlu",
+          "text": "Hoş geldin Tırıl! Karadaki ilk baharın bu, tadını çıkar."
+        },
+        {
+          "speaker": "tospik_nine",
+          "mood": "sakin",
+          "text": "Komşularla tanış, kendi toprağına da bir tohum ek."
+        }
+      ],
+      "by": "a"
+    }
+  ]
+}
