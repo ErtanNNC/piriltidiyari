@@ -45,7 +45,8 @@ func _ready() -> void:
 	var p2 := _round_button("", "power_2", SMALL_R, "berry", 14)
 	var shoot := _round_button("At", "shoot", SMALL_R, "spark-green", 15)
 	# Season 2: hold next to a dazed creature to breathe it calm
-	var calm := _round_button("Sakinleş", "calm", SMALL_R, "spark-green", 14)
+	# Season 4: the same button claps (Alkış)
+	var calm := _round_button("Alkış" if GameState.data.season >= 4 else "Sakinleş", "calm", SMALL_R, "spark-green", 14)
 	calm.name = "Calm"
 	calm.visible = GameState.data.season >= 2
 	power_buttons = [p1, p2]

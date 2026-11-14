@@ -994,7 +994,7 @@ func _validate_chapter(chapter: String) -> void:
 				check(c.items.has(o["item"]), "görev %s: eşya %s" % [q["id"], o["item"]])
 			if o.has("to"):
 				check(c.npcs.has(o["to"]), "görev %s: NPC %s" % [q["id"], o["to"]])
-			check(o.get("type", "deliver") in ["deliver", "defeat", "reach", "talk", "light", "ring", "collect", "breathe", "lull", "win", "listen", "ritim", "titrek", "el", "meet"], "görev %s: hedef türü" % q["id"])
+			check(o.get("type", "deliver") in ["deliver", "defeat", "reach", "talk", "light", "ring", "collect", "breathe", "lull", "win", "listen", "ritim", "titrek", "el", "meet", "clap", "grow"], "görev %s: hedef türü" % q["id"])
 			if o.get("type", "") == "defeat":
 				check(o["target"] in MobStats.KINDS or o["target"] in ["pus", "kutuk_kral", "kiskac", "ruzgar", "dondurma", "miril"], "görev %s: bilinmeyen mob %s" % [q["id"], o["target"]])
 	c.free()

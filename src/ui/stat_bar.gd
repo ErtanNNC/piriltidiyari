@@ -3,7 +3,7 @@ extends Control
 ## StatBar: icon + outlined bar + number. Color never carries meaning alone:
 ## the icon and the number are always there.
 
-@export_enum("hp", "mp", "xp", "anger", "shiver") var stat := "hp"
+@export_enum("hp", "mp", "xp", "anger", "shiver", "thorn") var stat := "hp"
 var value := 1.0
 var max_value := 1.0
 var _icon: GameIcon
@@ -13,7 +13,7 @@ var _text := ""
 func _ready() -> void:
 	custom_minimum_size = Vector2(220, 30)
 	_icon = GameIcon.new()
-	_icon.kind = {"hp": "heart", "mp": "drop", "xp": "star", "anger": "spark", "shiver": "drop"}[stat]
+	_icon.kind = {"hp": "heart", "mp": "drop", "xp": "star", "anger": "spark", "shiver": "drop", "thorn": "spark"}[stat]
 	_icon.fill = Tokens.color(_token())
 	_icon.outline_color = Tokens.color("outline")
 	_icon.position = Vector2(0, 1)
@@ -23,7 +23,7 @@ func _ready() -> void:
 
 ## The color token of the fill: the stat's own, berry for the Öfke barı.
 func _token() -> String:
-	return {"anger": "berry", "shiver": "sky"}.get(stat, stat)
+	return {"anger": "berry", "shiver": "sky", "thorn": "spark-green"}.get(stat, stat)
 
 
 func set_values(v: float, m: float, text := "") -> void:

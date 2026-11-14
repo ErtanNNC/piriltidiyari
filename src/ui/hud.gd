@@ -10,6 +10,8 @@ var _mp: StatBar
 var _xp: StatBar
 var _anger: StatBar
 var _shiver: StatBar
+var _thorn: StatBar
+var _seeds: SeedTracker
 var _kors: KorTracker
 var _pearls: PearlTracker
 var _level: Label
@@ -116,6 +118,8 @@ func _ready() -> void:
 	_anger = StatBar.new(); _anger.stat = "anger"; _anger.visible = false; bars.add_child(_anger)
 	# Season 3: the Titreme barı, out in the dark Mavi Titreme
 	_shiver = StatBar.new(); _shiver.stat = "shiver"; _shiver.visible = false; bars.add_child(_shiver)
+	# Season 4: the Diken barı, near the Yeşil Diken
+	_thorn = StatBar.new(); _thorn.stat = "thorn"; _thorn.visible = false; bars.add_child(_thorn)
 
 	# top-center: spark tracker
 	var tc := CenterContainer.new()
@@ -141,6 +145,11 @@ func _ready() -> void:
 	_pearls.alignment = BoxContainer.ALIGNMENT_CENTER
 	_pearls.visible = GameState.data.has_flag("s3_prolog_bitti") and GameState.data.season == 3
 	top_center.add_child(_pearls)
+	# Season 4: the five Bahar Tohumu
+	_seeds = SeedTracker.new()
+	_seeds.alignment = BoxContainer.ALIGNMENT_CENTER
+	_seeds.visible = GameState.data.has_flag("s4_prolog_bitti") and GameState.data.season == 4
+	top_center.add_child(_seeds)
 	_boss = VBoxContainer.new()
 	_boss.visible = false
 	_boss.add_theme_constant_override("separation", 2)
@@ -535,6 +544,7 @@ func hide_boss() -> void:
 	_sparks.visible = GameState.data.season < 2
 	_kors.visible = GameState.data.has_flag("s2_prolog_bitti") and GameState.data.season == 2
 	_pearls.visible = GameState.data.has_flag("s3_prolog_bitti") and GameState.data.season == 3
+	_seeds.visible = GameState.data.has_flag("s4_prolog_bitti") and GameState.data.season == 4
 	_refresh_quest()
 
 
@@ -879,6 +889,10 @@ func _update_anger() -> void:
 	_shiver.visible = r != null and (r.shiver > 0.01 or r.is_frozen())
 	if _shiver.visible:
 		_shiver.set_values(r.shiver * 100.0, 100.0, TranslationServer.translate("Donakaldın!") if r.is_frozen() else TranslationServer.translate("Titreme"))
+	var a: Applause = _player.clap if _player and is_instance_valid(_player) else null
+	_thorn.visible = a != null and (a.thorn > 0.01 or a.is_envious())
+	if _thorn.visible:
+		_thorn.set_values((1.0 if a.is_envious() else a.thorn) * 100.0, 100.0, TranslationServer.translate("Kıskandın!") if a.is_envious() else TranslationServer.translate("Diken"))
 	var c: BreathCalm = _player.calm if _player and is_instance_valid(_player) else null
 	_anger.visible = c != null and (c.anger > 0.01 or c.is_angry())
 	if _anger.visible:

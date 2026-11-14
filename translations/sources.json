@@ -437,7 +437,15 @@
   "Pruva Feneri",
   "Kayığın ışığı büyür: sis onu yavaşlatamaz",
   "Şişe Pusulası",
-  "Bulunmamış Mesaj Şişelerinin üstünde yıldız yanar"
+  "Bulunmamış Mesaj Şişelerinin üstünde yıldız yanar",
+  "Nane Limonata",
+  "Diken barını boşaltır, canını 10 doldurur",
+  "Teşekkür Yaprağı",
+  "Paylaşınca kazanılır: diken barını boşaltır",
+  "Gübre Topu",
+  "60 saniye diktiğin tohumlar hemen büyür",
+  "Papatya Çelengi",
+  "90 saniye diken barın dolmaz"
  ],
  "content/keepers.json": [
   "Pati",
@@ -2098,6 +2106,9 @@
   "Tırıl'ın Babası",
   "Tırıl'ın Kardeşi"
  ],
+ "src/actors/applause.gd": [
+  "Kıskandın! Birini alkışla, geçer."
+ ],
  "src/actors/breath_calm.gd": [
   "panel@light",
   "Yanına git!",
@@ -2205,6 +2216,9 @@
   "%d saniye öfke barın dolmaz",
   "%d saniye ışığın iki kat büyük",
   "%d saniye titreme barın dolmaz",
+  "Dikenler geri çekildi. Elindekine teşekkür!",
+  "%d saniye diken barın dolmaz",
+  "%d saniye tohumların hemen büyür",
   "%d saniye moblar seni zor fark eder",
   "Uykuya daldın",
   "Fener'in yanında uyanıyorsun...",
@@ -2311,6 +2325,18 @@
   "Kar Topu Tavşanı",
   "Buz Dikeni",
   "Gölge Kopya",
+  "Kapıcı Tavşan",
+  "Kıskanç Salyangoz",
+  "Kapkaç Karga",
+  "Benimci Fare",
+  "Bağıran Kurbağa",
+  "Susturucu Sinek",
+  "Somurtkan Civciv",
+  "İtici Sincap",
+  "Ayna Balığı",
+  "Taklitçi Kurbağa",
+  "Diken Topu",
+  "Neden-Ben-Değilim Gölgesi",
   "Köpüklü Tavuk",
   "Gürültücü Kurbağa",
   "Kapıcı Rakun",
@@ -2358,7 +2384,14 @@
  "src/core/shore_plan.gd": [
   "Albatros Yavrusu Pamuk",
   "Keşiş Yengeç Bikbik",
-  "Fok Tombik"
+  "Fok Tombik",
+  "Dev Kabak Bahçıvan",
+  "Huysuz Korkuluk",
+  "Saksağan Şıkır",
+  "Cırcır Böceği Cırcır",
+  "Serçe Pıtpıt",
+  "Ördek Yavrusu Paçalı",
+  "Dırıl"
  ],
  "src/core/skills.gd": [
   "Dikenli Dönüş",
@@ -2460,6 +2493,7 @@
   "%s (%s)",
   "Oyun kaydedilemedi. Telefonda yer var mı?",
   "Donakaldın!",
+  "Kıskandın!",
   "Kızgın!",
   "Öfke",
   " (%s tuşu / düğmesi)",
@@ -2592,6 +2626,7 @@
   "Zıpla",
   "Yuvarlan",
   "At",
+  "Alkış",
   "Sakinleş",
   "At\n%d"
  ],
@@ -2608,6 +2643,9 @@
   "Bu kaya çok ağır. %s itebilirdi!",
   "Karşıya halat lazım. %s atabilirdi!",
   "Burası çok karanlık. %s aydınlatabilirdi!"
+ ],
+ "src/world/ark_gate.gd": [
+  "Aç"
  ],
  "src/world/beach_torch.gd": [
   "Yak"
@@ -2721,9 +2759,6 @@
   "%s=%d/%d",
   "Yol açık: %s. Yıldızlı yoldan geç!",
   "Yol açık: %s"
- ],
- "src/world/chest.gd": [
-  "Aç"
  ],
  "src/world/cutscene_player.gd": [
   "{keeper}"
@@ -3056,6 +3091,15 @@
   "Yanına git: ışığın onu ısıtır. Ya da Sakinleş ile el uzat.",
   "Yanına git, el uzat."
  ],
+ "src/world/s4_garden.gd": [
+  "Bahar Kapısı çiçek açtı: %s yolu açıldı!",
+  "Bahar Kapısı'na git: %s",
+  "Thorns%d",
+  "Plot%d",
+  "Küstü, kendi güzelliğini göremiyor. Yanına git, Alkış'a bas!",
+  "Yanına git, Alkış'a bas!",
+  "Bahar Tohumu"
+ ],
  "src/world/scene2.gd": [
   "J: Dikenlerinle vur!",
   "Saldır'a bas: dikenlerinle vur!",
@@ -3093,6 +3137,11 @@
  "src/world/season_flow.gd": [
   "Seviyen ve eşyaların kalır, hikâye baştan başlar. Hırıl ve Tırıl da seçilebilir!"
  ],
+ "src/world/seed_plot.gd": [
+  "Bu toprak çok nazlı. Yonca filizlendirebilir.",
+  "Bu bir Gece Çiçeği. Gece olunca açar.",
+  "Bu çiçek gündüz açar."
+ ],
  "src/world/ship_dock.gd": [
   "Uç"
  ],
@@ -3107,6 +3156,14 @@
  "src/world/spark_door.gd": [
   "Kıvılcımı göster",
   "Bu kapı bir Kıvılcım daha istiyor"
+ ],
+ "src/world/spring_gate.gd": [
+  "Geç",
+  "Bahar Kapısı",
+  "Bu bahçenin işi bitmedi. Bitince sıradaki kapı çiçek açar.",
+  " · dikenli",
+  "Kapı henüz çiçek açmadı.",
+  "Bahar Kapısı nereye açılsın?"
  ],
  "src/world/story_stone.gd": [
   "Oku",

@@ -19,6 +19,13 @@ static func start_season3() -> void:
 	SceneFlow.go_to("s3_scene1")
 
 
+static func start_season4() -> void:
+	var d := GameState.data
+	d.start_season4(Content.items)
+	SaveGame.write(d)
+	SceneFlow.go_to("s4_scene1")
+
+
 ## Season 3's story packs: Yeni Oyun+ forgets their quests.
 const S3_STORY_PACKS := ["s3_prologue", "s3_chapter0", "s3_chapter1", "s3_chapter2", "s3_chapter3", "s3_chapter4", "s3_chapter5"]
 

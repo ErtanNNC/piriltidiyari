@@ -49,6 +49,8 @@ var season := 1
 var s1_keeper: Dictionary = {}
 ## The keeper who finished Season 2 (Season 3's prologue is played as Hırıl).
 var s2_keeper: Dictionary = {}
+## Season 3's keeper, kept while Season 4's prologue is played as Tırıl.
+var s3_keeper: Dictionary = {}
 ## How many times Yeni Oyun+ was started in this save (0 in older saves).
 var ng_plus_runs := 0
 
@@ -441,6 +443,37 @@ func start_season3(item_defs: Dictionary) -> void:
 	piril_changed.emit(piril, 0)
 
 
+## True when this save may start Season 4 (Season 3 done, not started yet).
+func can_start_season4() -> bool:
+	return has_flag("sezon3_bitti") and season < 4
+
+
+## Season 4 (Dikenli Bahçeler): like Season 3's start. Level 1 again, the
+## prologue is played as Tırıl; owned outfits, tools and charms stay.
+func start_season4(item_defs: Dictionary) -> void:
+	s3_keeper = {"id": character_id, "name": character_name, "look": character_look.duplicate()}
+	season = 4
+	character_id = "tiril"
+	character_name = "Tırıl"
+	character_look = {}
+	level = 1
+	xp = 0
+	powers = {}
+	power_picks = 0
+	skills = []
+	piril = 0
+	base_stats = {"hp": 90, "power": 9, "speed": 6.4}
+	max_mp = 50
+	recompute_stats(item_defs)
+	hp = max_hp
+	mp = max_mp
+	scene_id = "s4_scene1"
+	set_flag("sezon4")
+	stats_changed.emit()
+	skills_changed.emit()
+	piril_changed.emit(piril, 0)
+
+
 ## Yeni Oyun+ keeps these flags (by prefix): what you own, side collections,
 ## finished seasons, the regatta and coral garden, NG+ itself, and the marks
 ## of Seasons 1 and 2. Every other flag is Season 3's story and is forgotten.
@@ -490,7 +523,7 @@ func start_new_game_plus(item_defs: Dictionary = {}, story_quests: Array = []) -
 # --- save ---------------------------------------------------------------
 
 const SAVE_KEYS := ["character_id", "character_name", "character_look", "scene_id", "level", "xp",
-	"max_hp", "hp", "max_mp", "mp", "power", "speed", "piril", "items", "potions", "skills", "quests", "flags", "sparks", "equipped", "powers", "power_picks", "base_stats", "season", "s1_keeper", "s2_keeper", "ng_plus_runs"]
+	"max_hp", "hp", "max_mp", "mp", "power", "speed", "piril", "items", "potions", "skills", "quests", "flags", "sparks", "equipped", "powers", "power_picks", "base_stats", "season", "s1_keeper", "s2_keeper", "s3_keeper", "ng_plus_runs"]
 
 
 func to_dict() -> Dictionary:

@@ -69,6 +69,7 @@ var _ball_shape: SphereShape3D
 ## Season 2: Sakinleş (breath) and the Öfke barı (see BreathCalm).
 var calm: BreathCalm
 var ring: LightRing   ## Season 3: light ring + Titreme barı
+var clap: Applause   ## Season 4: Alkış + Diken barı
 var rhythm := Rhythm.new()
 ## Mırıl's world ability: holding jump while falling floats down (seconds left).
 var _glide_left := 0.0
@@ -101,6 +102,10 @@ func _ready() -> void:
 		ring = LightRing.new()
 		ring.name = "LightRing"
 		add_child(ring)
+	if GameState.data.season >= 4:
+		clap = Applause.new()
+		clap.name = "Applause"
+		add_child(clap)
 	GameState.data.stats_changed.connect(_maybe_rebuild)
 	var sensor := Area3D.new()
 	sensor.collision_layer = 0
@@ -304,6 +309,9 @@ func spin_attack() -> void:
 func use_skill() -> void:
 	var id := GameState.data.active_skill()
 	if id == "" or _attack_cd > 0.0 or rolling or asleep:
+		return
+	if clap and clap.is_envious():
+		GameState.toast.emit("Kıskandın! Birini alkışla, geçer.", "spark")
 		return
 	if not GameState.data.use_mp(int(Skills.DEFS[id]["mp"])):
 		GameState.toast.emit("Enerjin az. Yıldız Tozu iç!", "drop")
@@ -699,6 +707,20 @@ func drink_potion(slot: int) -> void:
 			ring.brave_until = GameState.clock + float(def["seconds"])
 			ring.warm()
 		GameState.toast.emit(TranslationServer.translate("%d saniye titreme barın dolmaz") % int(def["seconds"]), "heart")
+	elif def.get("buff", "") == "ferah":
+		# Nane Limonata / Teşekkür Yaprağı: the Diken barı empties
+		if clap:
+			clap.cool_down()
+		d.heal(int(def.get("heal", 0)))
+		GameState.toast.emit("Dikenler geri çekildi. Elindekine teşekkür!", "heart")
+	elif def.get("buff", "") == "celenk":
+		if clap:
+			clap.wreath_until = GameState.clock + float(def["seconds"])
+			clap.cool_down()
+		GameState.toast.emit(TranslationServer.translate("%d saniye diken barın dolmaz") % int(def["seconds"]), "heart")
+	elif def.get("buff", "") == "gubre":
+		GameState.set_buff_until("gubre", GameState.clock + float(def["seconds"]))
+		GameState.toast.emit(TranslationServer.translate("%d saniye tohumların hemen büyür") % int(def["seconds"]), "star")
 	elif def.get("buff", "") == "kovucu":
 		GameState.repel_until = GameState.clock + float(def["seconds"])
 		GameState.toast.emit(TranslationServer.translate("%d saniye moblar seni zor fark eder") % int(def["seconds"]), "drop")
@@ -932,6 +954,9 @@ func use_power(slot: int) -> void:
 	var d := GameState.data
 	var list := Powers.actives(d.powers)
 	if slot >= list.size() or asleep or rolling or not input_enabled:
+		return
+	if clap and clap.is_envious():
+		GameState.toast.emit("Kıskandın! Birini alkışla, geçer.", "spark")
 		return
 	var id: String = list[slot]
 	var def: Dictionary = Powers.DEFS[id]

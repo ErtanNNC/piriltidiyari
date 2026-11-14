@@ -17,6 +17,19 @@ const KINDS := {
 	"golge_kopya": {"name": "Gölge Kopya", "hp": 80, "speed": 3.0, "damage": 12, "attack": "lunge", "range": 2.8, "aggro": 11.0, "xp": 30, "piril": 6},
 	# Season 2 (Kor Vadisi): Köpüklüler. "breath": at 0 HP they sit dazed and
 	# wait for Sakinleş (a breath); left alone they calm down by themselves.
+	# Season 4: Dikenciler (sit dazed at 0 HP until someone claps for them)
+	"kapici_tavsan": {"name": "Kapıcı Tavşan", "hp": 30, "speed": 3.2, "damage": 8, "attack": "lunge", "range": 2.6, "aggro": 9.0, "xp": 3, "piril": 2, "breath": true},
+	"kiskanc_salyangoz": {"name": "Kıskanç Salyangoz", "hp": 40, "speed": 1.6, "damage": 9, "attack": "burst", "range": 2.6, "aggro": 8.0, "xp": 3, "piril": 3, "breath": true},
+	"kapkac_karga": {"name": "Kapkaç Karga", "hp": 38, "speed": 3.4, "damage": 8, "attack": "lunge", "range": 2.8, "aggro": 10.0, "xp": 6, "piril": 3, "breath": true},
+	"benim_faresi": {"name": "Benimci Fare", "hp": 34, "speed": 3.6, "damage": 7, "attack": "lunge", "range": 2.4, "aggro": 9.0, "xp": 6, "piril": 3, "breath": true},
+	"bagiran_kurbaga": {"name": "Bağıran Kurbağa", "hp": 44, "speed": 2.0, "damage": 9, "attack": "burst", "range": 2.8, "aggro": 8.0, "xp": 6, "piril": 3, "breath": true},
+	"susturucu_sinek": {"name": "Susturucu Sinek", "hp": 32, "speed": 3.8, "damage": 7, "attack": "lunge", "range": 2.6, "aggro": 10.0, "xp": 6, "piril": 3, "breath": true},
+	"somurtkan_civciv": {"name": "Somurtkan Civciv", "hp": 36, "speed": 3.0, "damage": 8, "attack": "lunge", "range": 2.6, "aggro": 9.0, "xp": 6, "piril": 3, "breath": true},
+	"itici_sincap": {"name": "İtici Sincap", "hp": 42, "speed": 3.4, "damage": 9, "attack": "lunge", "range": 2.8, "aggro": 9.0, "xp": 6, "piril": 3, "breath": true},
+	"ayna_baligi": {"name": "Ayna Balığı", "hp": 38, "speed": 2.6, "damage": 8, "attack": "burst", "range": 2.8, "aggro": 8.0, "xp": 6, "piril": 3, "breath": true},
+	"taklitci_kurbaga": {"name": "Taklitçi Kurbağa", "hp": 44, "speed": 2.4, "damage": 9, "attack": "lunge", "range": 2.6, "aggro": 9.0, "xp": 6, "piril": 3, "breath": true},
+	"diken_topu": {"name": "Diken Topu", "hp": 48, "speed": 3.0, "damage": 10, "attack": "lunge", "range": 2.8, "aggro": 9.0, "xp": 6, "piril": 4, "breath": true},
+	"neden_golgesi": {"name": "Neden-Ben-Değilim Gölgesi", "hp": 46, "speed": 2.6, "damage": 9, "attack": "burst", "range": 2.8, "aggro": 9.0, "xp": 6, "piril": 4, "breath": true},
 	"kopuklu_tavuk": {"name": "Köpüklü Tavuk", "hp": 30, "speed": 2.8, "damage": 8, "attack": "lunge", "range": 2.6, "aggro": 9.0, "xp": 3, "piril": 2, "breath": true},
 	"gurultucu_kurbaga": {"name": "Gürültücü Kurbağa", "hp": 38, "speed": 2.0, "damage": 9, "attack": "burst", "range": 2.6, "aggro": 8.0, "xp": 3, "piril": 3, "breath": true},
 	# Kızıl Yaprak Ormanı: a raccoon who grabs things without asking (carries a
@@ -48,7 +61,7 @@ const MAX_ATTACKERS := 1
 
 ## Each kind's level: it belongs to its region's level range
 ## (Köy 1–5, Orman 5–10, Mağara 10–15, Liman 15–20, Dağ 20–25, Kale 25–30).
-const LEVELS := {"kopuklu_tavuk": 1, "gurultucu_kurbaga": 2, "kapici_rakun": 6, "somurtkan_sincap": 7, "balon_balik": 11, "laf_kesen_ordek": 12, "patlayan_misir": 16, "kiskanc_civciv": 17, "yanki_yarasasi": 21, "tepinen_keci": 22, "lav_damlacigi": 26, "sus_bulutu": 27, "sumuklu": 1, "mantar": 2, "dev_mantar": 4, "kirpi_topu": 6, "karga": 7,
+const LEVELS := {"kapici_tavsan": 1, "kiskanc_salyangoz": 2, "kapkac_karga": 6, "benim_faresi": 7, "bagiran_kurbaga": 11, "susturucu_sinek": 12, "somurtkan_civciv": 16, "itici_sincap": 17, "ayna_baligi": 21, "taklitci_kurbaga": 22, "diken_topu": 26, "neden_golgesi": 27, "kopuklu_tavuk": 1, "gurultucu_kurbaga": 2, "kapici_rakun": 6, "somurtkan_sincap": 7, "balon_balik": 11, "laf_kesen_ordek": 12, "patlayan_misir": 16, "kiskanc_civciv": 17, "yanki_yarasasi": 21, "tepinen_keci": 22, "lav_damlacigi": 26, "sus_bulutu": 27, "sumuklu": 1, "mantar": 2, "dev_mantar": 4, "kirpi_topu": 6, "karga": 7,
 	"kristal_bocek": 11, "yarasa": 12, "firtina_yumagi": 16, "korsan_marti": 17,
 	"kar_tavsani": 21, "buz_dikeni": 22, "golge_kopya": 26}
 

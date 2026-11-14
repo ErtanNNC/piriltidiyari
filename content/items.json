@@ -272,6 +272,44 @@
       "kind": "charm",
       "icon": "star",
       "desc": "Bulunmamış Mesaj Şişelerinin üstünde yıldız yanar"
+    },
+    "nane_limonata": {
+      "name": "Nane Limonata",
+      "color": "spark-green",
+      "kind": "potion",
+      "buff": "ferah",
+      "heal": 10,
+      "price": 15,
+      "icon": "heart",
+      "desc": "Diken barını boşaltır, canını 10 doldurur"
+    },
+    "tesekkur_yapragi": {
+      "name": "Teşekkür Yaprağı",
+      "color": "spark-green",
+      "kind": "potion",
+      "buff": "ferah",
+      "icon": "star",
+      "desc": "Paylaşınca kazanılır: diken barını boşaltır"
+    },
+    "gubre_topu": {
+      "name": "Gübre Topu",
+      "color": "honey",
+      "kind": "potion",
+      "buff": "gubre",
+      "seconds": 60,
+      "price": 30,
+      "icon": "star",
+      "desc": "60 saniye diktiğin tohumlar hemen büyür"
+    },
+    "papatya_celengi": {
+      "name": "Papatya Çelengi",
+      "color": "spark-yellow",
+      "kind": "potion",
+      "buff": "celenk",
+      "seconds": 90,
+      "price": 35,
+      "icon": "heart",
+      "desc": "90 saniye diken barın dolmaz"
     }
   }
 }
