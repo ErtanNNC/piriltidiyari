@@ -447,6 +447,9 @@ msgstr "Light up"
 msgid "Aydınlatma"
 msgstr "Light up"
 
+msgid "Ayna Gölü"
+msgstr "Mirror Lake"
+
 msgid "Ayı Kucağı"
 msgstr "Bear Hug"
 
@@ -2268,6 +2271,9 @@ msgstr "Night-Light"
 msgid "Gece Regatası"
 msgstr "Night Regatta"
 
+msgid "Gece Çiçeği"
+msgstr "Night Flower"
+
 msgid "Gel, Hırıl! Fener'in yedinci rengi seni bekliyor."
 msgstr "Come, Grumble! The Lantern's seventh color is waiting for you."
 
@@ -2426,6 +2432,9 @@ msgstr "Shadow Fish"
 
 msgid "Gölge Kopya"
 msgstr "Shadow Copy"
+
+msgid "Gölge Köşesi"
+msgstr "Shady Corner"
 
 msgid "Gölge Prens Mırıl"
 msgstr "Shadow Prince Mumble"
@@ -3257,6 +3266,9 @@ msgstr "Climb to the top of the castle"
 
 msgid "Kalkan"
 msgstr "Shield"
+
+msgid "Kalkan Yaprağı"
+msgstr "Shield Leaf"
 
 msgid "Kalıcı olarak biraz daha hızlı koşarsın"
 msgstr "You run a little faster for good"
@@ -4956,6 +4968,9 @@ msgstr "My fair is empty! Nobody plays my games."
 msgid "Papatya Çayı"
 msgstr "Chamomile Tea"
 
+msgid "Parlak Pazar"
+msgstr "Shiny Market"
+
 msgid "Parlak Salon'un kristallerini yak"
 msgstr "Light the crystals in the Shiny Hall"
 
@@ -5388,6 +5403,9 @@ msgstr "A slingshot throws Light Seeds. They clear faraway Gloom!"
 msgid "Sapanla uzağa atılır, Pus'u dağıtır"
 msgstr "Thrown far with the slingshot, clears the Gloom"
 
+msgid "Sarmaşık Merdiven"
+msgstr "Vine Ladder"
+
 msgid "Sarmaşıktan tırman"
 msgstr "Climb the vines"
 
@@ -5486,6 +5504,9 @@ msgstr "Talking to you cooled me right down."
 
 msgid "Sepetimde kakao var. Bak istersen."
 msgstr "I have cocoa in my basket. Take a look if you like."
+
+msgid "Sera Kasabası"
+msgstr "Greenhouse Town"
 
 msgid "Sersemledi! Şimdi vur!"
 msgstr "He's dazed! Hit now!"
@@ -6474,6 +6495,9 @@ msgstr "If I light the glow mushroom next to him, the ink pulls back."
 msgid "Yanındayım. İstersen bir adım geri gidelim."
 msgstr "I'm right here. If you like, we can step back."
 
+msgid "Yaprak Köprü"
+msgstr "Leaf Bridge"
+
 msgid "Yaprak halkalarından ve atılmasından kaç. Oturunca vur!"
 msgstr "Dodge the leaf rings and his dash. Hit when he sits!"
 
@@ -6708,6 +6732,9 @@ msgstr "His fists are stuck in the ice! Hit now!"
 msgid "Yumrukları saplandı! Vur!"
 msgstr "Fists stuck! Hit!"
 
+msgid "Yuva Ağacı"
+msgstr "Nest Tree"
+
 msgid "Yuvadaki Pamuk'a el uzat"
 msgstr "Reach out a hand to Cotton in the nest"
 
@@ -6812,6 +6839,9 @@ msgstr "Give Hoppy his green lantern"
 
 msgid "burada %d/%d"
 msgstr "here %d/%d"
+
+msgid "kıskandın"
+msgstr "you got jealous"
 
 msgid "uyandı!"
 msgstr "woke up!"
@@ -7281,6 +7311,9 @@ msgstr "Hat"
 msgid "Şapkalar, pelerinler... Hepsi dantelli."
 msgstr "Hats, capes... All made of lace."
 
+msgid "Şarkı Çayırı"
+msgstr "Song Meadow"
+
 msgid "Şarkımı söylerken gülme ama, tamam mı?"
 msgstr "Don't laugh when I sing my song, okay?"
 
@@ -7298,6 +7331,9 @@ msgstr "The Candy Caves' lantern went out too. Look at the sign!"
 
 msgid "Şenlik başlıyor! Zıp zıp!"
 msgstr "The festival is starting! Hop hop!"
+
+msgid "Şifa Papatyası"
+msgstr "Healing Daisy"
 
 msgid "Şimdi fişeği yak. Fenerin dibinde duruyor."
 msgstr "Now light the flare. It's right at the foot of the Lighthouse."

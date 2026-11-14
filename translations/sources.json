@@ -2284,6 +2284,21 @@
   "fontSize",
   "fontWeight"
  ],
+ "src/core/garden_travel.gd": [
+  "Sera Kasabası",
+  "Parlak Pazar",
+  "Şarkı Çayırı",
+  "Yuva Ağacı",
+  "Ayna Gölü",
+  "Gölge Köşesi"
+ ],
+ "src/core/growth.gd": [
+  "Yaprak Köprü",
+  "Sarmaşık Merdiven",
+  "Şifa Papatyası",
+  "Kalkan Yaprağı",
+  "Gece Çiçeği"
+ ],
  "src/core/mob_stats.gd": [
   "Puslu Sümüklü",
   "Somurtkan Mantar",
@@ -2377,6 +2392,9 @@
   "Kabuk Yuvası",
   "Işık Dalgası",
   "Aile Işığı"
+ ],
+ "src/core/thorn_rules.gd": [
+  "kıskandın"
  ],
  "src/core/titrek_kinds.gd": [
   "Titrek Yengeç",
